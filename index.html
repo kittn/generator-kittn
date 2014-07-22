@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <title>Generator-kittn by gisu</title>
+  </head>
+
+  <body>
+    <div id="container">
+      <div class="inner">
+
+        <header>
+          <h1>Generator-kittn</h1>
+          <h2>The Yeoman Kittn Generator</h2>
+        </header>
+
+        <section id="downloads" class="clearfix">
+          <a href="https://github.com/gisu/generator-kittn/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
+          <a href="https://github.com/gisu/generator-kittn/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
+          <a href="https://github.com/gisu/generator-kittn" id="view-on-github" class="button"><span>View on GitHub</span></a>
+        </section>
+
+        <hr>
+
+        <section id="main_content">
+          <p><img src="https://cloud.githubusercontent.com/assets/442468/3564677/85e7f014-0a93-11e4-93b7-95137d7cf008.png" alt=""></p>
+
+<h1>
+<a name="generator-kittn" class="anchor" href="#generator-kittn"><span class="octicon octicon-link"></span></a>generator-kittn</h1>
+
+<h2>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
+
+<p>Why you name it 'Kittn'? Simple, the most People loves Kitten, and its time to bring more cuteness in tech industry :D</p>
+
+<p>Kittn is a Toolkit, a collection of several components that will help the developers to work on the frontend. The most based on my own Experience.</p>
+
+<p>The CSS does not offer Part prefabricated elements, like Bootstrap, it gives the developer rather the mixins in hand, to generate elements.</p>
+
+<p>Around the CSS part is a set of Grunt / Gulp task, bringing the eigentiche work is automated. My goal was to minimize errors in the daily Development by rules.</p>
+
+<h2>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h2>
+
+<ul>
+<li>Sass 3.4.0.rc1</li>
+<li>Gulp 3.8.0</li>
+<li>Grunt 0.4.5</li>
+<li>Jade 1.3.0</li>
+<li>Yeoman 1.2.0</li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Please install or update your Ruby and Node environment. Optional install Homebrew.</p>
+
+<p>Install the Dependencies - only when you don't have it installed on your Machine.</p>
+
+<p>Install SASS</p>
+
+<div class="highlight highlight-bash"><pre>gem install sass --pre
+</pre></div>
+
+<p>Install Jade</p>
+
+<div class="highlight highlight-bash"><pre>npm install -g jade
+</pre></div>
+
+<p>Install Gulp</p>
+
+<div class="highlight highlight-bash"><pre>npm install -g gulp
+</pre></div>
+
+<p>Install Grunt</p>
+
+<div class="highlight highlight-bash"><pre>npm install -g grunt-cli
+</pre></div>
+
+<p>Install Yeoman</p>
+
+<div class="highlight highlight-bash"><pre>npm install -g yeoman
+</pre></div>
+
+<p>Install Bower</p>
+
+<div class="highlight highlight-bash"><pre>npm install -g bower
+</pre></div>
+
+<p>Install Graphicsmagick</p>
+
+<div class="highlight highlight-bash"><pre>brew install graphicsmagick
+</pre></div>
+
+<p>Install libpng</p>
+
+<div class="highlight highlight-bash"><pre>brew install libpng
+</pre></div>
+
+<h2>
+<a name="using" class="anchor" href="#using"><span class="octicon octicon-link"></span></a>Using</h2>
+
+<p>To install generator-kittn from npm, run:</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>npm install -g generator-kittn
+</pre></div>
+
+<p>Finally, initiate the generator:</p>
+
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>yo kittn
+</pre></div>
+
+<p>After the Installation is finished, its time to initiate the Project.</p>
+
+<div class="highlight highlight-bash"><pre>gulp init
+</pre></div>
+
+<p>Gulp will start to build JS Files and Copy it from 'src' to the 'dist' directory. Be aware that you work only on the 'src' directory, anything in 'dist' will be produced (it will be overwritten).</p>
+
+<p>Now the begin the Magic</p>
+
+<div class="highlight highlight-bash"><pre>gulp
+</pre></div>
+
+<p>Dead Simple. Gulp will now activate the watch tasks, a change on Sass, Jade or JS Files will active the Compilers (in the Case of Jade only a JSHint). Also will start a Server, you will see your Changes on the Browser without a manually reload.</p>
+
+<p>You can also activate an extende Watch Task, Gulp will now watch also on Images Changes.</p>
+
+<div class="highlight highlight-bash"><pre>gulp extended
+</pre></div>
+
+<p>The Image files are 'src/stash/images/css-images/', any change here, the Files will be copied in your 'dist' directory. Any Image-Data (name, widht, height), will be saved in a Imagemap, Sprites will be rerendered. You can use a Sass Mixin to include in a easy way Image Files in your Sass File.</p>
+
+<p>Sass, yes. You work on a '_workfile', don't touch 'style.scss'. Any change on the Workfile flows in the style.scss that compiled to a style.css File. I work on one central File, specific Styles will be routed to different Files - <a href="https://github.com/Team-Sass/jacket">https://github.com/Team-Sass/jacket</a>.</p>
+
+<h3>
+<a name="image-assets" class="anchor" href="#image-assets"><span class="octicon octicon-link"></span></a>Image Assets</h3>
+
+<p>Put your Image Assets in the 'src/stash/images/' Folder. The PSDs are for Photoshop CC Users, in this case you put all Images on the PSDs and the Photoshop Generator will do the Rest :) (<a href="http://blogs.adobe.com/photoshopdotcom/2013/09/introducing-adobe-generator-for-photoshop-cc.html">http://blogs.adobe.com/photoshopdotcom/2013/09/introducing-adobe-generator-for-photoshop-cc.html</a>. )</p>
+
+<ul>
+<li>sprite.psd =&gt; Your Images for Sprites</li>
+<li>single.psd =&gt; Image Files that not used as textures</li>
+<li>texture.psd =&gt; Image Files that used as texture</li>
+</ul><p>When the PS Generator have saved the Assets for you, than you can Update you Image Assets</p>
+
+<div class="highlight highlight-bash"><pre>gulp grunt-imageUpdate
+</pre></div>
+
+<p>In this Case is a Grunt Task. First your Imagefiles in 'dist' will be cleaned, that a new Sprite will be generated, SVG will be minified and build a PNG Fallback. Single and Texture Images will be copied to 'dist', and a new image map is generated.</p>
+
+<h3>
+<a name="js-files" class="anchor" href="#js-files"><span class="octicon octicon-link"></span></a>JS Files</h3>
+
+<ul>
+<li>need to be finished</li>
+</ul><h3>
+<a name="generate-css" class="anchor" href="#generate-css"><span class="octicon octicon-link"></span></a>Generate CSS</h3>
+
+<ul>
+<li>need to be finished</li>
+</ul><h3>
+<a name="generate-html" class="anchor" href="#generate-html"><span class="octicon octicon-link"></span></a>Generate HTML</h3>
+
+<ul>
+<li>need to be finished</li>
+</ul><h3>
+<a name="various-gruntgulp-tasks" class="anchor" href="#various-gruntgulp-tasks"><span class="octicon octicon-link"></span></a>Various Grunt&amp;Gulp Tasks</h3>
+
+<ul>
+<li>need to be finished</li>
+</ul><hr><h2>
+<a name="getting-to-know-yeoman" class="anchor" href="#getting-to-know-yeoman"><span class="octicon octicon-link"></span></a>Getting To Know Yeoman</h2>
+
+<p>Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.</p>
+
+<p>If you'd like to get to know Yeoman better and meet some of his friends, <a href="http://gruntjs.com">Grunt</a> and <a href="http://bower.io">Bower</a>, check out the complete <a href="https://github.com/yeoman/yeoman/wiki/Getting-Started">Getting Started Guide</a>.</p>
+
+<hr><h2>
+<a name="special-thanks-to" class="anchor" href="#special-thanks-to"><span class="octicon octicon-link"></span></a>Special Thanks to</h2>
+
+<ul>
+<li>Hugo Giraudel (<a href="https://github.com/HugoGiraudel" class="user-mention">@HugoGiraudel</a>) - for his awesome Sass Scripts</li>
+<li>Daniel Guillan (<a href="https://github.com/danielguillan" class="user-mention">@danielguillan</a>) - Modernizr Mixins</li>
+</ul><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>MIT</p>
+        </section>
+
+        <footer>
+          Generator-kittn is maintained by <a href="https://github.com/gisu">gisu</a><br>
+          This page was generated by <a href="http://pages.github.com">GitHub Pages</a>. Tactile theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.
+        </footer>
+
+        
+      </div>
+    </div>
+  </body>
+</html>
