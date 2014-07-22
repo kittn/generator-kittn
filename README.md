@@ -1,6 +1,6 @@
 ![](https://cloud.githubusercontent.com/assets/442468/3564677/85e7f014-0a93-11e4-93b7-95137d7cf008.png)
 
-# generator-kittn [![Build Status](https://secure.travis-ci.org/gisu/generator-kittn.png?branch=master)](https://travis-ci.org/gisu/generator-kittn)
+# generator-kittn
 
 ## Introduction
 
@@ -133,15 +133,20 @@ In this Case is a Grunt Task. First your Imagefiles in 'dist' will be cleaned, t
 ### Various Grunt&Gulp Tasks
 - need to be finished
 
-### Getting To Know Yeoman
+---- 
+
+## Getting To Know Yeoman
 
 Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.
 
 If you'd like to get to know Yeoman better and meet some of his friends, [Grunt](http://gruntjs.com) and [Bower](http://bower.io), check out the complete [Getting Started Guide](https://github.com/yeoman/yeoman/wiki/Getting-Started).
 
-![](https://cloud.githubusercontent.com/assets/442468/3564677/85e7f014-0a93-11e4-93b7-95137d7cf008.png)
+--- 
 
 ## Special Thanks to
+
+- Hugo Giraudel (@HugoGiraudel) - for his awesome Sass Scripts
+- Daniel Guillan (@danielguillan) - Modernizr Mixins
 
 ## License
 
