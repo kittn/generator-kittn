@@ -1,0 +1,1 @@
+Place HTML Images (<img src="") in this folder.

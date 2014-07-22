@@ -1,0 +1,110 @@
+// ===================================================
+// Shorthands
+// ===================================================
+
+/**
+ * Micro Clearfix without IE7 the fix is smarter
+ */
+@mixin clearfix {
+  &:after {
+    content : '';
+    display : table;
+    clear   : both;
+  }
+}
+
+/**
+ * Shorthand for centering Elements
+ */
+@mixin center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/**
+ * Compatible Mixin for Word-Wrap
+ */
+@mixin word-wrap {
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+/**
+ * Mixin for truncating Text
+ */
+@mixin text-truncate {
+  max-width: 100%;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  word-wrap: normal !important ;
+}
+
+/**
+ * Vertical Center Elements
+ */
+@mixin vertical-center {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+/**
+ * Method for Text Replacement
+ */
+@mixin cleartext {
+  background-color: transparent;
+  border: 0;
+  color: transparent;
+  font: 0/0 a;
+  text-shadow: none;
+}
+
+/**
+ * Text Replacement Method from HTML5 Boilerplate
+ */
+@mixin cleartext-complex {
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+  &:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 150%;
+  }
+}
+
+/**
+ * Text Replacement without 'overflow:hidden'
+ */
+@mixin cleartext-simpler {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/**
+ * Helper to prevent collapsing Margins
+ */
+@mixin decollapse {
+  padding-top: 1px;
+  margin-top: 1px;
+}
+
+/**
+ * Activate the Hardware Acceleration on Webkit Browsers
+ */
+@mixin performance {
+  transform: translate3d(0,0,0);
+}
+
+/**
+ * Activate Antialias on Webkit Browsers
+ */
+@mixin antialias {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

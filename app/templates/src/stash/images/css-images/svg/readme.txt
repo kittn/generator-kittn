@@ -1,0 +1,1 @@
+SVG images with a planed png fallback comes in this directory.

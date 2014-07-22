@@ -1,0 +1,410 @@
+// ===================================================
+// Position Helper
+// ===================================================
+
+/**
+ * Set the Position for the Position Mixins
+ *
+ * @access private
+ *
+ * @param {list} $position - Position Values. one value = top, two values = top left, four values = top right bottom left. For Zero Position (0) set the value to 'z'
+ */
+@mixin _set-position($position) {
+
+  // Setup internal vars
+  $targets: null !default;
+  $count: length($position);
+
+  // Check if enough values available
+  @if $count > 4 or $count <= 0 or $count == 3 {
+    @warn 'Please check the position values.';
+
+  } @else {
+    // Build the Position Matrix
+    @if $count == 1 {
+      $targets: top;
+    }
+
+    @if $count == 2 {
+      $targets: top left;
+    }
+
+    @if $count == 4 {
+      $targets: top right bottom left;
+    }
+
+    // Include the Attributes
+    @for $i from 1 through $count {
+      @if nth($position,$i) == z {
+
+        // With 'z' set position to 0
+        #{nth($targets,($i))}: 0;
+
+      } @else {
+        // Otherwise set the Position based on the Value
+        @if nth($position, $i) > 0 or nth($position,$i) < 0 {
+          #{nth($targets, ($i))}: if(unitless(nth($position,$i)), nth($position,$i) + 0px, nth($position,$i));
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Shorthand for Relative positioning
+ *
+ * @param {list} $position - Position Values. one value = top, two values = top left, four values = top right bottom left. For Zero Position (0) set the value to 'z'
+ */
+@mixin relative($pos: 0) {
+  position: relative;
+  @include _set-position($pos);
+}
+
+/**
+ * Shorthand for Absolute positioning
+ *
+ * @param {list} $position - Position Values. one value = top, two values = top left, four values = top right bottom left. For Zero Position (0) set the value to 'z'
+ */
+@mixin absolute($pos: 0) {
+  position: absolute;
+  @include _set-position($pos);
+}
+
+/**
+ * Shorthand for Fixed positioning
+ *
+ * @param {List} $position - Position Values. one value = top, two values = top left, four values = top right bottom left. For Zero Position (0) set the value to 'z'
+ */
+@mixin fixed($pos: 0) {
+  position: fixed;
+  @include _set-position($pos);
+}
+
+/**
+ * Shorthand for Static positioning reset all position values
+ */
+@mixin static {
+  position: static;
+  left: inherit;
+  right: inherit;
+  top: inherit;
+  bottom: inherit;
+}
+
+/**
+ * Setup a Bar Element
+ *
+ * @param  {*}  $variant  - 'f' for fixed, 'a' for absolute
+ * @param  {*}  $position - 't' Top, 'b' Bottom, 'l' Left, 'r' Right
+ * @param  {*}  $z-index (9999)  - The Z-Index
+ */
+@mixin bar($variant, $position, $z: 9999) {
+
+  // Set the position variant
+  @if $variant == f {
+    position: fixed;
+  } @else {
+    position: absolute;
+  }
+
+  // Set the z-index
+  z-index: $z;
+
+  // Set Position and Dimension
+  @if $position == l {
+    left: 0;
+    top: 0;
+    height: 100%;
+
+  } @else if $position == r {
+    right: 0;
+    top: 0;
+    height: 100%;
+
+  } @else if $position == b {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+  } @else {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+/**
+ * Define a Top Bar at the Top of the Viewport
+ *
+ * @param {value}  $z       - The Z-Index
+ * @param {*}      $variant - 'f' for fixed, 'a' for absolute
+ */
+@mixin bar-top($z: 9999, $variant: f) {
+  @include bar($variant, t, 9999);
+}
+
+/**
+ * Define a Bottom Bar at the Bottom of the Viewport
+ *
+ * @param {value}  $z       - The Z-Index
+ * @param {*}      $variant - 'f' for fixed, 'a' for absolute
+ */
+@mixin bar-bottom($z: 9999, $variant: f) {
+  @include bar($variant, b, 9999);
+}
+
+/**
+ * Transform named Positions to number
+ *
+ * @access private
+ *
+ * @param  {*}  $pos - Position Value. Values: 'left', 'center', 'right', 'top', 'middle', 'bottom', 'number', 'bool'
+ * @param  {*}  $axis - The Position Axis. Values: 'vert', 'horz'
+ */
+@function position-translate($pos, $axis) {
+  @if is-number($pos) {
+    $result: clamp(strip-units($pos), 0, 100);
+
+  // When a Keywords are used
+  } @else {
+    @if $axis == vert {
+      @if $pos == top { $result: 0; }
+      @if $pos == middle { $result: 50; }
+      @if $pos == bottom { $result: 100; }
+    } @else {
+      @if $pos == left { $result: 0; }
+      @if $pos == center { $result: 50; }
+      @if $pos == right { $result: 100; }
+    }
+  }
+
+  @return $result;
+}
+
+/**
+ * Move the Pivot Point from a Element, based on 2D CSS Transform
+ *
+ * @param {*} $vert (middle) - Vertical Position from the Pivot Point. Values: 'top' ,'middle' ,'bottom' ,'number' ,'bool'
+ * @param {*} $horz (false)  - Horizontal Position from the Pivot Point. Values: 'left', 'center', 'right', 'number', 'bool'
+ */
+@mixin pivot($vert: middle, $horz: false) {
+  $v: null;
+  $h: null;
+
+  // If Vert is active
+  @if $vert {
+    $v: position-translate($vert, vert);
+  }
+
+  // If Horz is active
+  @if $horz {
+    $h: position-translate($horz, horz);
+  }
+
+  // Set the Pivot Point
+  @if $v and $h {
+    transform: translate((0 - $v + 0%), (0 - $h + 0%));
+
+  } @else {
+    @if $v {
+      transform: translate((0 - $v + 0%), 0);
+    }
+
+    @if $h {
+      transform: translate(0, (0 - $h + 0%));
+    }
+  }
+}
+
+/**
+ * Move an Element
+ *
+ * @param {Number} $vert - Vertical Position
+ * @param {Number} $horz - Horizontal Position
+ */
+@mixin slide($vert: 50, $horz: false) {
+
+  @if $vert or $horz {
+    position: absolute;
+  }
+
+  // If Vert is Active
+  @if $vert {
+    top: position-translate($vert, vert) + 0%;
+  }
+
+  // If Horz is active
+  @if $horz {
+    left: position-translate($horz, horz) + 0%;
+  }
+}
+
+/**
+ * Center a absolute positioned Element in the middle
+ */
+@mixin pivot-center {
+  @include slide(50,50);
+  @include pivot(50,50);
+}
+
+/**
+ * Moving an absolute position element in the Center - optional in the Middle (with Height)
+ *
+ * @param  {List}  $element - Width and the Height of the Element
+ */
+@mixin absolute-middle($element: 0 0) {
+  $width  : 0 !default;
+  $height : 0 !default;
+
+  // Setup the Sizes
+  @if length($element) == 2 {
+    $width: if(unitless(nth($element,1)),nth($element,1) + 0px, nth($element,1));
+    $height: if(unitless(nth($element,2)),nth($element,2) + 0px, nth($element,2));
+
+  } @else {
+    $width: if(unitless($element),$element + 0px, $element);
+  }
+
+  // Build the Style
+  @if length($element) == 2 {height: $height}
+  width: $width;
+  position: absolute;
+  left: 50%;
+
+  @if length($element) == 2 {
+    top: 50%;
+    margin-top: 0 - ($height / 2);
+  }
+
+  margin-left: 0 - ($width / 2);
+}
+
+/**
+ * Moving an Element in the Middle and Center
+ *
+ * @param  {List}  $container - The Width and the Height of the outer Container
+ * @param  {List}  $element   - The Width and the Height of the positioned inner Element
+ */
+@mixin element-middle($container: 0, $element: 0) {
+
+  $container-height : 0 !default;
+  $container-width  : 0 !default;
+  $element-height   : 0 !default;
+  $element-width    : 0 !default;
+
+  // Setup the Outer Container
+  @if length($container) == 2 {
+    $container-width  : if(unitless(nth($container,1)),nth($container,1) + 0px,nth($container,1));
+    $container-height : if(unitless(nth($container,2)),nth($container,2) + 0px,nth($container,2));
+  }
+
+  @if length($container) == 1 {
+    $container-height : if(unitless($container), $container + 0px, $container);
+  }
+
+  // Setup the inner Element
+  @if length($element) == 2 {
+    $element-width  : clamp(if(unitless(nth($element,1)), nth($element,1) + 0px, nth($element,1)),0,$container-width);
+    $element-height : clamp(if(unitless(nth($element,2)), nth($element,2) + 0px, nth($element,2)),0,$container-height);
+  }
+
+  @if length($element) == 1 {
+    $element-height : clamp(if(unitless($element), $element + 0px, $element),0,$container-height);
+  }
+
+  margin-top: ($container-height - $element-height) / 2;
+
+  @if $element-width > 0 {
+    margin-left : ($container-width - $element-width) / 2;
+    width       : $element-width;
+  }
+
+  height: $element-height;
+}
+
+/**
+ * Get the Named Z-Index from the z-map
+ *
+ * @param   {*}   $layer - The layer to use
+ * @param   {Map} $z-layers ($kittn-zlayer-map) - Connection through Z-Map
+ *
+ * @returns {Number}
+ */
+@function z($layer, $z-layers: $kittn-zlayer-map) {
+  @if not map-has-key($z-layers, $layer) {
+    @warn "No z-index found in $z-layers map for '#{$layer}'. Possible ZLayers: #{map-keys($z-layers)}";
+    @return null;
+  } @else {
+    @return map-get($z-layers, $layer);
+  }
+}
+
+/**
+ * Get the associated Z-Index from the Map,
+ * build the Z-Index
+ *
+ * @param  {*}       $layer - The layer to use
+ * @param  {number}  $offset - Add or substract an offset
+ */
+@mixin z($layer, $offset: 0) {
+
+  // Setup Var
+  $o: 0;
+
+  // Check if Offset is a Number
+  @if type-of($offset) == 'number' {
+    $o: if($offset != 0, round(strip-units($offset)),0);
+  } @else {
+    @warn 'Offset is not a number';
+  }
+
+  // Insert Z-Index
+  z-index: z($layer) + $o;
+}
+
+/**
+ * Gives a Layer a new Z-Index
+ *
+ * @param  {number}   $index    - Z-index
+ * @param  {number}   $offset   - Offset
+ * @param  {string}   $position - Position. Values: 'bool', 'r' relative, 'a' absolute, 'f' fixed
+ */
+@mixin shift($index, $offset: 0, $position: false) {
+
+  // If 'position' is false no position value will be added
+  @if $position != false {
+    @if $position == r {
+      position: relative;
+    }
+    @if $position == a {
+      position: absolute;
+    }
+    @if $position == f {
+      position: fixed;
+    }
+  }
+
+  // If Index is a number set the z-index in free mode
+  @if type-of($index) == 'number' {
+    z-index: $index + $offset;
+  } @else {
+    @include z($index, $offset);
+  }
+}
+
+/**
+ * Overlapps a Element over the Side Padding
+ *
+ * @param  {list}  $size - The Sidevalues, one value can be used for two sides, two values first for left second for right
+ */
+@mixin overlap($size) {
+  @if length($size) == 1 {
+    margin-left: 0 - if(unitless($size), $size + 0px, $size);
+    margin-right: 0 - if(unitless($size), $size + 0px, $size);
+  }
+
+  @if length($size) == 2 {
+    margin-left: 0 - if(unitless(nth($size,1)), nth($size,1) + 0px, nth($size,1));
+    margin-right: 0 - if(unitless(nth($size,2)), nth($size,2) + 0px, nth($size,2));
+  }
+}

@@ -1,0 +1,11 @@
+//- Generate Navigation Lists
+//- EG: - var listentrys = [{ name: 'Link',link: '#', active: ''}]
+mixin navigationList(listentrys)
+  ul.nav.floatright
+    each listentry in listentrys
+      if (listentry.active)
+        li(class=listentry.active)
+          a(href=listentry.link,title=listentry.name)= listentry.name
+      else
+        li
+          a(href=listentry.link,title=listentry.name)= listentry.name

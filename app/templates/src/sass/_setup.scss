@@ -1,0 +1,456 @@
+// ============================================================
+//          Base Setup
+// ------------------------------------------------------------
+
+/**
+ * Global spacing unit, used for Spacer and Lines Mixins.
+ *
+ * @type Number
+ */
+$kittn-global-spacing: 20;
+
+/**
+ * Default unit for unitless values.
+ *
+ * @type Number
+ */
+$kittn-default-unit: px;
+
+/**
+ * BEM Prefixes for Elements and Modifiers
+ *
+ * @type Map
+ */
+$kittn-bem: (
+  element: '__',
+  modifier: '--'
+);
+
+/**
+ * Kittn Directory Organisation
+ *
+ * @type Map
+ */
+$kittn-directorys: (
+  fonts: '/assets/fonts/',
+  images: '/assets/img/',
+  single: '/assets/img/single/',
+  texture: '/assets/img/textures/',
+  svg: '/assets/img/svg/',
+  svgonly: '/assets/img/svgonly/'
+);
+
+/**
+ * Activate Base Features
+
+   - 'debugging' {Bool} - Activate the CSS Debugging Features
+   - 'box-sizing' {Bool} - Activate the new old Box Model ;P
+   - 'baseline' {Bool} - Activate Baseline Features
+   - 'hyphens' {Bool} - All Words would be breaked with Hyphens
+   - 'viewport-fix' {Bool} - Activate Viewport-Fixes for Windows Mobile 8
+   - 'mobile-first' {Bool} - Grid and Breakpoints oriented from Smallest to Biggest Size
+   - 'ie8-fallback' {Bool} - Integrate some IE8 Fallbacks
+
+ *
+ * @type Map
+ */
+$kittn-activate: (
+  debugging: false,
+  box-sizing: true,
+  baseline: false,
+  antialias: true,
+  hyphens: false,
+  viewport-fix: false,
+  mobile-first: true,
+  ie8-fallbacks: false
+);
+
+/**
+ * Sprite Configuration
+
+   - 'name' {*|Bool} - Sprite Name
+   - 'retina-capable' {Bool} - Integrate an additional Retina Sprite
+ *
+ * @type Map
+ */
+$kittn-sprite:(
+  name: false,
+  retina-capable: true,
+);
+
+/**
+ * Iconfont Configuration
+
+   - 'name' {*|Bool} - Iconfont Name
+   - 'prefix' {*} - Icon Prefix
+ *
+ * @type Map
+ */
+$kittn-iconfont: (
+  name: false,
+  prefix: 'f-icon'
+);
+
+/**
+ * Map off all Breakpoints and Behaviors
+
+   - 'Name' {*} - Breakpoint Name
+     - 'size' {Number} - The width that activate the Trigger
+     - 'visibility' {Bool} - Set it on true to activate the visibility classes
+     - 'step' {Bool} - Set the threshold for the grid-stepper mixin
+     - 'fontsize' {bool|number} - Rewrite the Basefontsize for this breakpoint
+ *
+ * @type Map
+ */
+$kittn-breakpoint-map: (
+  1: (
+    size: 320px,
+    visibility: true,
+    step: true,
+    fontsize: false
+  ),
+  2: (
+    size: 480px,
+    visibility: true,
+    step: false,
+    fontsize: 80
+  ),
+  3: (
+    size: 560px,
+    visibility: false,
+    step: true,
+    fontsize: false
+  ),
+  4: (
+    size: 768px,
+    visibility: false,
+    step: true,
+    fontsize: 85
+  ),
+  5: (
+    size: 960px,
+    visibility: false,
+    step: true,
+    fontsize: 90
+  ),
+  6: (
+    size: 1180px,
+    visibility: false,
+    step: true,
+    fontsize: 110
+  ),
+  7: (
+    size: 1480px,
+    visibility: false,
+    step: false,
+    fontsize: false
+  )
+);
+
+/**
+ * Load and integrate all FontFaces.
+
+   - 'fontname' {*}
+     - 'filename' {Bool|*} - Filename, when 'false' the Fontname will be used
+     - 'weight' {*} - The associated Fontweight
+     - 'style' {*} - The associated Font Style
+     - 'svgoption' {Bool} - Activate the addition route to the SVG Font
+ *
+ * @type Map
+ */
+$kittn-fontface-map: (
+  // EXAMPLE
+  // fontname: (
+  //   filename: false,
+  //   weight: normal,
+  //   style: normal,
+  //   svgoption: true
+  // )
+);
+
+/**
+ * Base Typo Setup
+
+   - 'unit' {*} - 'px' or 'rem'
+   - 'base-scale' {Number} - Fontsize on &lt;html&gt;
+   - 'base-size' {Number} - Base Fontsize in Px
+   - 'line-height' {Number} - Base Line-Height
+ *
+ * @type Map
+ */
+$kittn-typo: (
+  unit: rem,
+  base-scale: 85,
+  base-size: 16,
+  line-height: 21
+);
+
+/**
+ * Activates the Responsive Fontsize Generator
+ *
+ * @type Bool | Number
+ */
+$kittn-active-responsive-fonts: 70;
+
+/**
+ * Default Margin for Typographic Elements (set on '0' when not needed)
+
+   - 'top' {Number} - Top Margin Size
+   - 'botton' {Number} - Bottom Margin Size
+ *
+ * @type Map
+ */
+$kittn-typo-margin: (
+  top: s(1.25),
+  bottom: s(1)
+);
+
+/**
+ * Base Typo and Font Styling
+ *
+ * @type Map
+ */
+$kittn-typo-style: (
+  base-font: ff('helvetica'), // Base Font
+  base-weight: false, // {Bool}
+  heading-font: false, // {Bool|*} Headlinefont, 'false' will use the Basefont
+  heding-weight: 400, // {Bool|*}
+  bold-font: false, // {Bool|*} 'false' will use the Basefont
+  bold-weight: bold, // {*}
+  italic-font: false, // {Bool|*} 'false' will use the Basefont
+  italic-style: italic, // {*}
+  link-decoration: false, // Textlink Decoration for 'normal' state
+  link-decoration-hover: false, // Textlink Decoration for 'hover' state
+  quote-font: false, // {Bool|*} 'false' will use the Basefont
+  quote-weight: false, // {*}
+  quote-style: italic, // {*}
+  code-font: ff('monospace'), // {Bool|*} 'false' will use the Basefont
+  code-weight: normal // {*}
+);
+
+/**
+ * Base Typo Sizes
+ *
+ * @type Map
+ */
+$kittn-typo-sizes: (
+  list-fontsize: false, // {value/boolean} Can be 'false' or Fontsize
+  list-lineheight: false, // {value/boolean} Can be 'false' or Fontsize
+  list-margin: s(1), // {Number} Margin Left
+  list-style: disc, // {*} Possible Values : 'disc', 'square', 'circle'
+  quote-fontsize: map-get($kittn-typo, base-size) + 2, // {Bool|Number}
+  quote-lineheight: map-get($kittn-typo, line-height) + 6, // {Bool|Number}
+  cite-fontsize: map-get($kittn-typo, base-size) - 1, // {Bool|Number}
+  cite-lineheight: map-get($kittn-typo, line-height) + 0, // {Bool|Number}
+  code-fontsize: false, // {Bool|Number}
+  code-lineheight: false // {Bool|Number}
+);
+
+/**
+ * Global Heading Stylings
+
+   - 'lineheight' {Bool|*} - 'false' or 'd' (for line-height:1) or a unitless number
+   - 'marginbottom' {Bool|Number} - 'false' or 'number'
+   - 'fontweight' {Bool|*} - 'false' or 'number'
+ *
+ * @type Map
+ */
+$kittn-global-heading: (
+  lineheight: false,
+  marginbottom: 0,
+  fontweight: false
+);
+
+/**
+ * All possible Typostyles in a Map.
+
+   - 'Stylename' {*} - Fontstyle Name
+    - 'font-size' {Number}
+    - 'line-height' {*|Number} - 'n': off, 'd': line-height: 1, 'c': sass calculated, 'number'
+    - 'margin-bottom' {*|Number} - 'n': off or 'number'
+    - 'font-weight' {*|Number} - 'n': off or 'number'
+    - 'tag' {Bool} - On 'true' it generates also tags, with 'false' only classes
+    - 'extend' {*} - When you want to Extend the Style you can enter here the Extend Classname like '%myclass'
+ *
+ * @type Map
+ */
+$kittn-typostyles-map: (
+  h1: (
+    font-size: 36,
+    line-height: d,
+    margin-bottom: s(0.5),
+    font-weight: n,
+    tag: true,
+    extend: '%heading'
+  ),
+  h2: (
+    font-size: 32,
+    line-height: c,
+    margin-bottom: s(0.5),
+    font-weight: n,
+    tag: true,
+    extend: '%heading'
+  ),
+  h3: (
+    font-size: 29,
+    line-height: c,
+    margin-bottom: s(0.5),
+    font-weight: n,
+    tag: true,
+    extend: '%heading'
+  ),
+  h4: (
+    font-size: 25,
+    line-height: c,
+    margin-bottom: s(0.5),
+    font-weight: n,
+    tag: true,
+    extend: '%heading'
+  ),
+  h5: (
+    font-size: 22,
+    line-height: c,
+    margin-bottom: s(0.5),
+    font-weight: n,
+    tag: true,
+    extend: '%heading'
+  ),
+  h6: (
+    font-size: 19,
+    line-height: c,
+    margin-bottom: s(0.5),
+    font-weight: n,
+    tag: true,
+    extend: '%heading'
+  )
+);
+
+/**
+ * Generate all Fontstyles with classes
+ *
+ * @type Bool
+ */
+$kittn-generate-typostyles: true;
+
+/**
+ * Color Definition Map. This is a collection from all used Colors. Use only use HEX Colors, when you enter a Opacity Value (between 0 to 1), Sass convert it to RGBA with a Fallback for old Browsers.
+
+   - 'Colorname' {*} - Name for the Colorstyle, quoted
+    - 'color' {Color} - Color
+    - 'opacity' {Bool|Number} - Opacity Value
+    - 'type' {*} - 'bc': background & textcolor, 'c': textcolor, 'b': background-color
+ *
+ * @type Map
+ */
+$kittn-color-map: (
+  'primary': (
+    color: #f29300,
+    opacity: false,
+    type: bc
+  ),
+  'black': (
+    color: #3c3c3c,
+    opacity: false,
+    type: bc
+  ),
+  'gray': (
+    color: #636363,
+    opacity: false,
+    type: bc
+  ),
+  'darkwhite': (
+    color: #eeeeee,
+    opacity: false,
+    type: bc
+  ),
+  'white': (
+    color: #fff,
+    opacity: false,
+    type: bc
+  ),
+  'body': (
+    color: #f8f8f8,
+    opacity: false,
+    type: b
+  ),
+  'alert': (
+    color: #ef462a,
+    opacity: false,
+    type: b
+  ),
+  'success': (
+    color: #38cc3b,
+    opacity: false,
+    type: b
+  ),
+  'warning': (
+    color: #f5a11c,
+    opacity: false,
+    type: b
+  ),
+  'hightlight': (
+    color: #f8e64b,
+    opacity: false,
+    type: b
+  )
+);
+
+/**
+ * Generate the Color Classes from the Color Array
+
+   - 'generate' {Bool} - Activate the Generator
+   - 'type' {*} - 'class' or 'silent'
+ *
+ * @type Map
+ */
+$kittn-color-generator: (
+  generate: true,
+  type: silent
+);
+
+/**
+ * Route the Colors to the Elements
+ *
+ * @type Map
+ */
+$kittn-color-route: (
+  body: cp('body'), // Body Background
+  text: cp('black'), // Base Text Color
+  headline: cp('gray'), // {Color|Bool}
+  blockquote: cp('black'), // {Color|Bool}
+  highlight-bg: lighten(cp('primary'),25), // {Color|Bool}
+  hightlight-text: darken(cp('primary'),10), // {Color|Bool}
+  link: cp('primary'), // {Color|Bool}
+  link-hover: darken(cp('primary'),15), // {Color|Bool}
+  link-active: darken(cp('primary'),25), // {Color|Bool}
+);
+
+/**
+ * Hairline Styling
+
+   - 'height' {Number}
+   - 'style' {*} - Line Styles
+   - 'color' {Color}
+ *
+ * @type Map
+ */
+$kittn-hairline: (
+  height: 1,
+  style: dashed,
+  color: cp('darkwhite')
+);
+
+/**
+ * Table Styling
+ *
+ * @type Map
+ */
+$kittn-tables: (
+  background: transparent, // {Color}
+  background-zebra: tint(cp(primary),20), // {Color}
+  background-hover: lighten(cp(primary),20), // {Color}
+  border-color: cp('gray'), // {Color}
+  margin: 20px, // {Number}
+  padding: 8px, // {Number}
+  trigger: 400px, // {Number} Trigger Size for responsive Tables
+);

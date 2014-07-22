@@ -1,0 +1,172 @@
+// ===================================================
+// Various Helper
+// ===================================================
+
+/**
+ * Strip Units from Values
+ *
+ * @param  {Number}  $number - Value
+ *
+ * @returns {Number}       - Unitless Value
+ */
+@function strip-units($number) {
+  // If the Value is not a Number Break the Function
+  @if type-of($number) != 'number' {
+    @warn "#{$number} is not a number for strip-unit.";
+    @return false;
+
+  } @else {
+    // If the Value is unitless
+    @if unitless($number) {
+      @return $number;
+
+    // Otherwise Remove the Units
+    } @else {
+      @return $number / ($number * 0 + 1);
+    }
+  }
+}
+
+/**
+ * Add the Default Unit on unitless Values
+ *
+ * @param  {Number}  $value - Value
+ *
+ * @returns {Number}
+ */
+@function unit-check($value) {
+  @if unitless($value) {
+    @if $kittn-default-unit == rem {
+      @return $value + 0rem;
+    } @else if $kittn-default-unit == em {
+      @return $value + 0em;
+    } @else {
+      @return $value + 0px;
+    }
+  } @else {
+    @return $value;
+  }
+}
+
+/**
+ * Shorthand for the CSS3 Calc function
+ *
+ * @param  {*}  $property   - Property that calculated
+ * @param  {*}  $expression - Formula
+ */
+@mixin calc($property, $expression) {
+  #{$property}: -moz-calc(#{$expression});
+  #{$property}: -o-calc(#{$expression});
+  #{$property}: -webkit-calc(#{$expression});
+  #{$property}: calc(#{$expression});
+}
+
+/**
+ * Clamp a Number between a min and max values,
+ * Perfect for percentage
+ *
+ * @param  {Number}  $value - The Value that need to be clamped
+ * @param  {Number}  $min   - The posible minimal value
+ * @param  {Number}  $max   - The possible max Value
+ *
+ * @returns {Number}        - Clamped Value
+ */
+@function clamp($value, $min, $max) {
+  @return if($value > $max, $max, if($value < $min, $min, $value));
+}
+
+/**
+ * Pick the Color Values from the Color Map
+ *
+ * @param  {*}  $target - Desired color
+ * @param  {*}  $map    - Color Map
+ *
+ * @returns {Color}
+ *
+ * @throws Color is not included in the map
+ */
+@function cp($target, $map: $kittn-color-map) {
+  @if map-has-key($map,$target) {
+    @return map-get(map-get($map,$target),color);
+  } @else {
+
+
+    @if map-filled($map) {
+      @warn "The color '#{$target}' is not included in the map. Possible Colorkeys: #{map-keys($map)}";
+    } @else {
+      @warn "The Color Map is Empty"
+    }
+  }
+}
+
+/**
+ * Multiply the Spacing Value to generate Spacings
+ *
+ * @param  {Number}  $lines - Multiplicator for Spacing
+ * @param  {Bool}    $hard (false) - For including an !important
+ * @param  {Number}  $size ($kittn-global-spacing) - Connection to the Base Spacing
+ *
+ * @returns {Value}
+ */
+@function spacer($lines, $hard: false, $size: $kittn-global-spacing) {
+  @if is-number($lines) {
+    $u: unit-check(0);
+    @return strip-units($lines) * if(unitless($size), $size + $u, $size) if($hard,!important,null);
+  } @else {
+    @warn "Value for '$lines' is no a number.";
+  }
+}
+
+/**
+ * Multiply the Spacing Value to generate Spacings
+ * Calculates Spacings in a other Way - needed for map values
+ *
+ * @param  {Number}  $lines - Multiplicator for Spacing
+ * @param  {Bool}    $imp (false) - For including an !important
+ * @param  {*}       $u (false) - Unit
+ * @param  {Number}  $size ($kittn-global-spacing) - Connection to the Base Spacing
+ *
+ * @returns {Value}
+ */
+@function s($lines, $imp: false, $u: false, $size: $kittn-global-spacing) {
+  @if type-of($lines) == 'number' {
+
+    // When other unittype is used
+    @if $u != false {
+
+      // Setup other Units
+      @if $u == none {
+        $u: 0;
+      }
+      @if $u == px or $u == p {
+        $u: 0px;
+      }
+
+      @if $u == em or $u == e {
+        $u: 0em;
+      }
+
+      @if $u == rem or $u == r {
+        $u: 0rem;
+      }
+
+      @if $imp != false {
+        @return strip-units($lines) * $size + $u !important;
+
+      } @else {
+        @return strip-units($lines) * $size + $u;
+      }
+
+    } @else {
+      @if $imp != false {
+        @return strip-units($lines) * $size !important;
+
+      } @else {
+        @return strip-units($lines) * $size;
+      }
+    }
+
+  } @else {
+    @warn 'Please use Number for the lines.'
+  }
+}
