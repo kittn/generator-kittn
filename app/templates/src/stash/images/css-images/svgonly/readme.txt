@@ -1,1 +1,1 @@
-SVG Images with out PNG Fallbacks come in this directory.
+Put your 'svg' Images in this Folder - only for SVGs without any Fallback Images.
