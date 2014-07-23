@@ -376,10 +376,10 @@ gulp.task('watch-bin', function() {
 gulp.task('watch-images', function() {
 
   // Watch SVGOnly Folder for changes - minify SVG and move it into tmp
-  gulp.watch('src/stash/images/css-images/svgonly/*.svg', ['grunt-minify-svg']);
+  gulp.watch('src/stash/images/css-images/svgonly-assets/*.svg', ['grunt-minify-svg']);
 
   // Watch SVG Folder for changes - build PNG Fallback and write the Imagemap
-  gulp.watch('src/stash/images/css-images/svg/*.svg', ['grunt-build-svg']);
+  gulp.watch('src/stash/images/css-images/svg-assets/*.svg', ['grunt-build-svg']);
 
   // Watch the Single/Texture Folder - modify the Imagemap and move the Images to tmp folder
   gulp.watch(

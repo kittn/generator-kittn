@@ -201,7 +201,7 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: 'src/stash/images/css-images/svg/',
+            cwd: 'src/stash/images/css-images/svg-assets/',
             src: ['**/*.svg'],
             dest: '<%= pkg.directory.cssimg %>svg/',
             ext: '.svg'
@@ -212,7 +212,7 @@ module.exports = function (grunt) {
         files: [
           {
             expand: true,
-            cwd: 'src/stash/images/css-images/svgonly/',
+            cwd: 'src/stash/images/css-images/svgonly-assets/',
             src: ['**/*.svg'],
             dest: '<%= pkg.directory.cssimg %>svgonly/',
             ext: '.svg'

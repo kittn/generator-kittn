@@ -45,7 +45,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
         type: 'input',
         name: 'projectname',
         message: 'Please give your project a name.',
-        default: 'kittn-basket'
+        default: 'kittn'
       },{
         type: 'input',
         name: 'projectdescription',
@@ -65,22 +65,22 @@ var KittnGenerator = yeoman.generators.Base.extend({
         type: 'input',
         name: 'projectmail',
         message: 'Mailadress from the Author',
-        default: ''
+        default: 'xxx@xxx.xx'
       },{
         type: 'input',
         name: 'projecturl',
         message: 'URL to the Project',
-        default: ''
+        default: 'http://........'
       },{
         type: 'input',
         name: 'projectissues',
         message: 'URL to the Issues',
-        default: ''
+        default: 'http://........'
       },{
         type: 'input',
         name: 'projectrepo',
         message: 'URL to the Git-Repo',
-        default: ''
+        default: 'http://........'
       },{
         type: 'input',
         name: 'projectcssfilename',
@@ -89,8 +89,8 @@ var KittnGenerator = yeoman.generators.Base.extend({
       },{
         type: 'confirm',
         name: 'projectiecompatible',
-        message: 'Do you want to use a seperate CSS File for IE8?',
-        default: 'style'
+        message: 'Do you need IE8 compatibility?',
+        default: 'n'
       }
     ];
 
