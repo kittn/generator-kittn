@@ -62,7 +62,7 @@ $kittn-activate: (
   hyphens: false,
   viewport-fix: false,
   mobile-first: true,
-<% if (projectiecompatible == true) %>
+<% if (projectiecompatible == true) { %>
   ie8-fallbacks: true
 <% } else { %>
   ie8-fallbacks: false
