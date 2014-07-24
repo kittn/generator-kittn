@@ -377,22 +377,26 @@ gulp.task('watch-bin', function() {
 gulp.task('watch-images', function() {
 
   // Watch SVGOnly Folder for changes - minify SVG and move it into tmp
-  gulp.watch('src/stash/images/css-images/svgonly-assets/*.svg', ['grunt-minify-svg']);
+  gulp.watch('src/stash/images/css-images/svgonly-assets/**/*.svg', ['grunt-minify-svg']);
 
   // Watch SVG Folder for changes - build PNG Fallback and write the Imagemap
-  gulp.watch('src/stash/images/css-images/svg-assets/*.svg', ['grunt-build-svg']);
+  gulp.watch('src/stash/images/css-images/svg-assets/**/*.svg', ['grunt-build-svg']);
 
   // Watch the Single/Texture Folder - modify the Imagemap and move the Images to tmp folder
   gulp.watch(
     [
-      'src/stash/images/css-images/single-assets/*.{jpg,gif,png}',
-      'src/stash/images/css-images/texture-assets/*.{jpg,gif,png}'
+      'src/stash/images/css-images/single-assets/**/*.png',
+      'src/stash/images/css-images/single-assets/**/*.jpg',
+      'src/stash/images/css-images/single-assets/**/*.gif',
+      'src/stash/images/css-images/texture-assets/**/*.png',
+      'src/stash/images/css-images/texture-assets/**/*.jpg',
+      'src/stash/images/css-images/texture-assets/**/*.gif'
     ],
       ['grunt-copy-images']
     );
 
   // Watch for Sprite Changes - modify the Spritemap and move the images (renamed) to tmp
-  gulp.watch('src/stash/images/css-images/sprite-assets/*.png', ['grunt-build-sprite']);
+  gulp.watch('src/stash/images/css-images/sprite-assets/**/*.png', ['grunt-build-sprite']);
 });
 
 // Default gulp Task 'gulp' - watch the Binarys Directory, start the compile and browser-sync
