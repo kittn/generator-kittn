@@ -61,9 +61,12 @@ $kittn-activate: (
   antialias: true,
   hyphens: false,
   viewport-fix: false,
-  mobile-first: true,<% if (projectiecompatible == true) %>
-  ie8-fallbacks: true<% } else { %>
-  ie8-fallbacks: false<% } %>
+  mobile-first: true,
+<% if (projectiecompatible == true) %>
+  ie8-fallbacks: true
+<% } else { %>
+  ie8-fallbacks: false
+<% } %>
 
 );
 
