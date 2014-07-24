@@ -91,6 +91,11 @@ var KittnGenerator = yeoman.generators.Base.extend({
         name: 'projectiecompatible',
         message: 'Do you need IE8 compatibility?',
         default: 'n'
+      },{
+        type: 'confirm',
+        name: 'projectjade',
+        message: 'Do you want to use Jade as HTML Compiler?',
+        default: 'y'
       }
     ];
 
@@ -105,6 +110,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
       this.projectrepo = props.projectrepo;
       this.projectcssfilename = props.projectcssfilename;
       this.projectiecompatible = props.projectiecompatible;
+      this.projectjade = props.projectjade;
       done();
     }.bind(this));
   },
@@ -118,6 +124,8 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.copy('_default-page-scripts.jade', 'src/jade/templatepart/_default-page-scripts.jade');
     this.copy('_package.json', 'package.json');
     this.copy('_bower.json', 'bower.json');
+    this.copy('_gulpfile.js', 'gulpfile.js');
+    this.copy('_setup.scss', 'src/sass/_setup.scss');
   },
 
   projectfiles: function () {
@@ -127,7 +135,6 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
     this.copy('gruntfile.js', 'gruntfile.js');
-    this.copy('gulpfile.js', 'gulpfile.js');
     this.copy('todo.md', 'todo.md');
   }
 });

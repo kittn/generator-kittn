@@ -1,10 +1,6 @@
 // Gulpfile
 // ========
 
-// Setup the CSS Compiler (rubysass / libsass)
-var cssCompiler = 'rubysass';
-var sassLoadPath = ['src/sass/'];
-
 // Load Pathes
 var sassSrc = [
   'src/sass/**/*.scss',
@@ -15,8 +11,8 @@ var sassSrc = [
 // and what for js files need to combined into scripts.js.
 var sources = {
   copyjs: [
-    {src:'src/stash/bower/conditionizr/dist/conditionizr.js'},
-    {src:'src/stash/bower/selectivizr/selectivizr.js'},
+    {src:'src/stash/bower/conditionizr/dist/conditionizr.js'},<% if (projectiecompatible == true ) { %>
+    {src:'src/stash/bower/selectivizr/selectivizr.js'},<% } %>
     {src:'src/stash/bower/media-match/media.match.js'},
     {src:'src/stash/bower/eq.js/build/eq.js'}
   ],
@@ -34,6 +30,8 @@ var fonts = {
 };
 
 // DO NOT MODIFY BELOW THIS LINE ! ===============================================
+//
+var cssCompiler = 'rubysass';
 
 // Config File
 var pkg = require('./package.json');
@@ -367,7 +365,10 @@ gulp.task('watch-bin', function() {
   gulp.watch(['src/sass/**/*.scss','src/sass/**/*.sass'], [cssCompiler]);
 
   // Watch the JADE Folder for changes - compile HTML
-  gulp.watch(['src/jade/**/*.jade', 'src/markdown/**/*.md'], ['jade']);
+  <% if (projectjade == true ) { %>
+  gulp.watch(['src/jade/**/*.jade', 'src/markdown/**/*.md'], ['jade']);<% } else { %>
+  //gulp.watch(['src/jade/**/*.jade', 'src/markdown/**/*.md'], ['jade']);
+  <% } %>
 
   // Watch the JS SRC Folder for Changes - Lint JS and copy it to tmp
   gulp.watch('src/js/**/*.js', ['build-js']);
