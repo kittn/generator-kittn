@@ -1,0 +1,27 @@
+// ===================================================
+// Post Generators
+// ===================================================
+
+// Include Color and Visibility Generators
+@if map-get($kittn-color-generator, generate) != false {
+  @include colorgenerator($kittn-color-map);
+}
+
+// Include the visibility Classes only on modern browsers
+@include jacket(modern) {
+  @include visibility;
+}
+
+// Generate the Baseclasses for the Icons
+@if map-get($kittn-iconfont, name) {
+  @include icon-font-generator(map-get($kittn-iconfont, name));
+  @include icon-generator($kittn-font-icons);
+}
+
+// Activate the Sprite Container
+@if map-get($kittn-sprite, name) {
+  @include sprite-generator($spritename: map-get($kittn-sprite, name));
+}
+
+// Include Connect Classes
+@include connect-yield();

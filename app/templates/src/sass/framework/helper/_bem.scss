@@ -1,0 +1,90 @@
+// ===================================================
+// BEM Helper
+// ===================================================
+
+/**
+ * Build a BEM Element
+ *
+ * @param  {string}  $name - The selector name
+ */
+@mixin element($name) {
+  @at-root {
+    &#{map-get($kittn-bem, element)}#{$name} {
+      @content;
+    }
+  }
+}
+
+/**
+ * Build a BEM Modifier, with extend functionality
+ *
+ * @param  {*}      $name           - The selector name
+ * @param  {bool}   $extend (false) - If the Modifier need to be extended with parent
+ */
+@mixin modifier($name, $extend: false) {
+  // Internal Extend Var
+  $e: &;
+
+  @at-root {
+    &#{map-get($kittn-bem, modifier)}#{$name} {
+      // Extend with the Parent Element
+      @if $extend != false {
+        @extend #{$e};
+      }
+
+      @content;
+    }
+  }
+}
+
+/**
+ * Setup the Root Element for the following chained Modifers
+ *
+ * @param  {*}  $name - The selector name
+ *
+ * @example
+ *  .test {
+ *    @include chainroot {
+ *     content: hello;
+ *    }
+ *  }
+ *
+ */
+@mixin chainroot {
+  // Define the Parent Class - for Nested Chains
+  $r: &;
+  $root: str-slice('#{$r}',2,str-length('#{$r}'));
+
+  @at-root {
+    &, [class^="#{$root}"] {
+      @content;
+    }
+  }
+}
+
+/**
+ * Chain the Modifiers
+ *
+ * @param  {string} $name - The selector name, only the name
+ *
+ * @example
+ *  .test {
+ *    @include chainroot {
+ *      font-size: 20px;
+ *      line-height: 24px;
+ *      @include chain('wider') {
+ *        width: 300px;
+ *      }
+ *    }
+ *  }
+ */
+@mixin chain($name) {
+  $p: &;
+  $parent: str-slice('#{$p}',2,str-length('#{$p}'));
+
+  @at-root {
+    [class^="#{$parent}"][class*="#{map-get($kittn-bem, modifier)}#{$name}"] {
+      @content;
+    }
+  }
+}

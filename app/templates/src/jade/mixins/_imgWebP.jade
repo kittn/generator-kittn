@@ -1,0 +1,28 @@
+//- Insert a WebP Image with Fallbacks  
+mixin imgWebP(img, fallbackEnding, alt, selector)
+  if (selector)
+    picture(class='#{selector}')
+      source(src='#{images}#{img}.webp', type='image/webp')
+      case fallbackEnding
+        when 'jpg'
+          source(src='#{images}#{img}.jpg', type='image/jpg')
+        when 'jpeg'
+          source(src='#{images}#{img}.jpg', type='image/jpg')
+        when 'gif'
+          source(src='#{images}#{img}.gif', type='image/gif')
+        when 'png'
+          source(src='#{images}#{img}.png', type='image/png') 
+      img(src='#{images}#{img}.jpg', alt='#{alt}')
+  else
+    picture
+      source(src='#{images}#{img}.webp', type='image/webp')
+      case fallbackEnding
+        when 'jpg'
+          source(src='#{images}#{img}.jpg', type='image/jpg')
+        when 'jpeg'
+          source(src='#{images}#{img}.jpg', type='image/jpg')
+        when 'gif'
+          source(src='#{images}#{img}.gif', type='image/gif')
+        when 'png'
+          source(src='#{images}#{img}.png', type='image/png') 
+      img(src='#{images}#{img}.jpg', alt='#{alt}')

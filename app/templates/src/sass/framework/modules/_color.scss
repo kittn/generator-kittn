@@ -1,0 +1,254 @@
+// ===================================================
+// Color Helper
+// ===================================================
+
+/**
+ * Tint up the Color - normally mix with white
+ *
+ * @param  {Color}   $color             - The Color value
+ * @param  {Number}  $amount            - The Mix Value
+ * @param  {color}   $tint-color (#fff) - Color for Tint
+ *
+ * @returns {Color}
+ */
+@function tint($color, $amount, $tint-color: #fff) {
+  @return mix($tint-color, $color, clamp(strip-units($amount), 0, 100));
+}
+
+/**
+ * Shade down the Color - normally mix with black
+ *
+ * @param  {Color}  $color              - The Color value
+ * @param  {Number} $amount             - The Mix Value
+ * @param  {Color}  $shade-color (#000) - Color for Tint
+ *
+ * @returns {Color}
+ */
+@function shade($color, $amount, $shade-color: #000) {
+  @return mix($shade-color, $color, clamp(strip-units($amount), 0, 100));
+}
+
+/**
+ * Calculate the Luma Value from a Color
+ *
+ * @param  {Color}  $color - Color Value
+ *
+ * @returns {Number}
+ */
+@function luma($color) {
+  @return (red($color) * .299) + (green($color) * .587) + (blue($color) * .114);
+}
+
+/**
+ * Check if Color1 is greater than Color2, return true
+ *
+ * @param  {Color}  $color1 - Color Value
+ * @param  {Color}  $color2 - Color Value
+ *
+ * @returns {Bool}
+ */
+@function luma-gte($color1, $color2) {
+  @if luma($color1) >= luma($color2) {
+    @return true;
+  }
+  @else {
+    @return false;
+  }
+}
+
+/**
+ * Check if Color1 is smaller than Color2, return true
+ *
+ * @param  {Color}  $color1 - Color Value
+ * @param  {Color}  $color2 - Color Value
+ *
+ * @returns {Bool}
+ */
+@function luma-lte($color1, $color2) {
+  @if luma($color1) <= luma($color2) {
+    @return true;
+  }
+  @else {
+    @return false;
+  }
+}
+
+/**
+ * Calculate the Luma Difference between Color1 and Color2
+ *
+ * @param  {Color}  $color1 - Color Value
+ * @param  {Color}  $color2 - Color Value
+ *
+ * @returns {Number}
+ */
+@function luma-diff($color1, $color2) {
+  @return luma($color1) - luma($color2);
+}
+
+/**
+ * Mixin to get Color Values from the Color Map
+ *
+ * @access private
+ *
+ * @param  {*}     $target            - Color Key from Map
+ * @param  {*}     $attrib (color)    - The Color Attribute
+ * @param  {Bool}  $imp (false)       - For !important setting
+ * @param  {Map}   $map (stylecolors) - Color Map
+ */
+@mixin _color($target, $attrib: color, $imp: false, $map: $kittn-color-map) {
+
+  // Check if '$target' is in the Map
+  @if map-has-key($map,$target) {
+    // Put the Data in a own map
+    $colors : map-get($map,$target);
+
+    // Check if the Color have an opacity value
+    // Generate RGBA Colors with an IE8 Fallback (hex)
+    @if map-get($colors,opacity) != false {
+
+      // Generate the IE8 Fallback Colors
+      @include jacket(old) {
+        #{$attrib}: map-get($colors,color) if($imp, !important, null);
+      }
+
+      // Generate RGBA Colors
+      @include jacket(modern) {
+        #{$attrib}: rgba(map-get($colors,color),map-get($colors,opacity)) if($imp, !important, null);
+      }
+
+    // Otherwise use Hex Colors
+    } @else {
+      #{$attrib}: map-get($colors,color) if($imp, !important, null);
+    }
+
+  } @else {
+    @warn 'The Color "#{$target}" are not available in the Color Map! Possible Colorkeys: "#{map-keys($map)}"';
+  }
+}
+
+/**
+ * Use the desired Color Value from the Map an build a Color Value
+ *
+ * @param  {*}    $target - The Color Key
+ * @param  {Bool} $hard   - For !important setting
+ */
+@mixin get_c($target, $hard: false) {
+  @include _color($target, $attrib: color, $imp: $hard);
+}
+
+// alias
+@mixin color($target, $hard: false) {
+  @include get-c($target, $hard);
+}
+
+/**
+ * Use the desired Color Value from the Map an build a Background-Color Value
+ *
+ * @param  {*}     $target - The Color Key
+ * @param  {Bool}  $hard   - For !important setting
+ */
+@mixin get_bc($target, $hard: false) {
+  @include _color($target, $attrib: background-color, $imp: $hard);
+}
+
+// Alias
+@mixin background-color($target, $hard: false) {
+  @include get-bc($target, $hard);
+}
+
+/**
+ * Generate Color Classes (or Silent) with all Colors from the Color Map.
+ *
+ * @access private
+ *
+ * @type {Map}  $colors - The Desired Map
+ */
+@mixin colorgenerator($colors: $kittn-color-map) {
+  @each $value, $entry in $colors {
+
+    // Set the Prefix
+    $prefix: '';
+
+    @if map-get($kittn-color-generator, type) == class {
+      $prefix: '.';
+    } @else {
+      $prefix: '%';
+    }
+
+    // Set Class for Text Color
+    @if map-get($entry,type) == c {
+      #{$prefix}c#{map-get($kittn-bem, modifier)}#{$value} {
+        @include _color($value,color);
+      }
+    }
+
+    // Set Class for Background-Color
+    @if map-get($entry,type) == b {
+      #{$prefix}bc#{map-get($kittn-bem, modifier)}#{$value} {
+        @include _color($value,background-color);
+      }
+    }
+
+    // Set two Classes for Text & Background-Color
+    @if map-get($entry,type) == bc {
+      #{$prefix}c#{map-get($kittn-bem, modifier)}#{$value} {
+        @include _color($value,color);
+      }
+      #{$prefix}bc#{map-get($kittn-bem, modifier)}#{$value} {
+        @include _color($value,background-color);
+      }
+    }
+  }
+}
+
+/**
+ * Extend the Element with existing Color Classes
+ *
+ * @param  {*}  $name - Color Key
+ */
+@mixin ext-c($name) {
+
+  // Check if the Colors are generated
+  // Otherwise switch to a normal color include
+  @if map-get($kittn-color-generator, generate) {
+    $prefix: '';
+
+      @if map-get($kittn-color-generator, type) == class {
+        $prefix: '.';
+      } @else {
+        $prefix: '%';
+      }
+
+    @extend #{$prefix}c#{map-get($kittn-bem, modifier)}#{$name};
+
+  } @else {
+    @include get-c($name);
+    @warn "The Color '#{$name}' can't be extended, is included as attribute.";
+  }
+}
+
+/**
+ * Extend the Element with existing Background-Color Classes
+ *
+ * @param  {*}  $name - Color Key
+ */
+@mixin ext-bc($name) {
+
+  // Check if the Colors are generated
+  // Otherwise switch to a normal color include
+  @if map-get($kittn-color-generator, generate) {
+    $prefix: '';
+
+      @if map-get($kittn-color-generator, type) == class {
+        $prefix: '.';
+      } @else {
+        $prefix: '%';
+      }
+    @extend #{$prefix}bc#{map-get($kittn-bem, modifier)}#{$name};
+
+  } @else {
+    // Use the real Color Value
+    @include get-bc($name);
+    @warn "The Color '#{$name}' can't be extended, is included as attribute.";
+  }
+}

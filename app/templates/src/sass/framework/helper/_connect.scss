@@ -1,0 +1,66 @@
+$kittn-connect-extend: null;
+
+@mixin connect-gen($key, $extend: true, $map: $kittn-connect-map) {
+  // Check if Key is available
+  @if map-has-key($map, $key) {
+
+    @if $extend == true {
+      @extend %#{$key};
+    }
+
+    @else {
+      // Yield the Attributes
+      @each $property, $value in map-get($map,$key) {
+        #{$property}: $value;
+      }
+    }
+
+  } @else {
+    @if map-filled($map) {
+      @warn "'#{$key}' doesn't exist in the Map. Possible Values: #{map-keys($key)}";
+    } @else {
+      @warn "Connect Map is Empty."
+    }
+  }
+}
+
+@mixin connect-yield($map: $kittn-connect-map) {
+  // Check how many Key Values are integrated
+  $ck: length(map-keys($map));
+
+  @if $ck > 0 {
+
+    // Set Global Extend Key
+    $kittn-connect-extend: true !global;
+
+    @each $key, $content in $map {
+      %#{$key} {
+        @include connect-gen($key, $extend: false);
+      }
+    }
+  }
+}
+
+
+@mixin connect($key, $extend: true, $map: $kittn-connect-map) {
+
+  // Setup the Extend Variable
+  @if $kittn-connect-extend {
+    $extend: $extend;
+  } @else {
+    $extend: false;
+  }
+
+  // Remove Duplicates
+  $sh: sl-remove-duplicates($key);
+
+  // Build the Loop
+  @for $i from 1 through length($sh) {
+
+    // Move the Pointer
+    $s: nth($sh, $i);
+
+    // Include the Styling
+    @include connect-gen($s, $extend, $map);
+  }
+}
