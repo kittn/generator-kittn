@@ -1,225 +1,201 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <link href='https://fonts.googleapis.com/css?family=Chivo:900' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen" />
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print" />
+    <title>Generator-kittn by gisu</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-    <title>Generator-kittn by gisu</title>
   </head>
-
   <body>
-    <div id="container">
-      <div class="inner">
+    <div class="wrapper">
+      <header>
+        <h1>Generator-kittn</h1>
+        <p>The Yeoman Kittn Generator</p>
 
-        <header>
-          <h1><img src="http://i.imgur.com/ZIwLjju.jpg" alt="Generator-Kittn"></h1>
-        </header>
-        <section id="downloads" class="clearfix">
-          <a href="https://github.com/gisu/generator-kittn/zipball/master" id="download-zip" class="button"><span>Download .zip</span></a>
-          <a href="https://github.com/gisu/generator-kittn/tarball/master" id="download-tar-gz" class="button"><span>Download .tar.gz</span></a>
-          <a href="https://github.com/gisu/generator-kittn" id="view-on-github" class="button"><span>View on GitHub</span></a>
-        </section>
+        <p class="view"><a href="https://github.com/gisu/generator-kittn">View the Project on GitHub <small>gisu/generator-kittn</small></a></p>
 
-        <hr>
-        <section id="main_content">
-          <h2>Einleitung</h2>
 
-          <p>„Kittn“ ist ein Toolkit das vorwiegend beim Aufbau von Frontends unterstützen soll. Wer nach einer bunten Mischung aus vorgefertigten Elementen sucht, so wie man es von Bootstrap und Co gewohnt ist, wird mit Kittn nicht glücklich werden. Hier werden vielmehr die Methoden angeboten um solche Elemente auf einem einfachen Weg zu Bilden und zu erweitern.</p>
+        <ul>
+          <li><a href="https://github.com/gisu/generator-kittn/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/gisu/generator-kittn/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/gisu/generator-kittn">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <p><img src="https://cloud.githubusercontent.com/assets/442468/3564677/85e7f014-0a93-11e4-93b7-95137d7cf008.png" alt=""></p>
 
-          <p>Um den CSS Part herum, sind noch viele Automatismen eingebaut die dem Developer ebenfalls helfen, sei es um Image Assets zu generieren und zu verteilen, HTML Mockups aufzubauen, die Code Qualität zu kontrollieren, Sprites zu bilden, Fallbacks für SVG Dateien zu generieren. Darum vermeide ich auch den Begriff Framework.</p>
+<h1>
+<a name="generator-kittn" class="anchor" href="#generator-kittn"><span class="octicon octicon-link"></span></a>generator-kittn</h1>
 
-          <p>Angst vor dem Terminal sollte man nicht haben :p</p>
+<h2>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
-          <h2>Abhängigkeiten</h2>
+<p>Why you name it 'Kittn'? Simple, the most People loves Kitten, and its time to bring more cuteness in tech industry :D</p>
 
-          <p>Um mit Kittn arbeiten zu können müssen einige Extensions und Environments installiert werden. Wer diese Tools schon installiert hat, der kann den Schritt überspringen.</p>
+<p>Kittn is a Toolkit, a collection of several components that will help the developers to work on the frontend. The most based on my own Experience.</p>
 
-          <h3>Environments</h3>
+<p>The CSS does not offer Part prefabricated elements, like Bootstrap, it gives the developer rather the mixins in hand, to generate elements.</p>
 
-          <p><strong>Getestet wurde das Toolkit bislang auf Mac Systemen! Auf Windows Systemen kann es zu Problemen kommen.</strong></p>
+<p>Around the CSS part is a set of Grunt / Gulp task, bringing the eigentiche work is automated. My goal was to minimize errors in the daily Development by rules.</p>
 
-          <ul>
-          <li>Ruby &gt;= 1.9.0</li>
-          <li>Node &gt;= 0.10.10</li>
-          </ul>
+<h2>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h2>
 
-          <p>Auf Mac Systemen ist Ruby schon vorinstalliert, hier würde der Schritt enfallen - wer mag kann hier aber auf Ruby 2.12 Updaten.
-          Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http://rubyinstaller.org/downloads/">One Click Installer</a>. </p>
+<ul>
+<li>Sass 3.4.0.rc1</li>
+<li>Gulp 3.8.0</li>
+<li>Grunt 0.4.5</li>
+<li>Jade 1.3.0</li>
+<li>Yeoman 1.2.0</li>
+</ul><h2>
+<a name="installation" class="anchor" href="#installation"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-          <blockquote>
-          <p>Ruby wird nur für Sass benötigt, sobald Libsass 100% Produktiv verwendbar ist, wird diese Abhängigkeit entfallen.</p>
-          </blockquote>
+<p>Please install or update your Ruby and Node environment. Optional install Homebrew.</p>
 
-          <p>Node kann auf Mac Systemen entweder über <a href="http://brew.sh">Brew</a> installiert werden oder man verwendet den <a href="http://nodejs.org/">Installer</a>, gilt dann für beide Systeme.</p>
+<p>Install the Dependencies - only when you don't have it installed on your Machine.</p>
 
-          <h3>Extensions &amp; Compiler</h3>
+<p>Install SASS</p>
 
-          <ul>
-          <li>Sass 3.4.0 rc.1</li>
-          <li>Jade 1.3.0</li>
-          <li>Gulp 3.8.5</li>
-          <li>Grunt 0.4.5</li>
-          <li>Bower 1.3.0</li>
-          <li>Yeoman 1.2.0</li>
-          <li>Git</li>
-          </ul>
+<div class="highlight highlight-bash"><pre>gem install sass --pre
+</pre></div>
 
-          <p>Der Generator installiert selbstständig Grunt, Bower und auch Yeoman.</p>
+<p>Install Jade</p>
 
-          <h4>Sass</h4>
+<div class="highlight highlight-bash"><pre>npm install -g jade
+</pre></div>
 
-          <p>Hier muss die aktuelle Version 3.4.0 RC1 installiert werden, da das Framework gebrauch vom Scripted Ampersand macht. </p>
+<p>Install Gulp</p>
 
-          <pre><code class="language-bash">gem install sass --pre
-          </code></pre>
+<div class="highlight highlight-bash"><pre>npm install -g gulp
+</pre></div>
 
-          <h4>Jade</h4>
+<p>Install Grunt</p>
 
-          <p>Nach dem ersten <code>gulp init</code> werden damit die ersten HTML Dateien mittels Jade compiliert. Im weiteren Verlauf kann man sich selbst entscheiden ob man natives HTML schreibt oder weiter mit Jade arbeiten will. </p>
+<div class="highlight highlight-bash"><pre>npm install -g grunt-cli
+</pre></div>
 
-          <pre><code class="language-bash">npm install -g jade
-          </code></pre>
+<p>Install Yeoman</p>
 
-          <h4>Gulp</h4>
+<div class="highlight highlight-bash"><pre>npm install -g yeoman
+</pre></div>
 
-          <p>Sämtliche Tasks - auch Grunt Tasks - werden über Gulp aktiviert. </p>
+<p>Install Bower</p>
 
-          <pre><code class="language-bash">npm install -g gulp
-          </code></pre>
+<div class="highlight highlight-bash"><pre>npm install -g bower
+</pre></div>
 
-          <h4>Git</h4>
+<p>Install Graphicsmagick</p>
 
-          <p>Wer Git noch nicht installiert hat sollte dies bitte jetzt nachholen, da <code>Bower</code> direkt auf Github zugreift. <a href="http://git-scm.com/download">Download</a></p>
+<div class="highlight highlight-bash"><pre>brew install graphicsmagick
+</pre></div>
 
-          <h2>Install Kittn</h2>
+<p>Install libpng</p>
 
-          <p>Wenn die Dependencies installiert sind, folgt die Installation des Generators. </p>
+<div class="highlight highlight-bash"><pre>brew install libpng
+</pre></div>
 
-          <pre><code class="language-bash">npm install -g generator-kittn
-          </code></pre>
+<h2>
+<a name="using" class="anchor" href="#using"><span class="octicon octicon-link"></span></a>Using</h2>
 
-          <p>Der Generator wird dabei automatisch Yeoman, Grunt und Bower installieren, wenn diese noch nicht installiert waren. Kittn liegt jetzt aber nur als global installiertes Paket vor. </p>
+<p>To install generator-kittn from npm, run:</p>
 
-          <p>Um Kittn zu verwenden, erstellt man sich ein Projekt Verzeichnis und aktiviert den Generator:</p>
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>npm install -g generator-kittn
+</pre></div>
 
-          <pre><code class="language-bash">yo kittn
-          </code></pre>
+<p>Finally, initiate the generator:</p>
 
-          <p>Der Generator wird jetzt eine Reihe von Fragen stellen, mit denen die <code>package.json</code>und die <code>bower.json</code> vorkonfiguriert werden. </p>
+<div class="highlight highlight-bash"><pre><span class="nv">$ </span>yo kittn
+</pre></div>
 
-          <p><img src="http://i.imgur.com/6h8SwsC.gif" alt=""></p>
+<p>After the Installation is finished, its time to initiate the Project.</p>
 
-          <p>Von stärkerer Bedeutung sind die letzten zwei Fragen:</p>
+<div class="highlight highlight-bash"><pre>gulp init
+</pre></div>
 
-          <p><strong>CSS Filename</strong> : Bestimmt den allgemeinen Dateinamen der CSS Datei.</p>
+<p>Gulp will start to build JS Files and Copy it from 'src' to the 'dist' directory. Be aware that you work only on the 'src' directory, anything in 'dist' will be produced (it will be overwritten).</p>
 
-          <p><strong>Do you want to use a seperate CSS File for IE8?</strong> : Wird diese Frage mit &#39;Y&#39; beantwortet, werden zwei CSS Files generiert, in den HTML Dateien ist der Aufruf der zwei Dateien dann auch vorhanden (ansonsten wird nur ein CSS File aufgerufen).</p>
+<p>Now the begin the Magic</p>
 
-          <p>Nach beantwortung der letzten Frage, wird Yeoman sämtliche Projektbezogenen Dependencies über <code>NPM</code> und <code>Bower</code> herunterladen.</p>
+<div class="highlight highlight-bash"><pre>gulp
+</pre></div>
 
-          <h2>Free the kittn</h2>
+<p>Dead Simple. Gulp will now activate the watch tasks, a change on Sass, Jade or JS Files will active the Compilers (in the Case of Jade only a JSHint). Also will start a Server, you will see your Changes on the Browser without a manually reload.</p>
 
-          <p>Nach dem die Installation abgeschlossen ist, wird das Projekt <strong>initialisiert</strong>. </p>
+<p>You can also activate an extende Watch Task, Gulp will now watch also on Images Changes.</p>
 
-          <pre><code>gulp init
-          </code></pre>
+<div class="highlight highlight-bash"><pre>gulp extended
+</pre></div>
 
-          <p>Beim Initialisieren werden unterschiedliche Dateien aus dem <code>src</code> Verzeichnis in das Verteilerverzeichnis <code>dist</code> kopiert. Zusätzlich werden JS Files kombiniert, Bilddaten werden verteilt, HTML und CSS wird Kompiliert. </p>
+<p>The Image files are 'src/stash/images/css-images/', any change here, the Files will be copied in your 'dist' directory. Any Image-Data (name, widht, height), will be saved in a Imagemap, Sprites will be rerendered. You can use a Sass Mixin to include in a easy way Image Files in your Sass File.</p>
 
-          <blockquote>
-          <p>Wichtig zum Verständnis. Gearbeitet wird Grundsätzlich im <code>src</code> Verzeichnis. Dort werden alle Quelldaten abgelegt, die dann über Gulp Task weiter verarbeitet werden. Es macht keinen Sinn im <code>dist</code> Verzeichnis Dateien zu ändern.</p>
-          </blockquote>
+<p>Sass, yes. You work on a '_workfile', don't touch 'style.scss'. Any change on the Workfile flows in the style.scss that compiled to a style.css File. I work on one central File, specific Styles will be routed to different Files - <a href="https://github.com/Team-Sass/jacket">https://github.com/Team-Sass/jacket</a>.</p>
 
-          <p>Um jetzt mit der Arbeit zu beginnen aktiviert man den Default Task</p>
+<h3>
+<a name="image-assets" class="anchor" href="#image-assets"><span class="octicon octicon-link"></span></a>Image Assets</h3>
 
-          <pre><code class="language-bash">gulp
-          </code></pre>
+<p>Put your Image Assets in the 'src/stash/images/' Folder. The PSDs are for Photoshop CC Users, in this case you put all Images on the PSDs and the Photoshop Generator will do the Rest :) (<a href="http://blogs.adobe.com/photoshopdotcom/2013/09/introducing-adobe-generator-for-photoshop-cc.html">http://blogs.adobe.com/photoshopdotcom/2013/09/introducing-adobe-generator-for-photoshop-cc.html</a>. )</p>
 
-          <p>Gulp wird den Server aktivieren, der einem in Echtzeit die Preview auf den Browser liefert - der Browser wird bei einer Änderung automatisch refreshed. Innerhalb des <code>src</code> Verzeichnisses werden JS, Jade und Sass Files überwacht, bei einer Änderung wird der Compiler aktiv - im Falle von Javascript wird JSHint die Codequality überwachen.</p>
+<ul>
+<li>sprite.psd =&gt; Your Images for Sprites</li>
+<li>single.psd =&gt; Image Files that not used as textures</li>
+<li>texture.psd =&gt; Image Files that used as texture</li>
+</ul><p>When the PS Generator have saved the Assets for you, than you can Update you Image Assets</p>
 
-          <blockquote>
-          <p>Ich verwende bewusst kein Coffeescript, weil es gerade in der Teamarbeit zu Verwirrungen geführt hat. Wer dennoch Coffeescript verwenden will, muss sich nur das entsprechende Plugin installieren.</p>
-          </blockquote>
+<div class="highlight highlight-bash"><pre>gulp grunt-imageUpdate
+</pre></div>
 
-          <p>Wer die Überwachung noch auf Bilddaten ausweiten möchte, kann den erweiterten Default Task verwenden.</p>
+<p>In this Case is a Grunt Task. First your Imagefiles in 'dist' will be cleaned, that a new Sprite will be generated, SVG will be minified and build a PNG Fallback. Single and Texture Images will be copied to 'dist', and a new image map is generated.</p>
 
-          <pre><code class="language-bash">gulp extended
-          </code></pre>
+<h3>
+<a name="js-files" class="anchor" href="#js-files"><span class="octicon octicon-link"></span></a>JS Files</h3>
 
-          <p>Folgende Verzeichnisse werden dann mit überwacht:</p>
+<ul>
+<li>need to be finished</li>
+</ul><h3>
+<a name="generate-css" class="anchor" href="#generate-css"><span class="octicon octicon-link"></span></a>Generate CSS</h3>
 
-          <ul>
-          <li><code>src/stash/images/css-images/svg/</code></li>
-          <li><code>src/stash/images/css-images/svgonly/</code></li>
-          <li><code>src/stash/images/css-images/single-assets/</code></li>
-          <li><code>src/stash/images/css-images/texture-assets/</code></li>
-          <li><code>src/stash/images/css-images/sprite-assets/</code></li>
-          </ul>
+<ul>
+<li>need to be finished</li>
+</ul><h3>
+<a name="generate-html" class="anchor" href="#generate-html"><span class="octicon octicon-link"></span></a>Generate HTML</h3>
 
-          <p>Eine Modifikation der Dateien, ebenso wie Löschen oder Hinzufügen wird auch hier Task aktivieren, z.B. wird aus SVG Dateien automatisch ein PNG Fallback generiert. </p>
+<ul>
+<li>need to be finished</li>
+</ul><h3>
+<a name="various-gruntgulp-tasks" class="anchor" href="#various-gruntgulp-tasks"><span class="octicon octicon-link"></span></a>Various Grunt&amp;Gulp Tasks</h3>
 
-          <h3>Tasks</h3>
+<ul>
+<li>need to be finished</li>
+</ul><hr><h2>
+<a name="getting-to-know-yeoman" class="anchor" href="#getting-to-know-yeoman"><span class="octicon octicon-link"></span></a>Getting To Know Yeoman</h2>
 
-          <h4><code>gulp init</code></h4>
+<p>Yeoman has a heart of gold. He's a person with feelings and opinions, but he's very easy to work with. If you think he's too opinionated, he can be easily convinced.</p>
 
-          <p>Für das erste Initialisieren des Projekts.</p>
+<p>If you'd like to get to know Yeoman better and meet some of his friends, <a href="http://gruntjs.com">Grunt</a> and <a href="http://bower.io">Bower</a>, check out the complete <a href="https://github.com/yeoman/yeoman/wiki/Getting-Started">Getting Started Guide</a>.</p>
 
-          <h4><code>gulp</code></h4>
+<hr><h2>
+<a name="special-thanks-to" class="anchor" href="#special-thanks-to"><span class="octicon octicon-link"></span></a>Special Thanks to</h2>
 
-          <p>Default Task</p>
+<ul>
+<li>Hugo Giraudel (<a href="https://github.com/HugoGiraudel" class="user-mention">@HugoGiraudel</a>) - for his awesome Sass Scripts</li>
+<li>Daniel Guillan (<a href="https://github.com/danielguillan" class="user-mention">@danielguillan</a>) - Modernizr Mixins</li>
+</ul><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
-          <h4><code>gulp extended</code></h4>
-
-          <p>Erweiterter Default Task - überwacht Bilddaten</p>
-
-          <h4><code>gulp rebuild-js</code></h4>
-
-          <p>Sämtliche Javascript Dateien werden neu generiert</p>
-
-          <h4><code>gulp publish</code></h4>
-
-          <p>Die Projektdaten werden für die Produktion vorbereitet. CSS, JS und Bilddaten werden Komprimiert. Die Dokumenation wird generiert. </p>
-
-          <h4><code>gulp jade-rebuild</code></h4>
-
-          <p>Sämtliche Jade Dateien werden auf einen Rutsch neu kompiliert.</p>
-
-          <h4><code>gulp bump</code></h4>
-
-          <p>Die Versionsnummer wird gepatcht (0.0.1)</p>
-
-          <h4><code>gulp bump-minor</code></h4>
-
-          <p>Die Versionsnummer wird um ein Minor Update erweitert (0.1.0)</p>
-
-          <h4><code>gulp bump-major</code></h4>
-
-          <p>Die Versionnummer wird um eine Release Nummer erweitert (1.0.0)</p>
-
-          <h4><code>gulp grunt-rebuild-images</code></h4>
-
-          <p>Bilddaten wie <code>single</code>, <code>textures</code>, <code>svg</code> und <code>sprites</code> werden aus dem <code>dist</code> Verzeichnis gelöscht und neu Integriert. </p>
-
-          <h4><code>gulp grunt-responsive-images</code></h4>
-
-          <p>Bilder die per HTML eingebunden werden, können damit in mehreren Größen generiert werden. </p>
-          <hr>
-          <h2><a name="special-thanks-to" class="anchor" href="#special-thanks-to"><span class="octicon octicon-link"></span></a>Special Thanks to</h2>
-
-          <ul>
-            <li>Hugo Giraudel (<a href="https://github.com/HugoGiraudel" class="user-mention">@HugoGiraudel</a>) - for his awesome Sass Scripts</li>
-            <li>Daniel Guillan (<a href="https://github.com/danielguillan" class="user-mention">@danielguillan</a>) - Modernizr Mixins</li>
-          </ul>
-          <h2><a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
-          <p>MIT</p>
-        </section>
-      </div>
+<p>MIT</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/gisu">gisu</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
     </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
   </body>
 </html>
