@@ -125,7 +125,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.copy('_package.json', 'package.json');
     this.copy('_bower.json', 'bower.json');
     this.copy('_gulpfile.js', 'gulpfile.js');
-    this.copy('_setup.scss', 'src/sass/_setup.scss');
+    this.copy('_setupkittn.scss', 'src/sass/_setup.scss');
   },
 
   projectfiles: function () {
