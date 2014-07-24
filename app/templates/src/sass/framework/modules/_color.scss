@@ -132,7 +132,7 @@
  * @param  {*}    $target - The Color Key
  * @param  {Bool} $hard   - For !important setting
  */
-@mixin get_c($target, $hard: false) {
+@mixin get-c($target, $hard: false) {
   @include _color($target, $attrib: color, $imp: $hard);
 }
 
@@ -147,7 +147,7 @@
  * @param  {*}     $target - The Color Key
  * @param  {Bool}  $hard   - For !important setting
  */
-@mixin get_bc($target, $hard: false) {
+@mixin get-bc($target, $hard: false) {
   @include _color($target, $attrib: background-color, $imp: $hard);
 }
 
