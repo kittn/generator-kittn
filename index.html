@@ -372,6 +372,9 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 <hr><h2>
 <a name="sass-framework" class="anchor" href="#sass-framework"><span class="octicon octicon-link"></span></a>Sass Framework</h2>
 
+<h2>
+<a name="sass-1" class="anchor" href="#sass-1"><span class="octicon octicon-link"></span></a>Sass</h2>
+
 <p>Das Herzstück des Toolkits besteht aus dem <a href="http://sass-lang.com">Sass</a> Framework, das Toolkit wurde mehr außen herum gebaut um die fehlenden Funktionen zu ersetzten.</p>
 
 <h3>
@@ -465,14 +468,14 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 
 <p>In die Connectmap können repeatable Styles eingetragen werden. Die Map wird dann über Mixins eingelesen womit dann Silent Placeholder generiert werden. Diese können dann mit <code>@extend</code> verbunden werden, alternativ kann man den Inhalt auch direkt importiert werden.</p>
 
-<pre><code>$kittn-connect-map: (
-  button: (
-    height: 30px,
-    width: 100%,
-    text-align: center
-  )
-);
-</code></pre>
+<div class="highlight highlight-scss"><pre><span class="nv">$kittn-connect-map</span><span class="o">:</span> <span class="p">(</span>
+  <span class="n">button</span><span class="o">:</span> <span class="p">(</span>
+    <span class="no">height</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="o">,</span>
+    <span class="no">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="o">,</span>
+    <span class="no">text-align</span><span class="o">:</span> <span class="no">center</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+</pre></div>
 
 <h4>
 <a name="zmap" class="anchor" href="#zmap"><span class="octicon octicon-link"></span></a>ZMap</h4>
@@ -503,17 +506,17 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 
 <p><em><a href="https://github.com/param" class="user-mention">@param</a>  {string}  $name - Selector name</em></p>
 
-<div class="highlight highlight-sass"><pre><span class="c1">// Example</span>
-<span class="nc">.box</span> <span class="err">{</span>
-  <span class="k">@include</span><span class="nd"> element</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="err">{</span>
-    <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">the Element'</span><span class="err">;</span>
-  <span class="err">}</span>
-<span class="err">}</span>
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> element</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">the Element'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
 <span class="c1">// Result</span>
-<span class="nc">.box__element</span> <span class="err">{</span>
-  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">the Element'</span><span class="err">;</span>
-<span class="err">}</span>
+<span class="nc">.box__element</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">the Element'</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 
 <h5>
@@ -524,40 +527,40 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 <p><em><a href="https://github.com/param" class="user-mention">@param</a>  {*}      $name           - The selector name<br>
 <a href="https://github.com/param" class="user-mention">@param</a>  {bool}   $extend (false) - If the Modifier need to be extended with parent</em></p>
 
-<pre><code>// Example
-.box {
-  height: 50px;
-  width: 30px;
-  @include modifier(round) {
-    border-radius: 10px;
-  }
-}
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">@include</span><span class="nd"> modifier</span><span class="p">(</span><span class="n">round</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">border-radius</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-.other-box {
-  height: 50px;
-  width: 30px;
-  @include modifier(round, true) { // Extend active
-    border-radius: 10px;
-  }
-}
+<span class="nc">.other-box</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">@include</span><span class="nd"> modifier</span><span class="p">(</span><span class="n">round</span><span class="o">,</span> <span class="n-Pseudo">true</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// Extend active</span>
+    <span class="na">border-radius</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
 
-// Result
-.box {
-  height: 50px;
-  width: 30px;
-}
-.box--round {
-  border-radius: 10px;
-}
+<span class="c1">// Result</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.box--round</span> <span class="p">{</span>
+  <span class="na">border-radius</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
 
-.other-box, .other-box--round {
-  height: 50px;
-  width: 30px;
-}
-.other-box--round {
-  border-radius: 10px;
-}
-</code></pre>
+<span class="nc">.other-box</span><span class="o">,</span> <span class="nc">.other-box--round</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.other-box--round</span> <span class="p">{</span>
+  <span class="na">border-radius</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
 <h5>
 <a name="m-chainroot" class="anchor" href="#m-chainroot"><span class="octicon octicon-link"></span></a>(m) Chainroot</h5>
