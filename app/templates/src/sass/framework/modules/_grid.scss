@@ -5,12 +5,12 @@
 /**
  * Calculate the Size in Percent
  *
- * @param  {Number}  $colums    - Colums
- * @param  {Number}  $maxColums - Max Colums
+ * @param  {Number}  $colums         - Colums
+ * @param  {Number}  $maxColums (12) - Max Colums
  *
- * @returns {Number}            - Percentage Value
+ * @returns {Number}                 - Percentage Value
  */
-@function grid-size($colums, $maxColums) {
+@function grid-size($colums, $maxColums: 12) {
   // Clean up
   $colums: strip-units($colums);
   $maxColums: strip-units($maxColums);
@@ -26,7 +26,7 @@
  *
  * @access private
  */
-@mixin grid-stepper() {
+@mixin grid-adaptive() {
   $list: ();
 
   // Move Values in a list
