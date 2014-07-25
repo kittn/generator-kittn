@@ -60,7 +60,7 @@
  * @param  {Number}  $size - Fontsize
  * @param  {Number}  $factor - The multiply factor
  */
-@mixin align-fontsize($size,$factor: 1) {
+@mixin align-fontsize($size,$factor: 1.2) {
   font-size: if(unitless($size), $size + 1px, $size);
   line-height: if(unitless($size), $size + 1px, $size) * strip-units($factor);
 }
