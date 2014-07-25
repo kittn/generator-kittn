@@ -50,8 +50,8 @@
  * @param  {Number}  $factor - The multiply factor
  */
 @mixin align-height($height, $factor: 1) {
-  height: if(unitless($height), $height + 1px, $height);
-  line-height: if(unitless($height), $height + 1px, $height) * strip-units($factor);
+  height: if(unitless($height), $height + 0px, $height);
+  line-height: if(unitless($height), $height + 0px, $height) * strip-units($factor);
 }
 
 /**
@@ -61,8 +61,8 @@
  * @param  {Number}  $factor - The multiply factor
  */
 @mixin align-fontsize($size,$factor: 1.2) {
-  font-size: if(unitless($size), $size + 1px, $size);
-  line-height: if(unitless($size), $size + 1px, $size) * strip-units($factor);
+  font-size: if(unitless($size), $size + 0px, $size);
+  line-height: if(unitless($size), $size + 0px, $size) * strip-units($factor);
 }
 
 /**
