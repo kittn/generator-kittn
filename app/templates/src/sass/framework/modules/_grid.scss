@@ -174,8 +174,6 @@
  *                      :layout [value]
  *                        => The type from the Layout
  *                        => values: inline | table | flex | block (default)
- *                      :classname [string]
- *                        => The Classname off the nested rows
  *                      :valign [string]
  *                        => Vertical Align
  *                        => values: top (default), bottom, baseline, middle
@@ -189,7 +187,6 @@
   $row: map-merge((
     spacing: 10,
     layout: block,
-    classname: row,
     valign: top,
     align: left
   ),$row);
@@ -228,11 +225,12 @@
 
     } @else {
       @include clearfix;
-      .#{map-get($row, classname)} {
+
+      & & {
         margin-left: 0 - unit-check(map-get($row, spacing));
         margin-right: 0 - unit-check(map-get($row, spacing));
-
       }
+
     }
   } @else {
     @warn 'The Valign Value "#{map-get($row,valign)}" is not posible!';

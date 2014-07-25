@@ -103,7 +103,6 @@ var path        = require('path'),
 // --- Task Config --------------
 
 // Ruby SASS
-// TODO: Gulp Notify will not work right
 gulp.task('rubysass', function () {
   gulp.src(sassSrc)
     .pipe(plumber())
@@ -112,9 +111,7 @@ gulp.task('rubysass', function () {
       style        : 'nested',
       precision    : 6
     }))
-    .on("error", notify.onError(function (error) {
-      return "SASS Compile Error: " + error.message;
-    }))
+    .on("error", notify.onError("Sass Compile Error!"))
     .pipe(prefix("last 2 version", "> 1%", "ie 9", "chrome 30", "firefox 24"))
     .pipe(gulp.dest(targetDirCSS));
 });
