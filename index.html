@@ -15,7 +15,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1><img src="http://i.imgur.com/2MtKGwj.jpg" alt="Generator-Kittn"></h1>
+        <h1>Generator-kittn</h1>
         <p>The Yeoman Kittn Generator</p>
 
         <p class="view"><a href="https://github.com/gisu/generator-kittn">View the Project on GitHub <small>gisu/generator-kittn</small></a></p>
@@ -28,6 +28,7 @@
         </ul>
       </header>
       <section>
+        <p><img src="http://i.imgur.com/2MtKGwj.jpg" alt=""></p>
 
 <h2>
 <a name="einleitung" class="anchor" href="#einleitung"><span class="octicon octicon-link"></span></a>Einleitung</h2>
@@ -875,19 +876,18 @@ Mit dieser Funktion begrenzt man Zahlenwerte.</p>
 <p>Die Keywords der Farben müssen gequotet notiert werden.</p>
 </blockquote>
 
-<pre><code>// Example
-.color {
-  color: cp('primary');
-  background-color: cp('black');
-}
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nf">cp</span><span class="p">(</span><span class="s1">'</span><span class="s2">primary'</span><span class="p">);</span>
+  <span class="na">background-color</span><span class="o">:</span> <span class="nf">cp</span><span class="p">(</span><span class="s1">'</span><span class="s2">black'</span><span class="p">);</span>
+<span class="p">}</span>
 
-// Result
-.color {
-  color: #f29300;
-  background-color: #3c3c3c;
-}
-
-</code></pre>
+<span class="c1">// Result</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#f29300</span><span class="p">;</span>
+  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#3c3c3c</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
 <p>(m) <strong>Spacer</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-global-spacing</code></em></p>
 
@@ -1096,40 +1096,432 @@ Prüft ob der Selektor verschachtelt wurde.</p>
 <h4>
 <a name="jacket" class="anchor" href="#jacket"><span class="octicon octicon-link"></span></a>Jacket</h4>
 
+<p>Nähere <a href="https://github.com/Team-Sass/jacket">Informationen</a></p>
+
 <h4>
 <a name="sassylists" class="anchor" href="#sassylists"><span class="octicon octicon-link"></span></a>Sassylists</h4>
 
-<h4>
+<p>Da <code>Kittn</code> nur ein Bruchteil der Funktionen von Hugo Giraudels <a href="http://sassylists.com/">sassylists</a> benötigt, ist die Library hier in gekürzter Form integriert.</p>
+
+<p>Folgende Funktionen wurden integriert:</p>
+
+<ul>
+<li><code>sl-has-multiple-values</code></li>
+<li><code>sl-str-compare</code></li>
+<li><code>sl-to-list</code></li>
+<li><code>sl-listify</code></li>
+<li><code>sl-reverse</code></li>
+<li><code>sl-mirror</code></li>
+<li><code>sl-remove-duplicates</code></li>
+<li><code>sl-unique</code></li>
+<li><code>sl-sort</code></li>
+<li><code>sl-order</code></li>
+</ul><h4>
 <a name="debug" class="anchor" href="#debug"><span class="octicon octicon-link"></span></a>Debug</h4>
 
-<hr><h3>
+<p><em><a href="https://github.com/requires" class="user-mention">@requires</a> '$kittn-activate'</em></p>
+
+<p>Bei Aktivieren werden mögliche Fehler im CSS visuell hervorgehoben.</p>
+
+<ul>
+<li>
+<code>rot</code> = Fehler</li>
+<li>
+<code>gelb</code> = Zu Überprüfen</li>
+</ul><hr><h3>
 <a name="modules" class="anchor" href="#modules"><span class="octicon octicon-link"></span></a>Modules</h3>
 
 <h4>
 <a name="breakpoints" class="anchor" href="#breakpoints"><span class="octicon octicon-link"></span></a>Breakpoints</h4>
 
-<p>(f) <strong>BP</strong><br>
-(m) <strong>Break</strong><br>
-(m) <strong>EQ</strong><br>
-(m) <strong>Visibility</strong><br></p>
+<p>(f) <strong>BP</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> '$kittn-breakpoint-map'</em></p>
+
+<p>Wählt anhand des Breakpoint-Key, die entsprechende Größe aus der Breakpoint-Map.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="nf">bp</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="mi">320</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Break</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> '$kittn-breakpoint-map'</em></p>
+
+<p>Generiert MediaQueries. Wenn Mobile First aktiviert wurde (<code>$kittn-activate</code>), arbeiten die MQs per Default immer mit <code>min</code> Werten. Im Mode <code>between</code> wird das Mixin die zwei Größen zudem immer immer aufsteigend Sortieren.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+
+  <span class="k">@include</span><span class="nd"> break</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">height</span><span class="o">:</span> <span class="mi">400</span><span class="kt">px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nc">.other-dir</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> break</span><span class="p">(</span><span class="mi">3</span><span class="o">,</span><span class="n">max</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">height</span><span class="o">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nc">.between</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> break</span><span class="p">(</span><span class="mi">2</span> <span class="mi">4</span><span class="o">,</span> <span class="n">between</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">display</span><span class="o">:</span> <span class="no">block</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nc">.sort</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> break</span><span class="p">(</span><span class="mi">5</span> <span class="mi">2</span><span class="o">,</span> <span class="n">between</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">display</span><span class="o">:</span> <span class="no">block</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="nt">480px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nc">.test</span> <span class="p">{</span>
+    <span class="na">height</span><span class="o">:</span> <span class="mi">400</span><span class="kt">px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">max-width</span><span class="nd">:</span> <span class="nt">561px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nc">.other-dir</span> <span class="p">{</span>
+    <span class="na">height</span><span class="o">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="nt">480px</span><span class="o">)</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">max-width</span><span class="nd">:</span> <span class="nt">769px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nc">.between</span> <span class="p">{</span>
+    <span class="na">display</span><span class="o">:</span> <span class="no">block</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="nt">480px</span><span class="o">)</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">max-width</span><span class="nd">:</span> <span class="nt">961px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nc">.sort</span> <span class="p">{</span>
+    <span class="na">display</span><span class="o">:</span> <span class="no">block</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>EQ</strong><br>
+Mixin für die <a href="https://github.com/snugug/eq.js">ElementQueries</a> von Sam Richard</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> eq</span><span class="p">(</span><span class="s1">'</span><span class="s2">small'</span><span class="o">,</span> <span class="s1">'</span><span class="s2">medium'</span><span class="o">,</span> <span class="s1">'</span><span class="s2">large'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">@include</span><span class="nd"> eq</span><span class="p">(</span><span class="s1">'</span><span class="s2">small'</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nt">p</span> <span class="p">{</span>
+      <span class="na">height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span><span class="o">[</span><span class="nt">data-eq-state</span><span class="o">=</span><span class="s2">"small"</span><span class="o">],</span>
+<span class="nc">.test</span><span class="o">[</span><span class="nt">data-eq-state</span><span class="o">=</span><span class="s2">"medium"</span><span class="o">],</span>
+<span class="nc">.test</span><span class="o">[</span><span class="nt">data-eq-state</span><span class="o">=</span><span class="s2">"large"</span><span class="o">]</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.test</span><span class="o">[</span><span class="nt">data-eq-state</span><span class="o">=</span><span class="s2">"small"</span><span class="o">]</span> <span class="nt">p</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Usage</span>
+<span class="na">&lt;div</span><span class="err"> </span><span class="na">data-eq-pts</span><span class="err">="</span><span class="na">small</span><span class="o">:</span> <span class="mi">480</span><span class="o">,</span> <span class="no">medium</span><span class="o">:</span> <span class="mi">700</span><span class="o">,</span> <span class="no">large</span><span class="o">:</span> <span class="mi">800</span><span class="s2">" class="</span><span class="n">test</span><span class="s2">"&gt;</span>
+  <span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">Test</span> <span class="nt">Block</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</pre></div>
+
+<p>(m) <strong>Visibility</strong><br>
+Generiert Visibilty/Hidden Classes basierend auf der <code>$kittn-breakpoint-map</code> Map. Es werden dabei aber nur Classen generiert wenn diese in der Map mit <code>visibility: true</code> eingetragen wurden.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Map</span>
+<span class="nv">$kittn-breakpoint-map</span><span class="o">:</span> <span class="p">(</span>
+  <span class="mi">1</span><span class="o">:</span> <span class="p">(</span>
+    <span class="no">size</span><span class="o">:</span> <span class="mi">320</span><span class="kt">px</span><span class="o">,</span>
+    <span class="no">visibility</span><span class="o">:</span> <span class="n-Pseudo">true</span><span class="o">,</span>
+    <span class="n">step</span><span class="o">:</span> <span class="n-Pseudo">true</span><span class="o">,</span>
+    <span class="n">fontsize</span><span class="o">:</span> <span class="n-Pseudo">false</span>
+  <span class="p">)</span><span class="o">,</span>
+  <span class="mi">2</span><span class="o">:</span> <span class="p">(</span>
+    <span class="no">size</span><span class="o">:</span> <span class="mi">480</span><span class="kt">px</span><span class="o">,</span>
+    <span class="no">visibility</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span>
+    <span class="n">step</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span>
+    <span class="n">fontsize</span><span class="o">:</span> <span class="mi">80</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// Example</span>
+<span class="k">@include</span><span class="nd"> visibility</span><span class="p">;</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.hidden-to--1</span> <span class="p">{</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span> <span class="p">}</span>
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">max-width</span><span class="nd">:</span> <span class="nt">321px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nc">.hidden-to--1</span> <span class="p">{</span>
+    <span class="na">display</span><span class="o">:</span> <span class="no">inherit</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="nt">320px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nc">.hidden-from--1</span> <span class="p">{</span>
+    <span class="na">display</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">max-width</span><span class="nd">:</span> <span class="nt">321px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nc">.visible-to--1</span> <span class="p">{</span>
+    <span class="na">display</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nc">.visible-from--1</span> <span class="p">{</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span> <span class="p">}</span>
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="nt">320px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nc">.visible-from--1</span> <span class="p">{</span>
+    <span class="na">display</span><span class="o">:</span> <span class="no">inherit</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 
 <h4>
 <a name="colors" class="anchor" href="#colors"><span class="octicon octicon-link"></span></a>Colors</h4>
 
 <p>(f) <strong>Tint</strong><br>
-(f) <strong>Shade</strong><br>
-(f) <strong>Luma</strong><br>
-(f) <strong>Luma-GTE</strong><br>
-(f) <strong>Luma-LTE</strong><br>
-(f) <strong>Luma-DIFF</strong><br>
-(m) <strong>Color</strong><br>
-(m) <strong>Get-C</strong><br>
-(m) <strong>Color</strong><br>
-(m) <strong>Get-BC</strong><br>
-(m) <strong>Background-Color</strong><br>
-(m) <strong>Colorgenerator</strong><br>
-(m) <strong>Ext-C</strong><br>
-(m) <strong>Ext-BC</strong><br></p>
+Mischt eine Farbe mit Weiß</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nf">tint</span><span class="p">(</span><span class="mh">#ff0000</span><span class="o">,</span><span class="mi">20</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#ff3333</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(f) <strong>Shade</strong><br>
+Mischt eine Farbe mit Schwarz</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="nf">shade</span><span class="p">(</span><span class="mh">#ff0000</span><span class="o">,</span><span class="mi">20</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#cc0000</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(f) <strong>Luma</strong><br>
+Berechnet die Helligkeit einer Farbe  </p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="nf">luma</span><span class="p">(</span><span class="nv">$color</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="mi">76</span><span class="mf">.245</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(f) <strong>Luma-GTE</strong><br>
+Liefert <code>true</code> zurück wenn Farbe 1 heller ist als Farbe 2</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$color-1</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+<span class="nv">$color-2</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
+
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="k">@if</span> <span class="nf">luma-gte</span><span class="p">(</span><span class="nv">$color-1</span><span class="o">,</span> <span class="nv">$color-2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">true'</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s2">"true"</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(f) <strong>Luma-LTE</strong><br>
+Liefert <code>true</code> zurück wenn Farbe 1 kleiner ist als Farbe 2</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$color-1</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+<span class="nv">$color-2</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
+
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="k">@if</span> <span class="nf">luma-lte</span><span class="p">(</span><span class="nv">$color-1</span><span class="o">,</span> <span class="nv">$color-2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">true'</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(f) <strong>Luma-DIFF</strong><br>
+Berechnet die Differenz zwischen zwischen zwei Farbwerten.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$color-1</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
+<span class="nv">$color-2</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
+
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="nf">luma-diff</span><span class="p">(</span><span class="nv">$color-1</span><span class="o">,</span> <span class="nv">$color-2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="mi">47</span><span class="mf">.175</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>_Color</strong><br><em><a href="https://github.com/access" class="user-mention">@access</a> private<br>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code></em></p>
+
+<p>Zieht Werte aus der Color Map. In dem Mixin ist ebenso ein Fallback für IE integriert - wenn Farben Opacity Werte aufweisen.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> _color</span><span class="p">(</span><span class="s1">'</span><span class="s2">primary'</span><span class="p">);</span>
+  <span class="k">@include</span><span class="nd"> _color</span><span class="p">(</span><span class="s1">'</span><span class="s2">black'</span><span class="o">,</span> <span class="no">background-color</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#f29300</span><span class="p">;</span>
+  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#3c3c3c</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Get-C</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code></em></p>
+
+<p>Generiert auf dem gewählten Farbwert die Textfarbe.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> get-c</span><span class="p">(</span><span class="s1">'</span><span class="s2">primary'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#f29300</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Color</strong><br>
+Alias Mixin von <code>get-c</code></p>
+
+<p>(m) <strong>Get-BC</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code></em></p>
+
+<p>Generiert aus dem gewählten Farbwert die Hintergrundfarbe</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> get-bc</span><span class="p">(</span><span class="s1">'</span><span class="s2">primary'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#f29300</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Background-Color</strong><br>
+Alias Mixin von <code>get-bc</code></p>
+
+<p>(m) <strong>Colorgenerator</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code>, <code>$kittn-color-generator</code></em></p>
+
+<p>Generiert aus der <code>$kittn-color-map</code> Map Farbklassen, entweder <code>silent</code> oder als Klasse. In der <code>$kittn-color-generator</code> findet man die erforderlichen Einstellungen.</p>
+
+<p>Über den <code>type</code> bestimmt man die Art der ColorPlaceholder:</p>
+
+<ul>
+<li>
+<code>c</code> Color</li>
+<li>
+<code>b</code> Background-Color</li>
+<li>
+<code>bc</code> Background-Color &amp; Color</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$kittn-color-map</span><span class="o">:</span> <span class="p">(</span>
+  <span class="s1">'</span><span class="s2">primary'</span><span class="o">:</span> <span class="p">(</span>
+    <span class="no">color</span><span class="o">:</span> <span class="mh">#f29300</span><span class="o">,</span>
+    <span class="no">opacity</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span>
+    <span class="n">type</span><span class="o">:</span> <span class="n">bc</span>
+  <span class="p">)</span><span class="o">,</span>
+  <span class="s1">'</span><span class="s2">black'</span><span class="o">:</span> <span class="p">(</span>
+    <span class="no">color</span><span class="o">:</span> <span class="mh">#3c3c3c</span><span class="o">,</span>
+    <span class="no">opacity</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span>
+    <span class="n">type</span><span class="o">:</span> <span class="n">bc</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="k">@include</span><span class="nd"> colorgenerator</span><span class="p">();</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.c--primary</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#f29300</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.bc--primary</span> <span class="p">{</span>
+  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#f29300</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.c--black</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#3c3c3c</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.bc--black</span> <span class="p">{</span>
+  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#3c3c3c</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Ext-C</strong><br>
+Verbindet Elemente mit der gewählten Farbe (<code>color</code>) - der Colorgenerator muss dafür aber die ColorPlaceholder generiert haben, ansonsten lädt das Mixin die Farbe direkt in das Element.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.first</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> ext-c</span><span class="p">(</span><span class="s1">'</span><span class="s2">primary'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.second</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> ext-c</span><span class="p">(</span><span class="s1">'</span><span class="s2">primary'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.first</span><span class="o">,</span> <span class="nc">.second</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#f29300</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Ext-BC</strong><br>
+Verbindet Elemente mit der gewählten Farbe (<code>background-color</code>) - der Colorgenerator muss dafür aber die ColorPlaceholder generiert haben, ansonsten lädt das Mixin die Farbe direkt in das Element.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.first</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> ext-bc</span><span class="p">(</span><span class="s1">'</span><span class="s2">primary'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.second</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> Ext-bc</span><span class="p">(</span><span class="s1">'</span><span class="s2">primary'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.first</span><span class="o">,</span> <span class="nc">.second</span> <span class="p">{</span>
+  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#f29300</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
 <h4>
 <a name="dimensions" class="anchor" href="#dimensions"><span class="octicon octicon-link"></span></a>Dimensions</h4>
@@ -1290,6 +1682,8 @@ Prüft ob der Selektor verschachtelt wurde.</p>
 <ul>
 <li>Hugo Giraudel (<a href="https://github.com/HugoGiraudel" class="user-mention">@HugoGiraudel</a>) - for his awesome Sass Scripts</li>
 <li>Daniel Guillan (<a href="https://github.com/danielguillan" class="user-mention">@danielguillan</a>) - Modernizr Mixins</li>
+<li>Team Sass - Jacket</li>
+<li>Sam Richard (<a href="https://github.com/Snugug" class="user-mention">@Snugug</a>) - EQ.js</li>
 </ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
