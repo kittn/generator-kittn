@@ -15,7 +15,8 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1><img src="http://i.imgur.com/2MtKGwj.jpg" alt="Generator-Kittn"></h1>
+        <h1>Generator-kittn</h1>
+        <p>The Yeoman Kittn Generator</p>
 
         <p class="view"><a href="https://github.com/gisu/generator-kittn">View the Project on GitHub <small>gisu/generator-kittn</small></a></p>
 
@@ -27,6 +28,8 @@
         </ul>
       </header>
       <section>
+        <p><img src="http://i.imgur.com/2MtKGwj.jpg" alt=""></p>
+
 <h2>
 <a name="einleitung" class="anchor" href="#einleitung"><span class="octicon octicon-link"></span></a>Einleitung</h2>
 
@@ -489,7 +492,7 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 <h4>
 <a name="bem" class="anchor" href="#bem"><span class="octicon octicon-link"></span></a>BEM</h4>
 
-<p><code>scr/sass/framework/helper/_bem.scss</code><br><code>depends on: $kittn-bem</code></p>
+<p><code>scr/sass/framework/helper/_bem.scss</code><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-bem</code></em></p>
 
 <p>Diese BEM Mixins verwenden die in <code>$kittn-bem</code> eingestellten Prefixes. Ob man diese Mixins verwendet oder nativ seine Selektoren schreiben, bleibt dem Developer überlassen.</p>
 
@@ -608,40 +611,488 @@ Chain the Modifiers</p>
 <h4>
 <a name="connect" class="anchor" href="#connect"><span class="octicon octicon-link"></span></a>Connect</h4>
 
-<p>(m) <strong>Connect-Gen</strong><br>
-(m) <strong>Connect-Yield</strong><br>
-(m) <strong>Connect</strong><br></p>
+<p><code>scr/sass/framework/helper/_connect.scss</code><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-connect-map</code></em></p>
+
+<p>Über die Connect Mixins ist es möglich Styles vorzudefienieren und diese Styles dann entweder mittels <code>@extend</code> zu verbinden oder den Style direkt in den Selektor zu laden (z.B. wenn man sich in einem MQ aufhält).</p>
+
+<p>Wenn in der <code>$kittn-connect-map</code> Map Styles definiert wurden, werden Silent Selectors generiert.</p>
+
+<p>(m) <strong>Connect-Gen</strong><br><em><a href="https://github.com/access" class="user-mention">@access</a> private</em></p>
+
+<p>Damit werden die Selectoren verknüpft oder 'ausgeladen'.</p>
+
+<p>(m) <strong>Connect-Yield</strong><br><em><a href="https://github.com/access" class="user-mention">@access</a> private</em></p>
+
+<p>Das Mixin generiert aus den Elementen der <code>$kittn-connect-map</code> Map, Placeholder Selectors. Die dann mittels dem <code>connect</code> Mixin mit bestehenden Klassen verbunden werden.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Map</span>
+<span class="nv">$kittn-connect-map</span><span class="o">:</span> <span class="p">(</span>
+  <span class="no">size</span><span class="o">:</span> <span class="p">(</span>
+    <span class="no">height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="o">,</span>
+    <span class="no">line-height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span>
+  <span class="p">)</span><span class="o">,</span>
+  <span class="n">connect</span><span class="o">:</span> <span class="p">(</span>
+    <span class="no">color</span><span class="o">:</span> <span class="mh">#fff</span><span class="o">,</span>
+    <span class="no">background-color</span><span class="o">:</span> <span class="mh">#000</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// Example</span>
+<span class="k">@include</span><span class="nd"> connect-yield</span><span class="p">();</span>
+
+<span class="c1">// Result</span>
+<span class="err">%</span><span class="nt">test</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="err">%</span><span class="nt">connect</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#000</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Connect</strong><br>
+Mit dem Connect Mixin können bestehende Elemente mit den Placeholder entweder verbunden werden, oder der Style kann in das Element direkt integriert werden.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.one-connect</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> connect</span><span class="p">(</span><span class="no">size</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.two-connect</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> connect</span><span class="p">(</span><span class="no">size</span> <span class="n">connect</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.direct-yield</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> connect</span><span class="p">(</span><span class="no">size</span> <span class="n">connect</span><span class="o">,</span> <span class="n-Pseudo">false</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.one-connect</span><span class="o">,</span> <span class="nc">.two-connect</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.two-connect</span> <span class="p">{</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#000</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.direct-yield</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#fff</span><span class="p">;</span>
+  <span class="na">background-color</span><span class="o">:</span> <span class="mh">#000</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
 <h4>
 <a name="fonts" class="anchor" href="#fonts"><span class="octicon octicon-link"></span></a>Fonts</h4>
 
-<p>(f) <strong>ff</strong><br>
-(m) <strong>Font-Family</strong><br>
-(m) <strong>FontFace</strong><br>
-(m) <strong>Fontface-Generator</strong><br></p>
+<p><code>scr/sass/framework/helper/_fonts.scss</code><br></p>
+
+<p>(f) <strong>ff</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-fontstack-map</code></em></p>
+
+<p>Mittels der FF Function kann man sich einen Fontstack einladen, zusätzlich kann man eigene Font Familys anhängen.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.font</span> <span class="p">{</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="nf">ff</span><span class="p">(</span><span class="s1">'</span><span class="s2">helvetica'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.with-own-font</span> <span class="p">{</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="nf">ff</span><span class="p">(</span><span class="s1">'</span><span class="s2">helvetica'</span><span class="o">,</span> <span class="s1">'</span><span class="s2">gotham'</span><span class="o">,</span> <span class="s1">'</span><span class="s2">interstate'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.font</span> <span class="p">{</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="s2">"Helvetica Neue"</span><span class="o">,</span> <span class="n">Helvetica</span><span class="o">,</span> <span class="n">Arial</span><span class="o">,</span> <span class="no">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.with-own-font</span> <span class="p">{</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="s2">"gotham"</span><span class="o">,</span> <span class="s2">"interstate"</span><span class="o">,</span> <span class="s2">"Helvetica Neue"</span><span class="o">,</span> <span class="n">Helvetica</span><span class="o">,</span> <span class="n">Arial</span><span class="o">,</span> <span class="no">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Font-Family</strong><br>
+Ist mehr ein Alias der FF Funktion, dieses mal als Mixin.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.font</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> font-family</span><span class="p">(</span><span class="s1">'</span><span class="s2">helvetica'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.with-own-font</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> font-family</span><span class="p">(</span><span class="s1">'</span><span class="s2">helvetica'</span><span class="o">,</span> <span class="s1">'</span><span class="s2">gotham'</span><span class="o">,</span> <span class="s1">'</span><span class="s2">interstate'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.font</span> <span class="p">{</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="s2">"Helvetica Neue"</span><span class="o">,</span> <span class="n">Helvetica</span><span class="o">,</span> <span class="n">Arial</span><span class="o">,</span> <span class="no">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.with-own-font</span> <span class="p">{</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="s2">"gotham"</span><span class="o">,</span> <span class="s2">"interstate"</span><span class="o">,</span> <span class="s2">"Helvetica Neue"</span><span class="o">,</span> <span class="n">Helvetica</span><span class="o">,</span> <span class="n">Arial</span><span class="o">,</span> <span class="no">sans-serif</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>FontFace</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-directorys</code></em></p>
+
+<p>Das Mixin generiert die Fontfaces</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Examples</span>
+<span class="k">@include</span><span class="nd"> fontface</span><span class="p">(</span><span class="s1">'</span><span class="s2">own-font'</span><span class="o">,</span> <span class="nv">$svgoption</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="p">);</span>
+
+<span class="k">@include</span><span class="nd"> fontface</span><span class="p">(</span><span class="s1">'</span><span class="s2">34923234font.com'</span><span class="o">,</span> <span class="s1">'</span><span class="s2">bettername'</span><span class="o">,</span> <span class="nv">$svgoption</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="p">);</span>
+
+<span class="k">@include</span><span class="nd"> fontface</span><span class="p">(</span><span class="s1">'</span><span class="s2">own-font'</span><span class="p">);</span>
+
+<span class="c1">// Results</span>
+<span class="k">@font-face</span> <span class="p">{</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="s2">"own-font"</span><span class="p">;</span>
+  <span class="na">src</span><span class="o">:</span> <span class="sx">url("/assets/fonts/own-font.eot")</span><span class="p">;</span>
+  <span class="na">src</span><span class="o">:</span> <span class="sx">url("/assets/fonts/own-font.eot?#iefix")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"eot"</span><span class="p">)</span><span class="o">,</span> <span class="sx">url("/assets/fonts/own-font.woff")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"woff"</span><span class="p">)</span><span class="o">,</span> <span class="sx">url("/assets/fonts/own-font.ttf")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"truetype"</span><span class="p">)</span><span class="o">,</span> <span class="sx">url("/assets/fonts/own-font.svg#own-font")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"svg"</span><span class="p">);</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="na">font-style</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">@font-face</span> <span class="p">{</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="s2">"bettername"</span><span class="p">;</span>
+  <span class="na">src</span><span class="o">:</span> <span class="sx">url("/assets/fonts/34923234font.com.eot")</span><span class="p">;</span>
+  <span class="na">src</span><span class="o">:</span> <span class="sx">url("/assets/fonts/34923234font.com.eot?#iefix")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"eot"</span><span class="p">)</span><span class="o">,</span> <span class="sx">url("/assets/fonts/34923234font.com.woff")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"woff"</span><span class="p">)</span><span class="o">,</span> <span class="sx">url("/assets/fonts/34923234font.com.ttf")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"truetype"</span><span class="p">)</span><span class="o">,</span> <span class="sx">url("/assets/fonts/34923234font.com.svg#34923234font.com")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"svg"</span><span class="p">);</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="na">font-style</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="k">@font-face</span> <span class="p">{</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="s2">"own-font"</span><span class="p">;</span>
+  <span class="na">src</span><span class="o">:</span> <span class="sx">url("/assets/fonts/own-font.eot")</span><span class="p">;</span>
+  <span class="na">src</span><span class="o">:</span> <span class="sx">url("/assets/fonts/own-font.eot?#iefix")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"eot"</span><span class="p">)</span><span class="o">,</span> <span class="sx">url("/assets/fonts/own-font.woff")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"woff"</span><span class="p">)</span><span class="o">,</span> <span class="sx">url("/assets/fonts/own-font.ttf")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"truetype"</span><span class="p">)</span><span class="o">,</span> <span class="sx">url("/assets/fonts/own-font.svg#own-font")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"svg"</span><span class="p">);</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="na">font-style</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">-webkit-min-device-pixel-ratio</span><span class="nd">:</span> <span class="nt">0</span><span class="o">)</span> <span class="p">{</span>
+  <span class="k">@font-face</span> <span class="p">{</span>
+    <span class="na">font-family</span><span class="o">:</span> <span class="s2">"own-font"</span><span class="p">;</span>
+    <span class="na">src</span><span class="o">:</span> <span class="sx">url("/assets/fonts/own-font.svg")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"svg"</span><span class="p">);</span>
+    <span class="na">font-weight</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+    <span class="na">font-style</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Fontface-Generator</strong><br>
+Der Generator generiert über die <code>$kittn-fontface-map</code> Map eine Reihe von Fontfaces. Der Generator steht fast am Anfang, Fontfaces werden im CSS immer an erster Stelle implementiert.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$kittn-fontface-map</span><span class="o">:</span> <span class="p">(</span>
+  <span class="c1">// EXAMPLE</span>
+  <span class="s1">'</span><span class="s2">ownfont'</span><span class="o">:</span> <span class="p">(</span>
+    <span class="n">filename</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span>
+    <span class="n">weight</span><span class="o">:</span> <span class="no">normal</span><span class="o">,</span>
+    <span class="n">style</span><span class="o">:</span> <span class="no">normal</span><span class="o">,</span>
+    <span class="n">svgoption</span><span class="o">:</span> <span class="n-Pseudo">false</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="c1">// Result</span>
+<span class="k">@font-face</span> <span class="p">{</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="s2">"ownfont"</span><span class="p">;</span>
+  <span class="na">src</span><span class="o">:</span> <span class="sx">url("/assets/fonts/ownfont.eot")</span><span class="p">;</span>
+  <span class="na">src</span><span class="o">:</span> <span class="sx">url("/assets/fonts/ownfont.eot?#iefix")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"eot"</span><span class="p">)</span><span class="o">,</span> <span class="sx">url("/assets/fonts/ownfont.woff")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"woff"</span><span class="p">)</span><span class="o">,</span> <span class="sx">url("/assets/fonts/ownfont.ttf")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"truetype"</span><span class="p">)</span><span class="o">,</span> <span class="sx">url("/assets/fonts/ownfont.svg#ownfont")</span> <span class="nf">format</span><span class="p">(</span><span class="s2">"svg"</span><span class="p">);</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="na">font-style</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
 <h4>
 <a name="helper-1" class="anchor" href="#helper-1"><span class="octicon octicon-link"></span></a>Helper</h4>
 
 <p>(f) <strong>Strip-Units</strong><br>
-(f) <strong>Unit-Check</strong><br>
-(m) <strong>Calc</strong><br>
-(f) <strong>Clamp</strong><br>
-(f) <strong>CP Colorpicker</strong><br>
-(m) <strong>Spacer</strong><br>
-(f) <strong>S</strong><br></p>
+Entfernt die Units von Values</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$size</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="nf">strip-units</span><span class="p">(</span><span class="nv">$size</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">20</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(f) <strong>Unit-Check</strong><br>
+Hängt die Default Unit an Values</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$size</span><span class="o">:</span> <span class="mi">20</span><span class="p">;</span>
+
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="nf">unit-check</span><span class="p">(</span><span class="nv">$size</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Calc</strong><br>
+Über das Mixin kann man den CSS Calc verwenden.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> calc</span><span class="p">(</span><span class="no">width</span><span class="o">,</span> <span class="s1">'</span><span class="s2">10% + 20px'</span><span class="p">);</span>
+  <span class="k">@include</span><span class="nd"> calc</span><span class="p">(</span><span class="no">height</span><span class="o">,</span> <span class="s1">'</span><span class="s2">20px + 0.5rem'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="nf">calc</span><span class="p">(</span><span class="mi">10</span><span class="kt">%</span> <span class="o">+</span> <span class="mi">20</span><span class="kt">px</span><span class="p">);</span>
+  <span class="na">height</span><span class="o">:</span> <span class="nf">calc</span><span class="p">(</span><span class="mi">20</span><span class="kt">px</span> <span class="o">+</span> <span class="mi">0</span><span class="mf">.5</span><span class="kt">rem</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(f) <strong>Clamp</strong><br>
+Mit dieser Funktion begrenzt man Zahlenwerte.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$height</span><span class="o">:</span> <span class="mi">200</span><span class="p">;</span>
+<span class="nv">$width</span><span class="o">:</span> <span class="mi">23</span><span class="p">;</span>
+
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="nf">clamp</span><span class="p">(</span><span class="nv">$height</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="mi">0</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="nf">clamp</span><span class="p">(</span><span class="nv">$width</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="mi">100</span><span class="p">)</span> <span class="o">+</span> <span class="mi">0</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">23</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+</pre></div>
+
+<p>(f) <strong>CP Colorpicker</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code></em></p>
+
+<p>Über den Colorpicker greift man auf die Color Map zu.</p>
+
+<blockquote>
+<p>Die Keywords der Farben müssen gequotet notiert werden.</p>
+</blockquote>
+
+<pre><code>// Example
+.color {
+  color: cp('primary');
+  background-color: cp('black');
+}
+
+// Result
+.color {
+  color: #f29300;
+  background-color: #3c3c3c;
+}
+
+</code></pre>
+
+<p>(m) <strong>Spacer</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-global-spacing</code></em></p>
+
+<p>Das Spacermixin generiert anhand der Global Spacing Unit Größen.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="nf">spacer</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+  <span class="na">width</span><span class="o">:</span> <span class="nf">spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+  <span class="na">margin-top</span><span class="o">:</span> <span class="nf">spacer</span><span class="p">(</span><span class="mf">.25</span><span class="o">,</span> <span class="n-Pseudo">true</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.color</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">40</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">margin-top</span><span class="o">:</span> <span class="mi">5</span><span class="kt">px</span> <span class="nv">!important</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(f) <strong>S</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-global-spacing</code></em></p>
+
+<p>Selbiges wie oben, mit dem Unterschied das diese Funktion per Default keine Units integriert. Wird häufig für interne Mixins verwendet.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="nf">s</span><span class="p">(</span><span class="mi">2</span><span class="o">,</span> <span class="nv">$u</span><span class="o">:</span> <span class="n">r</span><span class="p">);</span>
+  <span class="na">width</span><span class="o">:</span> <span class="nf">s</span><span class="p">(</span><span class="mi">1</span><span class="o">,</span> <span class="nv">$u</span><span class="o">:</span> <span class="n">p</span><span class="p">);</span>
+  <span class="na">margin-top</span><span class="o">:</span> <span class="nf">s</span><span class="p">(</span><span class="mf">.25</span><span class="o">,</span> <span class="n-Pseudo">true</span><span class="o">,</span> <span class="n">p</span><span class="p">);</span>
+  <span class="na">padding-left</span><span class="o">:</span> <span class="nf">s</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">+</span> <span class="mi">0</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">40</span><span class="kt">rem</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">margin-top</span><span class="o">:</span> <span class="mi">5</span><span class="kt">px</span> <span class="nv">!important</span><span class="p">;</span>
+  <span class="na">padding-left</span><span class="o">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
 <h4>
 <a name="typechecks" class="anchor" href="#typechecks"><span class="octicon octicon-link"></span></a>Typechecks</h4>
 
 <p>(f) <strong>Is-True</strong><br>
-(f) <strong>Is-Map</strong><br>
-(f) <strong>Is-List</strong><br>
-(f) <strong>Is-Number</strong><br>
-(f) <strong>Is-String</strong><br>
-(f) <strong>Is-Not-String</strong><br>
-(f) <strong>Is-Nested</strong><br>
-(f) <strong>Map-Filled</strong><br></p>
+Prüft ob ein Wert übergeben wurde</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$check</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="k">@if</span> <span class="nf">is-true</span><span class="p">(</span><span class="nv">$check</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">Treffer'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(f) <strong>Is-Map</strong><br>
+Prüft ob es sich um eine Map handelt.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$check</span><span class="o">:</span> <span class="p">(</span>
+  <span class="mi">1</span><span class="o">:</span> <span class="s1">'</span><span class="s2">hello'</span>
+<span class="p">);</span>
+
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="k">@if</span> <span class="nf">is-map</span><span class="p">(</span><span class="nv">$check</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(f) <strong>Is-List</strong><br>
+Prüft ob es sich um eine Liste handelt.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$check</span><span class="o">:</span> <span class="s1">'</span><span class="s2">hello'</span> <span class="s1">'</span><span class="s2">welcome'</span> <span class="s1">'</span><span class="s2">to'</span><span class="p">;</span>
+
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="k">@if</span> <span class="nf">is-list</span><span class="p">(</span><span class="nv">$check</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(f) <strong>Is-Number</strong><br>
+Prüft ob es sich um eine Nummer handelt.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$check</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="k">@if</span> <span class="nf">is-number</span><span class="p">(</span><span class="nv">$check</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(f) <strong>Is-String</strong><br>
+Prüft ob es sich um einen String handelt.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$check</span><span class="o">:</span> <span class="s1">'</span><span class="s2">hello'</span><span class="p">;</span>
+
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="k">@if</span> <span class="nf">is-string</span><span class="p">(</span><span class="nv">$check</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(f) <strong>Is-Not-String</strong><br>
+Prüft ob es sich <strong>nicht</strong> um einen String handelt.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$check</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="k">@if</span> <span class="nf">is-not-string</span><span class="p">(</span><span class="nv">$check</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(f) <strong>Is-Nested</strong><br>
+Prüft ob der Selektor verschachtelt wurde.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="k">@if</span> <span class="nf">is-nested</span><span class="p">()</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nc">.other-test</span> <span class="p">{</span>
+  <span class="nc">.other-inner</span> <span class="p">{</span>
+    <span class="k">@if</span> <span class="nf">is-nested</span><span class="p">()</span> <span class="p">{</span>
+      <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.other-test</span> <span class="nc">.other-inner</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(f) <strong>Map-Filled</strong><br>
+Überprüft ob die Map gefüllt wurde.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$test-1</span><span class="o">:</span> <span class="p">();</span>
+<span class="nv">$test-2</span><span class="o">:</span> <span class="p">(</span>
+  <span class="mi">1</span><span class="o">:</span> <span class="mi">2</span><span class="o">,</span>
+  <span class="mi">3</span><span class="o">:</span> <span class="mi">4</span>
+<span class="p">);</span>
+
+<span class="nc">.test-1</span> <span class="p">{</span>
+  <span class="k">@if</span> <span class="nf">map-filled</span><span class="p">(</span><span class="nv">$test-1</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="nc">.test-2</span> <span class="p">{</span>
+  <span class="k">@if</span> <span class="nf">map-filled</span><span class="p">(</span><span class="nv">$test-2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test-2</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
 <h4>
 <a name="jacket" class="anchor" href="#jacket"><span class="octicon octicon-link"></span></a>Jacket</h4>
