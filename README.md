@@ -781,6 +781,8 @@ $kittn-fontface-map: (
 ```
 
 #### Helper
+`scr/sass/framework/helper/_helper.scss`<br>
+
 (f) **Strip-Units**<br>
 Entfernt die Units von Values
 
@@ -919,6 +921,8 @@ Selbiges wie oben, mit dem Unterschied das diese Funktion per Default keine Unit
 ```
 
 #### Typechecks
+`scr/sass/framework/helper/_typechecks.scss`<br>
+
 (f) **Is-True**<br>
 Prüft ob ein Wert übergeben wurde
 
@@ -1089,9 +1093,13 @@ $test-2: (
 ```
 
 #### Jacket
+`scr/sass/framework/helper/_jacket.scss`<br>
+
 Nähere [Informationen](https://github.com/Team-Sass/jacket)
 
 #### Sassylists
+`scr/sass/framework/helper/_sassylists.scss`<br>
+
 Da `Kittn` nur ein Bruchteil der Funktionen von Hugo Giraudels [sassylists](http://sassylists.com/) benötigt, ist die Library hier in gekürzter Form integriert.
 
 Folgende Funktionen wurden integriert:
@@ -1108,6 +1116,8 @@ Folgende Funktionen wurden integriert:
 - `sl-order`
 
 #### Debug
+`scr/sass/framework/helper/_debug.scss`<br>
+
 _@requires '$kittn-activate'_
 
 Bei Aktivieren werden mögliche Fehler im CSS visuell hervorgehoben.
@@ -1120,6 +1130,7 @@ Bei Aktivieren werden mögliche Fehler im CSS visuell hervorgehoben.
 ### Modules
 
 #### Breakpoints
+`scr/sass/framework/modules/_breakpoints.scss`<br>
 
 (f) **BP**<br>
 _@requires '$kittn-breakpoint-map'_
@@ -1286,6 +1297,8 @@ $kittn-breakpoint-map: (
 ```
 
 #### Colors
+`scr/sass/framework/modules/_color.scss`<br>
+
 (f) **Tint**<br>
 Mischt eine Farbe mit Weiß
 
@@ -1527,17 +1540,257 @@ Verbindet Elemente mit der gewählten Farbe (`background-color`) - der Colorgene
 ```
 
 #### Dimensions
+`scr/sass/framework/modules/_dimensions.scss`<br>
+
 (m) **Size**<br>
+Integriert Breite und Höhe.
+
+```scss
+// Example
+.square {
+  @include size(50);
+}
+.rectangle {
+  @include size(50 100);
+}
+.with-lineheight {
+  @include size(50,true);
+}
+.with-individual-lineheight {
+  @include size(50,80);
+}
+
+// Result
+.square {
+  width: 50px;
+  height: 50px;
+}
+.rectangle {
+  width: 50px;
+  height: 100px;
+}
+.with-lineheight {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+}
+.with-individual-lineheight {
+  width: 50px;
+  height: 50px;
+  line-height: 80px;
+}
+```
+
 (m) **Align-Height**<br>
+Höhe und Lineheight einfach einfügen.
+
+```scss
+// Example
+.height {
+  @include align-height(50);
+}
+.height-different-factor {
+  @include align-height(50,1.5);
+}
+
+// Result
+.height {
+  height: 50px;
+  line-height: 50px;
+}
+.height-different-factor {
+  height: 50px;
+  line-height: 75px;
+}
+```
+
 (m) **Align-Fontsize**<br>
+Align Fontsize und Lineheight
+
+```scss
+// Example
+.font {
+  @include align-fontsize(20);
+}
+.font-other-factor {
+  @include align-fontsize(20,0.8);
+}
+
+// Result
+.font {
+  font-size: 20px;
+  line-height: 24px;
+}
+.font-other-factor {
+  font-size: 20px;
+  line-height: 16px;
+}
+```
+
 (m) **Center**<br>
+Zentriert, Mittelt und gibt einem Element eine Größe
+
+```scss
+// Example
+.box {
+  @include center(20);
+}
+.box2 {
+  @include center(20 50);
+}
+
+// Result
+.box {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+
+.box2 {
+  width: 20px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+```
+
 (m) **Perfect-Circle**<br>
+Passt den Border-Radius an die Größe des Elements an.
+
+```scss
+// Example
+.circle {
+  @include perfect-circle(20);
+}
+
+// Result
+.circle {
+  width: 20px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+  border-radius: 20px;
+}
+```
+
 (m) **Ratio**<br>
+Stellt bei einem Element das Breiten und Größenverhältniss gemäß der Ratio ein.
+
+```scss
+// Example
+.ratio {
+  @include ratio(16 9);
+}
+.box {
+  @include ratio(16 9, '.box__inner');
+}
+
+// Result
+.ratio {
+  overflow: hidden;
+  position: relative;
+}
+.ratio:before {
+  content: '';
+  display: block;
+  height: 0;
+  padding-top: 56.25%;
+}
+.ratio > * {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+.box {
+  overflow: hidden;
+  position: relative;
+}
+.box:before {
+  content: '';
+  display: block;
+  height: 0;
+  padding-top: 56.25%;
+}
+.box > .box__inner {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+```
+
 (m) **Unratio**<br>
+Entfernt bestehende Ratios wieder.
+
+```scss
+// Example
+.box {
+  @include unratio('.box__inner');
+}
+
+// Result
+.box:before {
+  height: auto;
+  padding-top: 0;
+}
+.box > .box__inner {
+  position: inherit;
+  left: inherit;
+  top: inherit;
+  height: inherit;
+  width: inherit;
+}
+```
+
 (m) **Tighten-Up**<br>
+'Spannt' ein inneres Element auf die gleiche Dimension des äußeren Elements auf.
+
+```scss
+// Example
+.box {
+  @include tighten-up;
+}
+
+// Result
+.box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+```
+
 (m) **Text-Middle**<br>
+Positioniert Textelemente in der Vertikalen Mitte.
+
+```scss
+// Example
+.middle {
+  @include text-middle;
+}
+
+// Result
+.middle:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  }
+.middle > * {
+  display: inline-block;
+  vertical-align: middle;
+}
+```
+
 
 #### Grid
+`scr/sass/framework/modules/_grid.scss`<br>
+
 (f) **Grid-Size**<br>
 (m) **Grid-Stepper**<br>
 (m) **Grid-Container**<br>
@@ -1554,6 +1807,8 @@ Verbindet Elemente mit der gewählten Farbe (`background-color`) - der Colorgene
 (m) **Grid-Normalizer**<br>
 
 #### Iconfont
+`scr/sass/framework/modules/_iconfont.scss`<br>
+
 (f) **Icon**<br>
 (m) **Iconfont**<br>
 (m) **Icon-Font-Generator**<br>
@@ -1562,6 +1817,8 @@ Verbindet Elemente mit der gewählten Farbe (`background-color`) - der Colorgene
 (m) **Ext-Icon**<br>
 
 #### Images
+`scr/sass/framework/modules/_images.scss`<br>
+
 (m) **GetImageDimensions**<br>
 (m) **Image**<br>
 (m) **SVGPNG**<br>
@@ -1571,6 +1828,8 @@ Verbindet Elemente mit der gewählten Farbe (`background-color`) - der Colorgene
 (m) **Sprite**<br>
 
 #### Lines
+`scr/sass/framework/modules/_lines.scss`<br>
+
 (f) **Rem**<br>
 (m) **Remsize**<br>
 (m) **Pxsize**<br>
@@ -1589,11 +1848,15 @@ Verbindet Elemente mit der gewählten Farbe (`background-color`) - der Colorgene
 (m) **Fontcalc**<br>
 
 #### Modernizr
+`scr/sass/framework/modules/_modernizr.scss`<br>
+
 (m) **Modernizr**<br>
 (m) **Yep**<br>
 (m) **Nope**<br>
 
 #### Positioning
+`scr/sass/framework/modules/_positioning.scss`<br>
+
 (m) **Set-Position**<br>
 (m) **Relative**<br>
 (m) **Absolute**<br>
@@ -1614,6 +1877,8 @@ Verbindet Elemente mit der gewählten Farbe (`background-color`) - der Colorgene
 (m) **Overlap**<br>
 
 #### Shorthands
+`scr/sass/framework/modules/_shorthands.scss`<br>
+
 (m) **Clearfix**<br>
 (m) **Center**<br>
 (m) **Word-Wrap**<br>
@@ -1627,6 +1892,8 @@ Verbindet Elemente mit der gewählten Farbe (`background-color`) - der Colorgene
 (m) **Antialias**<br>
 
 #### Spacer
+`scr/sass/framework/modules/_spacer.scss`<br>
+
 (m) **Margin-Padding**<br>
 (m) **Padding**<br>
 (m) **Margin**<br>
@@ -1634,10 +1901,14 @@ Verbindet Elemente mit der gewählten Farbe (`background-color`) - der Colorgene
 (m) **Spacer-Reset**<br>
 
 #### Triangle
+`scr/sass/framework/modules/_triangle.scss`<br>
+
 (m) **Triangle**<br>
 
 
 #### Typography
+`scr/sass/framework/modules/_typography.scss`<br>
+
 (f) **TW**<br>
 (m) **Typogenerator**<br>
 (m) **Responsive-Fontsizes**<br>
