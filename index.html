@@ -15,7 +15,8 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1><img src="http://i.imgur.com/2MtKGwj.jpg" alt="Kittn-Generator"></h1>
+        <h1>Generator-kittn</h1>
+        <p>The Yeoman Kittn Generator</p>
 
         <p class="view"><a href="https://github.com/gisu/generator-kittn">View the Project on GitHub <small>gisu/generator-kittn</small></a></p>
 
@@ -27,6 +28,8 @@
         </ul>
       </header>
       <section>
+        <p><img src="http://i.imgur.com/2MtKGwj.jpg" alt=""></p>
+
 <h2>
 <a name="einleitung" class="anchor" href="#einleitung"><span class="octicon octicon-link"></span></a>Einleitung</h2>
 
@@ -369,7 +372,729 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 <hr><h2>
 <a name="sass-framework" class="anchor" href="#sass-framework"><span class="octicon octicon-link"></span></a>Sass Framework</h2>
 
-<p>...coming</p>
+<p>Das Herzstück des Toolkits besteht aus dem <a href="http://sass-lang.com">Sass</a> Framework, das Toolkit wurde mehr außen herum gebaut um die fehlenden Funktionen zu ersetzten.</p>
+
+<h3>
+<a name="structure" class="anchor" href="#structure"><span class="octicon octicon-link"></span></a>Structure</h3>
+
+<p>Im Verzeichnis <code>src/sass/</code> befindet sich der Framework:</p>
+
+<p><code>sass/</code><br><code>.. framework/</code> Framework Mixins und Funktionen<br><code>.... helper/</code> Hilfsfunktionen die als erstes includiert werden müssen<br><code>.... modules/</code> Mixin, Funktionen, Generatoren<br><code>.... partials/</code> Vordefinierte Snippets<br><code>.. maps/</code> Erweiterte Daten Maps<br><code>.. styles/</code> Möglicher Platz für eigene Partials<br><code>.. _loader.scss</code> Lädt die einzelnen Dateien (die Reihenfolge ist vorbestimmt)<br><code>.. _setup.scss</code> Hier befindet sich die gesamte Konfiguration<br><code>.. _workfile.scss</code> Die Arbeitsdatei<br><code>.. style.scss</code> Ausgabe<br><code>.. style-ie8.scss</code> Ausgabe IE8<br></p>
+
+<blockquote>
+<p>Der Name für die Dateien <code>style.scss</code> kann abweichen, wenn man beim aktivieren des Toolkits einen anderen Namen vorgegeben hat, ebenso kann es sein das es keine <code>xxxx-i8.scss</code> Datei vorhanden ist, wenn die IE8 Kompatibilität abgeschaltet wurde.</p>
+</blockquote>
+
+<hr><h3>
+<a name="workfile" class="anchor" href="#workfile"><span class="octicon octicon-link"></span></a>Workfile</h3>
+
+<p><img src="http://i.imgur.com/JSwYDZv.jpg" alt=""></p>
+
+<p>Gearbeitet wird immer mit <code>_workfile.scss</code> Datei und der Inhalt dieser Datei wird in die jeweilige <code>style.scss</code> importiert und über den Compiler zu einem CSS File gewandelt. Öffenen wir einfach mal eine der <code>style.scss</code> Dateien:</p>
+
+<p><img src="http://i.imgur.com/smb2mSe.png" alt=""></p>
+
+<p>Diese Datei wird den Inhalt von <code>_workfile</code> importieren, dabei aber bestimmte Inhalte heraus filtern. Z.B. Inhalte die mit der Variable <code>old</code> markiert sind, fließen hier nicht mit ein.</p>
+
+<p>Mittels <a href="https://github.com/Team-Sass/jacket">Jacket</a> kann der Developer an einer Datei arbeiten, spezifische Styles auf unterschiedliche Files routen.</p>
+
+<blockquote>
+<p>In Kittn arbeitet man prinzipiell mit zwei Jacket Variablen. <code>old</code> markiert Inhalte die in IE8 Stylesheets wandern und <code>modern</code> ist nur für Moderne Browser bestimmt. Wer möchte kann das natürlich noch erweitern.</p>
+</blockquote>
+
+<hr><h3>
+<a name="loader" class="anchor" href="#loader"><span class="octicon octicon-link"></span></a>Loader</h3>
+
+<pre><code>src/sass/_loader.scss
+</code></pre>
+
+<p>Mit der <code>_loader.scss</code> Datei werden alle Dateien geladen, die benötigt werden. Die Reihenfolge ist dabei schon fest vorgegeben. Sollte auch nicht mehr geändert werden.</p>
+
+<hr><h3>
+<a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h3>
+
+<pre><code>src/sass/_setup.scss
+</code></pre>
+
+<p>Fast alle Einstellungen lassen sich über <code>_setup.scss</code> verändern und erweitern. Arbeiten wir uns einmal durch.</p>
+
+<p><code>$kittn-global-spacing</code> Global spacing unit, used for Spacer and Lines Mixins.<br><code>$kittn-default-unit</code> Default unit for unitless values. Default <code>px</code><br><code>$kittn-bem</code> BEM Prefixes for Elements and Modifiers<br><code>$kittn-directorys</code> Kittn Directory Organisation - when you change the structure from <code>dist/</code> you need to change here also.<br><code>$kittn-activate</code> Activate Base Features<br><code>$kittn-sprite</code> Sprite Configuration<br><code>$kittn-iconfont</code> Iconfont Configuration<br><code>$kittn-breakpoint-map</code> Map off all Breakpoints and Behaviors<br><code>$kittn-fontface-map</code> Load and integrate all FontFaces<br><code>$kittn-typo</code> Base Typo Setup<br><code>$kittn-active-responsive-fonts</code> Activates the Responsive Fontsize Generator<br><code>$kittn-typo-margin</code> Default Margin for Typographic Elements<br><code>$kittn-typo-style</code> Base Typo and Font Styling<br><code>$kittn-typo-sizes</code> Base Typo Sizes<br><code>$kittn-global-heading</code> Global Heading Stylings<br><code>$kittn-typostyles-map</code> All possible Typostyles in a Map<br><code>$kittn-generate-typostyles</code> Generate all Fontstyles with classes<br><code>$kittn-color-map</code> Color Definition Map. This is a collection from all used Colors.<br><code>$kittn-color-generator</code> Generate the Color Classes from the Color Array<br><code>$kittn-color-route</code> Route the Colors to the Elements<br><code>$kittn-hairline</code> Hairline Styling<br><code>$kittn-tables</code> Table Styling</p>
+
+<hr><h3>
+<a name="maps" class="anchor" href="#maps"><span class="octicon octicon-link"></span></a>Maps</h3>
+
+<p>Zu der <code>_setup.scss</code> Datei kommen noch weitere Map Files.</p>
+
+<h4>
+<a name="fontstacks" class="anchor" href="#fontstacks"><span class="octicon octicon-link"></span></a>Fontstacks</h4>
+
+<p><code>src/sass/maps/_fontstacks.scss</code></p>
+
+<p>Fonts die über die Font-Family Mixins eingefügt werden, können auf die Fontstacks zugreifen. In der Map sind die gängisten Kombinationen enthalten.</p>
+
+<h4>
+<a name="iconmap" class="anchor" href="#iconmap"><span class="octicon octicon-link"></span></a>Iconmap</h4>
+
+<p><code>src/sass/maps/_iconfontlist.scss</code></p>
+
+<p>Alle Icons einer Iconfont werden in diese Map eingetragen - über die Iconfont Mixins werden daraus dann wieder Klassen generiert.</p>
+
+<blockquote>
+<p>Wer seine Iconfonts mit Icomoon erstellt, wird eine CSS Datei geliefert bekommen. Mit etwas Find&amp;Replace kann man diese CSS Datei leicht in eine Map zurück wandeln.</p>
+</blockquote>
+
+<div class="highlight highlight-scss"><pre><span class="nv">$kittn-font-icons</span><span class="o">:</span> <span class="p">(</span>
+  <span class="n">news</span><span class="o">:</span> <span class="s1">'</span><span class="s2">\e609'</span><span class="o">,</span>
+  <span class="n">works</span><span class="o">:</span> <span class="s1">'</span><span class="s2">\e60a'</span>
+<span class="p">);</span>
+</pre></div>
+
+<h4>
+<a name="imagemaps" class="anchor" href="#imagemaps"><span class="octicon octicon-link"></span></a>Imagemaps</h4>
+
+<p><code>src/sass/maps/_imagemap.scss</code><br><code>src/sass/maps/_sprite.scss</code><br><code>src/sass/maps/_sprite-retina.scss</code></p>
+
+<p>Diese Maps werden über die <code>Grunt</code> Tasks automatisch erstellt. Dort werden Daten notiert wie die Bild Dimensionen, Dateinamen, bei Sprites wird die Position auf der Map gespeichert.</p>
+
+<p>Über die Image Mixins wird auf diese Maps zugegriffen.</p>
+
+<h4>
+<a name="connectmap" class="anchor" href="#connectmap"><span class="octicon octicon-link"></span></a>Connectmap</h4>
+
+<p><code>src/sass/maps/_connectmap.scss</code></p>
+
+<p>In die Connectmap können repeatable Styles eingetragen werden. Die Map wird dann über Mixins eingelesen womit dann Silent Placeholder generiert werden. Diese können dann mit <code>@extend</code> verbunden werden, alternativ kann man den Inhalt auch direkt importiert werden.</p>
+
+<pre><code>$kittn-connect-map: (
+  button: (
+    height: 30px,
+    width: 100%,
+    text-align: center
+  )
+);
+</code></pre>
+
+<h4>
+<a name="zmap" class="anchor" href="#zmap"><span class="octicon octicon-link"></span></a>ZMap</h4>
+
+<p><code>src/sass/maps/_zmap.scss</code></p>
+
+<p>Die unterschiedlichen Z-Indexes werden auf der Map notiert.</p>
+
+<div class="highlight highlight-scss"><pre><span class="nv">$kittn-zlayer-map</span><span class="o">:</span> <span class="p">(</span>
+  <span class="s1">'</span><span class="s2">default'</span><span class="o">:</span> <span class="mi">10</span>
+<span class="p">);</span>
+</pre></div>
+
+<hr><h3>
+<a name="helper" class="anchor" href="#helper"><span class="octicon octicon-link"></span></a>Helper</h3>
+
+<h4>
+<a name="bem" class="anchor" href="#bem"><span class="octicon octicon-link"></span></a>BEM</h4>
+
+<p><code>scr/sass/framework/helper/_bem.scss</code><br><code>depends on: $kittn-bem</code></p>
+
+<p>Diese BEM Mixins verwenden die in <code>$kittn-bem</code> eingestellten Prefixes. Ob man diese Mixins verwendet oder nativ seine Selektoren schreiben, bleibt dem Developer überlassen.</p>
+
+<h5>
+<a name="m-element" class="anchor" href="#m-element"><span class="octicon octicon-link"></span></a>(m) Element</h5>
+
+<p>Build a BEM Element</p>
+
+<p><em><a href="https://github.com/param" class="user-mention">@param</a>  {string}  $name - Selector name</em></p>
+
+<div class="highlight highlight-sass"><pre><span class="c1">// Example</span>
+<span class="nc">.box</span> <span class="err">{</span>
+  <span class="k">@include</span><span class="nd"> element</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="err">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">the Element'</span><span class="err">;</span>
+  <span class="err">}</span>
+<span class="err">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.box__element</span> <span class="err">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">the Element'</span><span class="err">;</span>
+<span class="err">}</span>
+</pre></div>
+
+<h5>
+<a name="m-modifier" class="anchor" href="#m-modifier"><span class="octicon octicon-link"></span></a>(m) Modifier</h5>
+
+<p>Build a BEM Modifier, with extend functionality</p>
+
+<p><em><a href="https://github.com/param" class="user-mention">@param</a>  {*}      $name           - The selector name<br>
+<a href="https://github.com/param" class="user-mention">@param</a>  {bool}   $extend (false) - If the Modifier need to be extended with parent</em></p>
+
+<pre><code>// Example
+.box {
+  height: 50px;
+  width: 30px;
+  @include modifier(round) {
+    border-radius: 10px;
+  }
+}
+
+.other-box {
+  height: 50px;
+  width: 30px;
+  @include modifier(round, true) { // Extend active
+    border-radius: 10px;
+  }
+}
+
+// Result
+.box {
+  height: 50px;
+  width: 30px;
+}
+.box--round {
+  border-radius: 10px;
+}
+
+.other-box, .other-box--round {
+  height: 50px;
+  width: 30px;
+}
+.other-box--round {
+  border-radius: 10px;
+}
+</code></pre>
+
+<h5>
+<a name="m-chainroot" class="anchor" href="#m-chainroot"><span class="octicon octicon-link"></span></a>(m) Chainroot</h5>
+
+<p>Setup the Root Element for the following chained Modifers</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> chainroot</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="n">hello</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span><span class="o">,</span> <span class="o">[</span><span class="nt">class</span><span class="o">^=</span><span class="s2">"test"</span><span class="o">]</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="n">hello</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<h5>
+<a name="m-chain" class="anchor" href="#m-chain"><span class="octicon octicon-link"></span></a>(m) Chain</h5>
+
+<p>Chain the Modifiers</p>
+
+<p><em><a href="https://github.com/param" class="user-mention">@param</a>  {string} $name - Selector name, only the name</em></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> chainroot</span> <span class="p">{</span>
+    <span class="na">font-size</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+    <span class="na">line-height</span><span class="o">:</span> <span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">@include</span><span class="nd"> chain</span><span class="p">(</span><span class="n">wide</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">width</span><span class="o">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="k">@include</span><span class="nd"> chain</span><span class="p">(</span><span class="no">height</span><span class="p">)</span> <span class="p">{</span>
+    <span class="na">height</span><span class="o">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span><span class="o">,</span> <span class="o">[</span><span class="nt">class</span><span class="o">^=</span><span class="s2">"test"</span><span class="o">]</span> <span class="p">{</span>
+  <span class="na">font-size</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">[</span><span class="nt">class</span><span class="o">^=</span><span class="s2">"test"</span><span class="o">][</span><span class="nt">class</span><span class="o">*=</span><span class="s2">"--wide"</span><span class="o">]</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">[</span><span class="nt">class</span><span class="o">^=</span><span class="s2">"test"</span><span class="o">][</span><span class="nt">class</span><span class="o">*=</span><span class="s2">"--height"</span><span class="o">]</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Usage</span>
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s2">"test"</span><span class="o">&gt;</span><span class="nc">...</span><span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s2">"test--wide"</span><span class="o">&gt;</span><span class="nc">...</span><span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s2">"test--height--wide"</span><span class="o">&gt;</span><span class="nc">...</span><span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
+</pre></div>
+
+<h4>
+<a name="connect" class="anchor" href="#connect"><span class="octicon octicon-link"></span></a>Connect</h4>
+
+<h5>
+<a name="m-connect-gen" class="anchor" href="#m-connect-gen"><span class="octicon octicon-link"></span></a>(m) Connect-Gen</h5>
+
+<h5>
+<a name="m-connect-yield" class="anchor" href="#m-connect-yield"><span class="octicon octicon-link"></span></a>(m) Connect-Yield</h5>
+
+<h5>
+<a name="m-connect" class="anchor" href="#m-connect"><span class="octicon octicon-link"></span></a>(m) Connect</h5>
+
+<h4>
+<a name="fonts" class="anchor" href="#fonts"><span class="octicon octicon-link"></span></a>Fonts</h4>
+
+<h5>
+<a name="f-ff" class="anchor" href="#f-ff"><span class="octicon octicon-link"></span></a>(f) ff</h5>
+
+<h5>
+<a name="m-font-family" class="anchor" href="#m-font-family"><span class="octicon octicon-link"></span></a>(m) Font-Family</h5>
+
+<h5>
+<a name="m-fontface" class="anchor" href="#m-fontface"><span class="octicon octicon-link"></span></a>(m) FontFace</h5>
+
+<h5>
+<a name="m-fontface-generator" class="anchor" href="#m-fontface-generator"><span class="octicon octicon-link"></span></a>(m) Fontface-Generator</h5>
+
+<h4>
+<a name="helper-1" class="anchor" href="#helper-1"><span class="octicon octicon-link"></span></a>Helper</h4>
+
+<h5>
+<a name="f-strip-units" class="anchor" href="#f-strip-units"><span class="octicon octicon-link"></span></a>(f) Strip-Units</h5>
+
+<h5>
+<a name="f-unit-check" class="anchor" href="#f-unit-check"><span class="octicon octicon-link"></span></a>(f) Unit-Check</h5>
+
+<h5>
+<a name="m-calc" class="anchor" href="#m-calc"><span class="octicon octicon-link"></span></a>(m) Calc</h5>
+
+<h5>
+<a name="f-clamp" class="anchor" href="#f-clamp"><span class="octicon octicon-link"></span></a>(f) Clamp</h5>
+
+<h5>
+<a name="f-cp-colorpicker" class="anchor" href="#f-cp-colorpicker"><span class="octicon octicon-link"></span></a>(f) CP Colorpicker</h5>
+
+<h5>
+<a name="m-spacer" class="anchor" href="#m-spacer"><span class="octicon octicon-link"></span></a>(m) Spacer</h5>
+
+<h5>
+<a name="f-s" class="anchor" href="#f-s"><span class="octicon octicon-link"></span></a>(f) S</h5>
+
+<h4>
+<a name="typechecks" class="anchor" href="#typechecks"><span class="octicon octicon-link"></span></a>Typechecks</h4>
+
+<h5>
+<a name="f-is-true" class="anchor" href="#f-is-true"><span class="octicon octicon-link"></span></a>(f) Is-True</h5>
+
+<h5>
+<a name="f-is-map" class="anchor" href="#f-is-map"><span class="octicon octicon-link"></span></a>(f) Is-Map</h5>
+
+<h5>
+<a name="f-is-list" class="anchor" href="#f-is-list"><span class="octicon octicon-link"></span></a>(f) Is-List</h5>
+
+<h5>
+<a name="f-is-number" class="anchor" href="#f-is-number"><span class="octicon octicon-link"></span></a>(f) Is-Number</h5>
+
+<h5>
+<a name="f-is-string" class="anchor" href="#f-is-string"><span class="octicon octicon-link"></span></a>(f) Is-String</h5>
+
+<h5>
+<a name="f-is-not-string" class="anchor" href="#f-is-not-string"><span class="octicon octicon-link"></span></a>(f) Is-Not-String</h5>
+
+<h5>
+<a name="f-is-nested" class="anchor" href="#f-is-nested"><span class="octicon octicon-link"></span></a>(f) Is-Nested</h5>
+
+<h5>
+<a name="f-map-filled" class="anchor" href="#f-map-filled"><span class="octicon octicon-link"></span></a>(f) Map-Filled</h5>
+
+<h4>
+<a name="jacket" class="anchor" href="#jacket"><span class="octicon octicon-link"></span></a>Jacket</h4>
+
+<h4>
+<a name="sassylists" class="anchor" href="#sassylists"><span class="octicon octicon-link"></span></a>Sassylists</h4>
+
+<h4>
+<a name="debug" class="anchor" href="#debug"><span class="octicon octicon-link"></span></a>Debug</h4>
+
+<hr><h3>
+<a name="modules" class="anchor" href="#modules"><span class="octicon octicon-link"></span></a>Modules</h3>
+
+<h4>
+<a name="breakpoints" class="anchor" href="#breakpoints"><span class="octicon octicon-link"></span></a>Breakpoints</h4>
+
+<h5>
+<a name="f-bp" class="anchor" href="#f-bp"><span class="octicon octicon-link"></span></a>(f) BP</h5>
+
+<h5>
+<a name="m-break" class="anchor" href="#m-break"><span class="octicon octicon-link"></span></a>(m) Break</h5>
+
+<h5>
+<a name="m-eq" class="anchor" href="#m-eq"><span class="octicon octicon-link"></span></a>(m) EQ</h5>
+
+<h5>
+<a name="m-visibility" class="anchor" href="#m-visibility"><span class="octicon octicon-link"></span></a>(m) Visibility</h5>
+
+<h4>
+<a name="colors" class="anchor" href="#colors"><span class="octicon octicon-link"></span></a>Colors</h4>
+
+<h5>
+<a name="f-tint" class="anchor" href="#f-tint"><span class="octicon octicon-link"></span></a>(f) Tint</h5>
+
+<h5>
+<a name="f-shade" class="anchor" href="#f-shade"><span class="octicon octicon-link"></span></a>(f) Shade</h5>
+
+<h5>
+<a name="f-luma" class="anchor" href="#f-luma"><span class="octicon octicon-link"></span></a>(f) Luma</h5>
+
+<h5>
+<a name="f-luma-gte" class="anchor" href="#f-luma-gte"><span class="octicon octicon-link"></span></a>(f) Luma-GTE</h5>
+
+<h5>
+<a name="f-luma-lte" class="anchor" href="#f-luma-lte"><span class="octicon octicon-link"></span></a>(f) Luma-LTE</h5>
+
+<h5>
+<a name="f-luma-diff" class="anchor" href="#f-luma-diff"><span class="octicon octicon-link"></span></a>(f) Luma-DIFF</h5>
+
+<h5>
+<a name="m-color" class="anchor" href="#m-color"><span class="octicon octicon-link"></span></a>(m) Color</h5>
+
+<h5>
+<a name="m-get-c" class="anchor" href="#m-get-c"><span class="octicon octicon-link"></span></a>(m) Get-C</h5>
+
+<h5>
+<a name="m-color-1" class="anchor" href="#m-color-1"><span class="octicon octicon-link"></span></a>(m) Color</h5>
+
+<h5>
+<a name="m-get-bc" class="anchor" href="#m-get-bc"><span class="octicon octicon-link"></span></a>(m) Get-BC</h5>
+
+<h5>
+<a name="m-background-color" class="anchor" href="#m-background-color"><span class="octicon octicon-link"></span></a>(m) Background-Color</h5>
+
+<h5>
+<a name="m-colorgenerator" class="anchor" href="#m-colorgenerator"><span class="octicon octicon-link"></span></a>(m) Colorgenerator</h5>
+
+<h5>
+<a name="m-ext-c" class="anchor" href="#m-ext-c"><span class="octicon octicon-link"></span></a>(m) Ext-C</h5>
+
+<h5>
+<a name="m-ext-bc" class="anchor" href="#m-ext-bc"><span class="octicon octicon-link"></span></a>(m) Ext-BC</h5>
+
+<h4>
+<a name="dimensions" class="anchor" href="#dimensions"><span class="octicon octicon-link"></span></a>Dimensions</h4>
+
+<h5>
+<a name="m-size" class="anchor" href="#m-size"><span class="octicon octicon-link"></span></a>(m) Size</h5>
+
+<h5>
+<a name="m-align-height" class="anchor" href="#m-align-height"><span class="octicon octicon-link"></span></a>(m) Align-Height</h5>
+
+<h5>
+<a name="m-align-fontsize" class="anchor" href="#m-align-fontsize"><span class="octicon octicon-link"></span></a>(m) Align-Fontsize</h5>
+
+<h5>
+<a name="m-center" class="anchor" href="#m-center"><span class="octicon octicon-link"></span></a>(m) Center</h5>
+
+<h5>
+<a name="m-perfect-circle" class="anchor" href="#m-perfect-circle"><span class="octicon octicon-link"></span></a>(m) Perfect-Circle</h5>
+
+<h5>
+<a name="m-ratio" class="anchor" href="#m-ratio"><span class="octicon octicon-link"></span></a>(m) Ratio</h5>
+
+<h5>
+<a name="m-unratio" class="anchor" href="#m-unratio"><span class="octicon octicon-link"></span></a>(m) Unratio</h5>
+
+<h5>
+<a name="m-tighten-up" class="anchor" href="#m-tighten-up"><span class="octicon octicon-link"></span></a>(m) Tighten-Up</h5>
+
+<h5>
+<a name="m-text-middle" class="anchor" href="#m-text-middle"><span class="octicon octicon-link"></span></a>(m) Text-Middle</h5>
+
+<h4>
+<a name="grid" class="anchor" href="#grid"><span class="octicon octicon-link"></span></a>Grid</h4>
+
+<h5>
+<a name="f-grid-size" class="anchor" href="#f-grid-size"><span class="octicon octicon-link"></span></a>(f) Grid-Size</h5>
+
+<h5>
+<a name="m-grid-stepper" class="anchor" href="#m-grid-stepper"><span class="octicon octicon-link"></span></a>(m) Grid-Stepper</h5>
+
+<h5>
+<a name="m-grid-container" class="anchor" href="#m-grid-container"><span class="octicon octicon-link"></span></a>(m) Grid-Container</h5>
+
+<h5>
+<a name="m-grid-row" class="anchor" href="#m-grid-row"><span class="octicon octicon-link"></span></a>(m) Grid-Row</h5>
+
+<h5>
+<a name="m-grid-colum" class="anchor" href="#m-grid-colum"><span class="octicon octicon-link"></span></a>(m) Grid-Colum</h5>
+
+<h5>
+<a name="m-grid-size" class="anchor" href="#m-grid-size"><span class="octicon octicon-link"></span></a>(m) Grid-Size</h5>
+
+<h5>
+<a name="m-pixel-grid" class="anchor" href="#m-pixel-grid"><span class="octicon octicon-link"></span></a>(m) Pixel-Grid</h5>
+
+<h5>
+<a name="m-grid-generator" class="anchor" href="#m-grid-generator"><span class="octicon octicon-link"></span></a>(m) Grid-Generator</h5>
+
+<h5>
+<a name="m-grid-devide" class="anchor" href="#m-grid-devide"><span class="octicon octicon-link"></span></a>(m) Grid-Devide</h5>
+
+<h5>
+<a name="m-grid-offset" class="anchor" href="#m-grid-offset"><span class="octicon octicon-link"></span></a>(m) Grid-Offset</h5>
+
+<h5>
+<a name="m-grid-offset-generator" class="anchor" href="#m-grid-offset-generator"><span class="octicon octicon-link"></span></a>(m) Grid-Offset-Generator</h5>
+
+<h5>
+<a name="m-grid-pushpull" class="anchor" href="#m-grid-pushpull"><span class="octicon octicon-link"></span></a>(m) Grid-Pushpull</h5>
+
+<h5>
+<a name="m-grid-pushpull-generator" class="anchor" href="#m-grid-pushpull-generator"><span class="octicon octicon-link"></span></a>(m) Grid-Pushpull-Generator</h5>
+
+<h5>
+<a name="m-grid-normalizer" class="anchor" href="#m-grid-normalizer"><span class="octicon octicon-link"></span></a>(m) Grid-Normalizer</h5>
+
+<h4>
+<a name="iconfont" class="anchor" href="#iconfont"><span class="octicon octicon-link"></span></a>Iconfont</h4>
+
+<h5>
+<a name="f-icon" class="anchor" href="#f-icon"><span class="octicon octicon-link"></span></a>(f) Icon</h5>
+
+<h5>
+<a name="m-iconfont" class="anchor" href="#m-iconfont"><span class="octicon octicon-link"></span></a>(m) Iconfont</h5>
+
+<h5>
+<a name="m-icon-font-generator" class="anchor" href="#m-icon-font-generator"><span class="octicon octicon-link"></span></a>(m) Icon-Font-Generator</h5>
+
+<h5>
+<a name="m-icon-generator" class="anchor" href="#m-icon-generator"><span class="octicon octicon-link"></span></a>(m) Icon-Generator</h5>
+
+<h5>
+<a name="m-icon" class="anchor" href="#m-icon"><span class="octicon octicon-link"></span></a>(m) Icon</h5>
+
+<h5>
+<a name="m-ext-icon" class="anchor" href="#m-ext-icon"><span class="octicon octicon-link"></span></a>(m) Ext-Icon</h5>
+
+<h4>
+<a name="images" class="anchor" href="#images"><span class="octicon octicon-link"></span></a>Images</h4>
+
+<h5>
+<a name="m-getimagedimensions" class="anchor" href="#m-getimagedimensions"><span class="octicon octicon-link"></span></a>(m) GetImageDimensions</h5>
+
+<h5>
+<a name="m-image" class="anchor" href="#m-image"><span class="octicon octicon-link"></span></a>(m) Image</h5>
+
+<h5>
+<a name="m-svgpng" class="anchor" href="#m-svgpng"><span class="octicon octicon-link"></span></a>(m) SVGPNG</h5>
+
+<h5>
+<a name="m-texture" class="anchor" href="#m-texture"><span class="octicon octicon-link"></span></a>(m) Texture</h5>
+
+<h5>
+<a name="m-svg" class="anchor" href="#m-svg"><span class="octicon octicon-link"></span></a>(m) SVG</h5>
+
+<h5>
+<a name="m-sprite-generator" class="anchor" href="#m-sprite-generator"><span class="octicon octicon-link"></span></a>(m) Sprite-Generator</h5>
+
+<h5>
+<a name="m-sprite" class="anchor" href="#m-sprite"><span class="octicon octicon-link"></span></a>(m) Sprite</h5>
+
+<h4>
+<a name="lines" class="anchor" href="#lines"><span class="octicon octicon-link"></span></a>Lines</h4>
+
+<h5>
+<a name="f-rem" class="anchor" href="#f-rem"><span class="octicon octicon-link"></span></a>(f) Rem</h5>
+
+<h5>
+<a name="m-remsize" class="anchor" href="#m-remsize"><span class="octicon octicon-link"></span></a>(m) Remsize</h5>
+
+<h5>
+<a name="m-pxsize" class="anchor" href="#m-pxsize"><span class="octicon octicon-link"></span></a>(m) Pxsize</h5>
+
+<h5>
+<a name="m-rem" class="anchor" href="#m-rem"><span class="octicon octicon-link"></span></a>(m) Rem</h5>
+
+<h5>
+<a name="m-lineheight" class="anchor" href="#m-lineheight"><span class="octicon octicon-link"></span></a>(m) Lineheight</h5>
+
+<h5>
+<a name="m-marginbottom" class="anchor" href="#m-marginbottom"><span class="octicon octicon-link"></span></a>(m) Marginbottom</h5>
+
+<h5>
+<a name="m-margintop" class="anchor" href="#m-margintop"><span class="octicon octicon-link"></span></a>(m) Margintop</h5>
+
+<h5>
+<a name="m-marginleft" class="anchor" href="#m-marginleft"><span class="octicon octicon-link"></span></a>(m) Marginleft</h5>
+
+<h5>
+<a name="m-marginright" class="anchor" href="#m-marginright"><span class="octicon octicon-link"></span></a>(m) Marginright</h5>
+
+<h5>
+<a name="m-paddingtop" class="anchor" href="#m-paddingtop"><span class="octicon octicon-link"></span></a>(m) Paddingtop</h5>
+
+<h5>
+<a name="m-paddingbottom" class="anchor" href="#m-paddingbottom"><span class="octicon octicon-link"></span></a>(m) Paddingbottom</h5>
+
+<h5>
+<a name="m-paddingleft" class="anchor" href="#m-paddingleft"><span class="octicon octicon-link"></span></a>(m) Paddingleft</h5>
+
+<h5>
+<a name="m-paddingright" class="anchor" href="#m-paddingright"><span class="octicon octicon-link"></span></a>(m) Paddingright</h5>
+
+<h5>
+<a name="m-height" class="anchor" href="#m-height"><span class="octicon octicon-link"></span></a>(m) Height</h5>
+
+<h5>
+<a name="m-fontsize" class="anchor" href="#m-fontsize"><span class="octicon octicon-link"></span></a>(m) Fontsize</h5>
+
+<h5>
+<a name="m-fontcalc" class="anchor" href="#m-fontcalc"><span class="octicon octicon-link"></span></a>(m) Fontcalc</h5>
+
+<h4>
+<a name="modernizr" class="anchor" href="#modernizr"><span class="octicon octicon-link"></span></a>Modernizr</h4>
+
+<h5>
+<a name="m-modernizr" class="anchor" href="#m-modernizr"><span class="octicon octicon-link"></span></a>(m) Modernizr</h5>
+
+<h5>
+<a name="m-yep" class="anchor" href="#m-yep"><span class="octicon octicon-link"></span></a>(m) Yep</h5>
+
+<h5>
+<a name="m-nope" class="anchor" href="#m-nope"><span class="octicon octicon-link"></span></a>(m) Nope</h5>
+
+<h4>
+<a name="positioning" class="anchor" href="#positioning"><span class="octicon octicon-link"></span></a>Positioning</h4>
+
+<h5>
+<a name="m-set-position" class="anchor" href="#m-set-position"><span class="octicon octicon-link"></span></a>(m) Set-Position</h5>
+
+<h5>
+<a name="m-relative" class="anchor" href="#m-relative"><span class="octicon octicon-link"></span></a>(m) Relative</h5>
+
+<h5>
+<a name="m-absolute" class="anchor" href="#m-absolute"><span class="octicon octicon-link"></span></a>(m) Absolute</h5>
+
+<h5>
+<a name="m-fixed" class="anchor" href="#m-fixed"><span class="octicon octicon-link"></span></a>(m) Fixed</h5>
+
+<h5>
+<a name="m-static" class="anchor" href="#m-static"><span class="octicon octicon-link"></span></a>(m) Static</h5>
+
+<h5>
+<a name="m-bar" class="anchor" href="#m-bar"><span class="octicon octicon-link"></span></a>(m) Bar</h5>
+
+<h5>
+<a name="m-bar-top" class="anchor" href="#m-bar-top"><span class="octicon octicon-link"></span></a>(m) Bar-Top</h5>
+
+<h5>
+<a name="m-bar-bottom" class="anchor" href="#m-bar-bottom"><span class="octicon octicon-link"></span></a>(m) Bar-Bottom</h5>
+
+<h5>
+<a name="m-position-translate" class="anchor" href="#m-position-translate"><span class="octicon octicon-link"></span></a>(m) Position-Translate</h5>
+
+<h5>
+<a name="m-pivot" class="anchor" href="#m-pivot"><span class="octicon octicon-link"></span></a>(m) Pivot</h5>
+
+<h5>
+<a name="m-slide" class="anchor" href="#m-slide"><span class="octicon octicon-link"></span></a>(m) Slide</h5>
+
+<h5>
+<a name="m-pivot-center" class="anchor" href="#m-pivot-center"><span class="octicon octicon-link"></span></a>(m) Pivot-Center</h5>
+
+<h5>
+<a name="m-absolute-middle" class="anchor" href="#m-absolute-middle"><span class="octicon octicon-link"></span></a>(m) Absolute-Middle</h5>
+
+<h5>
+<a name="m-element-middle" class="anchor" href="#m-element-middle"><span class="octicon octicon-link"></span></a>(m) Element-Middle</h5>
+
+<h5>
+<a name="f-z" class="anchor" href="#f-z"><span class="octicon octicon-link"></span></a>(f) Z</h5>
+
+<h5>
+<a name="m-z" class="anchor" href="#m-z"><span class="octicon octicon-link"></span></a>(m) Z</h5>
+
+<h5>
+<a name="m-shift" class="anchor" href="#m-shift"><span class="octicon octicon-link"></span></a>(m) Shift</h5>
+
+<h5>
+<a name="m-overlap" class="anchor" href="#m-overlap"><span class="octicon octicon-link"></span></a>(m) Overlap</h5>
+
+<h4>
+<a name="shorthands" class="anchor" href="#shorthands"><span class="octicon octicon-link"></span></a>Shorthands</h4>
+
+<h5>
+<a name="m-clearfix" class="anchor" href="#m-clearfix"><span class="octicon octicon-link"></span></a>(m) Clearfix</h5>
+
+<h5>
+<a name="m-center-1" class="anchor" href="#m-center-1"><span class="octicon octicon-link"></span></a>(m) Center</h5>
+
+<h5>
+<a name="m-word-wrap" class="anchor" href="#m-word-wrap"><span class="octicon octicon-link"></span></a>(m) Word-Wrap</h5>
+
+<h5>
+<a name="m-text-truncate" class="anchor" href="#m-text-truncate"><span class="octicon octicon-link"></span></a>(m) Text-Truncate</h5>
+
+<h5>
+<a name="m-vertical-center" class="anchor" href="#m-vertical-center"><span class="octicon octicon-link"></span></a>(m) Vertical-Center</h5>
+
+<h5>
+<a name="m-cleartext" class="anchor" href="#m-cleartext"><span class="octicon octicon-link"></span></a>(m) Cleartext</h5>
+
+<h5>
+<a name="m-cleartext-complex" class="anchor" href="#m-cleartext-complex"><span class="octicon octicon-link"></span></a>(m) Cleartext-Complex</h5>
+
+<h5>
+<a name="m-cleartext-simpler" class="anchor" href="#m-cleartext-simpler"><span class="octicon octicon-link"></span></a>(m) Cleartext-Simpler</h5>
+
+<h5>
+<a name="m-decollapse" class="anchor" href="#m-decollapse"><span class="octicon octicon-link"></span></a>(m) Decollapse</h5>
+
+<h5>
+<a name="m-performance" class="anchor" href="#m-performance"><span class="octicon octicon-link"></span></a>(m) Performance</h5>
+
+<h5>
+<a name="m-antialias" class="anchor" href="#m-antialias"><span class="octicon octicon-link"></span></a>(m) Antialias</h5>
+
+<h4>
+<a name="spacer" class="anchor" href="#spacer"><span class="octicon octicon-link"></span></a>Spacer</h4>
+
+<h5>
+<a name="m-margin-padding" class="anchor" href="#m-margin-padding"><span class="octicon octicon-link"></span></a>(m) Margin-Padding</h5>
+
+<h5>
+<a name="m-padding" class="anchor" href="#m-padding"><span class="octicon octicon-link"></span></a>(m) Padding</h5>
+
+<h5>
+<a name="m-margin" class="anchor" href="#m-margin"><span class="octicon octicon-link"></span></a>(m) Margin</h5>
+
+<h5>
+<a name="m-spacer-1" class="anchor" href="#m-spacer-1"><span class="octicon octicon-link"></span></a>(m) Spacer</h5>
+
+<h5>
+<a name="m-spacer-reset" class="anchor" href="#m-spacer-reset"><span class="octicon octicon-link"></span></a>(m) Spacer-Reset</h5>
+
+<h4>
+<a name="triangle" class="anchor" href="#triangle"><span class="octicon octicon-link"></span></a>Triangle</h4>
+
+<h5>
+<a name="m-triangle" class="anchor" href="#m-triangle"><span class="octicon octicon-link"></span></a>(m) Triangle</h5>
+
+<h4>
+<a name="typography" class="anchor" href="#typography"><span class="octicon octicon-link"></span></a>Typography</h4>
+
+<h5>
+<a name="f-tw" class="anchor" href="#f-tw"><span class="octicon octicon-link"></span></a>(f) TW</h5>
+
+<h5>
+<a name="m-typogenerator" class="anchor" href="#m-typogenerator"><span class="octicon octicon-link"></span></a>(m) Typogenerator</h5>
+
+<h5>
+<a name="m-responsive-fontsizes" class="anchor" href="#m-responsive-fontsizes"><span class="octicon octicon-link"></span></a>(m) Responsive-Fontsizes</h5>
+
+<h5>
+<a name="m-get-fontsize" class="anchor" href="#m-get-fontsize"><span class="octicon octicon-link"></span></a>(m) Get-Fontsize</h5>
+
+<hr><h3>
+<a name="partials" class="anchor" href="#partials"><span class="octicon octicon-link"></span></a>Partials</h3>
+
+<h4>
+<a name="normalize" class="anchor" href="#normalize"><span class="octicon octicon-link"></span></a>Normalize</h4>
+
+<h4>
+<a name="tables" class="anchor" href="#tables"><span class="octicon octicon-link"></span></a>Tables</h4>
+
+<h4>
+<a name="pre-generators" class="anchor" href="#pre-generators"><span class="octicon octicon-link"></span></a>Pre-Generators</h4>
+
+<h4>
+<a name="post-generators" class="anchor" href="#post-generators"><span class="octicon octicon-link"></span></a>Post-Generators</h4>
 
 <hr><h2>
 <a name="special-thanks-to" class="anchor" href="#special-thanks-to"><span class="octicon octicon-link"></span></a>Special Thanks to</h2>
