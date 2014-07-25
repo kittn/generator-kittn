@@ -81,7 +81,7 @@
  * @param  {value}  $size - The Size of the Circle
  */
 @mixin perfect-circle($size) {
-  @include central($size);
+  @include center($size);
   border-radius: if(unitless($size), $size + 0px, $size);
 }
 
