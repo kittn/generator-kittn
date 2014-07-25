@@ -15,7 +15,9 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1><img src="http://i.imgur.com/2MtKGwj.jpg" alt="Generator Kittn"></h1>
+        <h1>Generator-kittn</h1>
+        <p>The Yeoman Kittn Generator</p>
+
         <p class="view"><a href="https://github.com/gisu/generator-kittn">View the Project on GitHub <small>gisu/generator-kittn</small></a></p>
 
 
@@ -26,6 +28,7 @@
         </ul>
       </header>
       <section>
+        <p><img src="http://i.imgur.com/2MtKGwj.jpg" alt=""></p>
 
 <h2>
 <a name="einleitung" class="anchor" href="#einleitung"><span class="octicon octicon-link"></span></a>Einleitung</h2>
@@ -797,6 +800,8 @@ Der Generator generiert über die <code>$kittn-fontface-map</code> Map eine Reih
 <h4>
 <a name="helper-1" class="anchor" href="#helper-1"><span class="octicon octicon-link"></span></a>Helper</h4>
 
+<p><code>scr/sass/framework/helper/_helper.scss</code><br></p>
+
 <p>(f) <strong>Strip-Units</strong><br>
 Entfernt die Units von Values</p>
 
@@ -928,6 +933,8 @@ Mit dieser Funktion begrenzt man Zahlenwerte.</p>
 
 <h4>
 <a name="typechecks" class="anchor" href="#typechecks"><span class="octicon octicon-link"></span></a>Typechecks</h4>
+
+<p><code>scr/sass/framework/helper/_typechecks.scss</code><br></p>
 
 <p>(f) <strong>Is-True</strong><br>
 Prüft ob ein Wert übergeben wurde</p>
@@ -1093,10 +1100,14 @@ Prüft ob der Selektor verschachtelt wurde.</p>
 <h4>
 <a name="jacket" class="anchor" href="#jacket"><span class="octicon octicon-link"></span></a>Jacket</h4>
 
+<p><code>scr/sass/framework/helper/_jacket.scss</code><br></p>
+
 <p>Nähere <a href="https://github.com/Team-Sass/jacket">Informationen</a></p>
 
 <h4>
 <a name="sassylists" class="anchor" href="#sassylists"><span class="octicon octicon-link"></span></a>Sassylists</h4>
+
+<p><code>scr/sass/framework/helper/_sassylists.scss</code><br></p>
 
 <p>Da <code>Kittn</code> nur ein Bruchteil der Funktionen von Hugo Giraudels <a href="http://sassylists.com/">sassylists</a> benötigt, ist die Library hier in gekürzter Form integriert.</p>
 
@@ -1116,6 +1127,8 @@ Prüft ob der Selektor verschachtelt wurde.</p>
 </ul><h4>
 <a name="debug" class="anchor" href="#debug"><span class="octicon octicon-link"></span></a>Debug</h4>
 
+<p><code>scr/sass/framework/helper/_debug.scss</code><br></p>
+
 <p><em><a href="https://github.com/requires" class="user-mention">@requires</a> '$kittn-activate'</em></p>
 
 <p>Bei Aktivieren werden mögliche Fehler im CSS visuell hervorgehoben.</p>
@@ -1130,6 +1143,8 @@ Prüft ob der Selektor verschachtelt wurde.</p>
 
 <h4>
 <a name="breakpoints" class="anchor" href="#breakpoints"><span class="octicon octicon-link"></span></a>Breakpoints</h4>
+
+<p><code>scr/sass/framework/modules/_breakpoints.scss</code><br></p>
 
 <p>(f) <strong>BP</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> '$kittn-breakpoint-map'</em></p>
 
@@ -1291,6 +1306,8 @@ Generiert Visibilty/Hidden Classes basierend auf der <code>$kittn-breakpoint-map
 
 <h4>
 <a name="colors" class="anchor" href="#colors"><span class="octicon octicon-link"></span></a>Colors</h4>
+
+<p><code>scr/sass/framework/modules/_color.scss</code><br></p>
 
 <p>(f) <strong>Tint</strong><br>
 Mischt eine Farbe mit Weiß</p>
@@ -1523,18 +1540,248 @@ Verbindet Elemente mit der gewählten Farbe (<code>background-color</code>) - de
 <h4>
 <a name="dimensions" class="anchor" href="#dimensions"><span class="octicon octicon-link"></span></a>Dimensions</h4>
 
+<p><code>scr/sass/framework/modules/_dimensions.scss</code><br></p>
+
 <p>(m) <strong>Size</strong><br>
-(m) <strong>Align-Height</strong><br>
-(m) <strong>Align-Fontsize</strong><br>
-(m) <strong>Center</strong><br>
-(m) <strong>Perfect-Circle</strong><br>
-(m) <strong>Ratio</strong><br>
-(m) <strong>Unratio</strong><br>
-(m) <strong>Tighten-Up</strong><br>
-(m) <strong>Text-Middle</strong><br></p>
+Integriert Breite und Höhe.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.square</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> size</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.rectangle</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> size</span><span class="p">(</span><span class="mi">50</span> <span class="mi">100</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.with-lineheight</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> size</span><span class="p">(</span><span class="mi">50</span><span class="o">,</span><span class="n-Pseudo">true</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.with-individual-lineheight</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> size</span><span class="p">(</span><span class="mi">50</span><span class="o">,</span><span class="mi">80</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.square</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.rectangle</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.with-lineheight</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.with-individual-lineheight</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">80</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Align-Height</strong><br>
+Höhe und Lineheight einfach einfügen.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.height</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> align-height</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.height-different-factor</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> align-height</span><span class="p">(</span><span class="mi">50</span><span class="o">,</span><span class="mi">1</span><span class="mf">.5</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.height</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.height-different-factor</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">75</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Align-Fontsize</strong><br>
+Align Fontsize und Lineheight</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.font</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> align-fontsize</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.font-other-factor</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> align-fontsize</span><span class="p">(</span><span class="mi">20</span><span class="o">,</span><span class="mi">0</span><span class="mf">.8</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.font</span> <span class="p">{</span>
+  <span class="na">font-size</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">24</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.font-other-factor</span> <span class="p">{</span>
+  <span class="na">font-size</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">16</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Center</strong><br>
+Zentriert, Mittelt und gibt einem Element eine Größe</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> center</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.box2</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> center</span><span class="p">(</span><span class="mi">20</span> <span class="mi">50</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.box2</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Perfect-Circle</strong><br>
+Passt den Border-Radius an die Größe des Elements an.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.circle</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> perfect-circle</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.circle</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">text-align</span><span class="o">:</span> <span class="no">center</span><span class="p">;</span>
+  <span class="na">border-radius</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Ratio</strong><br>
+Stellt bei einem Element das Breiten und Größenverhältniss gemäß der Ratio ein.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.ratio</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> ratio</span><span class="p">(</span><span class="mi">16</span> <span class="mi">9</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> ratio</span><span class="p">(</span><span class="mi">16</span> <span class="mi">9</span><span class="o">,</span> <span class="s1">'</span><span class="s2">.box__inner'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.ratio</span> <span class="p">{</span>
+  <span class="na">overflow</span><span class="o">:</span> <span class="no">hidden</span><span class="p">;</span>
+  <span class="na">position</span><span class="o">:</span> <span class="no">relative</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.ratio</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">'</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">block</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="na">padding-top</span><span class="o">:</span> <span class="mi">56</span><span class="mf">.25</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.ratio</span> <span class="o">&gt;</span> <span class="o">*</span> <span class="p">{</span>
+  <span class="na">position</span><span class="o">:</span> <span class="no">absolute</span><span class="p">;</span>
+  <span class="na">left</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="na">top</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="na">overflow</span><span class="o">:</span> <span class="no">hidden</span><span class="p">;</span>
+  <span class="na">position</span><span class="o">:</span> <span class="no">relative</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.box</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">'</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">block</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="na">padding-top</span><span class="o">:</span> <span class="mi">56</span><span class="mf">.25</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.box</span> <span class="o">&gt;</span> <span class="nc">.box__inner</span> <span class="p">{</span>
+  <span class="na">position</span><span class="o">:</span> <span class="no">absolute</span><span class="p">;</span>
+  <span class="na">left</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="na">top</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Unratio</strong><br>
+Entfernt bestehende Ratios wieder.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> unratio</span><span class="p">(</span><span class="s1">'</span><span class="s2">.box__inner'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.box</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">height</span><span class="o">:</span> <span class="no">auto</span><span class="p">;</span>
+  <span class="na">padding-top</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.box</span> <span class="o">&gt;</span> <span class="nc">.box__inner</span> <span class="p">{</span>
+  <span class="na">position</span><span class="o">:</span> <span class="no">inherit</span><span class="p">;</span>
+  <span class="na">left</span><span class="o">:</span> <span class="no">inherit</span><span class="p">;</span>
+  <span class="na">top</span><span class="o">:</span> <span class="no">inherit</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="no">inherit</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="no">inherit</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Tighten-Up</strong><br>
+'Spannt' ein inneres Element auf die gleiche Dimension des äußeren Elements auf.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> tighten-up</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="na">position</span><span class="o">:</span> <span class="no">absolute</span><span class="p">;</span>
+  <span class="na">top</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="na">left</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="na">right</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="na">bottom</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Text-Middle</strong><br>
+Positioniert Textelemente in der Vertikalen Mitte.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.middle</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> text-middle</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.middle</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">'</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">inline</span><span class="o">-</span><span class="no">block</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+  <span class="na">vertical-align</span><span class="o">:</span> <span class="no">middle</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="nc">.middle</span> <span class="o">&gt;</span> <span class="o">*</span> <span class="p">{</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">inline</span><span class="o">-</span><span class="no">block</span><span class="p">;</span>
+  <span class="na">vertical-align</span><span class="o">:</span> <span class="no">middle</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
 <h4>
 <a name="grid" class="anchor" href="#grid"><span class="octicon octicon-link"></span></a>Grid</h4>
+
+<p><code>scr/sass/framework/modules/_grid.scss</code><br></p>
 
 <p>(f) <strong>Grid-Size</strong><br>
 (m) <strong>Grid-Stepper</strong><br>
@@ -1554,6 +1801,8 @@ Verbindet Elemente mit der gewählten Farbe (<code>background-color</code>) - de
 <h4>
 <a name="iconfont" class="anchor" href="#iconfont"><span class="octicon octicon-link"></span></a>Iconfont</h4>
 
+<p><code>scr/sass/framework/modules/_iconfont.scss</code><br></p>
+
 <p>(f) <strong>Icon</strong><br>
 (m) <strong>Iconfont</strong><br>
 (m) <strong>Icon-Font-Generator</strong><br>
@@ -1563,6 +1812,8 @@ Verbindet Elemente mit der gewählten Farbe (<code>background-color</code>) - de
 
 <h4>
 <a name="images" class="anchor" href="#images"><span class="octicon octicon-link"></span></a>Images</h4>
+
+<p><code>scr/sass/framework/modules/_images.scss</code><br></p>
 
 <p>(m) <strong>GetImageDimensions</strong><br>
 (m) <strong>Image</strong><br>
@@ -1574,6 +1825,8 @@ Verbindet Elemente mit der gewählten Farbe (<code>background-color</code>) - de
 
 <h4>
 <a name="lines" class="anchor" href="#lines"><span class="octicon octicon-link"></span></a>Lines</h4>
+
+<p><code>scr/sass/framework/modules/_lines.scss</code><br></p>
 
 <p>(f) <strong>Rem</strong><br>
 (m) <strong>Remsize</strong><br>
@@ -1595,12 +1848,16 @@ Verbindet Elemente mit der gewählten Farbe (<code>background-color</code>) - de
 <h4>
 <a name="modernizr" class="anchor" href="#modernizr"><span class="octicon octicon-link"></span></a>Modernizr</h4>
 
+<p><code>scr/sass/framework/modules/_modernizr.scss</code><br></p>
+
 <p>(m) <strong>Modernizr</strong><br>
 (m) <strong>Yep</strong><br>
 (m) <strong>Nope</strong><br></p>
 
 <h4>
 <a name="positioning" class="anchor" href="#positioning"><span class="octicon octicon-link"></span></a>Positioning</h4>
+
+<p><code>scr/sass/framework/modules/_positioning.scss</code><br></p>
 
 <p>(m) <strong>Set-Position</strong><br>
 (m) <strong>Relative</strong><br>
@@ -1624,6 +1881,8 @@ Verbindet Elemente mit der gewählten Farbe (<code>background-color</code>) - de
 <h4>
 <a name="shorthands" class="anchor" href="#shorthands"><span class="octicon octicon-link"></span></a>Shorthands</h4>
 
+<p><code>scr/sass/framework/modules/_shorthands.scss</code><br></p>
+
 <p>(m) <strong>Clearfix</strong><br>
 (m) <strong>Center</strong><br>
 (m) <strong>Word-Wrap</strong><br>
@@ -1639,6 +1898,8 @@ Verbindet Elemente mit der gewählten Farbe (<code>background-color</code>) - de
 <h4>
 <a name="spacer" class="anchor" href="#spacer"><span class="octicon octicon-link"></span></a>Spacer</h4>
 
+<p><code>scr/sass/framework/modules/_spacer.scss</code><br></p>
+
 <p>(m) <strong>Margin-Padding</strong><br>
 (m) <strong>Padding</strong><br>
 (m) <strong>Margin</strong><br>
@@ -1648,10 +1909,14 @@ Verbindet Elemente mit der gewählten Farbe (<code>background-color</code>) - de
 <h4>
 <a name="triangle" class="anchor" href="#triangle"><span class="octicon octicon-link"></span></a>Triangle</h4>
 
+<p><code>scr/sass/framework/modules/_triangle.scss</code><br></p>
+
 <p>(m) <strong>Triangle</strong><br></p>
 
 <h4>
 <a name="typography" class="anchor" href="#typography"><span class="octicon octicon-link"></span></a>Typography</h4>
+
+<p><code>scr/sass/framework/modules/_typography.scss</code><br></p>
 
 <p>(f) <strong>TW</strong><br>
 (m) <strong>Typogenerator</strong><br>
