@@ -134,37 +134,37 @@ Eine Modifikation der Dateien, ebenso wie Löschen oder Hinzufügen wird auch hi
 
 ### Tasks
 
-#### `gulp init`
+**`gulp init`**<br>
 Für das erste Initialisieren des Projekts.
 
-#### `gulp`
+**`gulp`**<br>
 Default Task
 
-#### `gulp extended`
+**`gulp extended`**<br>
 Erweiterter Default Task - überwacht Bilddaten
 
-#### `gulp rebuild-js`
+**`gulp rebuild-js`**<br>
 Sämtliche Javascript Dateien werden neu generiert
 
-#### `gulp publish`
+**`gulp publish`**<br>
 Die Projektdaten werden für die Produktion vorbereitet. CSS, JS und Bilddaten werden Komprimiert. Die Dokumenation wird generiert.
 
-#### `gulp jade-rebuild`
+**`gulp jade-rebuild`**<br>
 Sämtliche Jade Dateien werden auf einen Rutsch neu kompiliert.
 
-#### `gulp bump`
+**`gulp bump`**<br>
 Die Versionsnummer wird gepatcht (0.0.1)
 
-#### `gulp bump-minor`
+**`gulp bump-minor`**<br>
 Die Versionsnummer wird um ein Minor Update erweitert (0.1.0)
 
-#### `gulp bump-major`
+**`gulp bump-major`**<br>
 Die Versionnummer wird um eine Release Nummer erweitert (1.0.0)
 
-#### `gulp grunt-rebuild-images`
+**`gulp grunt-rebuild-images`**<br>
 Bilddaten wie `single`, `textures`, `svg` und `sprites` werden aus dem `dist` Verzeichnis gelöscht und neu Integriert.
 
-#### `gulp grunt-responsive-images`
+**`gulp grunt-responsive-images`**<br>
 Bilder die per HTML eingebunden werden, können damit in mehreren Größen generiert werden.
 
 ---
@@ -448,13 +448,14 @@ $kittn-connect-map: (
 #### ZMap
 `src/sass/maps/_zmap.scss`
 
-Die unterschiedlichen Z-Indexes werden auf der Map notiert.
+Die unterschiedlichen ZIndexes werden auf der Map notiert.
 
 ```scss
 $kittn-zlayer-map: (
   'default': 10
 );
 ```
+
 ---
 
 ### Helper
@@ -1854,7 +1855,6 @@ Generiert den Seiten Container, der zum einen die Seite im Viewport positioniert
 
 Wenn man das `grid-adaptive` Mixin verwendet wird, sollte die Seitenbreite deaktiviert werden.
 
-_Einstellungen:_
 - `width` {list|bool} Bei einem Wert ist der Container Statisch, zwei Werte geben min und max vor, kann auch auf `false` gestellt werden.
 - `pos` Position des Container. Values: `center`, `left`,  `right`
 - `gutter` Nur aktiv wenn `pos: left` oder `pos:right` eingestellt wurde, der Gutter bestimmt dann den Abstand zum Viewport.
@@ -1917,7 +1917,6 @@ _Einstellungen:_
 (m) **Grid-Row**<br>
 Über die `rows` wird das Display Verhalten der einzelnen `colums` eingestellt. zusätzlich wird dafür gesorgt das Floats nicht überlaufen.
 
-_Einstellungen:_
 - `spacing` Seitlicher Abstand
 - `layout` Values: `block`, `inline`, `table`, `flex`
 - `valign` Gilt nur bei `layout:inline`. Values: `top`, `bottom`, `baseline`, `middle`
@@ -1955,7 +1954,6 @@ _Einstellungen:_
 (m) **Grid-Colum**<br>
 Bildet den Basisstyle für alle `colums`.
 
-_Einstellungen:_
 - `spacing` Seitlicher Abstand
 - `layout` Values: `block`, `inline`, `table`, `flex`
 - `extras` {Bool} Inkludiert Extra Klassen für die Colums
@@ -2000,7 +1998,6 @@ _Einstellungen:_
 (m) **Grid-Size**<br>
 Definiert die Breite einer Colum.
 
-_Einstellungen:_
 - `size` Spaltenbreite
 - `max` Die maximale Anzahl an Spalten (als Berechnungsgrundlage)
 - `flex` {Bool} Aktiviert die Flexbox Funktion
@@ -2032,7 +2029,6 @@ _Einstellungen:_
 (m) **Pixel-Grid**<br>
 Definiert die Breite einer Colum in Pixel.
 
-_Einstellungen:_
 
 - `size` Spaltenbreite
 - `max` Die maximale Anzahl an Spalten
@@ -2137,7 +2133,6 @@ _Einstellungen_
 (m) **Grid-Devide**<br>
 Das Mixin kann ein bestehendes Grid 'teilen', ein 12er Grid kann damit in eine 6er Grid umgewandelt werden. Funktioniert aber nur wenn nicht Mobile-First gearbeitet wird.
 
-_Einstellungen:_
 - `colums` Maximale Colums
 - `name` {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
 - `devide` {number} Teiler
@@ -2178,7 +2173,6 @@ _Einstellungen:_
 (m) **Grid-Offset**<br>
 Generiert den Offset
 
-_Einstellungen:_
 - `size` Spaltenbreite
 - `max` Die maximale Anzahl an Spalten
 - `direction` Values: `left`, `right`
@@ -2210,7 +2204,6 @@ _Einstellungen:_
 (m) **Grid-Offset-Generator**<br>
 Generiert die Offset Klassen.
 
-_Einstellungen:_
 - `max` Die maximale Anzahl an Spalten
   => The Maximum Colums (default: 12)
 - `name` {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
@@ -2237,7 +2230,6 @@ _Einstellungen:_
 (m) **Grid-Pushpull**<br>
 Generiert Push and Pull Sizes
 
-_Einstellungen:_
 - `size` Spaltenbreite
 - `max` Die maximale Anzahl an Spalten
 - `direction` Values: `push`, `pull`
@@ -2277,7 +2269,6 @@ _Einstellungen:_
 (m) **Grid-Pushpull-Generator**<br>
 Generiert eine bestimmte Anzahl an Push and Pull Klassen.
 
-_Einstellungen:_
 - `max` Die maximale Anzahl an Spalten
 - `name` {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
 - `extend` {bool|*} Damit werden die generierten Klassen mit anderen Klassen verbunden.
@@ -2314,7 +2305,6 @@ _Einstellungen:_
 (m) **Grid-Normalizer**<br>
 Über den Normalizer können die spezifischen Einstellungen wieder resetet werden.
 
-_Einstellungen:_
 - `name` Name des Selectors der Reseted werden soll
 - `option` Values: `blockgrid`, `inlinetable`, `offset`, `pushpull`
 - `important` {Bool} Fügt !important an
@@ -2549,7 +2539,6 @@ Wird für die interne Berechnung der Bilddaten verwendet.
 (m) **Image**<br>
 Fügt die Single Images ein. Die erforderlichen Daten werden dabei über die `Gulp` Tasks in die jeweilige Imagemap geschrieben.
 
-_Einstellungen:_
 - @param  {*}    $image       - Name of the Image
 - @param  {*}    $dimensions  - 'both' = height & width, 'width' = width, 'height' = height
 - @param  {*}    $pos         - The Image Position - can be 'false'
@@ -2581,7 +2570,6 @@ _Einstellungen:_
 (m) **Texture**<br>
 Fügt die Texture Images ein.
 
-_Einstellungen:_
 - @param  {*} $image  - Name of the Image
 - @param  {*} $repeat - How the Image would be repeated. `x`: repeat-x, `y`: repeat-y
 - @param  {List|Bool} $pos - The Image Position - can be `false`
@@ -2618,7 +2606,6 @@ _Einstellungen:_
 (m) **SVGPNG**<br>
 Fügt SVG Images ein, integriert dabei auch das Fallback Image.
 
-_Einstellungen:_
 - @param  {*} $image - Name of the Image - the SVG File must be in the Same directory
 - @param  {*} $dimensions  - 'both' = height & width | 'width' = width | 'height' = height
 - @param  {List} $pos - The Image Position - can be 'false'
@@ -2646,7 +2633,6 @@ _Einstellungen:_
 (m) **SVG**<br>
 Für SVG Images ohne Fallback ein.
 
-_Einstellungen:_
 - @param  {*} $image - The Name of the SVG Image
 - @param  {List} $dimensions  - The Dimensions of the Image Container - can be 100%
 - @param  {List} $pos - Native CSS Image Positions
@@ -2702,7 +2688,6 @@ Generiert den SpriteMap Container. Wird automatisch zu geschaltet.
 (m) **Sprite**<br>
 Fügt das gewünschte Sprite ein.
 
-_Einstellungen:_
 - @param  {*} $name - Name of the Sprite
 - @param  {Bool} $retina - With set on `true` the retina fallback will be included
 - @param  {*} $dimensions - `both`: height & width, `width`: width, `height`: height
@@ -2743,126 +2728,350 @@ _Einstellungen:_
 }
 ```
 
-
 #### Lines
 `scr/sass/framework/modules/_lines.scss`<br>
 
 (f) **Rem**<br>
+_@requires `$kittn-typo`_
+
+Rechnet Px in REM um.
+
+- @param {Number} $px - The Size in PX
+- @param {Number} $base - The Base for the 
+
 ```scss
 // Example
+.test {
+  width: rem(200px);
+}
+
 // Result
+.test {
+  width: 14.705882rem; 
+}
 ```
 
 (m) **Remsize**<br>
+_@requires `$kittn-typo`<br>
+@access private_
+
+Berechnet Größen anhand der Base Line-Height. Die Umberechnung findet aber nur statt wenn in der `$kittn-typo` die `unit` auf `rem` gestellt wurde. IE8 erhält sein eigenes Fallback mittels PX Werten.
+
+- @param {*} $arg - Attribute
+- @param {Number} $size - Lines
+
 ```scss
 // Example
+.test {
+  @include _remsize(height, 4);
+  @include _remsize(margin-top, .5);
+}
+
 // Result
+.test {
+  height: 6.176471rem;
+  margin-top: 0.772059rem; 
+}
 ```
 
 (m) **Pxsize**<br>
+_@requires `$kittn-typo`<br>
+@access private_
+
+Berechnet PX Werte in REM um. Die Umberechnung findet aber nur statt wenn in der `$kittn-typo` die `unit` auf `rem` gestellt wurde. IE8 erhält sein eigenes Fallback mittels PX Werten.
+
+- @param {*} $arg - Attribute
+- @param {Number} $size - Value
+
 ```scss
 // Example
+.test {
+  @include _pxsize(height, 16);
+  @include _pxsize(margin-top, 32);
+}
+
 // Result
+.test {
+  height: 1.176471rem;
+  margin-top: 2.352941rem; 
+}
 ```
 
 (m) **Rem**<br>
+Berechnet die Größen Dynamisch. Dabei kann die Größe einmal über Lines (berechnung mittel Multiplikation der Baselineheight), oder über Pixel erfolgen die dann in REM umgerechnet werden. IE8 erhält bei aktiver IE8 Kompatiblität einen Pixel Fallback.
+
+- @param  {*}       $arg      - Attribute
+- @param  {Number}  $size     - Size
+- @param  {Bool}    $baseline - When 'true', the Value follow the Baselinerule
+
 ```scss
 // Example
+.test {
+  @include rem(width, 600);
+  @include rem(margin-top, 50);
+}
+
 // Result
+.test {
+  width: 44.117647rem;
+  margin-top: 3.676471rem; 
+}
 ```
 
 (m) **Lineheight**<br>
+Basiert auf dem `rem` Mixin.
+
+- @param {Number} $size - Size
+
 ```scss
 // Example
+.test {
+  @include lineheight(40);
+}
+
 // Result
+.test {
+  line-height: 2.941176rem; 
+}
 ```
 
 (m) **Marginbottom**<br>
+Basiert auf dem `rem` Mixin.
+
+- @param {Number} $size - Size
+
 ```scss
 // Example
+.test {
+  @include marginbottom(20);
+}
+
 // Result
+.test {
+  margin-bottom: 1.470588rem; 
+}
 ```
 
 (m) **Margintop**<br>
+Basiert auf dem `rem` Mixin.
+
+- @param {Number} $size - Size
+
 ```scss
 // Example
+.test {
+  @include margintop(20);
+}
+
 // Result
+.test {
+  margin-top: 1.470588rem; 
+}
 ```
 
 (m) **Marginleft**<br>
+Basiert auf dem `rem` Mixin.
+
+- @param {Number} $size - Size
+
 ```scss
 // Example
+.test {
+  @include marginleft(10);
+}
+
 // Result
+.test {
+  margin-left: 0.735294rem; 
+}
 ```
 
 (m) **Marginright**<br>
+Basiert auf dem `rem` Mixin.
+
+- @param {Number} $size - Size
+
 ```scss
 // Example
+.test {
+  @include marginright(10);
+}
+
 // Result
+.test {
+  margin-right: 0.735294rem; 
+}
 ```
 
 (m) **Paddingtop**<br>
+Basiert auf dem `rem` Mixin.
+
+- @param {Number} $size - Size
+
 ```scss
 // Example
+.test {
+  @include paddingtop(20);
+}
+
 // Result
+.test {
+  padding-top: 1.470588rem; 
+}
 ```
 
 (m) **Paddingbottom**<br>
+Basiert auf dem `rem` Mixin.
+
+- @param {Number} $size - Size
+
 ```scss
 // Example
+.test {
+  @include paddingbottom(20);
+}
+
 // Result
+.test {
+  padding-bottom: 1.470588rem; 
+}
 ```
 
 (m) **Paddingleft**<br>
+Basiert auf dem `rem` Mixin.
+
+- @param {Number} $size - Size
+
 ```scss
 // Example
+.test {
+  @include paddingleft(10);
+}
+
 // Result
+.test {
+  padding-left: 0.735294rem; 
+}
 ```
 
 (m) **Paddingright**<br>
+Basiert auf dem `rem` Mixin.
+
+- @param {Number} $size - Size
+
 ```scss
 // Example
+.test {
+  @include paddingright(10);
+}
+
 // Result
+.test {
+  padding-right: 0.735294rem; 
+}
 ```
 
 (m) **Height**<br>
+Basiert auf dem `rem` Mixin.
+
+- @param {Number} $size - Size
+
 ```scss
 // Example
+.test {
+  @include height(100);
+}#
 // Result
+.test {
+  height: 7.352941rem; 
+}
 ```
 
 (m) **Fontsize**<br>
+Basiert auf dem `rem` Mixin.
+
+- @param {Number} $size - Size
+
 ```scss
 // Example
+.test {
+  @include fontsize(16);
+}
+
 // Result
+.test {
+  font-size: 1.176471rem; 
+}
 ```
 
 (m) **Fontcalc**<br>
+Basiert auf dem `rem` Mixin. Berechnet neben der Fontsize auch die Line-Height
+
+- @param {Number} $fontsize - Font Size
+- @param {Bool|Number} $lineheight (false) - Lineheight for the Font - can be false than used the factor
+- @param {Number} $factor (1.2) - The Calculationfactor
+
 ```scss
 // Example
-// Result
-```
+.test {
+  @include fontcalc(16, 20);
+}
+.test-2 {
+  @include fontcalc(16, $factor: 2);
+}
 
+// Result
+.test {
+  font-size: 1.176471rem;
+  line-height: 1.470588rem; 
+}
+.test-2 {
+  font-size: 1.176471rem;
+  line-height: 2.352941rem; 
+}
+```
 
 #### Modernizr
 `scr/sass/framework/modules/_modernizr.scss`<br>
 
 (m) **Modernizr**<br>
-```scss
-// Example
-// Result
-```
+_@access private_
+
+Über die integrierten Feature-Check Klassen von Modernizr, kann man Fallbacks integrieren. 
 
 (m) **Yep**<br>
+Wird aktiv bei positiven Feature-Check Klassen.
+
 ```scss
 // Example
+.test {
+  @include yep(box-shadow) {
+    box-shadow: 0 0 3px rgba(0,0,0,0.5);
+  }
+}
+
 // Result
+.box-shadow .test {
+  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+          box-shadow: 0 0 3px rgba(0, 0, 0, 0.5); 
+}
 ```
 
 (m) **Nope**<br>
+Wird aktiv bei negativen Feature-Check Klassen
+
 ```scss
 // Example
+.test {
+  @include nope(box-shadow) {
+    border: 3px solid #ccc;
+  }
+}
+
 // Result
+.no-js .test, .no-box-shadow .test {
+  border: 3px solid #ccc; 
+}
 ```
 
 
@@ -3133,6 +3342,7 @@ _Einstellungen:_
 #### Pre-Generators
 
 #### Post-Generators
+
 
 ---
 
