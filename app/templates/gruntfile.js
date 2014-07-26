@@ -224,8 +224,8 @@ module.exports = function (grunt) {
       all: {
         files: [
           {
-            src: ['<%= pkg.directory.cssimg %>/svg/*.svg'],
-            dest: '<%= pkg.directory.cssimg %>/svg/'
+            src: ['<%= pkg.directory.cssimg %>svg/*.svg'],
+            dest: '<%= pkg.directory.cssimg %>svg/'
           }
         ]
       }
