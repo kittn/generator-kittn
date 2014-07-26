@@ -583,7 +583,7 @@
       @for $i1 from 1 through map-get($devide,devide) {
 
         // Use outer Classes or free defined selectors
-        @if map-get($devide,name) == false {
+        @if map-get($devide,name) != false {
           #{map-get($devide,name)}#{map-get($kittn-bem, modifier)}#{$i + ($count * ($i1 - 1))} {
             @include grid-size((
               size: $i,
@@ -811,8 +811,8 @@
  *                            :option [value]
  *                              => The style Type
  *                              => values: blockgrid (default), inlinetable, offset, pushpull
- *                            :extend [bool]
- *                              => With 'true' the class will connected with a other class.
+ *                            :important [bool]
+ *                              => Add an Important to the Attribute
  */
 @mixin grid-normalizer($normalize) {
 

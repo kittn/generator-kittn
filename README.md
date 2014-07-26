@@ -317,7 +317,7 @@ gulp rebuild-js
 
 ---
 
-## Sass Framework
+## Sass
 Das Herzstück des Toolkits besteht aus dem [Sass](http://sass-lang.com) Framework, das Toolkit wurde mehr außen herum gebaut um die fehlenden Funktionen zu ersetzten.
 
 ### Structure
@@ -1792,139 +1792,586 @@ Positioniert Textelemente in der Vertikalen Mitte.
 `scr/sass/framework/modules/_grid.scss`<br>
 
 (f) **Grid-Size**<br>
-(m) **Grid-Stepper**<br>
+Berechnet die Breite der Colums
+
+```scss
+// Example
+.box {
+  width: grid-size(3);
+}
+
+// Result
+.box {
+  width: 25%;
+}
+```
+
+(m) **Grid-Adaptive**<br>
+_@requires `$kittn-breakpoint-map`_
+
+Die Seitenbreite verändert sich damit Adaptiv. Der jeweilige Threshold wird über `$kittn-breakpoint-map` eingestellt in dem bei Breakpoint `step` auf `true` gestellt wird. Die Reihenfolge der MediaQueries richtet sich nach `$kittn-activate(mobile-first)`.
+
+Das Mixin muss in einem Selektor aufgerufen werden.
+
+```scss
+// Example
+$kittn-breakpoint-map: (
+  1: (
+    size: 320px,
+    visibility: true,
+    step: true,
+    fontsize: false
+  ),
+  2: (
+    size: 480px,
+    visibility: false,
+    step: false,
+    fontsize: 80
+  ),
+  3: (
+    size: 560px,
+    visibility: false,
+    step: true,
+    fontsize: false
+  )
+);
+
+.container {
+  @include grid-adaptive();
+}
+
+// Result
+.container {
+  width: 320px;
+}
+@media screen and (min-width: 560px) {
+  .container {
+    width: 560px;
+  }
+}
+```
+
 (m) **Grid-Container**<br>
+Generiert den Seiten Container, der zum einen die Seite im Viewport positioniert (default: center), zum anderen bestimmt er die Seitenbreite.
+
+Wenn man das `grid-adaptive` Mixin verwendet wird, sollte die Seitenbreite deaktiviert werden.
+
+_Einstellungen:_
+- `width` {list|bool} Bei einem Wert ist der Container Statisch, zwei Werte geben min und max vor, kann auch auf `false` gestellt werden.
+- `pos` Position des Container. Values: `center`, `left`,  `right`
+- `gutter` Nur aktiv wenn `pos: left` oder `pos:right` eingestellt wurde, der Gutter bestimmt dann den Abstand zum Viewport.
+- `static-ie` {Bool} Wenn aktiviert, bekommt der IE8 einen statischen Seitencontainer.
+
+```scss
+// Example
+.container-adaptive {
+  @include grid-stepper();
+  @include grid-container((
+      width: false
+  ));
+}
+
+.container-fluid {
+  @include grid-container((
+      width: 400 900
+  ));
+}
+
+.container-static {
+  @include grid-container((
+      width: 800
+  ));
+}
+
+// Result
+.container-adaptive {
+  width: 320px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+@media screen and (min-width: 560px) {
+  .container-adaptive {
+    width: 560px;
+  }
+}
+
+.container-fluid {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  min-width: 400px;
+  max-width: 900px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.container-static {
+  margin-left: auto;
+  margin-right: auto;
+  width: 800px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+```
+
 (m) **Grid-Row**<br>
+Über die `rows` wird das Display Verhalten der einzelnen `colums` eingestellt. zusätzlich wird dafür gesorgt das Floats nicht überlaufen.
+
+_Einstellungen:_
+- `spacing` Seitlicher Abstand
+- `layout` Values: `block`, `inline`, `table`, `flex`
+- `valign` Gilt nur bei `layout:inline`. Values: `top`, `bottom`, `baseline`, `middle`
+- `align` Values: `justify`, `center`, `right`, `left`
+
+```scss
+// Example
+.row-block {
+  @include grid-row(());
+}
+
+.row-table {
+  @include grid-row((
+   layout: table
+  ));
+}
+
+// Result
+.row-block:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+.row-block .row-block {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+
+.row-table {
+  display: table;
+  width: 100%;
+}
+```
+
 (m) **Grid-Colum**<br>
+Bildet den Basisstyle für alle `colums`.
+
+_Einstellungen:_
+- `spacing` Seitlicher Abstand
+- `layout` Values: `block`, `inline`, `table`, `flex`
+- `extras` {Bool} Inkludiert Extra Klassen für die Colums
+- `valign` Gilt nur bei `layout:inline`. Varianten: `top`, `bottom`, `baseline`, `middle`
+- `align` Values: `justify`, `center`, `right`, `left`
+
+```scss
+// Example
+.colum {
+  @include grid-colum(());
+}
+
+.colum {
+  @include grid-colum((
+    layout: inline
+  ));
+}
+
+// Result
+.colum {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: block;
+  float: left;
+}
+.colum:last-child {
+  float: right;
+}
+
+.colum-inline {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: inline-block;
+  letter-spacing: normal;
+  word-spacing: normal;
+  white-space: normal;
+  vertical-align: top;
+  text-align: left;
+}
+```
+
 (m) **Grid-Size**<br>
+Definiert die Breite einer Colum.
+
+_Einstellungen:_
+- `size` Spaltenbreite
+- `max` Die maximale Anzahl an Spalten (als Berechnungsgrundlage)
+- `flex` {Bool} Aktiviert die Flexbox Funktion
+
+```scss
+// Example
+.colum {
+  @include grid-size((size: 5));
+}
+.colum-flex {
+  @include grid-size((
+    size: 200,
+    flex: true
+  ));
+}
+
+// Result
+.colum {
+  width: 41.666667%; }
+
+.colum-flex {
+  -webkit-box-flex: 12;
+  -webkit-flex: 12;
+      -ms-flex: 12;
+          flex: 12;
+}
+```
+
 (m) **Pixel-Grid**<br>
+Definiert die Breite einer Colum in Pixel.
+
+_Einstellungen:_
+
+- `size` Spaltenbreite
+- `max` Die maximale Anzahl an Spalten
+- `margin` Seitlicher Abstand
+- `space` Breite des äußeren Wrappers
+
+```scss
+// Example
+.pixel {
+  @include pixel-grid((
+    size: 5,
+    max: 12,
+    space: 1200
+  ));
+}
+.pixel-2 {
+  @include pixel-grid((
+    size: 10,
+    max: 24,
+    space: 1000
+  ));
+}
+
+// Result
+.pixel {
+  width: 480px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.pixel-2 {
+  width: 396.666667px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+```
+
 (m) **Grid-Generator**<br>
+Generiert eine definierte Anzahl von Colums
+
+_Einstellungen_
+- `colums` Maximale Colums
+- `select` {bool|list} Hier kann spezifiziert werden welche Colums generiert werden sollen
+- `name` {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
+- `extend` {bool|*} Damit werden die generierten Klassen mit anderen Klassen verbunden.
+
+```scss
+// Example
+%colum {
+  @include grid-colum(());
+}
+
+.width {
+  @include grid-generator((
+    colums: 6,
+    extend: '%colum'
+  ));
+}
+
+.span {
+  @include grid-generator((
+    colums: 24,
+    select: 1 14 8 8 10
+  ));
+}
+
+// Result
+.width--1, .width--2, .width--3, .width--4, .width--5, .width--6 {
+  padding-left: 10px;
+  padding-right: 10px;
+  display: block;
+  float: left;
+}
+.width--1:last-child, .width--2:last-child,
+.width--3:last-child, .width--4:last-child,
+.width--5:last-child, .width--6:last-child {
+  float: right;
+}
+
+.width--1 {
+  width: 16.666667%; }
+.width--2 {
+  width: 33.333333%; }
+.width--3 {
+  width: 50%; }
+.width--4 {
+  width: 66.666667%; }
+.width--5 {
+  width: 83.333333%; }
+.width--6 {
+  width: 100%; }
+
+.span--1 {
+  width: 4.166667%; }
+.span--8 {
+  width: 33.333333%; }
+.span--10 {
+  width: 41.666667%; }
+.span--14 {
+  width: 58.333333%; }
+```
+
 (m) **Grid-Devide**<br>
+Das Mixin kann ein bestehendes Grid 'teilen', ein 12er Grid kann damit in eine 6er Grid umgewandelt werden. Funktioniert aber nur wenn nicht Mobile-First gearbeitet wird.
+
+_Einstellungen:_
+- `colums` Maximale Colums
+- `name` {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
+- `devide` {number} Teiler
+
+```scss
+// Example
+.width {
+  @include grid-devide((
+    colums: 12,
+    devide: 3
+  ));
+}
+
+.span {
+  @include grid-devide((
+    colums: 6,
+  ));
+}
+
+// Result
+.width--1 {
+  width: 25%; }
+.width--5 {
+  width: 25%; }
+.width--9 {
+  width: 25%; }
+.width--2 {
+  width: 50%; }
+.width--6 {
+  width: 50%; }
+.width--10 {
+  width: 50%; }
+.width--3 {
+  width: 75%; }
+.width--7 {
+  width: 75%; }
+.width--11 {
+  width: 75%; }
+.width--4 {
+  width: 100%; }
+.width--8 {
+  width: 100%; }
+.width--12 {
+  width: 100%; }
+
+.span--1 {
+  width: 33.333333%; }
+.span--4 {
+  width: 33.333333%; }
+.span--2 {
+  width: 66.666667%; }
+.span--5 {
+  width: 66.666667%; }
+.span--3 {
+  width: 100%; }
+.span--6 {
+  width: 100%; }
+```
+
 (m) **Grid-Offset**<br>
+Generiert den Offset
+
+_Einstellungen:_
+- `size` Spaltenbreite
+- `max` Die maximale Anzahl an Spalten
+- `direction` Values: `left`, `right`
+ => The Direction off the Offset (default: left)
+
+```scss
+// Example
+.offset {
+  @include grid-offset((
+    size: 2
+  ));
+}
+.offset-right {
+  @include grid-offset((
+    size: 5,
+    direction: right
+  ));
+}
+
+// Result
+.offset {
+  margin-left: 16.666667%;
+}
+.offset-right {
+  margin-right: 41.666667%;
+}
+```
+
 (m) **Grid-Offset-Generator**<br>
+Generiert die Offset Klassen.
+
+_Einstellungen:_
+- `max` Die maximale Anzahl an Spalten
+  => The Maximum Colums (default: 12)
+- `name` {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
+
+```scss
+// Example
+.offset {
+  @include grid-offset-generator((
+    max: 3,
+  ));
+}
+
+// Result
+.offset-left--1 {
+  margin-left: 33.333333%; }
+.offset-right--1 {
+  margin-right: 33.333333%; }
+.offset-left--2 {
+  margin-left: 66.666667%; }
+.offset-right--2 {
+  margin-right: 66.666667%; }
+```
+
 (m) **Grid-Pushpull**<br>
+Generiert Push and Pull Sizes
+
+_Einstellungen:_
+- `size` Spaltenbreite
+- `max` Die maximale Anzahl an Spalten
+- `direction` Values: `push`, `pull`
+- `extend` {bool|*} Damit werden die generierten Klassen mit anderen Klassen verbunden.
+
+```scss
+// Example
+%relative {
+  position: relative;
+}
+
+.push {
+  @include grid-pushpull((
+    extend: '%relative'
+  ));
+}
+
+.pull {
+  @include grid-pushpull((
+    size: 4,
+    direction: pull,
+    extend: '%relative'
+  ));
+}
+
+// Result
+.push, .pull {
+  position: relative; }
+
+.push {
+  left: 8.333333%; }
+
+.pull {
+  right: 33.333333%; }
+```
+
 (m) **Grid-Pushpull-Generator**<br>
+Generiert eine bestimmte Anzahl an Push and Pull Klassen.
+
+_Einstellungen:_
+- `max` Die maximale Anzahl an Spalten
+- `name` {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
+- `extend` {bool|*} Damit werden die generierten Klassen mit anderen Klassen verbunden.
+
+```scss
+// Example
+.move {
+  @include grid-pushpull-generator((
+    max: 4
+  ));
+}
+
+// Result
+.move-push--1 {
+  position: relative;
+  left: 25%; }
+.move-pull--1 {
+  position: relative;
+  right: 25%; }
+.move-push--2 {
+  position: relative;
+  left: 50%; }
+.move-pull--2 {
+  position: relative;
+  right: 50%; }
+.move-push--3 {
+  position: relative;
+  left: 75%; }
+.move-pull--3 {
+  position: relative;
+  right: 75%; }
+```
+
 (m) **Grid-Normalizer**<br>
+Über den Normalizer können die spezifischen Einstellungen wieder resetet werden.
 
-#### Iconfont
-`scr/sass/framework/modules/_iconfont.scss`<br>
+_Einstellungen:_
+- `name` Name des Selectors der Reseted werden soll
+- `option` Values: `blockgrid`, `inlinetable`, `offset`, `pushpull`
+- `important` {Bool} Fügt !important an
 
-(f) **Icon**<br>
-(m) **Iconfont**<br>
-(m) **Icon-Font-Generator**<br>
-(m) **Icon-Generator**<br>
-(m) **Icon**<br>
-(m) **Ext-Icon**<br>
+```scss
+// Example
+@include grid-normalizer((
+  name: 'move',
+  option: pushpull
+));
 
-#### Images
-`scr/sass/framework/modules/_images.scss`<br>
+@include grid-normalizer((
+  name: 'colum'
+))
 
-(m) **GetImageDimensions**<br>
-(m) **Image**<br>
-(m) **SVGPNG**<br>
-(m) **Texture**<br>
-(m) **SVG**<br>
-(m) **Sprite-Generator**<br>
-(m) **Sprite**<br>
+// Result
+[class^="move-push--"],
+[class*=" move-push--"] {
+  left: 0; }
 
-#### Lines
-`scr/sass/framework/modules/_lines.scss`<br>
+[class^="move-pull--"],
+[class*=" move-pull--"] {
+  right: 0; }
 
-(f) **Rem**<br>
-(m) **Remsize**<br>
-(m) **Pxsize**<br>
-(m) **Rem**<br>
-(m) **Lineheight**<br>
-(m) **Marginbottom**<br>
-(m) **Margintop**<br>
-(m) **Marginleft**<br>
-(m) **Marginright**<br>
-(m) **Paddingtop**<br>
-(m) **Paddingbottom**<br>
-(m) **Paddingleft**<br>
-(m) **Paddingright**<br>
-(m) **Height**<br>
-(m) **Fontsize**<br>
-(m) **Fontcalc**<br>
-
-#### Modernizr
-`scr/sass/framework/modules/_modernizr.scss`<br>
-
-(m) **Modernizr**<br>
-(m) **Yep**<br>
-(m) **Nope**<br>
-
-#### Positioning
-`scr/sass/framework/modules/_positioning.scss`<br>
-
-(m) **Set-Position**<br>
-(m) **Relative**<br>
-(m) **Absolute**<br>
-(m) **Fixed**<br>
-(m) **Static**<br>
-(m) **Bar**<br>
-(m) **Bar-Top**<br>
-(m) **Bar-Bottom**<br>
-(m) **Position-Translate**<br>
-(m) **Pivot**<br>
-(m) **Slide**<br>
-(m) **Pivot-Center**<br>
-(m) **Absolute-Middle**<br>
-(m) **Element-Middle**<br>
-(f) **Z**<br>
-(m) **Z**<br>
-(m) **Shift**<br>
-(m) **Overlap**<br>
-
-#### Shorthands
-`scr/sass/framework/modules/_shorthands.scss`<br>
-
-(m) **Clearfix**<br>
-(m) **Center**<br>
-(m) **Word-Wrap**<br>
-(m) **Text-Truncate**<br>
-(m) **Vertical-Center**<br>
-(m) **Cleartext**<br>
-(m) **Cleartext-Complex**<br>
-(m) **Cleartext-Simpler**<br>
-(m) **Decollapse**<br>
-(m) **Performance**<br>
-(m) **Antialias**<br>
-
-#### Spacer
-`scr/sass/framework/modules/_spacer.scss`<br>
-
-(m) **Margin-Padding**<br>
-(m) **Padding**<br>
-(m) **Margin**<br>
-(m) **Spacer**<br>
-(m) **Spacer-Reset**<br>
-
-#### Triangle
-`scr/sass/framework/modules/_triangle.scss`<br>
-
-(m) **Triangle**<br>
+[class^="colum"],
+[class*="colum"] {
+  float: none;
+  width: 100%; }
+```
 
 
-#### Typography
-`scr/sass/framework/modules/_typography.scss`<br>
+... coming more
 
-(f) **TW**<br>
-(m) **Typogenerator**<br>
-(m) **Responsive-Fontsizes**<br>
-(m) **Get-Fontsize**<br>
-
----
-
-### Partials
-
-#### Normalize
-
-#### Tables
-
-#### Pre-Generators
-
-#### Post-Generators
 
 ---
 
