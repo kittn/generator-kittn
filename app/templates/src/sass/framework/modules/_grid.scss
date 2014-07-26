@@ -567,7 +567,7 @@
   // Setup Default Vars
   $devide: map-merge((
     colums: 12,
-    name: '.width',
+    name: false,
     devide: 2
   ),$devide);
 
@@ -653,7 +653,7 @@
   // Setup Default Vars
   $offset: map-merge((
     max: 12,
-    name: '.offset'
+    name: false
   ),$offset);
 
   // Cleanup Max
@@ -756,7 +756,7 @@
 
   $pushpull: map-merge((
     max: 12,
-    name: '.move',
+    name: false,
     extend: false
   ),$pushpull);
 
