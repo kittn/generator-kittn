@@ -207,10 +207,12 @@
   }
 
   @if map-get($kittn-sprite, retina-capable) == true {
-    %sprite-container-retina {
-      $spriteEndingRetina: '@2x.png';
-      background-repeat: no-repeat;
-      background-image: url('#{map-get($kittn-directorys, images)}#{$spritename}#{$spriteEndingRetina}')
+    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+      %sprite-container-retina {
+        $spriteEndingRetina: '@2x.png';
+        background-repeat: no-repeat;
+        background-image: url('#{map-get($kittn-directorys, images)}#{$spritename}#{$spriteEndingRetina}')
+      }
     }
   }
 }
