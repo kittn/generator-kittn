@@ -15,7 +15,9 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1><img src="http://i.imgur.com/2MtKGwj.jpg" alt=""></h1>
+        <h1>Generator-kittn</h1>
+        <p>The Yeoman Kittn Generator</p>
+
         <p class="view"><a href="https://github.com/gisu/generator-kittn">View the Project on GitHub <small>gisu/generator-kittn</small></a></p>
 
 
@@ -26,6 +28,8 @@
         </ul>
       </header>
       <section>
+        <p><img src="http://i.imgur.com/2MtKGwj.jpg" alt=""></p>
+
 <h2>
 <a name="einleitung" class="anchor" href="#einleitung"><span class="octicon octicon-link"></span></a>Einleitung</h2>
 
@@ -1780,127 +1784,1361 @@ Positioniert Textelemente in der Vertikalen Mitte.</p>
 <p><code>scr/sass/framework/modules/_grid.scss</code><br></p>
 
 <p>(f) <strong>Grid-Size</strong><br>
-(m) <strong>Grid-Stepper</strong><br>
-(m) <strong>Grid-Container</strong><br>
-(m) <strong>Grid-Row</strong><br>
-(m) <strong>Grid-Colum</strong><br>
-(m) <strong>Grid-Size</strong><br>
-(m) <strong>Pixel-Grid</strong><br>
-(m) <strong>Grid-Generator</strong><br>
-(m) <strong>Grid-Devide</strong><br>
-(m) <strong>Grid-Offset</strong><br>
-(m) <strong>Grid-Offset-Generator</strong><br>
-(m) <strong>Grid-Pushpull</strong><br>
-(m) <strong>Grid-Pushpull-Generator</strong><br>
-(m) <strong>Grid-Normalizer</strong><br></p>
+Berechnet die Breite der Colums</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="nf">grid-size</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">25</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Grid-Adaptive</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-breakpoint-map</code></em></p>
+
+<p>Die Seitenbreite verändert sich damit Adaptiv. Der jeweilige Threshold wird über <code>$kittn-breakpoint-map</code> eingestellt in dem bei Breakpoint <code>step</code> auf <code>true</code> gestellt wird. Die Reihenfolge der MediaQueries richtet sich nach <code>$kittn-activate(mobile-first)</code>.</p>
+
+<p>Das Mixin muss in einem Selektor aufgerufen werden.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$kittn-breakpoint-map</span><span class="o">:</span> <span class="p">(</span>
+  <span class="mi">1</span><span class="o">:</span> <span class="p">(</span>
+    <span class="no">size</span><span class="o">:</span> <span class="mi">320</span><span class="kt">px</span><span class="o">,</span>
+    <span class="no">visibility</span><span class="o">:</span> <span class="n-Pseudo">true</span><span class="o">,</span>
+    <span class="n">step</span><span class="o">:</span> <span class="n-Pseudo">true</span><span class="o">,</span>
+    <span class="n">fontsize</span><span class="o">:</span> <span class="n-Pseudo">false</span>
+  <span class="p">)</span><span class="o">,</span>
+  <span class="mi">2</span><span class="o">:</span> <span class="p">(</span>
+    <span class="no">size</span><span class="o">:</span> <span class="mi">480</span><span class="kt">px</span><span class="o">,</span>
+    <span class="no">visibility</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span>
+    <span class="n">step</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span>
+    <span class="n">fontsize</span><span class="o">:</span> <span class="mi">80</span>
+  <span class="p">)</span><span class="o">,</span>
+  <span class="mi">3</span><span class="o">:</span> <span class="p">(</span>
+    <span class="no">size</span><span class="o">:</span> <span class="mi">560</span><span class="kt">px</span><span class="o">,</span>
+    <span class="no">visibility</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span>
+    <span class="n">step</span><span class="o">:</span> <span class="n-Pseudo">true</span><span class="o">,</span>
+    <span class="n">fontsize</span><span class="o">:</span> <span class="n-Pseudo">false</span>
+  <span class="p">)</span>
+<span class="p">);</span>
+
+<span class="nc">.container</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-adaptive</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.container</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">320</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="nt">560px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nc">.container</span> <span class="p">{</span>
+    <span class="na">width</span><span class="o">:</span> <span class="mi">560</span><span class="kt">px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Grid-Container</strong><br>
+Generiert den Seiten Container, der zum einen die Seite im Viewport positioniert (default: center), zum anderen bestimmt er die Seitenbreite.</p>
+
+<p>Wenn man das <code>grid-adaptive</code> Mixin verwendet wird, sollte die Seitenbreite deaktiviert werden.</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<code>width</code> {list|bool} Bei einem Wert ist der Container Statisch, zwei Werte geben min und max vor, kann auch auf <code>false</code> gestellt werden.</li>
+<li>
+<code>pos</code> Position des Container. Values: <code>center</code>, <code>left</code>,  <code>right</code>
+</li>
+<li>
+<code>gutter</code> Nur aktiv wenn <code>pos: left</code> oder <code>pos:right</code> eingestellt wurde, der Gutter bestimmt dann den Abstand zum Viewport.</li>
+<li>
+<code>static-ie</code> {Bool} Wenn aktiviert, bekommt der IE8 einen statischen Seitencontainer.</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.container-adaptive</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-stepper</span><span class="p">();</span>
+  <span class="k">@include</span><span class="nd"> grid-container</span><span class="p">((</span>
+      <span class="no">width</span><span class="o">:</span> <span class="n-Pseudo">false</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="nc">.container-fluid</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-container</span><span class="p">((</span>
+      <span class="no">width</span><span class="o">:</span> <span class="mi">400</span> <span class="mi">900</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="nc">.container-static</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-container</span><span class="p">((</span>
+      <span class="no">width</span><span class="o">:</span> <span class="mi">800</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.container-adaptive</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">320</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">margin-left</span><span class="o">:</span> <span class="no">auto</span><span class="p">;</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="no">auto</span><span class="p">;</span>
+  <span class="na">padding-left</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="nt">560px</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nc">.container-adaptive</span> <span class="p">{</span>
+    <span class="na">width</span><span class="o">:</span> <span class="mi">560</span><span class="kt">px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nc">.container-fluid</span> <span class="p">{</span>
+  <span class="na">margin-left</span><span class="o">:</span> <span class="no">auto</span><span class="p">;</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="no">auto</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+  <span class="na">min-width</span><span class="o">:</span> <span class="mi">400</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">max-width</span><span class="o">:</span> <span class="mi">900</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-left</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.container-static</span> <span class="p">{</span>
+  <span class="na">margin-left</span><span class="o">:</span> <span class="no">auto</span><span class="p">;</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="no">auto</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">800</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-left</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Grid-Row</strong><br>
+Über die <code>rows</code> wird das Display Verhalten der einzelnen <code>colums</code> eingestellt. zusätzlich wird dafür gesorgt das Floats nicht überlaufen.</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<code>spacing</code> Seitlicher Abstand</li>
+<li>
+<code>layout</code> Values: <code>block</code>, <code>inline</code>, <code>table</code>, <code>flex</code>
+</li>
+<li>
+<code>valign</code> Gilt nur bei <code>layout:inline</code>. Values: <code>top</code>, <code>bottom</code>, <code>baseline</code>, <code>middle</code>
+</li>
+<li>
+<code>align</code> Values: <code>justify</code>, <code>center</code>, <code>right</code>, <code>left</code>
+</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.row-block</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-row</span><span class="p">(());</span>
+<span class="p">}</span>
+
+<span class="nc">.row-table</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-row</span><span class="p">((</span>
+   <span class="n">layout</span><span class="o">:</span> <span class="n">table</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.row-block</span><span class="nd">:after</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">'</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="n">table</span><span class="p">;</span>
+  <span class="na">clear</span><span class="o">:</span> <span class="no">both</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.row-block</span> <span class="nc">.row-block</span> <span class="p">{</span>
+  <span class="na">margin-left</span><span class="o">:</span> <span class="mi">-10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">-10</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.row-table</span> <span class="p">{</span>
+  <span class="na">display</span><span class="o">:</span> <span class="n">table</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Grid-Colum</strong><br>
+Bildet den Basisstyle für alle <code>colums</code>.</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<code>spacing</code> Seitlicher Abstand</li>
+<li>
+<code>layout</code> Values: <code>block</code>, <code>inline</code>, <code>table</code>, <code>flex</code>
+</li>
+<li>
+<code>extras</code> {Bool} Inkludiert Extra Klassen für die Colums</li>
+<li>
+<code>valign</code> Gilt nur bei <code>layout:inline</code>. Varianten: <code>top</code>, <code>bottom</code>, <code>baseline</code>, <code>middle</code>
+</li>
+<li>
+<code>align</code> Values: <code>justify</code>, <code>center</code>, <code>right</code>, <code>left</code>
+</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.colum</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-colum</span><span class="p">(());</span>
+<span class="p">}</span>
+
+<span class="nc">.colum</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-colum</span><span class="p">((</span>
+    <span class="n">layout</span><span class="o">:</span> <span class="no">inline</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.colum</span> <span class="p">{</span>
+  <span class="na">padding-left</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">block</span><span class="p">;</span>
+  <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.colum</span><span class="nd">:last-child</span> <span class="p">{</span>
+  <span class="na">float</span><span class="o">:</span> <span class="no">right</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.colum-inline</span> <span class="p">{</span>
+  <span class="na">padding-left</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">inline</span><span class="o">-</span><span class="no">block</span><span class="p">;</span>
+  <span class="na">letter-spacing</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="na">word-spacing</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="na">white-space</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="na">vertical-align</span><span class="o">:</span> <span class="no">top</span><span class="p">;</span>
+  <span class="na">text-align</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Grid-Size</strong><br>
+Definiert die Breite einer Colum.</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<code>size</code> Spaltenbreite</li>
+<li>
+<code>max</code> Die maximale Anzahl an Spalten (als Berechnungsgrundlage)</li>
+<li>
+<code>flex</code> {Bool} Aktiviert die Flexbox Funktion</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.colum</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-size</span><span class="p">((</span><span class="no">size</span><span class="o">:</span> <span class="mi">5</span><span class="p">));</span>
+<span class="p">}</span>
+<span class="nc">.colum-flex</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-size</span><span class="p">((</span>
+    <span class="no">size</span><span class="o">:</span> <span class="mi">200</span><span class="o">,</span>
+    <span class="n">flex</span><span class="o">:</span> <span class="n-Pseudo">true</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.colum</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">41</span><span class="mf">.666667</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.colum-flex</span> <span class="p">{</span>
+  <span class="na">-webkit-box-flex</span><span class="o">:</span> <span class="mi">12</span><span class="p">;</span>
+  <span class="na">-webkit-flex</span><span class="o">:</span> <span class="mi">12</span><span class="p">;</span>
+      <span class="na">-ms-flex</span><span class="o">:</span> <span class="mi">12</span><span class="p">;</span>
+          <span class="na">flex</span><span class="o">:</span> <span class="mi">12</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Pixel-Grid</strong><br>
+Definiert die Breite einer Colum in Pixel.</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<code>size</code> Spaltenbreite</li>
+<li>
+<code>max</code> Die maximale Anzahl an Spalten</li>
+<li>
+<code>margin</code> Seitlicher Abstand</li>
+<li>
+<code>space</code> Breite des äußeren Wrappers</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.pixel</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> pixel-grid</span><span class="p">((</span>
+    <span class="no">size</span><span class="o">:</span> <span class="mi">5</span><span class="o">,</span>
+    <span class="n">max</span><span class="o">:</span> <span class="mi">12</span><span class="o">,</span>
+    <span class="n">space</span><span class="o">:</span> <span class="mi">1200</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+<span class="nc">.pixel-2</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> pixel-grid</span><span class="p">((</span>
+    <span class="no">size</span><span class="o">:</span> <span class="mi">10</span><span class="o">,</span>
+    <span class="n">max</span><span class="o">:</span> <span class="mi">24</span><span class="o">,</span>
+    <span class="n">space</span><span class="o">:</span> <span class="mi">1000</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.pixel</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">480</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">margin-left</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.pixel-2</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">396</span><span class="mf">.666667</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">margin-left</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Grid-Generator</strong><br>
+Generiert eine definierte Anzahl von Colums</p>
+
+<p><em>Einstellungen</em></p>
+
+<ul>
+<li>
+<code>colums</code> Maximale Colums</li>
+<li>
+<code>select</code> {bool|list} Hier kann spezifiziert werden welche Colums generiert werden sollen</li>
+<li>
+<code>name</code> {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
+<li>
+<code>extend</code> {bool|*} Damit werden die generierten Klassen mit anderen Klassen verbunden.</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="err">%</span><span class="nt">colum</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-colum</span><span class="p">(());</span>
+<span class="p">}</span>
+
+<span class="nc">.width</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-generator</span><span class="p">((</span>
+    <span class="n">colums</span><span class="o">:</span> <span class="mi">6</span><span class="o">,</span>
+    <span class="n">extend</span><span class="o">:</span> <span class="s1">'</span><span class="s2">%colum'</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="nc">.span</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-generator</span><span class="p">((</span>
+    <span class="n">colums</span><span class="o">:</span> <span class="mi">24</span><span class="o">,</span>
+    <span class="n">select</span><span class="o">:</span> <span class="mi">1</span> <span class="mi">14</span> <span class="mi">8</span> <span class="mi">8</span> <span class="mi">10</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.width--1</span><span class="o">,</span> <span class="nc">.width--2</span><span class="o">,</span> <span class="nc">.width--3</span><span class="o">,</span> <span class="nc">.width--4</span><span class="o">,</span> <span class="nc">.width--5</span><span class="o">,</span> <span class="nc">.width--6</span> <span class="p">{</span>
+  <span class="na">padding-left</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">padding-right</span><span class="o">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">block</span><span class="p">;</span>
+  <span class="na">float</span><span class="o">:</span> <span class="no">left</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.width--1</span><span class="nd">:last-child</span><span class="o">,</span> <span class="nc">.width--2</span><span class="nd">:last-child</span><span class="o">,</span>
+<span class="nc">.width--3</span><span class="nd">:last-child</span><span class="o">,</span> <span class="nc">.width--4</span><span class="nd">:last-child</span><span class="o">,</span>
+<span class="nc">.width--5</span><span class="nd">:last-child</span><span class="o">,</span> <span class="nc">.width--6</span><span class="nd">:last-child</span> <span class="p">{</span>
+  <span class="na">float</span><span class="o">:</span> <span class="no">right</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.width--1</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">16</span><span class="mf">.666667</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.width--2</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">33</span><span class="mf">.333333</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.width--3</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.width--4</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">66</span><span class="mf">.666667</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.width--5</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">83</span><span class="mf">.333333</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.width--6</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.span--1</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">4</span><span class="mf">.166667</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.span--8</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">33</span><span class="mf">.333333</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.span--10</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">41</span><span class="mf">.666667</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.span--14</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">58</span><span class="mf">.333333</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Grid-Devide</strong><br>
+Das Mixin kann ein bestehendes Grid 'teilen', ein 12er Grid kann damit in eine 6er Grid umgewandelt werden. Funktioniert aber nur wenn nicht Mobile-First gearbeitet wird.</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<code>colums</code> Maximale Colums</li>
+<li>
+<code>name</code> {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
+<li>
+<code>devide</code> {number} Teiler</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.width</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-devide</span><span class="p">((</span>
+    <span class="n">colums</span><span class="o">:</span> <span class="mi">12</span><span class="o">,</span>
+    <span class="n">devide</span><span class="o">:</span> <span class="mi">3</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="nc">.span</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-devide</span><span class="p">((</span>
+    <span class="n">colums</span><span class="o">:</span> <span class="mi">6</span><span class="o">,</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.width--1</span><span class="o">,</span> <span class="nc">.width--5</span><span class="o">,</span> <span class="nc">.width--9</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">25</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.width--2</span><span class="o">,</span> <span class="nc">.width--6</span><span class="o">,</span> <span class="nc">.width--10</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.width--3</span><span class="o">,</span> <span class="nc">.width--7</span><span class="o">,</span> <span class="nc">.width--11</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">75</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.width--4</span><span class="o">,</span> <span class="nc">.width--8</span><span class="o">,</span> <span class="nc">.width--12</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.span--1</span><span class="o">,</span> <span class="nc">.span--4</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">33</span><span class="mf">.333333</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.span--2</span><span class="o">,</span> <span class="nc">.span--5</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">66</span><span class="mf">.666667</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.span--3</span><span class="o">,</span> <span class="nc">.span--6</span> <span class="p">{</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Grid-Offset</strong><br>
+Generiert den Offset</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<code>size</code> Spaltenbreite</li>
+<li>
+<code>max</code> Die maximale Anzahl an Spalten</li>
+<li>
+<code>direction</code> Values: <code>left</code>, <code>right</code>
+=&gt; The Direction off the Offset (default: left)</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.offset</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-offset</span><span class="p">((</span>
+    <span class="no">size</span><span class="o">:</span> <span class="mi">2</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+<span class="nc">.offset-right</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-offset</span><span class="p">((</span>
+    <span class="no">size</span><span class="o">:</span> <span class="mi">5</span><span class="o">,</span>
+    <span class="no">direction</span><span class="o">:</span> <span class="no">right</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.offset</span> <span class="p">{</span>
+  <span class="na">margin-left</span><span class="o">:</span> <span class="mi">16</span><span class="mf">.666667</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.offset-right</span> <span class="p">{</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">41</span><span class="mf">.666667</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Grid-Offset-Generator</strong><br>
+Generiert die Offset Klassen.</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<code>max</code> Die maximale Anzahl an Spalten
+=&gt; The Maximum Colums (default: 12)</li>
+<li>
+<code>name</code> {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.offset</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-offset-generator</span><span class="p">((</span>
+    <span class="n">max</span><span class="o">:</span> <span class="mi">3</span><span class="o">,</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.offset-left--1</span> <span class="p">{</span>
+  <span class="na">margin-left</span><span class="o">:</span> <span class="mi">33</span><span class="mf">.333333</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.offset-right--1</span> <span class="p">{</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">33</span><span class="mf">.333333</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.offset-left--2</span> <span class="p">{</span>
+  <span class="na">margin-left</span><span class="o">:</span> <span class="mi">66</span><span class="mf">.666667</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.offset-right--2</span> <span class="p">{</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="mi">66</span><span class="mf">.666667</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Grid-Pushpull</strong><br>
+Generiert Push and Pull Sizes</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<code>size</code> Spaltenbreite</li>
+<li>
+<code>max</code> Die maximale Anzahl an Spalten</li>
+<li>
+<code>direction</code> Values: <code>push</code>, <code>pull</code>
+</li>
+<li>
+<code>extend</code> {bool|*} Damit werden die generierten Klassen mit anderen Klassen verbunden.</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="err">%</span><span class="nt">relative</span> <span class="p">{</span>
+  <span class="na">position</span><span class="o">:</span> <span class="no">relative</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.push</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-pushpull</span><span class="p">((</span>
+    <span class="n">extend</span><span class="o">:</span> <span class="s1">'</span><span class="s2">%relative'</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="nc">.pull</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-pushpull</span><span class="p">((</span>
+    <span class="no">size</span><span class="o">:</span> <span class="mi">4</span><span class="o">,</span>
+    <span class="no">direction</span><span class="o">:</span> <span class="n">pull</span><span class="o">,</span>
+    <span class="n">extend</span><span class="o">:</span> <span class="s1">'</span><span class="s2">%relative'</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.push</span><span class="o">,</span> <span class="nc">.pull</span> <span class="p">{</span>
+  <span class="na">position</span><span class="o">:</span> <span class="no">relative</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.push</span> <span class="p">{</span>
+  <span class="na">left</span><span class="o">:</span> <span class="mi">8</span><span class="mf">.333333</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.pull</span> <span class="p">{</span>
+  <span class="na">right</span><span class="o">:</span> <span class="mi">33</span><span class="mf">.333333</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Grid-Pushpull-Generator</strong><br>
+Generiert eine bestimmte Anzahl an Push and Pull Klassen.</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<code>max</code> Die maximale Anzahl an Spalten</li>
+<li>
+<code>name</code> {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
+<li>
+<code>extend</code> {bool|*} Damit werden die generierten Klassen mit anderen Klassen verbunden.</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.move</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> grid-pushpull-generator</span><span class="p">((</span>
+    <span class="n">max</span><span class="o">:</span> <span class="mi">4</span>
+  <span class="p">));</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.move-push--1</span> <span class="p">{</span>
+  <span class="na">position</span><span class="o">:</span> <span class="no">relative</span><span class="p">;</span>
+  <span class="na">left</span><span class="o">:</span> <span class="mi">25</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.move-pull--1</span> <span class="p">{</span>
+  <span class="na">position</span><span class="o">:</span> <span class="no">relative</span><span class="p">;</span>
+  <span class="na">right</span><span class="o">:</span> <span class="mi">25</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.move-push--2</span> <span class="p">{</span>
+  <span class="na">position</span><span class="o">:</span> <span class="no">relative</span><span class="p">;</span>
+  <span class="na">left</span><span class="o">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.move-pull--2</span> <span class="p">{</span>
+  <span class="na">position</span><span class="o">:</span> <span class="no">relative</span><span class="p">;</span>
+  <span class="na">right</span><span class="o">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.move-push--3</span> <span class="p">{</span>
+  <span class="na">position</span><span class="o">:</span> <span class="no">relative</span><span class="p">;</span>
+  <span class="na">left</span><span class="o">:</span> <span class="mi">75</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+<span class="nc">.move-pull--3</span> <span class="p">{</span>
+  <span class="na">position</span><span class="o">:</span> <span class="no">relative</span><span class="p">;</span>
+  <span class="na">right</span><span class="o">:</span> <span class="mi">75</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Grid-Normalizer</strong><br>
+Über den Normalizer können die spezifischen Einstellungen wieder resetet werden.</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<code>name</code> Name des Selectors der Reseted werden soll</li>
+<li>
+<code>option</code> Values: <code>blockgrid</code>, <code>inlinetable</code>, <code>offset</code>, <code>pushpull</code>
+</li>
+<li>
+<code>important</code> {Bool} Fügt !important an</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="k">@include</span><span class="nd"> grid-normalizer</span><span class="p">((</span>
+  <span class="n">name</span><span class="o">:</span> <span class="s1">'</span><span class="s2">move'</span><span class="o">,</span>
+  <span class="n">option</span><span class="o">:</span> <span class="n">pushpull</span>
+<span class="p">));</span>
+
+<span class="k">@include</span><span class="nd"> grid-normalizer</span><span class="p">((</span>
+  <span class="n">name</span><span class="o">:</span> <span class="s1">'</span><span class="s2">colum'</span>
+<span class="p">))</span>
+
+<span class="c1">// Result</span>
+<span class="p">[</span><span class="n">class</span><span class="o">^=</span><span class="s2">"move-push--"</span><span class="p">]</span><span class="o">,</span>
+<span class="p">[</span><span class="n">class</span><span class="o">*=</span><span class="s2">" move-push--"</span><span class="p">]</span> <span class="p">{</span>
+  <span class="na">left</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="o">[</span><span class="nt">class</span><span class="o">^=</span><span class="s2">"move-pull--"</span><span class="o">],</span>
+<span class="o">[</span><span class="nt">class</span><span class="o">*=</span><span class="s2">" move-pull--"</span><span class="o">]</span> <span class="p">{</span>
+  <span class="na">right</span><span class="o">:</span> <span class="mi">0</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="o">[</span><span class="nt">class</span><span class="o">^=</span><span class="s2">"colum"</span><span class="o">],</span>
+<span class="o">[</span><span class="nt">class</span><span class="o">*=</span><span class="s2">"colum"</span><span class="o">]</span> <span class="p">{</span>
+  <span class="na">float</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
 
 <h4>
 <a name="iconfont" class="anchor" href="#iconfont"><span class="octicon octicon-link"></span></a>Iconfont</h4>
 
 <p><code>scr/sass/framework/modules/_iconfont.scss</code><br></p>
 
-<p>(f) <strong>Icon</strong><br>
-(m) <strong>Iconfont</strong><br>
-(m) <strong>Icon-Font-Generator</strong><br>
-(m) <strong>Icon-Generator</strong><br>
-(m) <strong>Icon</strong><br>
-(m) <strong>Ext-Icon</strong><br></p>
+<p>(f) <strong>Icon</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-font-icons</code></em></p>
+
+<p>Bezieht den Content Code aus der Iconfont Map.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nv">$kittn-font-icons</span><span class="o">:</span> <span class="p">(</span>
+  <span class="n">test</span><span class="o">:</span> <span class="s1">'</span><span class="s2">/e023'</span>
+<span class="p">);</span>
+
+<span class="nc">.icon</span> <span class="p">{</span>
+  <span class="k">&amp;</span><span class="nd">:before</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="nf">icon</span><span class="p">(</span><span class="n">test</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.icon</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s2">"/e023"</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Iconfont</strong><br>
+Generiert den Basisstyle für alle Icons.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="err">%</span><span class="nt">icon</span> <span class="p">{</span>
+    <span class="k">@include</span><span class="nd"> iconfont</span><span class="p">(</span><span class="s1">'</span><span class="s2">iconfont'</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="k">@extend</span> <span class="err">%</span><span class="nt">icon</span><span class="o">;</span>
+
+  <span class="k">&amp;</span><span class="nd">:before</span> <span class="p">{</span>
+    <span class="na">content</span><span class="o">:</span> <span class="nf">icon</span><span class="p">(</span><span class="n">test</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="na">-webkit-font-smoothing</span><span class="o">:</span> <span class="n">antialiased</span><span class="p">;</span>
+  <span class="na">-moz-osx-font-smoothing</span><span class="o">:</span> <span class="n">grayscale</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">inline</span><span class="o">-</span><span class="no">block</span><span class="p">;</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="s2">"iconfont"</span><span class="p">;</span>
+  <span class="na">font-style</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">normal</span> <span class="nv">!important</span><span class="p">;</span>
+  <span class="na">speak</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+  <span class="na">text-decoration</span><span class="o">:</span> <span class="no">inherit</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.test</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s2">"/e023"</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Icon-Font-Generator</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-iconfont</code></em></p>
+
+<p>Generiert den Basis Icon-Font Style.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="k">@include</span><span class="nd"> icon-font-generator</span><span class="p">(</span><span class="s1">'</span><span class="s2">iconfont'</span><span class="p">);</span>
+
+<span class="c1">// Result</span>
+
+
+<span class="o">[</span><span class="nt">data-icon</span><span class="o">]</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">-webkit-font-smoothing</span><span class="o">:</span> <span class="n">antialiased</span><span class="p">;</span>
+  <span class="na">-moz-osx-font-smoothing</span><span class="o">:</span> <span class="n">grayscale</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">inline</span><span class="o">-</span><span class="no">block</span><span class="p">;</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="s2">"iconfont"</span><span class="p">;</span>
+  <span class="na">font-style</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">normal</span> <span class="nv">!important</span><span class="p">;</span>
+  <span class="na">speak</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+  <span class="na">text-decoration</span><span class="o">:</span> <span class="no">inherit</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="o">[</span><span class="nt">data-icon</span><span class="o">]</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="nf">attr</span><span class="p">(</span><span class="n">data-icon</span><span class="p">);</span> <span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Icon-Generator</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-font-icons</code>, <code>$kittn-iconfont</code></em></p>
+
+<p>Generiert alle Icons als Klassen.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="k">@include</span><span class="nd"> icon-generator</span><span class="p">;</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.f-icon__test</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s2">"/e023"</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.f-icon__logo</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s2">"/e024"</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Icon</strong><br>
+Fügt Icon Inhalte in eine Klasse.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="err">%</span><span class="nt">icon</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> iconfont</span><span class="p">(</span><span class="s1">'</span><span class="s2">iconfont'</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="k">&amp;</span><span class="nd">:before</span> <span class="p">{</span>
+    <span class="k">@include</span><span class="nd"> icon</span><span class="p">(</span><span class="n">test</span><span class="o">,</span><span class="p">(</span>
+      <span class="n">extend</span><span class="o">:</span> <span class="s1">'</span><span class="s2">%icon'</span>
+    <span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nc">.lego</span> <span class="p">{</span>
+  <span class="k">&amp;</span><span class="nd">:before</span> <span class="p">{</span>
+    <span class="k">@include</span><span class="nd"> icon</span><span class="p">(</span><span class="n">logo</span><span class="o">,</span><span class="p">(</span>
+      <span class="no">font</span><span class="o">:</span> <span class="s1">'</span><span class="s2">iconfont'</span>
+    <span class="p">));</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.test</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">-webkit-font-smoothing</span><span class="o">:</span> <span class="n">antialiased</span><span class="p">;</span>
+  <span class="na">-moz-osx-font-smoothing</span><span class="o">:</span> <span class="n">grayscale</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">inline</span><span class="o">-</span><span class="no">block</span><span class="p">;</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="s2">"iconfont"</span><span class="p">;</span>
+  <span class="na">font-style</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">normal</span> <span class="nv">!important</span><span class="p">;</span>
+  <span class="na">speak</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+  <span class="na">text-decoration</span><span class="o">:</span> <span class="no">inherit</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.test</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s2">"/e023"</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.lego</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">-webkit-font-smoothing</span><span class="o">:</span> <span class="n">antialiased</span><span class="p">;</span>
+  <span class="na">-moz-osx-font-smoothing</span><span class="o">:</span> <span class="n">grayscale</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">inline</span><span class="o">-</span><span class="no">block</span><span class="p">;</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="s2">"iconfont"</span><span class="p">;</span>
+  <span class="na">font-style</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">normal</span> <span class="nv">!important</span><span class="p">;</span>
+  <span class="na">speak</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+  <span class="na">text-decoration</span><span class="o">:</span> <span class="no">inherit</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s2">"/e024"</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Ext-Icon</strong><br>
+Erweitert eigene Klassen mit den Iconklassen.</p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="k">@include</span><span class="nd"> icon-font-generator</span><span class="p">(</span><span class="s1">'</span><span class="s2">iconfont'</span><span class="p">);</span>
+<span class="k">@include</span><span class="nd"> icon-generator</span><span class="p">();</span>
+
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> ext-icon</span><span class="p">(</span><span class="n">test</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+
+
+<span class="o">[</span><span class="nt">data-icon</span><span class="o">]</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">-webkit-font-smoothing</span><span class="o">:</span> <span class="n">antialiased</span><span class="p">;</span>
+  <span class="na">-moz-osx-font-smoothing</span><span class="o">:</span> <span class="n">grayscale</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">inline</span><span class="o">-</span><span class="no">block</span><span class="p">;</span>
+  <span class="na">font-family</span><span class="o">:</span> <span class="s2">"iconfont"</span><span class="p">;</span>
+  <span class="na">font-style</span><span class="o">:</span> <span class="no">normal</span><span class="p">;</span>
+  <span class="na">font-weight</span><span class="o">:</span> <span class="no">normal</span> <span class="nv">!important</span><span class="p">;</span>
+  <span class="na">speak</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+  <span class="na">text-decoration</span><span class="o">:</span> <span class="no">inherit</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="o">[</span><span class="nt">data-icon</span><span class="o">]</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="nf">attr</span><span class="p">(</span><span class="n">data-icon</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="nc">.f-icon__test</span><span class="nd">:before</span><span class="o">,</span> <span class="nc">.box</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s2">"/e023"</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.f-icon__logo</span><span class="nd">:before</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s2">"/e024"</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
 
 <h4>
 <a name="images" class="anchor" href="#images"><span class="octicon octicon-link"></span></a>Images</h4>
 
 <p><code>scr/sass/framework/modules/_images.scss</code><br></p>
 
-<p>(m) <strong>GetImageDimensions</strong><br>
-(m) <strong>Image</strong><br>
-(m) <strong>SVGPNG</strong><br>
-(m) <strong>Texture</strong><br>
-(m) <strong>SVG</strong><br>
-(m) <strong>Sprite-Generator</strong><br>
-(m) <strong>Sprite</strong><br></p>
+<p>(m) <strong>_GetImageDimensions</strong><br><em><a href="https://github.com/access" class="user-mention">@access</a> private</em></p>
+
+<p>Wird für die interne Berechnung der Bilddaten verwendet.</p>
+
+<p>(m) <strong>Image</strong><br>
+Fügt die Single Images ein. Die erforderlichen Daten werden dabei über die <code>Gulp</code> Tasks in die jeweilige Imagemap geschrieben.</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {*}    $image       - Name of the Image</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {*}    $dimensions  - 'both' = height &amp; width, 'width' = width, 'height' = height</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {*}    $pos         - The Image Position - can be 'false'</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {Bool} $retina      - With set on 'true' the retina fallback will be included</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> image</span><span class="p">(</span><span class="nb">blue</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nc">.box-2</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> image</span><span class="p">(</span><span class="no">icon</span><span class="o">,</span> <span class="no">width</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.box</span> <span class="p">{</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="sx">url("/assets/img/single/blue.png")</span><span class="p">;</span>
+  <span class="na">background-repeat</span><span class="o">:</span> <span class="no">no-repeat</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">184</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">176</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.box-2</span> <span class="p">{</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="sx">url("/assets/img/single/icon.png")</span><span class="p">;</span>
+  <span class="na">background-repeat</span><span class="o">:</span> <span class="no">no-repeat</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">281</span><span class="kt">px</span><span class="p">;</span> <span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Texture</strong><br>
+Fügt die Texture Images ein.</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {*} $image  - Name of the Image</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {*} $repeat - How the Image would be repeated. <code>x</code>: repeat-x, <code>y</code>: repeat-y</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {List|Bool} $pos - The Image Position - can be <code>false</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {Bool} $retina - With set on 'true' the retina fallback will be included</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.texture</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> texture</span><span class="p">(</span><span class="n">pattern</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.texture-2</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> texture</span><span class="p">(</span><span class="n">pattern</span><span class="o">,</span> <span class="nv">$repeat</span><span class="o">:</span> <span class="n">x</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.texture-3</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> texture</span><span class="p">(</span><span class="n">pattern</span><span class="o">,</span> <span class="nv">$repeat</span><span class="o">:</span> <span class="n">y</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.texture</span> <span class="p">{</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="sx">url("/assets/img/textures/pattern.png")</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.texture-2</span> <span class="p">{</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="sx">url("/assets/img/textures/pattern.png")</span><span class="p">;</span>
+  <span class="na">background-repeat</span><span class="o">:</span> <span class="no">repeat-x</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">393</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.texture-3</span> <span class="p">{</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="sx">url("/assets/img/textures/pattern.png")</span><span class="p">;</span>
+  <span class="na">background-repeat</span><span class="o">:</span> <span class="no">repeat-y</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">373</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>SVGPNG</strong><br>
+Fügt SVG Images ein, integriert dabei auch das Fallback Image.</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {*} $image - Name of the Image - the SVG File must be in the Same directory</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {*} $dimensions  - 'both' = height &amp; width | 'width' = width | 'height' = height</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {List} $pos - The Image Position - can be 'false'</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.image</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> svgpng</span><span class="p">(</span><span class="n">illu</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.image</span> <span class="p">{</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="sx">url("/assets/img/svg/illu.png")</span><span class="p">;</span>
+  <span class="na">background-repeat</span><span class="o">:</span> <span class="no">no-repeat</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">1019</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">357</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nc">.svg</span> <span class="nc">.image</span> <span class="p">{</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="sx">url("/assets/img/svg/illu.svg")</span><span class="p">;</span>
+  <span class="na">-webkit-background-size</span><span class="o">:</span> <span class="mi">1019</span><span class="kt">px</span> <span class="mi">357</span><span class="kt">px</span><span class="p">;</span>
+          <span class="na">background-size</span><span class="o">:</span> <span class="mi">1019</span><span class="kt">px</span> <span class="mi">357</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>SVG</strong><br>
+Für SVG Images ohne Fallback ein.</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {*} $image - The Name of the SVG Image</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {List} $dimensions  - The Dimensions of the Image Container - can be 100%</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {List} $pos - Native CSS Image Positions</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {Bool} $repeat - Image Repeat - native CSS Declaration</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.vector</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> svg</span><span class="p">(</span><span class="n">illu</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="nc">.repeat-vector</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> svg</span><span class="p">(</span><span class="n">illu</span><span class="o">,</span> <span class="nv">$repeat</span><span class="o">:</span> <span class="no">repeat-x</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nc">.resize-vector</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> svg</span><span class="p">(</span><span class="n">illu</span><span class="o">,</span> <span class="nv">$dimensions</span><span class="o">:</span> <span class="mi">40</span><span class="kt">px</span> <span class="mi">30</span><span class="kt">px</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.vector</span> <span class="p">{</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="sx">url("/assets/img/svgonly/illu.svg")</span><span class="p">;</span>
+  <span class="na">background-repeat</span><span class="o">:</span> <span class="no">no-repeat</span><span class="p">;</span>
+  <span class="na">-webkit-background-size</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+          <span class="na">background-size</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.repeat-vector</span> <span class="p">{</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="sx">url("/assets/img/svgonly/illu.svg")</span><span class="p">;</span>
+  <span class="na">background-repeat</span><span class="o">:</span> <span class="no">repeat-x</span><span class="p">;</span>
+  <span class="na">-webkit-background-size</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+          <span class="na">background-size</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.resize-vector</span> <span class="p">{</span>
+  <span class="na">background-image</span><span class="o">:</span> <span class="sx">url("/assets/img/svgonly/illu.svg")</span><span class="p">;</span>
+  <span class="na">background-repeat</span><span class="o">:</span> <span class="no">no-repeat</span><span class="p">;</span>
+  <span class="na">-webkit-background-size</span><span class="o">:</span> <span class="mi">40</span><span class="kt">px</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+          <span class="na">background-size</span><span class="o">:</span> <span class="mi">40</span><span class="kt">px</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">40</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>(m) <strong>Sprite-Generator</strong><br><em><a href="https://github.com/access" class="user-mention">@access</a> private<br>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-sprite</code></em></p>
+
+<p>Generiert den SpriteMap Container. Wird automatisch zu geschaltet.</p>
+
+<p>(m) <strong>Sprite</strong><br>
+Fügt das gewünschte Sprite ein.</p>
+
+<p><em>Einstellungen:</em></p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {*} $name - Name of the Sprite</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {Bool} $retina - With set on <code>true</code> the retina fallback will be included</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {*} $dimensions - <code>both</code>: height &amp; width, <code>width</code>: width, <code>height</code>: height</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {Number} $offset-x - Offset the Background Position on the x axis</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {Number} $offset-y - Offset the Background Position on the y axis</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {*} $display - The display mode</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.sprite</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> sprite</span><span class="p">(</span><span class="no">cross</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="nc">.sprite-and-retina</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> sprite</span><span class="p">(</span><span class="no">cross</span><span class="o">,</span> <span class="nv">$retina</span><span class="o">:</span> <span class="n-Pseudo">true</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.sprite</span> <span class="p">{</span>
+  <span class="na">background-position</span><span class="o">:</span> <span class="mi">0</span><span class="kt">px</span> <span class="mi">0</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">590</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">466</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">inline</span><span class="o">-</span><span class="no">block</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nc">.sprite-and-retina</span> <span class="p">{</span>
+  <span class="na">background-position</span><span class="o">:</span> <span class="mi">0</span><span class="kt">px</span> <span class="mi">0</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">width</span><span class="o">:</span> <span class="mi">590</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">height</span><span class="o">:</span> <span class="mi">466</span><span class="kt">px</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">inline</span><span class="o">-</span><span class="no">block</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">@media</span> <span class="o">(</span><span class="nt">-webkit-min-device-pixel-ratio</span><span class="nd">:</span> <span class="nt">2</span><span class="o">),</span> <span class="o">(</span><span class="nt">min-resolution</span><span class="nd">:</span> <span class="nt">192dpi</span><span class="o">)</span> <span class="p">{</span>
+  <span class="nc">.sprite-and-retina</span> <span class="p">{</span>
+    <span class="na">background-position</span><span class="o">:</span> <span class="mi">0</span><span class="kt">px</span> <span class="mi">0</span><span class="kt">px</span><span class="p">;</span>
+    <span class="na">-webkit-background-size</span><span class="o">:</span> <span class="mi">590</span><span class="kt">px</span> <span class="mi">466</span><span class="kt">px</span><span class="p">;</span>
+            <span class="na">background-size</span><span class="o">:</span> <span class="mi">590</span><span class="kt">px</span> <span class="mi">466</span><span class="kt">px</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 
 <h4>
 <a name="lines" class="anchor" href="#lines"><span class="octicon octicon-link"></span></a>Lines</h4>
 
 <p><code>scr/sass/framework/modules/_lines.scss</code><br></p>
 
-<p>(f) <strong>Rem</strong><br>
-(m) <strong>Remsize</strong><br>
-(m) <strong>Pxsize</strong><br>
-(m) <strong>Rem</strong><br>
-(m) <strong>Lineheight</strong><br>
-(m) <strong>Marginbottom</strong><br>
-(m) <strong>Margintop</strong><br>
-(m) <strong>Marginleft</strong><br>
-(m) <strong>Marginright</strong><br>
-(m) <strong>Paddingtop</strong><br>
-(m) <strong>Paddingbottom</strong><br>
-(m) <strong>Paddingleft</strong><br>
-(m) <strong>Paddingright</strong><br>
-(m) <strong>Height</strong><br>
-(m) <strong>Fontsize</strong><br>
-(m) <strong>Fontcalc</strong><br></p>
+<p>(f) <strong>Rem</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Remsize</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Pxsize</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Rem</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Lineheight</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Marginbottom</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Margintop</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Marginleft</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Marginright</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Paddingtop</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Paddingbottom</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Paddingleft</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Paddingright</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Height</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Fontsize</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Fontcalc</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
 
 <h4>
 <a name="modernizr" class="anchor" href="#modernizr"><span class="octicon octicon-link"></span></a>Modernizr</h4>
 
 <p><code>scr/sass/framework/modules/_modernizr.scss</code><br></p>
 
-<p>(m) <strong>Modernizr</strong><br>
-(m) <strong>Yep</strong><br>
-(m) <strong>Nope</strong><br></p>
+<p>(m) <strong>Modernizr</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Yep</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Nope</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
 
 <h4>
 <a name="positioning" class="anchor" href="#positioning"><span class="octicon octicon-link"></span></a>Positioning</h4>
 
 <p><code>scr/sass/framework/modules/_positioning.scss</code><br></p>
 
-<p>(m) <strong>Set-Position</strong><br>
-(m) <strong>Relative</strong><br>
-(m) <strong>Absolute</strong><br>
-(m) <strong>Fixed</strong><br>
-(m) <strong>Static</strong><br>
-(m) <strong>Bar</strong><br>
-(m) <strong>Bar-Top</strong><br>
-(m) <strong>Bar-Bottom</strong><br>
-(m) <strong>Position-Translate</strong><br>
-(m) <strong>Pivot</strong><br>
-(m) <strong>Slide</strong><br>
-(m) <strong>Pivot-Center</strong><br>
-(m) <strong>Absolute-Middle</strong><br>
-(m) <strong>Element-Middle</strong><br>
-(f) <strong>Z</strong><br>
-(m) <strong>Z</strong><br>
-(m) <strong>Shift</strong><br>
-(m) <strong>Overlap</strong><br></p>
+<p>(m) <strong>Set-Position</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Relative</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Absolute</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Fixed</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Static</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Bar</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Bar-Top</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Bar-Bottom</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Position-Translate</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Pivot</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Slide</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Pivot-Center</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Absolute-Middle</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Element-Middle</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(f) <strong>Z</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Z</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Shift</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Overlap</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
 
 <h4>
 <a name="shorthands" class="anchor" href="#shorthands"><span class="octicon octicon-link"></span></a>Shorthands</h4>
 
 <p><code>scr/sass/framework/modules/_shorthands.scss</code><br></p>
 
-<p>(m) <strong>Clearfix</strong><br>
-(m) <strong>Center</strong><br>
-(m) <strong>Word-Wrap</strong><br>
-(m) <strong>Text-Truncate</strong><br>
-(m) <strong>Vertical-Center</strong><br>
-(m) <strong>Cleartext</strong><br>
-(m) <strong>Cleartext-Complex</strong><br>
-(m) <strong>Cleartext-Simpler</strong><br>
-(m) <strong>Decollapse</strong><br>
-(m) <strong>Performance</strong><br>
-(m) <strong>Antialias</strong><br></p>
+<p>(m) <strong>Clearfix</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Center</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Word-Wrap</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Text-Truncate</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Vertical-Center</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Cleartext</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Cleartext-Complex</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Cleartext-Simpler</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Decollapse</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Performance</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Antialias</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
 
 <h4>
 <a name="spacer" class="anchor" href="#spacer"><span class="octicon octicon-link"></span></a>Spacer</h4>
 
 <p><code>scr/sass/framework/modules/_spacer.scss</code><br></p>
 
-<p>(m) <strong>Margin-Padding</strong><br>
-(m) <strong>Padding</strong><br>
-(m) <strong>Margin</strong><br>
-(m) <strong>Spacer</strong><br>
-(m) <strong>Spacer-Reset</strong><br></p>
+<p>(m) <strong>Margin-Padding</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Padding</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Margin</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Spacer</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Spacer-Reset</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
 
 <h4>
 <a name="triangle" class="anchor" href="#triangle"><span class="octicon octicon-link"></span></a>Triangle</h4>
@@ -1909,15 +3147,38 @@ Positioniert Textelemente in der Vertikalen Mitte.</p>
 
 <p>(m) <strong>Triangle</strong><br></p>
 
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
 <h4>
 <a name="typography" class="anchor" href="#typography"><span class="octicon octicon-link"></span></a>Typography</h4>
 
 <p><code>scr/sass/framework/modules/_typography.scss</code><br></p>
 
-<p>(f) <strong>TW</strong><br>
-(m) <strong>Typogenerator</strong><br>
-(m) <strong>Responsive-Fontsizes</strong><br>
-(m) <strong>Get-Fontsize</strong><br></p>
+<p>(f) <strong>TW</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Typogenerator</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Responsive-Fontsizes</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
+
+<p>(m) <strong>Get-Fontsize</strong><br></p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="c1">// Result</span>
+</pre></div>
 
 <hr><h3>
 <a name="partials" class="anchor" href="#partials"><span class="octicon octicon-link"></span></a>Partials</h3>
