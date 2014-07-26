@@ -580,23 +580,30 @@
     $count: map-get($devide,colums) / map-get($devide,devide);
 
     @for $i from 1 through $count {
-      @for $i1 from 1 through map-get($devide,devide) {
 
+      // Build a Unique Extend ID
+      $extend: unique-id();
+
+      // Build the Placeholder
+      @at-root {
+        %#{$extend} {
+          @include grid-size((
+            size: $i,
+            max: $count,
+          ));
+        }
+      }
+
+      @for $i1 from 1 through map-get($devide,devide) {
         // Use outer Classes or free defined selectors
         @if map-get($devide,name) != false {
           #{map-get($devide,name)}#{map-get($kittn-bem, modifier)}#{$i + ($count * ($i1 - 1))} {
-            @include grid-size((
-              size: $i,
-              max: $count,
-            ));
+              @extend %#{$extend};
           }
 
         } @else {
           &#{map-get($kittn-bem, modifier)}#{$i + ($count * ($i1 - 1))} {
-            @include grid-size((
-              size: $i,
-              max: $count,
-            ));
+            @extend %#{$extend};
           }
         }
       }

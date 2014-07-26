@@ -2160,42 +2160,20 @@ _Einstellungen:_
 }
 
 // Result
-.width--1 {
+.width--1, .width--5, .width--9 {
   width: 25%; }
-.width--5 {
-  width: 25%; }
-.width--9 {
-  width: 25%; }
-.width--2 {
+.width--2, .width--6, .width--10 {
   width: 50%; }
-.width--6 {
-  width: 50%; }
-.width--10 {
-  width: 50%; }
-.width--3 {
+.width--3, .width--7, .width--11 {
   width: 75%; }
-.width--7 {
-  width: 75%; }
-.width--11 {
-  width: 75%; }
-.width--4 {
-  width: 100%; }
-.width--8 {
-  width: 100%; }
-.width--12 {
+.width--4, .width--8, .width--12 {
   width: 100%; }
 
-.span--1 {
+.span--1, .span--4 {
   width: 33.333333%; }
-.span--4 {
-  width: 33.333333%; }
-.span--2 {
+.span--2, .span--5 {
   width: 66.666667%; }
-.span--5 {
-  width: 66.666667%; }
-.span--3 {
-  width: 100%; }
-.span--6 {
+.span--3, .span--6 {
   width: 100%; }
 ```
 
@@ -2370,7 +2348,481 @@ _Einstellungen:_
 ```
 
 
-... coming more
+#### Iconfont
+`scr/sass/framework/modules/_iconfont.scss`<br>
+
+(f) **Icon**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Iconfont**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Icon-Font-Generator**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Icon-Generator**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Icon**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Ext-Icon**<br>
+```scss
+// Example
+// Result
+```
+
+
+#### Images
+`scr/sass/framework/modules/_images.scss`<br>
+
+(m) **GetImageDimensions**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Image**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **SVGPNG**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Texture**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **SVG**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Sprite-Generator**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Sprite**<br>
+```scss
+// Example
+// Result
+```
+
+
+#### Lines
+`scr/sass/framework/modules/_lines.scss`<br>
+
+(f) **Rem**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Remsize**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Pxsize**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Rem**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Lineheight**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Marginbottom**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Margintop**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Marginleft**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Marginright**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Paddingtop**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Paddingbottom**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Paddingleft**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Paddingright**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Height**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Fontsize**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Fontcalc**<br>
+```scss
+// Example
+// Result
+```
+
+
+#### Modernizr
+`scr/sass/framework/modules/_modernizr.scss`<br>
+
+(m) **Modernizr**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Yep**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Nope**<br>
+```scss
+// Example
+// Result
+```
+
+
+#### Positioning
+`scr/sass/framework/modules/_positioning.scss`<br>
+
+(m) **Set-Position**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Relative**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Absolute**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Fixed**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Static**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Bar**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Bar-Top**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Bar-Bottom**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Position-Translate**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Pivot**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Slide**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Pivot-Center**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Absolute-Middle**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Element-Middle**<br>
+```scss
+// Example
+// Result
+```
+
+(f) **Z**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Z**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Shift**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Overlap**<br>
+```scss
+// Example
+// Result
+```
+
+
+#### Shorthands
+`scr/sass/framework/modules/_shorthands.scss`<br>
+
+(m) **Clearfix**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Center**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Word-Wrap**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Text-Truncate**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Vertical-Center**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Cleartext**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Cleartext-Complex**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Cleartext-Simpler**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Decollapse**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Performance**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Antialias**<br>
+```scss
+// Example
+// Result
+```
+
+
+#### Spacer
+`scr/sass/framework/modules/_spacer.scss`<br>
+
+(m) **Margin-Padding**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Padding**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Margin**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Spacer**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Spacer-Reset**<br>
+```scss
+// Example
+// Result
+```
+
+
+#### Triangle
+`scr/sass/framework/modules/_triangle.scss`<br>
+
+(m) **Triangle**<br>
+
+```scss
+// Example
+// Result
+```
+
+
+
+#### Typography
+`scr/sass/framework/modules/_typography.scss`<br>
+
+(f) **TW**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Typogenerator**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Responsive-Fontsizes**<br>
+```scss
+// Example
+// Result
+```
+
+(m) **Get-Fontsize**<br>
+```scss
+// Example
+// Result
+```
+
+
+---
+
+### Partials
+
+#### Normalize
+
+#### Tables
+
+#### Pre-Generators
+
+#### Post-Generators
 
 
 ---
