@@ -317,7 +317,7 @@ gulp rebuild-js
 
 ---
 
-## Sass
+## Sass Framework
 Das Herzstück des Toolkits besteht aus dem [Sass](http://sass-lang.com) Framework, das Toolkit wurde mehr außen herum gebaut um die fehlenden Funktionen zu ersetzten.
 
 ### Structure
@@ -336,7 +336,6 @@ Im Verzeichnis `src/sass/` befindet sich der Framework:
 `.. _workfile.scss` Die Arbeitsdatei<br>
 `.. style.scss` Ausgabe<br>
 `.. style-ie8.scss` Ausgabe IE8<br>
-
 
 > Der Name für die Dateien `style.scss` kann abweichen, wenn man beim aktivieren des Toolkits einen anderen Namen vorgegeben hat, ebenso kann es sein das es keine `xxxx-i8.scss` Datei vorhanden ist, wenn die IE8 Kompatibilität abgeschaltet wurde.
 
@@ -426,7 +425,6 @@ $kittn-font-icons: (
 `src/sass/maps/_imagemap.scss`<br>
 `src/sass/maps/_sprite.scss`<br>
 `src/sass/maps/_sprite-retina.scss`
-
 
 Diese Maps werden über die `Grunt` Tasks automatisch erstellt. Dort werden Daten notiert wie die Bild Dimensionen, Dateinamen, bei Sprites wird die Position auf der Map gespeichert.
 
@@ -2352,85 +2350,397 @@ _Einstellungen:_
 `scr/sass/framework/modules/_iconfont.scss`<br>
 
 (f) **Icon**<br>
+_@requires `$kittn-font-icons`_
+
+Bezieht den Content Code aus der Iconfont Map.
+
 ```scss
 // Example
+$kittn-font-icons: (
+  test: '/e023'
+);
+
+.icon {
+  &:before {
+    content: icon(test);
+  }
+}
+
 // Result
+.icon:before {
+  content: "/e023";
+}
 ```
 
 (m) **Iconfont**<br>
+Generiert den Basisstyle für alle Icons.
+
 ```scss
 // Example
+%icon {
+    @include iconfont('iconfont');
+}
+.test {
+  @extend %icon;
+
+  &:before {
+    content: icon(test);
+  }
+}
+
 // Result
+.test {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-family: "iconfont";
+  font-style: normal;
+  font-weight: normal !important;
+  speak: none;
+  text-decoration: inherit;
+  line-height: 1; }
+
+.test:before {
+  content: "/e023"; }
 ```
 
 (m) **Icon-Font-Generator**<br>
+_@requires `$kittn-iconfont`_
+
+Generiert den Basis Icon-Font Style.
+
 ```scss
 // Example
+@include icon-font-generator('iconfont');
+
 // Result
+[class^="f-icon__"]:before,
+[class*=" f-icon__"]:before,
+[data-icon]:before {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-family: "iconfont";
+  font-style: normal;
+  font-weight: normal !important;
+  speak: none;
+  text-decoration: inherit;
+  line-height: 1; }
+
+[data-icon]:before {
+  content: attr(data-icon); }
 ```
 
 (m) **Icon-Generator**<br>
+_@requires `$kittn-font-icons`, `$kittn-iconfont`_
+
+Generiert alle Icons als Klassen.
+
 ```scss
 // Example
+@include icon-generator;
+
 // Result
+.f-icon__test:before {
+  content: "/e023"; }
+
+.f-icon__logo:before {
+  content: "/e024"; }
 ```
 
 (m) **Icon**<br>
+Fügt Icon Inhalte in eine Klasse.
+
 ```scss
 // Example
+%icon {
+  @include iconfont('iconfont');
+}
+
+.test {
+  &:before {
+    @include icon(test,(
+      extend: '%icon'
+    ));
+  }
+}
+
+.lego {
+  &:before {
+    @include icon(logo,(
+      font: 'iconfont'
+    ));
+  }
+}
+
 // Result
+.test:before {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-family: "iconfont";
+  font-style: normal;
+  font-weight: normal !important;
+  speak: none;
+  text-decoration: inherit;
+  line-height: 1; }
+
+.test:before {
+  content: "/e023"; }
+
+.lego:before {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-family: "iconfont";
+  font-style: normal;
+  font-weight: normal !important;
+  speak: none;
+  text-decoration: inherit;
+  line-height: 1;
+  content: "/e024"; }
 ```
 
 (m) **Ext-Icon**<br>
+Erweitert eigene Klassen mit den Iconklassen.
+
 ```scss
 // Example
+@include icon-font-generator('iconfont');
+@include icon-generator();
+
+.box {
+  @include ext-icon(test);
+}
+
 // Result
+[class^="f-icon__"]:before,
+[class*=" f-icon__"]:before,
+[data-icon]:before {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  font-family: "iconfont";
+  font-style: normal;
+  font-weight: normal !important;
+  speak: none;
+  text-decoration: inherit;
+  line-height: 1; }
+
+[data-icon]:before {
+  content: attr(data-icon); }
+
+.f-icon__test:before, .box:before {
+  content: "/e023"; }
+
+.f-icon__logo:before {
+  content: "/e024"; }
 ```
 
 
 #### Images
 `scr/sass/framework/modules/_images.scss`<br>
 
-(m) **GetImageDimensions**<br>
-```scss
-// Example
-// Result
-```
+(m) **_GetImageDimensions**<br>
+_@access private_
+
+Wird für die interne Berechnung der Bilddaten verwendet.
 
 (m) **Image**<br>
-```scss
-// Example
-// Result
-```
+Fügt die Single Images ein. Die erforderlichen Daten werden dabei über die `Gulp` Tasks in die jeweilige Imagemap geschrieben.
 
-(m) **SVGPNG**<br>
+_Einstellungen:_
+- @param  {*}    $image       - Name of the Image
+- @param  {*}    $dimensions  - 'both' = height & width, 'width' = width, 'height' = height
+- @param  {*}    $pos         - The Image Position - can be 'false'
+- @param  {Bool} $retina      - With set on 'true' the retina fallback will be included
+
 ```scss
 // Example
+.box {
+  @include image(blue);
+}
+
+.box-2 {
+  @include image(icon, width);
+}
+
 // Result
+.box {
+  background-image: url("/assets/img/single/blue.png");
+  background-repeat: no-repeat;
+  width: 184px;
+  height: 176px; }
+
+.box-2 {
+  background-image: url("/assets/img/single/icon.png");
+  background-repeat: no-repeat;
+  width: 281px; }
 ```
 
 (m) **Texture**<br>
+Fügt die Texture Images ein.
+
+_Einstellungen:_
+- @param  {*} $image  - Name of the Image
+- @param  {*} $repeat - How the Image would be repeated. `x`: repeat-x, `y`: repeat-y
+- @param  {List|Bool} $pos - The Image Position - can be `false`
+- @param  {Bool} $retina - With set on 'true' the retina fallback will be included
+
 ```scss
 // Example
+.texture {
+  @include texture(pattern);
+}
+.texture-2 {
+  @include texture(pattern, $repeat: x);
+}
+.texture-3 {
+  @include texture(pattern, $repeat: y);
+}
+
 // Result
+.texture {
+  background-image: url("/assets/img/textures/pattern.png");
+}
+.texture-2 {
+  background-image: url("/assets/img/textures/pattern.png");
+  background-repeat: repeat-x;
+  height: 393px;
+}
+.texture-3 {
+  background-image: url("/assets/img/textures/pattern.png");
+  background-repeat: repeat-y;
+  width: 373px;
+}
+```
+
+(m) **SVGPNG**<br>
+Fügt SVG Images ein, integriert dabei auch das Fallback Image.
+
+_Einstellungen:_
+- @param  {*} $image - Name of the Image - the SVG File must be in the Same directory
+- @param  {*} $dimensions  - 'both' = height & width | 'width' = width | 'height' = height
+- @param  {List} $pos - The Image Position - can be 'false'
+
+```scss
+// Example
+.image {
+  @include svgpng(illu);
+}
+
+// Result
+.image {
+  background-image: url("/assets/img/svg/illu.png");
+  background-repeat: no-repeat;
+  width: 1019px;
+  height: 357px;
+}
+.svg .image {
+  background-image: url("/assets/img/svg/illu.svg");
+  -webkit-background-size: 1019px 357px;
+          background-size: 1019px 357px;
+}
 ```
 
 (m) **SVG**<br>
+Für SVG Images ohne Fallback ein.
+
+_Einstellungen:_
+- @param  {*} $image - The Name of the SVG Image
+- @param  {List} $dimensions  - The Dimensions of the Image Container - can be 100%
+- @param  {List} $pos - Native CSS Image Positions
+- @param  {Bool} $repeat - Image Repeat - native CSS Declaration
+
 ```scss
 // Example
+.vector {
+  @include svg(illu)
+}
+.repeat-vector {
+  @include svg(illu, $repeat: repeat-x);
+}
+.resize-vector {
+  @include svg(illu, $dimensions: 40px 30px);
+}
+
 // Result
+.vector {
+  background-image: url("/assets/img/svgonly/illu.svg");
+  background-repeat: no-repeat;
+  -webkit-background-size: 100% 100%;
+          background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.repeat-vector {
+  background-image: url("/assets/img/svgonly/illu.svg");
+  background-repeat: repeat-x;
+  -webkit-background-size: 100% 100%;
+          background-size: 100% 100%;
+  width: 100%;
+  height: 100%;
+}
+
+.resize-vector {
+  background-image: url("/assets/img/svgonly/illu.svg");
+  background-repeat: no-repeat;
+  -webkit-background-size: 40px 30px;
+          background-size: 40px 30px;
+  width: 40px;
+  height: 30px;
+}
 ```
 
 (m) **Sprite-Generator**<br>
-```scss
-// Example
-// Result
-```
+_@access private<br>
+@requires `$kittn-sprite`_
+
+Generiert den SpriteMap Container. Wird automatisch zu geschaltet.
 
 (m) **Sprite**<br>
+Fügt das gewünschte Sprite ein.
+
+_Einstellungen:_
+- @param  {*} $name - Name of the Sprite
+- @param  {Bool} $retina - With set on `true` the retina fallback will be included
+- @param  {*} $dimensions - `both`: height & width, `width`: width, `height`: height
+- @param  {Number} $offset-x - Offset the Background Position on the x axis
+- @param  {Number} $offset-y - Offset the Background Position on the y axis
+- @param  {*} $display - The display mode
+
 ```scss
 // Example
+.sprite {
+  @include sprite(cross);
+}
+
+.sprite-and-retina {
+  @include sprite(cross, $retina: true);
+}
+
 // Result
+.sprite {
+  background-position: 0px 0px;
+  width: 590px;
+  height: 466px;
+  display: inline-block;
+}
+
+.sprite-and-retina {
+  background-position: 0px 0px;
+  width: 590px;
+  height: 466px;
+  display: inline-block;
+}
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .sprite-and-retina {
+    background-position: 0px 0px;
+    -webkit-background-size: 590px 466px;
+            background-size: 590px 466px;
+  }
+}
 ```
 
 
@@ -2823,7 +3133,6 @@ _Einstellungen:_
 #### Pre-Generators
 
 #### Post-Generators
-
 
 ---
 
