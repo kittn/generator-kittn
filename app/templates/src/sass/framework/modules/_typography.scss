@@ -103,3 +103,12 @@
 @mixin get-fontsize($entry) {
   @include fontsize(tw($entry,font-size));
 }
+
+/**
+ * Connect a Element with a established Typostyle
+ *
+ * @param {*} $entry - Key
+ */
+@mixin ext-typo($entry) {
+  @extend .#{$entry};
+}
