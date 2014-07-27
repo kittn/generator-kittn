@@ -3,6 +3,76 @@
 // ===================================================
 
 /**
+ * Get the Named Z-Index from the z-map
+ *
+ * @param   {*}   $layer - The layer to use
+ * @param   {Map} $z-layers ($kittn-zlayer-map) - Connection through Z-Map
+ *
+ * @returns {Number}
+ */
+@function z($layer, $z-layers: $kittn-zlayer-map) {
+  @if not map-has-key($z-layers, $layer) {
+    @warn "No z-index found in $z-layers map for '#{$layer}'. Possible ZLayers: #{map-keys($z-layers)}";
+    @return null;
+  } @else {
+    @return map-get($z-layers, $layer);
+  }
+}
+
+/**
+ * Get the associated Z-Index from the Map,
+ * build the Z-Index
+ *
+ * @param  {*}       $layer - The layer to use
+ * @param  {number}  $offset - Add or substract an offset
+ */
+@mixin z($layer, $offset: 0) {
+
+  // Setup Var
+  $o: 0;
+
+  // Check if Offset is a Number
+  @if type-of($offset) == 'number' {
+    $o: if($offset != 0, round(strip-units($offset)),0);
+  } @else {
+    @warn 'Offset is not a number';
+  }
+
+  // Insert Z-Index
+  z-index: z($layer) + $o;
+}
+
+/**
+ * Gives a Layer a new Z-Index
+ *
+ * @param  {number}   $index    - Z-index
+ * @param  {number}   $offset   - Offset
+ * @param  {string}   $position - Position. Values: 'bool', 'r' relative, 'a' absolute, 'f' fixed
+ */
+@mixin shift($index, $offset: 0, $position: false) {
+
+  // If 'position' is false no position value will be added
+  @if $position != false {
+    @if $position == r {
+      position: relative;
+    }
+    @if $position == a {
+      position: absolute;
+    }
+    @if $position == f {
+      position: fixed;
+    }
+  }
+
+  // If Index is a number set the z-index in free mode
+  @if type-of($index) == 'number' {
+    z-index: $index + $offset;
+  } @else {
+    @include z($index, $offset);
+  }
+}
+
+/**
  * Set the Position for the Position Mixins
  *
  * @access private
@@ -98,7 +168,7 @@
  * @param  {*}  $position - 't' Top, 'b' Bottom, 'l' Left, 'r' Right
  * @param  {*}  $z-index (9999)  - The Z-Index
  */
-@mixin bar($variant, $position, $z: 9999) {
+@mixin bar($variant, $position, $z: z(bar)) {
 
   // Set the position variant
   @if $variant == f {
@@ -158,10 +228,12 @@
  *
  * @access private
  *
- * @param  {*}  $pos - Position Value. Values: 'left', 'center', 'right', 'top', 'middle', 'bottom', 'number', 'bool'
- * @param  {*}  $axis - The Position Axis. Values: 'vert', 'horz'
+ * @param  {*}  $pos - Position Value. Values: `left`, `center`, `right`, `top`, `middle`, `bottom`, `number`, `bool`
+ * @param  {*}  $axis - The Position Axis. Values: `vert`, `horz`
  */
 @function position-translate($pos, $axis) {
+  $result: null;
+
   @if is-number($pos) {
     $result: clamp(strip-units($pos), 0, 100);
 
@@ -277,119 +349,6 @@
   }
 
   margin-left: 0 - ($width / 2);
-}
-
-/**
- * Moving an Element in the Middle and Center
- *
- * @param  {List}  $container - The Width and the Height of the outer Container
- * @param  {List}  $element   - The Width and the Height of the positioned inner Element
- */
-@mixin element-middle($container: 0, $element: 0) {
-
-  $container-height : 0 !default;
-  $container-width  : 0 !default;
-  $element-height   : 0 !default;
-  $element-width    : 0 !default;
-
-  // Setup the Outer Container
-  @if length($container) == 2 {
-    $container-width  : if(unitless(nth($container,1)),nth($container,1) + 0px,nth($container,1));
-    $container-height : if(unitless(nth($container,2)),nth($container,2) + 0px,nth($container,2));
-  }
-
-  @if length($container) == 1 {
-    $container-height : if(unitless($container), $container + 0px, $container);
-  }
-
-  // Setup the inner Element
-  @if length($element) == 2 {
-    $element-width  : clamp(if(unitless(nth($element,1)), nth($element,1) + 0px, nth($element,1)),0,$container-width);
-    $element-height : clamp(if(unitless(nth($element,2)), nth($element,2) + 0px, nth($element,2)),0,$container-height);
-  }
-
-  @if length($element) == 1 {
-    $element-height : clamp(if(unitless($element), $element + 0px, $element),0,$container-height);
-  }
-
-  margin-top: ($container-height - $element-height) / 2;
-
-  @if $element-width > 0 {
-    margin-left : ($container-width - $element-width) / 2;
-    width       : $element-width;
-  }
-
-  height: $element-height;
-}
-
-/**
- * Get the Named Z-Index from the z-map
- *
- * @param   {*}   $layer - The layer to use
- * @param   {Map} $z-layers ($kittn-zlayer-map) - Connection through Z-Map
- *
- * @returns {Number}
- */
-@function z($layer, $z-layers: $kittn-zlayer-map) {
-  @if not map-has-key($z-layers, $layer) {
-    @warn "No z-index found in $z-layers map for '#{$layer}'. Possible ZLayers: #{map-keys($z-layers)}";
-    @return null;
-  } @else {
-    @return map-get($z-layers, $layer);
-  }
-}
-
-/**
- * Get the associated Z-Index from the Map,
- * build the Z-Index
- *
- * @param  {*}       $layer - The layer to use
- * @param  {number}  $offset - Add or substract an offset
- */
-@mixin z($layer, $offset: 0) {
-
-  // Setup Var
-  $o: 0;
-
-  // Check if Offset is a Number
-  @if type-of($offset) == 'number' {
-    $o: if($offset != 0, round(strip-units($offset)),0);
-  } @else {
-    @warn 'Offset is not a number';
-  }
-
-  // Insert Z-Index
-  z-index: z($layer) + $o;
-}
-
-/**
- * Gives a Layer a new Z-Index
- *
- * @param  {number}   $index    - Z-index
- * @param  {number}   $offset   - Offset
- * @param  {string}   $position - Position. Values: 'bool', 'r' relative, 'a' absolute, 'f' fixed
- */
-@mixin shift($index, $offset: 0, $position: false) {
-
-  // If 'position' is false no position value will be added
-  @if $position != false {
-    @if $position == r {
-      position: relative;
-    }
-    @if $position == a {
-      position: absolute;
-    }
-    @if $position == f {
-      position: fixed;
-    }
-  }
-
-  // If Index is a number set the z-index in free mode
-  @if type-of($index) == 'number' {
-    z-index: $index + $offset;
-  } @else {
-    @include z($index, $offset);
-  }
 }
 
 /**
