@@ -2031,7 +2031,6 @@ Definiert die Breite einer Colum.
 (m) **Pixel-Grid**<br>
 Definiert die Breite einer Colum in Pixel.
 
-
 - `size` Spaltenbreite
 - `max` Die maximale Anzahl an Spalten
 - `margin` Seitlicher Abstand
@@ -2070,7 +2069,6 @@ Definiert die Breite einer Colum in Pixel.
 (m) **Grid-Generator**<br>
 Generiert eine definierte Anzahl von Colums
 
-_Einstellungen_
 - `colums` Maximale Colums
 - `select` {bool|list} Hier kann spezifiziert werden welche Colums generiert werden sollen
 - `name` {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
@@ -2390,10 +2388,11 @@ Generiert den Basisstyle für alle Icons.
   font-weight: normal !important;
   speak: none;
   text-decoration: inherit;
-  line-height: 1; }
-
+  line-height: 1;
+}
 .test:before {
-  content: "/e023"; }
+  content: "/e023";
+}
 ```
 
 (m) **Icon-Font-Generator**<br>
@@ -2434,10 +2433,11 @@ Generiert alle Icons als Klassen.
 
 // Result
 .f-icon__test:before {
-  content: "/e023"; }
-
+  content: "/e023";
+}
 .f-icon__logo:before {
-  content: "/e024"; }
+  content: "/e024";
+}
 ```
 
 (m) **Icon**<br>
@@ -2475,11 +2475,11 @@ Fügt Icon Inhalte in eine Klasse.
   font-weight: normal !important;
   speak: none;
   text-decoration: inherit;
-  line-height: 1; }
-
+  line-height: 1;
+}
 .test:before {
-  content: "/e023"; }
-
+  content: "/e023";
+}
 .lego:before {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -2490,7 +2490,8 @@ Fügt Icon Inhalte in eine Klasse.
   speak: none;
   text-decoration: inherit;
   line-height: 1;
-  content: "/e024"; }
+  content: "/e024";
+}
 ```
 
 (m) **Ext-Icon**<br>
@@ -2499,6 +2500,7 @@ Erweitert eigene Klassen mit den Iconklassen.
 ```scss
 // Example
 @include icon-font-generator('iconfont');
+
 @include icon-generator();
 
 .box {
@@ -2551,7 +2553,6 @@ Fügt die Single Images ein. Die erforderlichen Daten werden dabei über die `Gu
 .box {
   @include image(blue);
 }
-
 .box-2 {
   @include image(icon, width);
 }
@@ -2561,12 +2562,13 @@ Fügt die Single Images ein. Die erforderlichen Daten werden dabei über die `Gu
   background-image: url("/assets/img/single/blue.png");
   background-repeat: no-repeat;
   width: 184px;
-  height: 176px; }
-
+  height: 176px;
+}
 .box-2 {
   background-image: url("/assets/img/single/icon.png");
   background-repeat: no-repeat;
-  width: 281px; }
+  width: 281px;
+}
 ```
 
 (m) **Texture**<br>
@@ -2720,8 +2722,7 @@ Fügt das gewünschte Sprite ein.
 @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
   .sprite-and-retina {
     background-position: 0px 0px;
-    -webkit-background-size: 590px 466px;
-            background-size: 590px 466px;
+    background-size: 590px 466px;
   }
 }
 ```
@@ -3538,76 +3539,234 @@ Damit können Element andere Elemente seitlich überlappen.
 }
 ```
 
-
 #### Shorthands
 `scr/sass/framework/modules/_shorthands.scss`<br>
 
+Regulär ist es empfehlenswert die Shorthand Mixins in ein Placeholder Selector zu laden und dann mittels `@extend` weiter zu arbeiten.
+
+```
+// Example
+%clearfix {
+  @include clearfix;
+}
+%center {
+  @include block-center();
+}
+
+.test-1 {
+  @extend %clearfix;
+}
+.colum {
+  @extend %clearfix, %center;
+}
+
+// Result
+.test-1:after, .colum:after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.colum {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+```
+
 (m) **Clearfix**<br>
+Fügt den Clearfix ein.
+
 ```scss
 // Example
+.clearfix {
+  @include clearfix;
+}
+
 // Result
+.clearfix:after {
+  content: '';
+  display: table;
+  clear: both;
+}
 ```
 
 (m) **Center**<br>
+Zentriert ein Element.
+
 ```scss
 // Example
+.center {
+  @include block-center();
+}
+
 // Result
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 ```
 
 (m) **Word-Wrap**<br>
+Bricht lange Wortketten um.
+
 ```scss
 // Example
+.test {
+  @include word-wrap;
+}
+
 // Result
+.test {
+  -ms-word-break: break-all;
+  word-break: break-all;
+  word-break: break-word;
+  -webkit-hyphens: auto;
+  -moz-hyphens: auto;
+  -ms-hyphens: auto;
+  hyphens: auto;
+}
 ```
 
 (m) **Text-Truncate**<br>
+Bricht ebenfalls lange Wortketten um, dieses mal aber mit einer Ellipsis.
+
 ```scss
 // Example
+.test {
+  @include text-truncate;
+}
+
 // Result
+.test {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-wrap: normal;
+}
 ```
 
 (m) **Vertical-Center**<br>
+Positioniert Elemente mittig - das Parent Element muss dafür aber auf `display: table` gestellt werden.
+
 ```scss
 // Example
+.test {
+  @include vertical-center;
+}
+
 // Result
+.test {
+  display: table-cell;
+  vertical-align: middle;
+}
 ```
 
 (m) **Cleartext**<br>
+Versteckt Textelemente.
+
 ```scss
 // Example
+.test {
+  @include cleartext;
+}
+
 // Result
+.test {
+  background-color: transparent;
+  border: 0;
+  color: transparent;
+  font: 0/0 a;
+  text-shadow: none;
+}
 ```
 
 (m) **Cleartext-Complex**<br>
+Versteckt Textelemente.
+
 ```scss
 // Example
+.test {
+  @include cleartext-complex;
+}
+
 // Result
+.test {
+  background-color: transparent;
+  border: 0;
+  overflow: hidden;
+}
+.test:before {
+  content: '';
+  display: block;
+  width: 0;
+  height: 150%;
+}
 ```
 
 (m) **Cleartext-Simpler**<br>
+Versteckt Textelemente.
+
 ```scss
 // Example
+.test {
+  @include cleartext-simpler;
+}
+
 // Result
+.test {
+  text-indent: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+}
 ```
 
 (m) **Decollapse**<br>
+Verhindert das Margins kollabieren.
+
 ```scss
 // Example
+.test {
+  @include decollapse;
+}
+
 // Result
+.test {
+  padding-top: 1px;
+  margin-top: 1px;
+}
 ```
 
 (m) **Performance**<br>
+Aktiviert die GL Beschleunigung.
+
 ```scss
 // Example
+.test {
+  @include performance;
+}
+
 // Result
+.test {
+  transform: translate3d(0, 0, 0);
+}
 ```
 
 (m) **Antialias**<br>
 ```scss
 // Example
-// Result
-```
+.test {
+  @include antialias;
+}
 
+// Result
+.test {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+```
 
 #### Spacer
 `scr/sass/framework/modules/_spacer.scss`<br>
@@ -3790,13 +3949,66 @@ Resetet die vom Spacer Mixin eingestellten Abstände.
 ```
 
 #### Triangle
-`scr/sass/framework/modules/_triangle.scss`<br>
+`scr/sass/framework/modules/_triangle.scss`
 
 (m) **Triangle**<br>
+Generiert Dreiecke
+
+- `color` {color} (#fff) - Farbe des Dreicks
+- `width` {number} (15px) - Breite
+- `height` {number} (15px) - Höhe
+- `angle` {*|number} - Values: `top`, `top left`, `right`, `bottom right`, `bottom`, `bottom left`, `left`, `top left`
 
 ```scss
 // Example
+.triangle-1 {
+  &:before {
+    @include triangle(());
+  }
+}
+.triangle-2 {
+  &:before {
+    @include triangle((
+      color: red,
+      angle: 'right'
+    ));
+  }
+}
+.triangle-3 {
+  &:before {
+    @include triangle((
+      color: #1ec4ff,
+      height: 20px,
+      width: 20px,
+      angle: 45
+    ));
+  }
+}
+
 // Result
+.triangle-1:before {
+  display: block;
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+  border-right-color: #fff;
+  border-width: 7.5px 15px 7.5px 0; }
+
+.triangle-2:before {
+  display: block;
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+  border-left-color: red;
+  border-width: 7.5px 0 7.5px 15px; }
+
+.triangle-3:before {
+  display: block;
+  width: 0;
+  height: 0;
+  border: 0 solid transparent;
+  border-bottom-color: #1ec4ff;
+  border-width: 0 0px 20px 20px; }
 ```
 
 #### Typography
@@ -3834,7 +4046,6 @@ $kittn-typostyles-map: (
 _@requires `$kittn-generate-typostyles`, `$kittn-typostyles-map`_
 
 Generiert die Typostyles.
-
 
 ```scss
 // Example
@@ -3879,7 +4090,7 @@ $kittn-typostyles-map: (
   text-rendering: optimizeLegibility;
   margin-bottom: 0rem;
   color: #636363; }
-  
+
 .small, .supersmall {
   color: red;
   margin-bottom: 20px; }
@@ -3905,30 +4116,92 @@ $kittn-typostyles-map: (
 ```
 
 (m) **Responsive-Fontsizes**<br>
+_@requires `$kittn-breakpoint-map`, `$kittn-activate`, `$kittn-active-responsive-fonts`_
+
+Wird die Fontsize in `rem` definiert, kann man über das Mixin die Fontsize responsive gestalten. Die Globale Größe wird in der `$kittn-breakpoint-map` notiert.
+
+Aktiviert wird das ganze über die `$kittn-active-responsive-fonts` Variable, es muss ein Wert von 0 - 100 eingestellt werden?
+
 ```scss
 // Example
+$kittn-breakpoint-map: (
+  1: (
+    size: 320px,
+    visibility: true,
+    step: true,
+    fontsize: false
+  ),
+  2: (
+    size: 480px,
+    visibility: false,
+    step: false,
+    fontsize: 80
+  ),
+  3: (
+    size: 560px,
+    visibility: false,
+    step: true,
+    fontsize: 90
+  )
+);
+$kittn-active-responsive-fonts: 70;
+
+@include responsive-fontsize($base);
+
 // Result
+html {
+  font-size: 70%;
+}
+@media screen and (min-width: 480px) {
+  html {
+    font-size: 80%;
+  }
+}
+@media screen and (min-width: 560px) {
+  html {
+    font-size: 90%;
+  }
+}
 ```
 
 (m) **Get-Fontsize**<br>
+Übernimmt die Fontsize aus der Map.
+
 ```scss
 // Example
-// Result
-```
+.test {
+  @include get-fontsize(small);
+}
 
+// Result
+.test {
+  font-size: 0.808824rem;
+}
+```
 
 ---
 
 ### Partials
 
 #### Normalize
+`scr/sass/framework/partials/_normalize.scss`
+
+Damit wird die Basiseinstellung der Typo, Font und des Layouts vorgenommen.
 
 #### Tables
+`scr/sass/framework/partials/_tables.scss`
+
+Für vordefinierte Tabellen.
 
 #### Pre-Generators
+`scr/sass/framework/partials/_pre-generators.scss`
+
+Hier mit werden Generatoren geladen die noch vor der `normalize.scss` geladen sein muss.
 
 #### Post-Generators
+`scr/sass/framework/partials/_post-generators.scss`
 
+Hier mit werden Generatoren geladen die nach der `normalize.scss` geladen sein muss.
 
 ---
 
