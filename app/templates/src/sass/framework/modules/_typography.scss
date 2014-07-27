@@ -50,11 +50,11 @@
         }
       }
 
-      @if map-get($entry,margin-bottom) != n {
+      @if map-get($entry,margin-bottom) != false {
         @include marginbottom(map-get($entry,margin-bottom));
       }
 
-      @if map-get($entry,font-weight) != n {
+      @if map-get($entry,font-weight) != false {
         font-weight: map-get($entry,font-weight);
       }
     }

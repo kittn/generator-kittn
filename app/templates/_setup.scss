@@ -267,11 +267,11 @@ $kittn-global-heading: (
 
    - 'Stylename' {*} - Fontstyle Name
     - 'font-size' {Number}
-    - 'line-height' {*|Number} - 'n': off, 'd': line-height: 1, 'c': sass calculated, 'number'
-    - 'margin-bottom' {*|Number} - 'n': off or 'number'
-    - 'font-weight' {*|Number} - 'n': off or 'number'
-    - 'tag' {Bool} - On 'true' it generates also tags, with 'false' only classes
-    - 'extend' {*} - When you want to Extend the Style you can enter here the Extend Classname like '%myclass'
+    - 'line-height' {*|bool| Number} - `d`: line-height = 1, `c`: sass calculated, `number`
+    - 'margin-bottom' {*|Number} - 'number'
+    - 'font-weight' {*|Number} - 'number'
+    - 'tag' {Bool} - On `true` it generates also tags, with 'false' only classes
+    - 'extend' {*} - When you want to Extend the Style you can enter here the Extend Classname like `%myclass`
  *
  * @type Map
  */
@@ -280,7 +280,7 @@ $kittn-typostyles-map: (
     font-size: 36,
     line-height: d,
     margin-bottom: s(0.5),
-    font-weight: n,
+    font-weight: false,
     tag: true,
     extend: '%heading'
   ),
@@ -288,7 +288,7 @@ $kittn-typostyles-map: (
     font-size: 32,
     line-height: c,
     margin-bottom: s(0.5),
-    font-weight: n,
+    font-weight: false,
     tag: true,
     extend: '%heading'
   ),
@@ -296,7 +296,7 @@ $kittn-typostyles-map: (
     font-size: 29,
     line-height: c,
     margin-bottom: s(0.5),
-    font-weight: n,
+    font-weight: false,
     tag: true,
     extend: '%heading'
   ),
@@ -304,7 +304,7 @@ $kittn-typostyles-map: (
     font-size: 25,
     line-height: c,
     margin-bottom: s(0.5),
-    font-weight: n,
+    font-weight: false,
     tag: true,
     extend: '%heading'
   ),
@@ -312,7 +312,7 @@ $kittn-typostyles-map: (
     font-size: 22,
     line-height: c,
     margin-bottom: s(0.5),
-    font-weight: n,
+    font-weight: false,
     tag: true,
     extend: '%heading'
   ),
@@ -320,7 +320,7 @@ $kittn-typostyles-map: (
     font-size: 19,
     line-height: c,
     margin-bottom: s(0.5),
-    font-weight: n,
+    font-weight: false,
     tag: true,
     extend: '%heading'
   )

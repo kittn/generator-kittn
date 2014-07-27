@@ -320,6 +320,8 @@ gulp rebuild-js
 ## Sass Framework
 Das Herzstück des Toolkits besteht aus dem [Sass](http://sass-lang.com) Framework, das Toolkit wurde mehr außen herum gebaut um die fehlenden Funktionen zu ersetzten.
 
+> Um die CSS3 Prefixes braucht man sich nicht zu kümmern, der Autoprefixer wird bei jedem Compile die Prefixes einfügen.
+
 ### Structure
 
 Im Verzeichnis `src/sass/` befindet sich der Framework:
@@ -2625,8 +2627,7 @@ Fügt SVG Images ein, integriert dabei auch das Fallback Image.
 }
 .svg .image {
   background-image: url("/assets/img/svg/illu.svg");
-  -webkit-background-size: 1019px 357px;
-          background-size: 1019px 357px;
+  background-size: 1019px 357px;
 }
 ```
 
@@ -2654,8 +2655,7 @@ Für SVG Images ohne Fallback ein.
 .vector {
   background-image: url("/assets/img/svgonly/illu.svg");
   background-repeat: no-repeat;
-  -webkit-background-size: 100% 100%;
-          background-size: 100% 100%;
+  background-size: 100% 100%;
   width: 100%;
   height: 100%;
 }
@@ -2663,8 +2663,7 @@ Für SVG Images ohne Fallback ein.
 .repeat-vector {
   background-image: url("/assets/img/svgonly/illu.svg");
   background-repeat: repeat-x;
-  -webkit-background-size: 100% 100%;
-          background-size: 100% 100%;
+  background-size: 100% 100%;
   width: 100%;
   height: 100%;
 }
@@ -2672,8 +2671,7 @@ Für SVG Images ohne Fallback ein.
 .resize-vector {
   background-image: url("/assets/img/svgonly/illu.svg");
   background-repeat: no-repeat;
-  -webkit-background-size: 40px 30px;
-          background-size: 40px 30px;
+  background-size: 40px 30px;
   width: 40px;
   height: 30px;
 }
@@ -2737,7 +2735,7 @@ _@requires `$kittn-typo`_
 Rechnet Px in REM um.
 
 - @param {Number} $px - The Size in PX
-- @param {Number} $base - The Base for the 
+- @param {Number} $base - The Base for the
 
 ```scss
 // Example
@@ -2747,7 +2745,7 @@ Rechnet Px in REM um.
 
 // Result
 .test {
-  width: 14.705882rem; 
+  width: 14.705882rem;
 }
 ```
 
@@ -2770,7 +2768,7 @@ Berechnet Größen anhand der Base Line-Height. Die Umberechnung findet aber nur
 // Result
 .test {
   height: 6.176471rem;
-  margin-top: 0.772059rem; 
+  margin-top: 0.772059rem;
 }
 ```
 
@@ -2793,7 +2791,7 @@ Berechnet PX Werte in REM um. Die Umberechnung findet aber nur statt wenn in der
 // Result
 .test {
   height: 1.176471rem;
-  margin-top: 2.352941rem; 
+  margin-top: 2.352941rem;
 }
 ```
 
@@ -2814,7 +2812,7 @@ Berechnet die Größen Dynamisch. Dabei kann die Größe einmal über Lines (ber
 // Result
 .test {
   width: 44.117647rem;
-  margin-top: 3.676471rem; 
+  margin-top: 3.676471rem;
 }
 ```
 
@@ -2831,7 +2829,7 @@ Basiert auf dem `rem` Mixin.
 
 // Result
 .test {
-  line-height: 2.941176rem; 
+  line-height: 2.941176rem;
 }
 ```
 
@@ -2848,7 +2846,7 @@ Basiert auf dem `rem` Mixin.
 
 // Result
 .test {
-  margin-bottom: 1.470588rem; 
+  margin-bottom: 1.470588rem;
 }
 ```
 
@@ -2865,7 +2863,7 @@ Basiert auf dem `rem` Mixin.
 
 // Result
 .test {
-  margin-top: 1.470588rem; 
+  margin-top: 1.470588rem;
 }
 ```
 
@@ -2882,7 +2880,7 @@ Basiert auf dem `rem` Mixin.
 
 // Result
 .test {
-  margin-left: 0.735294rem; 
+  margin-left: 0.735294rem;
 }
 ```
 
@@ -2899,7 +2897,7 @@ Basiert auf dem `rem` Mixin.
 
 // Result
 .test {
-  margin-right: 0.735294rem; 
+  margin-right: 0.735294rem;
 }
 ```
 
@@ -2916,7 +2914,7 @@ Basiert auf dem `rem` Mixin.
 
 // Result
 .test {
-  padding-top: 1.470588rem; 
+  padding-top: 1.470588rem;
 }
 ```
 
@@ -2933,7 +2931,7 @@ Basiert auf dem `rem` Mixin.
 
 // Result
 .test {
-  padding-bottom: 1.470588rem; 
+  padding-bottom: 1.470588rem;
 }
 ```
 
@@ -2950,7 +2948,7 @@ Basiert auf dem `rem` Mixin.
 
 // Result
 .test {
-  padding-left: 0.735294rem; 
+  padding-left: 0.735294rem;
 }
 ```
 
@@ -2967,7 +2965,7 @@ Basiert auf dem `rem` Mixin.
 
 // Result
 .test {
-  padding-right: 0.735294rem; 
+  padding-right: 0.735294rem;
 }
 ```
 
@@ -2983,7 +2981,7 @@ Basiert auf dem `rem` Mixin.
 }#
 // Result
 .test {
-  height: 7.352941rem; 
+  height: 7.352941rem;
 }
 ```
 
@@ -3000,7 +2998,7 @@ Basiert auf dem `rem` Mixin.
 
 // Result
 .test {
-  font-size: 1.176471rem; 
+  font-size: 1.176471rem;
 }
 ```
 
@@ -3023,11 +3021,11 @@ Basiert auf dem `rem` Mixin. Berechnet neben der Fontsize auch die Line-Height
 // Result
 .test {
   font-size: 1.176471rem;
-  line-height: 1.470588rem; 
+  line-height: 1.470588rem;
 }
 .test-2 {
   font-size: 1.176471rem;
-  line-height: 2.352941rem; 
+  line-height: 2.352941rem;
 }
 ```
 
@@ -3037,7 +3035,7 @@ Basiert auf dem `rem` Mixin. Berechnet neben der Fontsize auch die Line-Height
 (m) **Modernizr**<br>
 _@access private_
 
-Über die integrierten Feature-Check Klassen von Modernizr, kann man Fallbacks integrieren. 
+Über die integrierten Feature-Check Klassen von Modernizr, kann man Fallbacks integrieren.
 
 (m) **Yep**<br>
 Wird aktiv bei positiven Feature-Check Klassen.
@@ -3052,8 +3050,7 @@ Wird aktiv bei positiven Feature-Check Klassen.
 
 // Result
 .box-shadow .test {
-  -webkit-box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
-          box-shadow: 0 0 3px rgba(0, 0, 0, 0.5); 
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
 }
 ```
 
@@ -3070,120 +3067,475 @@ Wird aktiv bei negativen Feature-Check Klassen
 
 // Result
 .no-js .test, .no-box-shadow .test {
-  border: 3px solid #ccc; 
+  border: 3px solid #ccc;
 }
 ```
 
-
 #### Positioning
-`scr/sass/framework/modules/_positioning.scss`<br>
-
-(m) **Set-Position**<br>
-```scss
-// Example
-// Result
-```
-
-(m) **Relative**<br>
-```scss
-// Example
-// Result
-```
-
-(m) **Absolute**<br>
-```scss
-// Example
-// Result
-```
-
-(m) **Fixed**<br>
-```scss
-// Example
-// Result
-```
-
-(m) **Static**<br>
-```scss
-// Example
-// Result
-```
-
-(m) **Bar**<br>
-```scss
-// Example
-// Result
-```
-
-(m) **Bar-Top**<br>
-```scss
-// Example
-// Result
-```
-
-(m) **Bar-Bottom**<br>
-```scss
-// Example
-// Result
-```
-
-(m) **Position-Translate**<br>
-```scss
-// Example
-// Result
-```
-
-(m) **Pivot**<br>
-```scss
-// Example
-// Result
-```
-
-(m) **Slide**<br>
-```scss
-// Example
-// Result
-```
-
-(m) **Pivot-Center**<br>
-```scss
-// Example
-// Result
-```
-
-(m) **Absolute-Middle**<br>
-```scss
-// Example
-// Result
-```
-
-(m) **Element-Middle**<br>
-```scss
-// Example
-// Result
-```
+`scr/sass/framework/modules/_positioning.scss`
 
 (f) **Z**<br>
+_@requires `$kittn-zlayer-map`_
+
+Pickt den entsprechenden Z-Index auf der zlayer Map.
+
 ```scss
 // Example
+.z {
+  z-index: z(default);
+}
+
 // Result
+.z {
+  z-index: 10;
+}
 ```
 
 (m) **Z**<br>
+_@requires `$kittn-zlayer-map`_
+
+Pickt den entsprechenden Z-Index von der Map, generiert dabei einen Z-Index den man mit Offset noch manipulieren kann.
+
+- @param {*} $layer - The layer to use
+- @param {number} $offset - Add or substract an offset
+
 ```scss
 // Example
+.z {
+  @include z(default);
+}
+.z-offset {
+  @include z(default, 5);
+}
+.z-negative-offset {
+  @include z(default, -2);
+}
+
 // Result
+.z {
+  z-index: 10;
+}
+.z-offset {
+  z-index: 15;
+}
+.z-negative-offset {
+  z-index: 8;
+}
 ```
 
 (m) **Shift**<br>
+Vergibt dem Element einen Z-Index und bestimmt auch die Positionsart.
+
+- @param {number} $index - Z-index
+- @param {number} $offset - Offset
+- @param {bool|*} $position - Position. Values: `r` relative, `a` absolute, `f` fixed
+
 ```scss
 // Example
+.z-1 {
+  @include shift(10)
+}
+.z-2 {
+  @include shift(10,0,r)
+}
+.z-3 {
+  @include shift(z(default), 4, a);
+}
+
 // Result
+.z-1 {
+  z-index: 10;
+}
+.z-2 {
+  position: relative;
+  z-index: 10;
+}
+.z-3 {
+  position: absolute;
+  z-index: 14;
+}
+```
+
+(m) **Set-Position**<br>
+_@access private_
+
+Stellt die Position für die Position Mixins ein. Für alle Position Mixin gilt:
+- Ein Position Value: `top`
+- Zwei Position Values: `top`, `left`
+- Vier Position Values: `top`, `right`, `bottom`, `left`
+
+Das Mixin wertet Werte wie `0` nicht aus, sie dient nur als Platzhalter. Möchte man die Position auf `0` setzen trägt man `z` für Zero ein.
+
+(m) **Relative**<br>
+Stellt das Element auf `Position: Relative`
+
+```scss
+// Example
+.test-1 {
+  @include relative;
+}
+.test-2 {
+  @include relative(10);
+}
+.test-3 {
+  @include relative(1rem 10 0 4%);
+}
+.test-z {
+  @include relative(1rem z z 4%);
+}
+
+// Result
+.test-1 {
+  position: relative;
+}
+.test-2 {
+  position: relative;
+  top: 10px;
+}
+.test-3 {
+  position: relative;
+  top: 1rem;
+  right: 10px;
+  left: 4%;
+}
+.test-z {
+  position: relative;
+  top: 1rem;
+  right: 0;
+  bottom: 0;
+  left: 4%;
+}
+```
+
+(m) **Absolute**<br>
+Stellt das Element auf `Position: Absolute`
+
+```scss
+// Example
+.test-1 {
+  @include absolute;
+}
+.test-2 {
+  @include absolute(10 2%);
+}
+.test-3 {
+  @include absolute(20 10 z 4%);
+}
+
+// Result
+.test-1 {
+  position: absolute;
+}
+.test-2 {
+  position: absolute;
+  top: 10px;
+  left: 2%;
+}
+.test-3 {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  bottom: 0;
+  left: 4%;
+}
+```
+
+(m) **Fixed**<br>
+Stellt das Element auf `Position: Fixed`
+
+```scss
+// Example
+.test-1 {
+  @include fixed;
+}
+.test-2 {
+  @include fixed(10 2%);
+}
+.test-3 {
+  @include fixed(z z);
+}
+
+// Result
+.test-1 {
+  position: fixed;
+}
+.test-2 {
+  position: fixed;
+  top: 10px;
+  left: 2%;
+}
+.test-3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+```
+
+(m) **Static**<br>
+Restet die Einstellungen der Position Mixins.
+
+```scss
+// Example
+.reset {
+  @include static;
+}
+
+// Result
+.reset {
+  position: static;
+  left: inherit;
+  right: inherit;
+  top: inherit;
+  bottom: inherit;
+}
+```
+
+(m) **Bar**<br>
+Generiert ein Bar Element.
+
+- @param {*} $variant  - `f` for fixed, `a` for absolute
+- @param {*} $position - `t` Top, `b` Bottom, `l` Left, `r` Right
+- @param {*} $z-index - The Z-Index
+
+```scss
+// Example
+.bar-left {
+  @include bar(f, l);
+}
+.bar-top {
+  @include bar(a, t);
+}
+
+// Result
+.bar-left {
+  position: fixed;
+  z-index: 9000;
+  left: 0;
+  top: 0;
+  height: 100%;
+}
+.bar-top {
+  position: absolute;
+  z-index: 9000;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+```
+
+(m) **Bar-Top**<br>
+Generiert ein Bar Element - Top Position.
+
+- @param {value} $z - The Z-Index
+- @param {*} $variant - `f`: fixed, `a`: absolute
+
+```scss
+// Example
+.bar {
+  @include bar-top;
+}
+.bar-2 {
+  @include bar-top($variant: a);
+}
+
+// Result
+.bar {
+  position: fixed;
+  z-index: 9000;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+.bar-2 {
+  position: absolute;
+  z-index: 9000;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+```
+
+(m) **Bar-Bottom**<br>
+Generiert ein Bar Element - Bottom Position.
+
+- @param {value} $z - The Z-Index
+- @param {*} $variant - `f`: fixed, `a`: absolute
+
+```scss
+// Example
+.bar {
+  @include bar-bottom;
+}
+.bar-2 {
+  @include bar-bottom(10, a);
+}
+
+// Result
+.bar {
+  position: fixed;
+  z-index: 9000;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+.bar-2 {
+  position: absolute;
+  z-index: 10;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+```
+
+(m) **Position-Translate**<br>
+_@access private_
+
+Wird für die Beerechnng des `pivot-points` benötigt.
+
+- @param  {*|number|bool}  $pos - Position Value. Values: `left`, `center`, `right`, `top`, `middle`, `bottom`
+- @param  {*}  $axis - The Position Axis. Values: `vert`, `horz`
+
+(m) **Pivot**<br>
+Positioniert den Punkt von dem die weitere Positionierung ausgeht.
+
+- @param {*|number|bool} $vert (middle) - Vertical Position from the Pivot Point. Values: `top` ,`middle` ,`bottom`
+- @param {*|number|bool} $horz (false)  - Horizontal Position from the Pivot Point. Values: `left`, `center`, `right`
+
+```scss
+// Example
+.test-1 {
+  @include pivot(middle);
+}
+.test-2 {
+  @include pivot(middle,center);
+}
+.test-3 {
+  @include pivot(70,center);
+}
+
+// Result
+.test-1 {
+  transform: translate(-50%, 0);
+}
+.test-2 {
+  transform: translate(-50%, -50%);
+}
+.test-3 {
+  transform: translate(-70%, -50%);
+}
+```
+
+(m) **Slide**<br>
+Verschiebt ein Element.
+
+- @param {*|number|bool} $vert (middle) - Vertical Position from the Pivot Point. Values: `top` ,`middle` ,`bottom`
+- @param {*|number|bool} $horz (false)  - Horizontal Position from the Pivot Point. Values: `left`, `center`, `right`
+
+```scss
+// Example
+.slide-1 {
+  @include slide(middle);
+}
+.slide-2 {
+  @include slide(middle,center);
+}
+.slide-3 {
+  @include slide(70,center);
+}
+
+// Result
+.slide-1 {
+  position: absolute;
+  top: 50%;
+}
+.slide-2 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+.slide-3 {
+  position: absolute;
+  top: 70%;
+  left: 50%;
+}
+```
+
+(m) **Pivot-Center**<br>
+Positioniert ein Element in die absolute Mitte.
+
+```scss
+// Example
+.center {
+  @include pivot-center;
+}
+
+// Result
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+```
+
+(m) **Absolute-Middle**<br>
+Definiert die Größe eines Elements und positioniert es mittig. Eignet sich nicht für Elemente die ihre Dimension dynamisch ändern.
+
+- @param  {List}  $element - Width and the Height of the Element
+
+```scss
+// Example
+.middle-1 {
+  @include absolute-middle;
+}
+.middle-2 {
+  @include absolute-middle(100 300);
+}
+
+// Result
+.middle-1 {
+  height: 0px;
+  width: 0px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: 0px;
+  margin-left: 0px;
+}
+.middle-2 {
+  height: 300px;
+  width: 100px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-top: -150px;
+  margin-left: -50px;
+}
 ```
 
 (m) **Overlap**<br>
+Damit können Element andere Elemente seitlich überlappen.
+
+- @param  {list}  $size - The Sidevalues, one value can be used for two sides, two values first for left second for right
+
 ```scss
 // Example
+.overlap-1 {
+  @include overlap(20);
+}
+.overlap-2 {
+  @include overlap(.5rem 10);
+}
+
 // Result
+.overlap-1 {
+  margin-left: -20px;
+  margin-right: -20px;
+}
+.overlap-2 {
+  margin-left: -0.5rem;
+  margin-right: -10px;
+}
 ```
 
 
@@ -3261,35 +3613,181 @@ Wird aktiv bei negativen Feature-Check Klassen
 `scr/sass/framework/modules/_spacer.scss`<br>
 
 (m) **Margin-Padding**<br>
-```scss
-// Example
-// Result
-```
+_@access private_
+
+Berechnet Margin/Padding für die Margin und Padding Mixins.
 
 (m) **Padding**<br>
+Mit dem Mixin kann man Padding in gewohnter Kurzform schreiben, die dann aber in einzelnen Deklarationen ins CSS geschrieben werden.
+
+- @param {Bool|List} $value (false) - It generate all four sides, with different length of values.
+- @param {Bool} $important (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name
+
 ```scss
 // Example
+.padding-1 {
+  @include padding(20);
+}
+.padding-2 {
+  @include padding(20 10);
+}
+.padding-3 {
+  @include padding(20 1rem 0 10);
+}
+
 // Result
+.padding-1 {
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+}
+.padding-2 {
+  padding-top: 20px;
+  padding-right: 10px;
+  padding-bottom: 20px;
+  padding-left: 10px;
+}
+.padding-3 {
+  padding-top: 20px;
+  padding-right: 1rem;
+  padding-bottom: 0px;
+  padding-left: 10px;
+}
 ```
 
 (m) **Margin**<br>
+Mit dem Mixin kann man Margin in gewohnter Kurzform schreiben, die dann aber in einzelnen Deklarationen ins CSS geschrieben werden.
+
+- @param {Bool|List} $value (false) - It generate all four sides, with different length of values.
+- @param {Bool} $important (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name
+
 ```scss
 // Example
+.margin-1 {
+  @include margin(0 10);
+}
+.margin-2 {
+  @include margin(.24rem 10);
+}
+.margin-3 {
+  @include margin(20 10 0 10);
+}
+
 // Result
+.margin-1 {
+  margin-top: 0px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+}
+.margin-2 {
+  margin-top: 0.24rem;
+  margin-right: 10px;
+  margin-bottom: 0.24rem;
+  margin-left: 10px;
+}
+.margin-3 {
+  margin-top: 20px;
+  margin-right: 10px;
+  margin-bottom: 0px;
+  margin-left: 10px;
+}
 ```
 
 (m) **Spacer**<br>
+_@requires `$kittn-global-spacing`_
+
+Berechnet anhand der Global Spacing Unit Abstände.
+
+- @param {List} $options - Spacing Type. `w`: width, `h`: height, `lh`: line-height, `pt`: padding-top, `pb`: padding-bottom, `pl`: padding-left, `pr`: padding-right, `mt`: margin-top, `mb`: margin-bottom, `ml`: margin-left, `mr`: margin-right, `mv`: margin-vertical, `mh`: margin-horizontal, `pv`: padding-vertical, `ph`: padding-horizontal
+- @param {Number}  $lines (1)         - Spacing Multiplicator
+- @param {Bool}    $important (false) - Overwrite Values with !important
+- @param {Number}  $size ($kittn-global-spacing)   - Global Size Value
+
 ```scss
 // Example
+.spacer-1 {
+  @include spacer(h);
+}
+.spacer-2 {
+  @include spacer(w,4);
+}
+.spacer-3 {
+  @include spacer(mt,4,true);
+}
+.spacer-4 {
+  @include spacer(h lh,2);
+}
+.spacer-5 {
+  @include spacer(mv h, .5 3);
+}
+
 // Result
+.spacer-1 {
+  height: 20px;
+}
+.spacer-2 {
+  width: 80px;
+}
+.spacer-3 {
+  margin-top: 80px !important;
+}
+.spacer-4 {
+  height: 40px;
+  line-height: 40px;
+}
+.spacer-5 {
+  margin-left: 10px;
+  margin-right: 10px;
+  height: 60px;
+}
 ```
 
 (m) **Spacer-Reset**<br>
+Resetet die vom Spacer Mixin eingestellten Abstände.
+
+- @param {List} $options - Spacing Type. `w`: width, `h`: height, `lh`: line-height, `pt`: padding-top, `pb`: padding-bottom, `pl`: padding-left, `pr`: padding-right, `mt`: margin-top, `mb`: margin-bottom, `ml`: margin-left, `mr`: margin-right, `mv`: margin-vertical, `mh`: margin-horizontal, `pv`: padding-vertical, `ph`: padding-horizontal
+- @param {Bool} $important (false) - Overwrite Values with !important
+
 ```scss
 // Example
-// Result
-```
+.spacer-1 {
+  @include spacer-reset(h);
+}
+.spacer-2 {
+  @include spacer-reset(w);
+}
+.spacer-3 {
+  @include spacer-reset(mt,true);
+}
+.spacer-4 {
+  @include spacer-reset(h lh);
+}
+.spacer-5 {
+  @include spacer-reset(mv h);
+}
 
+// Result
+.spacer-1 {
+  height: inherit;
+}
+.spacer-2 {
+  width: inherit;
+}
+.spacer-3 {
+  margin-top: inherit !important;
+}
+.spacer-4 {
+  height: inherit;
+  line-height: inherit;
+}
+.spacer-5 {
+  margin-left: inherit;
+  margin-right: inherit;
+  height: inherit;
+}
+```
 
 #### Triangle
 `scr/sass/framework/modules/_triangle.scss`<br>
@@ -3301,21 +3799,109 @@ Wird aktiv bei negativen Feature-Check Klassen
 // Result
 ```
 
-
-
 #### Typography
 `scr/sass/framework/modules/_typography.scss`<br>
 
 (f) **TW**<br>
+_@requires `$kittn-typostyles-map`_
+
+Wird anhand des Style Keywords Werte aus der Typostyle Map übertragen.
+
 ```scss
 // Example
+$kittn-typostyles-map: (
+  mega: (
+    font-size: 36,
+    line-height: d,
+    margin-bottom: 20,
+    font-weight: n,
+    tag: false,
+    extend: '%heading'
+  )
+);
+
+.test {
+  font-size: tw(mega, font-size) + 0px;
+}
+
 // Result
+.test {
+  font-size: 36px;
+}
 ```
 
 (m) **Typogenerator**<br>
+_@requires `$kittn-generate-typostyles`, `$kittn-typostyles-map`_
+
+Generiert die Typostyles.
+
+
 ```scss
 // Example
+$kittn-typostyles-map: (
+  h1: (
+    font-size: 36,
+    line-height: d,
+    margin-bottom: false,
+    font-weight: false,
+    tag: true,
+    extend: '%heading'
+  ),
+  h2: (
+    font-size: 32,
+    line-height: d,
+    margin-bottom: 14,
+    font-weight: false,
+    tag: true,
+    extend: '%heading'
+  ),
+  small: (
+    font-size: 11,
+    line-height: d,
+    margin-bottom: false,
+    font-weight: false,
+    tag: false,
+    extend: '%extra'
+  ),
+  supersmall: (
+    font-size: 10,
+    line-height: c,
+    margin-bottom: 10,
+    font-weight: false,
+    tag: false,
+    extend: '%extra'
+  )
+);
+
+@include typogenerator;
 // Result
+.h1, h1, .h2, h2 {
+  text-rendering: optimizeLegibility;
+  margin-bottom: 0rem;
+  color: #636363; }
+  
+.small, .supersmall {
+  color: red;
+  margin-bottom: 20px; }
+
+.h1, h1 {
+  font-size: 2.647059rem;
+  line-height: 1; }
+
+.h2, h2 {
+  font-size: 2.352941rem;
+  line-height: 1;
+  margin-bottom: 1.029412rem; }
+
+.small {
+  font-size: 0.808824rem;
+  line-height: 1; }
+
+.supersmall {
+  font-size: 0.735294rem;
+  line-height: 0.911765rem;
+  margin-bottom: 0.735294rem; }
+
 ```
 
 (m) **Responsive-Fontsizes**<br>
