@@ -15,7 +15,8 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1><img src="http://i.imgur.com/2MtKGwj.jpg" alt="Generator-Kittn"></h1>
+        <h1>Generator-kittn</h1>
+        <p>The Yeoman Kittn Generator</p>
 
         <p class="view"><a href="https://github.com/gisu/generator-kittn">View the Project on GitHub <small>gisu/generator-kittn</small></a></p>
 
@@ -27,10 +28,316 @@
         </ul>
       </header>
       <section>
+        <p><img src="http://i.imgur.com/2MtKGwj.jpg" alt=""></p>
 
-<p>(English Translation comes in the next Days)</p>
 
-<h2>
+
+<ul>
+<li>Einleitung</li>
+<li>Abhängigkeiten
+
+<ul>
+<li>Environments</li>
+<li>Extensions &amp; Compiler
+
+<ul>
+<li>Sass</li>
+<li>Jade</li>
+<li>Gulp</li>
+<li>Git</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Install Kittn</li>
+<li>Free the kittn
+
+<ul>
+<li>Tasks</li>
+</ul>
+</li>
+<li>Folder Build</li>
+<li>Image Handling</li>
+<li>Build HTML with Jade</li>
+<li>Working with JS Files
+
+<ul>
+<li>Internal Files</li>
+<li>External Files</li>
+</ul>
+</li>
+<li>Sass Framework
+
+<ul>
+<li>Structure</li>
+<li>Workfile</li>
+<li>Loader</li>
+<li>Setup</li>
+<li>Maps
+
+<ul>
+<li>Fontstacks</li>
+<li>Iconmap</li>
+<li>Imagemaps</li>
+<li>Connectmap</li>
+<li>ZMap</li>
+</ul>
+</li>
+<li>Helper
+
+<ul>
+<li>BEM
+
+<ul>
+<li>element (m)</li>
+<li>modifier (m)</li>
+<li>chainroot (m)</li>
+<li>chain (m)</li>
+</ul>
+</li>
+<li>Connect
+
+<ul>
+<li>connect-Gen (m)</li>
+<li>connect-Yield (m)</li>
+<li>connect (m)</li>
+</ul>
+</li>
+<li>Fonts
+
+<ul>
+<li>ff (f)</li>
+<li>font-family (m)</li>
+<li>fontface (m)</li>
+<li>fontface-generator (m)</li>
+</ul>
+</li>
+<li>Helper
+
+<ul>
+<li>strip-units (f)</li>
+<li>unit-check (f)</li>
+<li>calc (m)</li>
+<li>clamp (f)</li>
+<li>cp (f)</li>
+<li>spacer (f)</li>
+<li>s (f)</li>
+</ul>
+</li>
+<li>Typechecks
+
+<ul>
+<li>is-true (f)</li>
+<li>is-map (f)</li>
+<li>is-list (f)</li>
+<li>is-number (f)</li>
+<li>is-string (f)</li>
+<li>is-not-string (f)</li>
+<li>is-nested (f)</li>
+<li>map-filled (f)</li>
+</ul>
+</li>
+<li>Jacket</li>
+<li>Sassylists</li>
+<li>Debug</li>
+</ul>
+</li>
+<li>Modules
+
+<ul>
+<li>Breakpoints
+
+<ul>
+<li>bp (f)</li>
+<li>break (m)</li>
+<li>eq (m)</li>
+<li>visibility (m)</li>
+</ul>
+</li>
+<li>Colors
+
+<ul>
+<li>tint (f)</li>
+<li>shade (f)</li>
+<li>luma (f)</li>
+<li>luma-gte (f)</li>
+<li>luma-lte (f)</li>
+<li>luma-diff (f)</li>
+<li><em>color (m)</em></li>
+<li>get-c (m)</li>
+<li>color (m)</li>
+<li>get-bc (m)</li>
+<li>background-color (m)</li>
+<li>colorgenerator (m)</li>
+<li>ext-c (m)</li>
+<li>ext-bc (m)</li>
+</ul>
+</li>
+<li>Dimensions
+
+<ul>
+<li>size (m)</li>
+<li>align-height (m)</li>
+<li>align-fontsize (m)</li>
+<li>center (m)</li>
+<li>perfect-circle (m)</li>
+<li>ratio (m)</li>
+<li>unratio (m)</li>
+<li>tighten-up (m)</li>
+<li>text-middle (m)</li>
+</ul>
+</li>
+<li>Grid
+
+<ul>
+<li>grid-size (f)</li>
+<li>grid-adaptive (m)</li>
+<li>grid-container (m)</li>
+<li>grid-row (m)</li>
+<li>grid-colum (m)</li>
+<li>grid-size (m)</li>
+<li>pixel-grid (m)</li>
+<li>grid-generator (m)</li>
+<li>grid-devide (m)</li>
+<li>grid-offset (m)</li>
+<li>grid-offset-generator (m)</li>
+<li>grid-pushpull (m)</li>
+<li>grid-pushpull-generator (m)</li>
+<li>grid-normalizer (m)</li>
+</ul>
+</li>
+<li>Iconfont
+
+<ul>
+<li>icon (f)</li>
+<li>iconfont (m)</li>
+<li>icon-font-generator (m)</li>
+<li>icon-generator (m)</li>
+<li>icon (m)</li>
+<li>ext-icon (m)</li>
+</ul>
+</li>
+<li>Images
+
+<ul>
+<li>_getImageDimensions (m)</li>
+<li>image (m)</li>
+<li>texture (m)</li>
+<li>svgpng (m)</li>
+<li>svg (m)</li>
+<li>sprite-generator (m)</li>
+<li>sprite (m)</li>
+</ul>
+</li>
+<li>Lines
+
+<ul>
+<li>rem (f)</li>
+<li>remsize (m)</li>
+<li>pxsize (m)</li>
+<li>rem (m)</li>
+<li>lineheight (m)</li>
+<li>marginbottom (m)</li>
+<li>margintop (m)</li>
+<li>marginleft (m)</li>
+<li>marginright (m)</li>
+<li>paddingtop (m)</li>
+<li>paddingbottom (m)</li>
+<li>paddingleft (m)</li>
+<li>paddingright (m)</li>
+<li>height (m)</li>
+<li>fontsize (m)</li>
+<li>fontcalc (m)</li>
+</ul>
+</li>
+<li>Modernizr
+
+<ul>
+<li>Modernizr (m)</li>
+<li>yep (m)</li>
+<li>nope (m)</li>
+</ul>
+</li>
+<li>Positioning
+
+<ul>
+<li>z (f)</li>
+<li>z (m)</li>
+<li>shift (m)</li>
+<li>set-position (m)</li>
+<li>relative (m)</li>
+<li>absolute (m)</li>
+<li>fixed (m)</li>
+<li>static (m)</li>
+<li>bar (m)</li>
+<li>bar-top (m)</li>
+<li>bar-bottom (m)</li>
+<li>position-translate (m)</li>
+<li>pivot (m)</li>
+<li>slide (m)</li>
+<li>pivot-center (m)</li>
+<li>absolute-middle (m)</li>
+<li>overlap (m)</li>
+</ul>
+</li>
+<li>Shorthands
+
+<ul>
+<li>clearfix (m)</li>
+<li>block-center (m)</li>
+<li>word-wrap (m)</li>
+<li>text-truncate (m)</li>
+<li>vertical-center (m)</li>
+<li>cleartext (m)</li>
+<li>cleartext-complex (m)</li>
+<li>cleartext-simpler (m)</li>
+<li>decollapse (m)</li>
+<li>performance (m)</li>
+<li>antialias (m)</li>
+</ul>
+</li>
+<li>Spacer
+
+<ul>
+<li>margin-padding (m)</li>
+<li>padding (m)</li>
+<li>margin (m)</li>
+<li>spacer (m)</li>
+<li>Spacer-Reset (m)</li>
+</ul>
+</li>
+<li>Triangle
+
+<ul>
+<li>Triangle (m)</li>
+</ul>
+</li>
+<li>Typography
+
+<ul>
+<li>tw (f)</li>
+<li>typogenerator (m)</li>
+<li>responsive-fontsizes (m)</li>
+<li>get-fontsize (m)</li>
+<li>ext-typo (m)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Partials
+
+<ul>
+<li>Normalize</li>
+<li>Tables</li>
+<li>Pre-Generators</li>
+<li>Post-Generators</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Special Thanks to</li>
+<li>License</li>
+</ul><h2>
 <a name="einleitung" class="anchor" href="#einleitung"><span class="octicon octicon-link"></span></a>Einleitung</h2>
 
 <p>„Kittn“ ist ein Toolkit das vorwiegend beim Aufbau von Frontends unterstützen soll. Wer nach einer bunten Mischung aus vorgefertigten Elementen sucht, so wie man es von Bootstrap und Co gewohnt ist, wird mit Kittn nicht glücklich werden. Hier werden vielmehr die Methoden angeboten um solche Elemente auf einem einfachen Weg zu Bilden und zu erweitern.</p>
@@ -139,8 +446,8 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 
 <p>Nach dem die Installation abgeschlossen ist, wird das Projekt <strong>initialisiert</strong>.</p>
 
-<pre><code>gulp init
-</code></pre>
+<div class="highlight highlight-bash"><pre>gulp init
+</pre></div>
 
 <p>Beim Initialisieren werden unterschiedliche Dateien aus dem <code>src</code> Verzeichnis in das Verteilerverzeichnis <code>dist</code> kopiert. Zusätzlich werden JS Files kombiniert, Bilddaten werden verteilt, HTML und CSS wird Kompiliert.</p>
 
@@ -376,16 +683,14 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <hr><h3>
 <a name="loader" class="anchor" href="#loader"><span class="octicon octicon-link"></span></a>Loader</h3>
 
-<pre><code>src/sass/_loader.scss
-</code></pre>
+<p><code>file: src/sass/_loader.scss</code></p>
 
 <p>Mit der <code>_loader.scss</code> Datei werden alle Dateien geladen, die benötigt werden. Die Reihenfolge ist dabei schon fest vorgegeben. Sollte auch nicht mehr geändert werden.</p>
 
 <hr><h3>
 <a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h3>
 
-<pre><code>src/sass/_setup.scss
-</code></pre>
+<p><code>file: src/sass/_setup.scss</code></p>
 
 <p>Fast alle Einstellungen lassen sich über <code>_setup.scss</code> verändern und erweitern. Arbeiten wir uns einmal durch.</p>
 
@@ -399,14 +704,14 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h4>
 <a name="fontstacks" class="anchor" href="#fontstacks"><span class="octicon octicon-link"></span></a>Fontstacks</h4>
 
-<p><code>src/sass/maps/_fontstacks.scss</code></p>
+<p><code>file: src/sass/maps/_fontstacks.scss</code></p>
 
 <p>Fonts die über die Font-Family Mixins eingefügt werden, können auf die Fontstacks zugreifen. In der Map sind die gängisten Kombinationen enthalten.</p>
 
 <h4>
 <a name="iconmap" class="anchor" href="#iconmap"><span class="octicon octicon-link"></span></a>Iconmap</h4>
 
-<p><code>src/sass/maps/_iconfontlist.scss</code></p>
+<p><code>file: src/sass/maps/_iconfontlist.scss</code></p>
 
 <p>Alle Icons einer Iconfont werden in diese Map eingetragen - über die Iconfont Mixins werden daraus dann wieder Klassen generiert.</p>
 
@@ -423,7 +728,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h4>
 <a name="imagemaps" class="anchor" href="#imagemaps"><span class="octicon octicon-link"></span></a>Imagemaps</h4>
 
-<p><code>src/sass/maps/_imagemap.scss</code><br><code>src/sass/maps/_sprite.scss</code><br><code>src/sass/maps/_sprite-retina.scss</code></p>
+<p><code>file: src/sass/maps/_imagemap.scss</code><br><code>file: src/sass/maps/_sprite.scss</code><br><code>file: src/sass/maps/_sprite-retina.scss</code></p>
 
 <p>Diese Maps werden über die <code>Grunt</code> Tasks automatisch erstellt. Dort werden Daten notiert wie die Bild Dimensionen, Dateinamen, bei Sprites wird die Position auf der Map gespeichert.</p>
 
@@ -432,7 +737,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h4>
 <a name="connectmap" class="anchor" href="#connectmap"><span class="octicon octicon-link"></span></a>Connectmap</h4>
 
-<p><code>src/sass/maps/_connectmap.scss</code></p>
+<p><code>file: src/sass/maps/_connectmap.scss</code></p>
 
 <p>In die Connectmap können repeatable Styles eingetragen werden. Die Map wird dann über Mixins eingelesen womit dann Silent Placeholder generiert werden. Diese können dann mit <code>@extend</code> verbunden werden, alternativ kann man den Inhalt auch direkt importiert werden.</p>
 
@@ -448,9 +753,9 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h4>
 <a name="zmap" class="anchor" href="#zmap"><span class="octicon octicon-link"></span></a>ZMap</h4>
 
-<p><code>src/sass/maps/_zmap.scss</code></p>
+<p><code>file: src/sass/maps/_zmap.scss</code></p>
 
-<p>Die unterschiedlichen ZIndexes werden auf der Map notiert.</p>
+<p>Die unterschiedlichen Z-Indexes werden auf der Map notiert.</p>
 
 <div class="highlight highlight-scss"><pre><span class="nv">$kittn-zlayer-map</span><span class="o">:</span> <span class="p">(</span>
   <span class="s1">'</span><span class="s2">default'</span><span class="o">:</span> <span class="mi">10</span>
@@ -463,16 +768,22 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h4>
 <a name="bem" class="anchor" href="#bem"><span class="octicon octicon-link"></span></a>BEM</h4>
 
-<p><code>scr/sass/framework/helper/_bem.scss</code><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-bem</code></em></p>
+<p><code>file: scr/sass/framework/helper/_bem.scss</code></p>
 
 <p>Diese BEM Mixins verwenden die in <code>$kittn-bem</code> eingestellten Prefixes. Ob man diese Mixins verwendet oder nativ seine Selektoren schreiben, bleibt dem Developer überlassen.</p>
 
-<p>(m) <strong>Element</strong><br>
-Build a BEM Element</p>
+<h5>
+<a name="element-m" class="anchor" href="#element-m"><span class="octicon octicon-link"></span></a>element (m)</h5>
 
-<p><em><a href="https://github.com/param" class="user-mention">@param</a>  {string}  $name - Selector name</em></p>
+<p>Build a BEM Element, will add the defined BEM Prefixes.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-bem</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$name</code> - Selector name</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.box</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> element</span><span class="p">(</span><span class="n">element</span><span class="p">)</span> <span class="p">{</span>
     <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">the Element'</span><span class="p">;</span>
@@ -485,13 +796,20 @@ Build a BEM Element</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Modifier</strong><br>
-Build a BEM Modifier, with extend functionality</p>
+<h5>
+<a name="modifier-m" class="anchor" href="#modifier-m"><span class="octicon octicon-link"></span></a>modifier (m)</h5>
 
-<p><em><a href="https://github.com/param" class="user-mention">@param</a>  {*}      $name           - The selector name<br>
-<a href="https://github.com/param" class="user-mention">@param</a>  {bool}   $extend (false) - If the Modifier need to be extended with parent</em></p>
+<p>Build a BEM Modifier, with an optional extend functionality</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-bem</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$name</code> - The selector name</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {bool} <code>$extend</code> (false) - If the Modifier need to be extended with parent</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.box</span> <span class="p">{</span>
   <span class="na">height</span><span class="o">:</span> <span class="mi">50</span><span class="kt">px</span><span class="p">;</span>
   <span class="na">width</span><span class="o">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
@@ -526,8 +844,10 @@ Build a BEM Modifier, with extend functionality</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Chainroot</strong><br>
-Setup the Root Element for the following chained Modifers</p>
+<h5>
+<a name="chainroot-m" class="anchor" href="#chainroot-m"><span class="octicon octicon-link"></span></a>chainroot (m)</h5>
+
+<p>Setup the Root Element for the chained Modifers. Must be included in a Selector.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -542,12 +862,18 @@ Setup the Root Element for the following chained Modifers</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Chain</strong><br>
-Chain the Modifiers</p>
+<h5>
+<a name="chain-m" class="anchor" href="#chain-m"><span class="octicon octicon-link"></span></a>chain (m)</h5>
 
-<p><em><a href="https://github.com/param" class="user-mention">@param</a>  {string} $name - Selector name, only the name</em></p>
+<p>Chain the Modifiers in a more simple way.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-bem</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {string} <code>$name</code> - Selector name</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> chainroot</span> <span class="p">{</span>
     <span class="na">font-size</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
@@ -582,21 +908,47 @@ Chain the Modifiers</p>
 <h4>
 <a name="connect" class="anchor" href="#connect"><span class="octicon octicon-link"></span></a>Connect</h4>
 
-<p><code>scr/sass/framework/helper/_connect.scss</code><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-connect-map</code></em></p>
+<p><code>file: scr/sass/framework/helper/_connect.scss</code></p>
 
 <p>Über die Connect Mixins ist es möglich Styles vorzudefienieren und diese Styles dann entweder mittels <code>@extend</code> zu verbinden oder den Style direkt in den Selektor zu laden (z.B. wenn man sich in einem MQ aufhält).</p>
 
 <p>Wenn in der <code>$kittn-connect-map</code> Map Styles definiert wurden, werden Silent Selectors generiert.</p>
 
-<p>(m) <strong>Connect-Gen</strong><br><em><a href="https://github.com/access" class="user-mention">@access</a> private</em></p>
+<h5>
+<a name="connect-gen-m" class="anchor" href="#connect-gen-m"><span class="octicon octicon-link"></span></a>connect-Gen (m)</h5>
 
 <p>Damit werden die Selectoren verknüpft oder 'ausgeladen'.</p>
 
-<p>(m) <strong>Connect-Yield</strong><br><em><a href="https://github.com/access" class="user-mention">@access</a> private</em></p>
+<ul>
+<li>
+<a href="https://github.com/access" class="user-mention">@access</a> <code>private</code>
+</li>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-connect-map</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {list} <code>$key</code> - Tageted Styles, can be more than one</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {bool} <code>$extend</code> (true) - On <code>false</code> the Style will be directly yielded in the selector.</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {map} <code>$map</code> ($kittn-connect-map) - Connect Map</li>
+</ul><h5>
+<a name="connect-yield-m" class="anchor" href="#connect-yield-m"><span class="octicon octicon-link"></span></a>connect-Yield (m)</h5>
 
 <p>Das Mixin generiert aus den Elementen der <code>$kittn-connect-map</code> Map, Placeholder Selectors. Die dann mittels dem <code>connect</code> Mixin mit bestehenden Klassen verbunden werden.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Map</span>
+<ul>
+<li>
+<a href="https://github.com/access" class="user-mention">@access</a> <code>private</code>
+</li>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-connect-map</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {map} <code>$map</code> ($kittn-connect-map) - Connect Map</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Map</span>
+<span class="c1">// file: src/sass/maps/connectmap.scss</span>
+
 <span class="nv">$kittn-connect-map</span><span class="o">:</span> <span class="p">(</span>
   <span class="no">size</span><span class="o">:</span> <span class="p">(</span>
     <span class="no">height</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="o">,</span>
@@ -607,8 +959,9 @@ Chain the Modifiers</p>
     <span class="no">background-color</span><span class="o">:</span> <span class="mh">#000</span>
   <span class="p">)</span>
 <span class="p">);</span>
+</pre></div>
 
-<span class="c1">// Example</span>
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="k">@include</span><span class="nd"> connect-yield</span><span class="p">();</span>
 
 <span class="c1">// Result</span>
@@ -622,10 +975,22 @@ Chain the Modifiers</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Connect</strong><br>
-Mit dem Connect Mixin können bestehende Elemente mit den Placeholder entweder verbunden werden, oder der Style kann in das Element direkt integriert werden.</p>
+<h5>
+<a name="connect-m" class="anchor" href="#connect-m"><span class="octicon octicon-link"></span></a>connect (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Mit dem Connect Mixin können bestehende Elemente mit den Placeholder entweder verbunden werden, oder der Style kann in das Element direkt integriert werden.</p>
+
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-connect-map</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {list} <code>$key</code> - Tageted Styles, can be more than one</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {bool} <code>$extend</code> (true) - On <code>false</code> the Style will be directly yielded in the selector.</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {map} <code>$map</code> ($kittn-connect-map) - Connect Map</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.one-connect</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> connect</span><span class="p">(</span><span class="no">size</span><span class="p">);</span>
 <span class="p">}</span>
@@ -658,11 +1023,20 @@ Mit dem Connect Mixin können bestehende Elemente mit den Placeholder entweder v
 
 <p><code>scr/sass/framework/helper/_fonts.scss</code><br></p>
 
-<p>(f) <strong>ff</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-fontstack-map</code></em></p>
+<h5>
+<a name="ff-f" class="anchor" href="#ff-f"><span class="octicon octicon-link"></span></a>ff (f)</h5>
 
-<p>Mittels der FF Function kann man sich einen Fontstack einladen, zusätzlich kann man eigene Font Familys anhängen.</p>
+<p>Mittels der <code>ff</code> Funktion kann man sich einen Fontstack aus der Map herauspicken und einfügen, zusätzlich kann man eigene Font Families anhängen.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-fontstack-map</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$family</code> - FontStack Family</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {argList} <code>$append</code> - The Fonts that need to be prepended</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.font</span> <span class="p">{</span>
   <span class="na">font-family</span><span class="o">:</span> <span class="nf">ff</span><span class="p">(</span><span class="s1">'</span><span class="s2">helvetica'</span><span class="p">);</span>
 <span class="p">}</span>
@@ -679,10 +1053,20 @@ Mit dem Connect Mixin können bestehende Elemente mit den Placeholder entweder v
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Font-Family</strong><br>
-Ist mehr ein Alias der FF Funktion, dieses mal als Mixin.</p>
+<h5>
+<a name="font-family-m" class="anchor" href="#font-family-m"><span class="octicon octicon-link"></span></a>font-family (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Ist mehr ein Alias der FF Funktion, dieses mal als Mixin.</p>
+
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-fontstack-map</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$family</code> - FontStack Family</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {argList} <code>$append</code> - The Fonts that need to be prepended</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.font</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> font-family</span><span class="p">(</span><span class="s1">'</span><span class="s2">helvetica'</span><span class="p">);</span>
 <span class="p">}</span>
@@ -699,11 +1083,26 @@ Ist mehr ein Alias der FF Funktion, dieses mal als Mixin.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>FontFace</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-directorys</code></em></p>
+<h5>
+<a name="fontface-m" class="anchor" href="#fontface-m"><span class="octicon octicon-link"></span></a>fontface (m)</h5>
 
-<p>Das Mixin generiert die Fontfaces</p>
+<p>Das Mixin generiert die Fontfaces, fügt bei Bedarf noch einen zusätzlichen SVG Fontstack ein - der auf Windows Plattformen für besseres Fontrendering sorgt (Firefox, Chrome)</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Examples</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-directorys</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$filename</code> - The Filename of the Fontname</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$fontname</code> - The Desired Fontname</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$fontweight</code> (normal) - Fontweight</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$fontstyle</code> (normal) - Fontstyle</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {bool} <code>$svgoption</code> (true) - Activate the addition route to the SVG Font</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Examples</span>
 <span class="k">@include</span><span class="nd"> fontface</span><span class="p">(</span><span class="s1">'</span><span class="s2">own-font'</span><span class="o">,</span> <span class="nv">$svgoption</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="p">);</span>
 
 <span class="k">@include</span><span class="nd"> fontface</span><span class="p">(</span><span class="s1">'</span><span class="s2">34923234font.com'</span><span class="o">,</span> <span class="s1">'</span><span class="s2">bettername'</span><span class="o">,</span> <span class="nv">$svgoption</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="p">);</span>
@@ -744,12 +1143,22 @@ Ist mehr ein Alias der FF Funktion, dieses mal als Mixin.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Fontface-Generator</strong><br>
-Der Generator generiert über die <code>$kittn-fontface-map</code> Map eine Reihe von Fontfaces. Der Generator steht fast am Anfang, Fontfaces werden im CSS immer an erster Stelle implementiert.</p>
+<h5>
+<a name="fontface-generator-m" class="anchor" href="#fontface-generator-m"><span class="octicon octicon-link"></span></a>fontface-generator (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Der Generator generiert über die <code>$kittn-fontface-map</code> Map eine Reihe von Fontfaces. Der Generator steht fast am Anfang, Fontfaces werden im CSS immer an erster Stelle implementiert.</p>
+
+<ul>
+<li>
+<a href="https://github.com/access" class="user-mention">@access</a> <code>private</code>
+</li>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-fontface-map</code>
+</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Map</span>
+<span class="c1">// file: src/sass/setup.scss</span>
+
 <span class="nv">$kittn-fontface-map</span><span class="o">:</span> <span class="p">(</span>
-  <span class="c1">// EXAMPLE</span>
   <span class="s1">'</span><span class="s2">ownfont'</span><span class="o">:</span> <span class="p">(</span>
     <span class="n">filename</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span>
     <span class="n">weight</span><span class="o">:</span> <span class="no">normal</span><span class="o">,</span>
@@ -757,6 +1166,10 @@ Der Generator generiert über die <code>$kittn-fontface-map</code> Map eine Reih
     <span class="n">svgoption</span><span class="o">:</span> <span class="n-Pseudo">false</span>
   <span class="p">)</span>
 <span class="p">);</span>
+</pre></div>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="k">@include</span><span class="nd"> fontface-generator</span><span class="p">();</span>
 
 <span class="c1">// Result</span>
 <span class="k">@font-face</span> <span class="p">{</span>
@@ -771,12 +1184,18 @@ Der Generator generiert über die <code>$kittn-fontface-map</code> Map eine Reih
 <h4>
 <a name="helper-1" class="anchor" href="#helper-1"><span class="octicon octicon-link"></span></a>Helper</h4>
 
-<p><code>scr/sass/framework/helper/_helper.scss</code><br></p>
+<p><code>file: scr/sass/framework/helper/_helper.scss</code></p>
 
-<p>(f) <strong>Strip-Units</strong><br>
-Entfernt die Units von Values</p>
+<h5>
+<a name="strip-units-f" class="anchor" href="#strip-units-f"><span class="octicon octicon-link"></span></a>strip-units (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Entfernt die Units von Values</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$number</code> - Value</li>
+<li>@returns {Number}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$size</span><span class="o">:</span> <span class="mi">20</span><span class="kt">px</span><span class="p">;</span>
 
 <span class="nc">.test</span> <span class="p">{</span>
@@ -789,10 +1208,19 @@ Entfernt die Units von Values</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(f) <strong>Unit-Check</strong><br>
-Hängt die Default Unit an Values</p>
+<h5>
+<a name="unit-check-f" class="anchor" href="#unit-check-f"><span class="octicon octicon-link"></span></a>unit-check (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Fügt die default Unit an Unitless Values an.</p>
+
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-default-unit</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$number</code> - Value</li>
+<li>@returns {Number}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$size</span><span class="o">:</span> <span class="mi">20</span><span class="p">;</span>
 
 <span class="nc">.test</span> <span class="p">{</span>
@@ -805,10 +1233,17 @@ Hängt die Default Unit an Values</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Calc</strong><br>
-Über das Mixin kann man den CSS Calc verwenden.</p>
+<h5>
+<a name="calc-m" class="anchor" href="#calc-m"><span class="octicon octicon-link"></span></a>calc (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Um die CSS Calc Funktion Browserüberbreifend zu verwenden (weil in diesem Fall der Autoprefixer nicht aktiv wird), behilft man sich mit dem Mixin.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$property</code> - Property that calculated</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$expression</code> - Formula (need to be quoted)</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> calc</span><span class="p">(</span><span class="no">width</span><span class="o">,</span> <span class="s1">'</span><span class="s2">10% + 20px'</span><span class="p">);</span>
   <span class="k">@include</span><span class="nd"> calc</span><span class="p">(</span><span class="no">height</span><span class="o">,</span> <span class="s1">'</span><span class="s2">20px + 0.5rem'</span><span class="p">);</span>
@@ -821,10 +1256,20 @@ Hängt die Default Unit an Values</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(f) <strong>Clamp</strong><br>
-Mit dieser Funktion begrenzt man Zahlenwerte.</p>
+<h5>
+<a name="clamp-f" class="anchor" href="#clamp-f"><span class="octicon octicon-link"></span></a>clamp (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Mit dieser Funktion begrenzt man Zahlenwerte.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$value</code> - The Value that need to be clamped</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$min</code> - The posible minimal value</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$max</code> - The possible max Value</li>
+<li>@returns {Number} - Clamped Value</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$height</span><span class="o">:</span> <span class="mi">200</span><span class="p">;</span>
 <span class="nv">$width</span><span class="o">:</span> <span class="mi">23</span><span class="p">;</span>
 
@@ -841,15 +1286,25 @@ Mit dieser Funktion begrenzt man Zahlenwerte.</p>
 
 </pre></div>
 
-<p>(f) <strong>CP Colorpicker</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code></em></p>
+<h5>
+<a name="cp-f" class="anchor" href="#cp-f"><span class="octicon octicon-link"></span></a>cp (f)</h5>
 
-<p>Über den Colorpicker greift man auf die Color Map zu.</p>
+<p>Der Colorpicker ist mit der Color Map (<code>$kittn-color-map</code>) verbunden und holt damit die entsprechenden Color Values.</p>
 
 <blockquote>
 <p>Die Keywords der Farben müssen gequotet notiert werden.</p>
 </blockquote>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$target</code> - Desired color</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {map} <code>$map</code> - Color Map</li>
+<li>@returns {Color}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.color</span> <span class="p">{</span>
   <span class="na">color</span><span class="o">:</span> <span class="nf">cp</span><span class="p">(</span><span class="s1">'</span><span class="s2">primary'</span><span class="p">);</span>
   <span class="na">background-color</span><span class="o">:</span> <span class="nf">cp</span><span class="p">(</span><span class="s1">'</span><span class="s2">black'</span><span class="p">);</span>
@@ -862,11 +1317,23 @@ Mit dieser Funktion begrenzt man Zahlenwerte.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Spacer</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-global-spacing</code></em></p>
+<h5>
+<a name="spacer-f" class="anchor" href="#spacer-f"><span class="octicon octicon-link"></span></a>spacer (f)</h5>
 
-<p>Das Spacermixin generiert anhand der Global Spacing Unit Größen.</p>
+<p>Das Spacer-Mixin generiert anhand der Global Spacing Unit Größen.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-global-spacing</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$lines</code> - Multiplicator for Spacing</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$hard</code> (false) - For including an <code>!important</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> ($kittn-global-spacing) - Connection to the Base Spacing</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.box</span> <span class="p">{</span>
   <span class="na">height</span><span class="o">:</span> <span class="nf">spacer</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
   <span class="na">width</span><span class="o">:</span> <span class="nf">spacer</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
@@ -881,11 +1348,25 @@ Mit dieser Funktion begrenzt man Zahlenwerte.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(f) <strong>S</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-global-spacing</code></em></p>
+<h5>
+<a name="s-f" class="anchor" href="#s-f"><span class="octicon octicon-link"></span></a>s (f)</h5>
 
 <p>Selbiges wie oben, mit dem Unterschied das diese Funktion per Default keine Units integriert. Wird häufig für interne Mixins verwendet.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-global-spacing</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$lines</code> - Multiplicator for Spacing</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$imp</code> (false) - For including an !important</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$u</code> (false) - Unit</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> ($kittn-global-spacing) - Connection to the Base Spacing</li>
+<li>@returns {Number}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.box</span> <span class="p">{</span>
   <span class="na">height</span><span class="o">:</span> <span class="nf">s</span><span class="p">(</span><span class="mi">2</span><span class="o">,</span> <span class="nv">$u</span><span class="o">:</span> <span class="n">r</span><span class="p">);</span>
   <span class="na">width</span><span class="o">:</span> <span class="nf">s</span><span class="p">(</span><span class="mi">1</span><span class="o">,</span> <span class="nv">$u</span><span class="o">:</span> <span class="n">p</span><span class="p">);</span>
@@ -905,12 +1386,18 @@ Mit dieser Funktion begrenzt man Zahlenwerte.</p>
 <h4>
 <a name="typechecks" class="anchor" href="#typechecks"><span class="octicon octicon-link"></span></a>Typechecks</h4>
 
-<p><code>scr/sass/framework/helper/_typechecks.scss</code><br></p>
+<p><code>file: scr/sass/framework/helper/_typechecks.scss</code></p>
 
-<p>(f) <strong>Is-True</strong><br>
-Prüft ob ein Wert übergeben wurde</p>
+<h5>
+<a name="is-true-f" class="anchor" href="#is-true-f"><span class="octicon octicon-link"></span></a>is-true (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Prüft ob ein Wert übergeben wurde</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$value</code> - Value to check</li>
+<li>@returns {Bool}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$check</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
 
 <span class="nc">.test</span> <span class="p">{</span>
@@ -925,10 +1412,16 @@ Prüft ob ein Wert übergeben wurde</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(f) <strong>Is-Map</strong><br>
-Prüft ob es sich um eine Map handelt.</p>
+<h5>
+<a name="is-map-f" class="anchor" href="#is-map-f"><span class="octicon octicon-link"></span></a>is-map (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Prüft ob es sich um eine Map handelt.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$value</code> - Value to check</li>
+<li>@returns {Bool}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$check</span><span class="o">:</span> <span class="p">(</span>
   <span class="mi">1</span><span class="o">:</span> <span class="s1">'</span><span class="s2">hello'</span>
 <span class="p">);</span>
@@ -945,10 +1438,16 @@ Prüft ob es sich um eine Map handelt.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(f) <strong>Is-List</strong><br>
-Prüft ob es sich um eine Liste handelt.</p>
+<h5>
+<a name="is-list-f" class="anchor" href="#is-list-f"><span class="octicon octicon-link"></span></a>is-list (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Prüft ob es sich um eine Liste handelt.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$value</code> - Value to check</li>
+<li>@returns {Bool}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$check</span><span class="o">:</span> <span class="s1">'</span><span class="s2">hello'</span> <span class="s1">'</span><span class="s2">welcome'</span> <span class="s1">'</span><span class="s2">to'</span><span class="p">;</span>
 
 <span class="nc">.test</span> <span class="p">{</span>
@@ -963,10 +1462,16 @@ Prüft ob es sich um eine Liste handelt.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(f) <strong>Is-Number</strong><br>
-Prüft ob es sich um eine Nummer handelt.</p>
+<h5>
+<a name="is-number-f" class="anchor" href="#is-number-f"><span class="octicon octicon-link"></span></a>is-number (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Prüft ob es sich um eine Nummer handelt.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$value</code> - Value to check</li>
+<li>@returns {Bool}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$check</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
 
 <span class="nc">.test</span> <span class="p">{</span>
@@ -981,10 +1486,16 @@ Prüft ob es sich um eine Nummer handelt.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(f) <strong>Is-String</strong><br>
-Prüft ob es sich um einen String handelt.</p>
+<h5>
+<a name="is-string-f" class="anchor" href="#is-string-f"><span class="octicon octicon-link"></span></a>is-string (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Prüft ob es sich um einen String handelt.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$value</code> - Value to check</li>
+<li>@returns {Bool}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$check</span><span class="o">:</span> <span class="s1">'</span><span class="s2">hello'</span><span class="p">;</span>
 
 <span class="nc">.test</span> <span class="p">{</span>
@@ -999,10 +1510,16 @@ Prüft ob es sich um einen String handelt.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(f) <strong>Is-Not-String</strong><br>
-Prüft ob es sich <strong>nicht</strong> um einen String handelt.</p>
+<h5>
+<a name="is-not-string-f" class="anchor" href="#is-not-string-f"><span class="octicon octicon-link"></span></a>is-not-string (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Prüft ob es sich <strong>nicht</strong> um einen String handelt.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$value</code> - Value to check</li>
+<li>@returns {Bool}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$check</span><span class="o">:</span> <span class="mi">1</span><span class="p">;</span>
 
 <span class="nc">.test</span> <span class="p">{</span>
@@ -1017,10 +1534,14 @@ Prüft ob es sich <strong>nicht</strong> um einen String handelt.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(f) <strong>Is-Nested</strong><br>
-Prüft ob der Selektor verschachtelt wurde.</p>
+<h5>
+<a name="is-nested-f" class="anchor" href="#is-nested-f"><span class="octicon octicon-link"></span></a>is-nested (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Prüft ob der Selektor verschachtelt wurde.</p>
+
+<ul>
+<li>@returns {Bool}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@if</span> <span class="nf">is-nested</span><span class="p">()</span> <span class="p">{</span>
     <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">True'</span><span class="p">;</span>
@@ -1041,10 +1562,16 @@ Prüft ob der Selektor verschachtelt wurde.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(f) <strong>Map-Filled</strong><br>
-Überprüft ob die Map gefüllt wurde.</p>
+<h5>
+<a name="map-filled-f" class="anchor" href="#map-filled-f"><span class="octicon octicon-link"></span></a>map-filled (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Überprüft ob die Map gefüllt wurde.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$value</code> - Value to check</li>
+<li>@returns {Bool}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$test-1</span><span class="o">:</span> <span class="p">();</span>
 <span class="nv">$test-2</span><span class="o">:</span> <span class="p">(</span>
   <span class="mi">1</span><span class="o">:</span> <span class="mi">2</span><span class="o">,</span>
@@ -1071,14 +1598,14 @@ Prüft ob der Selektor verschachtelt wurde.</p>
 <h4>
 <a name="jacket" class="anchor" href="#jacket"><span class="octicon octicon-link"></span></a>Jacket</h4>
 
-<p><code>scr/sass/framework/helper/_jacket.scss</code><br></p>
+<p><code>file: scr/sass/framework/helper/_jacket.scss</code></p>
 
 <p>Nähere <a href="https://github.com/Team-Sass/jacket">Informationen</a></p>
 
 <h4>
 <a name="sassylists" class="anchor" href="#sassylists"><span class="octicon octicon-link"></span></a>Sassylists</h4>
 
-<p><code>scr/sass/framework/helper/_sassylists.scss</code><br></p>
+<p><code>file: scr/sass/framework/helper/_sassylists.scss</code></p>
 
 <p>Da <code>Kittn</code> nur ein Bruchteil der Funktionen von Hugo Giraudels <a href="http://sassylists.com/">sassylists</a> benötigt, ist die Library hier in gekürzter Form integriert.</p>
 
@@ -1098,30 +1625,38 @@ Prüft ob der Selektor verschachtelt wurde.</p>
 </ul><h4>
 <a name="debug" class="anchor" href="#debug"><span class="octicon octicon-link"></span></a>Debug</h4>
 
-<p><code>scr/sass/framework/helper/_debug.scss</code><br></p>
-
-<p><em><a href="https://github.com/requires" class="user-mention">@requires</a> '$kittn-activate'</em></p>
+<p><code>file: scr/sass/framework/helper/_debug.scss</code></p>
 
 <p>Bei Aktivieren werden mögliche Fehler im CSS visuell hervorgehoben.</p>
 
+<p><code>rot</code> = Fehler<br><code>gelb</code> = Zu Überprüfen</p>
+
 <ul>
 <li>
-<code>rot</code> = Fehler</li>
-<li>
-<code>gelb</code> = Zu Überprüfen</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> '$kittn-activate'</li>
 </ul><hr><h3>
 <a name="modules" class="anchor" href="#modules"><span class="octicon octicon-link"></span></a>Modules</h3>
 
 <h4>
 <a name="breakpoints" class="anchor" href="#breakpoints"><span class="octicon octicon-link"></span></a>Breakpoints</h4>
 
-<p><code>scr/sass/framework/modules/_breakpoints.scss</code><br></p>
+<p><code>scr/sass/framework/modules/_breakpoints.scss</code></p>
 
-<p>(f) <strong>BP</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> '$kittn-breakpoint-map'</em></p>
+<h5>
+<a name="bp-f" class="anchor" href="#bp-f"><span class="octicon octicon-link"></span></a>bp (f)</h5>
 
 <p>Wählt anhand des Breakpoint-Key, die entsprechende Größe aus der Breakpoint-Map.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-breakpoint-map</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$target</code> - The required Breakpoint</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$entrys</code> ($kittn-breakpoint-map) - Connection to the Breakpoint Map</li>
+<li>@returns {Number}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="na">content</span><span class="o">:</span> <span class="nf">bp</span><span class="p">(</span><span class="mi">1</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1132,11 +1667,22 @@ Prüft ob der Selektor verschachtelt wurde.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Break</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> '$kittn-breakpoint-map'</em></p>
+<h5>
+<a name="break-m" class="anchor" href="#break-m"><span class="octicon octicon-link"></span></a>break (m)</h5>
 
 <p>Generiert MediaQueries. Wenn Mobile First aktiviert wurde (<code>$kittn-activate</code>), arbeiten die MQs per Default immer mit <code>min</code> Werten. Im Mode <code>between</code> wird das Mixin die zwei Größen zudem immer immer aufsteigend Sortieren.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-breakpoint-map</code>, <code>$kittn-activate</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$target</code> - Required Breakpoint</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$mode</code> - Media Query Mode. Values: <code>between</code>, <code>max</code>, <code>min</code>, <code>auto</code> (default - setup with mobile-first:true/false)</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$list</code> ($kittn-breakpoint-map) - Connection to the Breakpoint Map</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="na">height</span><span class="o">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
 
@@ -1191,10 +1737,15 @@ Prüft ob der Selektor verschachtelt wurde.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>EQ</strong><br>
-Mixin für die <a href="https://github.com/snugug/eq.js">ElementQueries</a> von Sam Richard</p>
+<h5>
+<a name="eq-m" class="anchor" href="#eq-m"><span class="octicon octicon-link"></span></a>eq (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Mixin für das <a href="https://github.com/snugug/eq.js">ElementQueries</a> Script, von Sam Richard.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {argList} $states - The Different Querie Types</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> eq</span><span class="p">(</span><span class="s1">'</span><span class="s2">small'</span><span class="o">,</span> <span class="s1">'</span><span class="s2">medium'</span><span class="o">,</span> <span class="s1">'</span><span class="s2">large'</span><span class="p">)</span> <span class="p">{</span>
     <span class="na">color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
@@ -1223,10 +1774,16 @@ Mixin für die <a href="https://github.com/snugug/eq.js">ElementQueries</a> von 
 <span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
 </pre></div>
 
-<p>(m) <strong>Visibility</strong><br>
-Generiert Visibilty/Hidden Classes basierend auf der <code>$kittn-breakpoint-map</code> Map. Es werden dabei aber nur Classen generiert wenn diese in der Map mit <code>visibility: true</code> eingetragen wurden.</p>
+<h5>
+<a name="visibility-m" class="anchor" href="#visibility-m"><span class="octicon octicon-link"></span></a>visibility (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Map</span>
+<p>Generiert Visibilty/Hidden Classes basierend auf der <code>$kittn-breakpoint-map</code> Map. Es werden dabei aber nur Classen generiert wenn diese in der Map mit <code>visibility: true</code> eingetragen wurden.</p>
+
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-breakpoint-map</code>
+</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Map</span>
 <span class="nv">$kittn-breakpoint-map</span><span class="o">:</span> <span class="p">(</span>
   <span class="mi">1</span><span class="o">:</span> <span class="p">(</span>
     <span class="no">size</span><span class="o">:</span> <span class="mi">320</span><span class="kt">px</span><span class="o">,</span>
@@ -1241,13 +1798,15 @@ Generiert Visibilty/Hidden Classes basierend auf der <code>$kittn-breakpoint-map
     <span class="n">fontsize</span><span class="o">:</span> <span class="mi">80</span>
   <span class="p">)</span>
 <span class="p">);</span>
+</pre></div>
 
-<span class="c1">// Example</span>
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="k">@include</span><span class="nd"> visibility</span><span class="p">;</span>
 
 <span class="c1">// Result</span>
 <span class="nc">.hidden-to--1</span> <span class="p">{</span>
-  <span class="na">display</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span> <span class="p">}</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+<span class="p">}</span>
 <span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">max-width</span><span class="nd">:</span> <span class="nt">321px</span><span class="o">)</span> <span class="p">{</span>
   <span class="nc">.hidden-to--1</span> <span class="p">{</span>
     <span class="na">display</span><span class="o">:</span> <span class="no">inherit</span><span class="p">;</span>
@@ -1267,7 +1826,8 @@ Generiert Visibilty/Hidden Classes basierend auf der <code>$kittn-breakpoint-map
 <span class="p">}</span>
 
 <span class="nc">.visible-from--1</span> <span class="p">{</span>
-  <span class="na">display</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span> <span class="p">}</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+<span class="p">}</span>
 <span class="k">@media</span> <span class="nt">screen</span> <span class="nt">and</span> <span class="o">(</span><span class="nt">min-width</span><span class="nd">:</span> <span class="nt">320px</span><span class="o">)</span> <span class="p">{</span>
   <span class="nc">.visible-from--1</span> <span class="p">{</span>
     <span class="na">display</span><span class="o">:</span> <span class="no">inherit</span><span class="p">;</span>
@@ -1280,10 +1840,20 @@ Generiert Visibilty/Hidden Classes basierend auf der <code>$kittn-breakpoint-map
 
 <p><code>scr/sass/framework/modules/_color.scss</code><br></p>
 
-<p>(f) <strong>Tint</strong><br>
-Mischt eine Farbe mit Weiß</p>
+<h5>
+<a name="tint-f" class="anchor" href="#tint-f"><span class="octicon octicon-link"></span></a>tint (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Mischt eine Farbe mit Weiß</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Color} <code>$color</code> - The Color value</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$amount</code> - The Mix Value</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {color} <code>$tint-color</code> (#fff) - Mix Color</li>
+<li>@returns {Color}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.color</span> <span class="p">{</span>
   <span class="na">color</span><span class="o">:</span> <span class="nf">tint</span><span class="p">(</span><span class="mh">#ff0000</span><span class="o">,</span><span class="mi">20</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1294,10 +1864,20 @@ Mischt eine Farbe mit Weiß</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(f) <strong>Shade</strong><br>
-Mischt eine Farbe mit Schwarz</p>
+<h5>
+<a name="shade-f" class="anchor" href="#shade-f"><span class="octicon octicon-link"></span></a>shade (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Mischt eine Farbe mit Schwarz</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Color} <code>$color</code> - The Color value</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$amount</code> - The Mix Value</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {color} <code>$shade-color</code> (#000) - Mix Color</li>
+<li>@returns {Color}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.color</span> <span class="p">{</span>
   <span class="na">color</span><span class="o">:</span> <span class="nf">shade</span><span class="p">(</span><span class="mh">#ff0000</span><span class="o">,</span><span class="mi">20</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1308,10 +1888,16 @@ Mischt eine Farbe mit Schwarz</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(f) <strong>Luma</strong><br>
-Berechnet die Helligkeit einer Farbe  </p>
+<h5>
+<a name="luma-f" class="anchor" href="#luma-f"><span class="octicon octicon-link"></span></a>luma (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Berechnet die Helligkeit einer Farbe.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Color} <code>$color</code> - Color Value</li>
+<li>@returns {Number}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$color</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
 
 <span class="nc">.color</span> <span class="p">{</span>
@@ -1324,10 +1910,18 @@ Berechnet die Helligkeit einer Farbe  </p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(f) <strong>Luma-GTE</strong><br>
-Liefert <code>true</code> zurück wenn Farbe 1 heller ist als Farbe 2</p>
+<h5>
+<a name="luma-gte-f" class="anchor" href="#luma-gte-f"><span class="octicon octicon-link"></span></a>luma-gte (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Liefert <code>true</code> zurück wenn Farbe 1 heller ist als Farbe 2</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Color} <code>$color1</code> - Color Value</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Color} <code>$color2</code> - Color Value</li>
+<li>@returns {Bool}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$color-1</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
 <span class="nv">$color-2</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
 
@@ -1343,10 +1937,18 @@ Liefert <code>true</code> zurück wenn Farbe 1 heller ist als Farbe 2</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(f) <strong>Luma-LTE</strong><br>
-Liefert <code>true</code> zurück wenn Farbe 1 kleiner ist als Farbe 2</p>
+<h5>
+<a name="luma-lte-f" class="anchor" href="#luma-lte-f"><span class="octicon octicon-link"></span></a>luma-lte (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Liefert <code>true</code> zurück wenn Farbe 1 kleiner ist als Farbe 2</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Color} <code>$color1</code> - Color Value</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Color} <code>$color2</code> - Color Value</li>
+<li>@returns {Bool}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$color-1</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
 <span class="nv">$color-2</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
 
@@ -1355,14 +1957,20 @@ Liefert <code>true</code> zurück wenn Farbe 1 kleiner ist als Farbe 2</p>
     <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">true'</span>
   <span class="p">}</span>
 <span class="p">}</span>
-
-<span class="c1">// Result</span>
 </pre></div>
 
-<p>(f) <strong>Luma-DIFF</strong><br>
-Berechnet die Differenz zwischen zwischen zwei Farbwerten.</p>
+<h5>
+<a name="luma-diff-f" class="anchor" href="#luma-diff-f"><span class="octicon octicon-link"></span></a>luma-diff (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Berechnet die Differenz zwischen zwischen zwei Farbwerten.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Color} <code>$color1</code> - Color Value</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Color} <code>$color2</code> - Color Value</li>
+<li>@returns {Bool}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$color-1</span><span class="o">:</span> <span class="nb">red</span><span class="p">;</span>
 <span class="nv">$color-2</span><span class="o">:</span> <span class="nb">blue</span><span class="p">;</span>
 
@@ -1376,12 +1984,27 @@ Berechnet die Differenz zwischen zwischen zwei Farbwerten.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>_Color</strong><br><em><a href="https://github.com/access" class="user-mention">@access</a> private<br>
-<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code></em></p>
+<h5>
+<a name="color-m" class="anchor" href="#color-m"><span class="octicon octicon-link"></span></a><em>color (m)</em>
+</h5>
 
 <p>Zieht Werte aus der Color Map. In dem Mixin ist ebenso ein Fallback für IE integriert - wenn Farben Opacity Werte aufweisen.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/access" class="user-mention">@access</a> private</li>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$target</code> - Color Key from Map</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$attrib</code> (color) - The Color Attribute</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$imp</code> (false) - For !important setting</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$map</code> (stylecolors) - Color Map</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.color</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> _color</span><span class="p">(</span><span class="s1">'</span><span class="s2">primary'</span><span class="p">);</span>
   <span class="k">@include</span><span class="nd"> _color</span><span class="p">(</span><span class="s1">'</span><span class="s2">black'</span><span class="o">,</span> <span class="no">background-color</span><span class="p">);</span>
@@ -1394,11 +2017,20 @@ Berechnet die Differenz zwischen zwischen zwei Farbwerten.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Get-C</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code></em></p>
+<h5>
+<a name="get-c-m" class="anchor" href="#get-c-m"><span class="octicon octicon-link"></span></a>get-c (m)</h5>
 
 <p>Generiert auf dem gewählten Farbwert die Textfarbe.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$target</code> - The Color Key</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$hard</code>- For !important setting</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.color</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> get-c</span><span class="p">(</span><span class="s1">'</span><span class="s2">primary'</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1409,14 +2041,25 @@ Berechnet die Differenz zwischen zwischen zwei Farbwerten.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Color</strong><br>
-Alias Mixin von <code>get-c</code></p>
+<h5>
+<a name="color-m-1" class="anchor" href="#color-m-1"><span class="octicon octicon-link"></span></a>color (m)</h5>
 
-<p>(m) <strong>Get-BC</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code></em></p>
+<p>Alias Mixin von <code>get-c</code></p>
+
+<h5>
+<a name="get-bc-m" class="anchor" href="#get-bc-m"><span class="octicon octicon-link"></span></a>get-bc (m)</h5>
 
 <p>Generiert aus dem gewählten Farbwert die Hintergrundfarbe</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$target</code> - The Color Key</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$hard</code>- For !important setting</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.color</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> get-bc</span><span class="p">(</span><span class="s1">'</span><span class="s2">primary'</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1427,23 +2070,25 @@ Alias Mixin von <code>get-c</code></p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Background-Color</strong><br>
-Alias Mixin von <code>get-bc</code></p>
+<h5>
+<a name="background-color-m" class="anchor" href="#background-color-m"><span class="octicon octicon-link"></span></a>background-color (m)</h5>
 
-<p>(m) <strong>Colorgenerator</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code>, <code>$kittn-color-generator</code></em></p>
+<p>Alias Mixin von <code>get-bc</code></p>
+
+<h5>
+<a name="colorgenerator-m" class="anchor" href="#colorgenerator-m"><span class="octicon octicon-link"></span></a>colorgenerator (m)</h5>
 
 <p>Generiert aus der <code>$kittn-color-map</code> Map Farbklassen, entweder <code>silent</code> oder als Klasse. In der <code>$kittn-color-generator</code> findet man die erforderlichen Einstellungen.</p>
 
-<p>Über den <code>type</code> bestimmt man die Art der ColorPlaceholder:</p>
-
 <ul>
 <li>
-<code>c</code> Color</li>
+<a href="https://github.com/access" class="user-mention">@access</a> private</li>
 <li>
-<code>b</code> Background-Color</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code>, <code>$kittn-color-generator</code>
+</li>
 <li>
-<code>bc</code> Background-Color &amp; Color</li>
-</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<a href="https://github.com/type" class="user-mention">@type</a> {Map} <code>$colors</code> - The Desired Map</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Map</span>
 <span class="nv">$kittn-color-map</span><span class="o">:</span> <span class="p">(</span>
   <span class="s1">'</span><span class="s2">primary'</span><span class="o">:</span> <span class="p">(</span>
     <span class="no">color</span><span class="o">:</span> <span class="mh">#f29300</span><span class="o">,</span>
@@ -1456,7 +2101,18 @@ Alias Mixin von <code>get-bc</code></p>
     <span class="n">type</span><span class="o">:</span> <span class="n">bc</span>
   <span class="p">)</span>
 <span class="p">);</span>
+</pre></div>
 
+<p>Mit <code>type</code> bestimmt man die Art der ColorPlaceholder:</p>
+
+<ul>
+<li>
+<code>c</code> Color</li>
+<li>
+<code>b</code> Background-Color</li>
+<li>
+<code>bc</code> Background-Color &amp; Color</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="k">@include</span><span class="nd"> colorgenerator</span><span class="p">();</span>
 
 <span class="c1">// Result</span>
@@ -1474,10 +2130,18 @@ Alias Mixin von <code>get-bc</code></p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Ext-C</strong><br>
-Verbindet Elemente mit der gewählten Farbe (<code>color</code>) - der Colorgenerator muss dafür aber die ColorPlaceholder generiert haben, ansonsten lädt das Mixin die Farbe direkt in das Element.</p>
+<h5>
+<a name="ext-c-m" class="anchor" href="#ext-c-m"><span class="octicon octicon-link"></span></a>ext-c (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Verbindet Elemente mit der gewählten Farbe (<code>color</code>) - der Colorgenerator muss dafür aber die ColorPlaceholder generiert haben, ansonsten lädt das Mixin die Farbe direkt in das Element.</p>
+
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-generator</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$name</code> - Color Key</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.first</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> ext-c</span><span class="p">(</span><span class="s1">'</span><span class="s2">primary'</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1491,10 +2155,18 @@ Verbindet Elemente mit der gewählten Farbe (<code>color</code>) - der Colorgene
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Ext-BC</strong><br>
-Verbindet Elemente mit der gewählten Farbe (<code>background-color</code>) - der Colorgenerator muss dafür aber die ColorPlaceholder generiert haben, ansonsten lädt das Mixin die Farbe direkt in das Element.</p>
+<h5>
+<a name="ext-bc-m" class="anchor" href="#ext-bc-m"><span class="octicon octicon-link"></span></a>ext-bc (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Verbindet Elemente mit der gewählten Farbe (<code>background-color</code>) - der Colorgenerator muss dafür aber die ColorPlaceholder generiert haben, ansonsten lädt das Mixin die Farbe direkt in das Element.</p>
+
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-generator</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$name</code> - Color Key</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.first</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> ext-bc</span><span class="p">(</span><span class="s1">'</span><span class="s2">primary'</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1511,12 +2183,19 @@ Verbindet Elemente mit der gewählten Farbe (<code>background-color</code>) - de
 <h4>
 <a name="dimensions" class="anchor" href="#dimensions"><span class="octicon octicon-link"></span></a>Dimensions</h4>
 
-<p><code>scr/sass/framework/modules/_dimensions.scss</code><br></p>
+<p><code>file: scr/sass/framework/modules/_dimensions.scss</code><br></p>
 
-<p>(m) <strong>Size</strong><br>
-Integriert Breite und Höhe.</p>
+<h5>
+<a name="size-m" class="anchor" href="#size-m"><span class="octicon octicon-link"></span></a>size (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Implementiert die Dimensionen eines Elements.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$size</code> - Size can be includes with a Single Value (square) or with two value 'width' &amp; 'height'</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$lineheight</code> (false) - On 'true' lineheight will be set to the same $size, otherwise use a Number</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.square</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> size</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1551,10 +2230,17 @@ Integriert Breite und Höhe.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Align-Height</strong><br>
-Höhe und Lineheight einfach einfügen.</p>
+<h5>
+<a name="align-height-m" class="anchor" href="#align-height-m"><span class="octicon octicon-link"></span></a>align-height (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Shorthand um Höhe und Line-Height über ein Value zu übermitteln.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$height</code> - Heightvalue</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$factor</code> - The multiply factor</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.height</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> align-height</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1573,10 +2259,17 @@ Höhe und Lineheight einfach einfügen.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Align-Fontsize</strong><br>
-Align Fontsize und Lineheight</p>
+<h5>
+<a name="align-fontsize-m" class="anchor" href="#align-fontsize-m"><span class="octicon octicon-link"></span></a>align-fontsize (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Shorthand um Font-Size und Line-Height über ein Value zu übermitteln.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - Fontsize</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$factor</code> - The multiply factor</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.font</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> align-fontsize</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1595,10 +2288,15 @@ Align Fontsize und Lineheight</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Center</strong><br>
-Zentriert, Mittelt und gibt einem Element eine Größe</p>
+<h5>
+<a name="center-m" class="anchor" href="#center-m"><span class="octicon octicon-link"></span></a>center (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Zentriert, mittelt und gibt einem Element eine Größe</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$size</code> - Dimensions</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.box</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> center</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1622,10 +2320,15 @@ Zentriert, Mittelt und gibt einem Element eine Größe</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Perfect-Circle</strong><br>
-Passt den Border-Radius an die Größe des Elements an.</p>
+<h5>
+<a name="perfect-circle-m" class="anchor" href="#perfect-circle-m"><span class="octicon octicon-link"></span></a>perfect-circle (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Passt den Border-Radius an die Größe des Elements an.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - The Size of the Circle</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.circle</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> perfect-circle</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1640,10 +2343,17 @@ Passt den Border-Radius an die Größe des Elements an.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Ratio</strong><br>
-Stellt bei einem Element das Breiten und Größenverhältniss gemäß der Ratio ein.</p>
+<h5>
+<a name="ratio-m" class="anchor" href="#ratio-m"><span class="octicon octicon-link"></span></a>ratio (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Stellt bei einem Element das Breiten und Größenverhältniss gemäß der Ratio ein.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {list} <code>$ratio</code> (1) - Ratio between width and height</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {string} <code>$selector</code> (false) - Target selector</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.ratio</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> ratio</span><span class="p">(</span><span class="mi">16</span> <span class="mi">9</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1688,10 +2398,15 @@ Stellt bei einem Element das Breiten und Größenverhältniss gemäß der Ratio 
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Unratio</strong><br>
-Entfernt bestehende Ratios wieder.</p>
+<h5>
+<a name="unratio-m" class="anchor" href="#unratio-m"><span class="octicon octicon-link"></span></a>unratio (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Entfernt bestehende Ratios wieder.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {string} <code>$selector</code> (false) - Target selector</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.box</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> unratio</span><span class="p">(</span><span class="s1">'</span><span class="s2">.box__inner'</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1710,8 +2425,10 @@ Entfernt bestehende Ratios wieder.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Tighten-Up</strong><br>
-'Spannt' ein inneres Element auf die gleiche Dimension des äußeren Elements auf.</p>
+<h5>
+<a name="tighten-up-m" class="anchor" href="#tighten-up-m"><span class="octicon octicon-link"></span></a>tighten-up (m)</h5>
+
+<p>'Spannt' ein inneres Element auf die gleiche Dimension des äußeren Elements auf.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.box</span> <span class="p">{</span>
@@ -1728,8 +2445,10 @@ Entfernt bestehende Ratios wieder.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Text-Middle</strong><br>
-Positioniert Textelemente in der Vertikalen Mitte.</p>
+<h5>
+<a name="text-middle-m" class="anchor" href="#text-middle-m"><span class="octicon octicon-link"></span></a>text-middle (m)</h5>
+
+<p>Positioniert Textelemente in der Vertikalen Mitte.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.middle</span> <span class="p">{</span>
@@ -1752,12 +2471,20 @@ Positioniert Textelemente in der Vertikalen Mitte.</p>
 <h4>
 <a name="grid" class="anchor" href="#grid"><span class="octicon octicon-link"></span></a>Grid</h4>
 
-<p><code>scr/sass/framework/modules/_grid.scss</code><br></p>
+<p><code>file: scr/sass/framework/modules/_grid.scss</code></p>
 
-<p>(f) <strong>Grid-Size</strong><br>
-Berechnet die Breite der Colums</p>
+<h5>
+<a name="grid-size-f" class="anchor" href="#grid-size-f"><span class="octicon octicon-link"></span></a>grid-size (f)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Berechnet die Breite der Colums</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$colums</code> - Colums</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$maxColums</code> - Max Colums</li>
+<li>@returns {Number} - Percentage Value</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.box</span> <span class="p">{</span>
   <span class="na">width</span><span class="o">:</span> <span class="nf">grid-size</span><span class="p">(</span><span class="mi">3</span><span class="p">);</span>
 <span class="p">}</span>
@@ -1768,34 +2495,42 @@ Berechnet die Breite der Colums</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Grid-Adaptive</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-breakpoint-map</code></em></p>
+<h5>
+<a name="grid-adaptive-m" class="anchor" href="#grid-adaptive-m"><span class="octicon octicon-link"></span></a>grid-adaptive (m)</h5>
 
 <p>Die Seitenbreite verändert sich damit Adaptiv. Der jeweilige Threshold wird über <code>$kittn-breakpoint-map</code> eingestellt in dem bei Breakpoint <code>step</code> auf <code>true</code> gestellt wird. Die Reihenfolge der MediaQueries richtet sich nach <code>$kittn-activate(mobile-first)</code>.</p>
 
-<p>Das Mixin muss in einem Selektor aufgerufen werden.</p>
+<p><em>Das Mixin muss in einem Selektor aufgerufen werden.</em></p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-breakpoint-map</code>
+</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Map</span>
+<span class="c1">// file: src/sass/setup.scss</span>
 <span class="nv">$kittn-breakpoint-map</span><span class="o">:</span> <span class="p">(</span>
   <span class="mi">1</span><span class="o">:</span> <span class="p">(</span>
     <span class="no">size</span><span class="o">:</span> <span class="mi">320</span><span class="kt">px</span><span class="o">,</span>
     <span class="no">visibility</span><span class="o">:</span> <span class="n-Pseudo">true</span><span class="o">,</span>
-    <span class="n">step</span><span class="o">:</span> <span class="n-Pseudo">true</span><span class="o">,</span>
+    <span class="n">step</span><span class="o">:</span> <span class="n-Pseudo">true</span><span class="o">,</span> <span class="c1">// Trigger for 'grid-adaptive'</span>
     <span class="n">fontsize</span><span class="o">:</span> <span class="n-Pseudo">false</span>
   <span class="p">)</span><span class="o">,</span>
   <span class="mi">2</span><span class="o">:</span> <span class="p">(</span>
     <span class="no">size</span><span class="o">:</span> <span class="mi">480</span><span class="kt">px</span><span class="o">,</span>
     <span class="no">visibility</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span>
-    <span class="n">step</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span>
+    <span class="n">step</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span> <span class="c1">// Trigger for 'grid-adaptive'</span>
     <span class="n">fontsize</span><span class="o">:</span> <span class="mi">80</span>
   <span class="p">)</span><span class="o">,</span>
   <span class="mi">3</span><span class="o">:</span> <span class="p">(</span>
     <span class="no">size</span><span class="o">:</span> <span class="mi">560</span><span class="kt">px</span><span class="o">,</span>
     <span class="no">visibility</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span>
-    <span class="n">step</span><span class="o">:</span> <span class="n-Pseudo">true</span><span class="o">,</span>
+    <span class="n">step</span><span class="o">:</span> <span class="n-Pseudo">true</span><span class="o">,</span> <span class="c1">// Trigger for 'grid-adaptive'</span>
     <span class="n">fontsize</span><span class="o">:</span> <span class="n-Pseudo">false</span>
   <span class="p">)</span>
 <span class="p">);</span>
+</pre></div>
 
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.container</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> grid-adaptive</span><span class="p">();</span>
 <span class="p">}</span>
@@ -1811,21 +2546,25 @@ Berechnet die Breite der Colums</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Grid-Container</strong><br>
-Generiert den Seiten Container, der zum einen die Seite im Viewport positioniert (default: center), zum anderen bestimmt er die Seitenbreite.</p>
+<h5>
+<a name="grid-container-m" class="anchor" href="#grid-container-m"><span class="octicon octicon-link"></span></a>grid-container (m)</h5>
+
+<p>Generiert den Seiten Container, der zum einen die Seite im Viewport positioniert (default: center), zum anderen bestimmt er die Seitenbreite.</p>
 
 <p>Wenn man das <code>grid-adaptive</code> Mixin verwendet wird, sollte die Seitenbreite deaktiviert werden.</p>
 
 <ul>
 <li>
-<code>width</code> {list|bool} Bei einem Wert ist der Container Statisch, zwei Werte geben min und max vor, kann auch auf <code>false</code> gestellt werden.</li>
-<li>
-<code>pos</code> Position des Container. Values: <code>center</code>, <code>left</code>,  <code>right</code>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$container</code>
+
+<ul>
+<li>{List|Bool} <code>width</code> - Bei einem Wert ist der Container Statisch, zwei Werte geben min und max vor, kann auch auf <code>false</code> gestellt werden.</li>
+<li>{*} <code>pos</code> - Position des Container. Values: <code>center</code>, <code>left</code>,  <code>right</code>
 </li>
-<li>
-<code>gutter</code> Nur aktiv wenn <code>pos: left</code> oder <code>pos:right</code> eingestellt wurde, der Gutter bestimmt dann den Abstand zum Viewport.</li>
-<li>
-<code>static-ie</code> {Bool} Wenn aktiviert, bekommt der IE8 einen statischen Seitencontainer.</li>
+<li>{Number} <code>gutter</code> - Nur aktiv wenn <code>pos: left</code> oder <code>pos:right</code> eingestellt wurde, der Gutter bestimmt dann den Abstand zum Viewport.</li>
+<li>{Bool} <code>static-ie</code> - Wenn aktiviert, bekommt der IE8 einen statischen Seitencontainer.</li>
+</ul>
+</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.container-adaptive</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> grid-stepper</span><span class="p">();</span>
@@ -1879,20 +2618,24 @@ Generiert den Seiten Container, der zum einen die Seite im Viewport positioniert
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Grid-Row</strong><br>
-Über die <code>rows</code> wird das Display Verhalten der einzelnen <code>colums</code> eingestellt. zusätzlich wird dafür gesorgt das Floats nicht überlaufen.</p>
+<h5>
+<a name="grid-row-m" class="anchor" href="#grid-row-m"><span class="octicon octicon-link"></span></a>grid-row (m)</h5>
+
+<p>Über die <code>rows</code> wird das Display Verhalten der einzelnen <code>colums</code> eingestellt. zusätzlich wird dafür gesorgt das Floats nicht überlaufen.</p>
 
 <ul>
 <li>
-<code>spacing</code> Seitlicher Abstand</li>
-<li>
-<code>layout</code> Values: <code>block</code>, <code>inline</code>, <code>table</code>, <code>flex</code>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$row</code>
+
+<ul>
+<li>{Number} <code>spacing</code> - Seitlicher Abstand</li>
+<li>{*} <code>layout</code> -  Values: <code>block</code>, <code>inline</code>, <code>table</code>, <code>flex</code>
 </li>
-<li>
-<code>valign</code> Gilt nur bei <code>layout:inline</code>. Values: <code>top</code>, <code>bottom</code>, <code>baseline</code>, <code>middle</code>
+<li>{*} <code>valign</code> - Gilt nur bei <code>layout:inline</code>. Values: <code>top</code>, <code>bottom</code>, <code>baseline</code>, <code>middle</code>
 </li>
-<li>
-<code>align</code> Values: <code>justify</code>, <code>center</code>, <code>right</code>, <code>left</code>
+<li>{*} <code>align</code> - Values: <code>justify</code>, <code>center</code>, <code>right</code>, <code>left</code>
+</li>
+</ul>
 </li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.row-block</span> <span class="p">{</span>
@@ -1922,22 +2665,28 @@ Generiert den Seiten Container, der zum einen die Seite im Viewport positioniert
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Grid-Colum</strong><br>
-Bildet den Basisstyle für alle <code>colums</code>.</p>
+<h5>
+<a name="grid-colum-m" class="anchor" href="#grid-colum-m"><span class="octicon octicon-link"></span></a>grid-colum (m)</h5>
+
+<p>Bildet den Basisstyle für alle <code>colums</code>.</p>
 
 <ul>
 <li>
-<code>spacing</code> Seitlicher Abstand</li>
-<li>
-<code>layout</code> Values: <code>block</code>, <code>inline</code>, <code>table</code>, <code>flex</code>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-bem</code>
 </li>
 <li>
-<code>extras</code> {Bool} Inkludiert Extra Klassen für die Colums</li>
-<li>
-<code>valign</code> Gilt nur bei <code>layout:inline</code>. Varianten: <code>top</code>, <code>bottom</code>, <code>baseline</code>, <code>middle</code>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$colums</code>
+
+<ul>
+<li>{Number} <code>spacing</code> - Seitlicher Abstand</li>
+<li>{*} <code>layout</code> - Values: <code>block</code>, <code>inline</code>, <code>table</code>, <code>flex</code>
 </li>
-<li>
-<code>align</code> Values: <code>justify</code>, <code>center</code>, <code>right</code>, <code>left</code>
+<li>{Bool} <code>extras</code> - Inkludiert Extra Klassen für die Colums</li>
+<li>{*} <code>valign</code> -  Gilt nur bei <code>layout:inline</code>. Varianten: <code>top</code>, <code>bottom</code>, <code>baseline</code>, <code>middle</code>
+</li>
+<li>{*} <code>align</code> - Values: <code>justify</code>, <code>center</code>, <code>right</code>, <code>left</code>
+</li>
+</ul>
 </li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.colum</span> <span class="p">{</span>
@@ -1973,16 +2722,21 @@ Bildet den Basisstyle für alle <code>colums</code>.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Grid-Size</strong><br>
-Definiert die Breite einer Colum.</p>
+<h5>
+<a name="grid-size-m" class="anchor" href="#grid-size-m"><span class="octicon octicon-link"></span></a>grid-size (m)</h5>
+
+<p>Definiert die Breite einer Colum.</p>
 
 <ul>
 <li>
-<code>size</code> Spaltenbreite</li>
-<li>
-<code>max</code> Die maximale Anzahl an Spalten (als Berechnungsgrundlage)</li>
-<li>
-<code>flex</code> {Bool} Aktiviert die Flexbox Funktion</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$grid</code>
+
+<ul>
+<li>{Number} <code>size</code> - Spaltenbreite</li>
+<li>{Number} <code>max</code> - Die maximale Anzahl an Spalten (als Berechnungsgrundlage)</li>
+<li>{Bool} <code>flex</code> - Aktiviert die Flexbox Funktion</li>
+</ul>
+</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.colum</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> grid-size</span><span class="p">((</span><span class="no">size</span><span class="o">:</span> <span class="mi">5</span><span class="p">));</span>
@@ -2006,18 +2760,18 @@ Definiert die Breite einer Colum.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Pixel-Grid</strong><br>
-Definiert die Breite einer Colum in Pixel.</p>
+<h5>
+<a name="pixel-grid-m" class="anchor" href="#pixel-grid-m"><span class="octicon octicon-link"></span></a>pixel-grid (m)</h5>
+
+<p>Definiert die Breite einer Colum in Pixel.</p>
+
+<p>-<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$grid</code></p>
 
 <ul>
-<li>
-<code>size</code> Spaltenbreite</li>
-<li>
-<code>max</code> Die maximale Anzahl an Spalten</li>
-<li>
-<code>margin</code> Seitlicher Abstand</li>
-<li>
-<code>space</code> Breite des äußeren Wrappers</li>
+<li>{Number} <code>size</code> - Spaltenbreite</li>
+<li>{Number} <code>max</code> - Die maximale Anzahl an Spalten</li>
+<li>{Number} <code>margin</code> - Seitlicher Abstand</li>
+<li>{Number} <code>space</code> - Breite des äußeren Wrappers</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.pixel</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> pixel-grid</span><span class="p">((</span>
@@ -2047,18 +2801,25 @@ Definiert die Breite einer Colum in Pixel.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Grid-Generator</strong><br>
-Generiert eine definierte Anzahl von Colums</p>
+<h5>
+<a name="grid-generator-m" class="anchor" href="#grid-generator-m"><span class="octicon octicon-link"></span></a>grid-generator (m)</h5>
+
+<p>Generiert eine definierte Anzahl von Colums</p>
 
 <ul>
 <li>
-<code>colums</code> Maximale Colums</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-bem</code>
+</li>
 <li>
-<code>select</code> {bool|list} Hier kann spezifiziert werden welche Colums generiert werden sollen</li>
-<li>
-<code>name</code> {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
-<li>
-<code>extend</code> {bool|*} Damit werden die generierten Klassen mit anderen Klassen verbunden.</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$generator</code>
+
+<ul>
+<li>{Number} <code>colums</code> - Maximale Colums</li>
+<li>{bool|list} <code>select</code> - Hier kann spezifiziert werden welche Colums generiert werden sollen</li>
+<li>{bool|*} <code>name</code> - Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
+<li>{bool|*} <code>extend</code> - Damit werden die generierten Klassen mit anderen Klassen verbunden.</li>
+</ul>
+</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="err">%</span><span class="nt">colum</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> grid-colum</span><span class="p">(());</span>
@@ -2114,16 +2875,24 @@ Generiert eine definierte Anzahl von Colums</p>
   <span class="na">width</span><span class="o">:</span> <span class="mi">58</span><span class="mf">.333333</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Grid-Devide</strong><br>
-Das Mixin kann ein bestehendes Grid 'teilen', ein 12er Grid kann damit in eine 6er Grid umgewandelt werden. Funktioniert aber nur wenn nicht Mobile-First gearbeitet wird.</p>
+<h5>
+<a name="grid-devide-m" class="anchor" href="#grid-devide-m"><span class="octicon octicon-link"></span></a>grid-devide (m)</h5>
+
+<p>Das Mixin kann ein bestehendes Grid 'teilen', ein 12er Grid kann damit in eine 6er Grid umgewandelt werden. Funktioniert aber nur wenn nicht Mobile-First gearbeitet wird.</p>
 
 <ul>
 <li>
-<code>colums</code> Maximale Colums</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-bem</code>
+</li>
 <li>
-<code>name</code> {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
-<li>
-<code>devide</code> {number} Teiler</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$devide</code>
+
+<ul>
+<li>{Number} <code>colums</code> - Maximale Colums</li>
+<li>{Bool|*} <code>name</code> - Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
+<li>{Number} <code>devide</code> - Teiler</li>
+</ul>
+</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.width</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> grid-devide</span><span class="p">((</span>
@@ -2156,17 +2925,22 @@ Das Mixin kann ein bestehendes Grid 'teilen', ein 12er Grid kann damit in eine 6
   <span class="na">width</span><span class="o">:</span> <span class="mi">100</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Grid-Offset</strong><br>
-Generiert den Offset</p>
+<h5>
+<a name="grid-offset-m" class="anchor" href="#grid-offset-m"><span class="octicon octicon-link"></span></a>grid-offset (m)</h5>
+
+<p>Generiert den Offset</p>
 
 <ul>
 <li>
-<code>size</code> Spaltenbreite</li>
-<li>
-<code>max</code> Die maximale Anzahl an Spalten</li>
-<li>
-<code>direction</code> Values: <code>left</code>, <code>right</code>
-=&gt; The Direction off the Offset (default: left)</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$offset</code>
+
+<ul>
+<li>{Number} <code>size</code> - Spaltenanzahl</li>
+<li>{Number} <code>max</code> - Die maximale Anzahl an Spalten</li>
+<li>{*} <code>direction</code> - Values: <code>left</code>, <code>right</code>
+</li>
+</ul>
+</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.offset</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> grid-offset</span><span class="p">((</span>
@@ -2189,15 +2963,23 @@ Generiert den Offset</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Grid-Offset-Generator</strong><br>
-Generiert die Offset Klassen.</p>
+<h5>
+<a name="grid-offset-generator-m" class="anchor" href="#grid-offset-generator-m"><span class="octicon octicon-link"></span></a>grid-offset-generator (m)</h5>
+
+<p>Generiert die Offset Klassen.</p>
 
 <ul>
 <li>
-<code>max</code> Die maximale Anzahl an Spalten
-=&gt; The Maximum Colums (default: 12)</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-bem</code>
+</li>
 <li>
-<code>name</code> {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$offset</code>
+
+<ul>
+<li>{Number} <code>max</code> - Maximale Anzahl an Spalten</li>
+<li>{Bool|*} <code>name</code> - Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
+</ul>
+</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.offset</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> grid-offset-generator</span><span class="p">((</span>
@@ -2216,19 +2998,23 @@ Generiert die Offset Klassen.</p>
   <span class="na">margin-right</span><span class="o">:</span> <span class="mi">66</span><span class="mf">.666667</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Grid-Pushpull</strong><br>
-Generiert Push and Pull Sizes</p>
+<h5>
+<a name="grid-pushpull-m" class="anchor" href="#grid-pushpull-m"><span class="octicon octicon-link"></span></a>grid-pushpull (m)</h5>
+
+<p>Generiert Push and Pull Sizes</p>
 
 <ul>
 <li>
-<code>size</code> Spaltenbreite</li>
-<li>
-<code>max</code> Die maximale Anzahl an Spalten</li>
-<li>
-<code>direction</code> Values: <code>push</code>, <code>pull</code>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$pushpull</code>
+
+<ul>
+<li>{Number} <code>size</code> - Spaltenanzahl</li>
+<li>{Number} <code>max</code> - Maximale Anzahl an Spalten</li>
+<li>{*} <code>direction</code> - Values: <code>push</code>, <code>pull</code>
 </li>
-<li>
-<code>extend</code> {bool|*} Damit werden die generierten Klassen mit anderen Klassen verbunden.</li>
+<li>{Bool|*} <code>extend</code> - Die generierten Klassen werden mit anderen Klassen verbunden.</li>
+</ul>
+</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="err">%</span><span class="nt">relative</span> <span class="p">{</span>
   <span class="na">position</span><span class="o">:</span> <span class="no">relative</span><span class="p">;</span>
@@ -2259,16 +3045,24 @@ Generiert Push and Pull Sizes</p>
   <span class="na">right</span><span class="o">:</span> <span class="mi">33</span><span class="mf">.333333</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Grid-Pushpull-Generator</strong><br>
-Generiert eine bestimmte Anzahl an Push and Pull Klassen.</p>
+<h5>
+<a name="grid-pushpull-generator-m" class="anchor" href="#grid-pushpull-generator-m"><span class="octicon octicon-link"></span></a>grid-pushpull-generator (m)</h5>
+
+<p>Generiert eine bestimmte Anzahl an Push and Pull Klassen.</p>
 
 <ul>
 <li>
-<code>max</code> Die maximale Anzahl an Spalten</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-bem</code>
+</li>
 <li>
-<code>name</code> {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
-<li>
-<code>extend</code> {bool|*} Damit werden die generierten Klassen mit anderen Klassen verbunden.</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$pushpull</code>
+
+<ul>
+<li>{Number} <code>max</code> - Maximale Anzahl an Spalten</li>
+<li>{Bool|*} <code>name</code> - Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
+<li>{Bool|*} <code>extend</code> - Die generierten Klassen werden mit anderen Klassen verbunden.</li>
+</ul>
+</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.move</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> grid-pushpull-generator</span><span class="p">((</span>
@@ -2297,17 +3091,25 @@ Generiert eine bestimmte Anzahl an Push and Pull Klassen.</p>
   <span class="na">right</span><span class="o">:</span> <span class="mi">75</span><span class="kt">%</span><span class="p">;</span> <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Grid-Normalizer</strong><br>
-Über den Normalizer können die spezifischen Einstellungen wieder resetet werden.</p>
+<h5>
+<a name="grid-normalizer-m" class="anchor" href="#grid-normalizer-m"><span class="octicon octicon-link"></span></a>grid-normalizer (m)</h5>
+
+<p>Über den Normalizer können die spezifischen Einstellungen wieder resetet werden.</p>
 
 <ul>
 <li>
-<code>name</code> Name des Selectors der Reseted werden soll</li>
-<li>
-<code>option</code> Values: <code>blockgrid</code>, <code>inlinetable</code>, <code>offset</code>, <code>pushpull</code>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-bem</code>
 </li>
 <li>
-<code>important</code> {Bool} Fügt !important an</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$normalize</code>
+
+<ul>
+<li>{*} <code>name</code> - Name des Selectors der Reseted werden soll</li>
+<li>{*} <code>option</code> - Values: <code>blockgrid</code>, <code>inlinetable</code>, <code>offset</code>, <code>pushpull</code>
+</li>
+<li>{Bool} <code>important</code> - Fügt !important an</li>
+</ul>
+</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="k">@include</span><span class="nd"> grid-normalizer</span><span class="p">((</span>
   <span class="n">name</span><span class="o">:</span> <span class="s1">'</span><span class="s2">move'</span><span class="o">,</span>
@@ -2336,17 +3138,29 @@ Generiert eine bestimmte Anzahl an Push and Pull Klassen.</p>
 <h4>
 <a name="iconfont" class="anchor" href="#iconfont"><span class="octicon octicon-link"></span></a>Iconfont</h4>
 
-<p><code>scr/sass/framework/modules/_iconfont.scss</code><br></p>
+<p><code>file: scr/sass/framework/modules/_iconfont.scss</code></p>
 
-<p>(f) <strong>Icon</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-font-icons</code></em></p>
+<h5>
+<a name="icon-f" class="anchor" href="#icon-f"><span class="octicon octicon-link"></span></a>icon (f)</h5>
 
 <p>Bezieht den Content Code aus der Iconfont Map.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-font-icons</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$name</code> - Key to the Map Entry</li>
+<li>@returns {*}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Map</span>
+<span class="c1">// file: src/sass/maps/iconfontlist.scss</span>
+
 <span class="nv">$kittn-font-icons</span><span class="o">:</span> <span class="p">(</span>
   <span class="n">test</span><span class="o">:</span> <span class="s1">'</span><span class="s2">/e023'</span>
 <span class="p">);</span>
+</pre></div>
 
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.icon</span> <span class="p">{</span>
   <span class="k">&amp;</span><span class="nd">:before</span> <span class="p">{</span>
     <span class="na">content</span><span class="o">:</span> <span class="nf">icon</span><span class="p">(</span><span class="n">test</span><span class="p">);</span>
@@ -2359,12 +3173,19 @@ Generiert eine bestimmte Anzahl an Push and Pull Klassen.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Iconfont</strong><br>
-Generiert den Basisstyle für alle Icons.</p>
+<h5>
+<a name="iconfont-m" class="anchor" href="#iconfont-m"><span class="octicon octicon-link"></span></a>iconfont (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Generiert den Basisstyle für alle Icons.</p>
+
+<ul>
+<li>
+<a href="https://github.com/access" class="user-mention">@access</a> private</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$iconFontName</code> - Name off the Icon Font</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="err">%</span><span class="nt">icon</span> <span class="p">{</span>
-    <span class="k">@include</span><span class="nd"> iconfont</span><span class="p">(</span><span class="s1">'</span><span class="s2">iconfont'</span><span class="p">);</span>
+  <span class="k">@include</span><span class="nd"> iconfont</span><span class="p">(</span><span class="s1">'</span><span class="s2">iconfont'</span><span class="p">);</span>
 <span class="p">}</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@extend</span> <span class="err">%</span><span class="nt">icon</span><span class="o">;</span>
@@ -2391,11 +3212,17 @@ Generiert den Basisstyle für alle Icons.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Icon-Font-Generator</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-iconfont</code></em></p>
+<h5>
+<a name="icon-font-generator-m" class="anchor" href="#icon-font-generator-m"><span class="octicon octicon-link"></span></a>icon-font-generator (m)</h5>
 
 <p>Generiert den Basis Icon-Font Style.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-iconfont</code>, `$kittn-bem</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$iconFontName</code> - Name off the Icon Font</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="k">@include</span><span class="nd"> icon-font-generator</span><span class="p">(</span><span class="s1">'</span><span class="s2">iconfont'</span><span class="p">);</span>
 
 <span class="c1">// Result</span>
@@ -2416,11 +3243,18 @@ Generiert den Basisstyle für alle Icons.</p>
   <span class="na">content</span><span class="o">:</span> <span class="nf">attr</span><span class="p">(</span><span class="n">data-icon</span><span class="p">);</span> <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Icon-Generator</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-font-icons</code>, <code>$kittn-iconfont</code></em></p>
+<h5>
+<a name="icon-generator-m" class="anchor" href="#icon-generator-m"><span class="octicon octicon-link"></span></a>icon-generator (m)</h5>
 
-<p>Generiert alle Icons als Klassen.</p>
+<p>Generiert sämtliche Icons der Icon-Map als Klassen.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-font-icons</code>, <code>$kittn-iconfont</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$icons</code> ($kittn-font-icons) - Icon Font Map</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="k">@include</span><span class="nd"> icon-generator</span><span class="p">;</span>
 
 <span class="c1">// Result</span>
@@ -2432,10 +3266,23 @@ Generiert den Basisstyle für alle Icons.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Icon</strong><br>
-Fügt Icon Inhalte in eine Klasse.</p>
+<h5>
+<a name="icon-m" class="anchor" href="#icon-m"><span class="octicon octicon-link"></span></a>icon (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Fügt Icon Inhalte in eine Klasse.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$name</code> - Key to the Map Entry</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$options</code>
+
+<ul>
+<li>{Bool|*} <code>extend</code> (false) - When the Icon need Extend with a Class</li>
+<li>{Bool|*} <code>font</code> (false) - When the Icon need the Iconfont Attributes. Needed when sitting in a Media Query</li>
+</ul>
+</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="err">%</span><span class="nt">icon</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> iconfont</span><span class="p">(</span><span class="s1">'</span><span class="s2">iconfont'</span><span class="p">);</span>
 <span class="p">}</span>
@@ -2485,10 +3332,18 @@ Fügt Icon Inhalte in eine Klasse.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Ext-Icon</strong><br>
-Erweitert eigene Klassen mit den Iconklassen.</p>
+<h5>
+<a name="ext-icon-m" class="anchor" href="#ext-icon-m"><span class="octicon octicon-link"></span></a>ext-icon (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Erweitert eigene Klassen mit den Iconklassen.</p>
+
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-bem</code>, <code>$kittn-iconfont</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} $name - Name off the Icon (from the Map)</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="k">@include</span><span class="nd"> icon-font-generator</span><span class="p">(</span><span class="s1">'</span><span class="s2">iconfont'</span><span class="p">);</span>
 
 <span class="k">@include</span><span class="nd"> icon-generator</span><span class="p">();</span>
@@ -2524,24 +3379,32 @@ Erweitert eigene Klassen mit den Iconklassen.</p>
 <h4>
 <a name="images" class="anchor" href="#images"><span class="octicon octicon-link"></span></a>Images</h4>
 
-<p><code>scr/sass/framework/modules/_images.scss</code><br></p>
+<p><code>file: scr/sass/framework/modules/_images.scss</code></p>
 
-<p>(m) <strong>_GetImageDimensions</strong><br><em><a href="https://github.com/access" class="user-mention">@access</a> private</em></p>
+<h5>
+<a name="_getimagedimensions-m" class="anchor" href="#_getimagedimensions-m"><span class="octicon octicon-link"></span></a>_getImageDimensions (m)</h5>
 
 <p>Wird für die interne Berechnung der Bilddaten verwendet.</p>
 
-<p>(m) <strong>Image</strong><br>
-Fügt die Single Images ein. Die erforderlichen Daten werden dabei über die <code>Gulp</code> Tasks in die jeweilige Imagemap geschrieben.</p>
+<ul>
+<li>
+<a href="https://github.com/access" class="user-mention">@access</a> private</li>
+</ul><h5>
+<a name="image-m" class="anchor" href="#image-m"><span class="octicon octicon-link"></span></a>image (m)</h5>
+
+<p>Fügt die Single Images ein. Die erforderlichen Daten werden dabei über die <code>Gulp</code> Tasks in die jeweilige Imagemap geschrieben.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {*}    $image       - Name of the Image</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> `$kittn-directorys</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {*}    $dimensions  - 'both' = height &amp; width, 'width' = width, 'height' = height</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$image</code> - Name of the Image</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {*}    $pos         - The Image Position - can be 'false'</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$dimensions</code> - 'both' = height &amp; width, 'width' = width, 'height' = height</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {Bool} $retina      - With set on 'true' the retina fallback will be included</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$pos</code> - The Image Position - can be 'false'</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$retina</code> - With set on 'true' the retina fallback will be included</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.box</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> image</span><span class="p">(</span><span class="nb">blue</span><span class="p">);</span>
@@ -2564,19 +3427,23 @@ Fügt die Single Images ein. Die erforderlichen Daten werden dabei über die <co
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Texture</strong><br>
-Fügt die Texture Images ein.</p>
+<h5>
+<a name="texture-m" class="anchor" href="#texture-m"><span class="octicon octicon-link"></span></a>texture (m)</h5>
+
+<p>Fügt die Texture Images ein.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {*} $image  - Name of the Image</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> `$kittn-directorys</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {*} $repeat - How the Image would be repeated. <code>x</code>: repeat-x, <code>y</code>: repeat-y</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$image</code> - Name of the Image</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {List|Bool} $pos - The Image Position - can be <code>false</code>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$repeat</code> - How the Image would be repeated. <code>x</code>: repeat-x, <code>y</code>: repeat-y</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List|Bool} <code>$pos</code> - The Image Position - can be <code>false</code>
 </li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {Bool} $retina - With set on 'true' the retina fallback will be included</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$retina</code> - With set on 'true' the retina fallback will be included</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.texture</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> texture</span><span class="p">(</span><span class="n">pattern</span><span class="p">);</span>
@@ -2604,16 +3471,20 @@ Fügt die Texture Images ein.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>SVGPNG</strong><br>
-Fügt SVG Images ein, integriert dabei auch das Fallback Image.</p>
+<h5>
+<a name="svgpng-m" class="anchor" href="#svgpng-m"><span class="octicon octicon-link"></span></a>svgpng (m)</h5>
+
+<p>Fügt SVG Images ein, integriert dabei auch das Fallback Image.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {*} $image - Name of the Image - the SVG File must be in the Same directory</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> `$kittn-directorys</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {*} $dimensions  - 'both' = height &amp; width | 'width' = width | 'height' = height</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$image</code> - Name of the Image - the SVG File must be in the Same directory</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {List} $pos - The Image Position - can be 'false'</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$dimensions</code> - 'both' = height &amp; width | 'width' = width | 'height' = height</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$pos</code> - The Image Position - can be 'false'</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.image</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> svgpng</span><span class="p">(</span><span class="n">illu</span><span class="p">);</span>
@@ -2632,18 +3503,22 @@ Fügt SVG Images ein, integriert dabei auch das Fallback Image.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>SVG</strong><br>
-Für SVG Images ohne Fallback ein.</p>
+<h5>
+<a name="svg-m" class="anchor" href="#svg-m"><span class="octicon octicon-link"></span></a>svg (m)</h5>
+
+<p>Für SVG Images ohne Fallback ein.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {*} $image - The Name of the SVG Image</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> `$kittn-directorys</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {List} $dimensions  - The Dimensions of the Image Container - can be 100%</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$image</code> - The Name of the SVG Image</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {List} $pos - Native CSS Image Positions</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$dimensions</code>  - The Dimensions of the Image Container - can be 100%</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {Bool} $repeat - Image Repeat - native CSS Declaration</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$pos</code> - Native CSS Image Positions</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$repeat</code> - Image Repeat - native CSS Declaration</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.vector</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> svg</span><span class="p">(</span><span class="n">illu</span><span class="p">)</span>
@@ -2681,27 +3556,35 @@ Für SVG Images ohne Fallback ein.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Sprite-Generator</strong><br><em><a href="https://github.com/access" class="user-mention">@access</a> private<br>
-<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-sprite</code></em></p>
+<h5>
+<a name="sprite-generator-m" class="anchor" href="#sprite-generator-m"><span class="octicon octicon-link"></span></a>sprite-generator (m)</h5>
 
 <p>Generiert den SpriteMap Container. Wird automatisch zu geschaltet.</p>
 
-<p>(m) <strong>Sprite</strong><br>
-Fügt das gewünschte Sprite ein.</p>
+<ul>
+<li>
+<a href="https://github.com/access" class="user-mention">@access</a> private</li>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-sprite</code>
+</li>
+</ul><h5>
+<a name="sprite-m" class="anchor" href="#sprite-m"><span class="octicon octicon-link"></span></a>sprite (m)</h5>
+
+<p>Fügt das gewünschte Sprite ein.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {*} $name - Name of the Sprite</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$name</code> - Name of the Sprite</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {Bool} $retina - With set on <code>true</code> the retina fallback will be included</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$retina</code> - With set on <code>true</code> the retina fallback will be included</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {*} $dimensions - <code>both</code>: height &amp; width, <code>width</code>: width, <code>height</code>: height</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$dimensions</code> - <code>both</code>: height &amp; width, <code>width</code>: width, <code>height</code>: height</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {Number} $offset-x - Offset the Background Position on the x axis</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$offset-x</code> - Offset the Background Position on the x axis</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {Number} $offset-y - Offset the Background Position on the y axis</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$offset-y</code> - Offset the Background Position on the y axis</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {*} $display - The display mode</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$display</code> - The display mode</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.sprite</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> sprite</span><span class="p">(</span><span class="no">cross</span><span class="p">);</span>
@@ -2736,17 +3619,21 @@ Fügt das gewünschte Sprite ein.</p>
 <h4>
 <a name="lines" class="anchor" href="#lines"><span class="octicon octicon-link"></span></a>Lines</h4>
 
-<p><code>scr/sass/framework/modules/_lines.scss</code><br></p>
+<p><code>file: scr/sass/framework/modules/_lines.scss</code></p>
 
-<p>(f) <strong>Rem</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-typo</code></em></p>
+<h5>
+<a name="rem-f" class="anchor" href="#rem-f"><span class="octicon octicon-link"></span></a>rem (f)</h5>
 
 <p>Rechnet Px in REM um.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $px - The Size in PX</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-typo</code>
+</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $base - The Base for the</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$px</code> - The Size in PX</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$base</code> - The Base for the</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="na">width</span><span class="o">:</span> <span class="nf">rem</span><span class="p">(</span><span class="mi">200</span><span class="kt">px</span><span class="p">);</span>
@@ -2758,16 +3645,21 @@ Fügt das gewünschte Sprite ein.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Remsize</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-typo</code><br>
-<a href="https://github.com/access" class="user-mention">@access</a> private</em></p>
+<h5>
+<a name="remsize-m" class="anchor" href="#remsize-m"><span class="octicon octicon-link"></span></a>remsize (m)</h5>
 
 <p>Berechnet Größen anhand der Base Line-Height. Die Umberechnung findet aber nur statt wenn in der <code>$kittn-typo</code> die <code>unit</code> auf <code>rem</code> gestellt wurde. IE8 erhält sein eigenes Fallback mittels PX Werten.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*} $arg - Attribute</li>
+<a href="https://github.com/access" class="user-mention">@access</a> private</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $size - Lines</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-typo</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$arg</code> - Attribute</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - Multiplicator</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> _remsize</span><span class="p">(</span><span class="no">height</span><span class="o">,</span> <span class="mi">4</span><span class="p">);</span>
@@ -2781,16 +3673,21 @@ Fügt das gewünschte Sprite ein.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Pxsize</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-typo</code><br>
-<a href="https://github.com/access" class="user-mention">@access</a> private</em></p>
+<h5>
+<a name="pxsize-m" class="anchor" href="#pxsize-m"><span class="octicon octicon-link"></span></a>pxsize (m)</h5>
 
 <p>Berechnet PX Werte in REM um. Die Umberechnung findet aber nur statt wenn in der <code>$kittn-typo</code> die <code>unit</code> auf <code>rem</code> gestellt wurde. IE8 erhält sein eigenes Fallback mittels PX Werten.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*} $arg - Attribute</li>
+<a href="https://github.com/access" class="user-mention">@access</a> private</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $size - Value</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-typo</code><br>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$arg</code> - Attribute</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - Value</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> _pxsize</span><span class="p">(</span><span class="no">height</span><span class="o">,</span> <span class="mi">16</span><span class="p">);</span>
@@ -2804,16 +3701,18 @@ Fügt das gewünschte Sprite ein.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Rem</strong><br>
-Berechnet die Größen Dynamisch. Dabei kann die Größe einmal über Lines (berechnung mittel Multiplikation der Baselineheight), oder über Pixel erfolgen die dann in REM umgerechnet werden. IE8 erhält bei aktiver IE8 Kompatiblität einen Pixel Fallback.</p>
+<h5>
+<a name="rem-m" class="anchor" href="#rem-m"><span class="octicon octicon-link"></span></a>rem (m)</h5>
+
+<p>Berechnet die Größen Dynamisch. Dabei kann die Größe einmal über Lines (berechnung mittel Multiplikation der Baselineheight), oder über Pixel erfolgen die dann in REM umgerechnet werden. IE8 erhält bei aktiver IE8 Kompatiblität einen Pixel Fallback.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {*}       $arg      - Attribute</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$arg</code> - Attribute</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {Number}  $size     - Size</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - Size</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {Bool}    $baseline - When 'true', the Value follow the Baselinerule</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$baseline</code> - When 'true', the Value follow the Baselinerule</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> rem</span><span class="p">(</span><span class="no">width</span><span class="o">,</span> <span class="mi">600</span><span class="p">);</span>
@@ -2827,12 +3726,14 @@ Berechnet die Größen Dynamisch. Dabei kann die Größe einmal über Lines (ber
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Lineheight</strong><br>
-Basiert auf dem <code>rem</code> Mixin.</p>
+<h5>
+<a name="lineheight-m" class="anchor" href="#lineheight-m"><span class="octicon octicon-link"></span></a>lineheight (m)</h5>
+
+<p>Basiert auf dem <code>rem</code> Mixin.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $size - Size</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - Size</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> lineheight</span><span class="p">(</span><span class="mi">40</span><span class="p">);</span>
@@ -2844,12 +3745,14 @@ Basiert auf dem <code>rem</code> Mixin.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Marginbottom</strong><br>
-Basiert auf dem <code>rem</code> Mixin.</p>
+<h5>
+<a name="marginbottom-m" class="anchor" href="#marginbottom-m"><span class="octicon octicon-link"></span></a>marginbottom (m)</h5>
+
+<p>Basiert auf dem <code>rem</code> Mixin.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $size - Size</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - Size</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> marginbottom</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
@@ -2861,12 +3764,14 @@ Basiert auf dem <code>rem</code> Mixin.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Margintop</strong><br>
-Basiert auf dem <code>rem</code> Mixin.</p>
+<h5>
+<a name="margintop-m" class="anchor" href="#margintop-m"><span class="octicon octicon-link"></span></a>margintop (m)</h5>
+
+<p>Basiert auf dem <code>rem</code> Mixin.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $size - Size</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - Size</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> margintop</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
@@ -2878,12 +3783,14 @@ Basiert auf dem <code>rem</code> Mixin.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Marginleft</strong><br>
-Basiert auf dem <code>rem</code> Mixin.</p>
+<h5>
+<a name="marginleft-m" class="anchor" href="#marginleft-m"><span class="octicon octicon-link"></span></a>marginleft (m)</h5>
+
+<p>Basiert auf dem <code>rem</code> Mixin.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $size - Size</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - Size</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> marginleft</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
@@ -2895,12 +3802,14 @@ Basiert auf dem <code>rem</code> Mixin.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Marginright</strong><br>
-Basiert auf dem <code>rem</code> Mixin.</p>
+<h5>
+<a name="marginright-m" class="anchor" href="#marginright-m"><span class="octicon octicon-link"></span></a>marginright (m)</h5>
+
+<p>Basiert auf dem <code>rem</code> Mixin.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $size - Size</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - Size</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> marginright</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
@@ -2912,12 +3821,14 @@ Basiert auf dem <code>rem</code> Mixin.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Paddingtop</strong><br>
-Basiert auf dem <code>rem</code> Mixin.</p>
+<h5>
+<a name="paddingtop-m" class="anchor" href="#paddingtop-m"><span class="octicon octicon-link"></span></a>paddingtop (m)</h5>
+
+<p>Basiert auf dem <code>rem</code> Mixin.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $size - Size</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - Size</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> paddingtop</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
@@ -2929,12 +3840,14 @@ Basiert auf dem <code>rem</code> Mixin.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Paddingbottom</strong><br>
-Basiert auf dem <code>rem</code> Mixin.</p>
+<h5>
+<a name="paddingbottom-m" class="anchor" href="#paddingbottom-m"><span class="octicon octicon-link"></span></a>paddingbottom (m)</h5>
+
+<p>Basiert auf dem <code>rem</code> Mixin.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $size - Size</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - Size</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> paddingbottom</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
@@ -2946,12 +3859,14 @@ Basiert auf dem <code>rem</code> Mixin.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Paddingleft</strong><br>
-Basiert auf dem <code>rem</code> Mixin.</p>
+<h5>
+<a name="paddingleft-m" class="anchor" href="#paddingleft-m"><span class="octicon octicon-link"></span></a>paddingleft (m)</h5>
+
+<p>Basiert auf dem <code>rem</code> Mixin.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $size - Size</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - Size</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> paddingleft</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
@@ -2963,8 +3878,10 @@ Basiert auf dem <code>rem</code> Mixin.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Paddingright</strong><br>
-Basiert auf dem <code>rem</code> Mixin.</p>
+<h5>
+<a name="paddingright-m" class="anchor" href="#paddingright-m"><span class="octicon octicon-link"></span></a>paddingright (m)</h5>
+
+<p>Basiert auf dem <code>rem</code> Mixin.</p>
 
 <ul>
 <li>
@@ -2980,12 +3897,14 @@ Basiert auf dem <code>rem</code> Mixin.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Height</strong><br>
-Basiert auf dem <code>rem</code> Mixin.</p>
+<h5>
+<a name="height-m" class="anchor" href="#height-m"><span class="octicon octicon-link"></span></a>height (m)</h5>
+
+<p>Basiert auf dem <code>rem</code> Mixin.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $size - Size</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - Size</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> height</span><span class="p">(</span><span class="mi">100</span><span class="p">);</span>
@@ -2996,12 +3915,14 @@ Basiert auf dem <code>rem</code> Mixin.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Fontsize</strong><br>
-Basiert auf dem <code>rem</code> Mixin.</p>
+<h5>
+<a name="fontsize-m" class="anchor" href="#fontsize-m"><span class="octicon octicon-link"></span></a>fontsize (m)</h5>
+
+<p>Basiert auf dem <code>rem</code> Mixin.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $size - Size</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> - Size</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> fontsize</span><span class="p">(</span><span class="mi">16</span><span class="p">);</span>
@@ -3013,16 +3934,18 @@ Basiert auf dem <code>rem</code> Mixin.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Fontcalc</strong><br>
-Basiert auf dem <code>rem</code> Mixin. Berechnet neben der Fontsize auch die Line-Height</p>
+<h5>
+<a name="fontcalc-m" class="anchor" href="#fontcalc-m"><span class="octicon octicon-link"></span></a>fontcalc (m)</h5>
+
+<p>Basiert auf dem <code>rem</code> Mixin. Berechnet neben der Fontsize auch die Line-Height</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $fontsize - Font Size</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$fontsize</code> - Font Size</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Bool|Number} $lineheight (false) - Lineheight for the Font - can be false than used the factor</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool|Number} <code>$lineheight</code> (false) - Lineheight for the Font - can be false than used the factor</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} $factor (1.2) - The Calculationfactor</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$factor</code> (1.2) - The Calculationfactor</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> fontcalc</span><span class="p">(</span><span class="mi">16</span><span class="o">,</span> <span class="mi">20</span><span class="p">);</span>
@@ -3045,16 +3968,25 @@ Basiert auf dem <code>rem</code> Mixin. Berechnet neben der Fontsize auch die Li
 <h4>
 <a name="modernizr" class="anchor" href="#modernizr"><span class="octicon octicon-link"></span></a>Modernizr</h4>
 
-<p><code>scr/sass/framework/modules/_modernizr.scss</code><br></p>
+<p><code>file: scr/sass/framework/modules/_modernizr.scss</code></p>
 
-<p>(m) <strong>Modernizr</strong><br><em><a href="https://github.com/access" class="user-mention">@access</a> private</em></p>
+<h5>
+<a name="modernizr-m" class="anchor" href="#modernizr-m"><span class="octicon octicon-link"></span></a>Modernizr (m)</h5>
 
 <p>Über die integrierten Feature-Check Klassen von Modernizr, kann man Fallbacks integrieren.</p>
 
-<p>(m) <strong>Yep</strong><br>
-Wird aktiv bei positiven Feature-Check Klassen.</p>
+<ul>
+<li>
+<a href="https://github.com/access" class="user-mention">@access</a> private</li>
+</ul><h5>
+<a name="yep-m" class="anchor" href="#yep-m"><span class="octicon octicon-link"></span></a>yep (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Wird aktiv bei positiven Feature-Check Klassen.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {argList} <code>$features</code> - Checked Features </li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> yep</span><span class="p">(</span><span class="n">box-shadow</span><span class="p">)</span> <span class="p">{</span>
     <span class="na">box-shadow</span><span class="o">:</span> <span class="mi">0</span> <span class="mi">0</span> <span class="mi">3</span><span class="kt">px</span> <span class="nf">rgba</span><span class="p">(</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="o">,</span><span class="mi">0</span><span class="mf">.5</span><span class="p">);</span>
@@ -3067,10 +3999,15 @@ Wird aktiv bei positiven Feature-Check Klassen.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Nope</strong><br>
-Wird aktiv bei negativen Feature-Check Klassen</p>
+<h5>
+<a name="nope-m" class="anchor" href="#nope-m"><span class="octicon octicon-link"></span></a>nope (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Wird aktiv bei negativen Feature-Check Klassen</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {argList} <code>$features</code> - Checked Features </li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> nope</span><span class="p">(</span><span class="n">box-shadow</span><span class="p">)</span> <span class="p">{</span>
     <span class="na">border</span><span class="o">:</span> <span class="mi">3</span><span class="kt">px</span> <span class="no">solid</span> <span class="mh">#ccc</span><span class="p">;</span>
@@ -3088,11 +4025,21 @@ Wird aktiv bei negativen Feature-Check Klassen</p>
 
 <p><code>scr/sass/framework/modules/_positioning.scss</code></p>
 
-<p>(f) <strong>Z</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-zlayer-map</code></em></p>
+<h5>
+<a name="z-f" class="anchor" href="#z-f"><span class="octicon octicon-link"></span></a>z (f)</h5>
 
 <p>Pickt den entsprechenden Z-Index auf der zlayer Map.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-zlayer-map</code>
+</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$layer</code> - The layer to use</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$z-layers</code> ($kittn-zlayer-map) - Connection through Z-Map</li>
+<li>@returns {Number}</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.z</span> <span class="p">{</span>
   <span class="na">z-index</span><span class="o">:</span> <span class="nf">z</span><span class="p">(</span><span class="no">default</span><span class="p">);</span>
 <span class="p">}</span>
@@ -3103,15 +4050,19 @@ Wird aktiv bei negativen Feature-Check Klassen</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Z</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-zlayer-map</code></em></p>
+<h5>
+<a name="z-m" class="anchor" href="#z-m"><span class="octicon octicon-link"></span></a>z (m)</h5>
 
 <p>Pickt den entsprechenden Z-Index von der Map, generiert dabei einen Z-Index den man mit Offset noch manipulieren kann.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*} $layer - The layer to use</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-zlayer-map</code>
+</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {number} $offset - Add or substract an offset</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$layer</code> - The layer to use</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$offset</code> - Add or substract an offset</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.z</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> z</span><span class="p">(</span><span class="no">default</span><span class="p">);</span>
@@ -3135,16 +4086,18 @@ Wird aktiv bei negativen Feature-Check Klassen</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Shift</strong><br>
-Vergibt dem Element einen Z-Index und bestimmt auch die Positionsart.</p>
+<h5>
+<a name="shift-m" class="anchor" href="#shift-m"><span class="octicon octicon-link"></span></a>shift (m)</h5>
+
+<p>Vergibt dem Element einen Z-Index und bestimmt auch die Positionsart.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {number} $index - Z-index</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$index</code> - Z-index</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {number} $offset - Offset</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$offset</code> - Offset</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {bool|*} $position - Position. Values: <code>r</code> relative, <code>a</code> absolute, <code>f</code> fixed</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool|*} <code>$position</code> - Position. Values: <code>r</code> relative, <code>a</code> absolute, <code>f</code> fixed</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.z-1</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> shift</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
@@ -3170,9 +4123,16 @@ Vergibt dem Element einen Z-Index und bestimmt auch die Positionsart.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Set-Position</strong><br><em><a href="https://github.com/access" class="user-mention">@access</a> private</em></p>
+<h5>
+<a name="set-position-m" class="anchor" href="#set-position-m"><span class="octicon octicon-link"></span></a>set-position (m)</h5>
 
-<p>Stellt die Position für die Position Mixins ein. Für alle Position Mixin gilt:</p>
+<p>Stellt die Position für die Position Mixins ein.</p>
+
+<ul>
+<li>
+<a href="https://github.com/access" class="user-mention">@access</a> private</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$position</code>
 
 <ul>
 <li>Ein Position Value: <code>top</code>
@@ -3181,12 +4141,29 @@ Vergibt dem Element einen Z-Index und bestimmt auch die Positionsart.</p>
 </li>
 <li>Vier Position Values: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>
 </li>
+</ul>
+</li>
 </ul><p>Das Mixin wertet Werte wie <code>0</code> nicht aus, sie dient nur als Platzhalter. Möchte man die Position auf <code>0</code> setzen trägt man <code>z</code> für Zero ein.</p>
 
-<p>(m) <strong>Relative</strong><br>
-Stellt das Element auf <code>Position: Relative</code></p>
+<h5>
+<a name="relative-m" class="anchor" href="#relative-m"><span class="octicon octicon-link"></span></a>relative (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Stellt das Element auf <code>Position: Relative</code></p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$position</code>
+
+<ul>
+<li>Ein Position Value: <code>top</code>
+</li>
+<li>Zwei Position Values: <code>top</code>, <code>left</code>
+</li>
+<li>Vier Position Values: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>
+</li>
+</ul>
+</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test-1</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> relative</span><span class="p">;</span>
 <span class="p">}</span>
@@ -3223,10 +4200,25 @@ Stellt das Element auf <code>Position: Relative</code></p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Absolute</strong><br>
-Stellt das Element auf <code>Position: Absolute</code></p>
+<h5>
+<a name="absolute-m" class="anchor" href="#absolute-m"><span class="octicon octicon-link"></span></a>absolute (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Stellt das Element auf <code>Position: Absolute</code></p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$position</code>
+
+<ul>
+<li>Ein Position Value: <code>top</code>
+</li>
+<li>Zwei Position Values: <code>top</code>, <code>left</code>
+</li>
+<li>Vier Position Values: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>
+</li>
+</ul>
+</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test-1</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> absolute</span><span class="p">;</span>
 <span class="p">}</span>
@@ -3255,10 +4247,25 @@ Stellt das Element auf <code>Position: Absolute</code></p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Fixed</strong><br>
-Stellt das Element auf <code>Position: Fixed</code></p>
+<h5>
+<a name="fixed-m" class="anchor" href="#fixed-m"><span class="octicon octicon-link"></span></a>fixed (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Stellt das Element auf <code>Position: Fixed</code></p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$position</code>
+
+<ul>
+<li>Ein Position Value: <code>top</code>
+</li>
+<li>Zwei Position Values: <code>top</code>, <code>left</code>
+</li>
+<li>Vier Position Values: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>
+</li>
+</ul>
+</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test-1</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> fixed</span><span class="p">;</span>
 <span class="p">}</span>
@@ -3285,8 +4292,10 @@ Stellt das Element auf <code>Position: Fixed</code></p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Static</strong><br>
-Restet die Einstellungen der Position Mixins.</p>
+<h5>
+<a name="static-m" class="anchor" href="#static-m"><span class="octicon octicon-link"></span></a>static (m)</h5>
+
+<p>Restet die Einstellungen der Position Mixins.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.reset</span> <span class="p">{</span>
@@ -3303,16 +4312,18 @@ Restet die Einstellungen der Position Mixins.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Bar</strong><br>
-Generiert ein Bar Element.</p>
+<h5>
+<a name="bar-m" class="anchor" href="#bar-m"><span class="octicon octicon-link"></span></a>bar (m)</h5>
+
+<p>Generiert ein Bar Element.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*} $variant  - <code>f</code> for fixed, <code>a</code> for absolute</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$variant</code>  - <code>f</code> for fixed, <code>a</code> for absolute</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*} $position - <code>t</code> Top, <code>b</code> Bottom, <code>l</code> Left, <code>r</code> Right</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$position</code> - <code>t</code> Top, <code>b</code> Bottom, <code>l</code> Left, <code>r</code> Right</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*} $z-index - The Z-Index</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$z-index</code> - The Z-Index</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.bar-left</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> bar</span><span class="p">(</span><span class="n">f</span><span class="o">,</span> <span class="n">l</span><span class="p">);</span>
@@ -3338,14 +4349,16 @@ Generiert ein Bar Element.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Bar-Top</strong><br>
-Generiert ein Bar Element - Top Position.</p>
+<h5>
+<a name="bar-top-m" class="anchor" href="#bar-top-m"><span class="octicon octicon-link"></span></a>bar-top (m)</h5>
+
+<p>Generiert ein Bar Element - Top Position.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {value} $z - The Z-Index</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {value} <code>$z</code> - The Z-Index</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*} $variant - <code>f</code>: fixed, <code>a</code>: absolute</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$variant</code> - <code>f</code>: fixed, <code>a</code>: absolute</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.bar</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> bar-top</span><span class="p">;</span>
@@ -3371,14 +4384,16 @@ Generiert ein Bar Element - Top Position.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Bar-Bottom</strong><br>
-Generiert ein Bar Element - Bottom Position.</p>
+<h5>
+<a name="bar-bottom-m" class="anchor" href="#bar-bottom-m"><span class="octicon octicon-link"></span></a>bar-bottom (m)</h5>
+
+<p>Generiert ein Bar Element - Bottom Position.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {value} $z - The Z-Index</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {value} <code>$z</code> - The Z-Index</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*} $variant - <code>f</code>: fixed, <code>a</code>: absolute</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$variant</code> - <code>f</code>: fixed, <code>a</code>: absolute</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.bar</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> bar-bottom</span><span class="p">;</span>
@@ -3404,26 +4419,31 @@ Generiert ein Bar Element - Bottom Position.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Position-Translate</strong><br><em><a href="https://github.com/access" class="user-mention">@access</a> private</em></p>
+<h5>
+<a name="position-translate-m" class="anchor" href="#position-translate-m"><span class="octicon octicon-link"></span></a>position-translate (m)</h5>
 
 <p>Wird für die Beerechnng des <code>pivot-points</code> benötigt.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {*|number|bool}  $pos - Position Value. Values: <code>left</code>, <code>center</code>, <code>right</code>, <code>top</code>, <code>middle</code>, <code>bottom</code>
+<a href="https://github.com/access" class="user-mention">@access</a> private</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a>  {*|number|bool} <code>$pos</code> - Position Value. Values: <code>left</code>, <code>center</code>, <code>right</code>, <code>top</code>, <code>middle</code>, <code>bottom</code>
 </li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {*}  $axis - The Position Axis. Values: <code>vert</code>, <code>horz</code>
+<a href="https://github.com/param" class="user-mention">@param</a>  {*} <code>$axis</code> - The Position Axis. Values: <code>vert</code>, <code>horz</code>
 </li>
-</ul><p>(m) <strong>Pivot</strong><br>
-Positioniert den Punkt von dem die weitere Positionierung ausgeht.</p>
+</ul><h5>
+<a name="pivot-m" class="anchor" href="#pivot-m"><span class="octicon octicon-link"></span></a>pivot (m)</h5>
+
+<p>Positioniert den Punkt von dem die weitere Positionierung ausgeht.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*|number|bool} $vert (middle) - Vertical Position from the Pivot Point. Values: <code>top</code> ,<code>middle</code> ,<code>bottom</code>
+<a href="https://github.com/param" class="user-mention">@param</a> {*|number|bool} <code>$vert</code> (middle) - Vertical Position from the Pivot Point. Values: <code>top</code> ,<code>middle</code> ,<code>bottom</code>
 </li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*|number|bool} $horz (false)  - Horizontal Position from the Pivot Point. Values: <code>left</code>, <code>center</code>, <code>right</code>
+<a href="https://github.com/param" class="user-mention">@param</a> {*|number|bool} <code>$horz</code> (false)  - Horizontal Position from the Pivot Point. Values: <code>left</code>, <code>center</code>, <code>right</code>
 </li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test-1</span> <span class="p">{</span>
@@ -3448,15 +4468,17 @@ Positioniert den Punkt von dem die weitere Positionierung ausgeht.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Slide</strong><br>
-Verschiebt ein Element.</p>
+<h5>
+<a name="slide-m" class="anchor" href="#slide-m"><span class="octicon octicon-link"></span></a>slide (m)</h5>
+
+<p>Verschiebt ein Element.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*|number|bool} $vert (middle) - Vertical Position from the Pivot Point. Values: <code>top</code> ,<code>middle</code> ,<code>bottom</code>
+<a href="https://github.com/param" class="user-mention">@param</a> {*|number|bool} <code>$vert</code> (middle) - Vertical Position from the Pivot Point. Values: <code>top</code> ,<code>middle</code> ,<code>bottom</code>
 </li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*|number|bool} $horz (false)  - Horizontal Position from the Pivot Point. Values: <code>left</code>, <code>center</code>, <code>right</code>
+<a href="https://github.com/param" class="user-mention">@param</a> {*|number|bool} <code>$horz</code> (false)  - Horizontal Position from the Pivot Point. Values: <code>left</code>, <code>center</code>, <code>right</code>
 </li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.slide-1</span> <span class="p">{</span>
@@ -3486,8 +4508,10 @@ Verschiebt ein Element.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Pivot-Center</strong><br>
-Positioniert ein Element in die absolute Mitte.</p>
+<h5>
+<a name="pivot-center-m" class="anchor" href="#pivot-center-m"><span class="octicon octicon-link"></span></a>pivot-center (m)</h5>
+
+<p>Positioniert ein Element in die absolute Mitte.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.center</span> <span class="p">{</span>
@@ -3503,12 +4527,14 @@ Positioniert ein Element in die absolute Mitte.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Absolute-Middle</strong><br>
-Definiert die Größe eines Elements und positioniert es mittig. Eignet sich nicht für Elemente die ihre Dimension dynamisch ändern.</p>
+<h5>
+<a name="absolute-middle-m" class="anchor" href="#absolute-middle-m"><span class="octicon octicon-link"></span></a>absolute-middle (m)</h5>
+
+<p>Definiert die Größe eines Elements und positioniert es mittig. Eignet sich nicht für Elemente die ihre Dimension dynamisch ändern.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {List}  $element - Width and the Height of the Element</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$element</code> - Width and the Height of the Element</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.middle-1</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> absolute-middle</span><span class="p">;</span>
@@ -3538,12 +4564,14 @@ Definiert die Größe eines Elements und positioniert es mittig. Eignet sich nic
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Overlap</strong><br>
-Damit können Element andere Elemente seitlich überlappen.</p>
+<h5>
+<a name="overlap-m" class="anchor" href="#overlap-m"><span class="octicon octicon-link"></span></a>overlap (m)</h5>
+
+<p>Damit können Element andere Elemente seitlich überlappen.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a>  {list}  $size - The Sidevalues, one value can be used for two sides, two values first for left second for right</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {list} <code>$size</code> - The Sidevalues, one value can be used for two sides, two values first for left second for right</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.overlap-1</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> overlap</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
@@ -3566,41 +4594,43 @@ Damit können Element andere Elemente seitlich überlappen.</p>
 <h4>
 <a name="shorthands" class="anchor" href="#shorthands"><span class="octicon octicon-link"></span></a>Shorthands</h4>
 
-<p><code>scr/sass/framework/modules/_shorthands.scss</code><br></p>
+<p><code>file: scr/sass/framework/modules/_shorthands.scss</code></p>
 
 <p>Regulär ist es empfehlenswert die Shorthand Mixins in ein Placeholder Selector zu laden und dann mittels <code>@extend</code> weiter zu arbeiten.</p>
 
-<pre><code>// Example
-%clearfix {
-  @include clearfix;
-}
-%center {
-  @include block-center();
-}
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="err">%</span><span class="nt">clearfix</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> clearfix</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="err">%</span><span class="nt">center</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> block-center</span><span class="p">();</span>
+<span class="p">}</span>
 
-.test-1 {
-  @extend %clearfix;
-}
-.colum {
-  @extend %clearfix, %center;
-}
+<span class="nc">.test-1</span> <span class="p">{</span>
+  <span class="k">@extend</span> <span class="err">%</span><span class="nt">clearfix</span><span class="o">;</span>
+<span class="p">}</span>
+<span class="nc">.colum</span> <span class="p">{</span>
+  <span class="k">@extend</span> <span class="err">%</span><span class="nt">clearfix</span><span class="o">,</span> <span class="err">%</span><span class="nt">center</span><span class="o">;</span>
+<span class="p">}</span>
 
-// Result
-.test-1:after, .colum:after {
-  content: '';
-  display: table;
-  clear: both;
-}
+<span class="c1">// Result</span>
+<span class="nc">.test-1</span><span class="nd">:after</span><span class="o">,</span> <span class="nc">.colum</span><span class="nd">:after</span> <span class="p">{</span>
+  <span class="na">content</span><span class="o">:</span> <span class="s1">'</span><span class="s2">'</span><span class="p">;</span>
+  <span class="na">display</span><span class="o">:</span> <span class="n">table</span><span class="p">;</span>
+  <span class="na">clear</span><span class="o">:</span> <span class="no">both</span><span class="p">;</span>
+<span class="p">}</span>
 
-.colum {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-}
-</code></pre>
+<span class="nc">.colum</span> <span class="p">{</span>
+  <span class="na">display</span><span class="o">:</span> <span class="no">block</span><span class="p">;</span>
+  <span class="na">margin-left</span><span class="o">:</span> <span class="no">auto</span><span class="p">;</span>
+  <span class="na">margin-right</span><span class="o">:</span> <span class="no">auto</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
 
-<p>(m) <strong>Clearfix</strong><br>
-Fügt den Clearfix ein.</p>
+<h5>
+<a name="clearfix-m" class="anchor" href="#clearfix-m"><span class="octicon octicon-link"></span></a>clearfix (m)</h5>
+
+<p>Fügt den Clearfix ein.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.clearfix</span> <span class="p">{</span>
@@ -3615,8 +4645,10 @@ Fügt den Clearfix ein.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Center</strong><br>
-Zentriert ein Element.</p>
+<h5>
+<a name="block-center-m" class="anchor" href="#block-center-m"><span class="octicon octicon-link"></span></a>block-center (m)</h5>
+
+<p>Zentriert ein Element.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.center</span> <span class="p">{</span>
@@ -3631,8 +4663,10 @@ Zentriert ein Element.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Word-Wrap</strong><br>
-Bricht lange Wortketten um.</p>
+<h5>
+<a name="word-wrap-m" class="anchor" href="#word-wrap-m"><span class="octicon octicon-link"></span></a>word-wrap (m)</h5>
+
+<p>Bricht lange Wortketten um.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -3651,8 +4685,10 @@ Bricht lange Wortketten um.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Text-Truncate</strong><br>
-Bricht ebenfalls lange Wortketten um, dieses mal aber mit einer Ellipsis.</p>
+<h5>
+<a name="text-truncate-m" class="anchor" href="#text-truncate-m"><span class="octicon octicon-link"></span></a>text-truncate (m)</h5>
+
+<p>Bricht ebenfalls lange Wortketten um, dieses mal aber mit einer Ellipsis.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -3669,8 +4705,10 @@ Bricht ebenfalls lange Wortketten um, dieses mal aber mit einer Ellipsis.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Vertical-Center</strong><br>
-Positioniert Elemente mittig - das Parent Element muss dafür aber auf <code>display: table</code> gestellt werden.</p>
+<h5>
+<a name="vertical-center-m" class="anchor" href="#vertical-center-m"><span class="octicon octicon-link"></span></a>vertical-center (m)</h5>
+
+<p>Positioniert Elemente mittig - das Parent Element muss dafür aber auf <code>display: table</code> gestellt werden.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -3684,8 +4722,10 @@ Positioniert Elemente mittig - das Parent Element muss dafür aber auf <code>dis
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Cleartext</strong><br>
-Versteckt Textelemente.</p>
+<h5>
+<a name="cleartext-m" class="anchor" href="#cleartext-m"><span class="octicon octicon-link"></span></a>cleartext (m)</h5>
+
+<p>Versteckt Textelemente.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -3702,8 +4742,10 @@ Versteckt Textelemente.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Cleartext-Complex</strong><br>
-Versteckt Textelemente.</p>
+<h5>
+<a name="cleartext-complex-m" class="anchor" href="#cleartext-complex-m"><span class="octicon octicon-link"></span></a>cleartext-complex (m)</h5>
+
+<p>Versteckt Textelemente.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -3724,8 +4766,10 @@ Versteckt Textelemente.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Cleartext-Simpler</strong><br>
-Versteckt Textelemente.</p>
+<h5>
+<a name="cleartext-simpler-m" class="anchor" href="#cleartext-simpler-m"><span class="octicon octicon-link"></span></a>cleartext-simpler (m)</h5>
+
+<p>Versteckt Textelemente.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -3740,8 +4784,10 @@ Versteckt Textelemente.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Decollapse</strong><br>
-Verhindert das Margins kollabieren.</p>
+<h5>
+<a name="decollapse-m" class="anchor" href="#decollapse-m"><span class="octicon octicon-link"></span></a>decollapse (m)</h5>
+
+<p>Verhindert das Margins kollabieren.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -3755,8 +4801,10 @@ Verhindert das Margins kollabieren.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Performance</strong><br>
-Aktiviert die GL Beschleunigung.</p>
+<h5>
+<a name="performance-m" class="anchor" href="#performance-m"><span class="octicon octicon-link"></span></a>performance (m)</h5>
+
+<p>Aktiviert die GL Beschleunigung.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -3769,7 +4817,10 @@ Aktiviert die GL Beschleunigung.</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Antialias</strong><br></p>
+<h5>
+<a name="antialias-m" class="anchor" href="#antialias-m"><span class="octicon octicon-link"></span></a>antialias (m)</h5>
+
+<p>Aktiviert Antialias - wirksam nur auf Chrome und Firefox.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -3786,20 +4837,26 @@ Aktiviert die GL Beschleunigung.</p>
 <h4>
 <a name="spacer" class="anchor" href="#spacer"><span class="octicon octicon-link"></span></a>Spacer</h4>
 
-<p><code>scr/sass/framework/modules/_spacer.scss</code><br></p>
+<p><code>file: scr/sass/framework/modules/_spacer.scss</code></p>
 
-<p>(m) <strong>Margin-Padding</strong><br><em><a href="https://github.com/access" class="user-mention">@access</a> private</em></p>
+<h5>
+<a name="margin-padding-m" class="anchor" href="#margin-padding-m"><span class="octicon octicon-link"></span></a>margin-padding (m)</h5>
 
 <p>Berechnet Margin/Padding für die Margin und Padding Mixins.</p>
 
-<p>(m) <strong>Padding</strong><br>
-Mit dem Mixin kann man Padding in gewohnter Kurzform schreiben, die dann aber in einzelnen Deklarationen ins CSS geschrieben werden.</p>
+<ul>
+<li>
+<a href="https://github.com/access" class="user-mention">@access</a> private</li>
+</ul><h5>
+<a name="padding-m" class="anchor" href="#padding-m"><span class="octicon octicon-link"></span></a>padding (m)</h5>
+
+<p>Mit dem Mixin kann man Padding in gewohnter Kurzform schreiben, die dann aber in einzelnen Deklarationen ins CSS geschrieben werden.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Bool|List} $value (false) - It generate all four sides, with different length of values.</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool|List} <code>$value</code> (false) - It generate all four sides, with different length of values.</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Bool} $important (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$important</code> (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.padding-1</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> padding</span><span class="p">(</span><span class="mi">20</span><span class="p">);</span>
@@ -3832,14 +4889,16 @@ Mit dem Mixin kann man Padding in gewohnter Kurzform schreiben, die dann aber in
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Margin</strong><br>
-Mit dem Mixin kann man Margin in gewohnter Kurzform schreiben, die dann aber in einzelnen Deklarationen ins CSS geschrieben werden.</p>
+<h5>
+<a name="margin-m" class="anchor" href="#margin-m"><span class="octicon octicon-link"></span></a>margin (m)</h5>
+
+<p>Mit dem Mixin kann man Margin in gewohnter Kurzform schreiben, die dann aber in einzelnen Deklarationen ins CSS geschrieben werden.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Bool|List} $value (false) - It generate all four sides, with different length of values.</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool|List} <code>$value</code> (false) - It generate all four sides, with different length of values.</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Bool} $important (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$important</code> (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.margin-1</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> margin</span><span class="p">(</span><span class="mi">0</span> <span class="mi">10</span><span class="p">);</span>
@@ -3872,19 +4931,23 @@ Mit dem Mixin kann man Margin in gewohnter Kurzform schreiben, die dann aber in 
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Spacer</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-global-spacing</code></em></p>
+<h5>
+<a name="spacer-m" class="anchor" href="#spacer-m"><span class="octicon octicon-link"></span></a>spacer (m)</h5>
 
 <p>Berechnet anhand der Global Spacing Unit Abstände.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {List} $options - Spacing Type. <code>w</code>: width, <code>h</code>: height, <code>lh</code>: line-height, <code>pt</code>: padding-top, <code>pb</code>: padding-bottom, <code>pl</code>: padding-left, <code>pr</code>: padding-right, <code>mt</code>: margin-top, <code>mb</code>: margin-bottom, <code>ml</code>: margin-left, <code>mr</code>: margin-right, <code>mv</code>: margin-vertical, <code>mh</code>: margin-horizontal, <code>pv</code>: padding-vertical, <code>ph</code>: padding-horizontal</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-global-spacing</code>
+</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number}  $lines (1)         - Spacing Multiplicator</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$options</code> - Spacing Type. <code>w</code>: width, <code>h</code>: height, <code>lh</code>: line-height, <code>pt</code>: padding-top, <code>pb</code>: padding-bottom, <code>pl</code>: padding-left, <code>pr</code>: padding-right, <code>mt</code>: margin-top, <code>mb</code>: margin-bottom, <code>ml</code>: margin-left, <code>mr</code>: margin-right, <code>mv</code>: margin-vertical, <code>mh</code>: margin-horizontal, <code>pv</code>: padding-vertical, <code>ph</code>: padding-horizontal</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Bool}    $important (false) - Overwrite Values with !important</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$lines</code> (1)         - Spacing Multiplicator</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number}  $size ($kittn-global-spacing)   - Global Size Value</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$important</code> (false) - Overwrite Values with !important</li>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> ($kittn-global-spacing)   - Global Size Value</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.spacer-1</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> spacer</span><span class="p">(</span><span class="n">h</span><span class="p">);</span>
@@ -3923,14 +4986,16 @@ Mit dem Mixin kann man Margin in gewohnter Kurzform schreiben, die dann aber in 
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Spacer-Reset</strong><br>
-Resetet die vom Spacer Mixin eingestellten Abstände.</p>
+<h5>
+<a name="spacer-reset-m" class="anchor" href="#spacer-reset-m"><span class="octicon octicon-link"></span></a>Spacer-Reset (m)</h5>
+
+<p>Resetet die vom Spacer Mixin eingestellten Abstände.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {List} $options - Spacing Type. <code>w</code>: width, <code>h</code>: height, <code>lh</code>: line-height, <code>pt</code>: padding-top, <code>pb</code>: padding-bottom, <code>pl</code>: padding-left, <code>pr</code>: padding-right, <code>mt</code>: margin-top, <code>mb</code>: margin-bottom, <code>ml</code>: margin-left, <code>mr</code>: margin-right, <code>mv</code>: margin-vertical, <code>mh</code>: margin-horizontal, <code>pv</code>: padding-vertical, <code>ph</code>: padding-horizontal</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$options</code> - Spacing Type. <code>w</code>: width, <code>h</code>: height, <code>lh</code>: line-height, <code>pt</code>: padding-top, <code>pb</code>: padding-bottom, <code>pl</code>: padding-left, <code>pr</code>: padding-right, <code>mt</code>: margin-top, <code>mb</code>: margin-bottom, <code>ml</code>: margin-left, <code>mr</code>: margin-right, <code>mv</code>: margin-vertical, <code>mh</code>: margin-horizontal, <code>pv</code>: padding-vertical, <code>ph</code>: padding-horizontal</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Bool} $important (false) - Overwrite Values with !important</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$important</code> (false) - Overwrite Values with !important</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.spacer-1</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> spacer-reset</span><span class="p">(</span><span class="n">h</span><span class="p">);</span>
@@ -3972,20 +5037,21 @@ Resetet die vom Spacer Mixin eingestellten Abstände.</p>
 <h4>
 <a name="triangle" class="anchor" href="#triangle"><span class="octicon octicon-link"></span></a>Triangle</h4>
 
-<p><code>scr/sass/framework/modules/_triangle.scss</code></p>
+<p><code>file: scr/sass/framework/modules/_triangle.scss</code></p>
 
-<p>(m) <strong>Triangle</strong><br>
-Generiert Dreiecke</p>
+<h5>
+<a name="triangle-m" class="anchor" href="#triangle-m"><span class="octicon octicon-link"></span></a>Triangle (m)</h5>
+
+<p>Generiert Dreiecke aus Borders</p>
 
 <ul>
 <li>
-<code>color</code> {color} (#fff) - Farbe des Dreicks</li>
-<li>
-<code>width</code> {number} (15px) - Breite</li>
-<li>
-<code>height</code> {number} (15px) - Höhe</li>
-<li>
-<code>angle</code> {*|number} - Values: <code>top</code>, <code>top left</code>, <code>right</code>, <code>bottom right</code>, <code>bottom</code>, <code>bottom left</code>, <code>left</code>, <code>top left</code>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$values</code>
+</li>
+<li>{color} <code>color</code> (#fff) - Farbe des Dreicks</li>
+<li>{number} <code>width</code> (15px) - Breite</li>
+<li>{number} <code>height</code> (15px) - Höhe</li>
+<li>{*|number} <code>angle</code> - Values: <code>top</code>, <code>top left</code>, <code>right</code>, <code>bottom right</code>, <code>bottom</code>, <code>bottom left</code>, <code>left</code>, <code>top left</code>
 </li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.triangle-1</span> <span class="p">{</span>
@@ -4041,13 +5107,18 @@ Generiert Dreiecke</p>
 <h4>
 <a name="typography" class="anchor" href="#typography"><span class="octicon octicon-link"></span></a>Typography</h4>
 
-<p><code>scr/sass/framework/modules/_typography.scss</code><br></p>
+<p><code>file: scr/sass/framework/modules/_typography.scss</code></p>
 
-<p>(f) <strong>TW</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-typostyles-map</code></em></p>
+<h5>
+<a name="tw-f" class="anchor" href="#tw-f"><span class="octicon octicon-link"></span></a>tw (f)</h5>
 
 <p>Wird anhand des Style Keywords Werte aus der Typostyle Map übertragen.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-typostyles-map</code>
+</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nv">$kittn-typostyles-map</span><span class="o">:</span> <span class="p">(</span>
   <span class="n">mega</span><span class="o">:</span> <span class="p">(</span>
     <span class="no">font-size</span><span class="o">:</span> <span class="mi">36</span><span class="o">,</span>
@@ -4069,11 +5140,17 @@ Generiert Dreiecke</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Typogenerator</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-generate-typostyles</code>, <code>$kittn-typostyles-map</code></em></p>
+<h5>
+<a name="typogenerator-m" class="anchor" href="#typogenerator-m"><span class="octicon octicon-link"></span></a>typogenerator (m)</h5>
 
 <p>Generiert die Typostyles.</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-generate-typostyles</code>, <code>$kittn-typostyles-map</code>
+</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Map</span>
+<span class="c1">// file: src/sass/setup.scss</span>
 <span class="nv">$kittn-typostyles-map</span><span class="o">:</span> <span class="p">(</span>
   <span class="n">h1</span><span class="o">:</span> <span class="p">(</span>
     <span class="no">font-size</span><span class="o">:</span> <span class="mi">36</span><span class="o">,</span>
@@ -4108,8 +5185,11 @@ Generiert Dreiecke</p>
     <span class="n">extend</span><span class="o">:</span> <span class="s1">'</span><span class="s2">%extra'</span>
   <span class="p">)</span>
 <span class="p">);</span>
+</pre></div>
 
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="k">@include</span><span class="nd"> typogenerator</span><span class="p">;</span>
+
 <span class="c1">// Result</span>
 <span class="nc">.h1</span><span class="o">,</span> <span class="nt">h1</span><span class="o">,</span> <span class="nc">.h2</span><span class="o">,</span> <span class="nt">h2</span> <span class="p">{</span>
   <span class="na">text-rendering</span><span class="o">:</span> <span class="n">optimizeLegibility</span><span class="p">;</span>
@@ -4140,13 +5220,20 @@ Generiert Dreiecke</p>
 
 </pre></div>
 
-<p>(m) <strong>Responsive-Fontsizes</strong><br><em><a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-breakpoint-map</code>, <code>$kittn-activate</code>, <code>$kittn-active-responsive-fonts</code></em></p>
+<h5>
+<a name="responsive-fontsizes-m" class="anchor" href="#responsive-fontsizes-m"><span class="octicon octicon-link"></span></a>responsive-fontsizes (m)</h5>
 
 <p>Wird die Fontsize in <code>rem</code> definiert, kann man über das Mixin die Fontsize responsive gestalten. Die Globale Größe wird in der <code>$kittn-breakpoint-map</code> notiert.</p>
 
 <p>Aktiviert wird das ganze über die <code>$kittn-active-responsive-fonts</code> Variable, es muss ein Wert von 0 - 100 eingestellt werden?</p>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<ul>
+<li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-breakpoint-map</code>, <code>$kittn-activate</code>, <code>$kittn-active-responsive-fonts</code>
+</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Map and Vars</span>
+<span class="c1">// file: src/sass/setup.scss</span>
+
 <span class="nv">$kittn-breakpoint-map</span><span class="o">:</span> <span class="p">(</span>
   <span class="mi">1</span><span class="o">:</span> <span class="p">(</span>
     <span class="no">size</span><span class="o">:</span> <span class="mi">320</span><span class="kt">px</span><span class="o">,</span>
@@ -4167,8 +5254,11 @@ Generiert Dreiecke</p>
     <span class="n">fontsize</span><span class="o">:</span> <span class="mi">90</span>
   <span class="p">)</span>
 <span class="p">);</span>
-<span class="nv">$kittn-active-responsive-fonts</span><span class="o">:</span> <span class="mi">70</span><span class="p">;</span>
 
+<span class="nv">$kittn-active-responsive-fonts</span><span class="o">:</span> <span class="mi">70</span><span class="p">;</span>
+</pre></div>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="k">@include</span><span class="nd"> responsive-fontsize</span><span class="p">(</span><span class="nv">$base</span><span class="p">);</span>
 
 <span class="c1">// Result</span>
@@ -4187,10 +5277,15 @@ Generiert Dreiecke</p>
 <span class="p">}</span>
 </pre></div>
 
-<p>(m) <strong>Get-Fontsize</strong><br>
-Übernimmt die Fontsize aus der Map.</p>
+<h5>
+<a name="get-fontsize-m" class="anchor" href="#get-fontsize-m"><span class="octicon octicon-link"></span></a>get-fontsize (m)</h5>
 
-<div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<p>Übernimmt die Fontsize aus der Map.</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$entry</code> - TypoKey</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> get-fontsize</span><span class="p">(</span><span class="n">small</span><span class="p">);</span>
 <span class="p">}</span>
@@ -4199,6 +5294,30 @@ Generiert Dreiecke</p>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="na">font-size</span><span class="o">:</span> <span class="mi">0</span><span class="mf">.808824</span><span class="kt">rem</span><span class="p">;</span>
 <span class="p">}</span>
+</pre></div>
+
+<h5>
+<a name="ext-typo-m" class="anchor" href="#ext-typo-m"><span class="octicon octicon-link"></span></a>ext-typo (m)</h5>
+
+<p>Verbindet mit existierenden Typo Klassen</p>
+
+<ul>
+<li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$entry</code> - TypoKey</li>
+</ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
+<span class="nc">.test</span> <span class="p">{</span>
+  <span class="k">@include</span><span class="nd"> ext-typo</span><span class="p">(</span><span class="n">h1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// Result</span>
+<span class="nc">.h1</span><span class="o">,</span> <span class="nc">.test</span><span class="o">,</span> <span class="nt">h1</span><span class="o">,</span> <span class="nc">.h2</span><span class="o">,</span> <span class="nt">h2</span><span class="o">,</span> <span class="nt">h3</span><span class="o">,</span> <span class="nc">.h3</span> <span class="p">{</span>
+  <span class="na">text-rendering</span><span class="o">:</span> <span class="n">optimizeLegibility</span><span class="p">;</span>
+  <span class="na">margin-bottom</span><span class="o">:</span> <span class="mi">0</span><span class="kt">rem</span><span class="p">;</span>
+  <span class="na">color</span><span class="o">:</span> <span class="mh">#636363</span><span class="p">;</span> <span class="p">}</span>
+
+<span class="nc">.h1</span><span class="o">,</span> <span class="nc">.test</span><span class="o">,</span> <span class="nt">h1</span> <span class="p">{</span>
+  <span class="na">font-size</span><span class="o">:</span> <span class="mi">2</span><span class="mf">.647059</span><span class="kt">rem</span><span class="p">;</span>
+  <span class="na">line-height</span><span class="o">:</span> <span class="mi">0</span><span class="mf">.073529</span><span class="kt">rem</span><span class="p">;</span> <span class="p">}</span>
 </pre></div>
 
 <hr><h3>
