@@ -1,5 +1,206 @@
 ![](http://i.imgur.com/2MtKGwj.jpg)
 
+<!-- MarkdownTOC depth=7 -->
+
+- Einleitung
+- Abhängigkeiten
+  - Environments
+  - Extensions & Compiler
+    - Sass
+    - Jade
+    - Gulp
+    - Git
+- Install Kittn
+- Free the kittn
+  - Tasks
+- Folder Build
+- Image Handling
+- Build HTML with Jade
+- Working with JS Files
+  - Internal Files
+  - External Files
+- Sass Framework
+  - Structure
+  - Workfile
+  - Loader
+  - Setup
+  - Maps
+    - Fontstacks
+    - Iconmap
+    - Imagemaps
+    - Connectmap
+    - ZMap
+  - Helper
+    - BEM
+      - element <small>(m)</small>
+      - modifier <small>(m)</small>
+      - chainroot <small>(m)</small>
+      - chain <small>(m)</small>
+    - Connect
+      - connect-Gen <small>(m)</small>
+      - connect-Yield <small>(m)</small>
+      - connect <small>(m)</small>
+    - Fonts
+      - ff <small>(f)</small>
+      - font-family <small>(m)</small>
+      - fontface <small>(m)</small>
+      - fontface-generator <small>(m)</small>
+    - Helper
+      - strip-units <small>(f)</small>
+      - unit-check <small>(f)</small>
+      - calc <small>(m)</small>
+      - clamp <small>(f)</small>
+      - cp <small>(f)</small>
+      - spacer <small>(f)</small>
+      - s <small>(f)</small>
+    - Typechecks
+      - is-true <small>(f)</small>
+      - is-map <small>(f)</small>
+      - is-list <small>(f)</small>
+      - is-number <small>(f)</small>
+      - is-string <small>(f)</small>
+      - is-not-string <small>(f)</small>
+      - is-nested <small>(f)</small>
+      - map-filled <small>(f)</small>
+    - Jacket
+    - Sassylists
+    - Debug
+  - Modules
+    - Breakpoints
+      - bp <small>(f)</small>
+      - break <small>(m)</small>
+      - eq <small>(m)</small>
+      - visibility <small>(m)</small>
+    - Colors
+      - tint <small>(f)</small>
+      - shade <small>(f)</small>
+      - luma <small>(f)</small>
+      - luma-gte <small>(f)</small>
+      - luma-lte <small>(f)</small>
+      - luma-diff <small>(f)</small>
+      - _color <small>(m)</small>_
+      - get-c <small>(m)</small>
+      - color <small>(m)</small>
+      - get-bc <small>(m)</small>
+      - background-color <small>(m)</small>
+      - colorgenerator <small>(m)</small>
+      - ext-c <small>(m)</small>
+      - ext-bc <small>(m)</small>
+    - Dimensions
+      - size <small>(m)</small>
+      - align-height <small>(m)</small>
+      - align-fontsize <small>(m)</small>
+      - center <small>(m)</small>
+      - perfect-circle <small>(m)</small>
+      - ratio <small>(m)</small>
+      - unratio <small>(m)</small>
+      - tighten-up <small>(m)</small>
+      - text-middle <small>(m)</small>
+    - Grid
+      - grid-size <small>(f)</small>
+      - grid-adaptive <small>(m)</small>
+      - grid-container <small>(m)</small>
+      - grid-row <small>(m)</small>
+      - grid-colum <small>(m)</small>
+      - grid-size <small>(m)</small>
+      - pixel-grid <small>(m)</small>
+      - grid-generator <small>(m)</small>
+      - grid-devide <small>(m)</small>
+      - grid-offset <small>(m)</small>
+      - grid-offset-generator <small>(m)</small>
+      - grid-pushpull <small>(m)</small>
+      - grid-pushpull-generator <small>(m)</small>
+      - grid-normalizer <small>(m)</small>
+    - Iconfont
+      - icon <small>(f)</small>
+      - iconfont <small>(m)</small>
+      - icon-font-generator <small>(m)</small>
+      - icon-generator <small>(m)</small>
+      - icon <small>(m)</small>
+      - ext-icon <small>(m)</small>
+    - Images
+      - _getImageDimensions <small>(m)</small>
+      - image <small>(m)</small>
+      - texture <small>(m)</small>
+      - svgpng <small>(m)</small>
+      - svg <small>(m)</small>
+      - sprite-generator <small>(m)</small>
+      - sprite <small>(m)</small>
+    - Lines
+      - rem <small>(f)</small>
+      - remsize <small>(m)</small>
+      - pxsize <small>(m)</small>
+      - rem <small>(m)</small>
+      - lineheight <small>(m)</small>
+      - marginbottom <small>(m)</small>
+      - margintop <small>(m)</small>
+      - marginleft <small>(m)</small>
+      - marginright <small>(m)</small>
+      - paddingtop <small>(m)</small>
+      - paddingbottom <small>(m)</small>
+      - paddingleft <small>(m)</small>
+      - paddingright <small>(m)</small>
+      - height <small>(m)</small>
+      - fontsize <small>(m)</small>
+      - fontcalc <small>(m)</small>
+    - Modernizr
+      - Modernizr <small>(m)</small>
+      - yep <small>(m)</small>
+      - nope <small>(m)</small>
+    - Positioning
+      - z <small>(f)</small>
+      - z <small>(m)</small>
+      - shift <small>(m)</small>
+      - set-position <small>(m)</small>
+      - relative <small>(m)</small>
+      - absolute <small>(m)</small>
+      - fixed <small>(m)</small>
+      - static <small>(m)</small>
+      - bar <small>(m)</small>
+      - bar-top <small>(m)</small>
+      - bar-bottom <small>(m)</small>
+      - position-translate <small>(m)</small>
+      - pivot <small>(m)</small>
+      - slide <small>(m)</small>
+      - pivot-center <small>(m)</small>
+      - absolute-middle <small>(m)</small>
+      - overlap <small>(m)</small>
+    - Shorthands
+      - clearfix <small>(m)</small>
+      - block-center <small>(m)</small>
+      - word-wrap <small>(m)</small>
+      - text-truncate <small>(m)</small>
+      - vertical-center <small>(m)</small>
+      - cleartext <small>(m)</small>
+      - cleartext-complex <small>(m)</small>
+      - cleartext-simpler <small>(m)</small>
+      - decollapse <small>(m)</small>
+      - performance <small>(m)</small>
+      - antialias <small>(m)</small>
+    - Spacer
+      - margin-padding <small>(m)</small>
+      - padding <small>(m)</small>
+      - margin <small>(m)</small>
+      - spacer <small>(m)</small>
+      - Spacer-Reset <small>(m)</small>
+    - Triangle
+      - Triangle <small>(m)</small>
+    - Typography
+      - tw <small>(f)</small>
+      - typogenerator <small>(m)</small>
+      - responsive-fontsizes <small>(m)</small>
+      - get-fontsize <small>(m)</small>
+      - ext-typo <small>(m)</small>
+  - Partials
+    - Normalize
+    - Tables
+    - Pre-Generators
+    - Post-Generators
+- Special Thanks to
+- License
+
+<!-- /MarkdownTOC -->
+
 ## Einleitung
 
 „Kittn“ ist ein Toolkit das vorwiegend beim Aufbau von Frontends unterstützen soll. Wer nach einer bunten Mischung aus vorgefertigten Elementen sucht, so wie man es von Bootstrap und Co gewohnt ist, wird mit Kittn nicht glücklich werden. Hier werden vielmehr die Methoden angeboten um solche Elemente auf einem einfachen Weg zu Bilden und zu erweitern.
@@ -11,7 +212,7 @@ Angst vor dem Terminal sollte man nicht haben :p
 ## Abhängigkeiten
 Um mit Kittn arbeiten zu können müssen einige Extensions und Environments installiert werden. Wer diese Tools schon installiert hat, der kann den Schritt überspringen.
 
-###Environments
+### Environments
 
 > Getestet wurde das Toolkit bislang auf Mac Systemen! Auf Windows Systemen kann es zu Problemen kommen.
 
@@ -26,7 +227,7 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der [One Click Inst
 Node kann auf Mac Systemen entweder über [Brew](http://brew.sh) installiert werden oder man verwendet den [Installer](http://nodejs.org/), gilt dann für beide Systeme.
 
 
-###Extensions & Compiler
+### Extensions & Compiler
 
 - Sass 3.4.0 rc.1
 - Jade 1.3.0
@@ -38,28 +239,28 @@ Node kann auf Mac Systemen entweder über [Brew](http://brew.sh) installiert wer
 
 Der Generator installiert selbstständig Grunt, Bower und auch Yeoman.
 
-####Sass
+#### Sass
 Hier muss die aktuelle Version 3.4.0 RC1 installiert werden, da das Framework gebrauch vom Scripted Ampersand macht.
 
 ```bash
 gem install sass --pre
 ```
 
-####Jade
+#### Jade
 Nach dem ersten `gulp init` werden damit die ersten HTML Dateien mittels Jade kompiliert. Im weiteren Verlauf kann man sich selbst entscheiden ob man natives HTML schreibt oder weiter mit Jade arbeiten will.
 
 ```bash
 npm install -g jade
 ```
 
-####Gulp
+#### Gulp
 Sämtliche Tasks - auch Grunt Tasks - werden über Gulp aktiviert.
 
 ```bash
 npm install -g gulp
 ```
 
-####Git
+#### Git
 Wer Git noch nicht installiert hat sollte dies bitte jetzt nachholen, da `Bower` direkt auf Github zugreift. [Download](http://git-scm.com/download)
 
 ---
@@ -98,7 +299,7 @@ Nach Beantwortung der letzten Frage, wird Yeoman sämtliche Projektbezogenen Dep
 ## Free the kittn
 Nach dem die Installation abgeschlossen ist, wird das Projekt **initialisiert**.
 
-```
+```bash
 gulp init
 ```
 
@@ -360,19 +561,14 @@ Mittels [Jacket](https://github.com/Team-Sass/jacket) kann der Developer an eine
 ---
 
 ### Loader
-```
-src/sass/_loader.scss
-```
+`file: src/sass/_loader.scss`
 
 Mit der `_loader.scss` Datei werden alle Dateien geladen, die benötigt werden. Die Reihenfolge ist dabei schon fest vorgegeben. Sollte auch nicht mehr geändert werden.
 
 ---
 
 ### Setup
-
-```
-src/sass/_setup.scss
-```
+`file: src/sass/_setup.scss`
 
 Fast alle Einstellungen lassen sich über `_setup.scss` verändern und erweitern. Arbeiten wir uns einmal durch.
 
@@ -405,12 +601,12 @@ Fast alle Einstellungen lassen sich über `_setup.scss` verändern und erweitern
 Zu der `_setup.scss` Datei kommen noch weitere Map Files.
 
 #### Fontstacks
-`src/sass/maps/_fontstacks.scss`
+`file: src/sass/maps/_fontstacks.scss`
 
 Fonts die über die Font-Family Mixins eingefügt werden, können auf die Fontstacks zugreifen. In der Map sind die gängisten Kombinationen enthalten.
 
 #### Iconmap
-`src/sass/maps/_iconfontlist.scss`
+`file: src/sass/maps/_iconfontlist.scss`
 
 Alle Icons einer Iconfont werden in diese Map eingetragen - über die Iconfont Mixins werden daraus dann wieder Klassen generiert.
 
@@ -424,16 +620,16 @@ $kittn-font-icons: (
 ```
 
 #### Imagemaps
-`src/sass/maps/_imagemap.scss`<br>
-`src/sass/maps/_sprite.scss`<br>
-`src/sass/maps/_sprite-retina.scss`
+`file: src/sass/maps/_imagemap.scss`<br>
+`file: src/sass/maps/_sprite.scss`<br>
+`file: src/sass/maps/_sprite-retina.scss`
 
 Diese Maps werden über die `Grunt` Tasks automatisch erstellt. Dort werden Daten notiert wie die Bild Dimensionen, Dateinamen, bei Sprites wird die Position auf der Map gespeichert.
 
 Über die Image Mixins wird auf diese Maps zugegriffen.
 
 #### Connectmap
-`src/sass/maps/_connectmap.scss`
+`file: src/sass/maps/_connectmap.scss`
 
 In die Connectmap können repeatable Styles eingetragen werden. Die Map wird dann über Mixins eingelesen womit dann Silent Placeholder generiert werden. Diese können dann mit `@extend` verbunden werden, alternativ kann man den Inhalt auch direkt importiert werden.
 
@@ -448,9 +644,9 @@ $kittn-connect-map: (
 ```
 
 #### ZMap
-`src/sass/maps/_zmap.scss`
+`file: src/sass/maps/_zmap.scss`
 
-Die unterschiedlichen ZIndexes werden auf der Map notiert.
+Die unterschiedlichen Z-Indexes werden auf der Map notiert.
 
 ```scss
 $kittn-zlayer-map: (
@@ -463,15 +659,15 @@ $kittn-zlayer-map: (
 ### Helper
 
 #### BEM
-`scr/sass/framework/helper/_bem.scss`<br>
-_@requires `$kittn-bem`_
+`file: scr/sass/framework/helper/_bem.scss`
 
 Diese BEM Mixins verwenden die in `$kittn-bem` eingestellten Prefixes. Ob man diese Mixins verwendet oder nativ seine Selektoren schreiben, bleibt dem Developer überlassen.
 
-(m) **Element**<br>
-Build a BEM Element
+##### element <small>(m)</small>
+Build a BEM Element, will add the defined BEM Prefixes.
 
-_@param  {string}  $name - Selector name_
+- @requires `$kittn-bem`
+- @param {*} `$name` - Selector name
 
 ```scss
 // Example
@@ -487,11 +683,12 @@ _@param  {string}  $name - Selector name_
 }
 ```
 
-(m) **Modifier**<br>
-Build a BEM Modifier, with extend functionality
+##### modifier <small>(m)</small>
+Build a BEM Modifier, with an optional extend functionality
 
-_@param  {*}      $name           - The selector name<br>
-@param  {bool}   $extend (false) - If the Modifier need to be extended with parent_
+- @requires `$kittn-bem`
+- @param {*} `$name` - The selector name
+- @param {bool} `$extend` (false) - If the Modifier need to be extended with parent
 
 ```scss
 // Example
@@ -529,9 +726,8 @@ _@param  {*}      $name           - The selector name<br>
 }
 ```
 
-(m) **Chainroot**<br>
-Setup the Root Element for the following chained Modifers
-
+##### chainroot <small>(m)</small>
+Setup the Root Element for the chained Modifers. Must be included in a Selector.
 
 ```scss
 // Example
@@ -547,10 +743,11 @@ Setup the Root Element for the following chained Modifers
 }
 ```
 
-(m) **Chain**<br>
-Chain the Modifiers
+##### chain <small>(m)</small>
+Chain the Modifiers in a more simple way.
 
-_@param  {string} $name - Selector name, only the name_
+- @requires `$kittn-bem`
+- @param {string} `$name` - Selector name
 
 ```scss
 // Example
@@ -586,25 +783,32 @@ _@param  {string} $name - Selector name, only the name_
 ```
 
 #### Connect
-`scr/sass/framework/helper/_connect.scss`<br>
-_@requires `$kittn-connect-map`_
+`file: scr/sass/framework/helper/_connect.scss`
 
 Über die Connect Mixins ist es möglich Styles vorzudefienieren und diese Styles dann entweder mittels `@extend` zu verbinden oder den Style direkt in den Selektor zu laden (z.B. wenn man sich in einem MQ aufhält).
 
 Wenn in der `$kittn-connect-map` Map Styles definiert wurden, werden Silent Selectors generiert.
 
-(m) **Connect-Gen**<br>
-_@access private_
-
+##### connect-Gen <small>(m)</small>
 Damit werden die Selectoren verknüpft oder 'ausgeladen'.
 
-(m) **Connect-Yield**<br>
-_@access private_
+- @access `private`
+- @requires `$kittn-connect-map`
+- @param {list} `$key` - Tageted Styles, can be more than one
+- @param {bool} `$extend` (true) - On `false` the Style will be directly yielded in the selector.
+- @param {map} `$map` ($kittn-connect-map) - Connect Map
 
+##### connect-Yield <small>(m)</small>
 Das Mixin generiert aus den Elementen der `$kittn-connect-map` Map, Placeholder Selectors. Die dann mittels dem `connect` Mixin mit bestehenden Klassen verbunden werden.
+
+- @access `private`
+- @requires `$kittn-connect-map`
+- @param {map} `$map` ($kittn-connect-map) - Connect Map
 
 ```scss
 // Map
+// file: src/sass/maps/connectmap.scss
+
 $kittn-connect-map: (
   size: (
     height: 20px,
@@ -615,7 +819,9 @@ $kittn-connect-map: (
     background-color: #000
   )
 );
+```
 
+```scss
 // Example
 @include connect-yield();
 
@@ -630,8 +836,13 @@ $kittn-connect-map: (
 }
 ```
 
-(m) **Connect**<br>
+##### connect <small>(m)</small>
 Mit dem Connect Mixin können bestehende Elemente mit den Placeholder entweder verbunden werden, oder der Style kann in das Element direkt integriert werden.
+
+- @requires `$kittn-connect-map`
+- @param {list} `$key` - Tageted Styles, can be more than one
+- @param {bool} `$extend` (true) - On `false` the Style will be directly yielded in the selector.
+- @param {map} `$map` ($kittn-connect-map) - Connect Map
 
 ```scss
 // Example
@@ -665,10 +876,12 @@ Mit dem Connect Mixin können bestehende Elemente mit den Placeholder entweder v
 #### Fonts
 `scr/sass/framework/helper/_fonts.scss`<br>
 
-(f) **ff**<br>
-_@requires `$kittn-fontstack-map`_
+##### ff <small>(f)</small>
+Mittels der `ff` Funktion kann man sich einen Fontstack aus der Map herauspicken und einfügen, zusätzlich kann man eigene Font Families anhängen.
 
-Mittels der FF Function kann man sich einen Fontstack einladen, zusätzlich kann man eigene Font Familys anhängen.
+- @requires `$kittn-fontstack-map`
+- @param {*} `$family` - FontStack Family
+- @param {argList} `$append` - The Fonts that need to be prepended
 
 ```scss
 // Example
@@ -688,8 +901,12 @@ Mittels der FF Function kann man sich einen Fontstack einladen, zusätzlich kann
 }
 ```
 
-(m) **Font-Family**<br>
+##### font-family <small>(m)</small>
 Ist mehr ein Alias der FF Funktion, dieses mal als Mixin.
+
+- @requires `$kittn-fontstack-map`
+- @param {*} `$family` - FontStack Family
+- @param {argList} `$append` - The Fonts that need to be prepended
 
 ```scss
 // Example
@@ -709,10 +926,15 @@ Ist mehr ein Alias der FF Funktion, dieses mal als Mixin.
 }
 ```
 
-(m) **FontFace**<br>
-_@requires `$kittn-directorys`_
+##### fontface <small>(m)</small>
+Das Mixin generiert die Fontfaces, fügt bei Bedarf noch einen zusätzlichen SVG Fontstack ein - der auf Windows Plattformen für besseres Fontrendering sorgt (Firefox, Chrome)
 
-Das Mixin generiert die Fontfaces
+- @requires `$kittn-directorys`
+- @param {*} `$filename` - The Filename of the Fontname
+- @param {*} `$fontname` - The Desired Fontname
+- @param {*} `$fontweight` (normal) - Fontweight
+- @param {*} `$fontstyle` (normal) - Fontstyle
+- @param {bool} `$svgoption` (true) - Activate the addition route to the SVG Font
 
 ```scss
 // Examples
@@ -756,13 +978,17 @@ Das Mixin generiert die Fontfaces
 }
 ```
 
-(m) **Fontface-Generator**<br>
+##### fontface-generator <small>(m)</small>
 Der Generator generiert über die `$kittn-fontface-map` Map eine Reihe von Fontfaces. Der Generator steht fast am Anfang, Fontfaces werden im CSS immer an erster Stelle implementiert.
 
+- @access `private`
+- @requires `$kittn-fontface-map`
+
 ```scss
-// Example
+// Map
+// file: src/sass/setup.scss
+
 $kittn-fontface-map: (
-  // EXAMPLE
   'ownfont': (
     filename: false,
     weight: normal,
@@ -770,6 +996,11 @@ $kittn-fontface-map: (
     svgoption: false
   )
 );
+```
+
+```scss
+// Example
+@include fontface-generator();
 
 // Result
 @font-face {
@@ -782,10 +1013,13 @@ $kittn-fontface-map: (
 ```
 
 #### Helper
-`scr/sass/framework/helper/_helper.scss`<br>
+`file: scr/sass/framework/helper/_helper.scss`
 
-(f) **Strip-Units**<br>
+##### strip-units <small>(f)</small>
 Entfernt die Units von Values
+
+- @param {Number} `$number` - Value
+- @returns {Number}
 
 ```scss
 // Example
@@ -801,8 +1035,12 @@ $size: 20px;
 }
 ```
 
-(f) **Unit-Check**<br>
-Hängt die Default Unit an Values
+##### unit-check <small>(f)</small>
+Fügt die default Unit an Unitless Values an.
+
+- @requires `$kittn-default-unit`
+- @param {Number} `$number` - Value
+- @returns {Number}
 
 ```scss
 // Example
@@ -818,8 +1056,11 @@ $size: 20;
 }
 ```
 
-(m) **Calc**<br>
-Über das Mixin kann man den CSS Calc verwenden.
+##### calc <small>(m)</small>
+Um die CSS Calc Funktion Browserüberbreifend zu verwenden (weil in diesem Fall der Autoprefixer nicht aktiv wird), behilft man sich mit dem Mixin.
+
+- @param {*} `$property` - Property that calculated
+- @param {*} `$expression` - Formula (need to be quoted)
 
 ```scss
 // Example
@@ -835,8 +1076,13 @@ $size: 20;
 }
 ```
 
-(f) **Clamp**<br>
+##### clamp <small>(f)</small>
 Mit dieser Funktion begrenzt man Zahlenwerte.
+
+- @param {Number} `$value` - The Value that need to be clamped
+- @param {Number} `$min` - The posible minimal value
+- @param {Number} `$max` - The possible max Value
+- @returns {Number} - Clamped Value
 
 ```scss
 // Example
@@ -856,12 +1102,15 @@ $width: 23;
 
 ```
 
-(f) **CP Colorpicker**<br>
-_@requires `$kittn-color-map`_
-
-Über den Colorpicker greift man auf die Color Map zu.
+##### cp <small>(f)</small>
+Der Colorpicker ist mit der Color Map (`$kittn-color-map`) verbunden und holt damit die entsprechenden Color Values.
 
 > Die Keywords der Farben müssen gequotet notiert werden.
+
+- @requires `$kittn-color-map`
+- @param {*} `$target` - Desired color
+- @param {map} `$map` - Color Map
+- @returns {Color}
 
 ```scss
 // Example
@@ -877,10 +1126,13 @@ _@requires `$kittn-color-map`_
 }
 ```
 
-(m) **Spacer**<br>
-_@requires `$kittn-global-spacing`_
+##### spacer <small>(f)</small>
+Das Spacer-Mixin generiert anhand der Global Spacing Unit Größen.
 
-Das Spacermixin generiert anhand der Global Spacing Unit Größen.
+- @requires `$kittn-global-spacing`
+- @param {Number} `$lines` - Multiplicator for Spacing
+- @param {Bool} `$hard` (false) - For including an `!important`
+- @param {Number} `$size` ($kittn-global-spacing) - Connection to the Base Spacing
 
 ```scss
 // Example
@@ -898,10 +1150,15 @@ Das Spacermixin generiert anhand der Global Spacing Unit Größen.
 }
 ```
 
-(f) **S**<br>
-_@requires `$kittn-global-spacing`_
-
+##### s <small>(f)</small>
 Selbiges wie oben, mit dem Unterschied das diese Funktion per Default keine Units integriert. Wird häufig für interne Mixins verwendet.
+
+- @requires `$kittn-global-spacing`
+- @param {Number} `$lines` - Multiplicator for Spacing
+- @param {Bool} `$imp` (false) - For including an !important
+- @param {*} `$u` (false) - Unit
+- @param {Number} `$size` ($kittn-global-spacing) - Connection to the Base Spacing
+- @returns {Number}
 
 ```scss
 // Example
@@ -922,10 +1179,13 @@ Selbiges wie oben, mit dem Unterschied das diese Funktion per Default keine Unit
 ```
 
 #### Typechecks
-`scr/sass/framework/helper/_typechecks.scss`<br>
+`file: scr/sass/framework/helper/_typechecks.scss`
 
-(f) **Is-True**<br>
+##### is-true <small>(f)</small>
 Prüft ob ein Wert übergeben wurde
+
+- @param {*} `$value` - Value to check
+- @returns {Bool}
 
 ```scss
 // Example
@@ -943,8 +1203,11 @@ $check: 1;
 }
 ```
 
-(f) **Is-Map**<br>
+##### is-map <small>(f)</small>
 Prüft ob es sich um eine Map handelt.
+
+- @param {*} `$value` - Value to check
+- @returns {Bool}
 
 ```scss
 // Example
@@ -964,8 +1227,11 @@ $check: (
 }
 ```
 
-(f) **Is-List**<br>
+##### is-list <small>(f)</small>
 Prüft ob es sich um eine Liste handelt.
+
+- @param {*} `$value` - Value to check
+- @returns {Bool}
 
 ```scss
 // Example
@@ -983,8 +1249,11 @@ $check: 'hello' 'welcome' 'to';
 }
 ```
 
-(f) **Is-Number**<br>
+##### is-number <small>(f)</small>
 Prüft ob es sich um eine Nummer handelt.
+
+- @param {*} `$value` - Value to check
+- @returns {Bool}
 
 ```scss
 // Example
@@ -1002,8 +1271,11 @@ $check: 1;
 }
 ```
 
-(f) **Is-String**<br>
+##### is-string <small>(f)</small>
 Prüft ob es sich um einen String handelt.
+
+- @param {*} `$value` - Value to check
+- @returns {Bool}
 
 ```scss
 // Example
@@ -1021,8 +1293,11 @@ $check: 'hello';
 }
 ```
 
-(f) **Is-Not-String**<br>
+##### is-not-string <small>(f)</small>
 Prüft ob es sich **nicht** um einen String handelt.
+
+- @param {*} `$value` - Value to check
+- @returns {Bool}
 
 ```scss
 // Example
@@ -1040,8 +1315,10 @@ $check: 1;
 }
 ```
 
-(f) **Is-Nested**<br>
+##### is-nested <small>(f)</small>
 Prüft ob der Selektor verschachtelt wurde.
+
+- @returns {Bool}
 
 ```scss
 // Example
@@ -1065,8 +1342,11 @@ Prüft ob der Selektor verschachtelt wurde.
 }
 ```
 
-(f) **Map-Filled**<br>
+##### map-filled <small>(f)</small>
 Überprüft ob die Map gefüllt wurde.
+
+- @param {*} `$value` - Value to check
+- @returns {Bool}
 
 ```scss
 // Example
@@ -1094,12 +1374,12 @@ $test-2: (
 ```
 
 #### Jacket
-`scr/sass/framework/helper/_jacket.scss`<br>
+`file: scr/sass/framework/helper/_jacket.scss`
 
 Nähere [Informationen](https://github.com/Team-Sass/jacket)
 
 #### Sassylists
-`scr/sass/framework/helper/_sassylists.scss`<br>
+`file: scr/sass/framework/helper/_sassylists.scss`
 
 Da `Kittn` nur ein Bruchteil der Funktionen von Hugo Giraudels [sassylists](http://sassylists.com/) benötigt, ist die Library hier in gekürzter Form integriert.
 
@@ -1117,26 +1397,29 @@ Folgende Funktionen wurden integriert:
 - `sl-order`
 
 #### Debug
-`scr/sass/framework/helper/_debug.scss`<br>
-
-_@requires '$kittn-activate'_
+`file: scr/sass/framework/helper/_debug.scss`
 
 Bei Aktivieren werden mögliche Fehler im CSS visuell hervorgehoben.
 
-- `rot` = Fehler
-- `gelb` = Zu Überprüfen
+`rot` = Fehler<br>
+`gelb` = Zu Überprüfen
+
+- @requires '$kittn-activate'
 
 ---
 
 ### Modules
 
 #### Breakpoints
-`scr/sass/framework/modules/_breakpoints.scss`<br>
+`scr/sass/framework/modules/_breakpoints.scss`
 
-(f) **BP**<br>
-_@requires '$kittn-breakpoint-map'_
-
+##### bp <small>(f)</small>
 Wählt anhand des Breakpoint-Key, die entsprechende Größe aus der Breakpoint-Map.
+
+- @requires `$kittn-breakpoint-map`
+- @param {*} `$target` - The required Breakpoint
+- @param {Map} `$entrys` ($kittn-breakpoint-map) - Connection to the Breakpoint Map
+- @returns {Number}
 
 ```scss
 // Example
@@ -1150,10 +1433,13 @@ Wählt anhand des Breakpoint-Key, die entsprechende Größe aus der Breakpoint-M
 }
 ```
 
-(m) **Break**<br>
-_@requires '$kittn-breakpoint-map'_
-
+##### break <small>(m)</small>
 Generiert MediaQueries. Wenn Mobile First aktiviert wurde (`$kittn-activate`), arbeiten die MQs per Default immer mit `min` Werten. Im Mode `between` wird das Mixin die zwei Größen zudem immer immer aufsteigend Sortieren.
+
+- @requires `$kittn-breakpoint-map`, `$kittn-activate`
+- @param {*} `$target` - Required Breakpoint
+- @param {*} `$mode` - Media Query Mode. Values: `between`, `max`, `min`, `auto` (default - setup with mobile-first:true/false)
+- @param {Map} `$list` ($kittn-breakpoint-map) - Connection to the Breakpoint Map
 
 ```scss
 // Example
@@ -1211,8 +1497,10 @@ Generiert MediaQueries. Wenn Mobile First aktiviert wurde (`$kittn-activate`), a
 }
 ```
 
-(m) **EQ**<br>
-Mixin für die [ElementQueries](https://github.com/snugug/eq.js) von Sam Richard
+##### eq <small>(m)</small>
+Mixin für das [ElementQueries](https://github.com/snugug/eq.js) Script, von Sam Richard.
+
+- @param {argList} $states - The Different Querie Types
 
 ```scss
 // Example
@@ -1244,8 +1532,10 @@ Mixin für die [ElementQueries](https://github.com/snugug/eq.js) von Sam Richard
 </div>
 ```
 
-(m) **Visibility**<br>
+##### visibility <small>(m)</small>
 Generiert Visibilty/Hidden Classes basierend auf der `$kittn-breakpoint-map` Map. Es werden dabei aber nur Classen generiert wenn diese in der Map mit `visibility: true` eingetragen wurden.
+
+- @requires `$kittn-breakpoint-map`
 
 ```scss
 // Map
@@ -1263,13 +1553,16 @@ $kittn-breakpoint-map: (
     fontsize: 80
   )
 );
+```
 
+```scss
 // Example
 @include visibility;
 
 // Result
 .hidden-to--1 {
-  display: none; }
+  display: none;
+}
 @media screen and (max-width: 321px) {
   .hidden-to--1 {
     display: inherit;
@@ -1289,7 +1582,8 @@ $kittn-breakpoint-map: (
 }
 
 .visible-from--1 {
-  display: none; }
+  display: none;
+}
 @media screen and (min-width: 320px) {
   .visible-from--1 {
     display: inherit;
@@ -1300,8 +1594,13 @@ $kittn-breakpoint-map: (
 #### Colors
 `scr/sass/framework/modules/_color.scss`<br>
 
-(f) **Tint**<br>
+##### tint <small>(f)</small>
 Mischt eine Farbe mit Weiß
+
+- @param {Color} `$color` - The Color value
+- @param {Number} `$amount` - The Mix Value
+- @param {color} `$tint-color` (#fff) - Mix Color
+- @returns {Color}
 
 ```scss
 // Example
@@ -1315,8 +1614,13 @@ Mischt eine Farbe mit Weiß
 }
 ```
 
-(f) **Shade**<br>
+##### shade <small>(f)</small>
 Mischt eine Farbe mit Schwarz
+
+- @param {Color} `$color` - The Color value
+- @param {Number} `$amount` - The Mix Value
+- @param {color} `$shade-color` (#000) - Mix Color
+- @returns {Color}
 
 ```scss
 // Example
@@ -1330,8 +1634,11 @@ Mischt eine Farbe mit Schwarz
 }
 ```
 
-(f) **Luma**<br>
-Berechnet die Helligkeit einer Farbe  
+##### luma <small>(f)</small>
+Berechnet die Helligkeit einer Farbe.
+
+- @param {Color} `$color` - Color Value
+- @returns {Number}
 
 ```scss
 // Example
@@ -1347,8 +1654,12 @@ $color: red;
 }
 ```
 
-(f) **Luma-GTE**<br>
+##### luma-gte <small>(f)</small>
 Liefert `true` zurück wenn Farbe 1 heller ist als Farbe 2
+
+- @param {Color} `$color1` - Color Value
+- @param {Color} `$color2` - Color Value
+- @returns {Bool}
 
 ```scss
 // Example
@@ -1367,8 +1678,12 @@ $color-2: blue;
 }
 ```
 
-(f) **Luma-LTE**<br>
+##### luma-lte <small>(f)</small>
 Liefert `true` zurück wenn Farbe 1 kleiner ist als Farbe 2
+
+- @param {Color} `$color1` - Color Value
+- @param {Color} `$color2` - Color Value
+- @returns {Bool}
 
 ```scss
 // Example
@@ -1380,12 +1695,14 @@ $color-2: blue;
     content: 'true'
   }
 }
-
-// Result
 ```
 
-(f) **Luma-DIFF**<br>
+##### luma-diff <small>(f)</small>
 Berechnet die Differenz zwischen zwischen zwei Farbwerten.
+
+- @param {Color} `$color1` - Color Value
+- @param {Color} `$color2` - Color Value
+- @returns {Bool}
 
 ```scss
 // Example
@@ -1402,11 +1719,15 @@ $color-2: blue;
 }
 ```
 
-(m) **_Color**<br>
-_@access private<br>
-@requires `$kittn-color-map`_
-
+##### _color <small>(m)</small>_
 Zieht Werte aus der Color Map. In dem Mixin ist ebenso ein Fallback für IE integriert - wenn Farben Opacity Werte aufweisen.
+
+- @access private
+- @requires `$kittn-color-map`
+- @param {*} `$target` - Color Key from Map
+- @param {*} `$attrib` (color) - The Color Attribute
+- @param {Bool} `$imp` (false) - For !important setting
+- @param {Map} `$map` (stylecolors) - Color Map
 
 ```scss
 // Example
@@ -1422,10 +1743,12 @@ Zieht Werte aus der Color Map. In dem Mixin ist ebenso ein Fallback für IE inte
 }
 ```
 
-(m) **Get-C**<br>
-_@requires `$kittn-color-map`_
-
+##### get-c <small>(m)</small>
 Generiert auf dem gewählten Farbwert die Textfarbe.
+
+- @requires `$kittn-color-map`
+- @param {*} `$target` - The Color Key
+- @param {Bool} `$hard`- For !important setting
 
 ```scss
 // Example
@@ -1439,13 +1762,15 @@ Generiert auf dem gewählten Farbwert die Textfarbe.
 }
 ```
 
-(m) **Color**<br>
+##### color <small>(m)</small>
 Alias Mixin von `get-c`
 
-(m) **Get-BC**<br>
-_@requires `$kittn-color-map`_
-
+##### get-bc <small>(m)</small>
 Generiert aus dem gewählten Farbwert die Hintergrundfarbe
+
+- @requires `$kittn-color-map`
+- @param {*} `$target` - The Color Key
+- @param {Bool} `$hard`- For !important setting
 
 ```scss
 // Example
@@ -1459,21 +1784,18 @@ Generiert aus dem gewählten Farbwert die Hintergrundfarbe
 }
 ```
 
-(m) **Background-Color**<br>
+##### background-color <small>(m)</small>
 Alias Mixin von `get-bc`
 
-(m) **Colorgenerator**<br>
-_@requires `$kittn-color-map`, `$kittn-color-generator`_
-
+##### colorgenerator <small>(m)</small>
 Generiert aus der `$kittn-color-map` Map Farbklassen, entweder `silent` oder als Klasse. In der `$kittn-color-generator` findet man die erforderlichen Einstellungen.
 
-Über den `type` bestimmt man die Art der ColorPlaceholder:
-- `c` Color
-- `b` Background-Color
-- `bc` Background-Color & Color
+- @access private
+- @requires `$kittn-color-map`, `$kittn-color-generator`
+- @type {Map} `$colors` - The Desired Map
 
 ```scss
-// Example
+// Map
 $kittn-color-map: (
   'primary': (
     color: #f29300,
@@ -1486,7 +1808,15 @@ $kittn-color-map: (
     type: bc
   )
 );
+```
 
+Mit `type` bestimmt man die Art der ColorPlaceholder:
+- `c` Color
+- `b` Background-Color
+- `bc` Background-Color & Color
+
+```scss
+// Example
 @include colorgenerator();
 
 // Result
@@ -1504,8 +1834,11 @@ $kittn-color-map: (
 }
 ```
 
-(m) **Ext-C**<br>
+##### ext-c <small>(m)</small>
 Verbindet Elemente mit der gewählten Farbe (`color`) - der Colorgenerator muss dafür aber die ColorPlaceholder generiert haben, ansonsten lädt das Mixin die Farbe direkt in das Element.
+
+- @requires `$kittn-color-generator`
+- @param {*} `$name` - Color Key
 
 ```scss
 // Example
@@ -1522,8 +1855,11 @@ Verbindet Elemente mit der gewählten Farbe (`color`) - der Colorgenerator muss 
 }
 ```
 
-(m) **Ext-BC**<br>
+##### ext-bc <small>(m)</small>
 Verbindet Elemente mit der gewählten Farbe (`background-color`) - der Colorgenerator muss dafür aber die ColorPlaceholder generiert haben, ansonsten lädt das Mixin die Farbe direkt in das Element.
+
+- @requires `$kittn-color-generator`
+- @param {*} `$name` - Color Key
 
 ```scss
 // Example
@@ -1541,10 +1877,13 @@ Verbindet Elemente mit der gewählten Farbe (`background-color`) - der Colorgene
 ```
 
 #### Dimensions
-`scr/sass/framework/modules/_dimensions.scss`<br>
+`file: scr/sass/framework/modules/_dimensions.scss`<br>
 
-(m) **Size**<br>
-Integriert Breite und Höhe.
+##### size <small>(m)</small>
+Implementiert die Dimensionen eines Elements.
+
+- @param {List} `$size` - Size can be includes with a Single Value (square) or with two value 'width' & 'height'
+- @param {Bool} `$lineheight` (false) - On 'true' lineheight will be set to the same $size, otherwise use a Number
 
 ```scss
 // Example
@@ -1582,8 +1921,11 @@ Integriert Breite und Höhe.
 }
 ```
 
-(m) **Align-Height**<br>
-Höhe und Lineheight einfach einfügen.
+##### align-height <small>(m)</small>
+Shorthand um Höhe und Line-Height über ein Value zu übermitteln.
+
+- @param {Number} `$height` - Heightvalue
+- @param {Number} `$factor` - The multiply factor
 
 ```scss
 // Example
@@ -1605,8 +1947,11 @@ Höhe und Lineheight einfach einfügen.
 }
 ```
 
-(m) **Align-Fontsize**<br>
-Align Fontsize und Lineheight
+##### align-fontsize <small>(m)</small>
+Shorthand um Font-Size und Line-Height über ein Value zu übermitteln.
+
+- @param {Number} `$size` - Fontsize
+- @param {Number} `$factor` - The multiply factor
 
 ```scss
 // Example
@@ -1628,8 +1973,10 @@ Align Fontsize und Lineheight
 }
 ```
 
-(m) **Center**<br>
-Zentriert, Mittelt und gibt einem Element eine Größe
+##### center <small>(m)</small>
+Zentriert, mittelt und gibt einem Element eine Größe
+
+- @param {List} `$size` - Dimensions
 
 ```scss
 // Example
@@ -1656,8 +2003,10 @@ Zentriert, Mittelt und gibt einem Element eine Größe
 }
 ```
 
-(m) **Perfect-Circle**<br>
+##### perfect-circle <small>(m)</small>
 Passt den Border-Radius an die Größe des Elements an.
+
+- @param {Number} `$size` - The Size of the Circle
 
 ```scss
 // Example
@@ -1675,8 +2024,11 @@ Passt den Border-Radius an die Größe des Elements an.
 }
 ```
 
-(m) **Ratio**<br>
+##### ratio <small>(m)</small>
 Stellt bei einem Element das Breiten und Größenverhältniss gemäß der Ratio ein.
+
+- @param {list} `$ratio` (1) - Ratio between width and height
+- @param {string} `$selector` (false) - Target selector
 
 ```scss
 // Example
@@ -1724,8 +2076,10 @@ Stellt bei einem Element das Breiten und Größenverhältniss gemäß der Ratio 
 }
 ```
 
-(m) **Unratio**<br>
+##### unratio <small>(m)</small>
 Entfernt bestehende Ratios wieder.
+
+- @param {string} `$selector` (false) - Target selector
 
 ```scss
 // Example
@@ -1747,7 +2101,7 @@ Entfernt bestehende Ratios wieder.
 }
 ```
 
-(m) **Tighten-Up**<br>
+##### tighten-up <small>(m)</small>
 'Spannt' ein inneres Element auf die gleiche Dimension des äußeren Elements auf.
 
 ```scss
@@ -1766,7 +2120,7 @@ Entfernt bestehende Ratios wieder.
 }
 ```
 
-(m) **Text-Middle**<br>
+##### text-middle <small>(m)</small>
 Positioniert Textelemente in der Vertikalen Mitte.
 
 ```scss
@@ -1788,12 +2142,15 @@ Positioniert Textelemente in der Vertikalen Mitte.
 }
 ```
 
-
 #### Grid
-`scr/sass/framework/modules/_grid.scss`<br>
+`file: scr/sass/framework/modules/_grid.scss`
 
-(f) **Grid-Size**<br>
+##### grid-size <small>(f)</small>
 Berechnet die Breite der Colums
+
+- @param {Number} `$colums` - Colums
+- @param {Number} `$maxColums` - Max Colums
+- @returns {Number} - Percentage Value
 
 ```scss
 // Example
@@ -1807,36 +2164,40 @@ Berechnet die Breite der Colums
 }
 ```
 
-(m) **Grid-Adaptive**<br>
-_@requires `$kittn-breakpoint-map`_
-
+##### grid-adaptive <small>(m)</small>
 Die Seitenbreite verändert sich damit Adaptiv. Der jeweilige Threshold wird über `$kittn-breakpoint-map` eingestellt in dem bei Breakpoint `step` auf `true` gestellt wird. Die Reihenfolge der MediaQueries richtet sich nach `$kittn-activate(mobile-first)`.
 
-Das Mixin muss in einem Selektor aufgerufen werden.
+_Das Mixin muss in einem Selektor aufgerufen werden._
+
+- @requires `$kittn-breakpoint-map`
 
 ```scss
-// Example
+// Map
+// file: src/sass/setup.scss
 $kittn-breakpoint-map: (
   1: (
     size: 320px,
     visibility: true,
-    step: true,
+    step: true, // Trigger for 'grid-adaptive'
     fontsize: false
   ),
   2: (
     size: 480px,
     visibility: false,
-    step: false,
+    step: false, // Trigger for 'grid-adaptive'
     fontsize: 80
   ),
   3: (
     size: 560px,
     visibility: false,
-    step: true,
+    step: true, // Trigger for 'grid-adaptive'
     fontsize: false
   )
 );
+```
 
+```scss
+// Example
 .container {
   @include grid-adaptive();
 }
@@ -1852,15 +2213,16 @@ $kittn-breakpoint-map: (
 }
 ```
 
-(m) **Grid-Container**<br>
+##### grid-container <small>(m)</small>
 Generiert den Seiten Container, der zum einen die Seite im Viewport positioniert (default: center), zum anderen bestimmt er die Seitenbreite.
 
 Wenn man das `grid-adaptive` Mixin verwendet wird, sollte die Seitenbreite deaktiviert werden.
 
-- `width` {list|bool} Bei einem Wert ist der Container Statisch, zwei Werte geben min und max vor, kann auch auf `false` gestellt werden.
-- `pos` Position des Container. Values: `center`, `left`,  `right`
-- `gutter` Nur aktiv wenn `pos: left` oder `pos:right` eingestellt wurde, der Gutter bestimmt dann den Abstand zum Viewport.
-- `static-ie` {Bool} Wenn aktiviert, bekommt der IE8 einen statischen Seitencontainer.
+- @param {Map} `$container`
+  - {List|Bool} `width` - Bei einem Wert ist der Container Statisch, zwei Werte geben min und max vor, kann auch auf `false` gestellt werden.
+  - {*} `pos` - Position des Container. Values: `center`, `left`,  `right`
+  - {Number} `gutter` - Nur aktiv wenn `pos: left` oder `pos:right` eingestellt wurde, der Gutter bestimmt dann den Abstand zum Viewport.
+  - {Bool} `static-ie` - Wenn aktiviert, bekommt der IE8 einen statischen Seitencontainer.
 
 ```scss
 // Example
@@ -1916,13 +2278,14 @@ Wenn man das `grid-adaptive` Mixin verwendet wird, sollte die Seitenbreite deakt
 }
 ```
 
-(m) **Grid-Row**<br>
+##### grid-row <small>(m)</small>
 Über die `rows` wird das Display Verhalten der einzelnen `colums` eingestellt. zusätzlich wird dafür gesorgt das Floats nicht überlaufen.
 
-- `spacing` Seitlicher Abstand
-- `layout` Values: `block`, `inline`, `table`, `flex`
-- `valign` Gilt nur bei `layout:inline`. Values: `top`, `bottom`, `baseline`, `middle`
-- `align` Values: `justify`, `center`, `right`, `left`
+- @param {Map} `$row`
+  - {Number} `spacing` - Seitlicher Abstand
+  - {*} `layout` -  Values: `block`, `inline`, `table`, `flex`
+  - {*} `valign` - Gilt nur bei `layout:inline`. Values: `top`, `bottom`, `baseline`, `middle`
+  - {*} `align` - Values: `justify`, `center`, `right`, `left`
 
 ```scss
 // Example
@@ -1953,14 +2316,16 @@ Wenn man das `grid-adaptive` Mixin verwendet wird, sollte die Seitenbreite deakt
 }
 ```
 
-(m) **Grid-Colum**<br>
+##### grid-colum <small>(m)</small>
 Bildet den Basisstyle für alle `colums`.
 
-- `spacing` Seitlicher Abstand
-- `layout` Values: `block`, `inline`, `table`, `flex`
-- `extras` {Bool} Inkludiert Extra Klassen für die Colums
-- `valign` Gilt nur bei `layout:inline`. Varianten: `top`, `bottom`, `baseline`, `middle`
-- `align` Values: `justify`, `center`, `right`, `left`
+- @requires `$kittn-bem`
+- @param {Map} `$colums`
+  - {Number} `spacing` - Seitlicher Abstand
+  - {*} `layout` - Values: `block`, `inline`, `table`, `flex`
+  - {Bool} `extras` - Inkludiert Extra Klassen für die Colums
+  - {*} `valign` -  Gilt nur bei `layout:inline`. Varianten: `top`, `bottom`, `baseline`, `middle`
+  - {*} `align` - Values: `justify`, `center`, `right`, `left`
 
 ```scss
 // Example
@@ -1997,12 +2362,13 @@ Bildet den Basisstyle für alle `colums`.
 }
 ```
 
-(m) **Grid-Size**<br>
+##### grid-size <small>(m)</small>
 Definiert die Breite einer Colum.
 
-- `size` Spaltenbreite
-- `max` Die maximale Anzahl an Spalten (als Berechnungsgrundlage)
-- `flex` {Bool} Aktiviert die Flexbox Funktion
+- @param {Map} `$grid`
+  - {Number} `size` - Spaltenbreite
+  - {Number} `max` - Die maximale Anzahl an Spalten (als Berechnungsgrundlage)
+  - {Bool} `flex` - Aktiviert die Flexbox Funktion
 
 ```scss
 // Example
@@ -2028,13 +2394,14 @@ Definiert die Breite einer Colum.
 }
 ```
 
-(m) **Pixel-Grid**<br>
+##### pixel-grid <small>(m)</small>
 Definiert die Breite einer Colum in Pixel.
 
-- `size` Spaltenbreite
-- `max` Die maximale Anzahl an Spalten
-- `margin` Seitlicher Abstand
-- `space` Breite des äußeren Wrappers
+-@param {Map} `$grid`
+  - {Number} `size` - Spaltenbreite
+  - {Number} `max` - Die maximale Anzahl an Spalten
+  - {Number} `margin` - Seitlicher Abstand
+  - {Number} `space` - Breite des äußeren Wrappers
 
 ```scss
 // Example
@@ -2066,13 +2433,15 @@ Definiert die Breite einer Colum in Pixel.
 }
 ```
 
-(m) **Grid-Generator**<br>
+##### grid-generator <small>(m)</small>
 Generiert eine definierte Anzahl von Colums
 
-- `colums` Maximale Colums
-- `select` {bool|list} Hier kann spezifiziert werden welche Colums generiert werden sollen
-- `name` {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
-- `extend` {bool|*} Damit werden die generierten Klassen mit anderen Klassen verbunden.
+- @requires `$kittn-bem`
+- @param {Map} `$generator`
+  - {Number} `colums` - Maximale Colums
+  - {bool|list} `select` - Hier kann spezifiziert werden welche Colums generiert werden sollen
+  - {bool|*} `name` - Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
+  - {bool|*} `extend` - Damit werden die generierten Klassen mit anderen Klassen verbunden.
 
 ```scss
 // Example
@@ -2130,12 +2499,14 @@ Generiert eine definierte Anzahl von Colums
   width: 58.333333%; }
 ```
 
-(m) **Grid-Devide**<br>
+##### grid-devide <small>(m)</small>
 Das Mixin kann ein bestehendes Grid 'teilen', ein 12er Grid kann damit in eine 6er Grid umgewandelt werden. Funktioniert aber nur wenn nicht Mobile-First gearbeitet wird.
 
-- `colums` Maximale Colums
-- `name` {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
-- `devide` {number} Teiler
+- @requires `$kittn-bem`
+- @param {Map} `$devide`
+  - {Number} `colums` - Maximale Colums
+  - {Bool|*} `name` - Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
+  - {Number} `devide` - Teiler
 
 ```scss
 // Example
@@ -2170,13 +2541,13 @@ Das Mixin kann ein bestehendes Grid 'teilen', ein 12er Grid kann damit in eine 6
   width: 100%; }
 ```
 
-(m) **Grid-Offset**<br>
+##### grid-offset <small>(m)</small>
 Generiert den Offset
 
-- `size` Spaltenbreite
-- `max` Die maximale Anzahl an Spalten
-- `direction` Values: `left`, `right`
- => The Direction off the Offset (default: left)
+- @param {Map} `$offset`
+  - {Number} `size` - Spaltenanzahl
+  - {Number} `max` - Die maximale Anzahl an Spalten
+  - {*} `direction` - Values: `left`, `right`
 
 ```scss
 // Example
@@ -2201,12 +2572,13 @@ Generiert den Offset
 }
 ```
 
-(m) **Grid-Offset-Generator**<br>
+##### grid-offset-generator <small>(m)</small>
 Generiert die Offset Klassen.
 
-- `max` Die maximale Anzahl an Spalten
-  => The Maximum Colums (default: 12)
-- `name` {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
+- @requires `$kittn-bem`
+- @param {Map} `$offset`
+  - {Number} `max` - Maximale Anzahl an Spalten
+  - {Bool|*} `name` - Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
 
 ```scss
 // Example
@@ -2227,13 +2599,14 @@ Generiert die Offset Klassen.
   margin-right: 66.666667%; }
 ```
 
-(m) **Grid-Pushpull**<br>
+##### grid-pushpull <small>(m)</small>
 Generiert Push and Pull Sizes
 
-- `size` Spaltenbreite
-- `max` Die maximale Anzahl an Spalten
-- `direction` Values: `push`, `pull`
-- `extend` {bool|*} Damit werden die generierten Klassen mit anderen Klassen verbunden.
+- @param {Map} `$pushpull`
+  - {Number} `size` - Spaltenanzahl
+  - {Number} `max` - Maximale Anzahl an Spalten
+  - {*} `direction` - Values: `push`, `pull`
+  - {Bool|*} `extend` - Die generierten Klassen werden mit anderen Klassen verbunden.
 
 ```scss
 // Example
@@ -2266,12 +2639,14 @@ Generiert Push and Pull Sizes
   right: 33.333333%; }
 ```
 
-(m) **Grid-Pushpull-Generator**<br>
+##### grid-pushpull-generator <small>(m)</small>
 Generiert eine bestimmte Anzahl an Push and Pull Klassen.
 
-- `max` Die maximale Anzahl an Spalten
-- `name` {bool|*} Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
-- `extend` {bool|*} Damit werden die generierten Klassen mit anderen Klassen verbunden.
+- @requires `$kittn-bem`
+- @param {Map} `$pushpull`
+  - {Number} `max` - Maximale Anzahl an Spalten
+  - {Bool|*} `name` - Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln
+  - {Bool|*} `extend` - Die generierten Klassen werden mit anderen Klassen verbunden.
 
 ```scss
 // Example
@@ -2302,12 +2677,14 @@ Generiert eine bestimmte Anzahl an Push and Pull Klassen.
   right: 75%; }
 ```
 
-(m) **Grid-Normalizer**<br>
+##### grid-normalizer <small>(m)</small>
 Über den Normalizer können die spezifischen Einstellungen wieder resetet werden.
 
-- `name` Name des Selectors der Reseted werden soll
-- `option` Values: `blockgrid`, `inlinetable`, `offset`, `pushpull`
-- `important` {Bool} Fügt !important an
+- @requires `$kittn-bem`
+- @param {Map} `$normalize`
+  - {*} `name` - Name des Selectors der Reseted werden soll
+  - {*} `option` - Values: `blockgrid`, `inlinetable`, `offset`, `pushpull`
+  - {Bool} `important` - Fügt !important an
 
 ```scss
 // Example
@@ -2337,19 +2714,26 @@ Generiert eine bestimmte Anzahl an Push and Pull Klassen.
 
 
 #### Iconfont
-`scr/sass/framework/modules/_iconfont.scss`<br>
+`file: scr/sass/framework/modules/_iconfont.scss`
 
-(f) **Icon**<br>
-_@requires `$kittn-font-icons`_
-
+##### icon <small>(f)</small>
 Bezieht den Content Code aus der Iconfont Map.
 
+- @requires `$kittn-font-icons`
+- @param {*} `$name` - Key to the Map Entry
+- @returns {*}
+
 ```scss
-// Example
+// Map
+// file: src/sass/maps/iconfontlist.scss
+
 $kittn-font-icons: (
   test: '/e023'
 );
+```
 
+```scss
+// Example
 .icon {
   &:before {
     content: icon(test);
@@ -2362,13 +2746,16 @@ $kittn-font-icons: (
 }
 ```
 
-(m) **Iconfont**<br>
+##### iconfont <small>(m)</small>
 Generiert den Basisstyle für alle Icons.
+
+- @access private
+- @param {*} `$iconFontName` - Name off the Icon Font
 
 ```scss
 // Example
 %icon {
-    @include iconfont('iconfont');
+  @include iconfont('iconfont');
 }
 .test {
   @extend %icon;
@@ -2395,10 +2782,11 @@ Generiert den Basisstyle für alle Icons.
 }
 ```
 
-(m) **Icon-Font-Generator**<br>
-_@requires `$kittn-iconfont`_
-
+##### icon-font-generator <small>(m)</small>
 Generiert den Basis Icon-Font Style.
+
+- @requires `$kittn-iconfont`, `$kittn-bem
+- @param {*} `$iconFontName` - Name off the Icon Font
 
 ```scss
 // Example
@@ -2422,10 +2810,11 @@ Generiert den Basis Icon-Font Style.
   content: attr(data-icon); }
 ```
 
-(m) **Icon-Generator**<br>
-_@requires `$kittn-font-icons`, `$kittn-iconfont`_
+##### icon-generator <small>(m)</small>
+Generiert sämtliche Icons der Icon-Map als Klassen.
 
-Generiert alle Icons als Klassen.
+- @requires `$kittn-font-icons`, `$kittn-iconfont`
+- @param {Map} `$icons` ($kittn-font-icons) - Icon Font Map
 
 ```scss
 // Example
@@ -2440,8 +2829,13 @@ Generiert alle Icons als Klassen.
 }
 ```
 
-(m) **Icon**<br>
+##### icon <small>(m)</small>
 Fügt Icon Inhalte in eine Klasse.
+
+- @param {*} `$name` - Key to the Map Entry
+- @param {Map} `$options`
+  - {Bool|*} `extend` (false) - When the Icon need Extend with a Class
+  - {Bool|*} `font` (false) - When the Icon need the Iconfont Attributes. Needed when sitting in a Media Query
 
 ```scss
 // Example
@@ -2494,8 +2888,11 @@ Fügt Icon Inhalte in eine Klasse.
 }
 ```
 
-(m) **Ext-Icon**<br>
+##### ext-icon <small>(m)</small>
 Erweitert eigene Klassen mit den Iconklassen.
+
+- @requires `$kittn-bem`, `$kittn-iconfont`
+- @param {*} $name - Name off the Icon (from the Map)
 
 ```scss
 // Example
@@ -2531,22 +2928,22 @@ Erweitert eigene Klassen mit den Iconklassen.
   content: "/e024"; }
 ```
 
-
 #### Images
-`scr/sass/framework/modules/_images.scss`<br>
+`file: scr/sass/framework/modules/_images.scss`
 
-(m) **_GetImageDimensions**<br>
-_@access private_
-
+##### _getImageDimensions <small>(m)</small>
 Wird für die interne Berechnung der Bilddaten verwendet.
 
-(m) **Image**<br>
+- @access private
+
+##### image <small>(m)</small>
 Fügt die Single Images ein. Die erforderlichen Daten werden dabei über die `Gulp` Tasks in die jeweilige Imagemap geschrieben.
 
-- @param  {*}    $image       - Name of the Image
-- @param  {*}    $dimensions  - 'both' = height & width, 'width' = width, 'height' = height
-- @param  {*}    $pos         - The Image Position - can be 'false'
-- @param  {Bool} $retina      - With set on 'true' the retina fallback will be included
+- @requires `$kittn-directorys
+- @param {*} `$image` - Name of the Image
+- @param {*} `$dimensions` - 'both' = height & width, 'width' = width, 'height' = height
+- @param {*} `$pos` - The Image Position - can be 'false'
+- @param {Bool} `$retina` - With set on 'true' the retina fallback will be included
 
 ```scss
 // Example
@@ -2571,13 +2968,14 @@ Fügt die Single Images ein. Die erforderlichen Daten werden dabei über die `Gu
 }
 ```
 
-(m) **Texture**<br>
+##### texture <small>(m)</small>
 Fügt die Texture Images ein.
 
-- @param  {*} $image  - Name of the Image
-- @param  {*} $repeat - How the Image would be repeated. `x`: repeat-x, `y`: repeat-y
-- @param  {List|Bool} $pos - The Image Position - can be `false`
-- @param  {Bool} $retina - With set on 'true' the retina fallback will be included
+- @requires `$kittn-directorys
+- @param {*} `$image` - Name of the Image
+- @param {*} `$repeat` - How the Image would be repeated. `x`: repeat-x, `y`: repeat-y
+- @param {List|Bool} `$pos` - The Image Position - can be `false`
+- @param {Bool} `$retina` - With set on 'true' the retina fallback will be included
 
 ```scss
 // Example
@@ -2607,12 +3005,13 @@ Fügt die Texture Images ein.
 }
 ```
 
-(m) **SVGPNG**<br>
+##### svgpng <small>(m)</small>
 Fügt SVG Images ein, integriert dabei auch das Fallback Image.
 
-- @param  {*} $image - Name of the Image - the SVG File must be in the Same directory
-- @param  {*} $dimensions  - 'both' = height & width | 'width' = width | 'height' = height
-- @param  {List} $pos - The Image Position - can be 'false'
+- @requires `$kittn-directorys
+- @param {*} `$image` - Name of the Image - the SVG File must be in the Same directory
+- @param {*} `$dimensions` - 'both' = height & width | 'width' = width | 'height' = height
+- @param {List} `$pos` - The Image Position - can be 'false'
 
 ```scss
 // Example
@@ -2633,13 +3032,14 @@ Fügt SVG Images ein, integriert dabei auch das Fallback Image.
 }
 ```
 
-(m) **SVG**<br>
+##### svg <small>(m)</small>
 Für SVG Images ohne Fallback ein.
 
-- @param  {*} $image - The Name of the SVG Image
-- @param  {List} $dimensions  - The Dimensions of the Image Container - can be 100%
-- @param  {List} $pos - Native CSS Image Positions
-- @param  {Bool} $repeat - Image Repeat - native CSS Declaration
+- @requires `$kittn-directorys
+- @param {*} `$image` - The Name of the SVG Image
+- @param {List} `$dimensions`  - The Dimensions of the Image Container - can be 100%
+- @param {List} `$pos` - Native CSS Image Positions
+- @param {Bool} `$repeat` - Image Repeat - native CSS Declaration
 
 ```scss
 // Example
@@ -2679,21 +3079,21 @@ Für SVG Images ohne Fallback ein.
 }
 ```
 
-(m) **Sprite-Generator**<br>
-_@access private<br>
-@requires `$kittn-sprite`_
-
+##### sprite-generator <small>(m)</small>
 Generiert den SpriteMap Container. Wird automatisch zu geschaltet.
 
-(m) **Sprite**<br>
+- @access private
+- @requires `$kittn-sprite`
+
+##### sprite <small>(m)</small>
 Fügt das gewünschte Sprite ein.
 
-- @param  {*} $name - Name of the Sprite
-- @param  {Bool} $retina - With set on `true` the retina fallback will be included
-- @param  {*} $dimensions - `both`: height & width, `width`: width, `height`: height
-- @param  {Number} $offset-x - Offset the Background Position on the x axis
-- @param  {Number} $offset-y - Offset the Background Position on the y axis
-- @param  {*} $display - The display mode
+- @param {*} `$name` - Name of the Sprite
+- @param {Bool} `$retina` - With set on `true` the retina fallback will be included
+- @param {*} `$dimensions` - `both`: height & width, `width`: width, `height`: height
+- @param {Number} `$offset-x` - Offset the Background Position on the x axis
+- @param {Number} `$offset-y` - Offset the Background Position on the y axis
+- @param {*} `$display` - The display mode
 
 ```scss
 // Example
@@ -2728,15 +3128,14 @@ Fügt das gewünschte Sprite ein.
 ```
 
 #### Lines
-`scr/sass/framework/modules/_lines.scss`<br>
+`file: scr/sass/framework/modules/_lines.scss`
 
-(f) **Rem**<br>
-_@requires `$kittn-typo`_
-
+##### rem <small>(f)</small>
 Rechnet Px in REM um.
 
-- @param {Number} $px - The Size in PX
-- @param {Number} $base - The Base for the
+- @requires `$kittn-typo`
+- @param {Number} `$px` - The Size in PX
+- @param {Number} `$base` - The Base for the
 
 ```scss
 // Example
@@ -2750,14 +3149,13 @@ Rechnet Px in REM um.
 }
 ```
 
-(m) **Remsize**<br>
-_@requires `$kittn-typo`<br>
-@access private_
-
+##### remsize <small>(m)</small>
 Berechnet Größen anhand der Base Line-Height. Die Umberechnung findet aber nur statt wenn in der `$kittn-typo` die `unit` auf `rem` gestellt wurde. IE8 erhält sein eigenes Fallback mittels PX Werten.
 
-- @param {*} $arg - Attribute
-- @param {Number} $size - Lines
+- @access private
+- @requires `$kittn-typo`
+- @param {*} `$arg` - Attribute
+- @param {Number} `$size` - Multiplicator
 
 ```scss
 // Example
@@ -2773,14 +3171,13 @@ Berechnet Größen anhand der Base Line-Height. Die Umberechnung findet aber nur
 }
 ```
 
-(m) **Pxsize**<br>
-_@requires `$kittn-typo`<br>
-@access private_
-
+##### pxsize <small>(m)</small>
 Berechnet PX Werte in REM um. Die Umberechnung findet aber nur statt wenn in der `$kittn-typo` die `unit` auf `rem` gestellt wurde. IE8 erhält sein eigenes Fallback mittels PX Werten.
 
-- @param {*} $arg - Attribute
-- @param {Number} $size - Value
+- @access private
+- @requires `$kittn-typo`<br>
+- @param {*} `$arg` - Attribute
+- @param {Number} `$size` - Value
 
 ```scss
 // Example
@@ -2796,12 +3193,12 @@ Berechnet PX Werte in REM um. Die Umberechnung findet aber nur statt wenn in der
 }
 ```
 
-(m) **Rem**<br>
+##### rem <small>(m)</small>
 Berechnet die Größen Dynamisch. Dabei kann die Größe einmal über Lines (berechnung mittel Multiplikation der Baselineheight), oder über Pixel erfolgen die dann in REM umgerechnet werden. IE8 erhält bei aktiver IE8 Kompatiblität einen Pixel Fallback.
 
-- @param  {*}       $arg      - Attribute
-- @param  {Number}  $size     - Size
-- @param  {Bool}    $baseline - When 'true', the Value follow the Baselinerule
+- @param {*} `$arg` - Attribute
+- @param {Number} `$size` - Size
+- @param {Bool} `$baseline` - When 'true', the Value follow the Baselinerule
 
 ```scss
 // Example
@@ -2817,10 +3214,10 @@ Berechnet die Größen Dynamisch. Dabei kann die Größe einmal über Lines (ber
 }
 ```
 
-(m) **Lineheight**<br>
+##### lineheight <small>(m)</small>
 Basiert auf dem `rem` Mixin.
 
-- @param {Number} $size - Size
+- @param {Number} `$size` - Size
 
 ```scss
 // Example
@@ -2834,10 +3231,10 @@ Basiert auf dem `rem` Mixin.
 }
 ```
 
-(m) **Marginbottom**<br>
+##### marginbottom <small>(m)</small>
 Basiert auf dem `rem` Mixin.
 
-- @param {Number} $size - Size
+- @param {Number} `$size` - Size
 
 ```scss
 // Example
@@ -2851,10 +3248,10 @@ Basiert auf dem `rem` Mixin.
 }
 ```
 
-(m) **Margintop**<br>
+##### margintop <small>(m)</small>
 Basiert auf dem `rem` Mixin.
 
-- @param {Number} $size - Size
+- @param {Number} `$size` - Size
 
 ```scss
 // Example
@@ -2868,10 +3265,10 @@ Basiert auf dem `rem` Mixin.
 }
 ```
 
-(m) **Marginleft**<br>
+##### marginleft <small>(m)</small>
 Basiert auf dem `rem` Mixin.
 
-- @param {Number} $size - Size
+- @param {Number} `$size` - Size
 
 ```scss
 // Example
@@ -2885,10 +3282,10 @@ Basiert auf dem `rem` Mixin.
 }
 ```
 
-(m) **Marginright**<br>
+##### marginright <small>(m)</small>
 Basiert auf dem `rem` Mixin.
 
-- @param {Number} $size - Size
+- @param {Number} `$size` - Size
 
 ```scss
 // Example
@@ -2902,10 +3299,10 @@ Basiert auf dem `rem` Mixin.
 }
 ```
 
-(m) **Paddingtop**<br>
+##### paddingtop <small>(m)</small>
 Basiert auf dem `rem` Mixin.
 
-- @param {Number} $size - Size
+- @param {Number} `$size` - Size
 
 ```scss
 // Example
@@ -2919,10 +3316,10 @@ Basiert auf dem `rem` Mixin.
 }
 ```
 
-(m) **Paddingbottom**<br>
+##### paddingbottom <small>(m)</small>
 Basiert auf dem `rem` Mixin.
 
-- @param {Number} $size - Size
+- @param {Number} `$size` - Size
 
 ```scss
 // Example
@@ -2936,10 +3333,10 @@ Basiert auf dem `rem` Mixin.
 }
 ```
 
-(m) **Paddingleft**<br>
+##### paddingleft <small>(m)</small>
 Basiert auf dem `rem` Mixin.
 
-- @param {Number} $size - Size
+- @param {Number} `$size` - Size
 
 ```scss
 // Example
@@ -2952,8 +3349,7 @@ Basiert auf dem `rem` Mixin.
   padding-left: 0.735294rem;
 }
 ```
-
-(m) **Paddingright**<br>
+##### paddingright <small>(m)</small>
 Basiert auf dem `rem` Mixin.
 
 - @param {Number} $size - Size
@@ -2970,10 +3366,10 @@ Basiert auf dem `rem` Mixin.
 }
 ```
 
-(m) **Height**<br>
+##### height <small>(m)</small>
 Basiert auf dem `rem` Mixin.
 
-- @param {Number} $size - Size
+- @param {Number} `$size` - Size
 
 ```scss
 // Example
@@ -2986,10 +3382,10 @@ Basiert auf dem `rem` Mixin.
 }
 ```
 
-(m) **Fontsize**<br>
+##### fontsize <small>(m)</small>
 Basiert auf dem `rem` Mixin.
 
-- @param {Number} $size - Size
+- @param {Number} `$size` - Size
 
 ```scss
 // Example
@@ -3003,12 +3399,12 @@ Basiert auf dem `rem` Mixin.
 }
 ```
 
-(m) **Fontcalc**<br>
+##### fontcalc <small>(m)</small>
 Basiert auf dem `rem` Mixin. Berechnet neben der Fontsize auch die Line-Height
 
-- @param {Number} $fontsize - Font Size
-- @param {Bool|Number} $lineheight (false) - Lineheight for the Font - can be false than used the factor
-- @param {Number} $factor (1.2) - The Calculationfactor
+- @param {Number} `$fontsize` - Font Size
+- @param {Bool|Number} `$lineheight` (false) - Lineheight for the Font - can be false than used the factor
+- @param {Number} `$factor` (1.2) - The Calculationfactor
 
 ```scss
 // Example
@@ -3031,15 +3427,17 @@ Basiert auf dem `rem` Mixin. Berechnet neben der Fontsize auch die Line-Height
 ```
 
 #### Modernizr
-`scr/sass/framework/modules/_modernizr.scss`<br>
+`file: scr/sass/framework/modules/_modernizr.scss`
 
-(m) **Modernizr**<br>
-_@access private_
-
+##### Modernizr <small>(m)</small>
 Über die integrierten Feature-Check Klassen von Modernizr, kann man Fallbacks integrieren.
 
-(m) **Yep**<br>
+- @access private
+
+##### yep <small>(m)</small>
 Wird aktiv bei positiven Feature-Check Klassen.
+
+- @param {argList} `$features` - Checked Features 
 
 ```scss
 // Example
@@ -3055,8 +3453,10 @@ Wird aktiv bei positiven Feature-Check Klassen.
 }
 ```
 
-(m) **Nope**<br>
+##### nope <small>(m)</small>
 Wird aktiv bei negativen Feature-Check Klassen
+
+- @param {argList} `$features` - Checked Features 
 
 ```scss
 // Example
@@ -3075,10 +3475,13 @@ Wird aktiv bei negativen Feature-Check Klassen
 #### Positioning
 `scr/sass/framework/modules/_positioning.scss`
 
-(f) **Z**<br>
-_@requires `$kittn-zlayer-map`_
-
+##### z <small>(f)</small>
 Pickt den entsprechenden Z-Index auf der zlayer Map.
+
+- @requires `$kittn-zlayer-map`
+- @param {*} `$layer` - The layer to use
+- @param {Map} `$z-layers` ($kittn-zlayer-map) - Connection through Z-Map
+- @returns {Number}
 
 ```scss
 // Example
@@ -3092,13 +3495,12 @@ Pickt den entsprechenden Z-Index auf der zlayer Map.
 }
 ```
 
-(m) **Z**<br>
-_@requires `$kittn-zlayer-map`_
-
+##### z <small>(m)</small>
 Pickt den entsprechenden Z-Index von der Map, generiert dabei einen Z-Index den man mit Offset noch manipulieren kann.
 
-- @param {*} $layer - The layer to use
-- @param {number} $offset - Add or substract an offset
+- @requires `$kittn-zlayer-map`
+- @param {*} `$layer` - The layer to use
+- @param {Number} `$offset` - Add or substract an offset
 
 ```scss
 // Example
@@ -3124,12 +3526,12 @@ Pickt den entsprechenden Z-Index von der Map, generiert dabei einen Z-Index den 
 }
 ```
 
-(m) **Shift**<br>
+##### shift <small>(m)</small>
 Vergibt dem Element einen Z-Index und bestimmt auch die Positionsart.
 
-- @param {number} $index - Z-index
-- @param {number} $offset - Offset
-- @param {bool|*} $position - Position. Values: `r` relative, `a` absolute, `f` fixed
+- @param {Number} `$index` - Z-index
+- @param {Number} `$offset` - Offset
+- @param {Bool|*} `$position` - Position. Values: `r` relative, `a` absolute, `f` fixed
 
 ```scss
 // Example
@@ -3157,19 +3559,25 @@ Vergibt dem Element einen Z-Index und bestimmt auch die Positionsart.
 }
 ```
 
-(m) **Set-Position**<br>
-_@access private_
+##### set-position <small>(m)</small>
+Stellt die Position für die Position Mixins ein.
 
-Stellt die Position für die Position Mixins ein. Für alle Position Mixin gilt:
-- Ein Position Value: `top`
-- Zwei Position Values: `top`, `left`
-- Vier Position Values: `top`, `right`, `bottom`, `left`
+- @access private
+- @param {List} `$position`
+  - Ein Position Value: `top`
+  - Zwei Position Values: `top`, `left`
+  - Vier Position Values: `top`, `right`, `bottom`, `left`
 
 Das Mixin wertet Werte wie `0` nicht aus, sie dient nur als Platzhalter. Möchte man die Position auf `0` setzen trägt man `z` für Zero ein.
 
-(m) **Relative**<br>
+##### relative <small>(m)</small>
 Stellt das Element auf `Position: Relative`
 
+- @param {List} `$position`
+  - Ein Position Value: `top`
+  - Zwei Position Values: `top`, `left`
+  - Vier Position Values: `top`, `right`, `bottom`, `left`
+  
 ```scss
 // Example
 .test-1 {
@@ -3208,8 +3616,13 @@ Stellt das Element auf `Position: Relative`
 }
 ```
 
-(m) **Absolute**<br>
+##### absolute <small>(m)</small>
 Stellt das Element auf `Position: Absolute`
+
+- @param {List} `$position`
+  - Ein Position Value: `top`
+  - Zwei Position Values: `top`, `left`
+  - Vier Position Values: `top`, `right`, `bottom`, `left`
 
 ```scss
 // Example
@@ -3241,9 +3654,14 @@ Stellt das Element auf `Position: Absolute`
 }
 ```
 
-(m) **Fixed**<br>
+##### fixed <small>(m)</small>
 Stellt das Element auf `Position: Fixed`
 
+- @param {List} `$position`
+  - Ein Position Value: `top`
+  - Zwei Position Values: `top`, `left`
+  - Vier Position Values: `top`, `right`, `bottom`, `left`
+  
 ```scss
 // Example
 .test-1 {
@@ -3272,7 +3690,7 @@ Stellt das Element auf `Position: Fixed`
 }
 ```
 
-(m) **Static**<br>
+##### static <small>(m)</small>
 Restet die Einstellungen der Position Mixins.
 
 ```scss
@@ -3291,12 +3709,12 @@ Restet die Einstellungen der Position Mixins.
 }
 ```
 
-(m) **Bar**<br>
+##### bar <small>(m)</small>
 Generiert ein Bar Element.
 
-- @param {*} $variant  - `f` for fixed, `a` for absolute
-- @param {*} $position - `t` Top, `b` Bottom, `l` Left, `r` Right
-- @param {*} $z-index - The Z-Index
+- @param {*} `$variant`  - `f` for fixed, `a` for absolute
+- @param {*} `$position` - `t` Top, `b` Bottom, `l` Left, `r` Right
+- @param {Number} `$z-index` - The Z-Index
 
 ```scss
 // Example
@@ -3324,11 +3742,11 @@ Generiert ein Bar Element.
 }
 ```
 
-(m) **Bar-Top**<br>
+##### bar-top <small>(m)</small>
 Generiert ein Bar Element - Top Position.
 
-- @param {value} $z - The Z-Index
-- @param {*} $variant - `f`: fixed, `a`: absolute
+- @param {value} `$z` - The Z-Index
+- @param {*} `$variant` - `f`: fixed, `a`: absolute
 
 ```scss
 // Example
@@ -3356,11 +3774,11 @@ Generiert ein Bar Element - Top Position.
 }
 ```
 
-(m) **Bar-Bottom**<br>
+##### bar-bottom <small>(m)</small>
 Generiert ein Bar Element - Bottom Position.
 
-- @param {value} $z - The Z-Index
-- @param {*} $variant - `f`: fixed, `a`: absolute
+- @param {value} `$z` - The Z-Index
+- @param {*} `$variant` - `f`: fixed, `a`: absolute
 
 ```scss
 // Example
@@ -3388,19 +3806,19 @@ Generiert ein Bar Element - Bottom Position.
 }
 ```
 
-(m) **Position-Translate**<br>
-_@access private_
+##### position-translate <small>(m)</small>
 
 Wird für die Beerechnng des `pivot-points` benötigt.
 
-- @param  {*|number|bool}  $pos - Position Value. Values: `left`, `center`, `right`, `top`, `middle`, `bottom`
-- @param  {*}  $axis - The Position Axis. Values: `vert`, `horz`
+- @access private
+- @param  {*|number|bool} `$pos` - Position Value. Values: `left`, `center`, `right`, `top`, `middle`, `bottom`
+- @param  {*} `$axis` - The Position Axis. Values: `vert`, `horz`
 
-(m) **Pivot**<br>
+##### pivot <small>(m)</small>
 Positioniert den Punkt von dem die weitere Positionierung ausgeht.
 
-- @param {*|number|bool} $vert (middle) - Vertical Position from the Pivot Point. Values: `top` ,`middle` ,`bottom`
-- @param {*|number|bool} $horz (false)  - Horizontal Position from the Pivot Point. Values: `left`, `center`, `right`
+- @param {*|number|bool} `$vert` (middle) - Vertical Position from the Pivot Point. Values: `top` ,`middle` ,`bottom`
+- @param {*|number|bool} `$horz` (false)  - Horizontal Position from the Pivot Point. Values: `left`, `center`, `right`
 
 ```scss
 // Example
@@ -3426,11 +3844,11 @@ Positioniert den Punkt von dem die weitere Positionierung ausgeht.
 }
 ```
 
-(m) **Slide**<br>
+##### slide <small>(m)</small>
 Verschiebt ein Element.
 
-- @param {*|number|bool} $vert (middle) - Vertical Position from the Pivot Point. Values: `top` ,`middle` ,`bottom`
-- @param {*|number|bool} $horz (false)  - Horizontal Position from the Pivot Point. Values: `left`, `center`, `right`
+- @param {*|number|bool} `$vert` (middle) - Vertical Position from the Pivot Point. Values: `top` ,`middle` ,`bottom`
+- @param {*|number|bool} `$horz` (false)  - Horizontal Position from the Pivot Point. Values: `left`, `center`, `right`
 
 ```scss
 // Example
@@ -3461,7 +3879,7 @@ Verschiebt ein Element.
 }
 ```
 
-(m) **Pivot-Center**<br>
+##### pivot-center <small>(m)</small>
 Positioniert ein Element in die absolute Mitte.
 
 ```scss
@@ -3479,10 +3897,10 @@ Positioniert ein Element in die absolute Mitte.
 }
 ```
 
-(m) **Absolute-Middle**<br>
+##### absolute-middle <small>(m)</small>
 Definiert die Größe eines Elements und positioniert es mittig. Eignet sich nicht für Elemente die ihre Dimension dynamisch ändern.
 
-- @param  {List}  $element - Width and the Height of the Element
+- @param {List} `$element` - Width and the Height of the Element
 
 ```scss
 // Example
@@ -3514,10 +3932,10 @@ Definiert die Größe eines Elements und positioniert es mittig. Eignet sich nic
 }
 ```
 
-(m) **Overlap**<br>
+##### overlap <small>(m)</small>
 Damit können Element andere Elemente seitlich überlappen.
 
-- @param  {list}  $size - The Sidevalues, one value can be used for two sides, two values first for left second for right
+- @param {list} `$size` - The Sidevalues, one value can be used for two sides, two values first for left second for right
 
 ```scss
 // Example
@@ -3540,11 +3958,11 @@ Damit können Element andere Elemente seitlich überlappen.
 ```
 
 #### Shorthands
-`scr/sass/framework/modules/_shorthands.scss`<br>
+`file: scr/sass/framework/modules/_shorthands.scss`
 
 Regulär ist es empfehlenswert die Shorthand Mixins in ein Placeholder Selector zu laden und dann mittels `@extend` weiter zu arbeiten.
 
-```
+```scss
 // Example
 %clearfix {
   @include clearfix;
@@ -3574,7 +3992,7 @@ Regulär ist es empfehlenswert die Shorthand Mixins in ein Placeholder Selector 
 }
 ```
 
-(m) **Clearfix**<br>
+##### clearfix <small>(m)</small>
 Fügt den Clearfix ein.
 
 ```scss
@@ -3591,7 +4009,7 @@ Fügt den Clearfix ein.
 }
 ```
 
-(m) **Center**<br>
+##### block-center <small>(m)</small>
 Zentriert ein Element.
 
 ```scss
@@ -3608,7 +4026,7 @@ Zentriert ein Element.
 }
 ```
 
-(m) **Word-Wrap**<br>
+##### word-wrap <small>(m)</small>
 Bricht lange Wortketten um.
 
 ```scss
@@ -3629,7 +4047,7 @@ Bricht lange Wortketten um.
 }
 ```
 
-(m) **Text-Truncate**<br>
+##### text-truncate <small>(m)</small>
 Bricht ebenfalls lange Wortketten um, dieses mal aber mit einer Ellipsis.
 
 ```scss
@@ -3648,7 +4066,7 @@ Bricht ebenfalls lange Wortketten um, dieses mal aber mit einer Ellipsis.
 }
 ```
 
-(m) **Vertical-Center**<br>
+##### vertical-center <small>(m)</small>
 Positioniert Elemente mittig - das Parent Element muss dafür aber auf `display: table` gestellt werden.
 
 ```scss
@@ -3664,7 +4082,7 @@ Positioniert Elemente mittig - das Parent Element muss dafür aber auf `display:
 }
 ```
 
-(m) **Cleartext**<br>
+##### cleartext <small>(m)</small>
 Versteckt Textelemente.
 
 ```scss
@@ -3683,7 +4101,7 @@ Versteckt Textelemente.
 }
 ```
 
-(m) **Cleartext-Complex**<br>
+##### cleartext-complex <small>(m)</small>
 Versteckt Textelemente.
 
 ```scss
@@ -3706,7 +4124,7 @@ Versteckt Textelemente.
 }
 ```
 
-(m) **Cleartext-Simpler**<br>
+##### cleartext-simpler <small>(m)</small>
 Versteckt Textelemente.
 
 ```scss
@@ -3723,7 +4141,7 @@ Versteckt Textelemente.
 }
 ```
 
-(m) **Decollapse**<br>
+##### decollapse <small>(m)</small>
 Verhindert das Margins kollabieren.
 
 ```scss
@@ -3739,7 +4157,7 @@ Verhindert das Margins kollabieren.
 }
 ```
 
-(m) **Performance**<br>
+##### performance <small>(m)</small>
 Aktiviert die GL Beschleunigung.
 
 ```scss
@@ -3754,7 +4172,9 @@ Aktiviert die GL Beschleunigung.
 }
 ```
 
-(m) **Antialias**<br>
+##### antialias <small>(m)</small>
+Aktiviert Antialias - wirksam nur auf Chrome und Firefox.
+
 ```scss
 // Example
 .test {
@@ -3769,18 +4189,18 @@ Aktiviert die GL Beschleunigung.
 ```
 
 #### Spacer
-`scr/sass/framework/modules/_spacer.scss`<br>
+`file: scr/sass/framework/modules/_spacer.scss`
 
-(m) **Margin-Padding**<br>
-_@access private_
-
+##### margin-padding <small>(m)</small>
 Berechnet Margin/Padding für die Margin und Padding Mixins.
 
-(m) **Padding**<br>
+- @access private
+
+##### padding <small>(m)</small>
 Mit dem Mixin kann man Padding in gewohnter Kurzform schreiben, die dann aber in einzelnen Deklarationen ins CSS geschrieben werden.
 
-- @param {Bool|List} $value (false) - It generate all four sides, with different length of values.
-- @param {Bool} $important (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name
+- @param {Bool|List} `$value` (false) - It generate all four sides, with different length of values.
+- @param {Bool} `$important` (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name
 
 ```scss
 // Example
@@ -3815,11 +4235,11 @@ Mit dem Mixin kann man Padding in gewohnter Kurzform schreiben, die dann aber in
 }
 ```
 
-(m) **Margin**<br>
+##### margin <small>(m)</small>
 Mit dem Mixin kann man Margin in gewohnter Kurzform schreiben, die dann aber in einzelnen Deklarationen ins CSS geschrieben werden.
 
-- @param {Bool|List} $value (false) - It generate all four sides, with different length of values.
-- @param {Bool} $important (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name
+- @param {Bool|List} `$value` (false) - It generate all four sides, with different length of values.
+- @param {Bool} `$important` (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name
 
 ```scss
 // Example
@@ -3854,15 +4274,14 @@ Mit dem Mixin kann man Margin in gewohnter Kurzform schreiben, die dann aber in 
 }
 ```
 
-(m) **Spacer**<br>
-_@requires `$kittn-global-spacing`_
-
+##### spacer <small>(m)</small>
 Berechnet anhand der Global Spacing Unit Abstände.
 
-- @param {List} $options - Spacing Type. `w`: width, `h`: height, `lh`: line-height, `pt`: padding-top, `pb`: padding-bottom, `pl`: padding-left, `pr`: padding-right, `mt`: margin-top, `mb`: margin-bottom, `ml`: margin-left, `mr`: margin-right, `mv`: margin-vertical, `mh`: margin-horizontal, `pv`: padding-vertical, `ph`: padding-horizontal
-- @param {Number}  $lines (1)         - Spacing Multiplicator
-- @param {Bool}    $important (false) - Overwrite Values with !important
-- @param {Number}  $size ($kittn-global-spacing)   - Global Size Value
+- @requires `$kittn-global-spacing`
+- @param {List} `$options` - Spacing Type. `w`: width, `h`: height, `lh`: line-height, `pt`: padding-top, `pb`: padding-bottom, `pl`: padding-left, `pr`: padding-right, `mt`: margin-top, `mb`: margin-bottom, `ml`: margin-left, `mr`: margin-right, `mv`: margin-vertical, `mh`: margin-horizontal, `pv`: padding-vertical, `ph`: padding-horizontal
+- @param {Number} `$lines` (1)         - Spacing Multiplicator
+- @param {Bool} `$important` (false) - Overwrite Values with !important
+- @param {Number} `$size` ($kittn-global-spacing)   - Global Size Value
 
 ```scss
 // Example
@@ -3903,11 +4322,11 @@ Berechnet anhand der Global Spacing Unit Abstände.
 }
 ```
 
-(m) **Spacer-Reset**<br>
+##### Spacer-Reset <small>(m)</small>
 Resetet die vom Spacer Mixin eingestellten Abstände.
 
-- @param {List} $options - Spacing Type. `w`: width, `h`: height, `lh`: line-height, `pt`: padding-top, `pb`: padding-bottom, `pl`: padding-left, `pr`: padding-right, `mt`: margin-top, `mb`: margin-bottom, `ml`: margin-left, `mr`: margin-right, `mv`: margin-vertical, `mh`: margin-horizontal, `pv`: padding-vertical, `ph`: padding-horizontal
-- @param {Bool} $important (false) - Overwrite Values with !important
+- @param {List} `$options` - Spacing Type. `w`: width, `h`: height, `lh`: line-height, `pt`: padding-top, `pb`: padding-bottom, `pl`: padding-left, `pr`: padding-right, `mt`: margin-top, `mb`: margin-bottom, `ml`: margin-left, `mr`: margin-right, `mv`: margin-vertical, `mh`: margin-horizontal, `pv`: padding-vertical, `ph`: padding-horizontal
+- @param {Bool} `$important` (false) - Overwrite Values with !important
 
 ```scss
 // Example
@@ -3949,15 +4368,16 @@ Resetet die vom Spacer Mixin eingestellten Abstände.
 ```
 
 #### Triangle
-`scr/sass/framework/modules/_triangle.scss`
+`file: scr/sass/framework/modules/_triangle.scss`
 
-(m) **Triangle**<br>
-Generiert Dreiecke
+##### Triangle <small>(m)</small>
+Generiert Dreiecke aus Borders
 
-- `color` {color} (#fff) - Farbe des Dreicks
-- `width` {number} (15px) - Breite
-- `height` {number} (15px) - Höhe
-- `angle` {*|number} - Values: `top`, `top left`, `right`, `bottom right`, `bottom`, `bottom left`, `left`, `top left`
+- @param {Map} `$values`
+- {color} `color` (#fff) - Farbe des Dreicks
+- {number} `width` (15px) - Breite
+- {number} `height` (15px) - Höhe
+- {*|number} `angle` - Values: `top`, `top left`, `right`, `bottom right`, `bottom`, `bottom left`, `left`, `top left`
 
 ```scss
 // Example
@@ -4012,12 +4432,12 @@ Generiert Dreiecke
 ```
 
 #### Typography
-`scr/sass/framework/modules/_typography.scss`<br>
+`file: scr/sass/framework/modules/_typography.scss`
 
-(f) **TW**<br>
-_@requires `$kittn-typostyles-map`_
-
+##### tw <small>(f)</small>
 Wird anhand des Style Keywords Werte aus der Typostyle Map übertragen.
+
+- @requires `$kittn-typostyles-map`
 
 ```scss
 // Example
@@ -4042,13 +4462,14 @@ $kittn-typostyles-map: (
 }
 ```
 
-(m) **Typogenerator**<br>
-_@requires `$kittn-generate-typostyles`, `$kittn-typostyles-map`_
-
+##### typogenerator <small>(m)</small>
 Generiert die Typostyles.
 
+- @requires `$kittn-generate-typostyles`, `$kittn-typostyles-map`
+
 ```scss
-// Example
+// Map
+// file: src/sass/setup.scss
 $kittn-typostyles-map: (
   h1: (
     font-size: 36,
@@ -4083,8 +4504,12 @@ $kittn-typostyles-map: (
     extend: '%extra'
   )
 );
+```
 
+```scss
+// Example
 @include typogenerator;
+
 // Result
 .h1, h1, .h2, h2 {
   text-rendering: optimizeLegibility;
@@ -4115,15 +4540,17 @@ $kittn-typostyles-map: (
 
 ```
 
-(m) **Responsive-Fontsizes**<br>
-_@requires `$kittn-breakpoint-map`, `$kittn-activate`, `$kittn-active-responsive-fonts`_
-
+##### responsive-fontsizes <small>(m)</small>
 Wird die Fontsize in `rem` definiert, kann man über das Mixin die Fontsize responsive gestalten. Die Globale Größe wird in der `$kittn-breakpoint-map` notiert.
 
 Aktiviert wird das ganze über die `$kittn-active-responsive-fonts` Variable, es muss ein Wert von 0 - 100 eingestellt werden?
 
+- @requires `$kittn-breakpoint-map`, `$kittn-activate`, `$kittn-active-responsive-fonts`
+
 ```scss
-// Example
+// Map and Vars
+// file: src/sass/setup.scss
+
 $kittn-breakpoint-map: (
   1: (
     size: 320px,
@@ -4144,8 +4571,12 @@ $kittn-breakpoint-map: (
     fontsize: 90
   )
 );
-$kittn-active-responsive-fonts: 70;
 
+$kittn-active-responsive-fonts: 70;
+```
+
+```scss
+// Example
 @include responsive-fontsize($base);
 
 // Result
@@ -4164,8 +4595,10 @@ html {
 }
 ```
 
-(m) **Get-Fontsize**<br>
+##### get-fontsize <small>(m)</small>
 Übernimmt die Fontsize aus der Map.
+
+- @param {*} `$entry` - TypoKey
 
 ```scss
 // Example
@@ -4177,6 +4610,28 @@ html {
 .test {
   font-size: 0.808824rem;
 }
+```
+
+##### ext-typo <small>(m)</small>
+Verbindet mit existierenden Typo Klassen
+
+- @param {*} `$entry` - TypoKey
+
+```scss
+// Example
+.test {
+  @include ext-typo(h1);
+}
+
+// Result
+.h1, .test, h1, .h2, h2, h3, .h3 {
+  text-rendering: optimizeLegibility;
+  margin-bottom: 0rem;
+  color: #636363; }
+
+.h1, .test, h1 {
+  font-size: 2.647059rem;
+  line-height: 0.073529rem; }
 ```
 
 ---
