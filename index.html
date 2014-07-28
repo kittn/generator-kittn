@@ -15,7 +15,7 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1><img src="http://i.imgur.com/2MtKGwj.jpg" alt="Generator-Kittn"></h1>
+        <h1>Generator-kittn</h1>
         <p>The Yeoman Kittn Generator</p>
 
         <p class="view"><a href="https://github.com/gisu/generator-kittn">View the Project on GitHub <small>gisu/generator-kittn</small></a></p>
@@ -28,8 +28,7 @@
         </ul>
       </header>
       <section>
-
-
+        <p><img src="http://i.imgur.com/2MtKGwj.jpg" alt=""></p>
 
 <h2>
 <a name="einleitung" class="anchor" href="#einleitung"><span class="octicon octicon-link"></span></a>Einleitung</h2>
@@ -38,7 +37,11 @@
 
 <p>Um den CSS Part herum, sind noch viele Automatismen eingebaut die dem Developer ebenfalls helfen, sei es um Image Assets zu generieren und zu verteilen, HTML Mockups aufzubauen, die Code Qualität zu kontrollieren, Sprites zu bilden, Fallbacks für SVG Dateien zu generieren. Darum vermeide ich auch den Begriff Framework.</p>
 
+<p>Das Toolkit wurde auch aus dem Gesichtspunkt entwickelt irgendwann auf <code>Libsass</code> umzusteigen, schon alleine aus Performance Sicht. Die Features für die früher <code>Compass</code> zuständig war (Prefixing, Spriting, Image Handling), sind mittlerweile durch <code>Grunt</code> Tasks ersetzt worden.</p>
+
+<blockquote>
 <p>Angst vor dem Terminal sollte man nicht haben :p</p>
+</blockquote>
 
 <h2>
 <a name="abh%C3%A4ngigkeiten" class="anchor" href="#abh%C3%A4ngigkeiten"><span class="octicon octicon-link"></span></a>Abhängigkeiten</h2>
@@ -59,7 +62,7 @@
 Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http://rubyinstaller.org/downloads/">One Click Installer</a>.</p>
 
 <blockquote>
-<p>Ruby wird nur für Sass benötigt, sobald <code>Libsass</code> 100% Produktiv verwendbar ist, wird diese Abhängigkeit entfallen.</p>
+<p>Aktuell wird Sass über <code>Ruby-Sass</code> Kompiliert, sobald <code>Libsass</code> 100% Produktiv verwendbar ist, wird die  Ruby-Abhängigkeit entfallen.</p>
 </blockquote>
 
 <p>Node kann auf Mac Systemen entweder über <a href="http://brew.sh">Brew</a> installiert werden oder man verwendet den <a href="http://nodejs.org/">Installer</a>, gilt dann für beide Systeme.</p>
@@ -75,7 +78,9 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 <li>Bower 1.3.0</li>
 <li>Yeoman 1.2.0</li>
 <li>Git</li>
-</ul><p>Der Generator installiert selbstständig Grunt, Bower und auch Yeoman.</p>
+</ul><blockquote>
+<p>Der Generator installiert selbstständig <code>Grunt</code>, <code>Bower</code> und auch <code>Yeoman</code>.</p>
+</blockquote>
 
 <h4>
 <a name="sass" class="anchor" href="#sass"><span class="octicon octicon-link"></span></a>Sass</h4>
@@ -114,7 +119,7 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 <div class="highlight highlight-bash"><pre>npm install -g generator-kittn
 </pre></div>
 
-<p>Der Generator wird dabei automatisch Yeoman, Grunt und Bower installieren, wenn diese noch nicht installiert waren. Kittn liegt jetzt aber nur als global installiertes Paket vor.</p>
+<p>Der Generator wird dabei automatisch <code>Yeoman</code>, <code>Grunt</code> und <code>Bower</code> installieren, wenn diese noch nicht installiert waren. Kittn liegt jetzt als global installiertes Paket vor.</p>
 
 <p>Um Kittn zu verwenden, erstellt man sich ein Projekt Verzeichnis und aktiviert den Generator:</p>
 
@@ -129,9 +134,9 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 
 <p><strong>CSS Filename</strong> : Bestimmt den allgemeinen Dateinamen der CSS Datei.</p>
 
-<p><strong>Do you need IE8 compatibility?</strong> : Wird diese Frage mit 'Y' beantwortet, werden zwei CSS Files generiert, in den HTML Dateien ist der Aufruf der zwei Dateien dann auch vorhanden (ansonsten wird nur ein CSS File aufgerufen).</p>
+<p><strong>Do you need IE8 compatibility?</strong> : Wird diese Frage mit <code>y</code> beantwortet, werden zwei CSS Files generiert, in den HTML Dateien ist der Aufruf der zwei Dateien dann auch vorhanden (ansonsten wird nur ein CSS File aufgerufen).</p>
 
-<p><strong>Do you want to use Jade as HTML Compiler?</strong> : Wird diese Frage mit 'Y' beantwortet läuft der Jade Compiler permanent mit. Bei 'n' wird Jade nur für die erste Kompilierung der HTML Files genutzt und dann abgeschaltet.</p>
+<p><strong>Do you want to use Jade as HTML Compiler?</strong> : Wird diese Frage mit <code>y</code> beantwortet läuft der Jade Compiler permanent mit. Bei <code>n</code> wird Jade nur für die erste Kompilierung der HTML Files genutzt und dann abgeschaltet.</p>
 
 <p>Nach Beantwortung der letzten Frage, wird Yeoman sämtliche Projektbezogenen Dependencies über <code>NPM</code> und <code>Bower</code> herunterladen.</p>
 
@@ -143,10 +148,57 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 <div class="highlight highlight-bash"><pre>gulp init
 </pre></div>
 
-<p>Beim Initialisieren werden unterschiedliche Dateien aus dem <code>src</code> Verzeichnis in das Verteilerverzeichnis <code>dist</code> kopiert. Zusätzlich werden JS Files kombiniert, Bilddaten werden verteilt, HTML und CSS wird Kompiliert.</p>
+<p><em>Prozesse:</em></p>
+
+<ul>
+<li>Build a individual Modernizr Build and Copy to <code>dist</code>
+</li>
+<li>Copy System Files to <code>dist</code>
+</li>
+<li>Copy JS Files to <code>dist</code>
+</li>
+<li>Copy HTML Images from <code>src/stash/images/html-images/html-assets/</code> to <code>dist/images</code>
+</li>
+<li>Start the <code>grunt</code> Build Image Task
+
+<ul>
+<li>Copy to <code>dist/assets/img/sprite/</code>
+</li>
+<li>Copy to <code>dist/assets/img/sprite_2x/</code>
+</li>
+<li>Build Retina Sprite <code>src/sass/maps/</code>
+</li>
+<li>Build NonRetina Sprite <code>src/sass/maps/</code>
+</li>
+<li>Rebuild Retina Sprite Map <code>dist/assets/img/</code>
+</li>
+<li>Rebuild NonRetina Sprite Map <code>dist/assets/img/</code>
+</li>
+<li>SVG Minify and Copy to <code>dist/assets/img/svg/</code>
+</li>
+<li>Build PNG Fallback Image <code>dist/assets/img/svg</code>
+</li>
+<li>SVG Minify and Copy to <code>dist/assets/img/svgonly/</code>
+</li>
+<li>Copy Texture Image to <code>dist/assets/img/texture/</code>
+</li>
+<li>Copy Single Images to <code>dist/assets/img/single/</code>
+</li>
+<li>Build Image Map <code>src/sass/maps/</code>
+</li>
+</ul>
+</li>
+<li>Compile Sass Files from <code>src/sass/</code> into <code>dist/assets/css/</code> </li>
+<li>Compile Jade Files from <code>src/jade/</code> into <code>dist/</code>
+</li>
+<li>Check JS File from <code>src/js/</code> and copy it to <code>dist/assets/js/</code>
+</li>
+<li>Combine some JS Files and copy it to <code>dist/assets/js/scripts.js</code>
+</li>
+</ul><p>Beim Initialisieren werden unterschiedliche Dateien aus dem <code>src</code> Verzeichnis in das Verteilerverzeichnis <code>dist</code> kopiert. Zusätzlich werden JS Files kombiniert, Bilddaten werden verteilt, HTML und CSS wird kompiliert.</p>
 
 <blockquote>
-<p>Wichtig zum Verständnis. Gearbeitet wird Grundsätzlich im <code>src</code> Verzeichnis. Dort werden alle Quelldaten abgelegt, die dann über Gulp Task weiter verarbeitet werden.</p>
+<p>Wichtig zum Verständnis. Gearbeitet wird grundsätzlich immer im <code>src</code> Verzeichnis. Dort werden alle Quelldaten abgelegt, die dann über Gulp Task weiter verarbeitet werden.</p>
 </blockquote>
 
 <p>Um jetzt mit der Arbeit zu beginnen aktiviert man den Default Task</p>
@@ -160,22 +212,97 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 <p>Ich verwende bewusst kein Coffeescript, weil es gerade in der Teamarbeit zu Verwirrungen geführt hat. Wer dennoch Coffeescript verwenden will, muss sich nur das entsprechende Plugin installieren.</p>
 </blockquote>
 
-<p>Wer die Überwachung noch auf Bilddaten ausweiten möchte, kann den erweiterten Default Task verwenden.</p>
+<p>Wer die Überwachung noch auf Bilddaten ausweiten möchte, kann den erweiterten Default Task verwenden:</p>
 
 <div class="highlight highlight-bash"><pre>gulp extended
 </pre></div>
 
-<p>Folgende Verzeichnisse werden dann mit überwacht:</p>
+<p>Eine Modifikation der Dateien, ebenso wie Löschen oder Hinzufügen wird den  Task aktivieren, z.B. wird aus SVG Dateien automatisch ein PNG Fallback generiert.</p>
+
+<blockquote>
+<p>Es kann sein das der Extend Task am Anfang nicht auf Änderungen im Image Verzeichnis reagiert. Da am Anfang keine Bilder vorhanden sind, die <code>Gulp</code> überwachen kann. In dem Fall die Bilder über <code>gulp grunt-rebuild-images</code> vorbereiten und dann den extended Task aktivieren.</p>
+</blockquote>
+
+<p><em>Extended Prozesse:</em></p>
+
+<p><strong><code>src/stash/images/css-images/svg/</code></strong></p>
 
 <ul>
-<li><code>src/stash/images/css-images/svg/</code></li>
-<li><code>src/stash/images/css-images/svgonly/</code></li>
-<li><code>src/stash/images/css-images/single-assets/</code></li>
-<li><code>src/stash/images/css-images/texture-assets/</code></li>
-<li><code>src/stash/images/css-images/sprite-assets/</code></li>
-</ul><p>Eine Modifikation der Dateien, ebenso wie Löschen oder Hinzufügen wird auch hier Task aktivieren, z.B. wird aus SVG Dateien automatisch ein PNG Fallback generiert.</p>
+<li>Watch Directory</li>
+<li>On File Change
 
-<h3>
+<ul>
+<li>Clean SVG Directory <code>dist/assets/img/svg/</code>
+</li>
+<li>SVG Minify and Copy to <code>dist/assets/img/svg/</code>
+</li>
+<li>Build PNG Fallback Image</li>
+<li>Rebuild Image Map</li>
+</ul>
+</li>
+</ul><p><strong><code>src/stash/images/css-images/svgonly/</code></strong></p>
+
+<ul>
+<li>Watch Directory</li>
+<li>On File Change
+
+<ul>
+<li>Clean SVG Directory <code>dist/assets/img/svgonly/</code>
+</li>
+<li>SVG Minify and Copy to <code>dist/assets/img/svgonly/</code>
+</li>
+</ul>
+</li>
+</ul><p><strong><code>src/stash/images/css-images/single-assets/</code></strong></p>
+
+<ul>
+<li>Watch Directory</li>
+<li>On File Change
+
+<ul>
+<li>Clean Single Directory <code>dist/assets/img/single/</code>
+</li>
+<li>Copy to <code>dist/assets/img/single/</code>
+</li>
+<li>Rebuild Image Map</li>
+</ul>
+</li>
+</ul><p><strong><code>src/stash/images/css-images/texture-assets/</code></strong></p>
+
+<ul>
+<li>Watch Directory</li>
+<li>On File Change
+
+<ul>
+<li>Clean Texture Directory <code>dist/assets/img/texture/</code>
+</li>
+<li>Copy to <code>dist/assets/img/texture/</code>
+</li>
+<li>Rebuild Image Map</li>
+</ul>
+</li>
+</ul><p><strong><code>src/stash/images/css-images/sprite-assets/</code></strong></p>
+
+<ul>
+<li>Watch Directory</li>
+<li>On File Change
+
+<ul>
+<li>Clean Texture Directory <code>dist/assets/img/sprite/</code>
+</li>
+<li>Clean Texture Directory <code>dist/assets/img/sprite_2x/</code>
+</li>
+<li>Copy to <code>dist/assets/img/sprite/</code>
+</li>
+<li>Copy to <code>dist/assets/img/sprite_2x/</code>
+</li>
+<li>Build Retina Sprite</li>
+<li>Build NonRetina Sprite</li>
+<li>Rebuild Retina Sprite Map</li>
+<li>Rebuild NonRetina Sprite Map</li>
+</ul>
+</li>
+</ul><h3>
 <a name="tasks" class="anchor" href="#tasks"><span class="octicon octicon-link"></span></a>Tasks</h3>
 
 <p><strong><code>gulp init</code></strong><br>
@@ -212,7 +339,7 @@ Bilddaten wie <code>single</code>, <code>textures</code>, <code>svg</code> und <
 Bilder die per HTML eingebunden werden, können damit in mehreren Größen generiert werden.</p>
 
 <hr><h2>
-<a name="folder-build" class="anchor" href="#folder-build"><span class="octicon octicon-link"></span></a>Folder Build</h2>
+<a name="structure" class="anchor" href="#structure"><span class="octicon octicon-link"></span></a>Structure</h2>
 
 <p>Wie schon erklärt wird man in der Regel immer in <code>src</code> arbeiten, das <code>dist</code> Verzeichnis spiegelt mehr das Endprodukt dar.</p>
 
@@ -220,11 +347,15 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 
 <p>Der innere Aufbau des <code>dist/</code> Verzeichnisses sieht wie folgt aus:</p>
 
-<p><code>dist/</code><br><code>.. assets/</code><br><code>.... css/</code> Fertige CSS dateien<br><code>...... system/</code> Systembilder wie favicons<br><code>...... single/</code> Einzel eingebunde Bilder<br><code>...... textures/</code> Texturen<br><code>.... img/</code> Per CSS eingebunde Bilder<br><code>.... js/</code> Javascripte<br><code>.... fonts/</code> Webfonts &amp; Iconfonts<br><code>.. images/</code> per html eingebunde Bilder</p>
+<p><code>dist/</code><br><code>.. assets/</code><br><code>.... css/</code> CSS Dateien<br><code>.... img/</code> Per CSS eingebunde Bilder<br><code>...... system/</code> Systemimages wie Favicons<br><code>...... single/</code> CSS Images<br><code>...... textures/</code> CSS Texturen<br><code>.... js/</code> Javascripte<br><code>.... fonts/</code> Webfonts &amp; Iconfonts<br><code>.. images/</code> per HTML eingebunde Bilder</p>
 
 <p>Falls man damit nicht zufrieden sein sollte, kann man die Struktur über die <code>package.json</code> ändern:</p>
 
 <p><img src="http://i.imgur.com/NfKvIcv.png" alt=""></p>
+
+<blockquote>
+<p>Parallel muss man in der Sass Setup Datei <code>src/sass/_setup.scss</code> ebenfalls die Pfade unter <code>$kittn-directorys</code> ändern.</p>
+</blockquote>
 
 <p>Das sollte natürlich vor dem <code>gulp init</code> passieren, ansonsten muss man die Verzeichnisse manuell umbenennen, oder man löscht <code>dist</code> einfach und startet dann den <code>init</code>.</p>
 
@@ -235,9 +366,9 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <hr><h2>
 <a name="image-handling" class="anchor" href="#image-handling"><span class="octicon octicon-link"></span></a>Image Handling</h2>
 
-<p>Die Verzeichnisstruktur ist besonders wichtig für die Aufbereitung und Weiterverarbeitung der Bilddaten.</p>
+<p>Die Verzeichnisstruktur ist besonders wichtig, für die Aufbereitung und Weiterverarbeitung der Images.</p>
 
-<p>Im Verzeichnis <code>src/stash/images/css-images/</code> findet neben den Unterordnern für <code>svg</code> und <code>svgonly</code> noch drei PSD Dateien. Diese eigenen sich aber erst für Nutzer die schon mit Photoshop CC oder Photoshop CC2014 arbeiten, da hier erst der <a href="http://blogs.adobe.com/photoshopdotcom/2013/09/introducing-adobe-generator-for-photoshop-cc.html">Generator</a> zur Verfügung steht.</p>
+<p>Im Verzeichnis <code>src/stash/images/</code> befinden sich zwei Unterordner <code>css-images/</code> und <code>html-images</code> - der Ordnung halber unterscheidet Kittn zwischen CSS und HTML Eingebundenen Images. Innerhalb dieser Ordner befinden sich dann leere PSD Dateien, diese eigenen sich aber erst für Nutzer die schon mit Photoshop CC oder Photoshop CC2014 arbeiten, da hier erst der <a href="http://blogs.adobe.com/photoshopdotcom/2013/09/introducing-adobe-generator-for-photoshop-cc.html">Generator</a> zur Verfügung steht.</p>
 
 <p><img src="http://i.imgur.com/WQo9hGf.gif" alt="Generator in Action"></p>
 
@@ -250,15 +381,32 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <code>src/stash/images/css-images/texture.psd</code> Asset File für alle Texture Images</li>
 <li>
 <code>src/stash/images/html-images/html.psd</code> Asset File für HTML Images</li>
+</ul><p><img src="http://i.imgur.com/8J36h63.jpg" alt="Generator Syntax Schema"></p>
+
+<p>Die Syntax ist relativ einfach zu handhaben: </p>
+
+<ul>
+<li>
+<code>filename.png</code> Generiert ein PNG</li>
+<li>
+<code>200% filename.gif</code> Generiert ein Gif mit einer 200% Skalierung</li>
+<li>
+<code>filename.jpg70%</code> Generiert ein JPG mit 70% Qualität</li>
+<li>
+<code>200% filename@2x.png, filename.png</code> Generiert zwei PNG Files, eines davon in Doppelter Auflösung (Retina)</li>
 </ul><p>Bei Sprites bitte beachten das der Dateinamen der Retina Sprites immer mit <code>@2x</code> endet, bei NonRetina Sprites entfällt das Postfix.</p>
+
+<p>Weitere <a href="http://pixelhusten.tumblr.com/post/77743297904/let-photoshop-do-the-dirty-work">Informationen zum Generator</a> - auch wie man mit Photoshop SVG erzeugen kann.</p>
+
+<blockquote>
+<p>Der Generator wird auch dann neue Assets generieren wenn sich etwas in der PSD Datei ändert (z.B. ein Layer verschieben), dafür muss man die Datei nicht einmal abspeichern. Hat man <code>gulp extended</code> am laufen kann das eventuell störend sein, weil die Prozesse dann ebenso gestartet werden.</p>
+</blockquote>
 
 <p><img src="http://i.imgur.com/lMSzjU6.jpg" alt="Ablaufbeispiel mit Sprite"></p>
 
 <p>Die PSDs sind alle schon mit dem Generator verbunden. Sobald man Ebene/Gruppen gemäß der Generator Syntax beschriftet und speichert, werden die Assets in den jeweiligen Ordnern (mit der Endung <code>assets</code>) abgespeichert.</p>
 
-<p><img src="http://i.imgur.com/8J36h63.jpg" alt="Generator Syntax Schema"></p>
-
-<p>Die Arbeit mit dem Generator ist optional, wenn einem die Arbeit zu umständlich sein sollte, der kann seine Assets auch wie er es gewohnt ist generieren. Wichtig ist nur, das gilt ebenfalls für Nutzer ohne Photoshop CC, das die Bilddateien immer in den entsprechenden Verzeichnissen landen.</p>
+<p>Die Arbeit mit dem Generator ist optional, wenn einem die Arbeit zu umständlich sein sollte oder wenn man gar kein Photoshop CC zu Verfügung hat, der kann seine Assets auch wie er es gewohnt ist generieren. Wichtig ist nur das die Bilddateien immer in den entsprechenden Verzeichnissen landen.</p>
 
 <blockquote>
 <p>Es ist sehr wichtig darauf zu achten das die PSDs nicht über 100 MB groß werden, daher sollte noch vor dem Commit die Filesize kontrolliert werden. Github reagiert beim Push sehr 'allergisch' auf Dateien über 100 MB, was oft zum Abbruch führt.</p>
@@ -338,6 +486,32 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 </blockquote>
 
 <hr><h2>
+<a name="extend-kittn" class="anchor" href="#extend-kittn"><span class="octicon octicon-link"></span></a>Extend Kittn</h2>
+
+<p>Kittn ist darauf ausgelegt dem Developer ein Grundgerüst in die Hand zu geben, mit dem er schon arbeiten kann. Dennoch wird es vorkommen das man mit der Default Ausstattung nicht zurecht kommt. Der ein oder andere möchste statt nativen <code>js</code> vielleicht <code>CoffeeScript</code> verwenden, vielleicht fehlt auch ein ganz anderes Feature.</p>
+
+<p>Um Kittn zu erweitern sollte man die Plugins auch in der <code>package.json</code> notieren, da das <code>node_modules</code> Verzeichnis nicht übertragen wird. </p>
+
+<div class="highlight highlight-bash"><pre>npm install packagename --save-dev
+</pre></div>
+
+<p>Damit wird ein Package über NPM Network ins Projektverzeichnis installiert und in der <code>package.json</code> notiert. Damit installiert der nachfolgende Developer auch genau die Packages die für das Projekt nötig sind. Es versteht sich von selbst dann man dann die <code>gulpfile.js</code> und/oder <code>gruntfile.js</code> Datei modifizieren muss.</p>
+
+<p>Um Pakete zu deinstallieren:</p>
+
+<div class="highlight highlight-bash"><pre>npm deinstall packagename --save-dev
+</pre></div>
+
+<hr><h2>
+<a name="coding-infos" class="anchor" href="#coding-infos"><span class="octicon octicon-link"></span></a>Coding Infos</h2>
+
+<p>Klassennamen die durch 'Kittn' generiert werden, folgen der <a href="http://bem.info/">BEM</a> Syntax. BEM ist mit eine der einfachsten Arten CSS Objekt Orientiert zu schreiben. Sicherlich kann man mit <a href="https://smacss.com/">Smacss</a> noch viel filigraner gestallten, sollte aber nicht vergessen, das es hier lediglich um ein Prinzip der Objekt Orientierten Programmierung geht. Man sollte daher kein Religion aus der Thematik machen - das Endprodukt wird immer CSS mit all seinen Nachteilen sein.</p>
+
+<p>Es steht dem Entwickler frei seine Klassennamen nach der BEM Syntax aufzubauen, in dem Fall kann man auf die BEM Mixins zurückgreifen, womit man einen Zentralen Knotenpunkt erhält um globale Modifikationen an der Syntax vorzunehmen.</p>
+
+<p>Per Default werden BEM Elemente mit einem doppelten Underscore <code>__</code> gekennzeichnet und BEM Modifier mit einem doppeltem Bindestrich '--'. Wer damit nicht einverstanden ist kann dies über die Sass Setup <code>src/sass/_setup.scss</code> Datei ändern, indem man die <code>$kittn-bem</code> Map entsprechend anpasst.</p>
+
+<hr><h2>
 <a name="sass-framework" class="anchor" href="#sass-framework"><span class="octicon octicon-link"></span></a>Sass Framework</h2>
 
 <p>Das Herzstück des Toolkits besteht aus dem <a href="http://sass-lang.com">Sass</a> Framework, das Toolkit wurde mehr außen herum gebaut um die fehlenden Funktionen zu ersetzten.</p>
@@ -347,7 +521,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 </blockquote>
 
 <h3>
-<a name="structure" class="anchor" href="#structure"><span class="octicon octicon-link"></span></a>Structure</h3>
+<a name="structure-1" class="anchor" href="#structure-1"><span class="octicon octicon-link"></span></a>Structure</h3>
 
 <p>Im Verzeichnis <code>src/sass/</code> befindet sich der Framework:</p>
 
@@ -1294,7 +1468,54 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 
 <p><code>file: scr/sass/framework/helper/_jacket.scss</code></p>
 
-<p>Nähere <a href="https://github.com/Team-Sass/jacket">Informationen</a></p>
+<p>Mittels <a href="https://github.com/Team-Sass/jacket">Jacket</a> können spezifische Styles auf entsprechende CSS Files umgeleitet werden. Einige Kittn Mixins machen davon stärker gebrauch, z.B. die REM Funktion. Während moderne Browser ein Stylesheet mit REM Values erhalten, besteht im IE8 Stylesheet nur Pixel Values - das überschreiben entfällt damit und die Files sind etwas kürzer. </p>
+
+<div class="highlight highlight-scss"><pre><span class="k">@mixin</span><span class="nf"> _color</span><span class="p">(</span><span class="nv">$target</span><span class="o">,</span> <span class="nv">$attrib</span><span class="o">:</span> <span class="no">color</span><span class="o">,</span> <span class="nv">$imp</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span> <span class="nv">$map</span><span class="o">:</span> <span class="nv">$kittn-color-map</span><span class="p">)</span> <span class="p">{</span>
+
+    <span class="c1">// Check if the Color have an opacity value</span>
+    <span class="c1">// Generate RGBA Colors with an IE8 Fallback (hex)</span>
+    <span class="k">@if</span> <span class="nf">map-get</span><span class="p">(</span><span class="nv">$colors</span><span class="o">,</span><span class="no">opacity</span><span class="p">)</span> <span class="o">!=</span> <span class="n-Pseudo">false</span> <span class="p">{</span>
+
+      <span class="c1">// Generate the IE8 Fallback Colors</span>
+      <span class="k">@include</span><span class="nd"> jacket</span><span class="p">(</span><span class="n">old</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">attrib</span><span class="p">}</span><span class="nd">:</span> <span class="nt">map-get</span><span class="o">(</span><span class="err">$</span><span class="nt">colors</span><span class="o">,</span><span class="nt">color</span><span class="o">)</span> <span class="nt">if</span><span class="o">(</span><span class="err">$</span><span class="nt">imp</span><span class="o">,</span> <span class="o">!</span><span class="nt">important</span><span class="o">,</span> <span class="nt">null</span><span class="o">);</span>
+      <span class="p">}</span>
+
+      <span class="c1">// Generate RGBA Colors</span>
+      <span class="k">@include</span><span class="nd"> jacket</span><span class="p">(</span><span class="n">modern</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nn">#</span><span class="p">{</span><span class="err">$</span><span class="nt">attrib</span><span class="p">}</span><span class="nd">:</span> <span class="nt">rgba</span><span class="o">(</span><span class="nt">map-get</span><span class="o">(</span><span class="err">$</span><span class="nt">colors</span><span class="o">,</span><span class="nt">color</span><span class="o">),</span><span class="nt">map-get</span><span class="o">(</span><span class="err">$</span><span class="nt">colors</span><span class="o">,</span><span class="nt">opacity</span><span class="o">))</span> <span class="nt">if</span><span class="o">(</span><span class="err">$</span><span class="nt">imp</span><span class="o">,</span> <span class="o">!</span><span class="nt">important</span><span class="o">,</span> <span class="nt">null</span><span class="o">);</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Im oberen Beispiel sieht man die gekürzte Variante des <code>_color</code> Mixins. Im Falle von Transparenten Farben, wird hier der IE8 <code>old</code> mit reinen Hex Farben versorgt, moderne Browser <code>modern</code> wie z.B. Chrome erhalten eine RGBA Farbe.</p>
+
+<p>Wer möchte kann natürlich noch weitere Routen aufbauen, z.B. um spezifische Styles für Android in ein seperates CSS File zu leiten, erstellt man sich eine neue .scss Datei. In dem Fall nennen wir sie <code>android.scss</code>, die sollte im <code>src/sass/</code> Verzeichnis gespeichert werden.</p>
+
+<p>Die Datei muss man noch entsprechend vorbereitet werden: </p>
+
+<div class="highlight highlight-scss"><pre><span class="c1">// file: src/sass/android.scss</span>
+<span class="nv">$jacket</span><span class="o">:</span> <span class="s1">'</span><span class="s2">android'</span><span class="p">;</span>
+
+<span class="k">@import</span> <span class="s1">'</span><span class="s2">_workfile'</span><span class="p">;</span>
+</pre></div>
+
+<p>Sobald der Compiler seine Arbeit getan hat, wird im <code>dist/assets/css/</code> Verzeichnis eine neue CSS Datei <code>android.css</code> auftauchen. Antreffen wird man dort aber nur die allgemeinen Styles die nicht mit <code>old</code> oder <code>modern</code> geroutet worden sind.</p>
+
+<p>Da <code>jacket</code> auch mehrere Routen zeitgleich zulässt, kann man Styles auch Mixen:</p>
+
+<div class="highlight highlight-scss"><pre><span class="k">@mixin</span><span class="nf"> myMixin</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Styles for modern browsers and android</span>
+  <span class="k">@include</span><span class="nd"> jacket</span><span class="p">(</span><span class="n">modern</span><span class="o">,</span> <span class="ow">and</span><span class="n">roid</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nc">...</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>Damit laufen Styles in die Android und Modern Stylesheets.</p>
+
+<p>Für weitere <a href="https://github.com/Team-Sass/jacket">Informationen</a> die Jacket Seite konsultieren.</p>
 
 <h4>
 <a name="sassylists" class="anchor" href="#sassylists"><span class="octicon octicon-link"></span></a>Sassylists</h4>
@@ -1334,7 +1555,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h4>
 <a name="breakpoints" class="anchor" href="#breakpoints"><span class="octicon octicon-link"></span></a>Breakpoints</h4>
 
-<p><code>scr/sass/framework/modules/_breakpoints.scss</code></p>
+<p><code>file: scr/sass/framework/modules/_breakpoints.scss</code></p>
 
 <h5>
 <a name="bp-f" class="anchor" href="#bp-f"><span class="octicon octicon-link"></span></a>bp (f)</h5>
@@ -1532,7 +1753,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h4>
 <a name="colors" class="anchor" href="#colors"><span class="octicon octicon-link"></span></a>Colors</h4>
 
-<p><code>scr/sass/framework/modules/_color.scss</code><br></p>
+<p><code>file: scr/sass/framework/modules/_color.scss</code><br></p>
 
 <h5>
 <a name="tint-f" class="anchor" href="#tint-f"><span class="octicon octicon-link"></span></a>tint (f)</h5>
@@ -5020,28 +5241,28 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h4>
 <a name="normalize" class="anchor" href="#normalize"><span class="octicon octicon-link"></span></a>Normalize</h4>
 
-<p><code>scr/sass/framework/partials/_normalize.scss</code></p>
+<p><code>fiel: scr/sass/framework/partials/_normalize.scss</code></p>
 
 <p>Damit wird die Basiseinstellung der Typo, Font und des Layouts vorgenommen.</p>
 
 <h4>
 <a name="tables" class="anchor" href="#tables"><span class="octicon octicon-link"></span></a>Tables</h4>
 
-<p><code>scr/sass/framework/partials/_tables.scss</code></p>
+<p><code>file: scr/sass/framework/partials/_tables.scss</code></p>
 
 <p>Für vordefinierte Tabellen.</p>
 
 <h4>
 <a name="pre-generators" class="anchor" href="#pre-generators"><span class="octicon octicon-link"></span></a>Pre-Generators</h4>
 
-<p><code>scr/sass/framework/partials/_pre-generators.scss</code></p>
+<p><code>file: scr/sass/framework/partials/_pre-generators.scss</code></p>
 
 <p>Hier mit werden Generatoren geladen die noch vor der <code>normalize.scss</code> geladen sein muss.</p>
 
 <h4>
 <a name="post-generators" class="anchor" href="#post-generators"><span class="octicon octicon-link"></span></a>Post-Generators</h4>
 
-<p><code>scr/sass/framework/partials/_post-generators.scss</code></p>
+<p><code>file: scr/sass/framework/partials/_post-generators.scss</code></p>
 
 <p>Hier mit werden Generatoren geladen die nach der <code>normalize.scss</code> geladen sein muss.</p>
 
