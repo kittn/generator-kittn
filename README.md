@@ -1,9 +1,7 @@
-![](http://i.imgur.com/2MtKGwj.jpg)
-
 # Generator-Kittn
 Yeoman Generator for the Kittn Toolkit. Scaffolds and Prepare the Toolkit for you.
 
-[Documentation (in German)](http://kittn.de). English translation will come in the next Days.
+[Documentation](http://kittn.de). 
 
 ## Install
 
