@@ -15,7 +15,8 @@
   <body>
     <div class="wrapper">
       <header>
-        <h1><img src="http://i.imgur.com/2MtKGwj.jpg" alt="Generator-Kittn"></h1>
+        <h1>Generator-kittn</h1>
+        <p>The Yeoman Kittn Generator</p>
 
         <p class="view"><a href="https://github.com/gisu/generator-kittn">View the Project on GitHub <small>gisu/generator-kittn</small></a></p>
 
@@ -27,43 +28,42 @@
         </ul>
       </header>
       <section>
+        <p><img src="http://i.imgur.com/2MtKGwj.jpg" alt=""></p>
 
 <h2>
-<a name="einleitung" class="anchor" href="#einleitung"><span class="octicon octicon-link"></span></a>Einleitung</h2>
+<a name="introduction" class="anchor" href="#introduction"><span class="octicon octicon-link"></span></a>Introduction</h2>
 
-<p>„Kittn“ ist ein Toolkit das vorwiegend beim Aufbau von Frontends unterstützen soll. Wer nach einer bunten Mischung aus vorgefertigten Elementen sucht, so wie man es von Bootstrap und Co gewohnt ist, wird mit Kittn nicht glücklich werden. Hier werden vielmehr die Methoden angeboten um solche Elemente auf einem einfachen Weg zu Bilden und zu erweitern.</p>
+<p>"Kittn" is a toolkit designed to support mainly the construction of frontends. Anyone looking for a colorful mixture of prefabricated elements, as one would expect from bootstrap and co, will not be happy with Kittn. Here rather the methods are offered to those elements on a simple way to generate and expand.</p>
 
-<p>Um den CSS Part herum, sind noch viele Automatismen eingebaut die dem Developer ebenfalls helfen, sei es um Image Assets zu generieren und zu verteilen, HTML Mockups aufzubauen, die Code Qualität zu kontrollieren, Sprites zu bilden, Fallbacks für SVG Dateien zu generieren. Darum vermeide ich auch den Begriff Framework.</p>
-
-<p>Das Toolkit wurde auch aus dem Gesichtspunkt entwickelt irgendwann auf <code>Libsass</code> umzusteigen, schon alleine aus Performance Sicht. Die Features für die früher <code>Compass</code> zuständig war (Prefixing, Spriting, Image Handling), sind mittlerweile durch <code>Grunt</code> Tasks ersetzt worden.</p>
+<p>Around the CSS part, there are still many automatic functions installed that help the developer. For example, to generate image assets and distribute, to build HTML mockups, to make sprites to generate fallbacks for SVG files. That's why I also avoid the term framework.</p>
 
 <blockquote>
-<p>Angst vor dem Terminal sollte man nicht haben :p</p>
+<p>Against the terminal you should have no fear :p</p>
 </blockquote>
 
 <h2>
-<a name="abh%C3%A4ngigkeiten" class="anchor" href="#abh%C3%A4ngigkeiten"><span class="octicon octicon-link"></span></a>Abhängigkeiten</h2>
+<a name="dependencies" class="anchor" href="#dependencies"><span class="octicon octicon-link"></span></a>Dependencies</h2>
 
-<p>Um mit Kittn arbeiten zu können müssen einige Extensions und Environments installiert werden. Wer diese Tools schon installiert hat, der kann den Schritt überspringen.</p>
+<p>In order to work with "Kittn", you need to install some extensions and environments. Anyone who has installed these tools, which can skip the step.</p>
 
 <h3>
 <a name="environments" class="anchor" href="#environments"><span class="octicon octicon-link"></span></a>Environments</h3>
 
 <blockquote>
-<p>Getestet wurde das Toolkit bislang auf Mac Systemen! Auf Windows Systemen kann es zu Problemen kommen.</p>
+<p>The toolkit has been tested so far on Mac systems! On Windows systems, there can be problems.</p>
 </blockquote>
 
 <ul>
 <li>Ruby &gt;= 1.9.0</li>
 <li>Node &gt;= 0.10.10</li>
-</ul><p>Auf Mac Systemen ist Ruby schon installiert, hier würde der Schritt enfallen - wer mag kann hier aber auf Ruby 2.12 Updaten.
-Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http://rubyinstaller.org/downloads/">One Click Installer</a>.</p>
+</ul><p>On Mac systems, Ruby is already installed, this step would be omitted. But if you like you can update on Ruby v.2.12. 
+To install Ruby on Windows, simply use the <a href="http://rubyinstaller.org/downloads/">One Click Installer</a></p>
 
 <blockquote>
-<p>Aktuell wird Sass über <code>Ruby-Sass</code> Kompiliert, sobald <code>Libsass</code> 100% Produktiv verwendbar ist, wird die  Ruby-Abhängigkeit entfallen.</p>
+<p>Currently Sass is compiled with <code>Ruby-Sass</code>. When <code>Libsass</code> is 100% productive usable, the Ruby dependency is omitted.</p>
 </blockquote>
 
-<p>Node kann auf Mac Systemen entweder über <a href="http://brew.sh">Brew</a> installiert werden oder man verwendet den <a href="http://nodejs.org/">Installer</a>, gilt dann für beide Systeme.</p>
+<p>Node can be installed on Mac systems either <a href="http://brew.sh">Brew</a> or you can use the <a href="http://nodejs.org/">Installer</a>, then for both systems.</p>
 
 <h3>
 <a name="extensions--compiler" class="anchor" href="#extensions--compiler"><span class="octicon octicon-link"></span></a>Extensions &amp; Compiler</h3>
@@ -77,13 +77,13 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 <li>Yeoman 1.2.0</li>
 <li>Git</li>
 </ul><blockquote>
-<p>Der Generator installiert selbstständig <code>Grunt</code>, <code>Bower</code> und auch <code>Yeoman</code>.</p>
+<p>The generator installed automatically <code>Grunt</code>, <code>Bower</code> and <code>Yeoman</code>.</p>
 </blockquote>
 
 <h4>
 <a name="sass" class="anchor" href="#sass"><span class="octicon octicon-link"></span></a>Sass</h4>
 
-<p>Hier muss die aktuelle Version 3.4.0 RC1 installiert werden, da das Framework gebrauch vom Scripted Ampersand macht.</p>
+<p>The current version 3.4.0 RC1 must be installed because the framework makes use of the extended scripted Ampersand.</p>
 
 <div class="highlight highlight-bash"><pre>gem install sass --pre
 </pre></div>
@@ -91,7 +91,7 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 <h4>
 <a name="jade" class="anchor" href="#jade"><span class="octicon octicon-link"></span></a>Jade</h4>
 
-<p>Nach dem ersten <code>gulp init</code> werden damit die ersten HTML Dateien mittels Jade kompiliert. Im weiteren Verlauf kann man sich selbst entscheiden ob man natives HTML schreibt oder weiter mit Jade arbeiten will.</p>
+<p>After the first <code>gulp init</code>, so the first HTML files will be compiled with the Jade compiler. Later you can decide whether to write native HTML or wants to continue working with Jade.</p>
 
 <div class="highlight highlight-bash"><pre>npm install -g jade
 </pre></div>
@@ -99,7 +99,7 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 <h4>
 <a name="gulp" class="anchor" href="#gulp"><span class="octicon octicon-link"></span></a>Gulp</h4>
 
-<p>Sämtliche Tasks - auch Grunt Tasks - werden über Gulp aktiviert.</p>
+<p>All tasks - even <code>Grunt</code> tasks - can be started with <code>Gulp</code>.</p>
 
 <div class="highlight highlight-bash"><pre>npm install -g gulp
 </pre></div>
@@ -107,46 +107,50 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 <h4>
 <a name="git" class="anchor" href="#git"><span class="octicon octicon-link"></span></a>Git</h4>
 
-<p>Wer Git noch nicht installiert hat sollte dies bitte jetzt nachholen, da <code>Bower</code> direkt auf Github zugreift. <a href="http://git-scm.com/download">Download</a></p>
+<h2>
+<a name="those-who-have-not-yet-installed-git-this-should-please-do-so-now-as-bower-directly-accessing-github-download" class="anchor" href="#those-who-have-not-yet-installed-git-this-should-please-do-so-now-as-bower-directly-accessing-github-download"><span class="octicon octicon-link"></span></a>Those who have not yet installed Git, this should please do so now, as <code>Bower</code> directly accessing Github. <a href="http://git-scm.com/download">Download</a>
+</h2>
 
-<hr><h2>
+<h2>
 <a name="install-kittn" class="anchor" href="#install-kittn"><span class="octicon octicon-link"></span></a>Install Kittn</h2>
 
-<p>Wenn die Dependencies installiert sind, folgt die Installation des Generators.</p>
+<p>Once the dependencies are installed, the generator is installed.</p>
 
 <div class="highlight highlight-bash"><pre>npm install -g generator-kittn
 </pre></div>
 
 <p>Der Generator wird dabei automatisch <code>Yeoman</code>, <code>Grunt</code> und <code>Bower</code> installieren, wenn diese noch nicht installiert waren. Kittn liegt jetzt als global installiertes Paket vor.</p>
 
-<p>Um Kittn zu verwenden, erstellt man sich ein Projekt Verzeichnis und aktiviert den Generator:</p>
+<p>The generator will automatically install <code>Yeoman</code>, <code>Grunt</code> and <code>Bower</code>, when they not installed on the system. Kittn is now available as a globally installed package.</p>
+
+<p>To use Kittn, you created a project directory itself and activates the generator:</p>
 
 <div class="highlight highlight-bash"><pre>yo kittn
 </pre></div>
 
-<p>Der Generator wird jetzt eine Reihe von Fragen stellen, mit denen die <code>package.json</code> und die <code>bower.json</code> vor konfiguriert werden.</p>
+<p>The generator will now ask a series of questions with which the <code>package.json</code> and bower.json` be configured.</p>
 
 <p><img src="http://i.imgur.com/6h8SwsC.gif" alt=""></p>
 
-<p>Von stärkerer Bedeutung sind die letzten drei Fragen:</p>
+<p>Of greater importance are the last three questions:</p>
 
-<p><strong>CSS Filename</strong> : Bestimmt den allgemeinen Dateinamen der CSS Datei.</p>
+<p><strong>CSS Filename</strong> : Determines the general file name of the CSS file.</p>
 
-<p><strong>Do you need IE8 compatibility?</strong> : Wird diese Frage mit <code>y</code> beantwortet, werden zwei CSS Files generiert, in den HTML Dateien ist der Aufruf der zwei Dateien dann auch vorhanden (ansonsten wird nur ein CSS File aufgerufen).</p>
+<p><strong>Do you need IE8 compatibility?</strong> : If this question is answered with <code>y</code>, two CSS files are generated. In HTML files, calling the two files is then also available (otherwise only one CSS file is called).</p>
 
-<p><strong>Do you want to use Jade as HTML Compiler?</strong> : Wird diese Frage mit <code>y</code> beantwortet läuft der Jade Compiler permanent mit. Bei <code>n</code> wird Jade nur für die erste Kompilierung der HTML Files genutzt und dann abgeschaltet.</p>
+<p><strong>Do you want to use Jade as HTML Compiler?</strong> : If this question is answered with <code>y</code> the Jade compiler is running permanently. When <code>n</code>, Jade is used only for the first compilation of the HTML files and then shut off.</p>
 
-<p>Nach Beantwortung der letzten Frage, wird Yeoman sämtliche Projektbezogenen Dependencies über <code>NPM</code> und <code>Bower</code> herunterladen.</p>
+<p>After answering the last question, Yeoman will download all the project-related dependencies with <code>Bower</code> and <code>NPM</code>.</p>
 
 <hr><h2>
-<a name="free-the-kittn" class="anchor" href="#free-the-kittn"><span class="octicon octicon-link"></span></a>Free the kittn</h2>
+<a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h2>
 
-<p>Nach dem die Installation abgeschlossen ist, wird das Projekt <strong>initialisiert</strong>.</p>
+<p>After the installation is complete, the project must be <strong>initialized</strong>.</p>
 
 <div class="highlight highlight-bash"><pre>gulp init
 </pre></div>
 
-<p><em>Prozesse:</em></p>
+<p><em>Init Process:</em></p>
 
 <ul>
 <li>Build a individual Modernizr Build and Copy to <code>dist</code>
@@ -193,35 +197,35 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 </li>
 <li>Combine some JS Files and copy it to <code>dist/assets/js/scripts.js</code>
 </li>
-</ul><p>Beim Initialisieren werden unterschiedliche Dateien aus dem <code>src</code> Verzeichnis in das Verteilerverzeichnis <code>dist</code> kopiert. Zusätzlich werden JS Files kombiniert, Bilddaten werden verteilt, HTML und CSS wird kompiliert.</p>
+</ul><p>When initializing, different files from <code>scr</code> directory will be copied to the distribution <code>dist</code> directory. In addition, <code>js</code> files are combined, <code>html</code> and <code>css</code> would be compiled.</p>
 
 <blockquote>
-<p>Wichtig zum Verständnis. Gearbeitet wird grundsätzlich immer im <code>src</code> Verzeichnis. Dort werden alle Quelldaten abgelegt, die dann über Gulp Task weiter verarbeitet werden.</p>
+<p>Important! You will always work in the <code>src</code> directory. There, all source data are stored, which are then processed on Gulp task on.</p>
 </blockquote>
 
-<p>Um jetzt mit der Arbeit zu beginnen aktiviert man den Default Task</p>
+<p>In order now to begin the work activate the <code>default task</code>:</p>
 
 <div class="highlight highlight-bash"><pre>gulp
 </pre></div>
 
-<p>Gulp wird den Server aktivieren, der einem in Echtzeit die Preview auf den Browser liefert - der Browser wird bei einer Änderung automatisch refreshed. Innerhalb des <code>src</code> Verzeichnisses werden JS, Jade und Sass Files überwacht, bei einer Änderung wird der Compiler aktiv - im Falle von Javascript wird JSHint die Codequality überwachen.</p>
+<p>Gulp will activate the server that provides a preview in realtime on the browser - the browser is automatically refreshed after every change on the filesystem. Within the <code>src</code> directory <code>js</code>, <code>Jade</code> and <code>Sass</code> files are monitored for a change in the compiler is active - in the case of Javascript JSHint will check code quality.</p>
 
 <blockquote>
-<p>Ich verwende bewusst kein Coffeescript, weil es gerade in der Teamarbeit zu Verwirrungen geführt hat. Wer dennoch Coffeescript verwenden will, muss sich nur das entsprechende Plugin installieren.</p>
+<p>I deliberately use no CoffeeScript because it has just performed in teamwork to confusion. If you still want to use CoffeeScript, only the corresponding plugin must install.</p>
 </blockquote>
 
-<p>Wer die Überwachung noch auf Bilddaten ausweiten möchte, kann den erweiterten Default Task verwenden:</p>
+<p>Those who want to extend the file monitoring to images, can use the <code>extended default task</code>:</p>
 
 <div class="highlight highlight-bash"><pre>gulp extended
 </pre></div>
 
-<p>Eine Modifikation der Dateien, ebenso wie Löschen oder Hinzufügen wird den  Task aktivieren, z.B. wird aus SVG Dateien automatisch ein PNG Fallback generiert.</p>
+<p>A modification of files, as well as adding or deleting will activate the task, eg is from SVG files automatically generates a PNG fallback.</p>
 
 <blockquote>
-<p>Es kann sein das der Extend Task am Anfang nicht auf Änderungen im Image Verzeichnis reagiert. Da am Anfang keine Bilder vorhanden sind, die <code>Gulp</code> überwachen kann. In dem Fall die Bilder über <code>gulp grunt-rebuild-images</code> vorbereiten und dann den extended Task aktivieren.</p>
+<p>It may be that the Extend task is not responding at the beginning of changes in the image (<code>src/stash/images/</code>) directory. Since no images at the beginning exist that can <code>Gulp</code> watch. Preparing in this case the images on <code>gulp grunt-rebuild-images</code> and then activate the extended task.</p>
 </blockquote>
 
-<p><em>Extended Prozesse:</em></p>
+<p><em>Process for the extended default task:</em></p>
 
 <p><strong><code>src/stash/images/css-images/svg/</code></strong></p>
 
@@ -304,123 +308,123 @@ Um Ruby auf Windows Systemen zu installieren, empfiehlt sich der <a href="http:/
 <a name="tasks" class="anchor" href="#tasks"><span class="octicon octicon-link"></span></a>Tasks</h3>
 
 <p><strong><code>gulp init</code></strong><br>
-Für das erste Initialisieren des Projekts.</p>
+For the first initialization of the project.</p>
 
 <p><strong><code>gulp</code></strong><br>
 Default Task</p>
 
 <p><strong><code>gulp extended</code></strong><br>
-Erweiterter Default Task - überwacht Bilddaten</p>
+Extended default task - monitors image data</p>
 
 <p><strong><code>gulp rebuild-js</code></strong><br>
-Sämtliche Javascript Dateien werden neu generiert</p>
+All the Javascript files are rebuilded (combined, copied, checked)</p>
 
 <p><strong><code>gulp publish</code></strong><br>
-Die Projektdaten werden für die Produktion vorbereitet. CSS, JS und Bilddaten werden Komprimiert. Die Dokumenation wird generiert.</p>
+The project data is prepared for production. CSS, JS and image data are compressed. The documenation with <code>sassdoc</code> is generated.</p>
 
 <p><strong><code>gulp jade-rebuild</code></strong><br>
-Sämtliche Jade Dateien werden auf einen Rutsch neu kompiliert.</p>
+Rebuild all Jade Files</p>
 
 <p><strong><code>gulp bump</code></strong><br>
-Die Versionsnummer wird gepatcht (0.0.1)</p>
+Patch the Version Number from <code>package.json</code> and <code>bower.json</code> (0.0.1)</p>
 
 <p><strong><code>gulp bump-minor</code></strong><br>
-Die Versionsnummer wird um ein Minor Update erweitert (0.1.0)</p>
+Extend the Minor Version Number from <code>package.json</code> and <code>bower.json</code> (0.1.0)</p>
 
 <p><strong><code>gulp bump-major</code></strong><br>
-Die Versionnummer wird um eine Release Nummer erweitert (1.0.0)</p>
+Extend to the next Release Number from <code>package.json</code> and <code>bower.json</code> (1.0.0)</p>
 
 <p><strong><code>gulp grunt-rebuild-images</code></strong><br>
-Bilddaten wie <code>single</code>, <code>textures</code>, <code>svg</code> und <code>sprites</code> werden aus dem <code>dist</code> Verzeichnis gelöscht und neu Integriert.</p>
+Rebuild all Image Files.</p>
 
 <p><strong><code>gulp grunt-responsive-images</code></strong><br>
-Bilder die per HTML eingebunden werden, können damit in mehreren Größen generiert werden.</p>
+Build different Sizes from HTML Images</p>
 
 <hr><h2>
 <a name="structure" class="anchor" href="#structure"><span class="octicon octicon-link"></span></a>Structure</h2>
 
-<p>Wie schon erklärt wird man in der Regel immer in <code>src</code> arbeiten, das <code>dist</code> Verzeichnis spiegelt mehr das Endprodukt dar.</p>
+<p>As already explained, one will usually always work in <code>src</code> directory.</p>
 
-<p><code>root</code><br><code>.. dist/</code> Verteiler<br><code>.. src/</code> Quelldateien</p>
+<p><code>root</code><br><code>.. dist/</code> distribution<br><code>.. src/</code> source</p>
 
-<p>Der innere Aufbau des <code>dist/</code> Verzeichnisses sieht wie folgt aus:</p>
+<p>The internal structure of the <code>dist /</code> directory looks like this:</p>
 
-<p><code>dist/</code><br><code>.. assets/</code><br><code>.... css/</code> CSS Dateien<br><code>.... img/</code> Per CSS eingebunde Bilder<br><code>...... system/</code> Systemimages wie Favicons<br><code>...... single/</code> CSS Images<br><code>...... textures/</code> CSS Texturen<br><code>.... js/</code> Javascripte<br><code>.... fonts/</code> Webfonts &amp; Iconfonts<br><code>.. images/</code> per HTML eingebunde Bilder</p>
+<p><code>dist/</code><br><code>.. assets/</code><br><code>.... css/</code> CSS files<br><code>.... img/</code> CSS included images<br><code>...... system/</code> Systemimages like favicon<br><code>...... single/</code> CSS single images<br><code>...... textures/</code> CSS texture images<br><code>.... js/</code> JS files<br><code>.... fonts/</code> Webfonts &amp; iconfonts<br><code>.. images/</code> HTML included images</p>
 
-<p>Falls man damit nicht zufrieden sein sollte, kann man die Struktur über die <code>package.json</code> ändern:</p>
+<p>If you therefore should not be satisfied, you can change the structure of the <code>package.json</code>:</p>
 
 <p><img src="http://i.imgur.com/NfKvIcv.png" alt=""></p>
 
 <blockquote>
-<p>Parallel muss man in der Sass Setup Datei <code>src/sass/_setup.scss</code> ebenfalls die Pfade unter <code>$kittn-directorys</code> ändern.</p>
+<p>If the paths are changed, the paths must be in the Sass setup file (<code>src/sass/_setup.scss -&gt; $kittn-directorys</code>) also be changed accordingly</p>
 </blockquote>
 
-<p>Das sollte natürlich vor dem <code>gulp init</code> passieren, ansonsten muss man die Verzeichnisse manuell umbenennen, oder man löscht <code>dist</code> einfach und startet dann den <code>init</code>.</p>
+<p>This should happen before the <code>gulp init</code> of course, otherwise you have to rename the directories manually, or you delete <code>dist</code> simple and then starts the <code>gulp init</code> again.</p>
 
-<p>Die innere Struktur des <code>src/</code> Verzeichnis.</p>
+<p>The internal structure of the <code>src /</code> directory:</p>
 
-<p><code>src/</code> <br><code>.. jade/</code> Jade Dateien<br><code>.. js/</code> Javascript Files<br><code>.. markdown/</code> Externe Texte im Markdown Format<br><code>.. sass/</code> Sass Framework<br><code>.. stash/</code> Ablage<br><code>.... .sytem/</code> Interne System Daten<br><code>.... bower/</code> Bower Dependencies<br><code>.... fonts/</code> Font Files<br><code>.... images/</code> Image Quellen<br><code>...... css-images/</code> CSS eingebunde Bilder<br><code>........ single-assets/</code> Platz für die einzelnen Single Assets<br><code>........ sprite-assets/</code> Ordner für alle sprite Images<br><code>........ svg-assets/</code> SVG Images die mit PNG Fallback generiert werden<br><code>........ svgonly-assets/</code> SVG Images ohne Fallback<br><code>........ texture-assets/</code> Ordner für die einzelen Texturen<br><code>...... html-images/</code><br><code>........ html-assets/</code> HTML eingebunde Bilder<br><code>.... scripts/</code> Scriptfiles die nicht über Bower installiert werden<br></p>
+<p><code>src/</code> <br><code>.. jade/</code> Jade files<br><code>.. js/</code> JS files<br><code>.. markdown/</code> External texts in Markdown format<br><code>.. sass/</code> Sass framework<br><code>.. stash/</code> filing<br><code>.... .sytem/</code> Internal system files<br><code>.... bower/</code> Bower dependencies<br><code>.... fonts/</code> Font files<br><code>.... images/</code> Image sources<br><code>...... css-images/</code> CSS included images<br><code>........ single-assets/</code> Place for each single assets<br><code>........ sprite-assets/</code> Place for each sprite assets<br><code>........ svg-assets/</code> Place for each svg assets with a generated png fallback<br><code>........ svgonly-assets/</code> Place for each svg assets without fallbacks<br><code>........ texture-assets/</code> Place for each texture asset<br><code>...... html-images/</code><br><code>........ html-assets/</code> HTML included images<br><code>.... scripts/</code> Script files that are not installed on Bower<br></p>
 
 <hr><h2>
 <a name="image-handling" class="anchor" href="#image-handling"><span class="octicon octicon-link"></span></a>Image Handling</h2>
 
-<p>Die Verzeichnisstruktur ist besonders wichtig, für die Aufbereitung und Weiterverarbeitung der Images.</p>
+<p>The directory structure is particularly important for the preparation and processing of the images files.</p>
 
-<p>Im Verzeichnis <code>src/stash/images/</code> befinden sich zwei Unterordner <code>css-images/</code> und <code>html-images</code> - der Ordnung halber unterscheidet Kittn zwischen CSS und HTML Eingebundenen Images. Innerhalb dieser Ordner befinden sich dann leere PSD Dateien, diese eigenen sich aber erst für Nutzer die schon mit Photoshop CC oder Photoshop CC2014 arbeiten, da hier erst der <a href="http://blogs.adobe.com/photoshopdotcom/2013/09/introducing-adobe-generator-for-photoshop-cc.html">Generator</a> zur Verfügung steht.</p>
+<p>In the directory <code>src/stash/images/</code> there are two subfolders <code>css-images/</code> and <code>html-images</code> - for the record differs "Kittn" between CSS and HTML embedded images. Within this folder, there are empty PSD files, they own but only for users who already work with Photoshop or Photoshop CC CC2014, because here is only the <a href="http://blogs.adobe.com/photoshopdotcom/2013/09/introducing-adobe-generator-for-photoshop-cc.html">generator</a>.</p>
 
 <p><img src="http://i.imgur.com/WQo9hGf.gif" alt="Generator in Action"></p>
 
 <ul>
 <li>
-<code>src/stash/images/css-images/sprite.psd</code> Asset File für alle Sprite Images (retina &amp; nonRetina)</li>
+<code>src/stash/images/css-images/sprite.psd</code> Asset file for all sprite images (retina &amp; nonRetina)</li>
 <li>
-<code>src/stash/images/css-images/single.psd</code> Asset File für alle Single Images</li>
+<code>src/stash/images/css-images/single.psd</code> Asset file for all single images</li>
 <li>
-<code>src/stash/images/css-images/texture.psd</code> Asset File für alle Texture Images</li>
+<code>src/stash/images/css-images/texture.psd</code> Asset file for all texture images</li>
 <li>
-<code>src/stash/images/html-images/html.psd</code> Asset File für HTML Images</li>
+<code>src/stash/images/html-images/html.psd</code> Asset file for HTML Images</li>
 </ul><p><img src="http://i.imgur.com/8J36h63.jpg" alt="Generator Syntax Schema"></p>
 
-<p>Die Syntax ist relativ einfach zu handhaben: </p>
+<p>The syntax is relatively easy to handle:</p>
 
 <ul>
 <li>
-<code>filename.png</code> Generiert ein PNG</li>
+<code>filename.png</code> Generates a PNG</li>
 <li>
-<code>200% filename.gif</code> Generiert ein Gif mit einer 200% Skalierung</li>
+<code>200% filename.gif</code> Generates a gif with a 200% scaling</li>
 <li>
-<code>filename.jpg70%</code> Generiert ein JPG mit 70% Qualität</li>
+<code>filename.jpg70%</code> Generates a JPG with 70% quality</li>
 <li>
-<code>200% filename@2x.png, filename.png</code> Generiert zwei PNG Files, eines davon in Doppelter Auflösung (Retina)</li>
-</ul><p>Bei Sprites bitte beachten das der Dateinamen der Retina Sprites immer mit <code>@2x</code> endet, bei NonRetina Sprites entfällt das Postfix.</p>
+<code>200% filename@2x.png, filename.png</code> Generates two PNG files, one in Double resolution (retina)</li>
+</ul><p>Please note the sprites file name of the retina Qualifying ends with @ 2x in NonRetina eliminates the postfix.</p>
 
-<p>Weitere <a href="http://pixelhusten.tumblr.com/post/77743297904/let-photoshop-do-the-dirty-work">Informationen zum Generator</a> - auch wie man mit Photoshop SVG erzeugen kann.</p>
+<p>More <a href="http://pixelhusten.tumblr.com/post/77743297904/let-photoshop-do-the-dirty-work">information to the generator</a> (German) - also how you can create with Photoshop SVG.</p>
 
 <blockquote>
-<p>Der Generator wird auch dann neue Assets generieren wenn sich etwas in der PSD Datei ändert (z.B. ein Layer verschieben), dafür muss man die Datei nicht einmal abspeichern. Hat man <code>gulp extended</code> am laufen kann das eventuell störend sein, weil die Prozesse dann ebenso gestartet werden.</p>
+<p>The generator will then generate new assets if something in the PSD file changes (eg move a Layer), but you do not even save the file. Once you <code>gulp extended</code> can run on the possibly be disturbing, because the processes are then started as well.</p>
 </blockquote>
 
-<p><img src="http://i.imgur.com/lMSzjU6.jpg" alt="Ablaufbeispiel mit Sprite"></p>
+<p><img src="http://i.imgur.com/lMSzjU6.jpg" alt="Execution example with Sprite"></p>
 
-<p>Die PSDs sind alle schon mit dem Generator verbunden. Sobald man Ebene/Gruppen gemäß der Generator Syntax beschriftet und speichert, werden die Assets in den jeweiligen Ordnern (mit der Endung <code>assets</code>) abgespeichert.</p>
+<p>The PSDs are all already connected to the generator. Once you labeled Layer/ groups according to the generator syntax and stores, the assets are stored in their respective folders (with the suffix <code>assets</code>).</p>
 
-<p>Die Arbeit mit dem Generator ist optional, wenn einem die Arbeit zu umständlich sein sollte oder wenn man gar kein Photoshop CC zu Verfügung hat, der kann seine Assets auch wie er es gewohnt ist generieren. Wichtig ist nur das die Bilddateien immer in den entsprechenden Verzeichnissen landen.</p>
+<p>Work with the generator is optional if one should be too cumbersome to work or if you have no Photoshop CC at your disposal, which can also its assets as he is used to generate. The important thing is that always end up the image files in the appropriate directories.</p>
 
 <blockquote>
-<p>Es ist sehr wichtig darauf zu achten das die PSDs nicht über 100 MB groß werden, daher sollte noch vor dem Commit die Filesize kontrolliert werden. Github reagiert beim Push sehr 'allergisch' auf Dateien über 100 MB, was oft zum Abbruch führt.</p>
+<p>It is very important to make sure that the PSDs (or any other File) can not be more than 100 MB in size, so before committing the file size should be controlled. Github responding when you push very 'allergic' to files over 100 MB, which often leads to termination.</p>
 </blockquote>
 
 <hr><h2>
 <a name="build-html-with-jade" class="anchor" href="#build-html-with-jade"><span class="octicon octicon-link"></span></a>Build HTML with Jade</h2>
 
-<p><a href="http://jade-lang.com/">Jade</a> ist ein HTML Kompilier, der Prinzipiell für die erste Generierung der HTML Dateien verwendet wird, danach steht es dem Entwickler frei selbst zu entscheiden ob er Jade weiter verwenden möchte. Z.B. wer direkt mit Wordpress arbeitet der wird kein Jade benötigen.</p>
+<p><a href="http://jade-lang.com/">Jade</a> is a HTML compiler that is in principle used for the first generation of the HTML files, then it is the developer free to decide for themselves whether they want to use Jade on. For example, who works directly with WordPress will not need Jade.</p>
 
-<p>Die Jade Files findet man ebenfalls unter <code>src/</code>:</p>
+<p>The Jade Files can also be found under <code>src/</code>:</p>
 
-<p><code>src/</code> <br><code>.. jade/</code> Jade Dateien<br><code>.... components/</code> Jade Componenten<br><code>.... mixins/</code> unterschiedliche Mixins<br><code>.... templatepart/</code> Template Segmente, z.B. den Header<br><code>.... templates/</code> unterschiedliche Template Typen<br></p>
+<p><code>src/</code> <br><code>.. jade/</code> Jade files<br><code>.... components/</code> Jade componenten<br><code>.... mixins/</code> Jade Mixins<br><code>.... templatepart/</code> Template segments, eg HTML Header<br><code>.... templates/</code> Different template types<br></p>
 
 <blockquote>
-<p>Das ganze stellt ehr eine art Boilerplate dar, es bleibt jedem selbst überlassen wie stark er seinen Jade Code segmentieren möchte.</p>
+<p>The Jade part is more like a little boilerplate. It's up to you how much you want to segment the Jade code.</p>
 </blockquote>
 
 <hr><h2>
@@ -429,104 +433,106 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h3>
 <a name="internal-files" class="anchor" href="#internal-files"><span class="octicon octicon-link"></span></a>Internal Files</h3>
 
-<p>Interne JS Files werden im Verzeichnis <code>src/js/</code> abgespeichert, dort wird man die <code>app.js</code> Datei entdecken - regulär kann man davon ausgehen das eine Datei ausreicht.</p>
+<p>Internal JS files are in the directory <code>src/js/</code> saved, there will be discover <code>app.js</code> file - regularly it can be considered sufficient one file.</p>
 
 <blockquote>
-<p>Die <code>app.js</code> wird im HTML immer am Ende geladen.</p>
+<p>The <code>app.js</code> will load in HTML always at the end.</p>
 </blockquote>
 
-<p>Sobald der Default Gulp Task aktiv ist, werden alle Dateien in <code>scr/js/</code> überwacht, bei einer Änderungen durchlaufen diese einen JSHint Test und werden in <code>dist/assets/js/</code> abgespeichert (mit dem gleichen Dateinamen).</p>
+<p>Once the default Gulp task is active, all files will be monitored in  <code>src/js/</code>, at a change through this one JSHint test and are stored in <code>dist/assets/js/</code> (with the same filename).</p>
 
 <h3>
 <a name="external-files" class="anchor" href="#external-files"><span class="octicon octicon-link"></span></a>External Files</h3>
 
-<p>Kommen wir zu den externen Scriptfiles, diese kann man entweder über <a href="http://bower.io/">Bower</a> in das Packet laden, falls sie dort nicht gefunden werden, kann man diese über den <code>scripts</code> Folder integrieren.</p>
+<p>Let us turn to the external script files, this can be either <a href="http://bower.io/">Bower</a> load in the package, if they are not found there, one can integrate over the <code>scripts</code> folder.</p>
 
-<p>Möchte man z.B. ein zusätzliches Script hinzufügen, wird man als erstes danach suchen - manchmal sind die Pakete unter anderem Namen gespeichert.</p>
+<p>If you want to, for example, Add an additional scripts, you will first search for it - sometimes the packages are stored under a different name.</p>
 
 <div class="highlight highlight-bash"><pre>bower search package-name
 </pre></div>
 
-<p>Hat man das entsprechende Packet gefunden, installiert es mittels:</p>
+<p>If you have the appropriate package found, it is installed with the following command:</p>
 
 <div class="highlight highlight-bash"><pre>bower install package-name --save
 </pre></div>
 
 <p>Das entsprechende Paket wird in <code>src/stash/bower/</code> installiert und zusätzlich in der <code>bower.json</code> notiert. Möchte man ein installiertes Package wieder deinstallieren:</p>
 
+<p>The appropriate package is installed in <code>src/stash/bower/</code> and also listed in the <code>bower.json</code>. If you want to uninstall an installed package again:</p>
+
 <div class="highlight highlight-bash"><pre>bower uninstall package-name --save
 </pre></div>
 
 <blockquote>
-<p>Der Inhalte des <code>bower</code> Folders wird nicht in das externe Git Repo übertragen. Developer die am Projekt mitarbeiten, werden sich die Bower Dependencies über <code>bower install</code> herunterladen. Daher ist es wichtig jedes Dependency in der <code>bower.json</code> zu notieren.</p>
+<p>The contents of the <code>bower</code> Folders is not transferred to the external Git repo. Developers who work on the project, download the Dependencies Bower over <code>bower install</code>. Therefore, it is important to note each dependency in the<code>bower.json</code>.</p>
 </blockquote>
 
-<p>Natürlich kann es vorkommen das man bestimmte Packages nicht über Bower findet, man kann diese dann entweder selbst registrieren:</p>
+<p>Of course it can happen that you can not find certain packages via Bower, you can register then either yourself:</p>
 
-<div class="highlight highlight-bash"><pre>bower register https://url.zum.git.repo package-name
+<div class="highlight highlight-bash"><pre>bower register https://url.to-the.git.repo package-name
 </pre></div>
 
-<p>Oder man lädt das Packet in <code>src/stash/scripts/</code> wo es zur weiteren Verwendung zur Verfügung steht.</p>
+<p>Or you can load the package in <code>src/stash/scripts/</code> where it is available for further use.</p>
 
-<p>Um die JS Dateien zu verwenden, müssen sie erst mit <code>Gulp</code> weiterverarbeitet werden. JS Files werden dann entweder in das JS Verzeichnis <code>dist/assets/js/</code> kopiert oder sie werden kombiniert und in das JS Verzeichnis kopiert.</p>
+<p>To use JS files, they must first be processed with <code>Gulp</code>. JS files are then either in the JS directory <code>dist/assets/js/</code> copied or they are combined and copied to the JS directory.</p>
 
-<p>Im <code>gulpfile.js</code> findet man folgenden Block:</p>
+<p>In the <code>gulpfile.js</code> you will find the following block:</p>
 
-<p><img src="http://i.imgur.com/OVTiI2k.png" alt="JS Config im Gulpfile"></p>
+<p><img src="http://i.imgur.com/OVTiI2k.png" alt="JS Config in Gulpfile"></p>
 
-<p>Alles was unter <code>copyjs</code> gelistet wurde, wird einfach nur kopiert, <code>combinejs</code> kennzeichnet die Dateien die kombiniert werden. Um den Prozess zu aktivieren:</p>
+<p>Everything was listed under <code>copyjs</code> is simply copied, <code>combinejs</code> identifies the files to be combined. To activate the process:</p>
 
 <div class="highlight highlight-bash"><pre>gulp rebuild-js
 </pre></div>
 
 <blockquote>
-<p>Kombinierte JS Files werden unter dem Filenamen <code>scripts.js</code> abgespeichert.</p>
+<p>Combined JS files are saved under the filename <code>scripts.js</code></p>
 </blockquote>
 
 <hr><h2>
 <a name="extend-kittn" class="anchor" href="#extend-kittn"><span class="octicon octicon-link"></span></a>Extend Kittn</h2>
 
-<p>Kittn ist darauf ausgelegt dem Developer ein Grundgerüst in die Hand zu geben, mit dem er schon arbeiten kann. Dennoch wird es vorkommen das man mit der Default Ausstattung nicht zurecht kommt. Der ein oder andere möchste statt nativen <code>js</code> vielleicht <code>CoffeeScript</code> verwenden, vielleicht fehlt auch ein ganz anderes Feature.</p>
+<p>Kittn is designed to give the developer a skeleton in his hand, with which he can already work. Nevertheless, it will happen that not enough a the default plugins. One or the other would take the native <code>js</code> might use <code>CoffeeScript</code> might be missing that some other feature.</p>
 
-<p>Um Kittn zu erweitern sollte man die Plugins auch in der <code>package.json</code> notieren, da das <code>node_modules</code> Verzeichnis nicht übertragen wird. </p>
+<p>To expand Kittn you should list the new plugins on the <code>package.json</code>, as the <code>node_modules</code> directory is not transmitted to the git repo.</p>
 
 <div class="highlight highlight-bash"><pre>npm install packagename --save-dev
 </pre></div>
 
-<p>Damit wird ein Package über NPM Network ins Projektverzeichnis installiert und in der <code>package.json</code> notiert. Damit installiert der nachfolgende Developer auch genau die Packages die für das Projekt nötig sind. Es versteht sich von selbst dann man dann die <code>gulpfile.js</code> und/oder <code>gruntfile.js</code> Datei modifizieren muss.</p>
+<p>This is a package about NPM Network, installed into the project directory and listed in the <code>package.json</code>. Thus, the subsequent Developer installed exactly the packages that are needed for the project. It understood then you then the <code>gulpfile.js</code> and / or <code>gruntfile.js</code> must modify file.</p>
 
-<p>Um Pakete zu deinstallieren:</p>
+<p>To uninstall packages:</p>
 
-<div class="highlight highlight-bash"><pre>npm deinstall packagename --save-dev
+<div class="highlight highlight-bash"><pre>npm uninstall packagename --save-dev
 </pre></div>
 
 <hr><h2>
 <a name="coding-infos" class="anchor" href="#coding-infos"><span class="octicon octicon-link"></span></a>Coding Infos</h2>
 
-<p>Klassennamen die durch 'Kittn' generiert werden, folgen der <a href="http://bem.info/">BEM</a> Syntax. BEM ist mit eine der einfachsten Arten CSS Objekt Orientiert zu schreiben. Sicherlich kann man mit <a href="https://smacss.com/">Smacss</a> noch viel filigraner gestallten, sollte aber nicht vergessen, das es hier lediglich um ein Prinzip der Objekt Orientierten Programmierung geht. Man sollte daher kein Religion aus der Thematik machen - das Endprodukt wird immer CSS mit all seinen Nachteilen sein.</p>
+<p>Class names that are generated by "Kittn", follow the <a href="http://bem.info/">BEM</a> syntax. BEM is one of the easiest ways to write Oriented CSS object. Surely you can build a lot more delicate with <a href="https://smacss.com/">Smacss</a>, but should not forget that the issue is simply a principle of object-oriented programming here. One should therefore not make a religion out of the topic - the final product will always be CSS with all its drawbacks.</p>
 
-<p>Es steht dem Entwickler frei seine Klassennamen nach der BEM Syntax aufzubauen, in dem Fall kann man auf die BEM Mixins zurückgreifen, womit man einen Zentralen Knotenpunkt erhält um globale Modifikationen an der Syntax vorzunehmen.</p>
+<p>The Develeloper is free to decide whether he wants his class named after the BEM build syntax, in which case you can rely on the BEM mixins, thus obtaining a central node to make global modifications to the syntax.</p>
 
-<p>Per Default werden BEM Elemente mit einem doppelten Underscore <code>__</code> gekennzeichnet und BEM Modifier mit einem doppeltem Bindestrich '--'. Wer damit nicht einverstanden ist kann dies über die Sass Setup <code>src/sass/_setup.scss</code> Datei ändern, indem man die <code>$kittn-bem</code> Map entsprechend anpasst.</p>
+<p>By default BEM elements marked with a double underscore <code>__</code> and BEM Modifier with a double hyphen <code>--</code>. Who does not agree, this may change the Sass Setup file (<code>src/sass/_setup.scss</code>) on the by adjusting the <code>$kittn-bem</code> Map accordingly.</p>
 
 <hr><h2>
 <a name="sass-framework" class="anchor" href="#sass-framework"><span class="octicon octicon-link"></span></a>Sass Framework</h2>
 
-<p>Das Herzstück des Toolkits besteht aus dem <a href="http://sass-lang.com">Sass</a> Framework, das Toolkit wurde mehr außen herum gebaut um die fehlenden Funktionen zu ersetzten.</p>
+<p>The centerpiece of the toolkit consists of the <a href="http://sass-lang.com">Sass</a> framework, the toolkit was built more around to replace the missing functions.</p>
 
 <blockquote>
-<p>Um die CSS3 Prefixes braucht man sich nicht zu kümmern, der Autoprefixer wird bei jedem Compile die Prefixes einfügen.</p>
+<p>You not need to worry about CSS3 prefixes the <code>gulp-autoprefixer</code> will insert it on any Compile.</p>
 </blockquote>
 
 <h3>
 <a name="structure-1" class="anchor" href="#structure-1"><span class="octicon octicon-link"></span></a>Structure</h3>
 
-<p>Im Verzeichnis <code>src/sass/</code> befindet sich der Framework:</p>
+<p>In the directory <code>src/sat/</code> is the Framework:</p>
 
-<p><code>sass/</code><br><code>.. framework/</code> Framework Mixins und Funktionen<br><code>.... helper/</code> Hilfsfunktionen die als erstes includiert werden müssen<br><code>.... modules/</code> Mixin, Funktionen, Generatoren<br><code>.... partials/</code> Vordefinierte Snippets<br><code>.. maps/</code> Erweiterte Daten Maps<br><code>.. styles/</code> Möglicher Platz für eigene Partials<br><code>.. _loader.scss</code> Lädt die einzelnen Dateien (die Reihenfolge ist vorbestimmt)<br><code>.. _setup.scss</code> Hier befindet sich die gesamte Konfiguration<br><code>.. _workfile.scss</code> Die Arbeitsdatei<br><code>.. style.scss</code> Ausgabe<br><code>.. style-ie8.scss</code> Ausgabe IE8<br></p>
+<p><code>sass/</code><br><code>.. framework/</code> Framework mixins and functions<br><code>.... helper/</code> Helpers that need to included first<br><code>.... modules/</code> Mixins, functions and generators<br><code>.... partials/</code> Predefined snippets<br><code>.. maps/</code> Extended Data Maps<br><code>.. styles/</code> Possible place for your own partials<br><code>.. _loader.scss</code> Loading the files (the order is predetermined)<br><code>.. _setup.scss</code> The entire configuration<br><code>.. _workfile.scss</code> The Workfile<br><code>.. style.scss</code> Build the Stylesheet<br><code>.. style-ie8.scss</code> Build the Stylesheet for IE8<br></p>
 
 <blockquote>
-<p>Der Name für die Dateien <code>style.scss</code> kann abweichen, wenn man beim aktivieren des Toolkits einen anderen Namen vorgegeben hat, ebenso kann es sein das es keine <code>xxxx-i8.scss</code> Datei vorhanden ist, wenn die IE8 Kompatibilität abgeschaltet wurde.</p>
+<p>The name for the files <code>style.scss</code> may differ if you have specified a different name when you activate the toolkit, as it may be that there is no <code>xxxxi8.scss</code> file exists when the IE8 compatibility was turned off.</p>
 </blockquote>
 
 <hr><h3>
@@ -534,16 +540,16 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 
 <p><img src="http://i.imgur.com/JSwYDZv.jpg" alt=""></p>
 
-<p>Gearbeitet wird immer mit <code>_workfile.scss</code> Datei und der Inhalt dieser Datei wird in die jeweilige <code>style.scss</code> importiert und über den Compiler zu einem CSS File gewandelt. Öffenen wir einfach mal eine der <code>style.scss</code> Dateien:</p>
+<p>Work always with <code>_workfile.scss</code> file and the contents of this file into the respective <code>style.scss</code> imported and converted by the compiler to a CSS file. We simply open one off the <code>style.scss</code> files:</p>
 
 <p><img src="http://i.imgur.com/smb2mSe.png" alt=""></p>
 
-<p>Diese Datei wird den Inhalt von <code>_workfile</code> importieren, dabei aber bestimmte Inhalte heraus filtern. Z.B. Inhalte die mit der Variable <code>old</code> markiert sind, fließen hier nicht mit ein.</p>
+<p>This file will import the content from the <code>_workfile</code>, but filter out this specific content. For example, Contents that are tagged with the variable <code>old</code>, will not include here.</p>
 
-<p>Mittels <a href="https://github.com/Team-Sass/jacket">Jacket</a> kann der Developer an einer Datei arbeiten, spezifische Styles auf unterschiedliche Files routen.</p>
+<p>Using <a href="https://github.com/Team-Sass/jacket">Jacket</a> the developers to work on a file, route-specific styles on different files.</p>
 
 <blockquote>
-<p>In Kittn arbeitet man prinzipiell mit zwei Jacket Variablen. <code>old</code> markiert Inhalte die in IE8 Stylesheets wandern und <code>modern</code> ist nur für Moderne Browser bestimmt. Wer möchte kann das natürlich noch erweitern.</p>
+<p>In Kittn you work principally with two Jacket variables. <code>old</code> marked contents which migrate in IE8 stylesheet and <code>modern</code> is intended only for modern browsers. If you want you can of course still expand.</p>
 </blockquote>
 
 <hr><h3>
@@ -551,28 +557,28 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 
 <p><code>file: src/sass/_loader.scss</code></p>
 
-<p>Mit der <code>_loader.scss</code> Datei werden alle Dateien geladen, die benötigt werden. Die Reihenfolge ist dabei schon fest vorgegeben. Sollte auch nicht mehr geändert werden.</p>
+<p>With the <code>_loader.scss</code> file, all required files are loaded. The order is already given proof should not be changed.</p>
 
 <hr><h3>
-<a name="setup" class="anchor" href="#setup"><span class="octicon octicon-link"></span></a>Setup</h3>
+<a name="setup-1" class="anchor" href="#setup-1"><span class="octicon octicon-link"></span></a>Setup</h3>
 
 <p><code>file: src/sass/_setup.scss</code></p>
 
-<p>Fast alle Einstellungen lassen sich über <code>_setup.scss</code> verändern und erweitern. Arbeiten wir uns einmal durch.</p>
+<p>Almost all settings can be changed and extended over <code>_setup.scss</code>.</p>
 
 <p><code>$kittn-global-spacing</code> Global spacing unit, used for Spacer and Lines Mixins.<br><code>$kittn-default-unit</code> Default unit for unitless values. Default <code>px</code><br><code>$kittn-bem</code> BEM Prefixes for Elements and Modifiers<br><code>$kittn-directorys</code> Kittn Directory Organisation - when you change the structure from <code>dist/</code> you need to change here also.<br><code>$kittn-activate</code> Activate Base Features<br><code>$kittn-sprite</code> Sprite Configuration<br><code>$kittn-iconfont</code> Iconfont Configuration<br><code>$kittn-breakpoint-map</code> Map off all Breakpoints and Behaviors<br><code>$kittn-fontface-map</code> Load and integrate all FontFaces<br><code>$kittn-typo</code> Base Typo Setup<br><code>$kittn-active-responsive-fonts</code> Activates the Responsive Fontsize Generator<br><code>$kittn-typo-margin</code> Default Margin for Typographic Elements<br><code>$kittn-typo-style</code> Base Typo and Font Styling<br><code>$kittn-typo-sizes</code> Base Typo Sizes<br><code>$kittn-global-heading</code> Global Heading Stylings<br><code>$kittn-typostyles-map</code> All possible Typostyles in a Map<br><code>$kittn-generate-typostyles</code> Generate all Fontstyles with classes<br><code>$kittn-color-map</code> Color Definition Map. This is a collection from all used Colors.<br><code>$kittn-color-generator</code> Generate the Color Classes from the Color Array<br><code>$kittn-color-route</code> Route the Colors to the Elements<br><code>$kittn-hairline</code> Hairline Styling<br><code>$kittn-tables</code> Table Styling</p>
 
 <hr><h3>
 <a name="maps" class="anchor" href="#maps"><span class="octicon octicon-link"></span></a>Maps</h3>
 
-<p>Zu der <code>_setup.scss</code> Datei kommen noch weitere Map Files.</p>
+<p>To the <code>file</code> _setup.scss yet another map coming Files.</p>
 
 <h4>
 <a name="fontstacks" class="anchor" href="#fontstacks"><span class="octicon octicon-link"></span></a>Fontstacks</h4>
 
 <p><code>file: src/sass/maps/_fontstacks.scss</code></p>
 
-<p>Fonts die über die Font-Family Mixins eingefügt werden, können auf die Fontstacks zugreifen. In der Map sind die gängisten Kombinationen enthalten.</p>
+<p>Fonts that are inserted via the Font-Family mixins can access the fontstack map. In the map, the most common combinations are included.</p>
 
 <h4>
 <a name="iconmap" class="anchor" href="#iconmap"><span class="octicon octicon-link"></span></a>Iconmap</h4>
@@ -581,8 +587,10 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 
 <p>Alle Icons einer Iconfont werden in diese Map eingetragen - über die Iconfont Mixins werden daraus dann wieder Klassen generiert.</p>
 
+<p>All icons from a IconFont be listed in this map - the classes would be generated with the Iconfont mixins.</p>
+
 <blockquote>
-<p>Wer seine Iconfonts mit Icomoon erstellt, wird eine CSS Datei geliefert bekommen. Mit etwas Find&amp;Replace kann man diese CSS Datei leicht in eine Map zurück wandeln.</p>
+<p>Who created his Iconfonts with Icomoon, a CSS file get delivered. With some Find &amp; Replace can this CSS file easily convert back into a map.</p>
 </blockquote>
 
 <div class="highlight highlight-scss"><pre><span class="nv">$kittn-font-icons</span><span class="o">:</span> <span class="p">(</span>
@@ -596,16 +604,16 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 
 <p><code>file: src/sass/maps/_imagemap.scss</code><br><code>file: src/sass/maps/_sprite.scss</code><br><code>file: src/sass/maps/_sprite-retina.scss</code></p>
 
-<p>Diese Maps werden über die <code>Grunt</code> Tasks automatisch erstellt. Dort werden Daten notiert wie die Bild Dimensionen, Dateinamen, bei Sprites wird die Position auf der Map gespeichert.</p>
+<p>These maps are created automatically via <code>Grunt</code> tasks. There, data are recorded as the image dimensions, file name, etc.</p>
 
-<p>Über die Image Mixins wird auf diese Maps zugegriffen.</p>
+<p>The Image Mixin will access the maps.</p>
 
 <h4>
 <a name="connectmap" class="anchor" href="#connectmap"><span class="octicon octicon-link"></span></a>Connectmap</h4>
 
 <p><code>file: src/sass/maps/_connectmap.scss</code></p>
 
-<p>In die Connectmap können repeatable Styles eingetragen werden. Die Map wird dann über Mixins eingelesen womit dann Silent Placeholder generiert werden. Diese können dann mit <code>@extend</code> verbunden werden, alternativ kann man den Inhalt auch direkt importiert werden.</p>
+<p>In the Connectmap repeatable styles will be entered. The map is then read via mixins, which Silent Placeholder be generated. This can be done with <code>@extend</code> connected. Alternatively, you can directly import the content as well.</p>
 
 <div class="highlight highlight-scss"><pre><span class="nv">$kittn-connect-map</span><span class="o">:</span> <span class="p">(</span>
   <span class="n">button</span><span class="o">:</span> <span class="p">(</span>
@@ -621,7 +629,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 
 <p><code>file: src/sass/maps/_zmap.scss</code></p>
 
-<p>Die unterschiedlichen Z-Indexes werden auf der Map notiert.</p>
+<p>The different Z-index are listed on the map.</p>
 
 <div class="highlight highlight-scss"><pre><span class="nv">$kittn-zlayer-map</span><span class="o">:</span> <span class="p">(</span>
   <span class="s1">'</span><span class="s2">default'</span><span class="o">:</span> <span class="mi">10</span>
@@ -636,7 +644,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 
 <p><code>file: scr/sass/framework/helper/_bem.scss</code></p>
 
-<p>Diese BEM Mixins verwenden die in <code>$kittn-bem</code> eingestellten Prefixes. Ob man diese Mixins verwendet oder nativ seine Selektoren schreiben, bleibt dem Developer überlassen.</p>
+<p>This BEM mixins use the prefix set in <code>$kittn-bem</code>. Whether you use these mixins or natively write his selectors, is left to the developer.</p>
 
 <h5>
 <a name="element-m" class="anchor" href="#element-m"><span class="octicon octicon-link"></span></a>element (m)</h5>
@@ -713,7 +721,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="chainroot-m" class="anchor" href="#chainroot-m"><span class="octicon octicon-link"></span></a>chainroot (m)</h5>
 
-<p>Setup the Root Element for the chained Modifers. Must be included in a Selector.</p>
+<p>Setup the Root Element for the chained Modifers. Must be inserted in a Selector.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -738,7 +746,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-bem</code>
 </li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {string} <code>$name</code> - Selector name</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$name</code> - Selector name</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> chainroot</span> <span class="p">{</span>
@@ -764,26 +772,27 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <span class="o">[</span><span class="nt">class</span><span class="o">^=</span><span class="s2">"test"</span><span class="o">][</span><span class="nt">class</span><span class="o">*=</span><span class="s2">"--height"</span><span class="o">]</span> <span class="p">{</span>
   <span class="na">height</span><span class="o">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
 <span class="p">}</span>
-
-<span class="c1">// Usage</span>
-<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s2">"test"</span><span class="o">&gt;</span><span class="nc">...</span><span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s2">"test--wide"</span><span class="o">&gt;</span><span class="nc">...</span><span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
-<span class="o">&lt;</span><span class="nt">div</span> <span class="nt">class</span><span class="o">=</span><span class="s2">"test--height--wide"</span><span class="o">&gt;</span><span class="nc">...</span><span class="o">&lt;/</span><span class="nt">div</span><span class="o">&gt;</span>
 </pre></div>
+
+<pre lang="markup"><code>// Usage
+&lt;div class="test"&gt;...&lt;/div&gt;
+&lt;div class="test--wide"&gt;...&lt;/div&gt;
+&lt;div class="test--height--wide"&gt;...&lt;/div&gt;
+</code></pre>
 
 <h4>
 <a name="connect" class="anchor" href="#connect"><span class="octicon octicon-link"></span></a>Connect</h4>
 
-<p><code>file: scr/sass/framework/helper/_connect.scss</code></p>
+<p><code>file: scr/sass/framework/helper/connect.scss</code></p>
 
-<p>Über die Connect Mixins ist es möglich Styles vorzudefienieren und diese Styles dann entweder mittels <code>@extend</code> zu verbinden oder den Style direkt in den Selektor zu laden (z.B. wenn man sich in einem MQ aufhält).</p>
+<p>Through the Connect mixins, it is possible to predefine styles and then to combine these styles either by <code>@extend</code> or the style to load directly into the selector (for example if you are staying in a media query).</p>
 
-<p>Wenn in der <code>$kittn-connect-map</code> Map Styles definiert wurden, werden Silent Selectors generiert.</p>
+<p>If defined in the <code>$kittn-connect-map</code> Map Styles, Silent Selectors are generated.</p>
 
 <h5>
 <a name="connect-gen-m" class="anchor" href="#connect-gen-m"><span class="octicon octicon-link"></span></a>connect-Gen (m)</h5>
 
-<p>Damit werden die Selectoren verknüpft oder 'ausgeladen'.</p>
+<p>Thus, the selectors are linked or included directly</p>
 
 <ul>
 <li>
@@ -801,7 +810,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 </ul><h5>
 <a name="connect-yield-m" class="anchor" href="#connect-yield-m"><span class="octicon octicon-link"></span></a>connect-Yield (m)</h5>
 
-<p>Das Mixin generiert aus den Elementen der <code>$kittn-connect-map</code> Map, Placeholder Selectors. Die dann mittels dem <code>connect</code> Mixin mit bestehenden Klassen verbunden werden.</p>
+<p>The Mixin generated from the elements of <code>$kittn-connect-map</code> Map, Placeholder Selectors. Which are then connected by means of the <code>connect</code> mixin with existing classes.</p>
 
 <ul>
 <li>
@@ -811,7 +820,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-connect-map</code>
 </li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {map} <code>$map</code> ($kittn-connect-map) - Connect Map</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$map</code> ($kittn-connect-map) - Connect Map</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Map</span>
 <span class="c1">// file: src/sass/maps/connectmap.scss</span>
 
@@ -844,7 +853,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="connect-m" class="anchor" href="#connect-m"><span class="octicon octicon-link"></span></a>connect (m)</h5>
 
-<p>Mit dem Connect Mixin können bestehende Elemente mit den Placeholder entweder verbunden werden, oder der Style kann in das Element direkt integriert werden.</p>
+<p>With the Connect Mixin existing elements with the placeholder can be either connected, or the style can be integrated directly into the element.</p>
 
 <ul>
 <li>
@@ -892,7 +901,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="ff-f" class="anchor" href="#ff-f"><span class="octicon octicon-link"></span></a>ff (f)</h5>
 
-<p>Mittels der <code>ff</code> Funktion kann man sich einen Fontstack aus der Map herauspicken und einfügen, zusätzlich kann man eigene Font Families anhängen.</p>
+<p>By means of the <code>ff</code> function, you can pick out a font stack from the map and paste, additionally, you can attach your own Font Families.</p>
 
 <ul>
 <li>
@@ -922,7 +931,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="font-family-m" class="anchor" href="#font-family-m"><span class="octicon octicon-link"></span></a>font-family (m)</h5>
 
-<p>Ist mehr ein Alias der FF Funktion, dieses mal als Mixin.</p>
+<p>Is more an alias of the FF function, this time as a mixin.</p>
 
 <ul>
 <li>
@@ -952,7 +961,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="fontface-m" class="anchor" href="#fontface-m"><span class="octicon octicon-link"></span></a>fontface (m)</h5>
 
-<p>Das Mixin generiert die Fontfaces, fügt bei Bedarf noch einen zusätzlichen SVG Fontstack ein - der auf Windows Plattformen für besseres Fontrendering sorgt (Firefox, Chrome)</p>
+<p>The Mixin generates the Font Faces, added an additional SVG font stack if necessary - on Windows platforms for better font rendering which provides (Firefox, Chrome).</p>
 
 <ul>
 <li>
@@ -1055,7 +1064,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="strip-units-f" class="anchor" href="#strip-units-f"><span class="octicon octicon-link"></span></a>strip-units (f)</h5>
 
-<p>Entfernt die Units von Values</p>
+<p>Removes units from values.</p>
 
 <ul>
 <li>
@@ -1077,7 +1086,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="unit-check-f" class="anchor" href="#unit-check-f"><span class="octicon octicon-link"></span></a>unit-check (f)</h5>
 
-<p>Fügt die default Unit an Unitless Values an.</p>
+<p>Adds the default Unit of unitless values ​​to.</p>
 
 <ul>
 <li>
@@ -1102,7 +1111,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="calc-m" class="anchor" href="#calc-m"><span class="octicon octicon-link"></span></a>calc (m)</h5>
 
-<p>Um die CSS Calc Funktion Browserüberbreifend zu verwenden (weil in diesem Fall der Autoprefixer nicht aktiv wird), behilft man sich mit dem Mixin.</p>
+<p>To use the CSS Cross-browser function Calc (because in this case the Autoprefixer is not active), is aided by the with the mixin.</p>
 
 <ul>
 <li>
@@ -1125,7 +1134,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="clamp-f" class="anchor" href="#clamp-f"><span class="octicon octicon-link"></span></a>clamp (f)</h5>
 
-<p>Mit dieser Funktion begrenzt man Zahlenwerte.</p>
+<p>With this function you limited numbers.</p>
 
 <ul>
 <li>
@@ -1155,10 +1164,10 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="cp-f" class="anchor" href="#cp-f"><span class="octicon octicon-link"></span></a>cp (f)</h5>
 
-<p>Der Colorpicker ist mit der Color Map (<code>$kittn-color-map</code>) verbunden und holt damit die entsprechenden Color Values.</p>
+<p>The Color Picker is connected to the Color Map (<code>$kittn-color-map</code>) and brings with it the corresponding color values​​.</p>
 
 <blockquote>
-<p>Die Keywords der Farben müssen gequotet notiert werden.</p>
+<p>The keywords of the colors must be quoted.</p>
 </blockquote>
 
 <ul>
@@ -1168,7 +1177,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$target</code> - Desired color</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {map} <code>$map</code> - Color Map</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$map</code> - Color Map</li>
 <li>@returns {Color}</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.color</span> <span class="p">{</span>
@@ -1186,7 +1195,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="spacer-f" class="anchor" href="#spacer-f"><span class="octicon octicon-link"></span></a>spacer (f)</h5>
 
-<p>Das Spacer-Mixin generiert anhand der Global Spacing Unit Größen.</p>
+<p>The spacer Mixin generated using the Global-spacing-unit sizes</p>
 
 <ul>
 <li>
@@ -1217,7 +1226,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="s-f" class="anchor" href="#s-f"><span class="octicon octicon-link"></span></a>s (f)</h5>
 
-<p>Selbiges wie oben, mit dem Unterschied das diese Funktion per Default keine Units integriert. Wird häufig für interne Mixins verwendet.</p>
+<p>The same as above, this feature by default integrated with the difference no units. Often used for internal mixins.</p>
 
 <ul>
 <li>
@@ -1257,7 +1266,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="is-true-f" class="anchor" href="#is-true-f"><span class="octicon octicon-link"></span></a>is-true (f)</h5>
 
-<p>Prüft ob ein Wert übergeben wurde</p>
+<p>Checks whether a value was passed</p>
 
 <ul>
 <li>
@@ -1281,7 +1290,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="is-map-f" class="anchor" href="#is-map-f"><span class="octicon octicon-link"></span></a>is-map (f)</h5>
 
-<p>Prüft ob es sich um eine Map handelt.</p>
+<p>Checks if it is a map.</p>
 
 <ul>
 <li>
@@ -1307,7 +1316,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="is-list-f" class="anchor" href="#is-list-f"><span class="octicon octicon-link"></span></a>is-list (f)</h5>
 
-<p>Prüft ob es sich um eine Liste handelt.</p>
+<p>Checks if there is a list.</p>
 
 <ul>
 <li>
@@ -1331,7 +1340,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="is-number-f" class="anchor" href="#is-number-f"><span class="octicon octicon-link"></span></a>is-number (f)</h5>
 
-<p>Prüft ob es sich um eine Nummer handelt.</p>
+<p>Checks if there is a number.</p>
 
 <ul>
 <li>
@@ -1355,7 +1364,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="is-string-f" class="anchor" href="#is-string-f"><span class="octicon octicon-link"></span></a>is-string (f)</h5>
 
-<p>Prüft ob es sich um einen String handelt.</p>
+<p>Checks if it is a string.</p>
 
 <ul>
 <li>
@@ -1379,7 +1388,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="is-not-string-f" class="anchor" href="#is-not-string-f"><span class="octicon octicon-link"></span></a>is-not-string (f)</h5>
 
-<p>Prüft ob es sich <strong>nicht</strong> um einen String handelt.</p>
+<p>Checks whether it is <strong>not</strong> a String.</p>
 
 <ul>
 <li>
@@ -1403,7 +1412,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="is-nested-f" class="anchor" href="#is-nested-f"><span class="octicon octicon-link"></span></a>is-nested (f)</h5>
 
-<p>Prüft ob der Selektor verschachtelt wurde.</p>
+<p>Checks if the selector has been nested.</p>
 
 <ul>
 <li>@returns {Bool}</li>
@@ -1431,7 +1440,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="map-filled-f" class="anchor" href="#map-filled-f"><span class="octicon octicon-link"></span></a>map-filled (f)</h5>
 
-<p>Überprüft ob die Map gefüllt wurde.</p>
+<p>Checks whether the map was filled.</p>
 
 <ul>
 <li>
@@ -1466,7 +1475,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 
 <p><code>file: scr/sass/framework/helper/_jacket.scss</code></p>
 
-<p>Mittels <a href="https://github.com/Team-Sass/jacket">Jacket</a> können spezifische Styles auf entsprechende CSS Files umgeleitet werden. Einige Kittn Mixins machen davon stärker gebrauch, z.B. die REM Funktion. Während moderne Browser ein Stylesheet mit REM Values erhalten, besteht im IE8 Stylesheet nur Pixel Values - das überschreiben entfällt damit und die Files sind etwas kürzer. </p>
+<p>Using <a href="https://github.com/Team-Sass/jacket">Jacket</a>, specific styles are redirected to corresponding CSS files. Some "Kittn" mixins make it more use, for example, the REM function. While modern browsers get a stylesheet with REM values​​, consists in IE8 stylesheet only pixel values</p>
 
 <div class="highlight highlight-scss"><pre><span class="k">@mixin</span><span class="nf"> _color</span><span class="p">(</span><span class="nv">$target</span><span class="o">,</span> <span class="nv">$attrib</span><span class="o">:</span> <span class="no">color</span><span class="o">,</span> <span class="nv">$imp</span><span class="o">:</span> <span class="n-Pseudo">false</span><span class="o">,</span> <span class="nv">$map</span><span class="o">:</span> <span class="nv">$kittn-color-map</span><span class="p">)</span> <span class="p">{</span>
 
@@ -1487,11 +1496,11 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <span class="p">}</span>
 </pre></div>
 
-<p>Im oberen Beispiel sieht man die gekürzte Variante des <code>_color</code> Mixins. Im Falle von Transparenten Farben, wird hier der IE8 <code>old</code> mit reinen Hex Farben versorgt, moderne Browser <code>modern</code> wie z.B. Chrome erhalten eine RGBA Farbe.</p>
+<p>In the example above you can see the shortened version of the <code>_color</code> mixin. In the case of Transparent colors, IE8 (<code>old</code>) supplied with hex colors, modern browser (<code>modern</code>), such as Chrome will receive an RGBA color.</p>
 
-<p>Wer möchte kann natürlich noch weitere Routen aufbauen, z.B. um spezifische Styles für Android in ein seperates CSS File zu leiten, erstellt man sich eine neue .scss Datei. In dem Fall nennen wir sie <code>android.scss</code>, die sollte im <code>src/sass/</code> Verzeichnis gespeichert werden.</p>
+<p>Who can naturally wants to build yet more routes. For example, to conduct specific styles for Android in a separate CSS file, you create a new 'style' file. In that case, we call them <code>android.scss</code> that should be stored in the <code>src/sat/</code> directory.</p>
 
-<p>Die Datei muss man noch entsprechend vorbereitet werden: </p>
+<p>The file has to be prepared in accordance with:</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// file: src/sass/android.scss</span>
 <span class="nv">$jacket</span><span class="o">:</span> <span class="s1">'</span><span class="s2">android'</span><span class="p">;</span>
@@ -1499,9 +1508,9 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <span class="k">@import</span> <span class="s1">'</span><span class="s2">_workfile'</span><span class="p">;</span>
 </pre></div>
 
-<p>Sobald der Compiler seine Arbeit getan hat, wird im <code>dist/assets/css/</code> Verzeichnis eine neue CSS Datei <code>android.css</code> auftauchen. Antreffen wird man dort aber nur die allgemeinen Styles die nicht mit <code>old</code> oder <code>modern</code> geroutet worden sind.</p>
+<p>Once the compiler has done its work, in the <code>dist/assets/css/</code> directory a new CSS file is show up (<code>android.css</code>). You will find there is only the general styles that have not been routed with <code>old</code> or <code>modern</code>.</p>
 
-<p>Da <code>jacket</code> auch mehrere Routen zeitgleich zulässt, kann man Styles auch Mixen:</p>
+<p>Since <code>jacket</code> also allows multiple routes at the same time, you can also mix styles:</p>
 
 <div class="highlight highlight-scss"><pre><span class="k">@mixin</span><span class="nf"> myMixin</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Styles for modern browsers and android</span>
@@ -1511,18 +1520,18 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <span class="p">}</span>
 </pre></div>
 
-<p>Damit laufen Styles in die Android und Modern Stylesheets.</p>
+<p>Thus Styles run in the <code>android</code> and <code>modern</code> Style Sheets.</p>
 
-<p>Für weitere <a href="https://github.com/Team-Sass/jacket">Informationen</a> die Jacket Seite konsultieren.</p>
+<p>For more <a href="https://github.com/Team-Sass/jacket">information</a>.</p>
 
 <h4>
 <a name="sassylists" class="anchor" href="#sassylists"><span class="octicon octicon-link"></span></a>Sassylists</h4>
 
 <p><code>file: scr/sass/framework/helper/_sassylists.scss</code></p>
 
-<p>Da <code>Kittn</code> nur ein Bruchteil der Funktionen von Hugo Giraudels <a href="http://sassylists.com/">sassylists</a> benötigt, ist die Library hier in gekürzter Form integriert.</p>
+<p>Since "kittn" only a fraction of the functions of Hugo Giraudels <a href="http://sassylists.com/">sassylists</a> needed, the Library is integrated here in abridged form.</p>
 
-<p>Folgende Funktionen wurden integriert:</p>
+<p>The following functionality was integrated:</p>
 
 <ul>
 <li><code>sl-has-multiple-values</code></li>
@@ -1540,9 +1549,9 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 
 <p><code>file: scr/sass/framework/helper/_debug.scss</code></p>
 
-<p>Bei Aktivieren werden mögliche Fehler im CSS visuell hervorgehoben.</p>
+<p>When activating potential errors in the CSS code will be highlighted visually.</p>
 
-<p><code>rot</code> = Fehler<br><code>gelb</code> = Zu Überprüfen</p>
+<p><code>rot</code> = Error<br><code>gelb</code> = To Check</p>
 
 <ul>
 <li>
@@ -1558,7 +1567,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="bp-f" class="anchor" href="#bp-f"><span class="octicon octicon-link"></span></a>bp (f)</h5>
 
-<p>Wählt anhand des Breakpoint-Key, die entsprechende Größe aus der Breakpoint-Map.</p>
+<p>Selects the basis of the breakpoint-Key, the corresponding size of the breakpoint map.</p>
 
 <ul>
 <li>
@@ -1583,7 +1592,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="break-m" class="anchor" href="#break-m"><span class="octicon octicon-link"></span></a>break (m)</h5>
 
-<p>Generiert MediaQueries. Wenn Mobile First aktiviert wurde (<code>$kittn-activate</code>), arbeiten die MQs per Default immer mit <code>min</code> Werten. Im Mode <code>between</code> wird das Mixin die zwei Größen zudem immer immer aufsteigend Sortieren.</p>
+<p>Generates MediaQueries. If mobile-first has been activated (<code>$kittn-activate</code>), the MQ always work by default with <code>min</code> values. In the mode <code>between</code> is the mixin the two sizes also always always ascending sort.</p>
 
 <ul>
 <li>
@@ -1653,7 +1662,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="eq-m" class="anchor" href="#eq-m"><span class="octicon octicon-link"></span></a>eq (m)</h5>
 
-<p>Mixin für das <a href="https://github.com/snugug/eq.js">ElementQueries</a> Script, von Sam Richard.</p>
+<p>Mixin for the <a href="https://github.com/snugug/eq.js">ElementQueries</a> Script.</p>
 
 <ul>
 <li>
@@ -1690,7 +1699,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="visibility-m" class="anchor" href="#visibility-m"><span class="octicon octicon-link"></span></a>visibility (m)</h5>
 
-<p>Generiert Visibilty/Hidden Classes basierend auf der <code>$kittn-breakpoint-map</code> Map. Es werden dabei aber nur Classen generiert wenn diese in der Map mit <code>visibility: true</code> eingetragen wurden.</p>
+<p>Generates Visibilty / Hidden Classes based on the <code>$kittn-breakpoint-map</code> Map. However, there are only generated classes if they were entered in the map with <code>visibility: true</code>.</p>
 
 <ul>
 <li>
@@ -1756,7 +1765,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="tint-f" class="anchor" href="#tint-f"><span class="octicon octicon-link"></span></a>tint (f)</h5>
 
-<p>Mischt eine Farbe mit Weiß</p>
+<p>Mix a color with a white.</p>
 
 <ul>
 <li>
@@ -1780,7 +1789,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="shade-f" class="anchor" href="#shade-f"><span class="octicon octicon-link"></span></a>shade (f)</h5>
 
-<p>Mischt eine Farbe mit Schwarz</p>
+<p>Mix a color with black.</p>
 
 <ul>
 <li>
@@ -1804,7 +1813,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="luma-f" class="anchor" href="#luma-f"><span class="octicon octicon-link"></span></a>luma (f)</h5>
 
-<p>Berechnet die Helligkeit einer Farbe.</p>
+<p>Calculates the brightness of a color.</p>
 
 <ul>
 <li>
@@ -1826,7 +1835,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="luma-gte-f" class="anchor" href="#luma-gte-f"><span class="octicon octicon-link"></span></a>luma-gte (f)</h5>
 
-<p>Liefert <code>true</code> zurück wenn Farbe 1 heller ist als Farbe 2</p>
+<p>Returns <code>true</code> back when color is brighter than 1 color 2</p>
 
 <ul>
 <li>
@@ -1853,7 +1862,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="luma-lte-f" class="anchor" href="#luma-lte-f"><span class="octicon octicon-link"></span></a>luma-lte (f)</h5>
 
-<p>Liefert <code>true</code> zurück wenn Farbe 1 kleiner ist als Farbe 2</p>
+<p>Returns <code>true</code> back if color1 is brighter than color2</p>
 
 <ul>
 <li>
@@ -1875,7 +1884,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="luma-diff-f" class="anchor" href="#luma-diff-f"><span class="octicon octicon-link"></span></a>luma-diff (f)</h5>
 
-<p>Berechnet die Differenz zwischen zwischen zwei Farbwerten.</p>
+<p>Calculates the difference between between two color values.</p>
 
 <ul>
 <li>
@@ -1901,7 +1910,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <a name="color-m" class="anchor" href="#color-m"><span class="octicon octicon-link"></span></a><em>color (m)</em>
 </h5>
 
-<p>Zieht Werte aus der Color Map. In dem Mixin ist ebenso ein Fallback für IE integriert - wenn Farben Opacity Werte aufweisen.</p>
+<p>Taking values ​​from the Color Map. In the mixin a fallback for IE is integrated as well - if colors have opacity values​​.</p>
 
 <ul>
 <li>
@@ -1933,7 +1942,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="get-c-m" class="anchor" href="#get-c-m"><span class="octicon octicon-link"></span></a>get-c (m)</h5>
 
-<p>Generiert auf dem gewählten Farbwert die Textfarbe.</p>
+<p>Constructed from the selected color value the text color.</p>
 
 <ul>
 <li>
@@ -1957,12 +1966,12 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="color-m-1" class="anchor" href="#color-m-1"><span class="octicon octicon-link"></span></a>color (m)</h5>
 
-<p>Alias Mixin von <code>get-c</code></p>
+<p>Alias Mixin from <code>get-c</code> mixin</p>
 
 <h5>
 <a name="get-bc-m" class="anchor" href="#get-bc-m"><span class="octicon octicon-link"></span></a>get-bc (m)</h5>
 
-<p>Generiert aus dem gewählten Farbwert die Hintergrundfarbe</p>
+<p>Constructed from the selected color value, the background color</p>
 
 <ul>
 <li>
@@ -1986,12 +1995,12 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="background-color-m" class="anchor" href="#background-color-m"><span class="octicon octicon-link"></span></a>background-color (m)</h5>
 
-<p>Alias Mixin von <code>get-bc</code></p>
+<p>Alias Mixin from <code>get-bc</code></p>
 
 <h5>
 <a name="colorgenerator-m" class="anchor" href="#colorgenerator-m"><span class="octicon octicon-link"></span></a>colorgenerator (m)</h5>
 
-<p>Generiert aus der <code>$kittn-color-map</code> Map Farbklassen, entweder <code>silent</code> oder als Klasse. In der <code>$kittn-color-generator</code> findet man die erforderlichen Einstellungen.</p>
+<p>Generated from the <code>$kittn-color-map</code> Map color classes, either <code>silent</code> or as a <code>class</code>. In the <code>$ kittn-color generator</code> you will find the necessary settings.</p>
 
 <ul>
 <li>
@@ -2000,7 +2009,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-color-map</code>, <code>$kittn-color-generator</code>
 </li>
 <li>
-<a href="https://github.com/type" class="user-mention">@type</a> {Map} <code>$colors</code> - The Desired Map</li>
+<a href="https://github.com/type" class="user-mention">@type</a> {Map} <code>$colors</code> ($kittn-color-map) - The map to embed</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Map</span>
 <span class="nv">$kittn-color-map</span><span class="o">:</span> <span class="p">(</span>
   <span class="s1">'</span><span class="s2">primary'</span><span class="o">:</span> <span class="p">(</span>
@@ -2016,7 +2025,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <span class="p">);</span>
 </pre></div>
 
-<p>Mit <code>type</code> bestimmt man die Art der ColorPlaceholder:</p>
+<p>With <code>type</code> one determines the type of Color Placeholder:</p>
 
 <ul>
 <li>
@@ -2046,7 +2055,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="ext-c-m" class="anchor" href="#ext-c-m"><span class="octicon octicon-link"></span></a>ext-c (m)</h5>
 
-<p>Verbindet Elemente mit der gewählten Farbe (<code>color</code>) - der Colorgenerator muss dafür aber die ColorPlaceholder generiert haben, ansonsten lädt das Mixin die Farbe direkt in das Element.</p>
+<p>Combines elements with the selected color (<code>color</code>) - but the Colorgenerator must have generates the Color Placeholder, otherwise the mixin loads the color directly into the element.</p>
 
 <ul>
 <li>
@@ -2071,7 +2080,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="ext-bc-m" class="anchor" href="#ext-bc-m"><span class="octicon octicon-link"></span></a>ext-bc (m)</h5>
 
-<p>Verbindet Elemente mit der gewählten Farbe (<code>background-color</code>) - der Colorgenerator muss dafür aber die ColorPlaceholder generiert haben, ansonsten lädt das Mixin die Farbe direkt in das Element.</p>
+<p>Combines elements with the selected color (<code>background-color</code>) - but the Colorgenerator must have generates the Color Placeholder, otherwise the mixin loads the color directly into the element.</p>
 
 <ul>
 <li>
@@ -2101,13 +2110,13 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="size-m" class="anchor" href="#size-m"><span class="octicon octicon-link"></span></a>size (m)</h5>
 
-<p>Implementiert die Dimensionen eines Elements.</p>
+<p>Sets the size of an element.</p>
 
 <ul>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$size</code> - Size can be includes with a Single Value (square) or with two value 'width' &amp; 'height'</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$size</code> - Size can be includes with a Single Value (square) or with two value <code>width</code> &amp; <code>height</code> </li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$lineheight</code> (false) - On 'true' lineheight will be set to the same $size, otherwise use a Number</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$lineheight</code> (false) - On <code>true</code> lineheight will be set to the same $size, otherwise use a Number</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.square</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> size</span><span class="p">(</span><span class="mi">50</span><span class="p">);</span>
@@ -2146,7 +2155,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="align-height-m" class="anchor" href="#align-height-m"><span class="octicon octicon-link"></span></a>align-height (m)</h5>
 
-<p>Shorthand um Höhe und Line-Height über ein Value zu übermitteln.</p>
+<p>Shorthand to setup <code>height</code> and <code>line-height</code> with one value.</p>
 
 <ul>
 <li>
@@ -2175,7 +2184,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="align-fontsize-m" class="anchor" href="#align-fontsize-m"><span class="octicon octicon-link"></span></a>align-fontsize (m)</h5>
 
-<p>Shorthand um Font-Size und Line-Height über ein Value zu übermitteln.</p>
+<p>Shorthand to setup <code>font-size</code> and <code>line-height</code> with one value.</p>
 
 <ul>
 <li>
@@ -2204,7 +2213,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="center-m" class="anchor" href="#center-m"><span class="octicon octicon-link"></span></a>center (m)</h5>
 
-<p>Zentriert, mittelt und gibt einem Element eine Größe</p>
+<p>Centered, averages and gives an element size</p>
 
 <ul>
 <li>
@@ -2236,7 +2245,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="perfect-circle-m" class="anchor" href="#perfect-circle-m"><span class="octicon octicon-link"></span></a>perfect-circle (m)</h5>
 
-<p>Passt den Border-Radius an die Größe des Elements an.</p>
+<p>Adjusts the Border-radius on the size of the element.</p>
 
 <ul>
 <li>
@@ -2259,7 +2268,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="ratio-m" class="anchor" href="#ratio-m"><span class="octicon octicon-link"></span></a>ratio (m)</h5>
 
-<p>Stellt bei einem Element das Breiten und Größenverhältniss gemäß der Ratio ein.</p>
+<p>Sets the width and height of an element in a relationship, which scale elements such as images.</p>
 
 <ul>
 <li>
@@ -2314,7 +2323,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="unratio-m" class="anchor" href="#unratio-m"><span class="octicon octicon-link"></span></a>unratio (m)</h5>
 
-<p>Entfernt bestehende Ratios wieder.</p>
+<p>Removes the set ratio</p>
 
 <ul>
 <li>
@@ -2341,7 +2350,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="tighten-up-m" class="anchor" href="#tighten-up-m"><span class="octicon octicon-link"></span></a>tighten-up (m)</h5>
 
-<p>'Spannt' ein inneres Element auf die gleiche Dimension des äußeren Elements auf.</p>
+<p>The element spreads to the same dimension of the outer container.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.box</span> <span class="p">{</span>
@@ -2361,7 +2370,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="text-middle-m" class="anchor" href="#text-middle-m"><span class="octicon octicon-link"></span></a>text-middle (m)</h5>
 
-<p>Positioniert Textelemente in der Vertikalen Mitte.</p>
+<p>Text elements positioned at the vertical center.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.middle</span> <span class="p">{</span>
@@ -2389,7 +2398,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="grid-size-f" class="anchor" href="#grid-size-f"><span class="octicon octicon-link"></span></a>grid-size (f)</h5>
 
-<p>Berechnet die Breite der Colums</p>
+<p>Calculates the width of the Colum</p>
 
 <ul>
 <li>
@@ -2411,9 +2420,9 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="grid-adaptive-m" class="anchor" href="#grid-adaptive-m"><span class="octicon octicon-link"></span></a>grid-adaptive (m)</h5>
 
-<p>Die Seitenbreite verändert sich damit Adaptiv. Der jeweilige Threshold wird über <code>$kittn-breakpoint-map</code> eingestellt in dem bei Breakpoint <code>step</code> auf <code>true</code> gestellt wird. Die Reihenfolge der MediaQueries richtet sich nach <code>$kittn-activate(mobile-first)</code>.</p>
+<p>The page width is changed adaptive. The respective threshold is set via the <code>$ kittn-breakPoint map Map</code> by providing at Breakpoint <code>step</code> to <code>true</code>. The order of MediaQueries depends on <code>$kittn-activate(mobile-first)</code>.</p>
 
-<p><em>Das Mixin muss in einem Selektor aufgerufen werden.</em></p>
+<p><em>The Mixin 'must be called in a selector.</em></p>
 
 <ul>
 <li>
@@ -2462,20 +2471,21 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="grid-container-m" class="anchor" href="#grid-container-m"><span class="octicon octicon-link"></span></a>grid-container (m)</h5>
 
-<p>Generiert den Seiten Container, der zum einen die Seite im Viewport positioniert (default: center), zum anderen bestimmt er die Seitenbreite.</p>
+<p>Generates the container sides, so that the position (default: center) and width of the page is determined</p>
 
-<p>Wenn man das <code>grid-adaptive</code> Mixin verwendet wird, sollte die Seitenbreite deaktiviert werden.</p>
+<p>If you use the <code>grid-adaptive</code> mixin, the page width should be disabled.</p>
 
 <ul>
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$container</code>
 
 <ul>
-<li>{List|Bool} <code>width</code> - Bei einem Wert ist der Container Statisch, zwei Werte geben min und max vor, kann auch auf <code>false</code> gestellt werden.</li>
-<li>{*} <code>pos</code> - Position des Container. Values: <code>center</code>, <code>left</code>,  <code>right</code>
+<li>{List|Bool} <code>width</code> - With one Value the container is static, two values ​​specify min and max, can also be set to <code>false</code>
 </li>
-<li>{Number} <code>gutter</code> - Nur aktiv wenn <code>pos: left</code> oder <code>pos:right</code> eingestellt wurde, der Gutter bestimmt dann den Abstand zum Viewport.</li>
-<li>{Bool} <code>static-ie</code> - Wenn aktiviert, bekommt der IE8 einen statischen Seitencontainer.</li>
+<li>{*} <code>pos</code> - Position. Values: <code>center</code>, <code>left</code>,  <code>right</code>
+</li>
+<li>{Number} <code>gutter</code> - Active only if <code>pos: left</code> or <code>pos: right</code> is set, the Gutter then determines the distance to the viewport</li>
+<li>{Bool} <code>static-ie</code> - When enabled, IE8 gets a static page container</li>
 </ul>
 </li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
@@ -2534,17 +2544,17 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="grid-row-m" class="anchor" href="#grid-row-m"><span class="octicon octicon-link"></span></a>grid-row (m)</h5>
 
-<p>Über die <code>rows</code> wird das Display Verhalten der einzelnen <code>colums</code> eingestellt. zusätzlich wird dafür gesorgt das Floats nicht überlaufen.</p>
+<p>Through the <code>rows</code>, the display behavior of the individual <code>colums</code> set.</p>
 
 <ul>
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$row</code>
 
 <ul>
-<li>{Number} <code>spacing</code> - Seitlicher Abstand</li>
-<li>{*} <code>layout</code> -  Values: <code>block</code>, <code>inline</code>, <code>table</code>, <code>flex</code>
+<li>{Number} <code>spacing</code> - Padding on the right and left side</li>
+<li>{*} <code>layout</code> - Values: <code>block</code>, <code>inline</code>, <code>table</code>, <code>flex</code>
 </li>
-<li>{*} <code>valign</code> - Gilt nur bei <code>layout:inline</code>. Values: <code>top</code>, <code>bottom</code>, <code>baseline</code>, <code>middle</code>
+<li>{*} <code>valign</code> - Only on <code>layout:inline</code>. Values: <code>top</code>, <code>bottom</code>, <code>baseline</code>, <code>middle</code>
 </li>
 <li>{*} <code>align</code> - Values: <code>justify</code>, <code>center</code>, <code>right</code>, <code>left</code>
 </li>
@@ -2581,7 +2591,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="grid-colum-m" class="anchor" href="#grid-colum-m"><span class="octicon octicon-link"></span></a>grid-colum (m)</h5>
 
-<p>Bildet den Basisstyle für alle <code>colums</code>.</p>
+<p>Build the basestyle for all <code>colums</code>.</p>
 
 <ul>
 <li>
@@ -2591,11 +2601,11 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$colums</code>
 
 <ul>
-<li>{Number} <code>spacing</code> - Seitlicher Abstand</li>
+<li>{Number} <code>spacing</code> - Padding on the right and left side</li>
 <li>{*} <code>layout</code> - Values: <code>block</code>, <code>inline</code>, <code>table</code>, <code>flex</code>
 </li>
-<li>{Bool} <code>extras</code> - Inkludiert Extra Klassen für die Colums</li>
-<li>{*} <code>valign</code> -  Gilt nur bei <code>layout:inline</code>. Varianten: <code>top</code>, <code>bottom</code>, <code>baseline</code>, <code>middle</code>
+<li>{Bool} <code>extras</code> - The generated class can be extended with other classes</li>
+<li>{*} <code>valign</code> -  Only with <code>layout:inline</code>. Values: <code>top</code>, <code>bottom</code>, <code>baseline</code>, <code>middle</code>
 </li>
 <li>{*} <code>align</code> - Values: <code>justify</code>, <code>center</code>, <code>right</code>, <code>left</code>
 </li>
@@ -2638,16 +2648,16 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="grid-size-m" class="anchor" href="#grid-size-m"><span class="octicon octicon-link"></span></a>grid-size (m)</h5>
 
-<p>Definiert die Breite einer Colum.</p>
+<p>Defines the width of a <code>colum</code>.</p>
 
 <ul>
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$grid</code>
 
 <ul>
-<li>{Number} <code>size</code> - Spaltenbreite</li>
-<li>{Number} <code>max</code> - Die maximale Anzahl an Spalten (als Berechnungsgrundlage)</li>
-<li>{Bool} <code>flex</code> - Aktiviert die Flexbox Funktion</li>
+<li>{Number} <code>size</code> - Columsize</li>
+<li>{Number} <code>max</code> - The maximum number of columns (as a calculation basis)</li>
+<li>{Bool} <code>flex</code> - Activate the Flexbox function</li>
 </ul>
 </li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
@@ -2676,15 +2686,15 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="pixel-grid-m" class="anchor" href="#pixel-grid-m"><span class="octicon octicon-link"></span></a>pixel-grid (m)</h5>
 
-<p>Definiert die Breite einer Colum in Pixel.</p>
+<p>Defines the width of a colum in pixels.</p>
 
 <p>-<a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$grid</code></p>
 
 <ul>
-<li>{Number} <code>size</code> - Spaltenbreite</li>
-<li>{Number} <code>max</code> - Die maximale Anzahl an Spalten</li>
-<li>{Number} <code>margin</code> - Seitlicher Abstand</li>
-<li>{Number} <code>space</code> - Breite des äußeren Wrappers</li>
+<li>{Number} <code>size</code> - Columsize</li>
+<li>{Number} <code>max</code> - The maximum number of colums</li>
+<li>{Number} <code>margin</code> - Padding on the right and left side</li>
+<li>{Number} <code>space</code> - Width of the outer wrapper</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.pixel</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> pixel-grid</span><span class="p">((</span>
@@ -2717,7 +2727,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="grid-generator-m" class="anchor" href="#grid-generator-m"><span class="octicon octicon-link"></span></a>grid-generator (m)</h5>
 
-<p>Generiert eine definierte Anzahl von Colums</p>
+<p>Generates a defined number of Colums</p>
 
 <ul>
 <li>
@@ -2727,10 +2737,10 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$generator</code>
 
 <ul>
-<li>{Number} <code>colums</code> - Maximale Colums</li>
-<li>{bool|list} <code>select</code> - Hier kann spezifiziert werden welche Colums generiert werden sollen</li>
-<li>{bool|*} <code>name</code> - Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
-<li>{bool|*} <code>extend</code> - Damit werden die generierten Klassen mit anderen Klassen verbunden.</li>
+<li>{Number} <code>colums</code> - Maximum Colums</li>
+<li>{bool|list} <code>select</code> - Be specified which Colum should be generated</li>
+<li>{bool|*} <code>name</code> - If the mixin is not called within a class, you can only transfer the selector</li>
+<li>{bool|*} <code>extend</code> - Thus, the generated classes are associated with other classes</li>
 </ul>
 </li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
@@ -2791,7 +2801,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="grid-devide-m" class="anchor" href="#grid-devide-m"><span class="octicon octicon-link"></span></a>grid-devide (m)</h5>
 
-<p>Das Mixin kann ein bestehendes Grid 'teilen', ein 12er Grid kann damit in eine 6er Grid umgewandelt werden. Funktioniert aber nur wenn nicht Mobile-First gearbeitet wird.</p>
+<p>The Mixin  divide an existing grid, a grid of 12 can thus be converted into a 6 grid. But this only works if not Mobile First is working.</p>
 
 <ul>
 <li>
@@ -2801,9 +2811,9 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$devide</code>
 
 <ul>
-<li>{Number} <code>colums</code> - Maximale Colums</li>
-<li>{Bool|*} <code>name</code> - Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
-<li>{Number} <code>devide</code> - Teiler</li>
+<li>{Number} <code>colums</code> - Maximum Colums</li>
+<li>{Bool|*} <code>name</code> - If the mixin is not called within a class, you can only transfer the selector</li>
+<li>{Number} <code>devide</code> - Factor</li>
 </ul>
 </li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
@@ -2841,15 +2851,15 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="grid-offset-m" class="anchor" href="#grid-offset-m"><span class="octicon octicon-link"></span></a>grid-offset (m)</h5>
 
-<p>Generiert den Offset</p>
+<p>Generate the offset.</p>
 
 <ul>
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$offset</code>
 
 <ul>
-<li>{Number} <code>size</code> - Spaltenanzahl</li>
-<li>{Number} <code>max</code> - Die maximale Anzahl an Spalten</li>
+<li>{Number} <code>size</code> - Number of Colums</li>
+<li>{Number} <code>max</code> - Maximum Colums</li>
 <li>{*} <code>direction</code> - Values: <code>left</code>, <code>right</code>
 </li>
 </ul>
@@ -2879,7 +2889,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="grid-offset-generator-m" class="anchor" href="#grid-offset-generator-m"><span class="octicon octicon-link"></span></a>grid-offset-generator (m)</h5>
 
-<p>Generiert die Offset Klassen.</p>
+<p>Generate the offset classes.</p>
 
 <ul>
 <li>
@@ -2889,8 +2899,8 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$offset</code>
 
 <ul>
-<li>{Number} <code>max</code> - Maximale Anzahl an Spalten</li>
-<li>{Bool|*} <code>name</code> - Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
+<li>{Number} <code>max</code> - Maximum Colums</li>
+<li>{Bool|*} <code>name</code> - If the mixin is not called within a class, you can only transfer the selector</li>
 </ul>
 </li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
@@ -2914,18 +2924,18 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="grid-pushpull-m" class="anchor" href="#grid-pushpull-m"><span class="octicon octicon-link"></span></a>grid-pushpull (m)</h5>
 
-<p>Generiert Push and Pull Sizes</p>
+<p>Generate Push and Pull Sizes</p>
 
 <ul>
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$pushpull</code>
 
 <ul>
-<li>{Number} <code>size</code> - Spaltenanzahl</li>
-<li>{Number} <code>max</code> - Maximale Anzahl an Spalten</li>
+<li>{Number} <code>size</code> - Colums</li>
+<li>{Number} <code>max</code> - Maximum Colums</li>
 <li>{*} <code>direction</code> - Values: <code>push</code>, <code>pull</code>
 </li>
-<li>{Bool|*} <code>extend</code> - Die generierten Klassen werden mit anderen Klassen verbunden.</li>
+<li>{Bool|*} <code>extend</code> - Thus, the generated classes are associated with other classes</li>
 </ul>
 </li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
@@ -2961,7 +2971,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="grid-pushpull-generator-m" class="anchor" href="#grid-pushpull-generator-m"><span class="octicon octicon-link"></span></a>grid-pushpull-generator (m)</h5>
 
-<p>Generiert eine bestimmte Anzahl an Push and Pull Klassen.</p>
+<p>Generate the Push and Pull classes.</p>
 
 <ul>
 <li>
@@ -2971,9 +2981,9 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$pushpull</code>
 
 <ul>
-<li>{Number} <code>max</code> - Maximale Anzahl an Spalten</li>
-<li>{Bool|*} <code>name</code> - Wenn das Mixin nicht innerhalb einer Klasse aufgerufen wird, kann man den Selektor übermitteln</li>
-<li>{Bool|*} <code>extend</code> - Die generierten Klassen werden mit anderen Klassen verbunden.</li>
+<li>{Number} <code>max</code> - Maximum Colums</li>
+<li>{Bool|*} <code>name</code> - If the mixin is not called within a class, you can only transfer the selector</li>
+<li>{Bool|*} <code>extend</code> - Thus, the generated classes are associated with other classes</li>
 </ul>
 </li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
@@ -3007,7 +3017,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="grid-normalizer-m" class="anchor" href="#grid-normalizer-m"><span class="octicon octicon-link"></span></a>grid-normalizer (m)</h5>
 
-<p>Über den Normalizer können die spezifischen Einstellungen wieder resetet werden.</p>
+<p>The Normalizer reset the specific grid settings.</p>
 
 <ul>
 <li>
@@ -3017,10 +3027,11 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$normalize</code>
 
 <ul>
-<li>{*} <code>name</code> - Name des Selectors der Reseted werden soll</li>
+<li>{*} <code>name</code> - Name of the selector to be reseted</li>
 <li>{*} <code>option</code> - Values: <code>blockgrid</code>, <code>inlinetable</code>, <code>offset</code>, <code>pushpull</code>
 </li>
-<li>{Bool} <code>important</code> - Fügt !important an</li>
+<li>{Bool} <code>important</code> - Add an <code>!important</code>
+</li>
 </ul>
 </li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
@@ -3056,7 +3067,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="icon-f" class="anchor" href="#icon-f"><span class="octicon octicon-link"></span></a>icon (f)</h5>
 
-<p>Bezieht den Content Code aus der Iconfont Map.</p>
+<p>Includes the content code from the IconFont Map.</p>
 
 <ul>
 <li>
@@ -3089,7 +3100,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="iconfont-m" class="anchor" href="#iconfont-m"><span class="octicon octicon-link"></span></a>iconfont (m)</h5>
 
-<p>Generiert den Basisstyle für alle Icons.</p>
+<p>Generates the base style for all icons.</p>
 
 <ul>
 <li>
@@ -3128,11 +3139,12 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="icon-font-generator-m" class="anchor" href="#icon-font-generator-m"><span class="octicon octicon-link"></span></a>icon-font-generator (m)</h5>
 
-<p>Generiert den Basis Icon-Font Style.</p>
+<p>Generates the base icon font style.</p>
 
 <ul>
 <li>
-<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-iconfont</code>, `$kittn-bem</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-iconfont</code>, <code>$kittn-bem</code>
+</li>
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$iconFontName</code> - Name off the Icon Font</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
@@ -3159,7 +3171,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="icon-generator-m" class="anchor" href="#icon-generator-m"><span class="octicon octicon-link"></span></a>icon-generator (m)</h5>
 
-<p>Generiert sämtliche Icons der Icon-Map als Klassen.</p>
+<p>Generates all the icons of the icon map as classes.</p>
 
 <ul>
 <li>
@@ -3182,7 +3194,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="icon-m" class="anchor" href="#icon-m"><span class="octicon octicon-link"></span></a>icon (m)</h5>
 
-<p>Fügt Icon Inhalte in eine Klasse.</p>
+<p>Adds Icon contents in a class.</p>
 
 <ul>
 <li>
@@ -3248,14 +3260,14 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="ext-icon-m" class="anchor" href="#ext-icon-m"><span class="octicon octicon-link"></span></a>ext-icon (m)</h5>
 
-<p>Erweitert eigene Klassen mit den Iconklassen.</p>
+<p>Extended existing classes with the icon classes.</p>
 
 <ul>
 <li>
 <a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-bem</code>, <code>$kittn-iconfont</code>
 </li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*} $name - Name off the Icon (from the Map)</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$name</code> - Name off the Icon (from the Map)</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="k">@include</span><span class="nd"> icon-font-generator</span><span class="p">(</span><span class="s1">'</span><span class="s2">iconfont'</span><span class="p">);</span>
 
@@ -3297,7 +3309,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="_getimagedimensions-m" class="anchor" href="#_getimagedimensions-m"><span class="octicon octicon-link"></span></a>_getImageDimensions (m)</h5>
 
-<p>Wird für die interne Berechnung der Bilddaten verwendet.</p>
+<p>Used for internal calculation of the image data.</p>
 
 <ul>
 <li>
@@ -3305,19 +3317,21 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 </ul><h5>
 <a name="image-m" class="anchor" href="#image-m"><span class="octicon octicon-link"></span></a>image (m)</h5>
 
-<p>Fügt die Single Images ein. Die erforderlichen Daten werden dabei über die <code>Gulp</code> Tasks in die jeweilige Imagemap geschrieben.</p>
+<p>Adds a single image. The data required is thus written on the <code>Gulp</code> tasks in the respective image map.</p>
 
 <ul>
 <li>
-<a href="https://github.com/requires" class="user-mention">@requires</a> `$kittn-directorys</li>
+<a href="https://github.com/requires" class="user-mention">@requires</a> <code>$kittn-directorys</code>
+</li>
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$image</code> - Name of the Image</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$dimensions</code> - 'both' = height &amp; width, 'width' = width, 'height' = height</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$dimensions</code> - <code>both</code> = height &amp; width, <code>width</code> = width, <code>height</code> = height</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$pos</code> - The Image Position - can be 'false'</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$pos</code> - The Image Position - can be <code>false</code>
+</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$retina</code> - With set on 'true' the retina fallback will be included</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$retina</code> - With set on <code>true</code> the retina fallback will be included</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.box</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> image</span><span class="p">(</span><span class="nb">blue</span><span class="p">);</span>
@@ -3343,7 +3357,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="texture-m" class="anchor" href="#texture-m"><span class="octicon octicon-link"></span></a>texture (m)</h5>
 
-<p>Fügt die Texture Images ein.</p>
+<p>Add textures images</p>
 
 <ul>
 <li>
@@ -3387,7 +3401,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="svgpng-m" class="anchor" href="#svgpng-m"><span class="octicon octicon-link"></span></a>svgpng (m)</h5>
 
-<p>Fügt SVG Images ein, integriert dabei auch das Fallback Image.</p>
+<p>Add SVG Images and integrate the PNG Fallback for old Browsers.</p>
 
 <ul>
 <li>
@@ -3395,9 +3409,10 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$image</code> - Name of the Image - the SVG File must be in the Same directory</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$dimensions</code> - 'both' = height &amp; width | 'width' = width | 'height' = height</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$dimensions</code> - <code>both</code> = height &amp; width | <code>width</code> = width | <code>height</code> = height</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$pos</code> - The Image Position - can be 'false'</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$pos</code> - The Image Position - can be <code>false</code>
+</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.image</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> svgpng</span><span class="p">(</span><span class="n">illu</span><span class="p">);</span>
@@ -3419,7 +3434,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="svg-m" class="anchor" href="#svg-m"><span class="octicon octicon-link"></span></a>svg (m)</h5>
 
-<p>Für SVG Images ohne Fallback ein.</p>
+<p>Add SVG image without any fallback image.</p>
 
 <ul>
 <li>
@@ -3427,7 +3442,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$image</code> - The Name of the SVG Image</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$dimensions</code>  - The Dimensions of the Image Container - can be 100%</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$dimensions</code> - The Dimensions of the Image Container - can be 100%</li>
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$pos</code> - Native CSS Image Positions</li>
 <li>
@@ -3472,7 +3487,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="sprite-generator-m" class="anchor" href="#sprite-generator-m"><span class="octicon octicon-link"></span></a>sprite-generator (m)</h5>
 
-<p>Generiert den SpriteMap Container. Wird automatisch zu geschaltet.</p>
+<p>Generate the Spritemap container. Will be turned automatically.</p>
 
 <ul>
 <li>
@@ -3483,7 +3498,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 </ul><h5>
 <a name="sprite-m" class="anchor" href="#sprite-m"><span class="octicon octicon-link"></span></a>sprite (m)</h5>
 
-<p>Fügt das gewünschte Sprite ein.</p>
+<p>Add the selected sprite.</p>
 
 <ul>
 <li>
@@ -3497,7 +3512,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$offset-y</code> - Offset the Background Position on the y axis</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$display</code> - The display mode</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {*} <code>$display</code> - Display mode</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.sprite</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> sprite</span><span class="p">(</span><span class="no">cross</span><span class="p">);</span>
@@ -3537,7 +3552,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="rem-f" class="anchor" href="#rem-f"><span class="octicon octicon-link"></span></a>rem (f)</h5>
 
-<p>Rechnet Px in REM um.</p>
+<p>Converts Px into REM.</p>
 
 <ul>
 <li>
@@ -3561,7 +3576,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="remsize-m" class="anchor" href="#remsize-m"><span class="octicon octicon-link"></span></a>remsize (m)</h5>
 
-<p>Berechnet Größen anhand der Base Line-Height. Die Umberechnung findet aber nur statt wenn in der <code>$kittn-typo</code> die <code>unit</code> auf <code>rem</code> gestellt wurde. IE8 erhält sein eigenes Fallback mittels PX Werten.</p>
+<p>Calculated sizes based on the base line-height. The recalculations is admitted only if the <code>$kittn-typo</code> the <code>unit</code> was placed on <code>rem</code>. IE8 gets its own fallback via PX values.</p>
 
 <ul>
 <li>
@@ -3589,7 +3604,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="pxsize-m" class="anchor" href="#pxsize-m"><span class="octicon octicon-link"></span></a>pxsize (m)</h5>
 
-<p>Berechnet PX Werte in REM um. Die Umberechnung findet aber nur statt wenn in der <code>$kittn-typo</code> die <code>unit</code> auf <code>rem</code> gestellt wurde. IE8 erhält sein eigenes Fallback mittels PX Werten.</p>
+<p>Calculates PX values ​​into REM. The recalculations is admitted only if the <code>$kittn-typo</code> the <code>unit</code> was placed on <code>rem</code>. IE8 gets its own fallback via PX values.</p>
 
 <ul>
 <li>
@@ -3617,7 +3632,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="rem-m" class="anchor" href="#rem-m"><span class="octicon octicon-link"></span></a>rem (m)</h5>
 
-<p>Berechnet die Größen Dynamisch. Dabei kann die Größe einmal über Lines (berechnung mittel Multiplikation der Baselineheight), oder über Pixel erfolgen die dann in REM umgerechnet werden. IE8 erhält bei aktiver IE8 Kompatiblität einen Pixel Fallback.</p>
+<p>Calculates the sizes Dynamic. The size may be once about Lines (calculation by multiplying the Base line-height), or Px in the REM are then converted. IE8 gets a pixel fallback in IE8 Compatibility active.</p>
 
 <ul>
 <li>
@@ -3642,7 +3657,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="lineheight-m" class="anchor" href="#lineheight-m"><span class="octicon octicon-link"></span></a>lineheight (m)</h5>
 
-<p>Basiert auf dem <code>rem</code> Mixin.</p>
+<p>Based on the <code>rem</code> mixin.</p>
 
 <ul>
 <li>
@@ -3661,7 +3676,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="marginbottom-m" class="anchor" href="#marginbottom-m"><span class="octicon octicon-link"></span></a>marginbottom (m)</h5>
 
-<p>Basiert auf dem <code>rem</code> Mixin.</p>
+<p>Based on the <code>rem</code> mixin.</p>
 
 <ul>
 <li>
@@ -3680,7 +3695,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="margintop-m" class="anchor" href="#margintop-m"><span class="octicon octicon-link"></span></a>margintop (m)</h5>
 
-<p>Basiert auf dem <code>rem</code> Mixin.</p>
+<p>Based on the <code>rem</code> mixin.</p>
 
 <ul>
 <li>
@@ -3699,7 +3714,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="marginleft-m" class="anchor" href="#marginleft-m"><span class="octicon octicon-link"></span></a>marginleft (m)</h5>
 
-<p>Basiert auf dem <code>rem</code> Mixin.</p>
+<p>Based on the <code>rem</code> mixin.</p>
 
 <ul>
 <li>
@@ -3718,7 +3733,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="marginright-m" class="anchor" href="#marginright-m"><span class="octicon octicon-link"></span></a>marginright (m)</h5>
 
-<p>Basiert auf dem <code>rem</code> Mixin.</p>
+<p>Based on the <code>rem</code> mixin.</p>
 
 <ul>
 <li>
@@ -3737,7 +3752,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="paddingtop-m" class="anchor" href="#paddingtop-m"><span class="octicon octicon-link"></span></a>paddingtop (m)</h5>
 
-<p>Basiert auf dem <code>rem</code> Mixin.</p>
+<p>Based on the <code>rem</code> mixin.</p>
 
 <ul>
 <li>
@@ -3756,7 +3771,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="paddingbottom-m" class="anchor" href="#paddingbottom-m"><span class="octicon octicon-link"></span></a>paddingbottom (m)</h5>
 
-<p>Basiert auf dem <code>rem</code> Mixin.</p>
+<p>Based on the <code>rem</code> mixin.</p>
 
 <ul>
 <li>
@@ -3775,7 +3790,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="paddingleft-m" class="anchor" href="#paddingleft-m"><span class="octicon octicon-link"></span></a>paddingleft (m)</h5>
 
-<p>Basiert auf dem <code>rem</code> Mixin.</p>
+<p>Based on the <code>rem</code> mixin.</p>
 
 <ul>
 <li>
@@ -3794,7 +3809,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="paddingright-m" class="anchor" href="#paddingright-m"><span class="octicon octicon-link"></span></a>paddingright (m)</h5>
 
-<p>Basiert auf dem <code>rem</code> Mixin.</p>
+<p>Based on the <code>rem</code> mixin.</p>
 
 <ul>
 <li>
@@ -3813,7 +3828,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="height-m" class="anchor" href="#height-m"><span class="octicon octicon-link"></span></a>height (m)</h5>
 
-<p>Basiert auf dem <code>rem</code> Mixin.</p>
+<p>Based on the <code>rem</code> mixin.</p>
 
 <ul>
 <li>
@@ -3831,7 +3846,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="fontsize-m" class="anchor" href="#fontsize-m"><span class="octicon octicon-link"></span></a>fontsize (m)</h5>
 
-<p>Basiert auf dem <code>rem</code> Mixin.</p>
+<p>Based on the <code>rem</code> mixin.</p>
 
 <ul>
 <li>
@@ -3850,7 +3865,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="fontcalc-m" class="anchor" href="#fontcalc-m"><span class="octicon octicon-link"></span></a>fontcalc (m)</h5>
 
-<p>Basiert auf dem <code>rem</code> Mixin. Berechnet neben der Fontsize auch die Line-Height</p>
+<p>Based on the <code>rem</code> mixin. Calculates in addition to the font size also the line-height.</p>
 
 <ul>
 <li>
@@ -3886,7 +3901,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="modernizr-m" class="anchor" href="#modernizr-m"><span class="octicon octicon-link"></span></a>Modernizr (m)</h5>
 
-<p>Über die integrierten Feature-Check Klassen von Modernizr, kann man Fallbacks integrieren.</p>
+<p>The integrated feature check classes of Modernizr, you can integrate fallbacks.</p>
 
 <ul>
 <li>
@@ -3894,7 +3909,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 </ul><h5>
 <a name="yep-m" class="anchor" href="#yep-m"><span class="octicon octicon-link"></span></a>yep (m)</h5>
 
-<p>Wird aktiv bei positiven Feature-Check Klassen.</p>
+<p>Becomes active at positive feature check classes</p>
 
 <ul>
 <li>
@@ -3915,7 +3930,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="nope-m" class="anchor" href="#nope-m"><span class="octicon octicon-link"></span></a>nope (m)</h5>
 
-<p>Wird aktiv bei negativen Feature-Check Klassen</p>
+<p>Becomes active at negative feature check classes</p>
 
 <ul>
 <li>
@@ -3941,7 +3956,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="z-f" class="anchor" href="#z-f"><span class="octicon octicon-link"></span></a>z (f)</h5>
 
-<p>Pickt den entsprechenden Z-Index auf der zlayer Map.</p>
+<p>Picked the corresponding z-index from the zlayer Map.</p>
 
 <ul>
 <li>
@@ -3966,7 +3981,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="z-m" class="anchor" href="#z-m"><span class="octicon octicon-link"></span></a>z (m)</h5>
 
-<p>Pickt den entsprechenden Z-Index von der Map, generiert dabei einen Z-Index den man mit Offset noch manipulieren kann.</p>
+<p>Picked the corresponding z-index of the map, it generates a z-index you can still manipulate the with offset.</p>
 
 <ul>
 <li>
@@ -4002,7 +4017,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="shift-m" class="anchor" href="#shift-m"><span class="octicon octicon-link"></span></a>shift (m)</h5>
 
-<p>Vergibt dem Element einen Z-Index und bestimmt auch die Positionsart.</p>
+<p>Assigns the element a z-index and also determines the position-type.</p>
 
 <ul>
 <li>
@@ -4039,7 +4054,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="set-position-m" class="anchor" href="#set-position-m"><span class="octicon octicon-link"></span></a>set-position (m)</h5>
 
-<p>Stellt die Position für die Position Mixins ein.</p>
+<p>Sets the position for the position mixins.</p>
 
 <ul>
 <li>
@@ -4048,31 +4063,31 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$position</code>
 
 <ul>
-<li>Ein Position Value: <code>top</code>
+<li>One position Value: <code>top</code>
 </li>
-<li>Zwei Position Values: <code>top</code>, <code>left</code>
+<li>Two position Values: <code>top</code>, <code>left</code>
 </li>
-<li>Vier Position Values: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>
+<li>Four position Values: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>
 </li>
 </ul>
 </li>
-</ul><p>Das Mixin wertet Werte wie <code>0</code> nicht aus, sie dient nur als Platzhalter. Möchte man die Position auf <code>0</code> setzen trägt man <code>z</code> für Zero ein.</p>
+</ul><p>The Mixin evaluates values ​​such as <code>0</code> is not sufficient, it serves only as a placeholder. If you want the position set to <code>0</code>, <code>z</code> you wear for a Zero.</p>
 
 <h5>
 <a name="relative-m" class="anchor" href="#relative-m"><span class="octicon octicon-link"></span></a>relative (m)</h5>
 
-<p>Stellt das Element auf <code>Position: Relative</code></p>
+<p>Set the element to <code>position: relative</code> also set the position.</p>
 
 <ul>
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$position</code>
 
 <ul>
-<li>Ein Position Value: <code>top</code>
+<li>One position Value: <code>top</code>
 </li>
-<li>Zwei Position Values: <code>top</code>, <code>left</code>
+<li>Two position Values: <code>top</code>, <code>left</code>
 </li>
-<li>Vier Position Values: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>
+<li>Four position Values: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>
 </li>
 </ul>
 </li>
@@ -4116,18 +4131,18 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="absolute-m" class="anchor" href="#absolute-m"><span class="octicon octicon-link"></span></a>absolute (m)</h5>
 
-<p>Stellt das Element auf <code>Position: Absolute</code></p>
+<p>Set the element to <code>position: absolute</code> also set the position.</p>
 
 <ul>
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$position</code>
 
 <ul>
-<li>Ein Position Value: <code>top</code>
+<li>One position Value: <code>top</code>
 </li>
-<li>Zwei Position Values: <code>top</code>, <code>left</code>
+<li>Two position Values: <code>top</code>, <code>left</code>
 </li>
-<li>Vier Position Values: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>
+<li>Four position Values: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>
 </li>
 </ul>
 </li>
@@ -4163,18 +4178,18 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="fixed-m" class="anchor" href="#fixed-m"><span class="octicon octicon-link"></span></a>fixed (m)</h5>
 
-<p>Stellt das Element auf <code>Position: Fixed</code></p>
+<p>Set the element to <code>position: fixed</code> also set the position.</p>
 
 <ul>
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$position</code>
 
 <ul>
-<li>Ein Position Value: <code>top</code>
+<li>One position Value: <code>top</code>
 </li>
-<li>Zwei Position Values: <code>top</code>, <code>left</code>
+<li>Two position Values: <code>top</code>, <code>left</code>
 </li>
-<li>Vier Position Values: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>
+<li>Four position Values: <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>
 </li>
 </ul>
 </li>
@@ -4208,7 +4223,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="static-m" class="anchor" href="#static-m"><span class="octicon octicon-link"></span></a>static (m)</h5>
 
-<p>Restet die Einstellungen der Position Mixins.</p>
+<p>Resets the settings of the Position mixins.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.reset</span> <span class="p">{</span>
@@ -4228,7 +4243,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="bar-m" class="anchor" href="#bar-m"><span class="octicon octicon-link"></span></a>bar (m)</h5>
 
-<p>Generiert ein Bar Element.</p>
+<p>Generate a bar element.</p>
 
 <ul>
 <li>
@@ -4265,7 +4280,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="bar-top-m" class="anchor" href="#bar-top-m"><span class="octicon octicon-link"></span></a>bar-top (m)</h5>
 
-<p>Generiert ein Bar Element - Top Position.</p>
+<p>Generate a bar element - top position.</p>
 
 <ul>
 <li>
@@ -4300,7 +4315,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="bar-bottom-m" class="anchor" href="#bar-bottom-m"><span class="octicon octicon-link"></span></a>bar-bottom (m)</h5>
 
-<p>Generiert ein Bar Element - Bottom Position.</p>
+<p>Generate a bar element - bottom position.</p>
 
 <ul>
 <li>
@@ -4335,7 +4350,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="position-translate-m" class="anchor" href="#position-translate-m"><span class="octicon octicon-link"></span></a>position-translate (m)</h5>
 
-<p>Wird für die Beerechnng des <code>pivot-points</code> benötigt.</p>
+<p>Used for the calculation of the <code>pivot-points</code> needs.</p>
 
 <ul>
 <li>
@@ -4349,7 +4364,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 </ul><h5>
 <a name="pivot-m" class="anchor" href="#pivot-m"><span class="octicon octicon-link"></span></a>pivot (m)</h5>
 
-<p>Positioniert den Punkt von dem die weitere Positionierung ausgeht.</p>
+<p>Positions the point from which the further positioning starts.</p>
 
 <ul>
 <li>
@@ -4384,7 +4399,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="slide-m" class="anchor" href="#slide-m"><span class="octicon octicon-link"></span></a>slide (m)</h5>
 
-<p>Verschiebt ein Element.</p>
+<p>Moves an item.</p>
 
 <ul>
 <li>
@@ -4424,7 +4439,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="pivot-center-m" class="anchor" href="#pivot-center-m"><span class="octicon octicon-link"></span></a>pivot-center (m)</h5>
 
-<p>Positioniert ein Element in die absolute Mitte.</p>
+<p>Moves an item to the absolute middle.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.center</span> <span class="p">{</span>
@@ -4443,7 +4458,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="absolute-middle-m" class="anchor" href="#absolute-middle-m"><span class="octicon octicon-link"></span></a>absolute-middle (m)</h5>
 
-<p>Definiert die Größe eines Elements und positioniert es mittig. Eignet sich nicht für Elemente die ihre Dimension dynamisch ändern.</p>
+<p>Defines the size of an element and positions it in the center. Not suitable for items which their dimensions change dynamically.</p>
 
 <ul>
 <li>
@@ -4480,7 +4495,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="overlap-m" class="anchor" href="#overlap-m"><span class="octicon octicon-link"></span></a>overlap (m)</h5>
 
-<p>Damit können Element andere Elemente seitlich überlappen.</p>
+<p>Thus, an element across the width of the outer wrapper grow out.</p>
 
 <ul>
 <li>
@@ -4509,7 +4524,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 
 <p><code>file: scr/sass/framework/modules/_shorthands.scss</code></p>
 
-<p>Regulär ist es empfehlenswert die Shorthand Mixins in ein Placeholder Selector zu laden und dann mittels <code>@extend</code> weiter zu arbeiten.</p>
+<p>Regular it is recommended to load the Shorthand mixins in a Placeholder Selector and then to continue working via <code>@extend</code>.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="err">%</span><span class="nt">clearfix</span> <span class="p">{</span>
@@ -4543,7 +4558,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="clearfix-m" class="anchor" href="#clearfix-m"><span class="octicon octicon-link"></span></a>clearfix (m)</h5>
 
-<p>Fügt den Clearfix ein.</p>
+<p>Inserts the Clearfix.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.clearfix</span> <span class="p">{</span>
@@ -4561,7 +4576,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="block-center-m" class="anchor" href="#block-center-m"><span class="octicon octicon-link"></span></a>block-center (m)</h5>
 
-<p>Zentriert ein Element.</p>
+<p>Centers a element.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.center</span> <span class="p">{</span>
@@ -4579,7 +4594,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="word-wrap-m" class="anchor" href="#word-wrap-m"><span class="octicon octicon-link"></span></a>word-wrap (m)</h5>
 
-<p>Bricht lange Wortketten um.</p>
+<p>Breaks long strings of words.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -4601,7 +4616,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="text-truncate-m" class="anchor" href="#text-truncate-m"><span class="octicon octicon-link"></span></a>text-truncate (m)</h5>
 
-<p>Bricht ebenfalls lange Wortketten um, dieses mal aber mit einer Ellipsis.</p>
+<p>Also Breaks long strings of words, but this time with an Ellipsis.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -4621,7 +4636,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="vertical-center-m" class="anchor" href="#vertical-center-m"><span class="octicon octicon-link"></span></a>vertical-center (m)</h5>
 
-<p>Positioniert Elemente mittig - das Parent Element muss dafür aber auf <code>display: table</code> gestellt werden.</p>
+<p>Positioned centrally elements - the parent element must be set <code>display: table</code> be made.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -4638,7 +4653,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="cleartext-m" class="anchor" href="#cleartext-m"><span class="octicon octicon-link"></span></a>cleartext (m)</h5>
 
-<p>Versteckt Textelemente.</p>
+<p>Hides Text.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -4658,7 +4673,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="cleartext-complex-m" class="anchor" href="#cleartext-complex-m"><span class="octicon octicon-link"></span></a>cleartext-complex (m)</h5>
 
-<p>Versteckt Textelemente.</p>
+<p>Hides Text.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -4682,7 +4697,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="cleartext-simpler-m" class="anchor" href="#cleartext-simpler-m"><span class="octicon octicon-link"></span></a>cleartext-simpler (m)</h5>
 
-<p>Versteckt Textelemente.</p>
+<p>Hides Text.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -4700,7 +4715,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="decollapse-m" class="anchor" href="#decollapse-m"><span class="octicon octicon-link"></span></a>decollapse (m)</h5>
 
-<p>Verhindert das Margins kollabieren.</p>
+<p>Prevent collapsing margins.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -4717,7 +4732,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="performance-m" class="anchor" href="#performance-m"><span class="octicon octicon-link"></span></a>performance (m)</h5>
 
-<p>Aktiviert die GL Beschleunigung.</p>
+<p>Enables OpenGL acceleration.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -4733,7 +4748,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="antialias-m" class="anchor" href="#antialias-m"><span class="octicon octicon-link"></span></a>antialias (m)</h5>
 
-<p>Aktiviert Antialias - wirksam nur auf Chrome und Firefox.</p>
+<p>Enable Antialias ​​- effective only on Chrome and Firefox.</p>
 
 <div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.test</span> <span class="p">{</span>
@@ -4755,7 +4770,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="margin-padding-m" class="anchor" href="#margin-padding-m"><span class="octicon octicon-link"></span></a>margin-padding (m)</h5>
 
-<p>Berechnet Margin/Padding für die Margin und Padding Mixins.</p>
+<p>Calculates margin / padding for margin and padding mixins.</p>
 
 <ul>
 <li>
@@ -4763,7 +4778,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 </ul><h5>
 <a name="padding-m" class="anchor" href="#padding-m"><span class="octicon octicon-link"></span></a>padding (m)</h5>
 
-<p>Mit dem Mixin kann man Padding in gewohnter Kurzform schreiben, die dann aber in einzelnen Deklarationen ins CSS geschrieben werden.</p>
+<p>With the mixin can write padding in the usual short form, but which are then written to individual declarations in the CSS.</p>
 
 <ul>
 <li>
@@ -4805,7 +4820,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="margin-m" class="anchor" href="#margin-m"><span class="octicon octicon-link"></span></a>margin (m)</h5>
 
-<p>Mit dem Mixin kann man Margin in gewohnter Kurzform schreiben, die dann aber in einzelnen Deklarationen ins CSS geschrieben werden.</p>
+<p>With the mixin can write margin in the usual short form, but which are then written to individual declarations in the CSS.</p>
 
 <ul>
 <li>
@@ -4847,7 +4862,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="spacer-m" class="anchor" href="#spacer-m"><span class="octicon octicon-link"></span></a>spacer (m)</h5>
 
-<p>Berechnet anhand der Global Spacing Unit Abstände.</p>
+<p>Calculated on the basis of the Global Spacing Unit distances.</p>
 
 <ul>
 <li>
@@ -4856,11 +4871,11 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {List} <code>$options</code> - Spacing Type. <code>w</code>: width, <code>h</code>: height, <code>lh</code>: line-height, <code>pt</code>: padding-top, <code>pb</code>: padding-bottom, <code>pl</code>: padding-left, <code>pr</code>: padding-right, <code>mt</code>: margin-top, <code>mb</code>: margin-bottom, <code>ml</code>: margin-left, <code>mr</code>: margin-right, <code>mv</code>: margin-vertical, <code>mh</code>: margin-horizontal, <code>pv</code>: padding-vertical, <code>ph</code>: padding-horizontal</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$lines</code> (1)         - Spacing Multiplicator</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$lines</code> (1) - Spacing Multiplicator</li>
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {Bool} <code>$important</code> (false) - Overwrite Values with !important</li>
 <li>
-<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> ($kittn-global-spacing)   - Global Size Value</li>
+<a href="https://github.com/param" class="user-mention">@param</a> {Number} <code>$size</code> ($kittn-global-spacing) - Global Size Value</li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
 <span class="nc">.spacer-1</span> <span class="p">{</span>
   <span class="k">@include</span><span class="nd"> spacer</span><span class="p">(</span><span class="n">h</span><span class="p">);</span>
@@ -4902,7 +4917,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="spacer-reset-m" class="anchor" href="#spacer-reset-m"><span class="octicon octicon-link"></span></a>Spacer-Reset (m)</h5>
 
-<p>Resetet die vom Spacer Mixin eingestellten Abstände.</p>
+<p>Resets the set of spacers Mixin distances.</p>
 
 <ul>
 <li>
@@ -4955,15 +4970,15 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="triangle-m" class="anchor" href="#triangle-m"><span class="octicon octicon-link"></span></a>Triangle (m)</h5>
 
-<p>Generiert Dreiecke aus Borders</p>
+<p>Generates triangles with Borders</p>
 
 <ul>
 <li>
 <a href="https://github.com/param" class="user-mention">@param</a> {Map} <code>$values</code>
 </li>
-<li>{color} <code>color</code> (#fff) - Farbe des Dreicks</li>
-<li>{number} <code>width</code> (15px) - Breite</li>
-<li>{number} <code>height</code> (15px) - Höhe</li>
+<li>{color} <code>color</code> (#fff) - Trianglecolor</li>
+<li>{number} <code>width</code> (15px) - Width</li>
+<li>{number} <code>height</code> (15px) - Height</li>
 <li>{*|number} <code>angle</code> - Values: <code>top</code>, <code>top left</code>, <code>right</code>, <code>bottom right</code>, <code>bottom</code>, <code>bottom left</code>, <code>left</code>, <code>top left</code>
 </li>
 </ul><div class="highlight highlight-scss"><pre><span class="c1">// Example</span>
@@ -5025,7 +5040,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="tw-f" class="anchor" href="#tw-f"><span class="octicon octicon-link"></span></a>tw (f)</h5>
 
-<p>Wird anhand des Style Keywords Werte aus der Typostyle Map übertragen.</p>
+<p>Pick Values from the Typostyle Map.</p>
 
 <ul>
 <li>
@@ -5056,7 +5071,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="typogenerator-m" class="anchor" href="#typogenerator-m"><span class="octicon octicon-link"></span></a>typogenerator (m)</h5>
 
-<p>Generiert die Typostyles.</p>
+<p>Generate the typostyles.</p>
 
 <ul>
 <li>
@@ -5136,9 +5151,9 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="responsive-fontsizes-m" class="anchor" href="#responsive-fontsizes-m"><span class="octicon octicon-link"></span></a>responsive-fontsizes (m)</h5>
 
-<p>Wird die Fontsize in <code>rem</code> definiert, kann man über das Mixin die Fontsize responsive gestalten. Die Globale Größe wird in der <code>$kittn-breakpoint-map</code> notiert.</p>
+<p>If the font size defined in <code>rem</code>, one can make about the mixin the FontSize responsive. The Global size is listed in the <code>$kittn-breakpoint-map</code>.</p>
 
-<p>Aktiviert wird das ganze über die <code>$kittn-active-responsive-fonts</code> Variable, es muss ein Wert von 0 - 100 eingestellt werden?</p>
+<p>Is activated all over the <code>$ kittn-active-responsive-fonts</code> variable, it must be a value from 0 - 100 set.</p>
 
 <ul>
 <li>
@@ -5193,7 +5208,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="get-fontsize-m" class="anchor" href="#get-fontsize-m"><span class="octicon octicon-link"></span></a>get-fontsize (m)</h5>
 
-<p>Übernimmt die Fontsize aus der Map.</p>
+<p>Applies the font size from the map.</p>
 
 <ul>
 <li>
@@ -5212,7 +5227,7 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 <h5>
 <a name="ext-typo-m" class="anchor" href="#ext-typo-m"><span class="octicon octicon-link"></span></a>ext-typo (m)</h5>
 
-<p>Verbindet mit existierenden Typo Klassen</p>
+<p>Connects to existing Typo classes.</p>
 
 <ul>
 <li>
@@ -5241,28 +5256,28 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 
 <p><code>fiel: scr/sass/framework/partials/_normalize.scss</code></p>
 
-<p>Damit wird die Basiseinstellung der Typo, Font und des Layouts vorgenommen.</p>
+<p>Thus, the basis of setting typo, font and layout is performed.</p>
 
 <h4>
 <a name="tables" class="anchor" href="#tables"><span class="octicon octicon-link"></span></a>Tables</h4>
 
 <p><code>file: scr/sass/framework/partials/_tables.scss</code></p>
 
-<p>Für vordefinierte Tabellen.</p>
+<p>Integrates a base style for tables.</p>
 
 <h4>
 <a name="pre-generators" class="anchor" href="#pre-generators"><span class="octicon octicon-link"></span></a>Pre-Generators</h4>
 
 <p><code>file: scr/sass/framework/partials/_pre-generators.scss</code></p>
 
-<p>Hier mit werden Generatoren geladen die noch vor der <code>normalize.scss</code> geladen sein muss.</p>
+<p>Here with generators are loaded must be loaded before the <code>normalize.scss</code>.</p>
 
 <h4>
 <a name="post-generators" class="anchor" href="#post-generators"><span class="octicon octicon-link"></span></a>Post-Generators</h4>
 
 <p><code>file: scr/sass/framework/partials/_post-generators.scss</code></p>
 
-<p>Hier mit werden Generatoren geladen die nach der <code>normalize.scss</code> geladen sein muss.</p>
+<p>Here with generators are loaded must be loaded after <code>normalize.scss</code>.</p>
 
 <hr><h2>
 <a name="special-thanks-to" class="anchor" href="#special-thanks-to"><span class="octicon octicon-link"></span></a>Special Thanks to</h2>
@@ -5275,7 +5290,15 @@ Bilder die per HTML eingebunden werden, können damit in mehreren Größen gener
 </ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
-<p>MIT</p>
+<p>(MIT License)</p>
+
+<p>Copyright (c) 2014 Sascha Fuchs</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
       </section>
       <footer>
         <p>This project is maintained by <a href="https://github.com/gisu">gisu</a></p>
