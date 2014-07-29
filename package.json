@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "0.6.2",
+  "version": "0.6.3",
   "description": "A Yeoman Generator for the Kittn Toolkit",
   "license": "MIT",
   "main": "app/index.js",
@@ -23,7 +23,11 @@
     "app"
   ],
   "keywords": [
-    "yeoman-generator"
+    "yeoman-generator",
+    "sass",
+    "yeoman",
+    "jade",
+    "gulp"
   ],
   "dependencies": {
     "yeoman-generator": "~0.16.0",
