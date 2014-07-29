@@ -240,6 +240,14 @@ gulp.task('move-first', function () {
   });
 });
 
+// Copy the Default Build Files to 'tmp'
+gulp.task('move-fonts', function () {
+  fonts.files.forEach(function(item) {
+    gulp.src(item.src)
+      .pipe(gulp.dest(targetDirFonts));
+  });
+});
+
 // Copy Image to the HTML Directory
 gulp.task('move-images', function () {
   gulp.src(['src/stash/images/html-images/html-assets/**'])
@@ -340,6 +348,7 @@ gulp.task('init', [
     'move-first',
     'move-js',
     'move-images',
+    'move-fonts',
     'grunt-build-images',
     cssCompiler,
     'jade',

@@ -43,8 +43,8 @@
  * @param  {*}  $iconFontName - Name off the Icon Font
  */
 @mixin icon-font-generator($iconFontName) {
-  [class^="#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, element)}"],
-  [class*=" #{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, element)}"],
+  [class^="#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}"],
+  [class*=" #{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}"],
   [data-icon] {
     &:before {
       @include iconfont($iconFontName);
@@ -61,7 +61,7 @@
  */
 @mixin icon-generator($icons: $kittn-font-icons) {
   @each $name, $icon in $icons {
-    .#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, element)}#{$name}:before {
+    .#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}#{$name}:before {
       content: $icon;
     }
   }
@@ -104,5 +104,5 @@
  * @param  {*}  $name - Name off the Icon (from the Map)
  */
 @mixin ext-icon($name) {
-  @extend .#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, element)}#{$name};
+  @extend .#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}#{$name};
 }

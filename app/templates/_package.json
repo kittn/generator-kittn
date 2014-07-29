@@ -15,6 +15,7 @@
     "base": "dist/",
     "css": "dist/assets/css/",
     "js": "dist/assets/js/",
+    "fonts": "dist/assets/fonts",
     "cssimg": "dist/assets/img/",
     "markup": "dist/",
     "htmlimg": "dist/images/"
