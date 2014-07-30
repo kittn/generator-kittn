@@ -275,15 +275,15 @@
 
   // Set the Pivot Point
   @if $v and $h {
-    transform: translate((0 - $v + 0%), (0 - $h + 0%));
+    transform: translate((0 - $h + 0%), (0 - $v + 0%));
 
   } @else {
     @if $v {
-      transform: translate((0 - $v + 0%), 0);
+      transform: translateY(0 - $v + 0%);
     }
 
     @if $h {
-      transform: translate(0, (0 - $h + 0%));
+      transform: translateX(0 - $h + 0%);
     }
   }
 }
