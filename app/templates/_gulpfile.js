@@ -51,11 +51,14 @@ var targetDirHTMLImg = pkg.directory.htmlimg;
 
 // Define the Header for the Files
 var banner = ['/**',
-  ' * <%= pkg.name %> - <%= pkg.description %>',
-  ' * @version v<%= pkg.version %>',
-  ' * @link <%= pkg.homepage %>',
-  ' * @license <%= pkg.license %>',
-  ' */',
+  ' * <%%= pkg.name %> - <%%= pkg.description %>',
+  ' * @version <%= pkg.version %>',
+  ' * @link <%%= pkg.homepage %>',
+  ' * @license <%%= pkg.license %>',
+  ' * ----------------------------',
+  ' * Based on <%= pkg.name %> v<%= pkg.version %>',
+  ' * Link <%= pkg.homepage %>',
+  ' * ----------------------------/',
   ''].join('\n');
 
 // Define the Base Static Files and the Target

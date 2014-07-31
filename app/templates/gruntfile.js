@@ -6,7 +6,6 @@ module.exports = function (grunt) {
   // Load Grunt Plugins -----------
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-uncss');
   grunt.loadNpmTasks('grunt-combine-media-queries');
   grunt.loadNpmTasks('grunt-newer');
   grunt.loadNpmTasks('grunt-modernizr');
@@ -416,21 +415,7 @@ module.exports = function (grunt) {
     'sass_imagemapper:all'
   ]);
 
-  grunt.registerTask('compress', [
-    'uncss:dist',
-    'cmq:dist'
-  ]);
-
-  grunt.registerTask('css-cleanup', [
-    'uncss:dist'
-  ]);
-
   grunt.registerTask('css-mq-combine', [
-    'cmq:dist'
-  ]);
-
-  grunt.registerTask('css-publish', [
-    'uncss:dist',
     'cmq:dist'
   ]);
 
