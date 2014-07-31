@@ -80,7 +80,7 @@
           @content;
         }
       } @else {
-        $size: $size + 1;
+        $size: $size - 1;
         @media screen and (max-width: $size) {
           @content;
         }

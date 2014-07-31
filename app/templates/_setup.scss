@@ -149,6 +149,61 @@ $kittn-breakpoint-map: (
 );
 
 /**
+ * Setup the Base Grid
+
+   - 'activate' {Bool} - Activates the Generator
+   - 'silent' {Book} - Generated classes are silent [%]
+   - 'container-name' {*} - Name of the container class
+   - 'row-name' {*} - Name of the row class
+   - 'colum-name' {*} - Name of the colums
+   - 'size-name' {*} - Name of the size classes [prefix]
+   - 'offset-name' {*} - Name of the offset classes [prefix]
+   - 'pushpull-name' {*} - Name of the pushpull classes [prefix]
+   - 'breakpoint' {*} - This breakpoint will modifiy the grid [$kittn-breakpoint-map]
+   - 'colums' {Number} - Maximum colums
+   - 'spacing' {Number} - Padding of the colums
+   - 'layouttype' {*} - `inline`, `table`, `flex`, `block`
+   - 'valign' {*} - `top`, `bottom`, `baseline`, `middle`
+   - 'container-adaptive' {Bool} - adaptive or fluid
+   - 'container-width' {List} - Main Width off the Grid
+   - 'container-position' {*} - `center`, `left`, `right`
+   - 'container-offset' {Number} - The Size of the Outer Gutter
+   - 'container-ie8-style' {Bool|Number} - When is set on 'true' IE8 get a static Container
+   - 'colum-extras' {Bool} - Want to include the additional colum classes
+   - 'size-extend' {Bool|*} - Size classes can be extended with other classes
+   - 'size-select' {Bool|List} - You can select the size classes
+   - 'offset-activate' {Bool} - Activate the offset classes
+   - 'pushpull-activate' {Bool} - Activate the push&pull classes
+ *
+ * @type Map
+ */
+$kittn-grid-setup: (
+  activate: false,
+  silent: false,
+  container-name: 'container',
+  row-name: 'row',
+  colum-name: 'column',
+  size-name: 'width',
+  offset-name: 'offset',
+  pushpull-name: 'pushpull',
+  breakpoint: 4,
+  colums: 12,
+  spacing: 10,
+  layouttype: block,
+  valign: top,
+  container-adaptive: false,
+  container-width: 320 1180,
+  container-position: center,
+  container-offset: 0,
+  container-ie8-style: false,
+  colum-extras: false,
+  size-extend: false,
+  size-select: false,
+  offset-activate: false,
+  pushpull-activate: false
+);
+
+/**
  * Load and integrate all FontFaces.
 
    - 'fontname' {*}

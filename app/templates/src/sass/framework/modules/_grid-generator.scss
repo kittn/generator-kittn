@@ -1,0 +1,337 @@
+// ===================================================
+// Grid Generator
+// ===================================================
+
+/**
+ * Setup the Prefix for the Grid Classes
+ *
+ * @access private
+ *
+ * @returns {*}
+ */
+@function gridprefix() {
+  @if map-get($kittn-grid-setup, silent) {
+    @return '%';
+  } @else {
+    @return '.';
+  }
+}
+
+/**
+ * Build a base grid with all features
+ *
+ * @param {map} $kittn-grid-setup - Map with the whole Config Data
+ */
+@mixin main-grid-generator($kittn-grid-setup) {
+
+  @if map-get($kittn-grid-setup, activate) {
+
+    // Class Prefix
+    $gg-prefix: gridprefix();
+
+    // Check if Mobile First
+    $gg-mobile-first: map-get($kittn-activate, mobile-first);
+
+    // Set the Breakpoint
+    $gg-breakpoint: map-get($kittn-grid-setup, breakpoint);
+
+    // Establish grid container
+    #{$gg-prefix}#{map-get($kittn-grid-setup, container-name)} {
+      // Activate the Adaptive Grid
+      @if map-get($kittn-grid-setup, container-adaptive) {
+        @include grid-adaptive();
+      }
+
+      // Build the container style
+      @include grid-container((
+        width: if(map-get($kittn-grid-setup, container-adaptive),false,map-get($kittn-grid-setup, container-width)),
+        position: map-get($kittn-grid-setup, container-position),
+        gutter: map-get($kittn-grid-setup, container-offset),
+        spacing: map-get($kittn-grid-setup, spacing),
+        static-ie: map-get($kittn-grid-setup, container-ie8-style),
+      ));
+    }
+
+    // Establish grid row
+    #{$gg-prefix}#{map-get($kittn-grid-setup, row-name)} {
+      @include grid-row((
+        spacing: map-get($kittn-grid-setup, spacing),
+        layout: map-get($kittn-grid-setup, layouttype),
+        valign: map-get($kittn-grid-setup, valign),
+        align: map-get($kittn-grid-setup, align),
+      ));
+    }
+
+    // Establish grid colum
+    #{$gg-prefix}#{map-get($kittn-grid-setup, colum-name)} {
+      // When Mobile-First is activate the Colum Layout after the Breakpoint
+
+      @if $gg-mobile-first {
+        @include grid-colum((
+          spacing: map-get($kittn-grid-setup, spacing),
+          layout: none,
+          valign: map-get($kittn-grid-setup, valign),
+          align: map-get($kittn-grid-setup, align),
+          extras: map-get($kittn-grid-setup, colum-extras),
+        ));
+
+        @include break($gg-breakpoint) {
+          @include grid-colum((
+            spacing: map-get($kittn-grid-setup, spacing),
+            layout: map-get($kittn-grid-setup, layouttype),
+            valign: map-get($kittn-grid-setup, valign),
+            align: map-get($kittn-grid-setup, align),
+            extras: map-get($kittn-grid-setup, colum-extras),
+          ));
+        }
+
+      } @else {
+        // With Mobile-First off activate the Colum Layout
+        // when reach the breakpoint deactive the layout
+        @include grid-colum((
+          spacing: map-get($kittn-grid-setup, spacing),
+          layout: map-get($kittn-grid-setup, layouttype),
+          valign: map-get($kittn-grid-setup, valign),
+          align: map-get($kittn-grid-setup, align),
+          extras: map-get($kittn-grid-setup, colum-extras),
+        ));
+
+        @include break($gg-breakpoint) {
+          @include grid-colum((
+            spacing: map-get($kittn-grid-setup, spacing),
+            layout: none,
+            valign: map-get($kittn-grid-setup, valign),
+            align: map-get($kittn-grid-setup, align),
+            extras: map-get($kittn-grid-setup, colum-extras),
+          ));
+        }
+      }
+    }
+
+    // Establish grid sizes
+    #{$gg-prefix}#{map-get($kittn-grid-setup, size-name)} {
+
+      @if $gg-mobile-first {
+        @include break($gg-breakpoint) {
+
+          // Activate the Grid Generator
+          @include grid-generator((
+            colums: map-get($kittn-grid-setup, colums),
+            select: if(map-get($kittn-grid-setup, silent), false, map-get($kittn-grid-setup, size-select)),
+            name: false,
+            extend: map-get($kittn-grid-setup, size-extend)
+          ));
+
+        }
+      } @else {
+        @include grid-generator((
+          colums: map-get($kittn-grid-setup, colums),
+          select: if(map-get($kittn-grid-setup, silent), false, map-get($kittn-grid-setup, size-select)),
+          name: false,
+          extend: map-get($kittn-grid-setup, size-extend)
+        ));
+
+        // Normalize the Size Classes
+        @include break($gg-breakpoint) {
+          @at-root {
+            [class^="#{map-get($kittn-grid-setup, size-name)}#{map-get($kittn-bem, modifier)}"],
+            [class*="#{map-get($kittn-grid-setup, size-name)}#{map-get($kittn-bem, modifier)}"] {
+              width: 100%;
+            }
+          }
+
+        }
+      }
+    }
+
+    // Establish the Offset Classes
+    @if map-get($kittn-grid-setup, offset-activate) or map-get($kittn-grid-setup, silent)  {
+      #{$gg-prefix}#{map-get($kittn-grid-setup, offset-name)} {
+        // Check if Mobile First
+        @if $gg-mobile-first {
+          // Build the offset when the breakpoints is reached
+          @include break($gg-breakpoint) {
+            @include grid-offset-generator((
+              max: map-get($kittn-grid-setup, colums)
+            ));
+          }
+        } @else {
+          @include grid-offset-generator((
+            max: map-get($kittn-grid-setup, colums)
+          ));
+
+          // Normalize the offset classes when the breakpoint is reached
+          @include break($gg-breakpoint) {
+            @include grid-normalizer((
+              name: map-get($kittn-grid-setup, offset-name),
+              option: offset
+            ));
+          }
+        }
+      }
+    }
+
+    // Establish the Push'n Pull Classes
+    @if map-get($kittn-grid-setup, pushpull-activate) or map-get($kittn-grid-setup, silent) {
+      #{$gg-prefix}#{map-get($kittn-grid-setup, pushpull-name)} {
+        // Check if Mobile First
+        @if $gg-mobile-first {
+          // Build the pushpull when the breakpoints is reached
+          @include break($gg-breakpoint) {
+            @include grid-pushpull-generator((
+              max: map-get($kittn-grid-setup, colums)
+            ));
+          }
+        } @else {
+          @include grid-pushpull-generator((
+            max: map-get($kittn-grid-setup, colums)
+          ));
+
+          // Normalize the pushpull classes when the breakpoint is reached
+          @include break($gg-breakpoint) {
+            @include grid-normalizer((
+              name: map-get($kittn-grid-setup, pushpull-name),
+              option: pushpull
+            ));
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+/**
+ * Extend with the Base Container Class
+ */
+@mixin ext-container {
+  @if map-get($kittn-grid-setup, activate) {
+    @extend #{gridprefix()}#{map-get($kittn-grid-setup, container-name)};
+  } @else {
+    @warn 'The Base Grid Generator is not activated';
+  }
+}
+
+/**
+ * Extend with the base row class
+ */
+@mixin ext-row {
+  @if map-get($kittn-grid-setup, activate) {
+    @extend #{gridprefix()}#{map-get($kittn-grid-setup, row-name)};
+  } @else {
+    @warn 'The Base Grid Generator is not activated';
+  }
+}
+
+/**
+ * Extend with the base colum class
+ */
+@mixin ext-colum {
+  @if map-get($kittn-grid-setup, activate) {
+    @extend #{gridprefix()}#{map-get($kittn-grid-setup, colum-name)};
+  } @else {
+    @warn 'The Base Grid Generator is not activated';
+  }
+}
+
+/**
+ * Extend with the width class
+ *
+ * @param {Number} $number - Size Number
+ */
+@mixin ext-size($number: 1) {
+  @if map-get($kittn-grid-setup, activate) {
+    // Cleanup the number
+    $number : strip-units($number);
+    $number : clamp($number, 0, map-get($kittn-grid-setup, colums));
+
+    @extend #{gridprefix()}#{map-get($kittn-grid-setup, size-name)}#{map-get($kittn-bem, modifier)}#{$number};
+  } @else {
+    @warn 'The Base Grid Generator is not activated';
+  }
+}
+
+/**
+ * Extend with offset-left class
+ *
+ * @param {Number} $number - Size Number
+ */
+@mixin ext-ol($number: 1) {
+  @if map-get($kittn-grid-setup, activate) {
+    @if map-get($kittn-grid-setup, offset-activate) {
+
+      // Cleanup the number
+      $number : strip-units($number);
+      $number : clamp($number, 0, (map-get($kittn-grid-setup, colums) - 1));
+
+      @extend #{gridprefix()}#{map-get($kittn-grid-setup, offset-name)}-left#{map-get($kittn-bem, modifier)}#{$number};
+    } @else {
+      @warn 'There no Offset Classes defined!';
+    }
+  } @else {
+    @warn 'The Base Grid Generator is not activated';
+  }
+}
+
+/**
+ * Extend with offset-left class
+ *
+ * @param {Number} $number - Size Number
+ */
+@mixin ext-or($number: 1) {
+  @if map-get($kittn-grid-setup, activate) {
+    @if map-get($kittn-grid-setup, offset-activate) {
+
+      // Cleanup the number
+      $number : strip-units($number);
+      $number : clamp($number, 0, (map-get($kittn-grid-setup, colums) - 1));
+
+      @extend #{gridprefix()}#{map-get($kittn-grid-setup, offset-name)}-right#{map-get($kittn-bem, modifier)}#{$number};
+    } @else {
+      @warn 'There no Offset Classes defined!';
+    }
+  } @else {
+    @warn 'The Base Grid Generator is not activated';
+  }
+}
+
+/**
+ * Extend with push class
+ *
+ * @param {Number} $number - Size Number
+ */
+@mixin ext-push($number: 1) {
+  @if map-get($kittn-grid-setup, activate) {
+    @if map-get($kittn-grid-setup, pushpull-activate) {
+
+      // Cleanup the number
+      $number : strip-units($number);
+      $number : clamp($number, 0, (map-get($kittn-grid-setup, colums) - 1));
+
+      @extend #{gridprefix()}#{map-get($kittn-grid-setup, pushpull-name)}-push#{map-get($kittn-bem, modifier)}#{$number};
+    } @else {
+      @warn 'There no Push&Pull classes defined!';
+    }
+  }
+}
+
+/**
+ * Extend with push class
+ *
+ * @param {Number} $number - Size Number
+ */
+@mixin ext-pull($number: 1) {
+  @if map-get($kittn-grid-setup, activate) {
+    @if map-get($kittn-grid-setup, pushpull-activate) {
+
+      // Cleanup the number
+      $number : strip-units($number);
+      $number : clamp($number, 0, (map-get($kittn-grid-setup, colums) - 1));
+
+      @extend #{gridprefix()}#{map-get($kittn-grid-setup, pushpull-name)}-pull#{map-get($kittn-bem, modifier)}#{$number};
+    } @else {
+      @warn 'There no Push&Pull classes defined!';
+    }
+  }
+}

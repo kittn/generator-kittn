@@ -25,3 +25,6 @@
 
 // Include Connect Classes
 @include connect-yield();
+
+// Include the Base Grid Generator
+@include main-grid-generator($kittn-grid-setup);

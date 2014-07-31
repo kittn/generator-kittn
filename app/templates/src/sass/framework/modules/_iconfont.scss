@@ -45,7 +45,8 @@
 @mixin icon-font-generator($iconFontName) {
   [class^="#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}"],
   [class*=" #{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}"],
-  [data-icon] {
+  [data-icon],
+  %iconfontface {
     &:before {
       @include iconfont($iconFontName);
     }

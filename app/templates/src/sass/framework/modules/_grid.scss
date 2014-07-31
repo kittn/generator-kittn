@@ -49,8 +49,8 @@
 
   // Build the Stepped Width
   @for $i from 2 through length($list) {
-    @media screen and (if(map-get($kittn-activate, mobile-first), min-width, max-width): nth($list,$i)) {
-      width: nth($list,$i);
+    @media screen and (if(map-get($kittn-activate, mobile-first), min-width, max-width):  if(map-get($kittn-activate, mobile-first), (nth($list,$i)), nth($list,$i) - 1)) {
+      width: if(map-get($kittn-activate, mobile-first), (nth($list,$i)), nth($list,$i) - 1);
     }
   }
 }
