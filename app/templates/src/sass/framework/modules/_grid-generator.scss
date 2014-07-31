@@ -253,6 +253,16 @@
 }
 
 /**
+ * Extend with width class and colum
+ *
+ * @param {Number} $number - Size Number
+ */
+@mixin ext-colsize($number: 1) {
+  @include ext-colum;
+  @include ext-size($number);
+}
+
+/**
  * Extend with offset-left class
  *
  * @param {Number} $number - Size Number
