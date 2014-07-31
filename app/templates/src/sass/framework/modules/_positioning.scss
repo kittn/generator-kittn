@@ -320,6 +320,14 @@
 }
 
 /**
+ * Middle Elements with Pivot
+ */
+@mixin pivot-middle {
+  @include pivot();
+  @include slide();
+}
+
+/**
  * Moving an absolute position element in the Center - optional in the Middle (with Height)
  *
  * @param  {List}  $element - Width and the Height of the Element
