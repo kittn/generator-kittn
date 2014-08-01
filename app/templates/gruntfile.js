@@ -6,7 +6,6 @@ module.exports = function (grunt) {
   // Load Grunt Plugins -----------
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
-  grunt.loadNpmTasks('grunt-combine-media-queries');
   grunt.loadNpmTasks('grunt-newer');
   grunt.loadNpmTasks('grunt-modernizr');
   grunt.loadNpmTasks('grunt-todo');
@@ -16,6 +15,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-svg-to-png');
   grunt.loadNpmTasks('grunt-responsive-images');
   grunt.loadNpmTasks('grunt-sassdoc');
+  grunt.loadNpmTasks('grunt-combine-media-queries');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+
 
   var matchdep = require('matchdep');
 
@@ -229,32 +231,6 @@ module.exports = function (grunt) {
         ]
       }
     },
-    uncss: {
-      dist: {
-        files: {
-          '<%= pkg.directory.css %><%= pkg.cssFileName%>.css' :
-            [
-              '<%= pkg.directory.base %>**/*.html'
-            ]
-        }
-      },
-      options: {
-        ignore: [
-          '#added_at_runtime',
-          /.ie[0-9].*(?![^\{]*\})/,
-          /.retina.*(?![^\{]*\})/,
-          /.no-retina.*(?![^\{]*\})/,
-          /.svg.*(?![^\{]*\})/,
-          /.no-svg.*(?![^\{]*\})/
-          ],
-        media: [''],
-        csspath: '',
-        raw: '',
-        // stylesheets: ["dist/assets/css/style.css"],
-        // urls: ["http://dev.lasting/"], //array of urls
-        timeout: 0
-      }
-    },
     cmq: {
       options: {
         log: false
@@ -263,6 +239,15 @@ module.exports = function (grunt) {
         files: {
           '<%= pkg.directory.css %><%= pkg.cssFileName%>.css': ['<%= pkg.directory.css %><%= pkg.cssFileName%>.css']
         }
+      }
+    },
+    cssmin: {
+      minify: {
+        expand: true,
+        cwd: '<%= pkg.directory.css %>',
+        src: ['*.css', '!*.min.css'],
+        dest: '<%= pkg.directory.css %>',
+        ext: '.css'
       }
     },
     modernizr: {
@@ -415,8 +400,10 @@ module.exports = function (grunt) {
     'sass_imagemapper:all'
   ]);
 
-  grunt.registerTask('css-mq-combine', [
-    'cmq:dist'
+  // Minify and Combine CSS
+  grunt.registerTask('cssminify', [
+    'cmq:dist',
+    'cssmin'
   ]);
 
   grunt.registerTask('modernizr-build', [
@@ -429,5 +416,5 @@ module.exports = function (grunt) {
 
   grunt.registerTask('documentation', [
     'sassdoc'
-  ])
+  ]);
 };

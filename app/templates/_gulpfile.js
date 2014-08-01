@@ -92,7 +92,6 @@ var path        = require('path'),
     browserSync = require('browser-sync'),
     concat      = require('gulp-concat'),
     uglify      = require('gulp-uglify'),
-    minifyCSS   = require('gulp-minify-css'),
     imagemin    = require('gulp-imagemin'),
     prefix      = require('gulp-autoprefixer'),
     plumber     = require('gulp-plumber'),
@@ -101,7 +100,8 @@ var path        = require('path'),
     jshint      = require('gulp-jshint'),
     stylish     = require('jshint-stylish'),
     bump        = require('gulp-bump'),
-    changed     = require('gulp-changed');
+    changed     = require('gulp-changed'),
+    sequence    = require('run-sequence');
 
 // --- Task Config --------------
 
@@ -309,19 +309,6 @@ gulp.task('compress-js', function() {
     .pipe(gulp.dest(targetDirJS));
 });
 
-// Minify CSS and copy it to dist/
-gulp.task('minify-css', function() {
-  gulp.src(targetDirCSS + '*.css')
-    .pipe(minifyCSS({
-      keepSpecialComments: true,
-      keepBreaks: true,
-      removeEmpty: true,
-      debug: true
-    }))
-    .pipe(header(banner, { pkg : pkg } ))
-    .pipe(gulp.dest(targetDirCSS));
-});
-
 // ---- Version Bumper ---------------
 
 // Update bower, component, npm at once:
@@ -341,6 +328,13 @@ gulp.task('bump-major', function(){
   gulp.src(['bower.json', 'package.json'])
   .pipe(bump({type:'major'}))
   .pipe(gulp.dest('./'));
+});
+
+// Update CSS Banner
+gulp.task('banner-css', function(){
+  gulp.src(targetDirCSS + '*.css')
+  .pipe(header(banner, { pkg : pkg } ))
+    .pipe(gulp.dest(targetDirCSS));
 });
 
 // MAIN TASK BLOCK ------------------------------------------------------
@@ -419,12 +413,24 @@ gulp.task('code-quality', [
   'js-quality'
 ]);
 
+//----------------- PUBLISHING --------------------------
+
 // Publish Task
-gulp.task('publish',[
+gulp.task('build',[
+    'banner-css',
     'bump',
-    'minify-css',
+    'code-quality',
     'compress-js',
     'compress-css-images',
     'compress-html-images',
-    'grunt-documentation'
+    'grunt-documentation',
 ]);
+
+// Prebuild Task for task sequence
+gulp.task('publish', function(callback) {
+  sequence(
+    'grunt-cssminify',
+    'build',
+    callback
+  );
+});
