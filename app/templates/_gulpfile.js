@@ -22,6 +22,8 @@ var sources = {
 };
 
 // Place any font files into src/stash/fonts/ -
+// Task must manually activated with
+// $ gulp move-fonts
 // the files would be copied to the dist directory
 var fonts = {
   files: [
@@ -345,7 +347,6 @@ gulp.task('init', [
     'move-first',
     'move-js',
     'move-images',
-    'move-fonts',
     'grunt-build-images',
     cssCompiler,
     'jade',
