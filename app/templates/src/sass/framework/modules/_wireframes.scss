@@ -1,0 +1,50 @@
+// ===================================================
+// Wireframe Generator
+// ===================================================
+
+/**
+ * Generate Stylingclasses for Wireframes
+ *
+ * @requires color-scale()
+ *
+ * @param {Map} $wire
+      - levels {Number} - How many levels the wire classes are nested
+      - colors {List} - Color Values, min and max
+ *
+ * @example
+ *    <div class="wire" data-title="header"></div>
+ */
+@mixin wireframe-generator($wire) {
+  // Setup
+  $wire: map-merge((
+    levels: 10,
+    color: #fbfbfb #8d8d8d
+  ),$wire);
+
+  // Default Vars
+  $s: null;
+  $selector: &;
+
+  @at-root {
+    @for $i from 1 through map-get($wire,levels) {
+
+      $s: append($s, $selector);
+      $c: color-scale(nth(map-get($wire,color),1) nth(map-get($wire,color),2), map-get($wire,levels), $i);
+
+      #{$s} {
+        min-height: 1px;
+        background-color: $c;
+        overflow: hidden;
+        position: relative;
+
+        &:before {
+          @include pivot-center;
+          content: attr(data-title);
+          color: darken($c,10);
+          font-size: 16px;
+          text-transform: lowercase;
+        }
+      }
+    }
+  }
+}

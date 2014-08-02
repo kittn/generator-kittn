@@ -252,3 +252,218 @@
     @warn "The Color '#{$name}' can't be extended, is included as attribute.";
   }
 }
+
+/**
+ * Build a Color list with eval steps
+ *
+ * @param {List} $color - Color Values
+ * @param {Number} $steps - Number off steps to reach the other color
+ * @param {Bool|Number} $pointer - Move the Pointer to one Color Value from the list
+ *
+ * @returns {Color|List} - Returns a List off colors or one color value
+ */
+@function color-scale($color, $steps: 2, $pointer: false) {
+  // Define default vars
+  $list: null;
+  $colors: null;
+
+  // Manipulate Steps when is too low
+  @if $steps < 2 {
+    $steps: 2;
+    @warn 'Step Number is too low - is clamped to minimum off 2';
+  }
+
+  // Calculate the step size
+  $c: 100 / ($steps - 1);
+
+  // Check the length of the color value
+  @if length($color) == 2 {
+
+    // If $pointer is false generate a color list
+    @if $pointer == false {
+
+      // Loop it
+      @for $i from 0 through ($steps - 1) {
+        $colors: mix(nth($color,1), nth($color,2), (100 - ($c * ($i))));
+
+        // Add Values to the list
+        $list: append($list, $colors);
+      }
+
+      // Return a list with Color Values
+      @return $list;
+
+    } @else {
+
+      // Check $pointer values
+      $pointer: strip-units($pointer);
+      $pointer: clamp($pointer, 0, $steps);
+
+      // Build the Color Value
+      $colors: mix(nth($color,1), nth($color,2), (100 - ($c * ($pointer - 1))));
+
+      // Return Color
+      @return $colors;
+    }
+
+  } @else {
+    @warn 'Not enough Color Values - the Function need two Values.'
+  }
+}
+
+/**
+ * Build an individual Color Stack
+ *
+ * @param {List} $color - Color Values
+ * @param {List} $stacks - Individual steps between the color mix
+ *
+ * @returns {List}
+ */
+@function color-stack($color, $stacks) {
+  // Define default vars
+  $list: null;
+  $own-stack: null;
+  $stack-value: null;
+
+  // Check the length of the color value
+  @if length($color) == 2 {
+
+    // Function need minimum two stack values
+    @if length($stacks) > 1 {
+
+      // Filter all Values above 100 from stacks list
+      @for $o from 1 through length($stacks) {
+        @if nth($stacks, $o) <= 100 {
+          $own-stack: append($own-stack, nth($stacks,$o));
+        }
+      }
+
+      // Remove Duplicates
+      $own-stack: sl-remove-duplicates($own-stack);
+
+      // Get length
+      $stack-length: length($own-stack);
+
+      // Loop it
+      @for $i from 1 through ($stack-length - 1){
+        // Clamp the Stack value
+        $mod: clamp(nth($stacks, $i), 0, 100);
+
+        // Build Color Value
+        $colors: mix(nth($color,1), nth($color,2), $mod);
+
+        // Add Values to the list
+        $list: append($list, $colors);
+      }
+
+      // Return the Color Values as list
+      @return $list;
+
+    } @else if length($stacks) == 1 {
+      // Clamp the Stack value
+      $mod: clamp($stacks, 0, 100);
+
+      // Build Color Value
+      $colors: mix(nth($color,1), nth($color,2), $mod);
+
+      // Return the Color Values as list
+      @return $colors;
+
+    } @else {
+      @warn 'Not enough Stacks to build a Color Stack'
+    }
+
+  } @else {
+    @warn 'Not enough Color Values - the Function need two Values.'
+  }
+}
+
+/**
+ * Build a Set of Colors based on the Color-Scale Function
+ *
+ * @requires color-scale()
+ *
+ * @param {Map} $setup
+      - color {List} - Color Values
+      - steps {Number} - Number off steps to reach the other color
+      - attribute {*} - Attribute
+      - extend {Bool|*} - For extending the classes with other Classes
+ *
+ */
+@mixin color-scales($setup) {
+  // Setup
+  $setup: map-merge((
+    color: #000 #000,
+    steps: 5,
+    attribute: background-color,
+    extend: false
+  ), $setup);
+
+  // Mixin need min two step values
+  @if map-get($setup, steps) > 1 {
+
+    // Build a Color List
+    $cs: color-scale(map-get($setup,color), map-get($setup,steps));
+
+    // Generate the Classes
+    @for $i from 1 through (length($cs)) {
+
+      &#{map-get($kittn-bem, modifier)}#{$i - 1} {
+        // Include the Attribute
+        #{map-get($setup, attribute)}: nth($cs,$i);
+
+        // When the Classes need to be Extended
+        @if map-get($setup, extend) {
+          @extend #{map-get($setup, extend)};
+        }
+      }
+    }
+  } @else {
+    @warn 'A Color-Scale need more than one steps value.';
+  }
+}
+
+/**
+ * Generate Stack off individuall Colors
+ *
+ * @requires color-stack()
+ *
+ * @param {Map} $setup
+      - color {List} - Color Values
+      - stacks {List} - Individual steps between the color mix
+      - attribute {*} - Attribute
+      - extend {Bool|*} - For extending the classes with other Classes
+ *
+ */
+@mixin color-stacks($setup) {
+  // Default Setup
+  $setup: map-merge((
+    color: #000 #fff,
+    stacks: 30 60 90,
+    attribute: background-color,
+    extend: false
+  ), $setup);
+
+  // Mixin need minimum two stack values
+  @if length(map-get($setup, stacks)) > 1 {
+
+    // Build a Color List
+    $cs: color-stack(map-get($setup,color), map-get($setup,stacks));
+
+    // Generate the Classes
+    @for $i from 1 through (length($cs)) {
+
+      &#{map-get($kittn-bem, modifier)}#{$i - 1} {
+        // Include the Attribute
+        #{map-get($setup, attribute)}: nth($cs,$i);
+
+        // When the Classes need to be Extended
+        @if map-get($setup, extend) {
+          @extend #{map-get($setup, extend)};
+        }
+      }
+    }
+  } @else {
+    @warn 'The Color-Stack need more the one stack value.';
+  }
+}
