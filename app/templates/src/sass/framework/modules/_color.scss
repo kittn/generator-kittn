@@ -390,7 +390,7 @@
       - extend {Bool|*} - For extending the classes with other Classes
  *
  */
-@mixin color-scales($setup) {
+@mixin color-scale-generator($setup) {
   // Setup
   $setup: map-merge((
     color: #000 #000,
@@ -424,7 +424,7 @@
 }
 
 /**
- * Generate Stack off individuall Colors
+ * Generate Stack off individual Colors
  *
  * @requires color-stack()
  *
@@ -435,7 +435,7 @@
       - extend {Bool|*} - For extending the classes with other Classes
  *
  */
-@mixin color-stacks($setup) {
+@mixin color-stack-generator($setup) {
   // Default Setup
   $setup: map-merge((
     color: #000 #fff,
