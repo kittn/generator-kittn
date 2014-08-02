@@ -26,24 +26,31 @@
   $selector: &;
 
   @at-root {
+    // Setup Base Wireframe Style
+    #{$selector} {
+      min-height: 1px;
+      overflow: hidden;
+      position: relative;
+
+      &:before {
+        content: attr(data-title);
+        @include pivot-center;
+        color: darken(nth(map-get($wire,color),2),10);
+        font-size: 16px;
+        text-transform: lowercase;
+      }
+    }
+
+    // Build individual wireframe styles
     @for $i from 1 through map-get($wire,levels) {
 
+      // Extend the Selector
       $s: append($s, $selector);
+
       $c: color-scale(nth(map-get($wire,color),1) nth(map-get($wire,color),2), map-get($wire,levels), $i);
 
       #{$s} {
-        min-height: 1px;
         background-color: $c;
-        overflow: hidden;
-        position: relative;
-
-        &:before {
-          @include pivot-center;
-          content: attr(data-title);
-          color: darken($c,10);
-          font-size: 16px;
-          text-transform: lowercase;
-        }
       }
     }
   }
