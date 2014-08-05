@@ -179,7 +179,7 @@ $kittn-breakpoint-map: (
  */
 $kittn-grid-setup: (
   activate: false,
-  silent: false,
+  silent: true,
   container-name: 'container',
   row-name: 'row',
   colum-name: 'column',
@@ -270,7 +270,6 @@ $kittn-typo-style: (
   base-font: ff('helvetica'), // Base Font
   base-weight: false, // {Bool}
   heading-font: false, // {Bool|*} Headlinefont, 'false' will use the Basefont
-  heding-weight: 400, // {Bool|*}
   bold-font: false, // {Bool|*} 'false' will use the Basefont
   bold-weight: bold, // {*}
   italic-font: false, // {Bool|*} 'false' will use the Basefont
