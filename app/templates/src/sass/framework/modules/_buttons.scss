@@ -1,0 +1,246 @@
+// ===================================================
+// Button Helper
+// ===================================================
+
+/**
+ * Generate a single Button
+ *
+ * @access private
+ *
+ * @requires $kittn-button
+ *
+ * @param {Map} $button - A part from the Button Map
+ */
+@mixin button($button) {
+
+  // Internal Maps
+  $button-map: map-get($kittn-button, $button);
+
+  // Build Global Styling
+  // Check if Global Map is included
+  @if map-has-key($button-map, global) {
+
+    // Build a internal globmap
+    $global: map-get($button-map, global);
+
+    cursor: pointer;
+    text-decoration: none;
+
+    // Color
+    @if map-get($global, color) {
+      color: map-get($global, color);
+    }
+    // Background
+    @if map-get($global, background) {
+      background: map-get($global, background);
+    }
+    @if map-get($global, align) {
+      text-align: map-get($global, align);
+    } @else {
+      text-align: center;
+    }
+    // Display Mode
+    @if map-get($global, display) {
+      display: map-get($global, display);
+    } @else {
+      display: inline-block;
+    }
+    // Set Width
+    @if map-get($global, width) {
+      width: map-get($global, width);
+    }
+    // Font Size
+    @if map-get($global, fontsize) {
+      @include fontsize(map-get($global, fontsize));
+    }
+    // Line Height
+    @if map-get($global, lineheight) {
+      @include lineheight(map-get($global, lineheight));
+    }
+    // Height
+    @if map-get($global, height) {
+      @include height(map-get($global, height));
+    }
+    // Side Padding
+    @if map-get($global, padding) {
+      @include paddingleft(map-get($global, padding));
+      @include paddingright(map-get($global, padding));
+    }
+    // Font
+    @if map-get($global, family) {
+      font-family: map-get($global, family);
+    }
+    // Weight
+    @if map-get($global, weight) {
+      font-weight: map-get($global, weight);
+    }
+    // Style
+    @if map-get($global, style) {
+      font-style: map-get($global, style);
+    }
+    // Box Shadow
+    @if map-get($global, shadow) {
+      box-shadow: map-get($global, shadow);
+    }
+    // Border
+    @if map-get($global, border) {
+      border: map-get($global, border);
+    }
+    // border-radius
+    @if map-get($global, radius) {
+      border-radius: map-get($global, radius) + 0px;
+    }
+    // Transition
+    @if map-get($global, transition) {
+      transition: all map-get($global, transition);
+    }
+  }
+
+  // Build the other States
+  @if map-has-key($button-map, hover) and map-has-key($button-map, active) {
+    // Build the Hover State
+    &:hover {
+      // Build a internal globmap
+      $hover: map-get($button-map, hover);
+
+      text-decoration: none;
+
+      // Color
+      @if map-get($hover, color) {
+        color: map-get($hover, color);
+      }
+      // Background
+      @if map-get($hover, background) {
+        background: map-get($hover, background);
+      }
+      // Weight
+      @if map-get($hover, weight) {
+        font-weight: map-get($hover, weight);
+      }
+      // Box Shadow
+      @if map-get($hover, shadow) {
+        box-shadow: map-get($hover, shadow);
+      }
+      // Border
+      @if map-get($hover, border) {
+        border: map-get($hover, border);
+      }
+    }
+
+    // Build the active state
+    &:active,
+    .is-active &,
+    &.is-active {
+      // Build a internal globmap
+      $active: map-get($button-map, active);
+
+      text-decoration: none;
+
+      // Color
+      @if map-get($active, color) {
+        color: map-get($active, color);
+      }
+      // Background
+      @if map-get($active, background) {
+        background: map-get($active, background);
+      }
+      // Weight
+      @if map-get($active, weight) {
+        font-weight: map-get($active, weight);
+      }
+      // Box Shadow
+      @if map-get($active, shadow) {
+        box-shadow: map-get($active, shadow);
+      }
+      // Border
+      @if map-get($active, border) {
+        border: map-get($active, border);
+      }
+    }
+  }
+  // Build a combined hover and active state (when hover is defined)
+  @else {
+    @if map-has-key($button-map, hover) {
+      &:hover,
+      &:active,
+      .is-active &,
+      &.is-active {
+        // Build a internal globmap
+        $hover: map-get($button-map, hover);
+
+        text-decoration: none;
+
+        // Color
+        @if map-get($hover, color) {
+          color: map-get($hover, color);
+        }
+        // Background
+        @if map-get($hover, background) {
+          background: map-get($hover, background);
+        }
+        // Weight
+        @if map-get($hover, weight) {
+          font-weight: map-get($hover, weight);
+        }
+        // Box Shadow
+        @if map-get($hover, shadow) {
+          box-shadow: map-get($hover, shadow);
+        }
+        // Border
+        @if map-get($hover, border) {
+          border: map-get($hover, border);
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Generate all Buttons from the Button Map
+ *
+ * @param {Map} $map ($kittn-button) - Connection through the Button Map
+ */
+@mixin button-generator($map: $kittn-button) {
+  // Set the Prefix
+  $prefix: '';
+
+  @if $kittn-gen-buttons == class {
+    $prefix: '.';
+  } @else {
+    $prefix: '%button-';
+  }
+
+  // Generate all Button in the Map
+  @each $name, $button in $map {
+    #{$prefix}#{$name} {
+      @include button($name);
+    }
+  }
+}
+
+/**
+ * Extend Classes with the generated Buttons
+ *
+ * @param {*} $name - Button to be extended
+ * @param {Map} $map ($kittn-button) - Connection through the map
+ */
+@mixin ext-button($name, $map: $kittn-button) {
+
+  @if map-has-key($map, $name) {
+
+    // Set the Prefix
+    $prefix: '';
+
+    @if $kittn-gen-buttons == class {
+      $prefix: '.';
+    } @else {
+      $prefix: '%button-';
+    }
+
+    // Extend
+    @extend #{$prefix}#{$name};
+
+  } @else {
+    @warn "The Button '#{$name}' dosen't exists!.";
+  }
+}

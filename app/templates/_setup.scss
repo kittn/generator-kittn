@@ -509,3 +509,64 @@ $kittn-tables: (
   padding: 8px, // {Number}
   trigger: 400px, // {Number} Trigger Size for responsive Tables
 );
+
+/**
+ * Button Map
+ * You can add more than one button, any attribute is optional
+
+   - {*} buttonname - Name of the Button
+     - global
+       - {Color|Bool} color - Text Color
+       - {Color|Bool} background - Background Color
+       - {*|Bool} display (inline-block) - Display Type
+       - {Number|Bool} width - Width of the button
+       - {Number|Bool} fontsize - Text Fontsize
+       - {Number|Bool} lineheight - Text Lineheight
+       - {Number|Bool} height - Button height
+       - {*|Bool} align (center) - Text Align
+       - {Number|Bool} padding - Side Padding
+       - {*|Bool} weight - Font Weight
+       - {*|Bool} style - Font style
+       - {*|Bool} family - Font Family
+       - {*|Bool} transition - State transition
+       - {*|Bool} shadow - Box Shadow
+       - {*|Bool} border - Border Style
+       - {Number|Bool} radius - Border Radius
+     - hover
+       - {Color|Bool} color - Text Color
+       - {Color|Bool} background - Background Color
+       - {*|Bool} weight - Font Weight
+       - {*|Bool} shadow - Box Shadow
+       - {*|Bool} border - Border Style
+     - active - Active State style (optional)
+       - {Color|Bool} color - Text Color
+       - {Color|Bool} background - Background Color
+       - {*|Bool} weight - Font Weight
+       - {*|Bool} shadow - Box Shadow
+       - {*|Bool} border - Border Style
+ *
+ * @type Map
+ */
+$kittn-button: (
+  default: (
+    global: (
+      color: cp('white'),
+      background: cp('primary'),
+      fontsize: 14,
+      lineheight: 30,
+      padding: 20px,
+      transition: 300ms ease-in-out,
+    ),
+    hover: (
+      color: cp('white'),
+      background: darken(cp('primary'),15),
+    )
+  )
+);
+
+/**
+ * Define the Style how the Buttons are generated
+ *
+ * @type * - 'silent' or 'class'
+ */
+$kittn-gen-buttons: silent;
