@@ -3,32 +3,6 @@
 // ===================================================
 
 /**
- * Tint up the Color - normally mix with white
- *
- * @param  {Color}   $color             - The Color value
- * @param  {Number}  $amount            - The Mix Value
- * @param  {color}   $tint-color (#fff) - Color for Tint
- *
- * @returns {Color}
- */
-@function tint($color, $amount, $tint-color: #fff) {
-  @return mix($tint-color, $color, clamp(strip-units($amount), 0, 100));
-}
-
-/**
- * Shade down the Color - normally mix with black
- *
- * @param  {Color}  $color              - The Color value
- * @param  {Number} $amount             - The Mix Value
- * @param  {Color}  $shade-color (#000) - Color for Tint
- *
- * @returns {Color}
- */
-@function shade($color, $amount, $shade-color: #000) {
-  @return mix($shade-color, $color, clamp(strip-units($amount), 0, 100));
-}
-
-/**
  * Calculate the Luma Value from a Color
  *
  * @param  {Color}  $color - Color Value

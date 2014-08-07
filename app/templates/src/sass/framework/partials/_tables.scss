@@ -4,6 +4,9 @@
 
 table {
   max-width: 100%;
+  @if map-get($kittn-tables, margin) != false {
+      margin-bottom: map-get($kittn-tables, margin);
+    }
   @if map-get($kittn-tables, background) != false {
     background-color: map-get($kittn-tables, background);
   }
@@ -93,68 +96,53 @@ th {
   }
 }
 
-@if map-get($kittn-activate, ie8-fallbacks) == false {
-  table col[class*='#{$table-colum-class}'] {
-    position: static;
-    float: none;
-    display: table-colum;
-  }
-  table {
-    td, th {
-      &[class*='#{$table-colum-class}'] {
-        position: static;
-        float: none;
-        display: table-cell;
-      }
+.responsive-table {
+  @media screen and (max-width: map-get($kittn-tables, trigger)) {
+    width: 100%;
+    @if map-get($kittn-tables, margin) != false {
+      margin-bottom: map-get($kittn-tables, margin);
     }
-  }
-}
-
-@media screen and (max-width: map-get($kittn-tables, trigger)) {
-  width: 100%;
-  @if map-get($kittn-tables, margin) != false {
-    margin-bottom: map-get($kittn-tables, margin);
-  }
-  overflow-y: hidden;
-  overflow-x: scroll;
-  -ms-overflow-style: -ms-autohiding-scrollbar;
-  -webkit-overflow-scrolling: touch;
-  @if map-get($kittn-tables, border-color) != false {
-    border: 1px solid map-get($kittn-tables, border-color);
-  }
-
-  > .table {
-    margin-bottom: 0;
-
-    > thead, > tbody, > tfoot {
-      > tr {
-        > th, > td {
-          white-space: nowrap;
-        }
-      }
+    overflow-y: hidden;
+    overflow-x: scroll;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -webkit-overflow-scrolling: touch;
+    @if map-get($kittn-tables, border-color) != false {
+      border: 1px solid map-get($kittn-tables, border-color);
     }
-  }
-  @if map-get($kittn-tables, border-color) != false {
-    > .table-bordered {
-      border: 0;
+
+    > .table {
+      margin-bottom: 0;
 
       > thead, > tbody, > tfoot {
         > tr {
-          > th:first-child, td:first-child {
-            border-left: 0;
-          }
-          > th:last-child, td:last-child {
-            border-right: 0;
+          > th, > td {
+            white-space: nowrap;
           }
         }
       }
     }
-  }
+    @if map-get($kittn-tables, border-color) != false {
+      > .table-bordered {
+        border: 0;
 
-  > tbody, > tfoot {
-    tr:last-child {
-      > th, > td {
-        border-bottom: 0;
+        > thead, > tbody, > tfoot {
+          > tr {
+            > th:first-child, td:first-child {
+              border-left: 0;
+            }
+            > th:last-child, td:last-child {
+              border-right: 0;
+            }
+          }
+        }
+      }
+    }
+
+    > tbody, > tfoot {
+      tr:last-child {
+        > th, > td {
+          border-bottom: 0;
+        }
       }
     }
   }
