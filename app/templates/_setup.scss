@@ -517,14 +517,15 @@ $kittn-tables: (
    - {*} buttonname - Name of the Button
      - global
        - {Color|Bool} color - Text Color
-       - {Color|Bool} background - Background Color
+       - {Color|Bool} background (transparent) - Background Color
        - {*|Bool} display (inline-block) - Display Type
        - {Number|Bool} width - Width of the button
        - {Number|Bool} fontsize - Text Fontsize
        - {Number|Bool} lineheight - Text Lineheight
        - {Number|Bool} height - Button height
        - {*|Bool} align (center) - Text Align
-       - {Number|Bool} padding - Side Padding
+       - {Number|Bool} padding-v - Vertical Padding
+       - {Number|Bool} padding-h (0) - Horizontal Padding
        - {*|Bool} weight - Font Weight
        - {*|Bool} style - Font style
        - {*|Bool} family - Font Family
@@ -554,7 +555,7 @@ $kittn-button: (
       background: cp('primary'),
       fontsize: 14,
       lineheight: 30,
-      padding: 20px,
+      padding-v: 20px,
       transition: 300ms ease-in-out,
     ),
     hover: (

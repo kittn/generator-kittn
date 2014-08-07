@@ -61,10 +61,19 @@
     @if map-get($global, height) {
       @include height(map-get($global, height));
     }
-    // Side Padding
-    @if map-get($global, padding) {
-      @include paddingleft(map-get($global, padding));
-      @include paddingright(map-get($global, padding));
+    // Vertical Padding
+    @if map-get($global, padding-v) {
+      @include paddingleft(map-get($global, padding-v));
+      @include paddingright(map-get($global, padding-v));
+    }
+
+    // Horizontal Padding
+    @if map-get($global, padding-h) {
+      @include paddingtop(map-get($global, padding-h));
+      @include paddingbottom(map-get($global, padding-h));
+    } @else {
+      padding-top: 0;
+      padding-bottom: 0;
     }
     // Font
     @if map-get($global, family) {
@@ -92,7 +101,7 @@
     }
     // Transition
     @if map-get($global, transition) {
-      transition: all map-get($global, transition);
+      transition: map-get($global, transition);
     }
   }
 
@@ -109,10 +118,14 @@
       @if map-get($hover, color) {
         color: map-get($hover, color);
       }
+
       // Background
       @if map-get($hover, background) {
         background: map-get($hover, background);
+      } @else {
+        background: transparent;
       }
+
       // Weight
       @if map-get($hover, weight) {
         font-weight: map-get($hover, weight);

@@ -102,7 +102,7 @@ audio:not([controls]) {
   height: 0;
 }
 
-label, input, textarea, select, option, button,
+label, input, textarea, select, option, button, a
 input[type="button"],input[type="reset"],input[type="submit"] {
   cursor: pointer;
 }
@@ -148,7 +148,7 @@ input[type="button"],input[type="reset"],input[type="submit"] {
 }
 
 // Header Stack
-.headerStack {
+.header-stack {
   @if map-get($kittn-global-heading,marginbottom) != false {
     @include marginbottom(map-get($kittn-global-heading,marginbottom));
   }
@@ -419,7 +419,7 @@ img {
 figure {
   margin: 0;
 
-  > img {
+  img {
     display: block;
     max-width: none;
     width: 100%;
@@ -524,18 +524,23 @@ legend {
   padding: 0;
   white-space: normal;
 }
-
+input {
+  line-height: normal;
+  &:focus {
+    outline: 0;
+  }
+}
 optgroup {
   font-weight: bold;
 }
 
-button, input, select, textarea {
-  font-size: 100%;
+button, optgroup, input, select, textarea {
+  font-size: inherit;
   margin: 0;
-  vertical-align: middle;
+  color: inherit;
 }
 
-button, input {
+button {
   line-height: normal;
 }
 
@@ -544,28 +549,20 @@ button, select {
 }
 
 button,
-input[type="button"],
+html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  background: transparent;
-  border: 0;
-  color: inherit;
-  font: inherit;
-  outline: none;
-  padding: 0;
-  width: auto;
-  cursor: pointer;
   -webkit-appearance: none;
-  -webkit-font-smoothing: antialiased;
 }
 
 button[disabled],
-input[disabled] {
+html input[disabled] {
   cursor: default;
 }
 
 input[type="checkbox"],
 input[type="radio"] {
+  box-sizing: border-box;
   cursor: pointer;
   padding: 0;
 }
