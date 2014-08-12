@@ -14,10 +14,9 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-svg-to-png');
   grunt.loadNpmTasks('grunt-responsive-images');
-  grunt.loadNpmTasks('grunt-sassdoc');
+  // grunt.loadNpmTasks('grunt-sassdoc');
   grunt.loadNpmTasks('grunt-combine-media-queries');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
-
 
   var matchdep = require('matchdep');
 
@@ -253,37 +252,37 @@ module.exports = function (grunt) {
     modernizr: {
       dist: {
         // [REQUIRED] Path to the build you're using for development.
-        "devFile" : "src/stash/bower/modernizr/modernizr.js",
+        'devFile': 'src/stash/bower/modernizr/modernizr.js',
 
         // [REQUIRED] Path to save out the built file.
-        "outputFile" : "<%= pkg.directory.js %>modernizr.js",
+        'outputFile': '<%= pkg.directory.js %>modernizr.js',
 
         // Based on default settings on http://modernizr.com/download/
-        "extra" : {
-            "shiv" : true,
-            "printshiv" : true,
-            "load" : true,
-            "mq" : false,
-            "cssclasses" : true
+        'extra': {
+            'shiv': true,
+            'printshiv': true,
+            'load': true,
+            'mq': false,
+            'cssclasses': true
         },
 
         // Based on default settings on http://modernizr.com/download/
-        "extensibility" : {
-            "addtest" : false,
-            "prefixed" : false,
-            "teststyles" : false,
-            "testprops" : false,
-            "testallprops" : false,
-            "hasevents" : false,
-            "prefixes" : false,
-            "domprefixes" : false
+        'extensibility': {
+            'addtest': false,
+            'prefixed': false,
+            'teststyles': false,
+            'testprops': false,
+            'testallprops': false,
+            'hasevents': false,
+            'prefixes': false,
+            'domprefixes': false
         },
 
         // By default, source is uglified before saving
-        "uglify" : false,
+        'uglify': false,
 
         // Define any tests you want to implicitly include.
-        "tests" : [
+        'tests': [
           'flexbox',
           'opacity',
           'backgroundsize',
@@ -307,18 +306,18 @@ module.exports = function (grunt) {
 
         // By default, this task will crawl your project for references to Modernizr tests.
         // Set to false to disable.
-        "parseFiles" : true,
+        'parseFiles': true,
         // When parseFiles = true, this task will crawl all *.js, *.css, *.scss files, except files that are in node_modules/.
-        // You can override this by defining a "files" array below.
-        "files" : {
-            "src": []
+        // You can override this by defining a 'files' array below.
+        'files': {
+            'src': []
         },
         // When parseFiles = true, matchCommunityTests = true will attempt to
         // match user-contributed tests.
-        "matchCommunityTests" : false,
+        'matchCommunityTests': false,
 
         // Have custom Modernizr tests? Add paths to their location here.
-        "customTests" : []
+        'customTests': []
       }
     },
     todo: {
@@ -414,7 +413,7 @@ module.exports = function (grunt) {
     'newer:responsive_images:dev'
   ]);
 
-  grunt.registerTask('documentation', [
-    'sassdoc'
-  ]);
+  // grunt.registerTask('documentation', [
+  //   'sassdoc'
+  // ]);
 };
