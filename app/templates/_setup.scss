@@ -451,19 +451,6 @@ $kittn-color-map: (
 );
 
 /**
- * Generate the Color Classes from the Color Array
-
-   - 'generate' {Bool} - Activate the Generator
-   - 'type' {*} - 'class' or 'silent'
- *
- * @type Map
- */
-$kittn-color-generator: (
-  generate: true,
-  type: silent
-);
-
-/**
  * Route the Colors to the Elements
  *
  * @type Map

@@ -110,11 +110,6 @@
   @include _color($target, $attrib: color, $imp: $hard);
 }
 
-// alias
-@mixin color($target, $hard: false) {
-  @include get-c($target, $hard);
-}
-
 /**
  * Use the desired Color Value from the Map an build a Background-Color Value
  *
@@ -123,11 +118,6 @@
  */
 @mixin get-bc($target, $hard: false) {
   @include _color($target, $attrib: background-color, $imp: $hard);
-}
-
-// Alias
-@mixin background-color($target, $hard: false) {
-  @include get-bc($target, $hard);
 }
 
 /**
@@ -140,36 +130,36 @@
 @mixin colorgenerator($colors: $kittn-color-map) {
   @each $value, $entry in $colors {
 
-    // Set the Prefix
-    $prefix: '';
-
-    @if map-get($kittn-color-generator, type) == class {
-      $prefix: '.';
-    } @else {
-      $prefix: '%';
+    // Build Placeholder Classes
+    %c#{map-get($kittn-bem, modifier)}#{$value} {
+      @include _color($value,color);
+    }
+    %bc#{map-get($kittn-bem, modifier)}#{$value} {
+      @include _color($value,background-color);
     }
 
     // Set Class for Text Color
     @if map-get($entry,type) == c {
-      #{$prefix}c#{map-get($kittn-bem, modifier)}#{$value} {
+      .c#{map-get($kittn-bem, modifier)}#{$value} {
         @include _color($value,color);
       }
     }
 
     // Set Class for Background-Color
     @if map-get($entry,type) == b {
-      #{$prefix}bc#{map-get($kittn-bem, modifier)}#{$value} {
-        @include _color($value,background-color);
+      .bc#{map-get($kittn-bem, modifier)}#{$value} {
+        //@include _color($value,background-color);
+        @extend %bc#{map-get($kittn-bem, modifier)}#{$value};
       }
     }
 
     // Set two Classes for Text & Background-Color
     @if map-get($entry,type) == bc {
-      #{$prefix}c#{map-get($kittn-bem, modifier)}#{$value} {
-        @include _color($value,color);
+      .c#{map-get($kittn-bem, modifier)}#{$value} {
+        @extend %c#{map-get($kittn-bem, modifier)}#{$value};
       }
-      #{$prefix}bc#{map-get($kittn-bem, modifier)}#{$value} {
-        @include _color($value,background-color);
+      .bc#{map-get($kittn-bem, modifier)}#{$value} {
+        @extend %bc#{map-get($kittn-bem, modifier)}#{$value};
       }
     }
   }
@@ -181,24 +171,7 @@
  * @param  {*}  $name - Color Key
  */
 @mixin ext-c($name) {
-
-  // Check if the Colors are generated
-  // Otherwise switch to a normal color include
-  @if map-get($kittn-color-generator, generate) {
-    $prefix: '';
-
-      @if map-get($kittn-color-generator, type) == class {
-        $prefix: '.';
-      } @else {
-        $prefix: '%';
-      }
-
-    @extend #{$prefix}c#{map-get($kittn-bem, modifier)}#{$name};
-
-  } @else {
-    @include get-c($name);
-    @warn "The Color '#{$name}' can't be extended, is included as attribute.";
-  }
+  @extend %c#{map-get($kittn-bem, modifier)}#{$name};
 }
 
 /**
@@ -207,24 +180,7 @@
  * @param  {*}  $name - Color Key
  */
 @mixin ext-bc($name) {
-
-  // Check if the Colors are generated
-  // Otherwise switch to a normal color include
-  @if map-get($kittn-color-generator, generate) {
-    $prefix: '';
-
-      @if map-get($kittn-color-generator, type) == class {
-        $prefix: '.';
-      } @else {
-        $prefix: '%';
-      }
-    @extend #{$prefix}bc#{map-get($kittn-bem, modifier)}#{$name};
-
-  } @else {
-    // Use the real Color Value
-    @include get-bc($name);
-    @warn "The Color '#{$name}' can't be extended, is included as attribute.";
-  }
+  @extend %bc#{map-get($kittn-bem, modifier)}#{$name};
 }
 
 /**
