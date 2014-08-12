@@ -2,6 +2,15 @@
 // Lines Helper
 // ===================================================
 
+// Modifiy the Fontsizing when REM is active
+@function _rembase() {
+  @if map-get($kittn-typo, unit) == rem {
+    @return 16;
+  } @else {
+    @return 16 / 100 * map-get($kittn-typo, base-scale);
+  }
+}
+
 /**
  * REM Calculator
  *
@@ -10,7 +19,7 @@
  *
  * @return {Number}  Return the size in rem
  */
-@function rem($px, $base: 16 / 100 * map-get($kittn-typo, base-scale)) {
+@function rem($px, $base: _rembase()) {
   @if unitless($px) {
     @return #{$px / $base}rem;
   } @else {
