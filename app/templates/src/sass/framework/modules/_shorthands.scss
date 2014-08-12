@@ -4,107 +4,268 @@
 
 /**
  * Micro Clearfix without IE7 the fix is smarter
+ *
+ * @param {Bool} $extend - On 'true' the Class would be extended
  */
-@mixin clearfix {
-  &:after {
-    content : '';
-    display : table;
-    clear   : both;
+@mixin clearfix($extend: false) {
+  @if $extend {
+    @extend %clearfix;
+
+  } @else {
+    &:after {
+      content : '';
+      display : table;
+      clear   : both;
+    }
   }
+}
+
+// Placeholder Class
+%clearfix {
+  @include clearfix(false);
 }
 
 /**
  * Shorthand for centering Elements
+ *
+ * @param {Bool} $extend - On 'true' the Class would be extended
  */
-@mixin block-center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+@mixin block-center($extend: false) {
+  @if $extend {
+    @extend %block-center;
+
+  } @else {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Placeholder Class
+%block-center {
+  @include block-center(false);
 }
 
 /**
  * Compatible Mixin for Word-Wrap
+ *
+ * @param {Bool} $extend - On 'true' the Class would be extended
  */
-@mixin word-wrap {
-  -ms-word-break: break-all;
-  word-break: break-all;
-  word-break: break-word;
-  hyphens: auto;
+@mixin word-wrap($extend: false) {
+  @if $extend {
+    @extend %word-wrap;
+
+  } @else {
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+    hyphens: auto;
+  }
+}
+
+// Placeholder Class
+%word-wrap {
+  @include word-wrap(false);
 }
 
 /**
  * Mixin for truncating Text
+ *
+ * @param {Bool} $extend - On 'true' the Class would be extended
  */
-@mixin text-truncate {
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  word-wrap: normal;
+@mixin text-truncate($extend: false) {
+  @if $extend {
+    @extend %text-truncate;
+
+  } @else {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+  }
+}
+
+// Placeholder Class
+%text-truncate {
+  @include text-truncate(false);
 }
 
 /**
  * Vertical Center Elements
+ *
+ * @param {Bool} $extend - On 'true' the Class would be extended
  */
-@mixin vertical-center {
-  display: table-cell;
-  vertical-align: middle;
+@mixin vertical-center($extend: false) {
+  @if $extend {
+    @extend %vertical-center;
+
+  } @else {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+// Placeholder Class
+%vertical-center {
+  @include vertical-center(false);
 }
 
 /**
  * Method for Text Replacement
+ *
+ * @param {Bool} $extend - On 'true' the Class would be extended
  */
-@mixin cleartext {
-  background-color: transparent;
-  border: 0;
-  color: transparent;
-  font: 0/0 a;
-  text-shadow: none;
+@mixin cleartext($extend: false) {
+  @if $extend {
+    @extend %cleartext;
+
+  } @else {
+    background-color: transparent;
+    border: 0;
+    color: transparent;
+    font: 0/0 a;
+    text-shadow: none;
+  }
+}
+
+// Placeholder Class
+%cleartext {
+  @include cleartext(false);
 }
 
 /**
  * Text Replacement Method from HTML5 Boilerplate
+ *
+ * @param {Bool} $extend - On 'true' the Class would be extended
  */
-@mixin cleartext-complex {
-  background-color: transparent;
-  border: 0;
-  overflow: hidden;
-  &:before {
-    content: '';
-    display: block;
-    width: 0;
-    height: 150%;
+@mixin cleartext-complex($extend: false) {
+  @if $extend {
+    @extend %cleartext-complex;
+
+  } @else {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    &:before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 150%;
+    }
   }
+}
+
+// Placeholder Class
+%cleartext-complex {
+  @include cleartext-complex(false);
 }
 
 /**
  * Text Replacement without 'overflow:hidden'
+ *
+ * @param {Bool} $extend - On 'true' the Class would be extended
  */
-@mixin cleartext-simpler {
-  text-indent: 100%;
-  white-space: nowrap;
-  overflow: hidden;
+@mixin cleartext-simpler($extend: false) {
+  @if $extend {
+    @extend %cleartext-simpler;
+
+  } @else {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+// Placeholder Class
+%cleartext-simpler {
+  @include cleartext-simpler(false);
 }
 
 /**
  * Helper to prevent collapsing Margins
+ *
+ * @param {Bool} $extend - On 'true' the Class would be extended
  */
-@mixin decollapse {
-  padding-top: 1px;
-  margin-top: 1px;
+@mixin decollapse($extend: false) {
+  @if $extend {
+    @extend %decollapse;
+
+  } @else {
+    padding-top: 1px;
+    margin-top: 1px;
+  }
+}
+
+// Placeholder Class
+%decollapse {
+  @include decollapse(false);
 }
 
 /**
  * Activate the Hardware Acceleration on Webkit Browsers
+ *
+ * @param {Bool} $extend - On 'true' the Class would be extended
  */
-@mixin performance {
-  transform: translate3d(0,0,0);
+@mixin performance($extend: false) {
+  @if $extend {
+    @extend %performance;
+
+  } @else {
+    transform: translate3d(0,0,0);
+  }
+}
+
+// Placeholder Class
+%performance {
+  @include performance(false);
 }
 
 /**
  * Activate Antialias on Webkit Browsers
+ *
+ * @param {Bool} $extend - On 'true' the Class would be extended
  */
-@mixin antialias {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@mixin antialias($extend: false) {
+  @if $extend {
+    @extend %antialias;
+
+  } @else {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+// Placeholder Class
+%antialias {
+  @include antialias(false);
+}
+
+/**
+ * Expand the Clickable Area
+ *
+ * @link http://front-back.com/expand-clickable-areas-for-a-better-touch-experience
+ *
+ * @param {Bool} $extend - On 'true' the Class would be extended
+ */
+@mixin touch-clickarea($extend: false) {
+  @if $extend {
+    @extend %touch-clickarea;
+
+  } @else {
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      bottom: -10px;
+      right: -10px;
+    }
+  }
+}
+
+// Placeholder Class
+%touch-clickarea {
+  @include touch-clickarea(false);
 }
