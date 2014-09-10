@@ -50,6 +50,7 @@ var targetDirJS      = pkg.directory.js;
 var targetDirMarkup  = pkg.directory.markup;
 var targetDirCSSImg  = pkg.directory.cssimg;
 var targetDirHTMLImg = pkg.directory.htmlimg;
+var targetDirFonts   = pkg.directory.fonts;
 
 // Define the Header for the Files
 var banner = ['/**',
