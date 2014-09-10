@@ -264,7 +264,7 @@
       $sp-r-file-height: map-get(map-get($map-sprites-retina,$name),mapHeight);
       @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
         @extend %sprite-container-retina;
-        background-position: ($sp-r-pos-x + ($offset-x * 2)) ($sp-r-pos-y + ($offset-y * 2));
+        background-position: (($sp-r-pos-x / 2) + ($offset-x * 2)) (($sp-r-pos-y / 2) + ($offset-y * 2));
         background-size: ($sp-r-file-width / 2) ($sp-r-file-height / 2);
       }
     } @else {
