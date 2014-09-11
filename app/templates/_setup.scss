@@ -32,12 +32,12 @@ $kittn-bem: (
  * @type Map
  */
 $kittn-directorys: (
-  fonts: '/assets/fonts/',
-  images: '/assets/img/',
-  single: '/assets/img/single/',
-  texture: '/assets/img/textures/',
-  svg: '/assets/img/svg/',
-  svgonly: '/assets/img/svgonly/'
+  fonts: '../fonts/',
+  images: '../img/',
+  single: '../img/single/',
+  texture: '../img/textures/',
+  svg: '../img/svg/',
+  svgonly: '../img/svgonly/'
 );
 
 /**
