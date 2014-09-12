@@ -76,6 +76,28 @@
 }
 
 /**
+ * Save some Styling Attributes in a temporarly cache
+ *
+ * @param {String} $name - Name off the Cache
+ */
+@mixin loadin($name) {
+  @at-root {
+    %#{$name} {
+      @content;
+    }
+  }
+}
+
+/**
+ * Load out the Styling Attributes from the temporarly cache
+ *
+ * @param {String} $name - Name of the cache
+ */
+@mixin loadout($name) {
+  @extend %#{$name};
+}
+
+/**
  * Pick the Color Values from the Color Map
  *
  * @param  {*}  $target - Desired color
