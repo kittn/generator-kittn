@@ -61,7 +61,7 @@ var banner = ['/**',
   ' * ----------------------------',
   ' * Based on <%= pkg.name %> v<%= pkg.version %>',
   ' * Link <%= pkg.homepage %>',
-  ' * ----------------------------/',
+  ' * ----------------------------**/',
   ''].join('\n');
 
 // Define the Base Static Files and the Target
@@ -307,7 +307,7 @@ gulp.task('compress-html-images', function () {
 // Comress all JS Files
 gulp.task('compress-js', function() {
   gulp.src([targetDirJS + '*.js'])
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(header(banner, { pkg : pkg } ))
     .pipe(gulp.dest(targetDirJS));
 });
@@ -424,8 +424,7 @@ gulp.task('build',[
     'code-quality',
     'compress-js',
     'compress-css-images',
-    'compress-html-images',
-    'grunt-documentation',
+    'compress-html-images'
 ]);
 
 // Prebuild Task for task sequence

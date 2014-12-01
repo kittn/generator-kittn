@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A Yeoman Generator for the Kittn Toolkit",
   "license": "MIT",
   "main": "app/index.js",

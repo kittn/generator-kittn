@@ -413,7 +413,4 @@ module.exports = function (grunt) {
     'newer:responsive_images:dev'
   ]);
 
-  // grunt.registerTask('documentation', [
-  //   'sassdoc'
-  // ]);
 };
