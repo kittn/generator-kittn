@@ -88,3 +88,35 @@
     }
   }
 }
+
+/**
+ * Build smarter Chaining Selectors
+ *
+ * @param {string} $tag - Name of the Attribute
+ * @param {string|bool} $c - Childname
+ * @param {string|bool} $m - Modifiername
+ * @param {bool} $context - When the selectornesting is needed
+ */
+@mixin tag($tag, $c: false, $m: false, $context: false) {
+  // Defaults
+  $child: null;
+  $ct: null;
+  $mod: null;
+
+  // Build Child and Modifier Fragments
+  @if $c { $child: '__#{$c}'; }
+  @if $m { $mod: "~='#{$m}'"; }
+
+  // Build Selector
+  @if $context {
+    > [#{$tag}#{$child} #{$mod}] {
+      @content;
+    }
+  } @else {
+    @at-root {
+      [#{$tag}#{$child} #{$mod}] {
+        @content;
+      }
+    }
+  }
+}
