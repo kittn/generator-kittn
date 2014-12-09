@@ -2,12 +2,10 @@
 // Dimensions
 // ===================================================
 
-/**
- * For include Element Dimensions in Width, Height and Lineheight. When '$size' have only one Value will height and width the same (square)
- *
- * @param  {List}  $size - Width and or Height
- * @param  {Bool}  $lineheight (false) - On 'true' lineheight will be set to the same $size, otherwise use a Number
- */
+// For include Element Dimensions in Width, Height and Lineheight. When '$size' have only one Value will height and width the same (square)
+//
+// @param  {List}  $size - Width and or Height
+// @param  {Bool}  $lineheight (false) - On 'true' lineheight will be set to the same $size, otherwise use a Number
 @mixin size($size, $lineheight: false) {
   @if length($size) <= 2 {
     @if length($size) == 2 {
@@ -43,54 +41,44 @@
   }
 }
 
-/**
- * Mixin to Insert Height and Lineheight on a Simple Way
- *
- * @param  {Number}  $height - Heightvalue
- * @param  {Number}  $factor - The multiply factor
- */
+// Mixin to Insert Height and Lineheight on a Simple Way
+//
+// @param  {Number}  $height - Heightvalue
+// @param  {Number}  $factor - The multiply factor
 @mixin align-height($height, $factor: 1) {
   height: if(unitless($height), $height + 0px, $height);
   line-height: if(unitless($height), $height + 0px, $height) * strip-units($factor);
 }
 
-/**
- * Mixin to Insert Height and Lineheight on a Simple Way
- *
- * @param  {Number}  $size - Fontsize
- * @param  {Number}  $factor - The multiply factor
- */
+// Mixin to Insert Height and Lineheight on a Simple Way
+//
+// @param  {Number}  $size - Fontsize
+// @param  {Number}  $factor - The multiply factor
 @mixin align-fontsize($size,$factor: 1.2) {
   font-size: if(unitless($size), $size + 0px, $size);
   line-height: if(unitless($size), $size + 0px, $size) * strip-units($factor);
 }
 
-/**
- * Center and Middle a Element in a box
- *
- * @param  {number}  $size - Width and or Height
- */
+// Center and Middle a Element in a box
+//
+// @param  {number}  $size - Width and or Height
 @mixin center($size) {
   @include size($size, $size);
   text-align: center;
 }
 
-/**
- * Build a perfect Circle
- *
- * @param  {value}  $size - The Size of the Circle
- */
+// Build a perfect Circle
+//
+// @param  {value}  $size - The Size of the Circle
 @mixin perfect-circle($size) {
   @include center($size);
   border-radius: if(unitless($size), $size + 0px, $size);
 }
 
-/**
- * A Floating Grid System
- *
- * @param  {list}    $ratio (1)        - The Ratio between width and height
- * @param  {string}  $selector (false) - Target selector
- */
+// A Floating Grid System
+//
+// @param  {list}    $ratio (1)        - The Ratio between width and height
+// @param  {string}  $selector (false) - Target selector
 @mixin ratio($ratio: 1, $selector: false) {
 
   $sel: null;
@@ -132,11 +120,9 @@
   }
 }
 
-/**
- * Remove Ratio Values
- *
- * @param  {string}  $selector (false) - Target selector
- */
+// Remove Ratio Values
+//
+// @param  {string}  $selector (false) - Target selector
 @mixin unratio($selector: false) {
   $sel: null;
 
@@ -161,9 +147,7 @@
   }
 }
 
-/**
- * Span a Element in the Height and Width absolute positioned
- */
+// Span a Element in the Height and Width absolute positioned
 @mixin tighten-up {
   position: absolute;
   top: 0;
@@ -172,9 +156,7 @@
   bottom: 0;
 }
 
-/**
- * Put Text Elements in the Middle
- */
+// Put Text Elements in the Middle
 @mixin text-middle {
   &:before {
     content: '';

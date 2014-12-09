@@ -92,6 +92,7 @@ var path        = require('path'),
     jade        = require('gulp-jade'),
     prettify    = require('gulp-prettify'),
     rubysass    = require('gulp-ruby-sass'),
+    sourcemaps  = require('gulp-sourcemaps'),
     browserSync = require('browser-sync'),
     concat      = require('gulp-concat'),
     uglify      = require('gulp-uglify'),
@@ -110,16 +111,15 @@ var path        = require('path'),
 
 // Ruby SASS
 gulp.task('rubysass', function () {
-  gulp.src(sassSrc)
-    .pipe(plumber())
-    .pipe(rubysass({
-      sourcemap    : false,
-      style        : 'nested',
-      precision    : 6
-    }))
-    .on("error", notify.onError("Sass Compile Error!"))
-    .pipe(prefix("last 2 version", "> 1%", "ie 9", "chrome 30", "firefox 24"))
-    .pipe(gulp.dest(targetDirCSS));
+  return rubysass(sassSrc, { sourcemap: true })
+  .pipe(plumber())
+  .pipe(prefix({
+      browsers: ["last 2 version", "> 1%", "ie 9", "chrome 30", "firefox 24"],
+      cascade: false
+  }))
+  .on("error", notify.onError("Sass Compile Error!"))
+  .pipe(sourcemaps.write('.'))
+  .pipe(gulp.dest(targetDirCSS));
 });
 
 // Jade Compile Task only the Components

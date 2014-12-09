@@ -2,14 +2,12 @@
 // Typography
 // ===================================================
 
-/**
- * Walks trough the Typo Map and get the Values
- *
- * @param   {*} $entry     - Key
- * @param   {*} $attribute - Attribute to get
- *
- * @returns {*}
- */
+// Walks trough the Typo Map and get the Values
+//
+// @param   {*} $entry     - Key
+// @param   {*} $attribute - Attribute to get
+//
+// @returns {*}
 @function tw($entry, $attribute) {
   @if map-has-key($kittn-typostyles-map,$entry) {
     @return map-get(map-get($kittn-typostyles-map,$entry),$attribute);
@@ -19,9 +17,7 @@
   }
 }
 
-/**
- * Generate the Typo based on the Typo-Map
- */
+// Generate the Typo based on the Typo-Map
 @mixin typogenerator {
   @each $style, $entry in $kittn-typostyles-map {
     $selector: null;
@@ -62,11 +58,9 @@
   }
 }
 
-/**
- * Generate Responsive Fonts, based on the Breakpoint Map
- *
- * @param {number} $base - The Base Font Size in percent
- */
+// Generate Responsive Fonts, based on the Breakpoint Map
+//
+// @param {number} $base - The Base Font Size in percent
 @mixin responsive-fontsize($base) {
   $list: ();
 
@@ -95,20 +89,16 @@
   }
 }
 
-/**
- * Include a Fontsize from the Fontstyle Map
- *
- * @param   {*} $entry     - Key
- */
+// Include a Fontsize from the Fontstyle Map
+//
+// @param   {*} $entry     - Key
 @mixin get-fontsize($entry) {
   @include fontsize(tw($entry,font-size));
 }
 
-/**
- * Connect a Element with a established Typostyle
- *
- * @param {*} $entry - Key
- */
+// Connect a Element with a established Typostyle
+//
+// @param {*} $entry - Key
 @mixin ext-typo($entry) {
   @extend .#{$entry};
 }

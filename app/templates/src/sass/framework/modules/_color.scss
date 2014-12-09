@@ -2,25 +2,21 @@
 // Color Helper
 // ===================================================
 
-/**
- * Calculate the Luma Value from a Color
- *
- * @param  {Color}  $color - Color Value
- *
- * @returns {Number}
- */
+// Calculate the Luma Value from a Color
+//
+// @param  {Color}  $color - Color Value
+//
+// @returns {Number}
 @function luma($color) {
   @return (red($color) * .299) + (green($color) * .587) + (blue($color) * .114);
 }
 
-/**
- * Check if Color1 is greater than Color2, return true
- *
- * @param  {Color}  $color1 - Color Value
- * @param  {Color}  $color2 - Color Value
- *
- * @returns {Bool}
- */
+// Check if Color1 is greater than Color2, return true
+//
+// @param  {Color}  $color1 - Color Value
+// @param  {Color}  $color2 - Color Value
+//
+// @returns {Bool}
 @function luma-gte($color1, $color2) {
   @if luma($color1) >= luma($color2) {
     @return true;
@@ -30,14 +26,12 @@
   }
 }
 
-/**
- * Check if Color1 is smaller than Color2, return true
- *
- * @param  {Color}  $color1 - Color Value
- * @param  {Color}  $color2 - Color Value
- *
- * @returns {Bool}
- */
+// Check if Color1 is smaller than Color2, return true
+//
+// @param  {Color}  $color1 - Color Value
+// @param  {Color}  $color2 - Color Value
+//
+// @returns {Bool}
 @function luma-lte($color1, $color2) {
   @if luma($color1) <= luma($color2) {
     @return true;
@@ -47,28 +41,24 @@
   }
 }
 
-/**
- * Calculate the Luma Difference between Color1 and Color2
- *
- * @param  {Color}  $color1 - Color Value
- * @param  {Color}  $color2 - Color Value
- *
- * @returns {Number}
- */
+// Calculate the Luma Difference between Color1 and Color2
+//
+// @param  {Color}  $color1 - Color Value
+// @param  {Color}  $color2 - Color Value
+//
+// @returns {Number}
 @function luma-diff($color1, $color2) {
   @return luma($color1) - luma($color2);
 }
 
-/**
- * Mixin to get Color Values from the Color Map
- *
- * @access private
- *
- * @param  {*}     $target            - Color Key from Map
- * @param  {*}     $attrib (color)    - The Color Attribute
- * @param  {Bool}  $imp (false)       - For !important setting
- * @param  {Map}   $map (stylecolors) - Color Map
- */
+// Mixin to get Color Values from the Color Map
+//
+// @access private
+//
+// @param  {*}     $target            - Color Key from Map
+// @param  {*}     $attrib (color)    - The Color Attribute
+// @param  {Bool}  $imp (false)       - For !important setting
+// @param  {Map}   $map (stylecolors) - Color Map
 @mixin _color($target, $attrib: color, $imp: false, $map: $kittn-color-map) {
 
   // Check if '$target' is in the Map
@@ -100,33 +90,27 @@
   }
 }
 
-/**
- * Use the desired Color Value from the Map an build a Color Value
- *
- * @param  {*}    $target - The Color Key
- * @param  {Bool} $hard   - For !important setting
- */
+// Use the desired Color Value from the Map an build a Color Value
+//
+// @param  {*}    $target - The Color Key
+// @param  {Bool} $hard   - For !important setting
 @mixin get-c($target, $hard: false) {
   @include _color($target, $attrib: color, $imp: $hard);
 }
 
-/**
- * Use the desired Color Value from the Map an build a Background-Color Value
- *
- * @param  {*}     $target - The Color Key
- * @param  {Bool}  $hard   - For !important setting
- */
+// Use the desired Color Value from the Map an build a Background-Color Value
+//
+// @param  {*}     $target - The Color Key
+// @param  {Bool}  $hard   - For !important setting
 @mixin get-bc($target, $hard: false) {
   @include _color($target, $attrib: background-color, $imp: $hard);
 }
 
-/**
- * Generate Color Classes (or Silent) with all Colors from the Color Map.
- *
- * @access private
- *
- * @type {Map}  $colors - The Desired Map
- */
+// Generate Color Classes (or Silent) with all Colors from the Color Map.
+//
+// @access private
+//
+// @type {Map}  $colors - The Desired Map
 @mixin colorgenerator($colors: $kittn-color-map) {
   @each $value, $entry in $colors {
 
@@ -165,33 +149,27 @@
   }
 }
 
-/**
- * Extend the Element with existing Color Classes
- *
- * @param  {*}  $name - Color Key
- */
+// Extend the Element with existing Color Classes
+//
+// @param  {*}  $name - Color Key
 @mixin ext-c($name) {
   @extend %c#{map-get($kittn-bem, modifier)}#{$name};
 }
 
-/**
- * Extend the Element with existing Background-Color Classes
- *
- * @param  {*}  $name - Color Key
- */
+// Extend the Element with existing Background-Color Classes
+//
+// @param  {*}  $name - Color Key
 @mixin ext-bc($name) {
   @extend %bc#{map-get($kittn-bem, modifier)}#{$name};
 }
 
-/**
- * Build a Color list with eval steps
- *
- * @param {List} $color - Color Values
- * @param {Number} $steps - Number off steps to reach the other color
- * @param {Bool|Number} $pointer - Move the Pointer to one Color Value from the list
- *
- * @returns {Color|List} - Returns a List off colors or one color value
- */
+// Build a Color list with eval steps
+//
+// @param {List} $color - Color Values
+// @param {Number} $steps - Number off steps to reach the other color
+// @param {Bool|Number} $pointer - Move the Pointer to one Color Value from the list
+//
+// @returns {Color|List} - Returns a List off colors or one color value
 @function color-scale($color, $steps: 2, $pointer: false) {
   // Define default vars
   $list: null;
@@ -241,14 +219,12 @@
   }
 }
 
-/**
- * Build an individual Color Stack
- *
- * @param {List} $color - Color Values
- * @param {List} $stacks - Individual steps between the color mix
- *
- * @returns {List}
- */
+// Build an individual Color Stack
+//
+// @param {List} $color - Color Values
+// @param {List} $stacks - Individual steps between the color mix
+//
+// @returns {List}
 @function color-stack($color, $stacks) {
   // Define default vars
   $list: null;
@@ -308,18 +284,16 @@
   }
 }
 
-/**
- * Build a Set of Colors based on the Color-Scale Function
- *
- * @requires color-scale()
- *
- * @param {Map} $setup
-      - color {List} - Color Values
-      - steps {Number} - Number off steps to reach the other color
-      - attribute {*} - Attribute
-      - extend {Bool|*} - For extending the classes with other Classes
- *
- */
+// Build a Set of Colors based on the Color-Scale Function
+//
+// @requires color-scale()
+//
+// @param {Map} $setup
+// - color {List} - Color Values
+// - steps {Number} - Number off steps to reach the other color
+// - attribute {*} - Attribute
+// - extend {Bool|*} - For extending the classes with other Classes
+//
 @mixin color-scale-generator($setup) {
   // Setup
   $setup: map-merge((
@@ -353,18 +327,15 @@
   }
 }
 
-/**
- * Generate Stack off individual Colors
- *
- * @requires color-stack()
- *
- * @param {Map} $setup
-      - color {List} - Color Values
-      - stacks {List} - Individual steps between the color mix
-      - attribute {*} - Attribute
-      - extend {Bool|*} - For extending the classes with other Classes
- *
- */
+// Generate Stack off individual Colors
+//
+// @requires color-stack()
+//
+// @param {Map} $setup
+// - color {List} - Color Values
+// - stacks {List} - Individual steps between the color mix
+// - attribute {*} - Attribute
+// - extend {Bool|*} - For extending the classes with other Classes
 @mixin color-stack-generator($setup) {
   // Default Setup
   $setup: map-merge((

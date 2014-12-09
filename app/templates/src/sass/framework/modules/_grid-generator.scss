@@ -2,13 +2,11 @@
 // Grid Generator
 // ===================================================
 
-/**
- * Setup the Prefix for the Grid Classes
- *
- * @access private
- *
- * @returns {*}
- */
+// Setup the Prefix for the Grid Classes
+//
+// @access private
+//
+// @returns {*}
 @function gridprefix() {
   @if map-get($kittn-grid-setup, silent) {
     @return '%';
@@ -17,11 +15,9 @@
   }
 }
 
-/**
- * Build a base grid with all features
- *
- * @param {map} $kittn-grid-setup - Map with the whole Config Data
- */
+// Build a base grid with all features
+//
+// @param {map} $kittn-grid-setup - Map with the whole Config Data
 @mixin main-grid-generator($kittn-grid-setup) {
 
   @if map-get($kittn-grid-setup, activate) {
@@ -202,9 +198,7 @@
 
 
 
-/**
- * Extend with the Base Container Class
- */
+// Extend with the Base Container Class
 @mixin ext-container {
   @if map-get($kittn-grid-setup, activate) {
     @extend #{gridprefix()}#{map-get($kittn-grid-setup, container-name)};
@@ -213,9 +207,7 @@
   }
 }
 
-/**
- * Extend with the base row class
- */
+// Extend with the base row class
 @mixin ext-row {
   @if map-get($kittn-grid-setup, activate) {
     @extend #{gridprefix()}#{map-get($kittn-grid-setup, row-name)};
@@ -224,9 +216,7 @@
   }
 }
 
-/**
- * Extend with the base colum class
- */
+// Extend with the base colum class
 @mixin ext-colum {
   @if map-get($kittn-grid-setup, activate) {
     @extend #{gridprefix()}#{map-get($kittn-grid-setup, colum-name)};
@@ -235,11 +225,9 @@
   }
 }
 
-/**
- * Extend with the width class
- *
- * @param {Number} $number - Size Number
- */
+// Extend with the width class
+//
+// @param {Number} $number - Size Number
 @mixin ext-size($number: 1) {
   @if map-get($kittn-grid-setup, activate) {
     // Cleanup the number
@@ -252,21 +240,17 @@
   }
 }
 
-/**
- * Extend with width class and colum
- *
- * @param {Number} $number - Size Number
- */
+// Extend with width class and colum
+//
+// @param {Number} $number - Size Number
 @mixin ext-colsize($number: 1) {
   @include ext-colum;
   @include ext-size($number);
 }
 
-/**
- * Extend with offset-left class
- *
- * @param {Number} $number - Size Number
- */
+// Extend with offset-left class
+//
+// @param {Number} $number - Size Number
 @mixin ext-ol($number: 1) {
   @if map-get($kittn-grid-setup, activate) {
     @if map-get($kittn-grid-setup, offset-activate) {
@@ -284,11 +268,9 @@
   }
 }
 
-/**
- * Extend with offset-right class
- *
- * @param {Number} $number - Size Number
- */
+// Extend with offset-right class
+//
+// @param {Number} $number - Size Number
 @mixin ext-or($number: 1) {
   @if map-get($kittn-grid-setup, activate) {
     @if map-get($kittn-grid-setup, offset-activate) {
@@ -306,11 +288,9 @@
   }
 }
 
-/**
- * Extend with push class
- *
- * @param {Number} $number - Size Number
- */
+// Extend with push class
+//
+// @param {Number} $number - Size Number
 @mixin ext-push($number: 1) {
   @if map-get($kittn-grid-setup, activate) {
     @if map-get($kittn-grid-setup, pushpull-activate) {
@@ -326,11 +306,9 @@
   }
 }
 
-/**
- * Extend with pull class
- *
- * @param {Number} $number - Size Number
- */
+// Extend with pull class
+//
+// @param {Number} $number - Size Number
 @mixin ext-pull($number: 1) {
   @if map-get($kittn-grid-setup, activate) {
     @if map-get($kittn-grid-setup, pushpull-activate) {

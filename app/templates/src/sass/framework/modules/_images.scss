@@ -2,15 +2,13 @@
 // Image Helper
 // ===================================================
 
-/**
- * Write the dimension off a Image in the CSS
- *
- * @access private
- *
- * @param  {*}  $width   - The Width of the Image
- * @param  {*}  $height  - The Height of the Image
- * @param  {*}  $option  - both = height & width | width = width | height = height
- */
+// Write the dimension off a Image in the CSS
+//
+// @access private
+//
+// @param  {*}  $width   - The Width of the Image
+// @param  {*}  $height  - The Height of the Image
+// @param  {*}  $option  - both = height & width | width = width | height = height
 @mixin _getImageDimensions($width, $height, $option) {
   @if $option == both {
     width: $width;
@@ -21,14 +19,12 @@
     width: $width; }
 }
 
-/**
- * Including Single Images from the Single Directory as Background Image.
- *
- * @param  {*}    $image       - Name of the Image
- * @param  {*}    $dimensions  - 'both' = height & width | 'width' = width | 'height' = height
- * @param  {*}    $pos         - The Image Position - can be 'false'
- * @param  {Bool} $retina      - With set on 'true' the retina fallback will be included
- */
+// Including Single Images from the Single Directory as Background Image.
+//
+// @param  {*}    $image       - Name of the Image
+// @param  {*}    $dimensions  - 'both' = height & width | 'width' = width | 'height' = height
+// @param  {*}    $pos         - The Image Position - can be 'false'
+// @param  {Bool} $retina      - With set on 'true' the retina fallback will be included
 @mixin image($image, $dimensions: both, $pos: false, $retina: false) {
 
   // Set the List target
@@ -66,13 +62,11 @@
   }
 }
 
-/**
- * Include the SVG Background Image with a PNG Fallback.
- *
- * @param  {*}    $image       - Name of the Image - the SVG File must be in the Same directory
- * @param  {*}    $dimensions  - 'both' = height & width | 'width' = width | 'height' = height
- * @param  {List} $pos         - The Image Position - can be 'false'
- */
+// Include the SVG Background Image with a PNG Fallback.
+//
+// @param  {*}    $image       - Name of the Image - the SVG File must be in the Same directory
+// @param  {*}    $dimensions  - 'both' = height & width | 'width' = width | 'height' = height
+// @param  {List} $pos         - The Image Position - can be 'false'
 @mixin svgpng($image, $dimensions: both, $pos: false) {
 
   // Set the List target
@@ -106,14 +100,12 @@
   }
 }
 
-/**
- * Including Textures Images from the textures Directory as Background Image.
- *
- * @param  {*}     $image  - Name of the Image
- * @param  {*}     $repeat - How the Image would be repeated. 'x' = repeat-x | 'y' = repeat-y
- * @param  {List}  $pos    - The Image Position - can be 'false'
- * @param  {Bool}  $retina - With set on 'true' the retina fallback will be included
- */
+// Including Textures Images from the textures Directory as Background Image.
+//
+// @param  {*}     $image  - Name of the Image
+// @param  {*}     $repeat - How the Image would be repeated. 'x' = repeat-x | 'y' = repeat-y
+// @param  {List}  $pos    - The Image Position - can be 'false'
+// @param  {Bool}  $retina - With set on 'true' the retina fallback will be included
 @mixin texture($image, $repeat: d, $pos: false, $retina: false) {
 
   // Set the List target
@@ -150,14 +142,12 @@
   }
 }
 
-/**
- * Include a SVG Background Image - without a PNG Fallback Image
- *
- * @param  {*}     $image       - The Name of the SVG Image
- * @param  {List}  $dimensions  - The Dimensions of the Image Container - can be 100%
- * @param  {List}  $pos         - Native CSS Image Positions
- * @param  {Bool}  $repeat      - Image Repeat - native CSS Declaration
- */
+// Include a SVG Background Image - without a PNG Fallback Image
+//
+// @param  {*}     $image       - The Name of the SVG Image
+// @param  {List}  $dimensions  - The Dimensions of the Image Container - can be 100%
+// @param  {List}  $pos         - Native CSS Image Positions
+// @param  {Bool}  $repeat      - Image Repeat - native CSS Declaration
 @mixin svg($image, $dimensions: 100, $pos: false, $repeat: false) {
 
   // Initiate the Variables
@@ -194,11 +184,9 @@
   height: $height;
 }
 
-/**
- * Generate the Sprite Container - retina and nonRetina
- *
- * @param  {*}  $spritename - The Master Sprite name
- */
+// Generate the Sprite Container - retina and nonRetina
+//
+// @param  {*}  $spritename - The Master Sprite name
 @mixin sprite-generator($spritename: map-get($kittn-sprite, name)) {
   %sprite-container {
     $spriteEnding: '.png';
@@ -217,16 +205,14 @@
   }
 }
 
-/**
- * Include the targeted Sprite from a Spritemap
- *
- * @param  {*}       $name       - Name of the Sprite
- * @param  {Bool}    $retina     - With set on 'true' the retina fallback will be included
- * @param  {*}       $dimensions - 'both' = height & width | 'width' = width | 'height' = height
- * @param  {Number}  $offset-x   - Offset the Background Position on the x axis
- * @param  {Number}  $offset-y   - Offset the Background Position on the y axis
- * @param  {*}       $display    - The display mode
- */
+// Include the targeted Sprite from a Spritemap
+//
+// @param  {*}       $name       - Name of the Sprite
+// @param  {Bool}    $retina     - With set on 'true' the retina fallback will be included
+// @param  {*}       $dimensions - 'both' = height & width | 'width' = width | 'height' = height
+// @param  {Number}  $offset-x   - Offset the Background Position on the x axis
+// @param  {Number}  $offset-y   - Offset the Background Position on the y axis
+// @param  {*}       $display    - The display mode
 @mixin sprite($name, $retina: false, $dimensions: both, $offset-x: 0, $offset-y: 0, $display: inline) {
 
   @if map-has-key($map-sprites,$name) {

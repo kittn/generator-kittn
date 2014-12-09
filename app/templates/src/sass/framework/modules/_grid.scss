@@ -2,14 +2,12 @@
 // Grid
 // ===================================================
 
-/**
- * Calculate the Size in Percent
- *
- * @param  {Number}  $colums         - Colums
- * @param  {Number}  $maxColums (12) - Max Colums
- *
- * @returns {Number}                 - Percentage Value
- */
+// Calculate the Size in Percent
+//
+// @param  {Number}  $colums         - Colums
+// @param  {Number}  $maxColums (12) - Max Colums
+//
+// @returns {Number}                 - Percentage Value
 @function grid-size($colums, $maxColums: 12) {
   // Clean up
   $colums: strip-units($colums);
@@ -21,11 +19,9 @@
   @return percentage($colums / $maxColums);
 }
 
-/**
- * Setup the Grid Size in Steps based on the Breakpoints
- *
- * @access private
- */
+// Setup the Grid Size in Steps based on the Breakpoints
+//
+// @access private
 @mixin grid-adaptive() {
   $list: ();
 
@@ -56,23 +52,21 @@
 }
 
 
-/**
- * Generate the Page Container, Size and Float Direction
- *
- * @param  {Map}  $container - Setup Vars
- *                            :width [list]
- *                              => The Max and Min Width of the container.
- *                              => One Value only the Container is static
- *                            :pos [value]
- *                              => (values: center | left | right) The Position of the Container,
- *                              => default is centered container
- *                            :gutter [number]
- *                              => The Size of the Outer Gutter - only active with $pos left or right
- *                            :spacing [number]
- *                              => Side Padding of the Container
- *                            :static-ie [boolean]
- *                              => When is set on 'true' IE8 get a static Container
- */
+// Generate the Page Container, Size and Float Direction
+//
+// @param  {Map}  $container - Setup Vars
+//                            :width [list]
+//                              => The Max and Min Width of the container.
+//                              => One Value only the Container is static
+//                            :pos [value]
+//                              => (values: center | left | right) The Position of the Container,
+//                              => default is centered container
+//                            :gutter [number]
+//                              => The Size of the Outer Gutter - only active with $pos left or right
+//                            :spacing [number]
+//                              => Side Padding of the Container
+//                            :static-ie [boolean]
+//                              => When is set on 'true' IE8 get a static Container
 @mixin grid-container($container) {
 
   // Default Container Setup
@@ -164,23 +158,21 @@
   }
 }
 
-/**
- * Build the outer Container that hold the Grid-Columns
- *
- * @param  {Map}  $row - Setup Vars
- *                      :spacing [number]
- *                        => To reset the margin off a nested rows.
- *                        => Set it to the Colum Guttersize.
- *                      :layout [value]
- *                        => The type from the Layout
- *                        => values: inline | table | flex | block (default)
- *                      :valign [string]
- *                        => Vertical Align
- *                        => values: top (default), bottom, baseline, middle
- *                      :align [value]
- *                        => Horizontal align
- *                        => values: justify | center | right | left (default)
- */
+// Build the outer Container that hold the Grid-Columns
+//
+// @param  {Map}  $row - Setup Vars
+//                      :spacing [number]
+//                        => To reset the margin off a nested rows.
+//                        => Set it to the Colum Guttersize.
+//                      :layout [value]
+//                        => The type from the Layout
+//                        => values: inline | table | flex | block (default)
+//                      :valign [string]
+//                        => Vertical Align
+//                        => values: top (default), bottom, baseline, middle
+//                      :align [value]
+//                        => Horizontal align
+//                        => values: justify | center | right | left (default)
 @mixin grid-row($row) {
 
   // Default Row Setup
@@ -237,24 +229,22 @@
   }
 }
 
-/**
- * Build the Base Style for all Colums. Include the Mixin in your Colum Class
- *
- * @param  {Map}  $colums - Setup Vars
- *                         :spacing [number]
- *                           => The Sidespacing off every Colum
- *                         :layout [value]
- *                           => The type from the Layout
- *                           => values: inline | table | flex | block (default)
- *                         :extras [boolean]
- *                           => For include additional classes for the colums
- *                         :valign [string]
- *                           => Vertical Align
- *                           => values: top (default), bottom, baseline, middle
- *                         :align [value]
- *                           => Horizontal align
- *                           => values: justify | center | right | left (default)
- */
+// Build the Base Style for all Colums. Include the Mixin in your Colum Class
+//
+// @param  {Map}  $colums - Setup Vars
+//                         :spacing [number]
+//                           => The Sidespacing off every Colum
+//                         :layout [value]
+//                           => The type from the Layout
+//                           => values: inline | table | flex | block (default)
+//                         :extras [boolean]
+//                           => For include additional classes for the colums
+//                         :valign [string]
+//                           => Vertical Align
+//                           => values: top (default), bottom, baseline, middle
+//                         :align [value]
+//                           => Horizontal align
+//                           => values: justify | center | right | left (default)
 @mixin grid-colum($colums) {
 
   // Default Setup for Columns
@@ -365,17 +355,15 @@
   }
 }
 
-/**
- * Generate a Grid Colum Size
- *
- * @param  {Map}  $grid - Setup Vars
- *                       :size [number]
- *                         => The targeted Columsize
- *                       :max [number]
- *                         => The Max available columssizes. Default are 12 Colums per row
- *                       :flex [boolean]
- *                         => Flexbox Option - when active it uses only the $size
- */
+// Generate a Grid Colum Size
+//
+// @param  {Map}  $grid - Setup Vars
+//                       :size [number]
+//                         => The targeted Columsize
+//                       :max [number]
+//                         => The Max available columssizes. Default are 12 Colums per row
+//                       :flex [boolean]
+//                         => Flexbox Option - when active it uses only the $size
 @mixin grid-size($grid) {
 
   // Setup Default Vars
@@ -401,19 +389,17 @@
   }
 }
 
-/**
- * Generate a Pixel Based Grid Colums
- *
- * @param  {Map}  $grid - Setup Vars
- *                       :size [number]
- *                         => The targeted Columsize
- *                       :max [number]
- *                         => The Max available columssizes. Default are 12 Colums per row
- *                       :margin [number]
- *                         => Margin on the left and right side
- *                       :space [number]
- *                         => Max Width in Px from the outer Container
- */
+// Generate a Pixel Based Grid Colums
+//
+// @param  {Map}  $grid - Setup Vars
+//                       :size [number]
+//                         => The targeted Columsize
+//                       :max [number]
+//                         => The Max available columssizes. Default are 12 Colums per row
+//                       :margin [number]
+//                         => Margin on the left and right side
+//                       :space [number]
+//                         => Max Width in Px from the outer Container
 @mixin pixel-grid($grid) {
 
   // Default Setup
@@ -448,20 +434,18 @@
   }
 }
 
-/**
- * Generate all Colum Sizes, it can be also preselected
- *
- * @param  {map}  $generator - Setup Vars
- *                            :colums [number]
- *                              => Maximum Colums
- *                            :select [boolean|list]
- *                              => Include a List with the Sizes that you want.
- *                              => Duplicate will be removed
- *                            :name [boolean|string]
- *                              => Classname when the Mixin is not nested in a class.
- *                            :extend [boolean|string]
- *                              => Connect the generated classes with a other class.
- */
+// Generate all Colum Sizes, it can be also preselected
+//
+// @param  {map}  $generator - Setup Vars
+//                            :colums [number]
+//                              => Maximum Colums
+//                            :select [boolean|list]
+//                              => Include a List with the Sizes that you want.
+//                              => Duplicate will be removed
+//                            :name [boolean|string]
+//                              => Classname when the Mixin is not nested in a class.
+//                            :extend [boolean|string]
+//                              => Connect the generated classes with a other class.
 @mixin grid-generator($generator) {
 
   // Setup Default Vars
@@ -551,17 +535,15 @@
   }
 }
 
-/**
- * Scales down a used Grid
- *
- * @param  {map}  $devide - Setup Vars
- *                         :colums [number]
- *                           => Maximum Colums
- *                         :name [boolean|string]
- *                           => Classname when the Mixin is not nested in a class.
- *                         :devide [number]
- *                           => Devide the Grid and rearange the sizes
- */
+// Scales down a used Grid
+//
+// @param  {map}  $devide - Setup Vars
+//                         :colums [number]
+//                           => Maximum Colums
+//                         :name [boolean|string]
+//                           => Classname when the Mixin is not nested in a class.
+//                         :devide [number]
+//                           => Devide the Grid and rearange the sizes
 @mixin grid-devide($devide) {
 
   // Setup Default Vars
@@ -613,17 +595,15 @@
   }
 }
 
-/**
- * Generate the Offset Width for a Colum
- *
- * @param  {map}  $offset - Setup Vars
- *                         :size [number]
- *                           => The required colum size
- *                         :max [number]
- *                           => Max Colums
- *                         :direction [value]
- *                           => The Direction off the Offset (default: left)
- */
+// Generate the Offset Width for a Colum
+//
+// @param  {map}  $offset - Setup Vars
+//                         :size [number]
+//                           => The required colum size
+//                         :max [number]
+//                           => Max Colums
+//                         :direction [value]
+//                           => The Direction off the Offset (default: left)
 @mixin grid-offset($offset) {
 
   // Setup Default Vars
@@ -645,16 +625,14 @@
   }
 }
 
-/**
- * Generate a set off Offsets (left and right)
- *
- * @param  {map}  $offset - Setup Vars
- *                         :max [number]
- *                           => The Maximum Colums (default: 12)
- *                         :name [bool|string]
- *                           => You can include a classname (non nested mixin), default name is '.offset',
- *                           => Otherwise set it to 'false', the parent Classname will be used as base name
- */
+// Generate a set off Offsets (left and right)
+//
+// @param  {map}  $offset - Setup Vars
+//                         :max [number]
+//                           => The Maximum Colums (default: 12)
+//                         :name [bool|string]
+//                           => You can include a classname (non nested mixin), default name is '.offset',
+//                           => Otherwise set it to 'false', the parent Classname will be used as base name
 @mixin grid-offset-generator($offset) {
 
   // Setup Default Vars
@@ -701,21 +679,19 @@
   }
 }
 
-/**
- * Move a Colum with Position:Relative to left or right -
- * Elements can move out off the container or it change the order
- *
- * @param  {map}  $pushpull - Setup Vars
- *                           :size [number]
- *                             => The required colum size
- *                           :max [number]
- *                             => Max Colums
- *                           :direction [value]
- *                             => The Direction off the Offset (default: push)
- *                             => values: push | pull
- *                           :extend [bool]
- *                             => With 'true' the class will connected with a other class.
- */
+// Move a Colum with Position:Relative to left or right -
+// Elements can move out off the container or it change the order
+//
+// @param  {map}  $pushpull - Setup Vars
+//                           :size [number]
+//                             => The required colum size
+//                           :max [number]
+//                             => Max Colums
+//                           :direction [value]
+//                             => The Direction off the Offset (default: push)
+//                             => values: push | pull
+//                           :extend [bool]
+//                             => With 'true' the class will connected with a other class.
 @mixin grid-pushpull($pushpull) {
 
   // Setup Default Vars
@@ -747,18 +723,16 @@
   }
 }
 
-/**
- * Generate the Push&Pull Classes
- *
- * @param  {map}  $pushpull - Setup Vars
- *                           :max [number]
- *                             => The Maximum Colums (default: 12)
- *                           :name [bool|string]
- *                             => You can include a classname (non nested mixin), default name is '.move',
- *                             => Otherwise set it to 'false', the parent Classname will be used as base name
- *                           :extend [bool]
- *                             => With 'true' the class will connected with a other class.
- */
+// Generate the Push&Pull Classes
+//
+// @param  {map}  $pushpull - Setup Vars
+//                           :max [number]
+//                             => The Maximum Colums (default: 12)
+//                           :name [bool|string]
+//                             => You can include a classname (non nested mixin), default name is '.move',
+//                             => Otherwise set it to 'false', the parent Classname will be used as base name
+//                           :extend [bool]
+//                             => With 'true' the class will connected with a other class.
 @mixin grid-pushpull-generator($pushpull) {
 
   $pushpull: map-merge((
@@ -809,18 +783,16 @@
   }
 }
 
-/**
- * Normalize all Grid Classes
- *
- * @param  {map}  $normalize - Setup Vars
- *                            :name [string]
- *                              => Desired Name off the Selector that need to remodified
- *                            :option [value]
- *                              => The style Type
- *                              => values: blockgrid (default), inlinetable, offset, pushpull
- *                            :important [bool]
- *                              => Add an Important to the Attribute
- */
+// Normalize all Grid Classes
+//
+// @param  {map}  $normalize - Setup Vars
+//                            :name [string]
+//                              => Desired Name off the Selector that need to remodified
+//                            :option [value]
+//                              => The style Type
+//                              => values: blockgrid (default), inlinetable, offset, pushpull
+//                            :important [bool]
+//                              => Add an Important to the Attribute
 @mixin grid-normalizer($normalize) {
 
   // Setup Default Vars

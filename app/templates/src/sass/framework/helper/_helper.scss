@@ -2,13 +2,11 @@
 // Various Helper
 // ===================================================
 
-/**
- * Strip Units from Values
- *
- * @param  {Number}  $number - Value
- *
- * @returns {Number}       - Unitless Value
- */
+// Strip Units from Values
+//
+// @param  {Number}  $number - Value
+//
+// @returns {Number}       - Unitless Value
 @function strip-units($number) {
   // If the Value is not a Number Break the Function
   @if type-of($number) != 'number' {
@@ -27,13 +25,11 @@
   }
 }
 
-/**
- * Add the Default Unit on unitless Values
- *
- * @param  {Number}  $value - Value
- *
- * @returns {Number}
- */
+// Add the Default Unit on unitless Values
+//
+// @param  {Number}  $value - Value
+//
+// @returns {Number}
 @function unit-check($value) {
   @if unitless($value) {
     @if $kittn-default-unit == rem {
@@ -48,12 +44,10 @@
   }
 }
 
-/**
- * Shorthand for the CSS3 Calc function
- *
- * @param  {*}  $property   - Property that calculated
- * @param  {*}  $expression - Formula
- */
+// Shorthand for the CSS3 Calc function
+//
+// @param  {*}  $property   - Property that calculated
+// @param  {*}  $expression - Formula
 @mixin calc($property, $expression) {
   #{$property}: -moz-calc(#{$expression});
   #{$property}: -o-calc(#{$expression});
@@ -61,25 +55,21 @@
   #{$property}: calc(#{$expression});
 }
 
-/**
- * Clamp a Number between a min and max values,
- * Perfect for percentage
- *
- * @param  {Number}  $value - The Value that need to be clamped
- * @param  {Number}  $min   - The posible minimal value
- * @param  {Number}  $max   - The possible max Value
- *
- * @returns {Number}        - Clamped Value
- */
+// Clamp a Number between a min and max values,
+// Perfect for percentage
+//
+// @param  {Number}  $value - The Value that need to be clamped
+// @param  {Number}  $min   - The posible minimal value
+// @param  {Number}  $max   - The possible max Value
+//
+// @returns {Number}        - Clamped Value
 @function clamp($value, $min, $max) {
   @return if($value > $max, $max, if($value < $min, $min, $value));
 }
 
-/**
- * Save some Styling Attributes in a temporarly cache
- *
- * @param {String} $name - Name off the Cache
- */
+// Save some Styling Attributes in a temporarly cache
+//
+// @param {String} $name - Name off the Cache
 @mixin loadin($name) {
   @at-root {
     %#{$name} {
@@ -88,25 +78,21 @@
   }
 }
 
-/**
- * Load out the Styling Attributes from the temporarly cache
- *
- * @param {String} $name - Name of the cache
- */
+// Load out the Styling Attributes from the temporarly cache
+//
+// @param {String} $name - Name of the cache
 @mixin loadout($name) {
   @extend %#{$name};
 }
 
-/**
- * Pick the Color Values from the Color Map
- *
- * @param  {*}  $target - Desired color
- * @param  {*}  $map    - Color Map
- *
- * @returns {Color}
- *
- * @throws Color is not included in the map
- */
+// Pick the Color Values from the Color Map
+//
+// @param  {*}  $target - Desired color
+// @param  {*}  $map    - Color Map
+//
+// @returns {Color}
+//
+// @throws Color is not included in the map
 @function cp($target, $map: $kittn-color-map) {
   @if map-has-key($map,$target) {
     @return map-get(map-get($map,$target),color);
@@ -121,41 +107,35 @@
   }
 }
 
-/**
- * Tint up the Color - normally mix with white
- *
- * @param  {Color}   $color             - The Color value
- * @param  {Number}  $amount            - The Mix Value
- * @param  {color}   $tint-color (#fff) - Color for Tint
- *
- * @returns {Color}
- */
+// Tint up the Color - normally mix with white
+//
+// @param  {Color}   $color             - The Color value
+// @param  {Number}  $amount            - The Mix Value
+// @param  {color}   $tint-color (#fff) - Color for Tint
+//
+// @returns {Color}
 @function tint($color, $amount, $tint-color: #fff) {
   @return mix($tint-color, $color, clamp(strip-units($amount), 0, 100));
 }
 
-/**
- * Shade down the Color - normally mix with black
- *
- * @param  {Color}  $color              - The Color value
- * @param  {Number} $amount             - The Mix Value
- * @param  {Color}  $shade-color (#000) - Color for Tint
- *
- * @returns {Color}
- */
+// Shade down the Color - normally mix with black
+//
+// @param  {Color}  $color              - The Color value
+// @param  {Number} $amount             - The Mix Value
+// @param  {Color}  $shade-color (#000) - Color for Tint
+//
+// @returns {Color}
 @function shade($color, $amount, $shade-color: #000) {
   @return mix($shade-color, $color, clamp(strip-units($amount), 0, 100));
 }
 
-/**
- * Multiply the Spacing Value to generate Spacings
- *
- * @param  {Number}  $lines - Multiplicator for Spacing
- * @param  {Bool}    $hard (false) - For including an !important
- * @param  {Number}  $size ($kittn-global-spacing) - Connection to the Base Spacing
- *
- * @returns {Value}
- */
+// Multiply the Spacing Value to generate Spacings
+//
+// @param  {Number}  $lines - Multiplicator for Spacing
+// @param  {Bool}    $hard (false) - For including an !important
+// @param  {Number}  $size ($kittn-global-spacing) - Connection to the Base Spacing
+//
+// @returns {Value}
 @function spacer($lines, $hard: false, $size: $kittn-global-spacing) {
   @if is-number($lines) {
     $u: unit-check(0);
@@ -165,17 +145,15 @@
   }
 }
 
-/**
- * Multiply the Spacing Value to generate Spacings
- * Calculates Spacings in a other Way - needed for map values
- *
- * @param  {Number}  $lines - Multiplicator for Spacing
- * @param  {Bool}    $imp (false) - For including an !important
- * @param  {*}       $u (false) - Unit
- * @param  {Number}  $size ($kittn-global-spacing) - Connection to the Base Spacing
- *
- * @returns {Value}
- */
+// Multiply the Spacing Value to generate Spacings
+// Calculates Spacings in a other Way - needed for map values
+//
+// @param  {Number}  $lines - Multiplicator for Spacing
+// @param  {Bool}    $imp (false) - For including an !important
+// @param  {*}       $u (false) - Unit
+// @param  {Number}  $size ($kittn-global-spacing) - Connection to the Base Spacing
+//
+// @returns {Value}
 @function s($lines, $imp: false, $u: false, $size: $kittn-global-spacing) {
   @if type-of($lines) == 'number' {
 
