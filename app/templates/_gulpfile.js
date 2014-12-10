@@ -2,10 +2,7 @@
 // ========
 
 // Load Pathes
-var sassSrc = [
-  'src/sass/**/*.scss',
-  'src/sass/**/*.sass'
-];
+var sassSrc = 'src/sass/';
 
 // Setup what for JS Files you want to only copy it into dist/,
 // and what for js files need to combined into scripts.js.
