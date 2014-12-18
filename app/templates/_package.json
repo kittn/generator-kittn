@@ -57,7 +57,8 @@
     "grunt-newer": "0.7.0",
     "grunt-combine-media-queries": "1.0.19",
     "grunt-contrib-cssmin": "^0.10.0",
-    "run-sequence": "^0.3.6"
+    "run-sequence": "^0.3.6",
+    "sassdown": "^0.2.7"
   },
   "licenses": [
     {

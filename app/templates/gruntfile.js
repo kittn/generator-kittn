@@ -15,6 +15,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-svg-to-png');
   grunt.loadNpmTasks('grunt-responsive-images');
   // grunt.loadNpmTasks('grunt-sassdoc');
+  grunt.loadNpmTasks('sassdown');
   grunt.loadNpmTasks('grunt-combine-media-queries');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
@@ -329,10 +330,29 @@ module.exports = function (grunt) {
         'src/sass/**/*.scss'
       ],
     },
+    sassdown: {
+      options: {
+        assets: [
+          '<%= pkg.directory.css %><%= pkg.cssFileName%>.css'
+        ],
+        baseUrl: 'docs/theme/',
+        highlight: 'solarized-light',
+        readme: 'readme.md',
+        excludeMissing: false,
+        theme: 'src/stash/.system/styleguide/theme.css',
+        template: 'src/stash/.system/styleguide/template.hbs'
+      },
+      files: {
+        expand: true,
+        cwd: 'src/sass',
+        src: '_workfile.scss',
+        dest: 'docs'
+      }
+    },
     sassdoc: {
       default: {
-        src: 'src/sass',
-        dest: 'docs',
+        src: 'src/sass/framework',
+        dest: 'docs/function',
         options: {
           display: {
             access: ['public', 'private'],

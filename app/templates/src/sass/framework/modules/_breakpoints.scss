@@ -2,12 +2,12 @@
 // Breakpoint Helper
 // ===================================================
 
-// Pick the Values from the Breakpoint Map
-//
-// @param   {*}   $target - The required Breakpoint
-// @param   {Map} $entrys ($kittn-breakpoint-map) - Connection to the Breakpoint Map
-//
-// @returns {Number}
+/// Pick the Values from the Breakpoint Map
+///
+/// @param   {*}   $target - The required Breakpoint
+/// @param   {Map} $entrys ($kittn-breakpoint-map) - Connection to the Breakpoint Map
+///
+/// @returns {Number}
 @function bp($target, $entrys: $kittn-breakpoint-map) {
 
   // Remove Units from Target
@@ -21,11 +21,11 @@
   }
 }
 
-// [$mode description]
-//
-// @param  {*}  $target - The required Breakpoint
-// @param  {*}  $mode - The Media Querie Mode. Values: 'between', 'max', 'min' ,'auto' (default - setup with mobile-first:true/false)
-// @param  {Map} $list ($kittn-breakpoint-map) - Connection to the Breakpoint Map
+/// [$mode description]
+///
+/// @param  {*}  $target - The required Breakpoint
+/// @param  {*}  $mode - The Media Querie Mode. Values: 'between', 'max', 'min' ,'auto' (default - setup with mobile-first:true/false)
+/// @param  {Map} $list ($kittn-breakpoint-map) - Connection to the Breakpoint Map
 @mixin break($target, $mode: auto, $list: $kittn-breakpoint-map) {
 
   @if $mode == between {
@@ -97,28 +97,28 @@
   }
 }
 
-// Mixin for using Element Queries
-//
-// @link https://github.com/snugug/eq.js
-//
-// @param {List} $states - The Different Querie Types
-//
-// @example
-//   .test {
-//     @include eq('small', 'medium', 'large') {
-//       color: red;
-//     }
-//     @include eq('small') {
-//       p {
-//         @include fontcalc(300);
-//       }
-//     }
-//   }
-//
-//   <!-- The HTML -->
-//   <div data-eq-pts="small: 480, medium: 700, large: 800" class="test">
-//     <p>Test Block</p>
-//   </div>
+/// Mixin for using Element Queries
+///
+/// @link https://github.com/snugug/eq.js
+///
+/// @param {List} $states - The Different Querie Types
+///
+/// @example
+///   .test {
+///     @include eq('small', 'medium', 'large') {
+///       color: red;
+///     }
+///     @include eq('small') {
+///       p {
+///         @include fontcalc(300);
+///       }
+///     }
+///   }
+///
+///   <!-- The HTML -->
+///   <div data-eq-pts="small: 480, medium: 700, large: 800" class="test">
+///     <p>Test Block</p>
+///   </div>
 @mixin eq($states...) {
   @if (length($states) == 0) {
     @warn 'You need to include a state!';
@@ -138,9 +138,9 @@
   }
 }
 
-// Generate Visibility Classes
-//
-// @access private
+/// Generate Visibility Classes
+///
+/// @access private
 @mixin visibility {
   @each $name, $entry in $kittn-breakpoint-map {
     @if map-get($entry,visibility) == true {

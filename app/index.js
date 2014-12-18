@@ -120,6 +120,9 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.mkdir('src/jade/templatepart');
     this.directory('src/', 'src/');
     this.copy('_style.scss', 'src/sass/'+this.projectcssfilename+'.scss');
+    if (this.projectiecompatible == 'y') {
+      this.copy('_style-ie8.scss', 'src/sass/'+this.projectcssfilename+'-ie8.scss');
+    }
     this.copy('_default-page-header.jade', 'src/jade/templatepart/_default-page-header.jade');
     this.copy('_default-page-scripts.jade', 'src/jade/templatepart/_default-page-scripts.jade');
     this.copy('_package.json', 'package.json');

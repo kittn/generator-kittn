@@ -2,13 +2,13 @@
 // Button Helper
 // ===================================================
 
-// Generate a single Button
-//
-// @access private
-//
-// @requires $kittn-button
-//
-// @param {Map} $button - A part from the Button Map
+/// Generate a single Button
+///
+/// @access private
+///
+/// @requires $kittn-button
+///
+/// @param {Map} $button - A part from the Button Map
 @mixin button($button) {
 
   // Internal Maps
@@ -206,9 +206,9 @@
   }
 }
 
-// Generate all Buttons from the Button Map
-//
-// @param {Map} $map ($kittn-button) - Connection through the Button Map
+/// Generate all Buttons from the Button Map
+///
+/// @param {Map} $map ($kittn-button) - Connection through the Button Map
 @mixin button-generator($map: $kittn-button) {
   // Set the Prefix
   $prefix: '';
@@ -227,10 +227,10 @@
   }
 }
 
-// Extend Classes with the generated Buttons
-//
-// @param {*} $name - Button to be extended
-// @param {Map} $map ($kittn-button) - Connection through the map
+/// Extend Classes with the generated Buttons
+///
+/// @param {*} $name - Button to be extended
+/// @param {Map} $map ($kittn-button) - Connection through the map
 @mixin ext-button($name, $map: $kittn-button) {
 
   @if map-has-key($map, $name) {
