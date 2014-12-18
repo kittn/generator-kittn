@@ -429,8 +429,11 @@ module.exports = function (grunt) {
     'modernizr'
   ]);
 
-  grunt.registerTask('responsive-images',[
+  grunt.registerTask('res-img',[
     'newer:responsive_images:dev'
   ]);
 
+  grunt.registerTask('docs', [
+    'sassdown'
+  ])
 };
