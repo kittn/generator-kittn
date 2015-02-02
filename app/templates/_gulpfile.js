@@ -109,12 +109,12 @@ var path        = require('path'),
 // Ruby SASS
 gulp.task('rubysass', function () {
   return rubysass(sassSrc, { sourcemap: true })
-  .pipe(plumber())
+  .on("error", notify.onError("Sass Compile Error!"))
+  .on('error', function (err) { console.log(err.message); })
   .pipe(prefix({
       browsers: ["last 2 version", "> 1%", "ie 9", "chrome 30", "firefox 24"],
       cascade: false
   }))
-  .on("error", notify.onError("Sass Compile Error!"))
   .pipe(sourcemaps.write('.'))
   .pipe(gulp.dest(targetDirCSS));
 });
