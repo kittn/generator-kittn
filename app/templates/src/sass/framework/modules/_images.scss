@@ -145,31 +145,54 @@
 /// Include a SVG Background Image - without a PNG Fallback Image
 ///
 /// @param  {*}     $image       - The Name of the SVG Image
+/// @param  {list}  $ratio       - Image Ratio from the SVG - default: false
 /// @param  {List}  $dimensions  - The Dimensions of the Image Container - can be 100%
 /// @param  {List}  $pos         - Native CSS Image Positions
 /// @param  {Bool}  $repeat      - Image Repeat - native CSS Declaration
-@mixin svg($image, $dimensions: 100, $pos: false, $repeat: false) {
+@mixin svg($image, $ratio: false, $dimensions: 100, $pos: false, $repeat: false) {
 
   // Initiate the Variables
   $height: null !default;
   $width: null !default;
+  $rat1: null;
+  $rat2: null;
   $svgending: '.svg';
   $mainImage: #{map-get($kittn-directorys, svgonly)}#{($image)}#{$svgending};
 
-  // Generate the Image Dimension Variables
-  @if length($dimensions) > 1 {
+  @if $ratio == false {
+    // Generate the Image Dimension Variables
+    @if length($dimensions) > 1 {
 
-    $height: nth($dimensions,2);
-    @if unitless($height) { $height: $height + 0%; }
+      $height: nth($dimensions,2);
+      @if unitless($height) { $height: $height + 0%; }
 
-    $width: nth($dimensions,1);
-    @if unitless($width) { $width: $width + 0%; }
-  }
+      $width: nth($dimensions,1);
+      @if unitless($width) { $width: $width + 0%; }
+    }
 
-  @else {
-    @if unitless($dimensions) { $dimensions: $dimensions + 0%; }
-    $height: $dimensions;
-    $width: $dimensions;
+    @else {
+      @if unitless($dimensions) { $dimensions: $dimensions + 0%; }
+      $height: $dimensions;
+      $width: $dimensions;
+    }
+
+    background-size: $width $height;
+    width: $width;
+    height: $height;
+  } @else {
+
+    @if length($ratio) == 2 {
+      $rat1: strip-units(nth($ratio,1));
+      $rat2: strip-units(nth($ratio,2));
+
+    } @else {
+      $rat1: strip-units($ratio);
+      $rat2: strip-units($ratio);
+    }
+
+    padding-top: ($rat2 / $rat1) * 100%;
+    background-size: contain;
+    height: 0;
   }
 
   // Include the Image and set the Repeat and Position (last only when is needed)
@@ -177,11 +200,6 @@
   @if $pos != false { background-position: $pos; }
   @if $repeat == false { background-repeat: no-repeat; }
   @else { background-repeat: $repeat; }
-
-  // Write the Dimensions
-  background-size: $width $height;
-  width: $width;
-  height: $height;
 }
 
 /// Generate the Sprite Container - retina and nonRetina
