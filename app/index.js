@@ -93,6 +93,11 @@ var KittnGenerator = yeoman.generators.Base.extend({
         default: 'n'
       },{
         type: 'confirm',
+        name: 'projectjquery',
+        message: 'Include Old (1.9.3 => n) or New (2.1.4 => y) jQuery Version?',
+        default: 'y'
+      },{
+        type: 'confirm',
         name: 'projectjade',
         message: 'Do you want to use Jade as HTML Compiler?',
         default: 'y'
@@ -110,6 +115,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
       this.projectrepo = props.projectrepo;
       this.projectcssfilename = props.projectcssfilename;
       this.projectiecompatible = props.projectiecompatible;
+      this.projectjquery = props.projectjquery;
       this.projectjade = props.projectjade;
       done();
     }.bind(this));

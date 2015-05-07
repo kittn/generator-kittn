@@ -7,14 +7,29 @@ var sassSrc = 'src/sass/';
 // Setup what for JS Files you want to only copy it into dist/,
 // and what for js files need to combined into scripts.js.
 var sources = {
-  copyjs: [
-    {src:'src/stash/bower/conditionizr/dist/conditionizr.js'},<% if (projectiecompatible == true ) { %>
+  copyjs: [<% if (projectiecompatible == true ) { %>
     {src:'src/stash/bower/selectivizr/selectivizr.js'},<% } %>
     {src:'src/stash/bower/media-match/media.match.js'},
     {src:'src/stash/bower/eq.js/build/eq.js'}
   ],
   combinejs: [
     'src/stash/bower/jquery/jquery.js'
+  ],
+  conditionizr: [
+    'src/stash/bower/conditionizr/dist/conditionizr.js',
+    // Than the Tests -
+    // You can activate or deactivate if you want
+    'src/stash/bower/conditionizr/detects/chrome.js',
+    'src/stash/bower/conditionizr/detects/safari.js',
+    'src/stash/bower/conditionizr/detects/firefox.js',
+    'src/stash/bower/conditionizr/detects/ie11.js',
+    'src/stash/bower/conditionizr/detects/ie10.js',
+    'src/stash/bower/conditionizr/detects/ie9.js',
+    // 'src/stash/bower/conditionizr/detects/ie8.js',
+    // 'src/stash/bower/conditionizr/detects/mac.js',
+    // 'src/stash/bower/conditionizr/detects/windows.js',
+    // 'src/stash/bower/conditionizr/detects/linux.js',
+    // 'src/stash/bower/conditionizr/detects/localhost.js'
   ]
 };
 
@@ -308,7 +323,14 @@ gulp.task('compress-js', function() {
     .pipe(header(banner, { pkg : pkg } ))
     .pipe(gulp.dest(targetDirJS));
 });
-
+/**
+ * Task for Combine and Generate Conditionizr Test File
+ */
+gulp.task('conditionizr-tests', function() {
+  gulp.src(sources.conditionizr)
+    .pipe(concat('conditionizr.js'))
+    .pipe(gulp.dest(targetDirJS));
+});
 // ---- Version Bumper ---------------
 
 // Update bower, component, npm at once:
@@ -349,14 +371,16 @@ gulp.task('init', [
     cssCompiler,
     'jade',
     'build-js',
-    'combine-js'
+    'combine-js',
+    'conditionizr-tests'
     ]);
 
 gulp.task('rebuild-js', [
     'grunt-modernizr-build',
     'move-js',
     'build-js',
-    'combine-js'
+    'combine-js',
+    'conditionizr-tests'
   ]);
 
 // Default Task - start the Watch Tasks for SASS,
