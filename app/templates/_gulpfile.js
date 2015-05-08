@@ -12,8 +12,9 @@ var sources = {
     {src:'src/stash/bower/media-match/media.match.js'},
     {src:'src/stash/bower/eq.js/build/eq.js'}
   ],
-  combinejs: [
-    'src/stash/bower/jquery/jquery.js'
+  combinejs: [<% if (projectjquery == true ) { %>
+    'src/stash/bower/jquery/dist/jquery.js',<% } else { %>
+    'src/stash/bower/jquery/jquery.js'<% } %>
   ],
   conditionizr: [
     'src/stash/bower/conditionizr/dist/conditionizr.js',
