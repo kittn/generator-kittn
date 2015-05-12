@@ -14,7 +14,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-svgmin');
   grunt.loadNpmTasks('grunt-svg-to-png');
   grunt.loadNpmTasks('grunt-responsive-images');
-  // grunt.loadNpmTasks('grunt-sassdoc');
   grunt.loadNpmTasks('sassdown');
   grunt.loadNpmTasks('grunt-combine-media-queries');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -102,44 +101,34 @@ module.exports = function (grunt) {
       nonRetinaSass: {
         // OPTIONAL: Specify algorithm (top-down, left-right, diagonal [\ format],
         // alt-diagonal [/ format], binary-tree [best packing])
-        // Visual representations can be found below
         algorithm: 'binary-tree',
-        // OPTIONAL: Specify padding between images
         padding: 2,
-        // OPTIONAL: Specify engine (auto, phantomjs, canvas, gm, pngsmith)
-        engine: 'pngsmith',
+        engine: 'pixelsmith',
         cssTemplate: 'src/stash/.system/scss-sprite.template.mustache',
         cssFormat: 'stylus',
         'cssVarMap': function (sprite) {
           sprite.name = '' + sprite.name;
         },
         src: '<%= pkg.directory.cssimg %>sprite/**/*.png',
-        imgPath: 'sprite.png',
-        destImg: '<%= pkg.directory.cssimg %>sprite.png',
-        destCSS: 'src/sass/maps/_sprite.scss',
-        // OPTIONAL: Specify css options
+        dest: '<%= pkg.directory.cssimg %>sprite.png',
+        destCss: 'src/sass/maps/_sprite.scss',
         'cssOpts': {
-          // Some templates allow for skipping of function declarations
           'functions': false
         }
       },
       retinaSass: {
         algorithm: 'binary-tree',
         padding: 2,
-        // OPTIONAL: Specify engine (auto, phantomjs, canvas, gm, pngsmith)
-        engine: 'pngsmith',
+        engine: 'pixelsmith',
         cssTemplate: 'src/stash/.system/scss-retinaSprite.template.mustache',
         cssFormat: 'stylus',
         'cssVarMap': function (sprite) {
           sprite.name = '' + sprite.name;
         },
         src: '<%= pkg.directory.cssimg %>sprite_2x/**/*.png',
-        imgPath: 'sprite@2x.png',
-        destImg: '<%= pkg.directory.cssimg %>sprite@2x.png',
-        destCSS: 'src/sass/maps/_sprite-retina.scss',
-        // OPTIONAL: Specify css options
+        dest: '<%= pkg.directory.cssimg %>sprite@2x.png',
+        destCss: 'src/sass/maps/_sprite-retina.scss',
         'cssOpts': {
-          // Some templates allow for skipping of function declarations
           'functions': false
         }
       }

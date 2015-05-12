@@ -5,6 +5,14 @@
 /// Build a BEM Element
 ///
 /// @param  {string}  $name - The selector name
+@mixin e($name) {
+  @at-root {
+    &#{map-get($kittn-bem, element)}#{$name} {
+      @content;
+    }
+  }
+}
+
 @mixin element($name) {
   @at-root {
     &#{map-get($kittn-bem, element)}#{$name} {
@@ -13,10 +21,27 @@
   }
 }
 
-/// Build a BEM Modifier, with extend functionality
+/// Build a BEM Modifier
+/// with extend functionality
 ///
 /// @param  {*}      $name           - The selector name
 /// @param  {bool}   $extend (false) - If the Modifier need to be extended with parent
+@mixin m($name, $extend: false) {
+  // Internal Extend Var
+  $e: &;
+
+  @at-root {
+    &#{map-get($kittn-bem, modifier)}#{$name} {
+      // Extend with the Parent Element
+      @if $extend != false {
+        @extend #{$e};
+      }
+      @content;
+    }
+  }
+}
+
+
 @mixin modifier($name, $extend: false) {
   // Internal Extend Var
   $e: &;
@@ -27,7 +52,6 @@
       @if $extend != false {
         @extend #{$e};
       }
-
       @content;
     }
   }
