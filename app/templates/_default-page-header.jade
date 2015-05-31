@@ -4,13 +4,13 @@ head
   meta(name='viewport', content='width=device-width,initial-scale=1')
   meta(http-equiv='X-UA-Compatible', content='IE=edge')<% if ( projectiecompatible == true ) { %>
   <!--[if lte IE 8]>
-  link(rel='stylesheet', href='assets/css/<%= projectcssfilename %>-ie8.css')
+  link(rel='stylesheet', href='#{assetsCss}<%= projectcssfilename %>-ie8.css')
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  link(rel='stylesheet', href='assets/css/<%= projectcssfilename %>.css')
+  link(rel='stylesheet', href='#{assetsCss}<%= projectcssfilename %>.css')
   <!--<![endif]--><% } else { %>
-  link(rel='stylesheet', href='assets/css/<%= projectcssfilename %>.css')
+  link(rel='stylesheet', href='#{assetsCss}<%= projectcssfilename %>.css')
   <% } %>
-  link(rel='shortcut icon', href='assets/img/system/favicon.png')
-  link(rel='icon', href='assets/img/system/favicon.png')
-  script(src='assets/js/modernizr.js')
+  link(rel='shortcut icon', href='#{assetsCssImg}system/favicon.png')
+  link(rel='icon', href='#{assetsCssImg}system/favicon.png')
+  script(src='#{assetsJs}modernizr.js')

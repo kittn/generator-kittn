@@ -1,6 +1,7 @@
+.DS_Store
 *.sassc
 .sass-cache
+*.css.map
 node_modules
 src/stash/bower
-.DS_Store
 /icon.png

@@ -6,9 +6,6 @@
     "jquery": "2.1.4",<% } %>
     "modernizr": "2.8.3",
     "selectivizr-new": "1.0.3",
-    "conditionizr": "4.4.0",
-    "enquire": "~2.1.1",
-    "media-match": "~2.0.2",
-    "eq.js": "~1.4.1"
+    "conditionizr": "4.4.0"
   }
 }

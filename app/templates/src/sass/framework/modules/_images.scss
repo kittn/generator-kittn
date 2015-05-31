@@ -2,279 +2,249 @@
 // Image Helper
 // ===================================================
 
-/// Write the dimension off a Image in the CSS
-///
-/// @access private
-///
-/// @param  {*}  $width   - The Width of the Image
-/// @param  {*}  $height  - The Height of the Image
-/// @param  {*}  $option  - both = height & width | width = width | height = height
-@mixin _getImageDimensions($width, $height, $option) {
-  @if $option == both {
-    width: $width;
-    height: $height; }
-  @else if $option == height {
-    height: $height; }
-  @else if $option == width {
-    width: $width; }
-}
+// _images Internal Mixin for include Images
+//
+// @param   {string} $name            Image Name
+// @param   {string} $filetype        Filetype
+// @param   {string} $dir             File Directory
+// @param   {bool|string} $repeat     Background Repeat
+// @param   {bool|string} $offset     Background Position
+// @param   {number} $scale           Image Scale
+// @param   {bool|string} $dimensions Use Image Dimensions
+@mixin _images($name, $filetype, $dir, $repeat, $offset, $scale, $dimensions ) {
+  // Default Vars
+  $sh: null;
+  $sw: null;
 
-/// Including Single Images from the Single Directory as Background Image.
-///
-/// @param  {*}    $image       - Name of the Image
-/// @param  {*}    $dimensions  - 'both' = height & width | 'width' = width | 'height' = height
-/// @param  {*}    $pos         - The Image Position - can be 'false'
-/// @param  {Bool} $retina      - With set on 'true' the retina fallback will be included
-@mixin image($image, $dimensions: both, $pos: false, $retina: false) {
-
-  // Set the List target
-  $imageTarget: single-#{$image};
-
-  @if map-has-key($map-images,$imageTarget) {
-    $imgFile   : map-get(map-get($map-images,$imageTarget),file);
-    $imgWidth  : map-get(map-get($map-images,$imageTarget),width);
-    $imgHeight : map-get(map-get($map-images,$imageTarget),height);
-    $imgName   : map-get(map-get($map-images,$imageTarget),name);
-    $imgExt    : map-get(map-get($map-images,$imageTarget),extension);
-
-    // Include the Image and set the Repeat and Position (last only when is needed)
-    background-image: url('#{map-get($kittn-directorys, single)}#{$imgFile}');
+  // Repeat if needed
+  @if $repeat {
+    background-repeat: $repeat;
+  } @else {
     background-repeat: no-repeat;
-    @if $pos != false { background-position: $pos; }
+  }
 
-    // Overwrite the Dimensions off the Container with the Dimensions off the Image
-    @include _getImageDimensions($imgWidth, $imgHeight, $dimensions);
+  // Offset set the Background-Position
+  @if $offset {
+    background-position: $offset;
+  }
 
-    // Write a Retina Fallback in the CSS file - Backgroundsize oriented to the the Size off the non retina Image
-    @if $retina != false {
-      $imageRetinaTarget: single-#{$image}-2x;
-      $secondaryImage: #{map-get($kittn-directorys, single)}#{$imgName}-2x#{$imgExt};
-
-      // Best use Case is to use Conditionizr and use .retina Classes
-      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        background-image: url('#{map-get($kittn-directorys, single)}#{$imgName}-2x#{$imgExt}');
-        background-size: $imgWidth $imgHeight;
-
-      }
-    }
+  // Scale Values from the List
+  @if length($scale) > 1 {
+    $sw : nth($scale,1);
+    $sh : nth($scale,2);
   } @else {
-    @debug 'The Image "#{$image}" is not available in your Image Map! Please add the Image.';
+    $sw : $scale;
+    $sh : $scale;
+  }
+
+  // Transfer the Image Dimension to the Container
+  @if $dimensions == both {
+    width: width('#{$dir}#{$name}.#{$filetype}', (1 / $sw));
+    height: height('#{$dir}#{$name}.#{$filetype}', (1 / $sh));
+
+  } @else if $dimensions == height {
+    height: height('#{$dir}#{$name}.#{$filetype}', (1 / $sh));
+
+  } @else if $dimensions == width {
+    width: width('#{$dir}#{$name}.#{$filetype}', (1 / $sw));
+  }
+
+  // When the Image is Resized add a new Background Size
+  @if $sw != 1 or $sh != 1 {
+    background-size: width('#{$dir}#{$name}.#{$filetype}', (1 / $sw)) height('#{$dir}#{$name}.#{$filetype}', (1 / $sh));
   }
 }
 
-/// Include the SVG Background Image with a PNG Fallback.
-///
-/// @param  {*}    $image       - Name of the Image - the SVG File must be in the Same directory
-/// @param  {*}    $dimensions  - 'both' = height & width | 'width' = width | 'height' = height
-/// @param  {List} $pos         - The Image Position - can be 'false'
-@mixin svgpng($image, $dimensions: both, $pos: false) {
+// Sprite Mixin (internal)
+// ========
+// Get the Data from the Map File
+//
+// @param   {string} $name    Name from the Sprite Image in the Map
+// @param   {bool}   $dim:    true          Include the Sprite Dimensions
+// @param   {number} $scale: false         scale factor
+// @param   {string} $repeat: false         Background Repeat when needed
+// @param   {list}   $sub:    0             Substract Container Dimension
+@mixin _sprite($mapfile, $basefile, $dim, $scale, $repeat, $sub) {
+  $sh: null;
+  $sw: null;
 
-  // Set the List target
-  $imageTarget: svg-#{$image};
 
-  @if map-has-key($map-images,$imageTarget) {
-    $imgFile   : map-get(map-get($map-images,$imageTarget),file);
-    $imgWidth  : map-get(map-get($map-images,$imageTarget),width );
-    $imgHeight : map-get(map-get($map-images,$imageTarget),height);
-    $imgName   : map-get(map-get($map-images,$imageTarget),name);
-    $imgExt    : map-get(map-get($map-images,$imageTarget),extension);
-
-    // Include the Image and set the Repeat and Position (last only when is needed)
-    background-image: url('#{map-get($kittn-directorys, svg)}#{$imgFile}');
-    background-repeat: no-repeat;
-
-    @if $pos != false { background-position: $pos; }
-
-    // Overwrite the Dimensions off the Container with the Dimensions off the Image
-    @include _getImageDimensions($imgWidth, $imgHeight, $dimensions);
-
-    // Load the SVG Image and paste it in the Container (png would be overwritten)
-    // The Size is oriented on the PNG Fallback Image
-    .svg & {
-      $ext: '.svg';
-      background-image: url('#{map-get($kittn-directorys, svg)}#{$imgName}#{$ext}');
-      background-size: $imgWidth $imgHeight;
-    }
+  // Scale Values from the List
+  @if length($sub) > 1 {
+    $sw : nth($sub,1);
+    $sh : nth($sub,2);
   } @else {
-    @debug 'The Image "#{$image}" is not available in your Image Map! Please add the Image.';
+    $sw : $sub;
+    $sh : $sub;
   }
-}
+  // Include the Repeat Rule when needed
+  @if $repeat {
+    background-repeat: $repeat;
+  }
 
-/// Including Textures Images from the textures Directory as Background Image.
-///
-/// @param  {*}     $image  - Name of the Image
-/// @param  {*}     $repeat - How the Image would be repeated. 'x' = repeat-x | 'y' = repeat-y
-/// @param  {List}  $pos    - The Image Position - can be 'false'
-/// @param  {Bool}  $retina - With set on 'true' the retina fallback will be included
-@mixin texture($image, $repeat: d, $pos: false, $retina: false) {
+  // When scale is not active the Mixin use the Value from the Map
+  @if $scale == false {
+    background-position: (map-get($mapfile,posX) - ($sw / 2)) (map-get($mapfile,posY) - ($sh / 2));
 
-  // Set the List target
-  $imageTarget: textures-#{$image};
-
-  @if map-has-key($map-images,$imageTarget) {
-    $imgFile   : map-get(map-get($map-images,$imageTarget),file);
-    $imgWidth  : map-get(map-get($map-images,$imageTarget),width);
-    $imgHeight : map-get(map-get($map-images,$imageTarget),height);
-    $imgName   : map-get(map-get($map-images,$imageTarget),name);
-    $imgExt    : map-get(map-get($map-images,$imageTarget),extension);
-
-    // Include the Image and set the Position
-    background-image: url('#{map-get($kittn-directorys, texture)}#{$imgFile}');
-    @if $pos != false { background-position: $pos; }
-
-    // Set the Image Repeating - and the Dimensions
-    @if $repeat == x {
-      background-repeat: repeat-x;
-      height: $imgHeight;
-    } @else if $repeat == y {
-      background-repeat: repeat-y;
-      width: $imgWidth; }
-
-    // Write a Retina Fallback in the CSS file - Backgroundsize oriented to the the Size off the non retina Image
-    @if $retina != false {
-      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        background-image: url('#{map-get($kittn-directorys, texture)}#{$imgName}-2x#{$imgExt}');
-        background-size: $imgWidth $imgHeight;
-      }
+    @if $dim {
+      height: map-get($mapfile,height) - $sh;
+      width: map-get($mapfile,width) - $sw;
     }
+
+  // With a scale the Mixin recalculate the Size of the Spritefile
+  // and the Sprite
   } @else {
-    @debug 'The Image "#{$image}" is not available in your Image Map! Please add the Image.';
-  }
-}
+    $bgX: map-get($basefile,width) * $scale;
+    $bgY: map-get($basefile,height) * $scale;
 
-/// Include a SVG Background Image - without a PNG Fallback Image
-///
-/// @param  {*}     $image       - The Name of the SVG Image
-/// @param  {list}  $ratio       - Image Ratio from the SVG - default: false
-/// @param  {List}  $dimensions  - The Dimensions of the Image Container - can be 100%
-/// @param  {List}  $pos         - Native CSS Image Positions
-/// @param  {Bool}  $repeat      - Image Repeat - native CSS Declaration
-@mixin svg($image, $ratio: false, $dimensions: 100, $pos: false, $repeat: false) {
+    $bgpX: (map-get($mapfile,posX) * $scale) - ($sw / 2);
+    $bgpY: (map-get($mapfile,posY) * $scale) - ($sh / 2);
 
-  // Initiate the Variables
-  $height: null !default;
-  $width: null !default;
-  $rat1: null;
-  $rat2: null;
-  $svgending: '.svg';
-  $mainImage: #{map-get($kittn-directorys, svgonly)}#{($image)}#{$svgending};
+    // Include Position and Size
+    background-position: $bgpX $bgpY;
+    background-size: $bgX $bgY;
 
-  @if $ratio == false {
-    // Generate the Image Dimension Variables
-    @if length($dimensions) > 1 {
-
-      $height: nth($dimensions,2);
-      @if unitless($height) { $height: $height + 0%; }
-
-      $width: nth($dimensions,1);
-      @if unitless($width) { $width: $width + 0%; }
-    }
-
-    @else {
-      @if unitless($dimensions) { $dimensions: $dimensions + 0%; }
-      $height: $dimensions;
-      $width: $dimensions;
-    }
-
-    background-size: $width $height;
-    width: $width;
-    height: $height;
-  } @else {
-
-    @if length($ratio) == 2 {
-      $rat1: strip-units(nth($ratio,1));
-      $rat2: strip-units(nth($ratio,2));
-
-    } @else {
-      $rat1: strip-units($ratio);
-      $rat2: strip-units($ratio);
-    }
-
-    padding-top: ($rat2 / $rat1) * 100%;
-    background-size: contain;
-    height: 0;
-  }
-
-  // Include the Image and set the Repeat and Position (last only when is needed)
-  background-image: url('#{$mainImage}');
-  @if $pos != false { background-position: $pos; }
-  @if $repeat == false { background-repeat: no-repeat; }
-  @else { background-repeat: $repeat; }
-}
-
-/// Generate the Sprite Container - retina and nonRetina
-///
-/// @param  {*}  $spritename - The Master Sprite name
-@mixin sprite-generator($spritename: map-get($kittn-sprite, name)) {
-  %sprite-container {
-    $spriteEnding: '.png';
-    background-repeat: no-repeat;
-    background-image: url('#{map-get($kittn-directorys, images)}#{$spritename}#{$spriteEnding}')
-  }
-
-  @if map-get($kittn-sprite, retina-capable) == true {
-    @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-      %sprite-container-retina {
-        $spriteEndingRetina: '@2x.png';
-        background-repeat: no-repeat;
-        background-image: url('#{map-get($kittn-directorys, images)}#{$spritename}#{$spriteEndingRetina}')
-      }
+    // Include Dimension and scale it
+    @if $dim {
+      height: map-get($mapfile,height) * $scale - $sh;
+      width: map-get($mapfile,width) * $scale - $sw;
     }
   }
 }
 
-/// Include the targeted Sprite from a Spritemap
-///
-/// @param  {*}       $name       - Name of the Sprite
-/// @param  {Bool}    $retina     - With set on 'true' the retina fallback will be included
-/// @param  {*}       $dimensions - 'both' = height & width | 'width' = width | 'height' = height
-/// @param  {Number}  $offset-x   - Offset the Background Position on the x axis
-/// @param  {Number}  $offset-y   - Offset the Background Position on the y axis
-/// @param  {*}       $display    - The display mode
-@mixin sprite($name, $retina: false, $dimensions: both, $offset-x: 0, $offset-y: 0, $display: inline) {
+// Including Bitmap images
+//
+// @param  {*}    $name     - Name of the Image
+// @map    {*}    $options
+//         :dimensions[both] >  'both' = height & width
+//                              'width' = width
+//                              'height' = height
+//         :offset[false]    >  The Image Position - can be 'false'
+//         :repeat[false]    >  Image Repeat - native CSS Declaration
+//         :scale[1]         >  Resize factor [1]
+//                              Single Value (h & w),
+//                              Two Values (w h)
+//         :filetype['png']  >  Image Filetype ['png']
+@mixin bitmap($name, $options: ()) {
 
-  @if map-has-key($map-sprites,$name) {
-    $sp-width : map-get( map-get( $map-sprites, $name ), width);
-    $sp-height: map-get( map-get( $map-sprites, $name ), height);
-    $sp-pos-x : map-get( map-get( $map-sprites, $name ), positionX);
-    $sp-pos-y : map-get( map-get( $map-sprites, $name ), positionY);
+  // Custom Options
+  $options: map-merge((
+    dimensions: both,
+    offset: false,
+    repeat: false,
+    scale: 1,
+    filetype: 'png'
+  ), $options);
 
-    // Connect the Class with the Sprite Container
-    @extend %sprite-container;
+  // Set the Background Image
+  background-image: resolve('#{map-get($kittn-directorys, bitmaps)}#{$name}.#{map-get($options,filetype)}');
 
-    // Set the Background Position
-    background-position: ($sp-pos-x + $offset-x) ($sp-pos-y + $offset-y);
-
-    // Overwrite the Dimensions off the Container with the Dimensions off the Image
-    @include _getImageDimensions($sp-width, $sp-height, $dimensions);
-
-    // Set the Display Style
-    @if $display == inline {
-      display: inline-block;
-    } @else {
-      display: block;
-    }
-
-  } @else {
-    @debug 'The Sprite "#{$name}" is not available in your Sprite Map! Please add the Sprite.';
-  }
-
-  // Write a Retina Fallback in the CSS file - Backgroundsize oriented to the the Size off the non retina Image
-  @if $retina != false {
-    @if map-has-key($map-sprites-retina,$name) {
-      $sp-r-pos-x      : map-get(map-get($map-sprites-retina,$name),positionX);
-      $sp-r-pos-y      : map-get(map-get($map-sprites-retina,$name),positionY);
-      $sp-r-file-width : map-get(map-get($map-sprites-retina,$name),mapWidth);
-      $sp-r-file-height: map-get(map-get($map-sprites-retina,$name),mapHeight);
-      @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
-        @extend %sprite-container-retina;
-        background-position: (($sp-r-pos-x / 2) + ($offset-x * 2)) (($sp-r-pos-y / 2) + ($offset-y * 2));
-        background-size: ($sp-r-file-width / 2) ($sp-r-file-height / 2);
-      }
-    } @else {
-      @debug 'The Retina Sprite "#{$name}" is not available in your Sprite Map! Please add the Sprite to your retina Sprites.';
-    }
-  }
+  // Call the Image Mixin
+  @include _images($name: $name, $filetype: map-get($options,filetype), $dir: #{map-get($kittn-directorys, bitmaps)}, $repeat: map-get($options,repeat), $offset: map-get($options, offset), $scale: map-get($options, scale), $dimensions: map-get($options,dimensions) );
 }
 
+// Include Vector Images
+//
+// @param  {*}    $name     - Name of the Image
+// @map    {*}    $options
+//         :dimensions[both] >  'both' = height & width
+//                              'width' = width
+//                              'height' = height
+//         :offset[false]    >  The Image Position - can be 'false'
+//         :repeat[false]    >  Image Repeat - native CSS Declaration
+//         :scale[1]         >  Resize factor [1]
+//                              Single Value (h & w),
+//                              Two Values (w h)
+@mixin vector($name, $options: ()) {
 
+  // Custom Options
+  $options: map-merge((
+    dimensions: both,
+    offset: false,
+    repeat: false,
+    scale: 1,
+  ), $options);
+
+  // Set the Background Image
+  background-image: resolve('#{map-get($kittn-directorys, svgonly)}#{$name}.svg');
+
+  // Call the Image Mixin
+  @include _images($name: $name, $filetype: 'svg', $dir: #{map-get($kittn-directorys, svgonly)}, $repeat: map-get($options,repeat), $offset: map-get($options, offset), $scale: map-get($options, scale), $dimensions: map-get($options,dimensions) );
+}
+
+// Vector Sprite
+// =============
+// Include a Vector Sprite
+//
+// @param  {string} $name    Name from the Sprite SVG in the Map
+// @map    {*}    $options
+//         :dimensions[both] >  'both' = height & width
+//                              'width' = width
+//                              'height' = height
+//         :resize           >  Scale the Image
+//         :repeat[false]    >  Image Repeat - native CSS Declaration
+//         :substract[1]     >  Resize factor [1]
+//                              Single Value (h & w),
+//                              Two Values (w h)
+@mixin vsprite($name, $options: ()) {
+
+   // Custom Options
+   $options: map-merge((
+     dimensions: both,
+     scale: false,
+     repeat: false,
+     substract: 0,
+   ), $options);
+
+  // Extend with the Sprite
+  @extend %svgsprite;
+
+  // Call the Sprite Mixin
+  @include _sprite(
+    $mapfile: map-get($svgsprites,$name),
+    $basefile: $svgspritebase,
+    $scale: map-get($options,scale),
+    $dim: map-get($options,dimensions),
+    $repeat: map-get($options,repeat),
+    $sub: map-get($options, substract)
+  );
+}
+
+// Sprite
+// ======
+// Include a Bitmap Spirte
+//
+// @param  {string} $name    Name from the Sprite Image in the Map
+// @param  {string} $name    Name from the Sprite Image in the Map
+// @map    {*}    $options
+//         :dimensions[both] >  'both' = height & width
+//                              'width' = width
+//                              'height' = height
+//         :scale           >  Scale the Image
+//         :repeat[false]    >  Image Repeat - native CSS Declaration
+//         :substract[1]     >  scale factor [1]
+//                              Single Value (h & w),
+//                              Two Values (w h)
+@mixin sprite($name, $options: ()) {
+
+   // Custom Options
+   $options: map-merge((
+     dimensions: both,
+     scale: false,
+     repeat: false,
+     substract: 0,
+   ), $options);
+
+  // Extend with the Sprite
+  @extend %bitmapsprite;
+
+  // Call the Sprite Mixin
+  @include _sprite(
+    $mapfile: $map-get($bitmapsprites,$name),
+    $basefile: $bitmapspritebase,
+    $scale: map-get($options,scale),
+    $dim: map-get($options,dimensions),
+    $repeat: map-get($options,repeat),
+    $sub: map-get($options, substract)
+  );
+}

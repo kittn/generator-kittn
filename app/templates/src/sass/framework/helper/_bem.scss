@@ -2,9 +2,9 @@
 // BEM Helper
 // ===================================================
 
-/// Build a BEM Element
-///
-/// @param  {string}  $name - The selector name
+// Build a BEM Element
+//
+// @param  {string}  $name - The selector name
 @mixin e($name) {
   @at-root {
     &#{map-get($kittn-bem, element)}#{$name} {
@@ -13,19 +13,11 @@
   }
 }
 
-@mixin element($name) {
-  @at-root {
-    &#{map-get($kittn-bem, element)}#{$name} {
-      @content;
-    }
-  }
-}
-
-/// Build a BEM Modifier
-/// with extend functionality
-///
-/// @param  {*}      $name           - The selector name
-/// @param  {bool}   $extend (false) - If the Modifier need to be extended with parent
+// Build a BEM Modifier
+// with extend functionality
+//
+// @param  {*}      $name           - The selector name
+// @param  {bool}   $extend (false) - If the Modifier need to be extended with parent
 @mixin m($name, $extend: false) {
   // Internal Extend Var
   $e: &;
@@ -41,33 +33,17 @@
   }
 }
 
-
-@mixin modifier($name, $extend: false) {
-  // Internal Extend Var
-  $e: &;
-
-  @at-root {
-    &#{map-get($kittn-bem, modifier)}#{$name} {
-      // Extend with the Parent Element
-      @if $extend != false {
-        @extend #{$e};
-      }
-      @content;
-    }
-  }
-}
-
-/// Setup the Root Element for the following chained Modifers
-///
-/// @param  {*}  $name - The selector name
-///
-/// @example
-///  .test {
-///    @include chainroot {
-///     content: hello;
-///    }
-///  }
-///
+// Setup the Root Element for the following chained Modifers
+//
+// @param  {*}  $name - The selector name
+//
+// @example
+//  .test {
+//    @include chainroot {
+//     content: hello;
+//    }
+//  }
+//
 @mixin chainroot {
   // Define the Parent Class - for Nested Chains
   $r: &;
@@ -80,20 +56,20 @@
   }
 }
 
-/// Chain the Modifiers
-///
-/// @param  {string} $name - The selector name, only the name
-///
-/// @example
-///  .test {
-///    @include chainroot {
-///      font-size: 20px;
-///      line-height: 24px;
-///      @include chain('wider') {
-///        width: 300px;
-///      }
-///    }
-///  }
+// Chain the Modifiers
+//
+// @param  {string} $name - The selector name, only the name
+//
+// @example
+//  .test {
+//    @include chainroot {
+//      font-size: 20px;
+//      line-height: 24px;
+//      @include chain('wider') {
+//        width: 300px;
+//      }
+//    }
+//  }
 @mixin chain($name) {
   $p: &;
   $parent: str-slice('#{$p}',2,str-length('#{$p}'));
@@ -105,12 +81,12 @@
   }
 }
 
-/// Build smarter Chaining Selectors
-///
-/// @param {string} $tag - Name of the Attribute
-/// @param {string|bool} $c - Childname
-/// @param {string|bool} $m - Modifiername
-/// @param {bool} $context - When the selectornesting is needed
+// Build smarter Chaining Selectors
+//
+// @param {string} $tag - Name of the Attribute
+// @param {string|bool} $c - Childname
+// @param {string|bool} $m - Modifiername
+// @param {bool} $context - When the selectornesting is needed
 @mixin tag($tag, $c: false, $m: false, $context: false) {
   // Defaults
   $child: null;

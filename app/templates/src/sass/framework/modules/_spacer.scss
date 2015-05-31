@@ -2,7 +2,7 @@
 // Spacer
 // ===================================================
 
-/// Spacer Option Map
+// Spacer Option Map
 $spacer-options: (
   w: width,
   h: height,
@@ -21,21 +21,21 @@ $spacer-options: (
   ph: padding-horizontal
 ) !global;
 
-/// Private Mixin for build easy margin and paddings
-///
-/// @access private
-///
-/// @param {map}  $options - Settings
-///                          :value {Bool|List} (false) - It generate all four sides, with different length of values.
-///                          :type {*} (padding) - Margin or Padding Type
-///                          :important {Bool} (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name
-///
-/// @example
-///   .box {
-///     @include _margin-padding((
-///       value: 10 20em
-///     ));
-///   }
+// Private Mixin for build easy margin and paddings
+//
+// @access private
+//
+// @param {map}  $options - Settings
+//                          :value {Bool|List} (false) - It generate all four sides, with different length of values.
+//                          :type {*} (padding) - Margin or Padding Type
+//                          :important {Bool} (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name
+//
+// @example
+//   .box {
+//     @include _margin-padding((
+//       value: 10 20em
+//     ));
+//   }
 @mixin _margin-padding($options) {
   // Setup Default var
   $options: map-merge((
@@ -94,16 +94,16 @@ $spacer-options: (
   }
 }
 
-/// Generate Paddings for all four sides off a box.
-///
-/// @param {map}  $options - Settings
-///                          :value {Bool|List} (false) - It generate all four sides, with different length of values.
-///                          :important {Bool} (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name
-///
-/// @example
-///   .box {
-///     @include padding(10 30 4rem 5%);
-///   }
+// Generate Paddings for all four sides off a box.
+//
+// @param {map}  $options - Settings
+//                          :value {Bool|List} (false) - It generate all four sides, with different length of values.
+//                          :important {Bool} (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name
+//
+// @example
+//   .box {
+//     @include padding(10 30 4rem 5%);
+//   }
 @mixin padding($value: null, $important: false) {
   @include _margin-padding((
     value: $value,
@@ -112,16 +112,16 @@ $spacer-options: (
   ));
 }
 
-/// Generate Margins for all four sides off a box.
-///
-/// @param {map}  $options - Settings
-///                          :value {Bool|List} (false) - It generate all four sides, with different length of values.
-///                          :important {Bool} (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name
-///
-/// @example
-///   .box {
-///     @include margin(10 30 4rem 5%);
-///   }
+// Generate Margins for all four sides off a box.
+//
+// @param {map}  $options - Settings
+//                          :value {Bool|List} (false) - It generate all four sides, with different length of values.
+//                          :important {Bool} (false) - When the Values need hard overwritten. Otherwise set it to 'false', the parent Classname will be used as base name
+//
+// @example
+//   .box {
+//     @include margin(10 30 4rem 5%);
+//   }
 @mixin margin($value: null, $important: false) {
   @include _margin-padding((
     value: $value,
@@ -130,17 +130,17 @@ $spacer-options: (
   ));
 }
 
-/// Generate Spacing based on the Global Spacing
-///
-/// @param {List}    $options           - Spacing Type
-///                                       values: w = width, h = height, lh = line-height, pt = padding-top
-///                                       pb = padding-bottom, pl = padding-left, pr = padding-right
-///                                       mt = margin-top, mb = margin-bottom, ml = margin-left
-///                                       mr = margin-right, mv = margin-vertical, mh = margin-horizontal,
-///                                       pv = padding-vertical, ph = padding-horizontal
-/// @param {Number}  $lines (1)         - Spacing Multiplicator
-/// @param {Bool}    $important (false) - Overwrite Values with !important
-/// @param {Number}  $size ($kittn-global-spacing)   - Global Size Value
+// Generate Spacing based on the Global Spacing
+//
+// @param {List}    $options           - Spacing Type
+//                                       values: w = width, h = height, lh = line-height, pt = padding-top
+//                                       pb = padding-bottom, pl = padding-left, pr = padding-right
+//                                       mt = margin-top, mb = margin-bottom, ml = margin-left
+//                                       mr = margin-right, mv = margin-vertical, mh = margin-horizontal,
+//                                       pv = padding-vertical, ph = padding-horizontal
+// @param {Number}  $lines (1)         - Spacing Multiplicator
+// @param {Bool}    $important (false) - Overwrite Values with !important
+// @param {Number}  $size ($kittn-global-spacing)   - Global Size Value
 @mixin spacer($options, $lines: 1, $important: false, $size: $kittn-global-spacing) {
 
   // Remove Duplicates
@@ -194,15 +194,15 @@ $spacer-options: (
   }
 }
 
-/// Reset Spacing
-///
-/// @param {List}    $options           - Spacing Type
-///                                       values: w = width, h = height, lh = line-height, pt = padding-top
-///                                       pb = padding-bottom, pl = padding-left, pr = padding-right
-///                                       mt = margin-top, mb = margin-bottom, ml = margin-left
-///                                       mr = margin-right, mv = margin-vertical, mh = margin-horizontal,
-///                                       pv = padding-vertical, ph = padding-horizontal
-/// @param {Bool}    $important (false) - Overwrite Values with !important
+// Reset Spacing
+//
+// @param {List}    $options           - Spacing Type
+//                                       values: w = width, h = height, lh = line-height, pt = padding-top
+//                                       pb = padding-bottom, pl = padding-left, pr = padding-right
+//                                       mt = margin-top, mb = margin-bottom, ml = margin-left
+//                                       mr = margin-right, mv = margin-vertical, mh = margin-horizontal,
+//                                       pv = padding-vertical, ph = padding-horizontal
+// @param {Bool}    $important (false) - Overwrite Values with !important
 @mixin spacer-reset($options, $important: false) {
   // Remove Duplicates
   $o: sl-remove-duplicates($options);

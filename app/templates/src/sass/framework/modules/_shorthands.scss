@@ -2,9 +2,9 @@
 // Shorthands
 // ===================================================
 
-/// Micro Clearfix without IE7 the fix is smarter
-///
-/// @param {Bool} $extend - On 'true' the Class would be extended
+// Micro Clearfix without IE7 the fix is smarter
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
 @mixin clearfix($extend: false) {
   @if $extend {
     @extend %clearfix;
@@ -18,14 +18,14 @@
   }
 }
 
-/// Placeholder Class
+// Placeholder Class
 %clearfix {
   @include clearfix(false);
 }
 
-/// Shorthand for centering Elements
-///
-/// @param {Bool} $extend - On 'true' the Class would be extended
+// Shorthand for centering Elements
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
 @mixin block-center($extend: false) {
   @if $extend {
     @extend %block-center;
@@ -37,14 +37,14 @@
   }
 }
 
-/// Placeholder Class
+// Placeholder Class
 %block-center {
   @include block-center(false);
 }
 
-/// Compatible Mixin for Word-Wrap
-///
-/// @param {Bool} $extend - On 'true' the Class would be extended
+// Compatible Mixin for Word-Wrap
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
 @mixin word-wrap($extend: false) {
   @if $extend {
     @extend %word-wrap;
@@ -57,14 +57,14 @@
   }
 }
 
-/// Placeholder Class
+// Placeholder Class
 %word-wrap {
   @include word-wrap(false);
 }
 
-/// Mixin for truncating Text
-///
-/// @param {Bool} $extend - On 'true' the Class would be extended
+// Mixin for truncating Text
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
 @mixin text-truncate($extend: false) {
   @if $extend {
     @extend %text-truncate;
@@ -78,14 +78,14 @@
   }
 }
 
-/// Placeholder Class
+// Placeholder Class
 %text-truncate {
   @include text-truncate(false);
 }
 
-/// Vertical Center Elements
-///
-/// @param {Bool} $extend - On 'true' the Class would be extended
+// Vertical Center Elements
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
 @mixin vertical-center($extend: false) {
   @if $extend {
     @extend %vertical-center;
@@ -96,14 +96,14 @@
   }
 }
 
-/// Placeholder Class
+// Placeholder Class
 %vertical-center {
   @include vertical-center(false);
 }
 
-/// Method for Text Replacement
-///
-/// @param {Bool} $extend - On 'true' the Class would be extended
+// Method for Text Replacement
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
 @mixin cleartext($extend: false) {
   @if $extend {
     @extend %cleartext;
@@ -117,14 +117,14 @@
   }
 }
 
-/// Placeholder Class
+// Placeholder Class
 %cleartext {
   @include cleartext(false);
 }
 
-/// Text Replacement Method from HTML5 Boilerplate
-///
-/// @param {Bool} $extend - On 'true' the Class would be extended
+// Text Replacement Method from HTML5 Boilerplate
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
 @mixin cleartext-complex($extend: false) {
   @if $extend {
     @extend %cleartext-complex;
@@ -142,14 +142,14 @@
   }
 }
 
-/// Placeholder Class
+// Placeholder Class
 %cleartext-complex {
   @include cleartext-complex(false);
 }
 
-/// Text Replacement without 'overflow:hidden'
-///
-/// @param {Bool} $extend - On 'true' the Class would be extended
+// Text Replacement without 'overflow:hidden'
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
 @mixin cleartext-simpler($extend: false) {
   @if $extend {
     @extend %cleartext-simpler;
@@ -161,14 +161,14 @@
   }
 }
 
-/// Placeholder Class
+// Placeholder Class
 %cleartext-simpler {
   @include cleartext-simpler(false);
 }
 
-/// Helper to prevent collapsing Margins
-///
-/// @param {Bool} $extend - On 'true' the Class would be extended
+// Helper to prevent collapsing Margins
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
 @mixin decollapse($extend: false) {
   @if $extend {
     @extend %decollapse;
@@ -179,14 +179,14 @@
   }
 }
 
-/// Placeholder Class
+// Placeholder Class
 %decollapse {
   @include decollapse(false);
 }
 
-/// Activate the Hardware Acceleration on Webkit Browsers
-///
-/// @param {Bool} $extend - On 'true' the Class would be extended
+// Activate the Hardware Acceleration on Webkit Browsers
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
 @mixin performance($extend: false) {
   @if $extend {
     @extend %performance;
@@ -196,14 +196,14 @@
   }
 }
 
-/// Placeholder Class
+// Placeholder Class
 %performance {
   @include performance(false);
 }
 
-/// Activate Antialias on Webkit Browsers
-///
-/// @param {Bool} $extend - On 'true' the Class would be extended
+// Activate Antialias on Webkit Browsers
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
 @mixin antialias($extend: false) {
   @if $extend {
     @extend %antialias;
@@ -214,16 +214,16 @@
   }
 }
 
-/// Placeholder Class
+// Placeholder Class
 %antialias {
   @include antialias(false);
 }
 
-/// Expand the Clickable Area
-///
-/// @link http://front-back.com/expand-clickable-areas-for-a-better-touch-experience
-///
-/// @param {Bool} $extend - On 'true' the Class would be extended
+// Expand the Clickable Area
+//
+// @link http://front-back.com/expand-clickable-areas-for-a-better-touch-experience
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
 @mixin touch-clickarea($extend: false) {
   @if $extend {
     @extend %touch-clickarea;
@@ -241,7 +241,7 @@
   }
 }
 
-/// Placeholder Class
+// Placeholder Class
 %touch-clickarea {
   @include touch-clickarea(false);
 }

@@ -2,63 +2,63 @@
 // Type Checks
 // ===================================================
 
-/// Checks if a Value is included
-///
-/// @param  {*}  $value - Included value to check
-///
-/// @returns {Bool}
+// Checks if a Value is included
+//
+// @param  {*}  $value - Included value to check
+//
+// @returns {Bool}
 @function is-true($value) {
   @return if($value == null, false, $value and $value != null and $value != "" and $value != ());
 }
 
-/// Checks if Value is a map
-///
-/// @param  {*}  $value - Included value to check
-///
-/// @returns {Bool}
+// Checks if Value is a map
+//
+// @param  {*}  $value - Included value to check
+//
+// @returns {Bool}
 @function is-map($value) {
   @return type-of($value) == "map";
 }
 
-/// Checks if Value is a list
-///
-/// @param  {*}  $value - Included value to check
-///
-/// @returns {Bool}
+// Checks if Value is a list
+//
+// @param  {*}  $value - Included value to check
+//
+// @returns {Bool}
 @function is-list($value) {
   @return type-of($value) == "list";
 }
 
-/// Checks if Value is a number
-///
-/// @param  {*}  $value - Included value to check
-///
-/// @returns {Bool}
+// Checks if Value is a number
+//
+// @param  {*}  $value - Included value to check
+//
+// @returns {Bool}
 @function is-number($value) {
   @return type-of($value) == "number";
 }
 
-/// Checks if Value is a string
-///
-/// @param  {*}  $value - Included value to check
-///
-/// @returns {Bool}
+// Checks if Value is a string
+//
+// @param  {*}  $value - Included value to check
+//
+// @returns {Bool}
 @function is-string($value) {
   @return type-of($value) == "string";
 }
 
-/// Checks if Value is not a string
-///
-/// @param  {*}  $value - Included value to check
-///
-/// @returns {Bool}
+// Checks if Value is not a string
+//
+// @param  {*}  $value - Included value to check
+//
+// @returns {Bool}
 @function is-not-string($value) {
   @return type-of($value) != "string";
 }
 
-/// Check if the Selector is nested
-///
-/// @returns {Bool}
+// Check if the Selector is nested
+//
+// @returns {Bool}
 @function is-nested() {
   $p: &;
   $list: ();
@@ -75,9 +75,9 @@
   }
 }
 
-/// Check if a map has entrys
-///
-/// @returns {Bool}
+// Check if a map has entrys
+//
+// @returns {Bool}
 @function map-filled($map) {
   @if length(map-keys($map)) > 0 {
     @return true;

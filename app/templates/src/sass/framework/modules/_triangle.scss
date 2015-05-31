@@ -2,19 +2,19 @@
 // Triangle Builder
 // ===================================================
 
-/// Build simple Triangles with the Border Trick
-///
-/// @param {map}  $values - Setup Vars
-///                         :color {color} (#fff)
-///                           => Triangle Color
-///                         :width {number} (15px)
-///                           => Width
-///                         :height {number} (15px)
-///                           => Height
-///                         :angle {*}
-///                           => Values: number | 'top' | 'top left' | 'right' |
-///                                     'bottom right' | 'bottom' | 'bottom left'
-///                                     'left' | 'top left'
+// Build simple Triangles with the Border Trick
+//
+// @param {map}  $values - Setup Vars
+//                         :color {color} (#fff)
+//                           => Triangle Color
+//                         :width {number} (15px)
+//                           => Width
+//                         :height {number} (15px)
+//                           => Height
+//                         :angle {*}
+//                           => Values: number | 'top' | 'top left' | 'right' |
+//                                     'bottom right' | 'bottom' | 'bottom left'
+//                                     'left' | 'top left'
 @mixin triangle($values: ()) {
 
   // Default Container Setup

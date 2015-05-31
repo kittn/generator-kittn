@@ -2,11 +2,11 @@
 // Iconfont Helper
 // ===================================================
 
-/// Get the Icon from the Map
-///
-/// @param  {*}  $name - Key to the Map Entry
-///
-/// @returns {*}
+// Get the Icon from the Map
+//
+// @param  {*}  $name - Key to the Map Entry
+//
+// @returns {*}
 @function icon($name) {
   @if map-has-key($kittn-font-icons,$name) {
     @return map-get($kittn-font-icons,$name);
@@ -16,11 +16,11 @@
 }
 
 
-/// Build the Base Attributes for all Font Icons
-///
-/// @access private
-///
-/// @param  {*}  $iconFontName - Name off the Icon Font
+// Build the Base Attributes for all Font Icons
+//
+// @access private
+//
+// @param  {*}  $iconFontName - Name off the Icon Font
 @mixin iconfont($iconFontName) {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -33,14 +33,14 @@
   line-height: 1;
 }
 
-/// Build the Base Icon Font Behavior
-///
-/// @param  {*}  $iconFontName - Name off the Icon Font
+// Build the Base Icon Font Behavior
+//
+// @param  {*}  $iconFontName - Name off the Icon Font
 @mixin icon-font-generator($iconFontName) {
   [class^="#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}"],
   [class*=" #{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}"],
   [data-icon],
-  %iconfontface {
+  %iconfont {
     &:before {
       @include iconfont($iconFontName);
     }
@@ -49,9 +49,9 @@
     content: attr(data-icon); }
 }
 
-/// Generate the Icon Classes
-///
-/// @param {Map}  $kittn-font-icons - Icon Font Map
+// Generate the Icon Classes
+//
+// @param {Map}  $kittn-font-icons - Icon Font Map
 @mixin icon-generator($icons: $kittn-font-icons) {
   @each $name, $icon in $icons {
     .#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}#{$name}:before {
@@ -60,15 +60,15 @@
   }
 }
 
-/// Insert the Icon Value as Content
-///
-/// @param  {*}   $name    - Key to the Map Entry
-/// @param  {Map} $options - Setup
-///                          :extend (false)
-///                           - When the Icon need Extend with a Class
-///                          :font (false)
-///                           - When the Icon need the Iconfont Attributes
-///                             Needed when sitting in a Media Query
+// Insert the Icon Value as Content
+//
+// @param  {*}   $name    - Key to the Map Entry
+// @param  {Map} $options - Setup
+//                          :extend (false)
+//                           - When the Icon need Extend with a Class
+//                          :font (false)
+//                           - When the Icon need the Iconfont Attributes
+//                             Needed when sitting in a Media Query
 @mixin icon($name, $options: ()) {
 
   // Default Setup
@@ -89,9 +89,9 @@
 }
 
 
-/// Extend a Class with a Icon Font Class
-///
-/// @param  {*}  $name - Name off the Icon (from the Map)
+// Extend a Class with a Icon Font Class
+//
+// @param  {*}  $name - Name off the Icon (from the Map)
 @mixin ext-icon($name) {
   @extend .#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}#{$name};
 }

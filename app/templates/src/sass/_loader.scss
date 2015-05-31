@@ -4,12 +4,10 @@
 @charset "UTF-8";
 
 // Setup Maps
+@import "maps/sprite-bitmap";
+@import "maps/sprite-svg";
 @import "maps/fontstacks";
-@import "maps/imagemap";
-@import "maps/sprite";
-@import "maps/sprite-retina";
 @import "maps/iconfontlist";
-@import "maps/connectmap";
 @import "maps/zmap";
 
 // --- Import External Libs
@@ -21,12 +19,11 @@
 @import "framework/helper/fonts";
 @import "framework/helper/helper";
 @import "framework/helper/bem";
-@import "framework/helper/connect";
 
 // ---- Import the Setup ----
 @import "setup";
 
-// Globals
+// Mixins and Functions
 @import "framework/helper/debug";
 @import "framework/modules/shorthands";
 @import "framework/modules/lines";

@@ -16,14 +16,6 @@
   @include icon-generator($kittn-font-icons);
 }
 
-// Activate the Sprite Container
-@if map-get($kittn-sprite, name) {
-  @include sprite-generator($spritename: map-get($kittn-sprite, name));
-}
-
-// Include Connect Classes
-@include connect-yield();
-
 // Include the Base Grid Generator
 @include main-grid-generator($kittn-grid-setup);
 
