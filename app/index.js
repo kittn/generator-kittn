@@ -143,7 +143,6 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.copy('bowerrc', '.bowerrc');
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
-    this.copy('gruntfile.js', 'gruntfile.js');
     this.copy('todo.md', 'todo.md');
   }
 });
