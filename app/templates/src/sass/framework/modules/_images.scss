@@ -240,7 +240,7 @@
 
   // Call the Sprite Mixin
   @include _sprite(
-    $mapfile: $map-get($bitmapsprites,$name),
+    $mapfile: map-get($bitmapsprites,$name),
     $basefile: $bitmapspritebase,
     $scale: map-get($options,scale),
     $dim: map-get($options,dimensions),
