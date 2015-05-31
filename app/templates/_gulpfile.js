@@ -29,10 +29,32 @@ var cssSourceMap = true;
  */
 var prefixConfig = [
   "last 2 version",
-  "> 1%",
-  "ie 9",
+  "> 1%",<% if (projectjade == true ) { %>
+  "ie 8",<% } else { %>
+  "ie 9",<% } %>
   "chrome 30",
   "firefox 24"
+]
+
+/**
+ * Modernizr Tests
+ */
+var modernizrTests = [
+    'cssanimations',
+    'csstransforms',
+    'csstransforms3d',
+    'csstransitions',
+    'backgroundblendmode',
+    'bgsizecover',
+    'preserve3d',
+    'flexbox',
+    'touch',
+    'svg',
+    'inlinesvg',
+    'respond',
+    'hsla',
+    'rgba',
+    'webgl'
 ]
 
 /**
@@ -54,7 +76,8 @@ var browserSyncProxy = false;
 var sources = {
   // Copy Single JS Files not combined
   copyjs: [<% if (projectiecompatible == true ) { %>
-    {src:'src/stash/bower/selectivizr/selectivizr.js'}<% } %>
+    {src:'src/stash/bower/selectivizr/selectivizr.js'},<% } %>
+    {src:''}
   ],
 
   // Copy and Combine JS Files
@@ -71,8 +94,9 @@ var sources = {
     'src/stash/bower/conditionizr/detects/firefox.js',
     'src/stash/bower/conditionizr/detects/ie11.js',
     'src/stash/bower/conditionizr/detects/ie10.js',
-    'src/stash/bower/conditionizr/detects/ie9.js',
-    // 'src/stash/bower/conditionizr/detects/ie8.js',
+    'src/stash/bower/conditionizr/detects/ie9.js',<% if (projectiecompatible == true ) { %>
+    'src/stash/bower/conditionizr/detects/ie8.js',<% } else { %>
+    // 'src/stash/bower/conditionizr/detects/ie8.js',<% } %>
     // 'src/stash/bower/conditionizr/detects/mac.js',
     // 'src/stash/bower/conditionizr/detects/windows.js',
     // 'src/stash/bower/conditionizr/detects/linux.js',
@@ -515,11 +539,16 @@ gulp.task('combine-js', function() {
 gulp.task('modernizr-build', function() {
   gulp.src('node_modules/gulp-modernizr/build/modernizr-custom.js')
     .pipe(modernizr({
-      excludeTests: [
-        'opacity'
-      ]
+      crawl: false,
+      options : [
+        'setClasses',
+        'addTest',
+        'html5printshiv',
+        'testAllProps',
+        'fnBind'
+      ],
+      tests: modernizrTests
     }))
-    .pipe(uglify())
     .pipe(gulp.dest(targetDirJS))
 });
 

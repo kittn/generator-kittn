@@ -104,26 +104,26 @@
   @each $name, $entry in $kittn-breakpoint-map {
     @if map-get($entry,visibility) == true {
 
-      .hidden-to#{map-get($kittn-bem, modifier)}#{$name} {
+      %hidden-to#{map-get($kittn-bem, modifier)}#{$name} {
         display: none;
         @include break($name, $mode: max) {
           display: inherit;
         }
       }
 
-      .hidden-from#{map-get($kittn-bem, modifier)}#{$name} {
+      %hidden-from#{map-get($kittn-bem, modifier)}#{$name} {
         @include break($name, $mode: min) {
           display: none;
         }
       }
 
-      .visible-to#{map-get($kittn-bem, modifier)}#{$name} {
+      %visible-to#{map-get($kittn-bem, modifier)}#{$name} {
         @include break($name, $mode: max) {
           display: none;
         }
       }
 
-      .visible-from#{map-get($kittn-bem, modifier)}#{$name} {
+      %visible-from#{map-get($kittn-bem, modifier)}#{$name} {
         display: none;
         @include break($name, $mode: min) {
           display: inherit;

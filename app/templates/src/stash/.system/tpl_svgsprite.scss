@@ -2,10 +2,6 @@
 //
 // @type Map
 
-%svgsprite {
-  background: url('/{{{sprite}}}') no-repeat;
-}
-
 $svgspritebase: (
   width: {{spriteWidth}}px,
   height: {{spriteHeight}}px

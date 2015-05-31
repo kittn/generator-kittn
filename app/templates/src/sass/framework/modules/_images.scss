@@ -2,6 +2,15 @@
 // Image Helper
 // ===================================================
 
+// Add Pseudo Classes as Sprite Holder
+%svgsprite {
+  background: url('#{map-get($kittn-directorys, images)}vector-sprite.svg') no-repeat;
+}
+
+%bitmapsprite {
+  background: url('#{map-get($kittn-directorys, images)}sprite.png') no-repeat;
+}
+
 // _images Internal Mixin for include Images
 //
 // @param   {string} $name            Image Name
@@ -137,7 +146,7 @@
   ), $options);
 
   // Set the Background Image
-  background-image: resolve('#{map-get($kittn-directorys, bitmaps)}#{$name}.#{map-get($options,filetype)}');
+  background-image: url('#{map-get($kittn-directorys, bitmaps)}#{$name}.#{map-get($options,filetype)}');
 
   // Call the Image Mixin
   @include _images($name: $name, $filetype: map-get($options,filetype), $dir: #{map-get($kittn-directorys, bitmaps)}, $repeat: map-get($options,repeat), $offset: map-get($options, offset), $scale: map-get($options, scale), $dimensions: map-get($options,dimensions) );
@@ -166,7 +175,7 @@
   ), $options);
 
   // Set the Background Image
-  background-image: resolve('#{map-get($kittn-directorys, svgonly)}#{$name}.svg');
+  background-image: url('#{map-get($kittn-directorys, svgonly)}#{$name}.svg');
 
   // Call the Image Mixin
   @include _images($name: $name, $filetype: 'svg', $dir: #{map-get($kittn-directorys, svgonly)}, $repeat: map-get($options,repeat), $offset: map-get($options, offset), $scale: map-get($options, scale), $dimensions: map-get($options,dimensions) );

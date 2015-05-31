@@ -2,10 +2,6 @@
 //
 // @type Map
 
-%bitmapsprite {
-  background: url('{{spritesheet.image}}') no-repeat;
-}
-
 $bitmapspritebase: (
   width: {{spritesheet.px.width}},
   height: {{spritesheet.px.height}}
