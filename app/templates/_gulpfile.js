@@ -253,7 +253,7 @@ gulp.task('libsass', function () {
  * @description On Compile Issues with Libsass switch to this Compiler.
  * Is the native Ruby Sass Compiler.
  */
-gulp.task('sass', function () {
+gulp.task('ruby-sass', function () {
   return sass('src/sass/', { sourcemap: cssSourceMap })
   .on("error", notify.onError("Sass Compile Error!"))
   .on('error', function (err) { console.log(err.message); })
