@@ -4,6 +4,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
+var mkdirp = require('mkdirp');
 
 
 var KittnGenerator = yeoman.generators.Base.extend({
