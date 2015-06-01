@@ -4,13 +4,11 @@
   "description": "<%= projectdescription %>",
   "version": "<%= projectversion %>",
   "license": "MIT",
-  "author": "<%= projectauthor %>",
-  "url": "<%= projectmail %>",
-  "homepage": "<%= projecturl %>",
-  "bugs": "<%= projectissues %>",
-  "repository": {
-    "type": "git",
-    "url": "<%= projectrepo %>"
+  "repository": "<%= projectrepo %>",
+  "author": {
+    "name": "<%= projectauthor %>",
+    "email": "<%= projectmail %>",
+    "url": "<%= projecturl %>"
   },
   "directory": {
     "base": "dist/",

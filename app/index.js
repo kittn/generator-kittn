@@ -44,13 +44,44 @@ var KittnGenerator = yeoman.generators.Base.extend({
       {
         type: 'input',
         name: 'projectname',
-        message: 'Please give your project a name.',
+        message: 'Please give your project a name (without Spaces)',
         default: 'kittn'
       },{
         type: 'input',
         name: 'projectdescription',
         message: 'A Short description',
         default: 'undefinied'
+      },{
+        type: 'input',
+        name: 'projectcssfilename',
+        message: 'CSS Filename',
+        default: 'style'
+      },{
+        type: 'confirm',
+        name: 'projectiecompatible',
+        message: 'Do you need IE8 compatibility?',
+        default: false
+      },{
+        type: 'confirm',
+        name: 'projectjquery',
+        message: 'Include new (2.1.4 => y) or Old (1.9.3 => n) jQuery Version?',
+        default: true
+      },{
+        type: 'confirm',
+        name: 'projectjade',
+        message: 'Do you want to use Jade as HTML Compiler?',
+        default: true
+      },{
+        type: 'list',
+        name: 'projectUsage',
+        message: 'How do you want to use Kittn? Yeoman can integrate the Toolkit for you (setting Path etc.)',
+        choices: [
+          "Building HTML Prototypes",
+          new inquirer.Separator(),
+          "Integrate in CraftCMS",
+          "Integrate in Wordpress",
+          "Integrate in KirbyCMS"
+        ]
       },{
         type: 'input',
         name: 'projectversion',
@@ -65,42 +96,17 @@ var KittnGenerator = yeoman.generators.Base.extend({
         type: 'input',
         name: 'projectmail',
         message: 'Mailadress from the Author',
-        default: 'xxx@xxx.xx'
+        default: 'undefined'
       },{
         type: 'input',
         name: 'projecturl',
-        message: 'URL to the Project',
-        default: 'http://........'
-      },{
-        type: 'input',
-        name: 'projectissues',
-        message: 'URL to the Issues',
+        message: 'Author URL',
         default: 'http://........'
       },{
         type: 'input',
         name: 'projectrepo',
         message: 'URL to the Git-Repo',
         default: 'http://........'
-      },{
-        type: 'input',
-        name: 'projectcssfilename',
-        message: 'CSS Filename',
-        default: 'style'
-      },{
-        type: 'confirm',
-        name: 'projectiecompatible',
-        message: 'Do you need IE8 compatibility?',
-        default: 'n'
-      },{
-        type: 'confirm',
-        name: 'projectjquery',
-        message: 'Include Old (1.9.3 => n) or New (2.1.4 => y) jQuery Version?',
-        default: 'y'
-      },{
-        type: 'confirm',
-        name: 'projectjade',
-        message: 'Do you want to use Jade as HTML Compiler?',
-        default: 'y'
       }
     ];
 
@@ -117,6 +123,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
       this.projectiecompatible = props.projectiecompatible;
       this.projectjquery = props.projectjquery;
       this.projectjade = props.projectjade;
+      this.projectUsage = props.projectUsage;
       done();
     }.bind(this));
   },
