@@ -5,3 +5,34 @@
 node_modules
 src/stash/bower
 /icon.png
+<% if (projectUsage == 'Integrate in Wordpress' ) { %>
+
+# Wordpress Specific
+dist/*.log
+dist/.htaccess
+dist/sitemap.xml
+dist/sitemap.xml.gz
+dist/wp-config.php
+dist/wp-content/advanced-cache.php
+dist/wp-content/backup-db/
+dist/wp-content/backups/
+dist/wp-content/blogs.dir/
+dist/wp-content/cache/
+dist/wp-content/upgrade/
+dist/wp-content/uploads/
+dist/wp-content/wp-cache-config.php
+dist/wp-content/plugins/hello.php
+dist/readme.html
+dist/license.txt
+<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
+
+# Craft CMS Specific
+dist/craft/storage/*
+!dist/craft/storage/logo/*
+<% } if (projectUsage == 'Integrate in KirbyCMS' ) { %>
+
+# KirbyCMS Specific
+panel/
+site/panel
+docs
+<% } %>
