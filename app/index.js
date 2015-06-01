@@ -4,7 +4,6 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
-var mkdirp = require('mkdirp');
 
 
 var KittnGenerator = yeoman.generators.Base.extend({
@@ -123,8 +122,8 @@ var KittnGenerator = yeoman.generators.Base.extend({
   },
 
   app: function () {
-    this.mkdirp('src/sass');
-    this.mkdirp('src/jade/templatepart');
+    this.mkdir('src/sass');
+    this.mkdir('src/jade/templatepart');
     this.directory('src/', 'src/');
     this.copy('_style.scss', 'src/sass/'+this.projectcssfilename+'.scss');
     if (this.projectiecompatible == 'y') {
