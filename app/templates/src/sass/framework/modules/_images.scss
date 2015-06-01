@@ -197,26 +197,33 @@
 //                              Two Values (w h)
 @mixin vsprite($name, $options: ()) {
 
-   // Custom Options
-   $options: map-merge((
-     dimensions: both,
-     scale: false,
-     repeat: false,
-     substract: 0,
-   ), $options);
+  // Custom Options
+  $options: map-merge((
+    dimensions: both,
+    scale: false,
+    repeat: false,
+    substract: 0,
+  ), $options);
 
-  // Extend with the Sprite
-  @extend %svgsprite;
+  // Check if Sprite is in the Map
+  @if map-has-key($svgsprites,$name) {
 
-  // Call the Sprite Mixin
-  @include _sprite(
-    $mapfile: map-get($svgsprites,$name),
-    $basefile: $svgspritebase,
-    $scale: map-get($options,scale),
-    $dim: map-get($options,dimensions),
-    $repeat: map-get($options,repeat),
-    $sub: map-get($options, substract)
-  );
+    // Extend with the Sprite
+    @extend %svgsprite;
+
+    // Call the Sprite Mixin
+    @include _sprite(
+      $mapfile: map-get($svgsprites,$name),
+      $basefile: $svgspritebase,
+      $scale: map-get($options,scale),
+      $dim: map-get($options,dimensions),
+      $repeat: map-get($options,repeat),
+      $sub: map-get($options, substract)
+    );
+
+  } @else {
+    @warn "The Sprite Image with the Name '#{$name}' is not included in the Sprite Map. Possible are: #{map-keys($svgsprites)}"
+  }
 }
 
 // Sprite
@@ -244,16 +251,23 @@
      substract: 0,
    ), $options);
 
-  // Extend with the Sprite
-  @extend %bitmapsprite;
+  // Check if Sprite is in the Map
+  @if map-has-key($bitmapsprites,$name) {
 
-  // Call the Sprite Mixin
-  @include _sprite(
-    $mapfile: map-get($bitmapsprites,$name),
-    $basefile: $bitmapspritebase,
-    $scale: map-get($options,scale),
-    $dim: map-get($options,dimensions),
-    $repeat: map-get($options,repeat),
-    $sub: map-get($options, substract)
-  );
+    // Extend with the Sprite
+    @extend %bitmapsprite;
+
+    // Call the Sprite Mixin
+    @include _sprite(
+      $mapfile: map-get($bitmapsprites,$name),
+      $basefile: $bitmapspritebase,
+      $scale: map-get($options,scale),
+      $dim: map-get($options,dimensions),
+      $repeat: map-get($options,repeat),
+      $sub: map-get($options, substract)
+    );
+
+  } @else {
+    @warn "The Sprite Image with the Name '#{$name}' is not included in the Sprite Map. Possible are: #{map-keys($bitmapsprites)}"
+  }
 }
