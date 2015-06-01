@@ -54,17 +54,6 @@ $kittn-activate: (
   ie8-fallbacks: false<% } %>
 );
 
-// Sprite Configuration
-//
-// - 'name' {*|Bool} - Sprite Name
-// - 'retina-capable' {Bool} - Integrate an additional Retina Sprite
-//
-// @type Map
-$kittn-sprite:(
-  name: false,
-  retina-capable: true,
-);
-
 // Map off all Breakpoints and Behaviors
 //
 // - 'Name' {*} - Breakpoint Name
