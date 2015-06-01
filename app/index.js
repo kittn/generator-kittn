@@ -122,8 +122,8 @@ var KittnGenerator = yeoman.generators.Base.extend({
   },
 
   app: function () {
-    this.mkdir('src/sass');
-    this.mkdir('src/jade/templatepart');
+    this.mkdirp('src/sass');
+    this.mkdirp('src/jade/templatepart');
     this.directory('src/', 'src/');
     this.copy('_style.scss', 'src/sass/'+this.projectcssfilename+'.scss');
     if (this.projectiecompatible == 'y') {
@@ -144,6 +144,10 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.copy('editorconfig', '.editorconfig');
     this.copy('jshintrc', '.jshintrc');
     this.copy('todo.md', 'todo.md');
+  },
+
+  install: function () {
+    this.installDependencies();
   }
 });
 
