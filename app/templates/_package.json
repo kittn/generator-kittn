@@ -58,7 +58,8 @@
     "postcss-assets": "^2.1.2",
     "postcss-style-guide": "^0.2.1",
     "run-sequence": "^0.3.6",
-    "vinyl": "^0.4.6"
+    "vinyl": "^0.4.6",
+    "yargs": "^3.10.0"
   },
   "licenses": [
     {

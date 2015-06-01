@@ -27,62 +27,48 @@ The Generator will ask you some questions, at the end it will prepare the Projec
 Intialize your Project
 
 **`gulp`**<br>
-Default Task with BrowserSync
+Default Task with BrowserSync (CSS and HTML Injection)
 
-**`gulp extended`**<br>
-Extended Default Task. Additionally watch the image directory.
+**`gulp publish`**<br>
+Publish the Project for Production - you can Bump the Version with Enviroment Vars. Like $ gulp publish --type=major => for a Major Release
 
 **`gulp rebuild-js`**<br>
 Rebuild all JS files, copy - combine - rename.
 
-**`gulp publish`**<br>
-Prepare the Project for Production.
-
-**`gulp jade-rebuild`**<br>
+**`gulp rebuild-jade`**<br>
 Rebuild all Jade Files.
 
-**`gulp bump`**<br>
-Patch the Version Number from `package.json` and `bower.json`
+**`gulp rebuild-images`**<br>
+Rebuild all Image Files, copy it to distribution, build Bitmap- and Vector Sprites.
 
-**`gulp bump-minor`**<br>
-Extend the Minor Version Number from `package.json` and `bower.json`
-
-**`gulp bump-major`**<br>
-Extend to the next Release Number from `package.json` and `bower.json`
-
-**`gulp grunt-rebuild-images`**<br>
-Rebuild all Image Files.
-
-**`gulp grunt-responsive-images`**<br>
-Build different Sizes from HTML Images
+**`gulp move-image`**<br>
+Move Image Files from src/stash/images/bitmap-assets and scr/stash/images/svgsingle to distribution
 
 ## Dependencies
 
 - Ruby >= 1.9.0
-- Node >= 0.10.10
-- Sass 3.4.0 rc.1
+- Node >= 0.10.0
+- Sass 3.4.0
 - Jade 1.3.0
-- Gulp 3.8.5
+- Gulp 3.8.11
 - Git
 
 The Generator will install this Dependencies, when there are not available:
 
-- Bower 1.3.0
+- Bower >= 1.4.0
 - Yeoman 1.2.0
-- Grunt 0.4.5
 
 ## Special Thanks to
 
 - Hugo Giraudel (@HugoGiraudel) - for his awesome Sass Scripts
 - Daniel Guillan (@danielguillan) - Modernizr Mixins
 - Team Sass - Jacket
-- Sam Richard (@Snugug) - EQ.js
 
+## Author
+Sascha Fuchs @gisugosu
 
 ## Licence
 (MIT License)
-
-Copyright (c) 2014 Sascha Fuchs
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 

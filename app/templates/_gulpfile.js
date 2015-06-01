@@ -38,6 +38,7 @@ var prefixConfig = [
 
 /**
  * Modernizr Tests
+ * @description Add all Modernizr Test that you need
  */
 var modernizrTests = [
     'cssanimations',
@@ -64,14 +65,16 @@ var browserSyncOpen = true;
 
 /**
  * Browser Sync Proxy
- * With entering the Proxydomain the Browser Sync
- * Server is not active
+ * @description When your Project use a Vhost Domain, enter
+ * the domain. This will deactivate the BrowserSync Server
  */
 var browserSyncProxy = false;
 
 /**
- * Setup what for JS Files you want to only copy it into dist/,
- * and what for js files need to combined into scripts.js.
+ * Sources
+ * @description Setup what for JS Files you want to only copy
+ * it into dist/, * and what for js files need to combined
+ * into scripts.js.
  */
 var sources = {
   // Copy Single JS Files not combined
@@ -105,9 +108,9 @@ var sources = {
 };
 
 /**
- * Place any font files into src/stash/fonts/ -
- * Task must manually activated with
- * $ gulp move-fonts
+ * Font Files
+ * @description Place any font files into src/stash/fonts/ -
+ * Task must manually activated with $ gulp move-fonts
  * the files would be copied to the dist directory
  */
 var fonts = {
@@ -147,6 +150,7 @@ var gulp             = require('gulp'),
     svgSprite        = require('gulp-svg-sprite'),
     spritesmith      = require('gulp.spritesmith'),
     pngquant         = require('imagemin-pngquant'),
+    args             = require('yargs').argv,
 
     // Post CSS
     postcss     = require('gulp-postcss'),
@@ -386,7 +390,7 @@ gulp.task('browser-sync', function() {
  * otherwise is to much Reload on the default Gulp task. When you need to rebuild the other
  * Changes use this Task.
  */
-gulp.task('jade-rebuild', function(){
+gulp.task('rebuild-jade', function(){
   gulp.src(['src/jade/*.jade','!src/jade/_*.jade'])
     .pipe(plumber())
     .pipe(jade({
@@ -488,7 +492,8 @@ gulp.task('move-js', function () {
 });
 
 /**
- * Copy the Default Build Files to distribution
+ * Move First
+ * @description Copy the Default Build Files to distribution
  */
 gulp.task('move-first', function () {
   build.files.forEach(function(item) {
@@ -498,7 +503,8 @@ gulp.task('move-first', function () {
 });
 
 /**
- * Copy the Font Fils to distribution
+ * Move Fonts
+ * @description Copy the Font Fils to distribution
  */
 gulp.task('move-fonts', function () {
   fonts.files.forEach(function(item) {
@@ -508,7 +514,8 @@ gulp.task('move-fonts', function () {
 });
 
 /**
- * Move all Bitmap Images to the .dist Folder
+ * Move Bitmaps
+ * @description Move all Bitmap Images (from bitmap-assets) to the .dist Folder
  */
 gulp.task('move-bitmaps', function() {
   gulp.src('src/stash/images/bitmaps-assets/**/*.{png,jpeg,jpg,gif,webp}')
@@ -516,16 +523,26 @@ gulp.task('move-bitmaps', function() {
 });
 
 /**
- * Move all SVG Images to the .dist Folder
+ * Move SVG Images
+ * @description Move all SVG Images (from /svgsingle) to the .dist Folder
  */
 gulp.task('move-svg', function() {
   gulp.src('src/stash/images/svgsingle/**/*.svg')
     .pipe(gulp.dest(targetDirCSSImg+'svgfiles/'))
 });
 
+/**
+ * Move Image Files
+ * @description Combine Move-Bitmaps and Move SVG
+ */
+gulp.task('move-images', [
+  'move-svg',
+  'move-bitmaps'
+]);
 
 /**
- * Combine Scripts from Browser to script.js
+ * Combine Javascript
+ * @description Combine Scripts from Browser to script.js
  */
 gulp.task('combine-js', function() {
   gulp.src(sources.combinejs)
@@ -534,7 +551,8 @@ gulp.task('combine-js', function() {
 });
 
 /**
- * Build a customized Modernizr File
+ * Modernizr
+ * @description Build a customized Modernizr File
  */
 gulp.task('modernizr-build', function() {
   gulp.src('node_modules/gulp-modernizr/build/modernizr-custom.js')
@@ -553,7 +571,8 @@ gulp.task('modernizr-build', function() {
 });
 
 /**
- * Task for Combine and Generate Conditionizr Test File
+ * Conditionizr
+ * @description Task for Combine and Generate Conditionizr Test File
  */
 gulp.task('conditionizr-tests', function() {
   gulp.src(sources.conditionizr)
@@ -562,7 +581,8 @@ gulp.task('conditionizr-tests', function() {
 });
 
 /**
- * Check the JS Code Quality
+ * Javascript Code Quality
+ * @description Check the JS Code Quality
  */
 gulp.task('js-quality', function() {
   gulp.src([targetDirJS + '*.js'])
@@ -573,7 +593,8 @@ gulp.task('js-quality', function() {
 // ---- PUBLISHING TASKS ----------------
 
 /**
- * Compress all Images in distribution
+ * Compress Images
+ * @description Compress all Images in distribution
  * Inline Images (SVG, PNG, JPG, GIF)
  */
 gulp.task('compress-images', function () {
@@ -597,7 +618,8 @@ gulp.task('compress-images', function () {
 });
 
 /**
- * Compress all Javascript Files in distribution
+ * Compress Javascript
+ * @description Compress all Javascript Files in distribution
  */
 gulp.task('compress-js', function() {
   gulp.src([targetDirJS + '*.js'])
@@ -609,7 +631,8 @@ gulp.task('compress-js', function() {
 });
 
 /**
- * Compress CSS Files  in distribution
+ * Compress CSS Files
+ * @description Compress CSS Files in distribution
  */
 gulp.task('compress-css', function() {
   return gulp.src(targetDirCSS + '*.css')
@@ -618,7 +641,8 @@ gulp.task('compress-css', function() {
 });
 
 /**
- * Add Header to the CSS Files
+ * Banner CSS
+ * @description Add Header to the CSS Files
  */
 gulp.task('banner-css', function(){
   gulp.src(targetDirCSS + '*.css')
@@ -626,27 +650,32 @@ gulp.task('banner-css', function(){
     .pipe(gulp.dest(targetDirCSS));
 });
 
-// ---- Version Bumper ---------------
-
+/**
+ * Bump
+ * @description Bump the version property within `bower.json` and `package.json`.
+ * --type=pre will bump the prerelease version *.*.*-x
+ * --type=patch or no flag will bump the patch version *.*.x
+ * --type=minor will bump the minor version *.x.*
+ * --type=major will bump the major version x.*.*
+ * --version=1.2.3 will bump to a specific version and ignore other flags
+ */
 // Update bower, component, npm at once:
 gulp.task('bump', function(){
-  gulp.src(['bower.json', 'package.json'])
-  .pipe(bump({type:'patch'}))
+  var type = args.type || 'patch';
+  var version = args.version;
+  var options = {};
+
+  if (version) {
+    options.version = version;
+
+  } else {
+    options.type = type;
+  }
+
+  return gulp.src(['./bower.json', './package.json'])
+  .pipe(bump(options))
   .pipe(gulp.dest('./'));
 });
-
-gulp.task('bump-minor', function(){
-  gulp.src(['bower.json', 'package.json'])
-  .pipe(bump({type:'minor'}))
-  .pipe(gulp.dest('./'));
-});
-
-gulp.task('bump-major', function(){
-  gulp.src(['bower.json', 'package.json'])
-  .pipe(bump({type:'major'}))
-  .pipe(gulp.dest('./'));
-});
-
 
 
 // MAIN TASK BLOCK ------------------------------------------------------
@@ -658,8 +687,7 @@ gulp.task('bump-major', function(){
 gulp.task('rebuild-images', [
   'build-bitmap-sprite',
   'build-svg-sprite',
-  'move-bitmaps',
-  'move-svg'
+  'move-images'
 ]);
 
 /**
@@ -685,7 +713,6 @@ gulp.task('init',[
   cssCompiler,
   'jade'
 ]);
-
 
 /**
  * Default Task - start the Watch Tasks for SASS,
@@ -714,7 +741,8 @@ gulp.task('default', ['browser-sync', 'watch-bin']);
 //----------------- PUBLISHING --------------------------
 
 /**
- * Prepublish Task
+ * Build
+ * @description Prepublish Task
  */
 gulp.task('build',[
     'banner-css',
@@ -725,7 +753,8 @@ gulp.task('build',[
 ]);
 
 /**
- * Publish all Files in distribution
+ * Publish
+ * @description Publish all Files in distribution
  * Add a new Versionnumber to Package and Bower
  * Compress Files
  */

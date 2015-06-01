@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "2.0.5",
+  "version": "2.0.10",
   "description": "A Yeoman Generator for the Kittn Toolkit",
   "license": "MIT",
   "main": "app/index.js",
@@ -24,6 +24,9 @@
   ],
   "keywords": [
     "yeoman-generator",
+    "postcss",
+    "libsass",
+    "svgsprite",
     "sass",
     "yeoman",
     "jade",
