@@ -77,7 +77,6 @@ var KittnGenerator = yeoman.generators.Base.extend({
         message: 'How do you want to use Kittn? Yeoman can integrate the Toolkit for you (setting Path etc.)',
         choices: [
           "Building HTML Prototypes",
-          new inquirer.Separator(),
           "Integrate in CraftCMS",
           "Integrate in Wordpress",
           "Integrate in KirbyCMS"
