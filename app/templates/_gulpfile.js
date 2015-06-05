@@ -151,10 +151,10 @@ var gulp             = require('gulp'),
     spritesmith      = require('gulp.spritesmith'),
     pngquant         = require('imagemin-pngquant'),
     args             = require('yargs').argv,
+    styleguide       = require('sc5-styleguide'),
 
     // Post CSS
     postcss     = require('gulp-postcss'),
-      styleguide    = require('postcss-style-guide'),
       assets        = require('postcss-assets'),
       prefix        = require('autoprefixer-core');
 
@@ -235,11 +235,6 @@ gulp.task('libsass', function () {
           cascade: false
         }
       ),
-      styleguide( // Build Styleguide
-        options = {
-          name: projectName
-        }
-      ),
     ]))
     .pipe(combineMQ ? cmq({ // Combine Media Queries
       log: true
@@ -269,11 +264,6 @@ gulp.task('ruby-sass', function () {
       {
         browsers: prefixConfig,
         cascade: false
-      }
-    ),
-    styleguide( // Build Styleguide
-      options = {
-        name: projectName,
       }
     ),
   ]))
@@ -677,6 +667,27 @@ gulp.task('bump', function(){
   .pipe(gulp.dest('./'));
 });
 
+/**
+ * Styleguide
+ * @description Build the Styleguide
+ * --guide=no will disable the Building on the Publish Task
+ */
+gulp.task('styleguide', function() {
+  var guide = args.guide || 'yes';
+
+  if (guide == 'yes') {
+    return gulp.src(targetDirCSS+cssFileName+'.css')
+      .pipe(styleguide.generate({
+          title: 'Styleguide for: '+pkg.name+' (v.'+pkg.version+')',
+          server: false,
+          rootPath: 'styleguide/',
+          appRoot: '../styleguide',
+          overviewPath: 'readme.md'
+        }))
+      .pipe(styleguide.applyStyles())
+      .pipe(gulp.dest('styleguide/'));
+  }
+});
 
 // MAIN TASK BLOCK ------------------------------------------------------
 
@@ -741,18 +752,6 @@ gulp.task('default', ['browser-sync', 'watch-bin']);
 //----------------- PUBLISHING --------------------------
 
 /**
- * Build
- * @description Prepublish Task
- */
-gulp.task('build',[
-    'banner-css',
-    'bump',
-    'js-quality',
-    'compress-js',
-    'compress-images',
-]);
-
-/**
  * Publish
  * @description Publish all Files in distribution
  * Add a new Versionnumber to Package and Bower
@@ -760,8 +759,16 @@ gulp.task('build',[
  */
 gulp.task('publish', function(callback) {
   sequence(
-    'compress-css',
-    'build',
+    'bump',
+    cssCompiler,
+    'styleguide',
+    [
+      'compress-css',
+      'banner-css',
+      'js-quality',
+      'compress-js',
+      'compress-images',
+    ],
     callback
   );
 });
