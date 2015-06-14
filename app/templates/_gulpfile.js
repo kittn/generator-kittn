@@ -28,12 +28,12 @@ var cssSourceMap = true;
  * Autoprefix Browser Config
  */
 var prefixConfig = [
-  "last 2 version",
-  "> 1%",<% if (projectjade == true ) { %>
-  "ie 8",<% } else { %>
-  "ie 9",<% } %>
-  "chrome 30",
-  "firefox 24"
+  'last 2 version',
+  '> 1%',<% if (projectjade == true ) { %>
+  'ie 8',<% } else { %>
+  'ie 9',<% } %>
+  'chrome 30',
+  'firefox 24'
 ]
 
 /**
@@ -185,7 +185,7 @@ var cssFileName      = pkg.cssFileName;
  */
 var banner = ['/**',
   ' * <%%= pkg.name %> - <%%= pkg.description %>',
-  ' * @version <%= pkg.version %>',
+  ' * @version <%%= pkg.version %>',
   ' * @link <%%= pkg.homepage %>',
   ' * @license <%%= pkg.license %>',
   ' * ----------------------------',
@@ -219,7 +219,7 @@ gulp.task('libsass', function () {
     .pipe(cssSourceMap ? sourcemaps.init() : gutil.noop())
     .pipe(libsass.sync()
       .on('error', libsass.logError)
-      .on("error", notify.onError("Sass Compile Error!"))
+      .on('error', notify.onError('Sass Compile Error!'))
     )
     .pipe(postcss([
       assets( // Include Assets
@@ -250,7 +250,7 @@ gulp.task('libsass', function () {
  */
 gulp.task('ruby-sass', function () {
   return sass('src/sass/', { sourcemap: cssSourceMap })
-  .on("error", notify.onError("Sass Compile Error!"))
+  .on('error', notify.onError('Sass Compile Error!'))
   .on('error', function (err) { console.log(err.message); })
   .pipe(postcss([
     assets( // Include Assets
@@ -293,8 +293,8 @@ gulp.task('jade', function(){
           cssName: cssFileName
         }
       }))
-    .on("error", notify.onError(function (error) {
-      return "JADE Compile Error!!";
+    .on('error', notify.onError(function (error) {
+      return 'JADE Compile Error!!';
     }))
     .on('error', function(err) {
       console.log(err);
@@ -334,7 +334,6 @@ gulp.task('browser-sync', function() {
   if(browserSyncProxy) {
     browserSync.init([
       targetDirCSS +'**/*.css',
-      // targetDirBase + '**/*.{html,php}',
       targetDirCSSImg + '**/*.{jpg,gif,png,svg}',
       targetDirJS + '**/*.js'],
     { options: {
@@ -353,7 +352,6 @@ gulp.task('browser-sync', function() {
   } else {
     browserSync.init([
       targetDirCSS +'**/*.css',
-      // targetDirBase + '**/*.{html,php}',
       targetDirCSSImg + '**/*.{jpg,gif,png,svg}',
       targetDirJS + '**/*.js'],
     { options: {
@@ -394,8 +392,8 @@ gulp.task('rebuild-jade', function(){
           cssName: cssFileName
         }
       }))
-    .on("error", notify.onError(function (error) {
-      return "JADE Compile Error!!";
+    .on('error', notify.onError(function (error) {
+      return 'JADE Compile Error!!';
     }))
     .on('error', function(err) {
       console.log(err);
@@ -760,10 +758,14 @@ gulp.task('default', ['browser-sync', 'watch-bin']);
 gulp.task('publish', function(callback) {
   sequence(
     'bump',
-    cssCompiler,
-    'styleguide',
     [
-      'compress-css',
+      cssCompiler,
+      'styleguide'
+    ],
+    [
+      'compress-css'
+    ],
+    [
       'banner-css',
       'js-quality',
       'compress-js',
