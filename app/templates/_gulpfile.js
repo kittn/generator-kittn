@@ -12,7 +12,7 @@ var cssCompiler = 'libsass';
 /**
  * Use Jade Compiler
  */
-var useJade = <% if (projectjade == true ) { %>true;<% } else { %>false<% } %>;
+var useJade = <% if (projectjade == true ) { %>true<% } else { %>false<% } %>;
 
 /**
  * Combine CSS Media Queries
