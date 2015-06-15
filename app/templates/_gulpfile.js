@@ -41,21 +41,21 @@ var prefixConfig = [
  * @description Add all Modernizr Test that you need
  */
 var modernizrTests = [
-    'cssanimations',
-    'csstransforms',
-    'csstransforms3d',
-    'csstransitions',
-    'backgroundblendmode',
-    'bgsizecover',
-    'preserve3d',
-    'flexbox',
-    'touch',
-    'svg',
-    'inlinesvg',
-    'respond',
-    'hsla',
-    'rgba',
-    'webgl'
+  'cssanimations',
+  'csstransforms',
+  'csstransforms3d',
+  'csstransitions',
+  'backgroundblendmode',
+  'bgsizecover',
+  'preserve3d',
+  'flexbox',
+  'touch',
+  'svg',
+  'inlinesvg',
+  'respond',
+  'hsla',
+  'rgba',
+  'webgl'
 ]
 
 /**
@@ -80,7 +80,7 @@ var sources = {
   // Copy Single JS Files not combined
   copyjs: [<% if (projectiecompatible == true ) { %>
     {src:'src/stash/bower/selectivizr/selectivizr.js'},<% } %>
-    {src:''}
+    // {src:''}
   ],
 
   // Copy and Combine JS Files
@@ -115,7 +115,7 @@ var sources = {
  */
 var fonts = {
   files: [
-    {src: ''}
+    // {src: ''}
   ]
 };
 

@@ -14,8 +14,13 @@
   "regexp": true,
   "undef": true,
   "unused": true,
-  "strict": true,
+  "strict": false,
   "trailing": true,
   "smarttabs": true,
-  "white": true
+  "white": true,
+  "browser": true,
+  "globals": {
+    "$": false,
+    "jQuery": false
+  }
 }
