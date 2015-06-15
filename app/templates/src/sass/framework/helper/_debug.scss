@@ -6,6 +6,7 @@
 
   $deb-color-error: #f00c00;
   $deb-color-double-check: #ffff00;
+  $deb-color-mq: #11B01F;
 
   // Empty Elements on the Page
   :empty {
@@ -114,5 +115,37 @@
   // You should avoid using IDs for CSS, is this doing any styling?
   [id] {
     outline: 5px solid $deb-color-double-check;
+  }
+
+  // Media Query Debug
+  // Base Style
+  body:after {
+    background-color: $deb-color-mq;
+    color: #fff;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100000;
+    font-size: 14px;
+    line-height: 16px;
+  }
+
+  // Loop all MQs and display the actual Breakpoint
+  @each $breakpoint, $entry in $kittn-breakpoint-map {
+    // Get the Data from the Map
+    $s: map-get($entry,size);
+    $d: map-get($kittn-activate, mobile-first);
+
+    // Set the Vars
+    $size: if($d, $s, ($s - 1));
+    $dir: if($d, 'min-width', 'max-width');
+
+    // Build the Debug Breakpoint
+    @media screen and (#{$dir}: $size) {
+      body:after {
+        content: 'Active breakpoint: #{$breakpoint} || #{$dir}: #{$size}';
+      }
+    }
   }
 }
