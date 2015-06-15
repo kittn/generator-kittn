@@ -1,6 +1,6 @@
 # Generator-Kittn
 
-![kittn-generator](https://cloud.githubusercontent.com/assets/442468/5358767/f7f9c01c-7fb7-11e4-9a0c-133327aacbf1.jpg)
+![kittn-generator](https://cloud.githubusercontent.com/assets/442468/8157040/9e662dd2-1351-11e5-999d-50ce79792d14.png)
 
 Yeoman Generator for the Kittn Toolkit. Scaffolds and Prepare the Toolkit for you.
 
