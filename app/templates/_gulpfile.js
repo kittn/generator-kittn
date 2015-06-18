@@ -125,6 +125,7 @@ var fonts = {
 var gulp             = require('gulp'),
     sass             = require('gulp-ruby-sass'),
     jade             = require('gulp-jade'),
+    affected         = require('gulp-jade-find-affected'),
     libsass          = require('gulp-sass'),
     csso             = require('gulp-csso'),
     gutil            = require('gulp-util'),
@@ -280,8 +281,8 @@ gulp.task('ruby-sass', function () {
  */
 gulp.task('jade', function(){
   gulp.src(['src/jade/*.jade','!src/jade/_*.jade'])
-    .pipe(changed(targetDirMarkup, { extension: '.html' }))
     .pipe(plumber())
+    .pipe(affected())
     .pipe(jade({
         pretty: true,
         locals: {
