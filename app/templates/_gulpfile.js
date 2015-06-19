@@ -352,7 +352,7 @@ gulp.task('twig', function () {
       'indent_size': 2
     }))
     .pipe(gulp.dest(targetDirMarkup));
-});<% } else if(projectstructure == 'Uncompiled Structure') { %>
+});<% } %>
 
 /**
  * structure
@@ -363,7 +363,7 @@ gulp.task('structure', function() {
   gulp.src('src/structure/**/**')
     .pipe(changed(targetDirMarkup))
     .pipe(gulp.dest(targetDirMarkup));
-});<% } %>
+});
 
 /**
  * Build-Js
@@ -649,7 +649,7 @@ gulp.task('compress-images', function () {
       optimizationLevel: 3,
       use: [
         pngquant({
-          quality: '65-87',
+          quality: '75-88',
           speed: 4
       })],
       svgoPlugins: [{
