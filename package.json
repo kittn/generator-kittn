@@ -1,7 +1,7 @@
 {
   "name": "generator-kittn",
-  "version": "2.1.7",
-  "description": "A Yeoman Generator for the Kittn Toolkit",
+  "version": "2.1.10",
+  "description": "Kittn Scaffolding and Frontend Toolchain",
   "license": "MIT",
   "main": "app/index.js",
   "repository": "gisu/generator-kittn",

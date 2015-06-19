@@ -3,6 +3,8 @@
 
 /**
  * CSS Compiler
+ * @description The Sass Compiler - Ruby-Sass is included for Fallbacks,
+ * when you get error with 'libsass'
  *
  * :sass    = ruby-sass
  * :libsass = libsass
@@ -10,26 +12,30 @@
 var cssCompiler = 'libsass';
 
 /**
- * Use Jade Compiler
- */
-var useJade = <% if (projectjade == true ) { %>true<% } else { %>false<% } %>;
-
-/**
  * Combine CSS Media Queries
+ * @description Maybe when you want to order your MQ Bubble to save some kb
+ * you can activate the MediaQuerie Combine.
+ *
+ * @type {Boolean}
  */
 var combineMQ = false;
 
 /**
  * Build CSS SourceMaps
+ * @description When not needed you can disable the CSS Sourcemap Files
+ *
+ * @type {Boolean}
  */
 var cssSourceMap = true;
 
 /**
  * Autoprefix Browser Config
+ *
+ * @type {Array}
  */
 var prefixConfig = [
   'last 2 version',
-  '> 1%',<% if (projectjade == true ) { %>
+  '> 1%',<% if (projectiecompatible == true ) { %>
   'ie 8',<% } else { %>
   'ie 9',<% } %>
   'chrome 30',
@@ -39,6 +45,8 @@ var prefixConfig = [
 /**
  * Modernizr Tests
  * @description Add all Modernizr Test that you need
+ *
+ * @type {Array}
  */
 var modernizrTests = [
   'cssanimations',
@@ -60,6 +68,10 @@ var modernizrTests = [
 
 /**
  * Browser Sync can open your Browser
+ * @description BrowserSync will open your Browser when the default Gulp
+ * task is activated. You can disable this when you make some tests.
+ *
+ * @type {Boolean}
  */
 var browserSyncOpen = true;
 
@@ -67,6 +79,8 @@ var browserSyncOpen = true;
  * Browser Sync Proxy
  * @description When your Project use a Vhost Domain, enter
  * the domain. This will deactivate the BrowserSync Server
+ *
+ * @type {Boolean}
  */
 var browserSyncProxy = false;
 
@@ -75,6 +89,8 @@ var browserSyncProxy = false;
  * @description Setup what for JS Files you want to only copy
  * it into dist/, * and what for js files need to combined
  * into scripts.js.
+ *
+ * @type {Array}
  */
 var sources = {
   // Copy Single JS Files not combined
@@ -112,6 +128,8 @@ var sources = {
  * @description Place any font files into src/stash/fonts/ -
  * Task must manually activated with $ gulp move-fonts
  * the files would be copied to the dist directory
+ *
+ * @type {Array}
  */
 var fonts = {
   files: [
@@ -122,42 +140,43 @@ var fonts = {
 // DO NOT MODIFY BELOW THIS LINE ! ===============================================
 
 // Set the Task Variables
-var gulp             = require('gulp'),
-    sass             = require('gulp-ruby-sass'),
-    jade             = require('gulp-jade'),
-    affected         = require('gulp-jade-find-affected'),
-    libsass          = require('gulp-sass'),
-    csso             = require('gulp-csso'),
-    gutil            = require('gulp-util'),
-    path             = require('path'),
-    prettify         = require('gulp-prettify'),
-    sourcemaps       = require('gulp-sourcemaps'),
-    browserSync      = require('browser-sync').create(),
-    htmlInjector     = require('bs-html-injector'),
-    concat           = require('gulp-concat'),
-    uglify           = require('gulp-uglify'),
-    imagemin         = require('gulp-imagemin'),
-    plumber          = require('gulp-plumber'),
-    gulpif           = require('gulp-if'),
-    header           = require('gulp-header'),
-    notify           = require('gulp-notify'),
-    jshint           = require('gulp-jshint'),
-    stylish          = require('jshint-stylish'),
-    bump             = require('gulp-bump'),
-    changed          = require('gulp-changed'),
-    sequence         = require('run-sequence'),
-    modernizr        = require('gulp-modernizr'),
-    cmq              = require('gulp-combine-media-queries'),
-    svgSprite        = require('gulp-svg-sprite'),
-    spritesmith      = require('gulp.spritesmith'),
-    pngquant         = require('imagemin-pngquant'),
-    args             = require('yargs').argv,
-    styleguide       = require('sc5-styleguide'),
+var gulp           = require('gulp'),
+  args             = require('yargs').argv,
+  gutil            = require('gulp-util'),
+  path             = require('path'),
+  sequence         = require('run-sequence'),
+  plumber          = require('gulp-plumber'),
+  changed          = require('gulp-changed'),
+  gulpif           = require('gulp-if'),
+  header           = require('gulp-header'),
+  notify           = require('gulp-notify'),
+  libsass          = require('gulp-sass'),
+  sass             = require('gulp-ruby-sass'),
+  cmq              = require('gulp-combine-media-queries'),
+  sourcemaps       = require('gulp-sourcemaps'),
+  styleguide       = require('sc5-styleguide'),
+  csso             = require('gulp-csso'),<% if(projectstructure == 'Jade Template') { %>
+  jade             = require('gulp-jade'),
+  affected         = require('gulp-jade-find-affected'),<% } else if(projectstructure == 'Twig Template') { %>
+  twig             = require('gulp-twig'),<% } %>
+  prettify         = require('gulp-prettify'),
+  browserSync      = require('browser-sync').create(),
+  htmlInjector     = require('bs-html-injector'),
+  concat           = require('gulp-concat'),
+  uglify           = require('gulp-uglify'),
+  imagemin         = require('gulp-imagemin'),
+  jshint           = require('gulp-jshint'),
+  stylish          = require('jshint-stylish'),
+  bump             = require('gulp-bump'),
+  svgSprite        = require('gulp-svg-sprite'),
+  spritesmith      = require('gulp.spritesmith'),
+  pngquant         = require('imagemin-pngquant'),
+  modernizr        = require('gulp-modernizr'),
 
-    // Post CSS
-    postcss     = require('gulp-postcss'),
-      assets        = require('postcss-assets'),
-      prefix        = require('autoprefixer-core');
+  // Post CSS Tasks
+  postcss          = require('gulp-postcss'),
+    assets             = require('postcss-assets'),
+    prefix             = require('autoprefixer-core');
 
 // Get Data from Package File
 var pkg = require('./package.json');
@@ -209,7 +228,7 @@ var build = {
   ]
 };
 
-// --- Task Config --------------
+// --- Task Config --------------------------------------- //
 
 /**
  * LibSass Compiler
@@ -273,14 +292,14 @@ gulp.task('ruby-sass', function () {
   }) : gutil.noop())
   .pipe(cssSourceMap ? sourcemaps.write('.') : gutil.noop())
   .pipe(gulp.dest(targetDirCSS));
-});
+});<% if(projectstructure == 'Jade Template') { %>
 
 /**
  * Jade
  * @description Compile Jade to HTML. Used allways for Init to generate a HTML File.
  */
 gulp.task('jade', function(){
-  gulp.src(['src/jade/*.jade','!src/jade/_*.jade'])
+  gulp.src(['src/structure/*.jade','!src/structure/_*.jade'])
     .pipe(plumber())
     .pipe(affected())
     .pipe(jade({
@@ -304,7 +323,47 @@ gulp.task('jade', function(){
       'indent_size': 2
     }))
     .pipe(gulp.dest(targetDirMarkup));
-});
+});<% } else if(projectstructure == 'Twig Template') { %>
+
+/**
+ * Twig
+ * @description Compile Twig to HTML.
+ */
+gulp.task('twig', function () {
+  return gulp.src('src/structure/*.twig')
+    .pipe(plumber())
+    .pipe(twig({
+      data: {
+        siteTitle: pkg.name,
+        assetsCss: pkg.directory.css,
+        assetsCssImg: pkg.directory.cssimg,
+        assetsJs: pkg.directory.js,
+        assetsImg: pkg.directory.htmlimg,
+        cssName: cssFileName
+      }
+    }))
+    .on('error', notify.onError(function (error) {
+      return 'Twig Compile Error!!';
+    }))
+    .on('error', function(err) {
+      console.log(err.message);
+    })
+    .pipe(prettify({
+      'indent_size': 2
+    }))
+    .pipe(gulp.dest(targetDirMarkup));
+});<% } else if(projectstructure == 'Uncompiled Structure') { %>
+
+/**
+ * structure
+ * @description Simple Copy Task. Moves all Files from Basic to Dist
+ * Good for PHP Files when you build Wordpress Templates
+ */
+gulp.task('structure', function() {
+  gulp.src('src/structure/**/**')
+    .pipe(changed(targetDirMarkup))
+    .pipe(gulp.dest(targetDirMarkup));
+});<% } %>
 
 /**
  * Build-Js
@@ -321,8 +380,6 @@ gulp.task('build-js', function() {
     .pipe(gulp.dest(targetDirJS));
 });
 
-// Browser Sync Task
-
 /**
  * Browser Sync
  * @description Refresh the Browser on File Change. Insert HTML and CSS
@@ -334,6 +391,7 @@ gulp.task('browser-sync', function() {
 
   if(browserSyncProxy) {
     browserSync.init([
+      targetDirBase +'**/*.{php}',
       targetDirCSS +'**/*.css',
       targetDirCSSImg + '**/*.{jpg,gif,png,svg}',
       targetDirJS + '**/*.js'],
@@ -352,6 +410,7 @@ gulp.task('browser-sync', function() {
 
   } else {
     browserSync.init([
+      targetDirBase +'**/*.{php}',
       targetDirCSS +'**/*.css',
       targetDirCSSImg + '**/*.{jpg,gif,png,svg}',
       targetDirJS + '**/*.js'],
@@ -370,8 +429,7 @@ gulp.task('browser-sync', function() {
       open: browserSyncOpen
     });
   }
-
-});
+});<% if(projectstructure == 'Jade Template') { %>
 
 /**
  * Jade Rebuild
@@ -380,7 +438,7 @@ gulp.task('browser-sync', function() {
  * Changes use this Task.
  */
 gulp.task('rebuild-jade', function(){
-  gulp.src(['src/jade/*.jade','!src/jade/_*.jade'])
+  gulp.src(['src/structure/*.jade','!src/structure/_*.jade'])
     .pipe(plumber())
     .pipe(jade({
         pretty: true,
@@ -404,7 +462,7 @@ gulp.task('rebuild-jade', function(){
     }))
     .pipe(gulp.dest(targetDirMarkup))
     .pipe(notify({message: 'Jade Files rebuilded'}));
-});
+});<% } %>
 
 /**
  * Build Bitmap Sprite
@@ -421,8 +479,7 @@ gulp.task('build-bitmap-sprite', function () {
       })
     ))
     .pipe(gulpif('*.png',gulp.dest(targetDirCSSImg),gulp.dest('src/sass/maps/')))
- });
-
+});
 
 /**
  * Build SVG Sprite File
@@ -720,8 +777,10 @@ gulp.task('init',[
   'move-fonts',
   'rebuild-js',
   'rebuild-images',
-  cssCompiler,
-  'jade'
+  cssCompiler,<% if(projectstructure == 'Jade Template') { %>
+  'jade'<% } else if(projectstructure == 'Twig Template') { %>
+  'twig'<% } else if(projectstructure == 'Uncompiled Structure') { %>
+  'structure'<% } %>
 ]);
 
 /**
@@ -733,10 +792,10 @@ gulp.task('watch-bin', function() {
   // Watch the SCSS Folder for changes - compile CSS
   gulp.watch(['src/sass/**/*.scss','src/sass/**/*.sass'], [cssCompiler]);
 
-  if (useJade) {
-    // Watch the JADE Folder for changes - compile HTML
-    gulp.watch(['src/jade/**/*.jade', 'src/markdown/**/*.md'], ['jade']);
-  }
+  // Watch the Structure<% if(projectstructure == 'Jade Template') { %>
+  gulp.watch(['src/structure/**/*.jade'], ['jade']);<% } else if(projectstructure == 'Twig Template') { %>
+  gulp.watch(['src/structure/**/*.twig'], ['twig']);<% } else if(projectstructure == 'Uncompiled Structure') { %>
+  gulp.watch(['src/structure/**/**'], ['structure']);<% } %>
 
   // Watch the JS SRC Folder for Changes - Lint JS and copy it to tmp
   gulp.watch('src/js/**/*.js', ['build-js']);

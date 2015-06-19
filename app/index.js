@@ -5,16 +5,15 @@ var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
 
-
 var KittnGenerator = yeoman.generators.Base.extend({
   init: function () {
     this.pkg = require('../package.json');
 
-    this.on('end', function () {
-      if (!this.options['skip-install']) {
-        this.installDependencies();
-      }
-    });
+    // this.on('end', function () {
+    //   if (!this.options['skip-install']) {
+    //     this.installDependencies();
+    //   }
+    // });
   },
 
   askFor: function () {
@@ -24,7 +23,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
     var welcome =
       '\n ' +
       '\n    /\\___/\\       '+
-      '\n    )     (       '+
+      '\n    ) .  . (       '+
       '\n   =\\     /=      .--------------------------.'+
       '\n     )   (        |   Kitty, Kitty, Kitty !  |'+
       '\n    /     \\       | ------------------------ |'+
@@ -67,10 +66,14 @@ var KittnGenerator = yeoman.generators.Base.extend({
         message: 'Include new (2.1.4 => y) or Old (1.9.3 => n) jQuery Version?',
         default: true
       },{
-        type: 'confirm',
-        name: 'projectjade',
-        message: 'Do you want to use Jade as HTML Compiler?',
-        default: true
+        type: 'list',
+        name: 'projectstructure',
+        message: 'How do you want to compile your Structure with Jade or Twig? Otherwise you can use the Copy Task to move Files from src to your dist dir.',
+        choices: [
+          "Jade Template",
+          "Twig Template",
+          "Uncompiled Structure"
+        ]
       },{
         type: 'list',
         name: 'projectUsage',
@@ -121,29 +124,52 @@ var KittnGenerator = yeoman.generators.Base.extend({
       this.projectcssfilename = props.projectcssfilename;
       this.projectiecompatible = props.projectiecompatible;
       this.projectjquery = props.projectjquery;
-      this.projectjade = props.projectjade;
+      this.projectstructure = props.projectstructure;
       this.projectUsage = props.projectUsage;
       done();
     }.bind(this));
   },
 
   app: function () {
-    this.mkdir('src/sass');
-    this.mkdir('src/jade/templatepart');
-    this.directory('src/', 'src/');
+
+    // Move the SRC Folder
+
+    this.directory('src/js/', 'src/js/');
+    this.directory('src/stash/', 'src/stash/');
+    this.directory('src/sass/', 'src/sass/');
+
+    // Add SCSS Files with the desired Filename
     this.copy('_style.scss', 'src/sass/'+this.projectcssfilename+'.scss');
+
+    // IE8 get his own CSS File for Fallbacks
     if (this.projectiecompatible == true ) {
       this.copy('_style-ie8.scss', 'src/sass/'+this.projectcssfilename+'-ie8.scss');
     }
-    this.copy('_default-page-header.jade', 'src/jade/templatepart/_default-page-header.jade');
-    this.copy('_default-page-scripts.jade', 'src/jade/templatepart/_default-page-scripts.jade');
+
+    // Include the Jade Working Dir
+    if ( this.projectstructure == 'Jade Template' ) {
+      this.directory('src/jade/', 'src/structure/');
+      this.copy('_site-header.jade', 'src/structure/parts/_site-header.jade');
+      this.copy('_site-scripts.jade', 'src/structure/parts/_site-scripts.jade');
+
+    // Include the Twig Working Dir
+    } else if ( this.projectstructure == 'Twig Template' ) {
+      this.directory('src/twig/', 'src/structure/');
+      this.copy('_site-header.twig', 'src/structure/parts/site-header.twig');
+      this.copy('_site-scripts.twig', 'src/structure/parts/site-scripts.twig');
+
+    // As Alternative build a uncompiled Structure Folder - good for work on native
+    // templates with PHP
+    } else if ( this.projectstructure == 'Uncompiled Structure' ) {
+      this.directory('src/structure/', 'src/structure/');
+    }
+  },
+
+  projectfiles: function () {
     this.copy('_package.json', 'package.json');
     this.copy('_bower.json', 'bower.json');
     this.copy('_gulpfile.js', 'gulpfile.js');
     this.copy('_setup.scss', 'src/sass/_setup.scss');
-  },
-
-  projectfiles: function () {
     this.copy('_readme.md', 'readme.md');
     this.copy('_gitignore', '.gitignore');
     this.copy('bowerrc', '.bowerrc');
@@ -153,7 +179,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies();
+    // this.installDependencies();
   }
 });
 
