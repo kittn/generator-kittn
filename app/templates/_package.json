@@ -24,19 +24,19 @@
   },
   "cssFileName": "<%= projectcssfilename %>",
   "devDependencies": {
-    "autoprefixer-core": "^5.2.0",
-    "browser-sync": "2.7.10",
+    "autoprefixer-core": "^5.2.1",
+    "browser-sync": "2.7.13",
     "bs-html-injector": "^2.0.4",
     "css-parse": "1.5.3",
     "gulp": "3.9.0",
     "gulp-bump": "0.3.1",
     "gulp-changed": "1.2.1",
     "gulp-combine-media-queries": "^0.2.0",
-    "gulp-concat": "2.5.2",
+    "gulp-concat": "2.6.0",
     "gulp-csso": "^1.0.0",
     "gulp-header": "~1.2.2",
     "gulp-if": "^1.2.5",
-    "gulp-imagemin": "2.2.1",<% if(projectstructure == 'Jade Template') { %>
+    "gulp-imagemin": "2.3.0",<% if(projectstructure == 'Jade Template') { %>
     "gulp-jade": "1.0.1",
     "gulp-jade-find-affected": "^0.2.1",<% } else if(projectstructure == 'Twig Template') { %>
     "gulp-twig": "^0.3.0",<% } %>
@@ -47,9 +47,9 @@
     "gulp-postcss": "^5.1.8",
     "gulp-prettify": "0.3.0",
     "gulp-ruby-sass": "1.0.5",
-    "gulp-sass": "^2.0.1",
+    "gulp-sass": "^2.0.3",
     "gulp-sourcemaps": "1.5.2",
-    "gulp-svg-sprite": "^1.1.3",
+    "gulp-svg-sprite": "^1.2.5",
     "gulp-uglify": "1.2.0",
     "gulp-util": "3.0.4",
     "gulp.spritesmith": "^3.8.2",
@@ -59,8 +59,8 @@
     "markdown": "0.5.0",
     "matchdep": "0.3.0",
     "postcss-assets": "^2.1.2",
-    "run-sequence": "1.1.0",
-    "sc5-styleguide": "^0.3.22",
+    "run-sequence": "1.1.1",
+    "sc5-styleguide": "^0.3.24",
     "vinyl": "^0.4.6",
     "yargs": "^3.10.0"
   },
