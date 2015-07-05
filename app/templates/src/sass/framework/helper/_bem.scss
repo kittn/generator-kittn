@@ -17,8 +17,8 @@
 // with extend functionality
 //
 // @param  {*}      $name           - The selector name
-// @param  {bool}   $extend (false) - If the Modifier need to be extended with parent
-@mixin m($name, $extend: false) {
+// @param  {bool}   $extend (true) - If the Modifier need to be extended with parent
+@mixin m($name, $extend: true) {
   // Internal Extend Var
   $e: &;
 
