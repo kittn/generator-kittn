@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "2.1.19",
+  "version": "2.1.20",
   "description": "Kittn Scaffolding and Frontend Toolchain",
   "license": "MIT",
   "main": "app/index.js",
