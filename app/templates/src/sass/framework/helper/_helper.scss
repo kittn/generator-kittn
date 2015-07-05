@@ -130,13 +130,33 @@
 }
 
 
-// Get Values from the API Map
-//
-// @param   {*} $key Keyword for the Property
-//
-// @returns {*}
-@function api($key) {
-  @return map-get($api,$key);
+/**
+ * Get Values from a Map that can be nested
+ *
+ * @param   {map}    $map     The Data Map
+ * @param   {string} $keys... A List of Key Arguements (follow the nested structure)
+ *
+ * @returns {*}
+ */
+@function map-data($map, $keys...) {
+  @if length($map) == 0 {
+    @return null;
+  }
+
+  @each $key in $keys {
+    @if type-of($map) != 'map' {
+      @return $map;
+    }
+
+    $map: map-get($map, $key);
+  }
+
+  @return $map;
+}
+
+// Alias Fuction for Map-Data
+@function v($map, $keys...) {
+  @return map-data($map, $keys...);
 }
 
 // Multiply the Spacing Value to generate Spacings
