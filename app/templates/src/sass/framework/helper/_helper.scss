@@ -129,6 +129,16 @@
   @return mix($shade-color, $color, clamp(strip-units($amount), 0, 100));
 }
 
+
+// Get Values from the API Map
+//
+// @param   {*} $key Keyword for the Property
+//
+// @returns {*}
+@function api($key) {
+  @return map-get($api,$key);
+}
+
 // Multiply the Spacing Value to generate Spacings
 //
 // @param  {Number}  $lines - Multiplicator for Spacing

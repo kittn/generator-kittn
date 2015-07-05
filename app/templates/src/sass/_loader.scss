@@ -48,4 +48,7 @@
 @import "framework/partials/post-generators";
 // @import "framework/partials/tables";
 
-// Vendor Styling
+// Import specific Script Styles (from /skriptstyles)
+
+// Load the Template Stylesheet
+@@import "workfile";
