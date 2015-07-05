@@ -19,11 +19,11 @@ $api: ();
 }
 
 // Build a BEM Modifier
-// with extend functionality
+// Add a Modification to a style
 //
-// @param  {*}      $name           - The selector name
-// @param  {bool}   $extend (true) - If the Modifier need to be extended with parent
-@mixin m($name, $extend: true) {
+// @param  {*}     $name           - The selector name
+// @param  {bool}  $extend (false) - If the Modifier need to be extended with parent
+@mixin m($name, $extend: false) {
   // Internal Extend Var
   $e: &;
 
@@ -33,6 +33,23 @@ $api: ();
       @if $extend != false {
         @extend #{$e};
       }
+      @content;
+    }
+  }
+}
+
+// Build a BEM Modifier
+// Modify an existing Style. The Instanz use the Parent and add the
+// modification
+//
+// @param  {*} $name - Instance name
+@mixin i($name) {
+  $e: &;
+
+  @at-root {
+    &#{map-get($kittn-bem, instance)}#{$name} {
+      // Extend with the Parent Element
+      @extend #{$e};
       @content;
     }
   }

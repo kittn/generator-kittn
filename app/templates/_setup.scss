@@ -17,7 +17,8 @@ $kittn-default-unit: px;
 // @type Map
 $kittn-bem: (
   element: '__',
-  modifier: '--'
+  modifier: '--',
+  instance: '---'
 );
 
 // Kittn Directory Organisation
