@@ -17,7 +17,7 @@
 
 // Alias Fuction for Map-Data
 @function v($map, $keys...) {
-  @return map-data($map, $keys...);
+  @return map-deep-get($map, $keys...);
 }
 
 // Update a key deeply nested
