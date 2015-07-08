@@ -16,6 +16,7 @@
 
 // --- Import Internal Libs
 @import "framework/helper/typechecks";
+@import "framework/helper/maps";
 @import "framework/helper/fonts";
 @import "framework/helper/helper";
 @import "framework/helper/bem";
@@ -49,6 +50,9 @@
 // @import "framework/partials/tables";
 
 // Import specific Script Styles (from /skriptstyles)
+
+// Load the Template Components
+@import "application/app";
 
 // Load the Template Stylesheet
 @import "workfile";
