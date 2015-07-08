@@ -13,7 +13,7 @@
   "directory": {<% if (projectUsage == 'Building HTML Prototypes' ) { %>
     "base": "dist/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
     "base": "dist/wp-content/themes/<%= projectname %>/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
-    "base": "dist/public/"<% } if (projectUsage == 'Integrate in KirbyCMS' ) { %>
+    "base": "dist/public/",<% } if (projectUsage == 'Integrate in KirbyCMS' ) { %>
     "base": "dist/",<% } %>
     "css": "assets/css/",
     "js": "assets/js/",
