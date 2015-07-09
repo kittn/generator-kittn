@@ -85,6 +85,24 @@
   @extend %#{$name};
 }
 
+// Store Styles in a Pseudo Container
+// Use only inside bundled Components
+//
+// @param {string} $name - Storage Name
+@mixin store($name) {
+  @at-root %#{v($api,selector)}#{$name} {
+    @content;
+  }
+}
+
+// Unload Styles from a Pseudo Container
+// Use only inside bundled Components
+//
+// @param {string} $name - Storage Name
+@mixin yield($name) {
+  @extend %#{v($api,selector)}#{$name};
+}
+
 // Pick the Color Values from the Color Map
 //
 // @param  {*}  $target - Desired color
@@ -127,36 +145,6 @@
 // @returns {Color}
 @function shade($color, $amount, $shade-color: #000) {
   @return mix($shade-color, $color, clamp(strip-units($amount), 0, 100));
-}
-
-
-/**
- * Get Values from a Map that can be nested
- *
- * @param   {map}    $map     The Data Map
- * @param   {string} $keys... A List of Key Arguements (follow the nested structure)
- *
- * @returns {*}
- */
-@function map-data($map, $keys...) {
-  @if length($map) == 0 {
-    @return null;
-  }
-
-  @each $key in $keys {
-    @if type-of($map) != 'map' {
-      @return $map;
-    }
-
-    $map: map-get($map, $key);
-  }
-
-  @return $map;
-}
-
-// Alias Fuction for Map-Data
-@function v($map, $keys...) {
-  @return map-data($map, $keys...);
 }
 
 // Multiply the Spacing Value to generate Spacings
