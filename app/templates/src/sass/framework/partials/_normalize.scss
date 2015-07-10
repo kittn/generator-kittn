@@ -289,7 +289,7 @@ ul,dl {
   padding-left: map-get($kittn-typo-sizes,list-margin) + 0px;
   @include marginbottom(map-get($kittn-typo-margin,bottom));
 
-  nav > & {
+  nav & {
     list-style-type: none;
     margin-bottom: 0;
     padding-left: 0;
