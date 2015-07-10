@@ -15,11 +15,6 @@
   @return $map;
 }
 
-// Alias Fuction for Map-Data
-@function v($map, $keys...) {
-  @return map-deep-get($map, $keys...);
-}
-
 // Update a key deeply nested
 // @author Hugo Giraudel
 // @param {Map} $map - Map to update
