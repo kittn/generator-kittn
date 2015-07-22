@@ -32,6 +32,11 @@ $kittn-directorys: (
   bitmap: 'bitmaps/'
 );
 
+$kittn-spritefiles: (
+  bitmap-sprite: 'sprite.png',
+  vector-sprite: 'vector-sprite.png'
+);
+
 // Activate Base Features
 //
 // - 'debugging' {Bool} - Activate the CSS Debugging Features

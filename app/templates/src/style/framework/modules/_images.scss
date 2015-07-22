@@ -4,11 +4,11 @@
 
 // Add Pseudo Classes as Sprite Holder
 %svgsprite {
-  background: url('#{map-get($kittn-directorys, images)}vector-sprite.svg') no-repeat;
+  background: url('#{map-get($kittn-directorys, images)}#{map-get($kittn-spritefiles,vector-sprite)}') no-repeat;
 }
 
 %bitmapsprite {
-  background: url('#{map-get($kittn-directorys, images)}sprite.png') no-repeat;
+  background: url('#{map-get($kittn-directorys, images)}#{map-get($kittn-spritefiles,bitmap-sprite)}') no-repeat;
 }
 
 // _images Internal Mixin for include Images

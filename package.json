@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "2.1.30",
+  "version": "2.2.0",
   "description": "Kittn Scaffolding and Frontend Toolchain",
   "license": "MIT",
   "main": "app/index.js",
@@ -21,10 +21,11 @@
     "postcss",
     "libsass",
     "svgsprite",
-    "sass",
+    "ruby-sass",
     "yeoman",
     "jade",
-    "gulp"
+    "gulp",
+    "twig"
   ],
   "dependencies": {
     "yeoman-generator": "^0.19.0",

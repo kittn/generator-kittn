@@ -1,0 +1,142 @@
+{
+  "src": {
+    "style": "src/style/",
+    "template": "src/template/",
+    "js": "src/js/",
+    "bower": "src/bower/",
+    "scripts" : "src/scripts",
+    "fonts": "src/fonts/",
+    "images": {
+      "bitmapSprite": {
+        "files": "src/images/bitmapSprite-assets/",
+        "name": "sprite.png"
+      },
+      "vectorSprite": {
+        "files": "src/images/vectorSprite-assets/",
+        "name": "vector-sprite.png",
+        "symbolName": "symbol-sprite.svg",
+        "maxHeight" : 30,
+        "maxWidth": 30,
+        "padding": 0
+
+      },
+      "bitmaps": "src/images/bitmapSingle-assets/",
+      "vectors": "src/images/vectorSingle-assets/"
+    },
+    "system": "src/.system/"
+  },
+  "dist": {<% if (projectUsage == 'Building HTML Prototypes' ) { %>
+    "base": "dist/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
+    "base": "dist/wp-content/themes/<%= projectname %>/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
+    "base": "dist/public/",<% } if (projectUsage == 'Integrate in KirbyCMS' ) { %>
+    "base": "dist/",<% } %>
+    "css": "dist/assets/css/",
+    "js": "dist/assets/js/",
+    "fonts": "dist/assets/fonts/",
+    "cssimg": "dist/assets/img/",
+    "bitmaps": "dist/assets/img/bitmaps/",
+    "vectors": "dist/assets/img/svgfiles/",
+    "cssimgRoot": "/assets/img/",
+    "markup": "dist/",
+    "htmlimg": "dist/images/"
+  },
+  "css": {
+    "compiler": "libsass",
+    "combineMQ": false,
+    "sourcemap": true,
+    "prefix": [
+      "last 2 version",
+      "> 1%",<% if (projectiecompatible == true ) { %>
+      "ie 8",<% } else { %>
+      "ie 9",<% } %>
+      "chrome 30",
+      "firefox 24"
+    ]
+  },
+  "template": {
+    "compiler": true
+  },
+  "browsersync": {
+    "openBrowser": true,
+    "proxy": false
+  },
+  "files": {
+    "jsCombine" : [<% if (projectjquery == true ) { %>
+      "src/bower/jquery/dist/jquery.js"<% } else { %>
+      "src/bower/jquery/jquery.js"<% } %>
+    ],
+    "jsCombineFilename": "scripts.js",
+    "jsCopy": [<% if (projectiecompatible == true ) { %>
+      "src/bower/selectivizr/selectivizr.js"<% } %>
+
+    ],
+    "fonts": [],
+    "launch": [
+      {"src": ".htaccess", "dest": ""},
+      {"src": "404.html", "dest": ""},
+      {"src": "robots.txt", "dest": ""},
+      {"src": "favicon.png", "dest": "assets/img/system/"},
+      {"src": "spinner.gif", "dest": "assets/img/system/"}
+    ]
+  },
+  "modernizr": {
+    "options": [
+      "setClasses",
+      "addTest",
+      "html5printshiv",
+      "testAllProps",
+      "fnBind"
+    ],
+    "tests": [
+      "cssanimations",
+      "csstransforms",
+      "csstransforms3d",
+      "csstransitions",
+      "backgroundblendmode",
+      "bgsizecover",
+      "preserve3d",
+      "flexbox",
+      "touch",
+      "svg",
+      "inlinesvg",
+      "respond",
+      "hsla",
+      "rgba",
+      "webgl"
+    ]
+  },
+  "conditionizr": {
+    "filename": "conditionizr.js",
+    "files": [
+      "src/bower/conditionizr/dist/conditionizr.js",
+      "src/bower/conditionizr/detects/chrome.js",
+      "src/bower/conditionizr/detects/safari.js",
+      "src/bower/conditionizr/detects/firefox.js",
+      "src/bower/conditionizr/detects/ie11.js",
+      "src/bower/conditionizr/detects/ie10.js",
+      "src/bower/conditionizr/detects/ie9.js"<% if (projectiecompatible == true ) { %>,
+      "src/bower/conditionizr/detects/ie8.js"<% } %>
+    ]
+  },
+  "minify": {
+    "images": {
+      "optimizationLevel": 3,
+      "pngquant": {
+        "quality": "75-88",
+        "speed": 4
+      },
+      "svgoPlugins": {
+        "removeViewBox": false,
+        "removeDesc": true,
+        "cleanupIDs": false
+      },
+      "progressive": true,
+      "interlaced": true
+    },
+    "javascript": {
+      "options": {
+        "mangle": false
+      }
+    }
+  }
+}

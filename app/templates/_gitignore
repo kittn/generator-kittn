@@ -5,6 +5,7 @@
 node_modules
 src/stash/bower
 /icon.png
+.idea/
 <% if (projectUsage == 'Integrate in Wordpress' ) { %>
 
 # Wordpress Specific

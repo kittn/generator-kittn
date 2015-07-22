@@ -1,202 +1,32 @@
 // Gulpfile
 // ========
 
-/**
- * CSS Compiler
- * @description The Sass Compiler - Ruby-Sass is included for Fallbacks,
- * when you get error with 'libsass'
- *
- * :sass    = ruby-sass
- * :libsass = libsass
- */
-var cssCompiler = 'libsass';
-
-/**
- * Combine CSS Media Queries
- * @description Maybe when you want to order your MQ Bubble to save some kb
- * you can activate the MediaQuerie Combine.
- *
- * @type {Boolean}
- */
-var combineMQ = false;
-
-/**
- * Build CSS SourceMaps
- * @description When not needed you can disable the CSS Sourcemap Files
- *
- * @type {Boolean}
- */
-var cssSourceMap = true;
-
-/**
- * Autoprefix Browser Config
- *
- * @type {Array}
- */
-var prefixConfig = [
-  'last 2 version',
-  '> 1%',<% if (projectiecompatible == true ) { %>
-  'ie 8',<% } else { %>
-  'ie 9',<% } %>
-  'chrome 30',
-  'firefox 24'
-]
-
-/**
- * Modernizr Tests
- * @description Add all Modernizr Test that you need
- *
- * @type {Array}
- */
-var modernizrTests = [
-  'cssanimations',
-  'csstransforms',
-  'csstransforms3d',
-  'csstransitions',
-  'backgroundblendmode',
-  'bgsizecover',
-  'preserve3d',
-  'flexbox',
-  'touch',
-  'svg',
-  'inlinesvg',
-  'respond',
-  'hsla',
-  'rgba',
-  'webgl'
-]
-
-/**
- * Browser Sync can open your Browser
- * @description BrowserSync will open your Browser when the default Gulp
- * task is activated. You can disable this when you make some tests.
- *
- * @type {Boolean}
- */
-var browserSyncOpen = true;
-
-/**
- * Browser Sync Proxy
- * @description When your Project use a Vhost Domain, enter
- * the domain. This will deactivate the BrowserSync Server
- *
- * @type {Boolean}
- */
-var browserSyncProxy = false;
-
-/**
- * Sources
- * @description Setup what for JS Files you want to only copy
- * it into dist/, * and what for js files need to combined
- * into scripts.js.
- *
- * @type {Array}
- */
-var sources = {
-  // Copy Single JS Files not combined
-  copyjs: [<% if (projectiecompatible == true ) { %>
-    {src:'src/stash/bower/selectivizr/selectivizr.js'},<% } %>
-    // {src:''}
-  ],
-
-  // Copy and Combine JS Files
-  combinejs: [<% if (projectjquery == true ) { %>
-    'src/stash/bower/jquery/dist/jquery.js',<% } else { %>
-    'src/stash/bower/jquery/jquery.js'<% } %>
-  ],
-
-  conditionizr: [ // Conditionizr and the Testfiles
-    'src/stash/bower/conditionizr/dist/conditionizr.js',
-    // Testfiles --------------------
-    'src/stash/bower/conditionizr/detects/chrome.js',
-    'src/stash/bower/conditionizr/detects/safari.js',
-    'src/stash/bower/conditionizr/detects/firefox.js',
-    'src/stash/bower/conditionizr/detects/ie11.js',
-    'src/stash/bower/conditionizr/detects/ie10.js',
-    'src/stash/bower/conditionizr/detects/ie9.js',<% if (projectiecompatible == true ) { %>
-    'src/stash/bower/conditionizr/detects/ie8.js',<% } else { %>
-    // 'src/stash/bower/conditionizr/detects/ie8.js',<% } %>
-    // 'src/stash/bower/conditionizr/detects/mac.js',
-    // 'src/stash/bower/conditionizr/detects/windows.js',
-    // 'src/stash/bower/conditionizr/detects/linux.js',
-    // 'src/stash/bower/conditionizr/detects/localhost.js'
-  ]
-};
-
-/**
- * Font Files
- * @description Place any font files into src/stash/fonts/ -
- * Task must manually activated with $ gulp move-fonts
- * the files would be copied to the dist directory
- *
- * @type {Array}
- */
-var fonts = {
-  files: [
-    // {src: ''}
-  ]
-};
-
-// DO NOT MODIFY BELOW THIS LINE ! ===============================================
-
 // Set the Task Variables
-var gulp           = require('gulp'),
-  args             = require('yargs').argv,
-  gutil            = require('gulp-util'),
-  path             = require('path'),
-  sequence         = require('run-sequence'),
-  plumber          = require('gulp-plumber'),
-  changed          = require('gulp-changed'),
-  gulpif           = require('gulp-if'),
-  header           = require('gulp-header'),
-  notify           = require('gulp-notify'),
-  libsass          = require('gulp-sass'),
-  sass             = require('gulp-ruby-sass'),
-  cmq              = require('gulp-combine-media-queries'),
-  sourcemaps       = require('gulp-sourcemaps'),
-  styleguide       = require('sc5-styleguide'),
-  csso             = require('gulp-csso'),<% if(projectstructure == 'Jade Template') { %>
-  jade             = require('gulp-jade'),
-  affected         = require('gulp-jade-find-affected'),<% } else if(projectstructure == 'Twig Template') { %>
-  twig             = require('gulp-twig'),<% } %>
-  prettify         = require('gulp-prettify'),
-  browserSync      = require('browser-sync').create(),
-  htmlInjector     = require('bs-html-injector'),
-  concat           = require('gulp-concat'),
-  uglify           = require('gulp-uglify'),
-  imagemin         = require('gulp-imagemin'),
-  jshint           = require('gulp-jshint'),
-  stylish          = require('jshint-stylish'),
-  bump             = require('gulp-bump'),
-  svgSprite        = require('gulp-svg-sprite'),
-  spritesmith      = require('gulp.spritesmith'),
-  pngquant         = require('imagemin-pngquant'),
-  modernizr        = require('gulp-modernizr'),
+var gulp         = require('gulp'),
+    pkg          = require('./package.json'), // Get Data from Package File
+    kittn        = require('./config.json'), // Get the Config Data
+    $            = require('gulp-load-plugins')(),
+    args         = require('yargs').argv,
+    browserSync  = require('browser-sync').create(),
+    runSequence  = require('run-sequence'),
+    path         = require('path'),
+    styleguide   = require('sc5-styleguide'),
+    htmlInjector = require('bs-html-injector'),
+    stylish      = require('jshint-stylish'),
+    pngquant     = require('imagemin-pngquant'),
+    assets       = require('postcss-assets'),
+    prefix       = require('autoprefixer-core');
 
-  // Post CSS Tasks
-  postcss          = require('gulp-postcss'),
-    assets             = require('postcss-assets'),
-    prefix             = require('autoprefixer-core');
+// Define the Template Filetype
+var templateFileEnding;
 
-// Get Data from Package File
-var pkg = require('./package.json');
-var config = {
-  gitURL: pkg.repository.url,
-  gitBranch: 'master',
-  gitVersion: pkg.version
-};
-
-// Directory Routing
-var targetDirBase    = pkg.directory.base;
-var targetDirCSS     = pkg.directory.base+pkg.directory.css;
-var targetDirJS      = pkg.directory.base+pkg.directory.js;
-var targetDirMarkup  = pkg.directory.base+pkg.directory.markup;
-var targetDirCSSImg  = pkg.directory.base+pkg.directory.cssimg;
-var targetDirHTMLImg = pkg.directory.base+pkg.directory.htmlimg;
-var targetDirFonts   = pkg.directory.base+pkg.directory.fonts;
-var CSSImgOnly       = pkg.directory.cssimg;
-var projectName      = pkg.name;
-var cssFileName      = pkg.cssFileName;
+if(kittn.template.compiler === 'twig') {
+  templateFileEnding = '**/*.twig';
+} else if (kittn.template.compiler === 'jade') {
+  templateFileEnding = '**/*.jade';
+} else {
+  templateFileEnding = '**/**';
+}
 
 /**
  * Banner
@@ -215,489 +45,383 @@ var banner = ['/**',
   ''].join('\n');
 
 /**
- * Build
- * @description Define the Base Static Files and the Target
+ * Browser Sync
+ * @description Refresh the Browser after File Change.
  */
-var build = {
-  files: [
-    {src:'src/stash/.system/.htaccess'  , dest: ''},
-    {src:'src/stash/.system/404.html'   , dest: ''},
-    {src:'src/stash/.system/robots.txt' , dest: ''},
-    {src:'src/stash/.system/favicon.png', dest: 'assets/img/system/'},
-    {src:'src/stash/.system/spinner.gif', dest: 'assets/img/system/'}
-  ]
-};
+gulp.task('browser-sync', function() {
+  // Build a condition when Proxy is active
+  var bsProxy, bsServer;
 
-// --- Task Config --------------------------------------- //
+  // Condition for Proxy
+  if(kittn.browsersync.proxy) {
+    bsProxy = kittn.browsersync.proxy;
+    bsServer = false;
+  } else {
+    bsProxy = false;
+    bsServer = { baseDir : kittn.dist.base};
+  }
 
-/**
- * LibSass Compiler
- * @description This task use the faster Libsass Compiler.
- */
-gulp.task('libsass', function () {
-  gulp.src('src/sass/**/*.scss')
-    .pipe(cssSourceMap ? sourcemaps.init() : gutil.noop())
-    .pipe(libsass.sync()
-      .on('error', libsass.logError)
-      .on('error', notify.onError('Sass Compile Error!'))
-    )
-    .pipe(postcss([
-      assets( // Include Assets
-        options = {
-          basePath: targetDirBase,
-          loadPaths: [
-            CSSImgOnly
-          ]
-      }),
-      prefix( // Prefixer
-        {
-          browsers: prefixConfig,
-          cascade: false
-        }
-      ),
-    ]))
-    .pipe(combineMQ ? cmq({ // Combine Media Queries
-      log: true
-    }) : gutil.noop())
-    .pipe(cssSourceMap ? sourcemaps.write('.') : gutil.noop())
-    .pipe(gulp.dest(targetDirCSS));
+  // Init the HTML Injector
+  browserSync.use(htmlInjector, {
+    files: kittn.dist.base + '**/*.html'
+  });
+
+  // Browser Sync
+  browserSync.init([
+      kittn.dist.base + '**/*.php',
+      kittn.dist.css +'**/*.css' ,
+      kittn.dist.cssimg + '**/*.{jpg,gif,png,svg}',
+      kittn.dist.js + '**/*.js'],
+    { options: {
+      debugInfo: true,
+      watchTask: true,
+      proxy: bsProxy,
+      ghostMode: {
+        clicks : true,
+        scroll : true,
+        links  : true,
+        forms  : true }
+    },
+      server: bsServer,
+      open: kittn.browsersync.openbowser
+    });
 });
 
 /**
- * Ruby-Sass Compiler
- * @description On Compile Issues with Libsass switch to this Compiler.
- * Is the native Ruby Sass Compiler.
+ * CSS Compiler
  */
-gulp.task('ruby-sass', function () {
-  return sass('src/sass/', { sourcemap: cssSourceMap })
-  .on('error', notify.onError('Sass Compile Error!'))
-  .on('error', function (err) { console.log(err.message); })
-  .pipe(postcss([
-    assets( // Include Assets
+gulp.task('compiler:css', function(){
+
+  // Default Config for PostCSS Plugins
+  var cssPostCSS = [
+    // Include Assets
+    assets(
       options = {
-        basePath: targetDirBase,
+        basePath: kittn.dist.base,
         loadPaths: [
-          CSSImgOnly
+          kittn.dist.cssimg
         ]
-    }),
-    prefix( // Prefixer
-      {
-        browsers: prefixConfig,
-        cascade: false
-      }
-    ),
-  ]))
-  .pipe(combineMQ ? cmq({ // Combine Media Queries
-    log: true
-  }) : gutil.noop())
-  .pipe(cssSourceMap ? sourcemaps.write('.') : gutil.noop())
-  .pipe(gulp.dest(targetDirCSS));
-});<% if(projectstructure == 'Jade Template') { %>
-
-/**
- * Jade
- * @description Compile Jade to HTML. Used allways for Init to generate a HTML File.
- */
-gulp.task('jade', function(){
-  gulp.src(['src/structure/*.jade','!src/structure/_*.jade'])
-    .pipe(plumber())
-    .pipe(affected())
-    .pipe(jade({
-        pretty: true,
-        locals: {
-          siteTitle: pkg.name,
-          assetsCss: pkg.directory.css,
-          assetsCssImg: pkg.directory.cssimg,
-          assetsJs: pkg.directory.js,
-          assetsImg: pkg.directory.htmlimg,
-          cssName: cssFileName
-        }
-      }))
-    .on('error', notify.onError(function (error) {
-      return 'JADE Compile Error!!';
-    }))
-    .on('error', function(err) {
-      console.log(err);
+      }),
+    // Prefixer
+    prefix({
+      browsers: kittn.css.prefix,
+      cascade: false
     })
-    .pipe(prettify({
-      'indent_size': 2
-    }))
-    .pipe(gulp.dest(targetDirMarkup));
-});<% } else if(projectstructure == 'Twig Template') { %>
+  ];
 
-/**
- * Twig
- * @description Compile Twig to HTML.
- */
-gulp.task('twig', function () {
-  return gulp.src('src/structure/*.twig')
-    .pipe(plumber())
-    .pipe(twig({
-      data: {
-        siteTitle: pkg.name,
-        assetsCss: pkg.directory.css,
-        assetsCssImg: pkg.directory.cssimg,
-        assetsJs: pkg.directory.js,
-        assetsImg: pkg.directory.htmlimg,
-        cssName: cssFileName
-      }
-    }))
-    .on('error', notify.onError(function (error) {
-      return 'Twig Compile Error!!';
-    }))
-    .on('error', function(err) {
-      console.log(err.message);
-    })
-    .pipe(prettify({
-      'indent_size': 2
-    }))
-    .pipe(gulp.dest(targetDirMarkup));
-});<% } %>
+  // Libsass Compiler
+  if(kittn.css.compiler === 'libsass') {
+    return gulp.src(kittn.src.style + '**/*.scss')
+      // Activate Sourcemaps or not
+      .pipe(kittn.css.sourcemap ? $.sourcemaps.init() : $.gutil.noop())
+      // Libsass Task
+      .pipe($.sass.sync()
+        .on('error', $.sass.logError)
+        .on('error', $.notify.onError('Sass Compile Error!')))
+      // Stream to PostCSS
+      .pipe($.postcss(cssPostCSS))
+      // Combine Media Queries
+      .pipe(kittn.css.combineMQ ? $.combineMediaQueries({ log: true }) : $.gutil.noop())
+      // Write the SourceMap
+      .pipe(kittn.css.sourcemap ? $.sourcemaps.write('.') : $.gutil.noop())
+      .pipe(gulp.dest(kittn.dist.css));
 
-/**
- * structure
- * @description Simple Copy Task. Moves all Files from Basic to Dist
- * Good for PHP Files when you build Wordpress Templates
- */
-gulp.task('structure', function() {
-  gulp.src('src/structure/**/**')
-    .pipe(changed(targetDirMarkup))
-    .pipe(gulp.dest(targetDirMarkup));
+    // Rubysass Compiler
+  } else if(kittn.css.compiler === 'rubysass') {
+    return $.rubySass(kittn.src.style, { sourcemap: kittn.css.sourcemap })
+      .on('error', $.notify.onError('Sass Compile Error!'))
+      .on('error', function (err) { console.log(err.message); })
+      // Stream to PostCSS
+      .pipe($.postcss(cssPostCSS))
+      // Combine Media Queries
+      .pipe(kittn.css.combineMQ ? $.combineMediaQueries({ log: true }) : $.gutil.noop())
+      // Write the SourceMap
+      .pipe(kittn.css.sourcemap ? $.sourcemaps.write('.') : $.gutil.noop())
+      .pipe(gulp.dest(kittn.dist.css));
+  }
 });
 
 /**
- * Build-Js
+ * Template Compiler
+ *
+ * @description Compiles with Jade or Twig (the decision too has been taken in the packet generating), also copy only the Files.
+ */
+gulp.task('compiler:template', function(){
+
+  // Set Base Locals
+  var templateLocals = {
+    siteTitle: pkg.name,
+    cssName: pkg.cssFileName,
+    assetsCss: kittn.dist.css,
+    assetsCssImg: kittn.dist.cssimg,
+    assetsImg: kittn.dist.htmlimg,
+    assetsJs: kittn.dist.js
+  };
+
+  // Twig Compiler
+  if(kittn.template.compiler) {<% if ( projectstructure == 'Twig Template' ) { %>
+    // TWIG
+    return gulp.src(kittn.src.template + '*.twig')
+      .pipe($.plumber())
+      .pipe($.twig({ data: templateLocals }))
+      .on('error', $.notify.onError(function (error) {
+        return 'Twig Compile Error!!';
+      }))
+      .on('error', function(err) {
+        console.log(err.message);
+      })
+      .pipe($.prettify({
+        'indent_size': 2
+      }))
+      .pipe(gulp.dest(kittn.dist.markup));<% } else if ( projectstructure == 'Jade Template' ) { %>
+    // JADE
+    gulp.src([kittn.src.template + '*.jade',kittn.src.template + '_*.jade'])
+      .pipe($.plumber())
+      .pipe($.jadeFindAffected())
+      .pipe($.jade({
+        pretty: true,
+        locals: templateLocals
+      }))
+      .on('error', $.notify.onError(function (error) {
+        return 'JADE Compile Error!!';
+      }))
+      .on('error', function(err) {
+        console.log(err);
+      })
+      .pipe($.prettify({
+        'indent_size': 2
+      }))
+      .pipe(gulp.dest(kittn.dist.markup));<% } %>
+
+  // Simple Copy Files
+  } else {
+    gulp.src(kittn.src.template + '**/**')
+      .pipe($.changed(kittn.dist.markup))
+      .pipe(gulp.dest(kittn.dist.markup));
+  }
+});
+
+/**
+ * Combine JS
+ * @description Combine Scripts from Browser to script.js
+ */
+gulp.task('combine:js', function() {
+  gulp.src(kittn.files.jsCombine)
+    .pipe($.concat(kittn.files.jsCombineFilename))
+    .pipe(gulp.dest(kittn.dist.js));
+});
+
+/**
+ * Compile JS
  * @description Watch the JS Files in the Single JS Directory
  * Use JSHint to display Error and copy it to the Distribution Folder
  */
 // Check written JS and move it into tmp
-gulp.task('build-js', function() {
-  gulp.src(['src/js/*.js','!src/js/_*.js'])
-    .pipe(changed(targetDirJS, { extension: '.js' }))
-    .pipe(plumber())
-    .pipe(jshint())
-    .pipe(jshint.reporter(stylish))
-    .pipe(gulp.dest(targetDirJS));
+gulp.task('compiler:js', function() {
+  gulp.src([kittn.src.js + '*.js','!'+kittn.src.js+'_*.js'])
+    .pipe($.changed(kittn.dist.js, { extension: '.js' }))
+    .pipe($.plumber())
+    .pipe($.jshint())
+    .pipe($.jshint.reporter(stylish))
+    .pipe(gulp.dest(kittn.dist.js));
 });
 
 /**
- * Browser Sync
- * @description Refresh the Browser on File Change. Insert HTML and CSS
+ * Copy Launch Files
+ * @description Copy the Default Build Files to distribution
  */
-gulp.task('browser-sync', function() {
-  browserSync.use(htmlInjector, {
-    files: targetDirBase+'*.html'
+gulp.task('copy:launch', function () {
+  kittn.files.launch.forEach(function(item) {
+    gulp.src(kittn.src.system + item.src)
+      .pipe(gulp.dest(kittn.dist.base + item.dest));
   });
-
-  if(browserSyncProxy) {
-    browserSync.init([
-      targetDirBase +'**/*.{php}',
-      targetDirCSS +'**/*.css',
-      targetDirCSSImg + '**/*.{jpg,gif,png,svg}',
-      targetDirJS + '**/*.js'],
-    { options: {
-        debugInfo: true,
-        watchTask: true,
-        proxy: ''+browserSyncProxy+'',
-        ghostMode: {
-          clicks : true,
-          scroll : true,
-          links  : true,
-          forms  : true }
-      },
-      open: browserSyncOpen
-    });
-
-  } else {
-    browserSync.init([
-      targetDirBase +'**/*.{php}',
-      targetDirCSS +'**/*.css',
-      targetDirCSSImg + '**/*.{jpg,gif,png,svg}',
-      targetDirJS + '**/*.js'],
-    { options: {
-        debugInfo: true,
-        watchTask: true,
-        ghostMode: {
-          clicks : true,
-          scroll : true,
-          links  : true,
-          forms  : true }
-      },
-      server: {
-        baseDir  : targetDirBase
-      },
-      open: browserSyncOpen
-    });
-  }
-});<% if(projectstructure == 'Jade Template') { %>
+});
 
 /**
- * Jade Rebuild
- * @description Rebuild all Jade Files. The normal Jade Task rebuild only the working File
- * otherwise is to much Reload on the default Gulp task. When you need to rebuild the other
- * Changes use this Task.
+ * Copy Fonts
+ * @description Copy the Font Fils to distribution
  */
-gulp.task('rebuild-jade', function(){
-  gulp.src(['src/structure/*.jade','!src/structure/_*.jade'])
-    .pipe(plumber())
-    .pipe(jade({
-        pretty: true,
-        locals: {
-          siteTitle: pkg.name,
-          assetsCss: pkg.directory.css,
-          assetsCssImg: pkg.directory.cssimg,
-          assetsJs: pkg.directory.js,
-          assetsImg: pkg.directory.htmlimg,
-          cssName: cssFileName
-        }
-      }))
-    .on('error', notify.onError(function (error) {
-      return 'JADE Compile Error!!';
+gulp.task('copy:fonts', function () {
+  kittn.files.fonts.forEach(function(item) {
+    gulp.src(item)
+      .pipe($.changed(kittn.dist.fonts))
+      .pipe(gulp.dest(kittn.dist.fonts));
+  });
+});
+
+/**
+ * Copy JS
+ * @description Copy Bower Files to 'dist/'. Use the JSON Array in the config.json [files:jsCopy]]
+ */
+gulp.task('copy:js', function () {
+  kittn.files.jsCopy.forEach(function(item) {
+    gulp.src(item)
+      .pipe($.changed(kittn.dist.js))
+      .pipe(gulp.dest(kittn.dist.js));
+  });
+});
+
+/**
+ * Copy Bitmaps
+ * @description Move all Bitmap Images (from bitmapSingle-assets) to the .dist Folder
+ */
+gulp.task('copy:bitmaps', function() {
+  gulp.src(kittn.src.images.bitmaps + '**/*.{png,jpeg,jpg,gif,webp}')
+    .pipe(gulp.dest(kittn.dist.bitmaps));
+});
+
+/**
+ * Copy SVG Images
+ * @description Move all SVG Images (from vectorSingle-assets) to the .dist Folder
+ */
+gulp.task('copy:vectors', function() {
+  gulp.src(kittn.src.images.vectors + '**/*.svg')
+    .pipe(gulp.dest(kittn.dist.vectors));
+});
+
+/**
+ * Build Conditionizr
+ * @description Task for Combine and Generate Conditionizr Test File
+ */
+gulp.task('build:conditionizr', function() {
+  gulp.src(kittn.conditionizr.files)
+    .pipe($.concat(kittn.conditionizr.filename))
+    .pipe(gulp.dest(kittn.dist.js));
+});
+
+/**
+ * Build Modernizr
+ * @description Build a customized Modernizr File
+ */
+gulp.task('build:modernizr', function() {
+  gulp.src('node_modules/gulp-modernizr/build/modernizr-custom.js')
+    .pipe($.modernizr({
+      crawl: false,
+      options : kittn.modernizr.options,
+      tests: kittn.modernizr.tests
     }))
-    .on('error', function(err) {
-      console.log(err);
-    })
-    .pipe(prettify({
-      'indent_size': 2
-    }))
-    .pipe(gulp.dest(targetDirMarkup))
-    .pipe(notify({message: 'Jade Files rebuilded'}));
-});<% } %>
+    .pipe(gulp.dest(kittn.dist.js));
+});
 
 /**
  * Build Bitmap Sprite
  * @description Build the Bitmap Sprite File and the SCSS Map
  */
-gulp.task('build-bitmap-sprite', function () {
-  gulp.src('src/stash/images/sprite-assets/**/*.png')
-    .pipe(gulpif('*.png',
-      spritesmith({
-        imgName: 'sprite.png',
+gulp.task('build:bitmapSprite', function () {
+  gulp.src(kittn.src.images.bitmapSprite.files + '**/*.png')
+    .pipe($.if('*.png',
+      $.spritesmith({
+        imgName: kittn.src.images.bitmapSprite.name,
         cssName: '_sprite-bitmap.scss',
-        imgPath: '/'+CSSImgOnly+'sprite.png',
-        cssTemplate: 'src/stash/.system/tpl_bitmapsprite.scss'
+        imgPath: kittn.dist.cssimgRoot + kittn.src.images.bitmapSprite.name,
+        cssTemplate: kittn.src.system + 'tpl_bitmapsprite.scss'
       })
     ))
-    .pipe(gulpif('*.png',gulp.dest(targetDirCSSImg),gulp.dest('src/sass/maps/')))
+    .pipe($.if('*.png',gulp.dest(kittn.dist.cssimg),gulp.dest(kittn.src.style + 'maps/')))
 });
 
 /**
  * Build SVG Sprite File
  * @description Build an SVG Vector Sprite and a Map file
  */
-gulp.task('build-svg-sprite', function() {
-  gulp.src('src/stash/images/svg-assets/**/*.svg')
-    .pipe(svgSprite(
+gulp.task('build:vectorSprite', function() {
+  gulp.src(kittn.src.images.vectorSprite.files + '**/*.svg')
+    .pipe($.svgSprite(
       config = {
         shape: {
           dimension : {  // Set maximum dimensions
-            maxWidth : 30,
-            maxHeight : 30
+            maxWidth : kittn.src.images.vectorSprite.maxWidth,
+            maxHeight : kittn.src.images.vectorSprite.maxHeight
           },
           spacing : { // Add padding
-            padding : 0
+            padding : kittn.src.images.vectorSprite.padding
           },
-          dest : CSSImgOnly+'svgfiles/'
+          dest : kittn.dist.cssimg + 'svgfiles/'
         },
         mode: {
           view: {  // Activate the «view» mode
-            sprite: CSSImgOnly+'vector-sprite.svg',
+            sprite: kittn.dist.cssimg + kittn.src.images.vectorSprite.name,
             dest: '.',
             bust : false,
             prefix: '%%svg',
             render : {
               scss : {
-                template: 'src/stash/.system/tpl_svgsprite.scss',
-                dest: '../src/sass/maps/_sprite-svg.scss'
+                template: kittn.src.system + 'tpl_svgsprite.scss',
+                dest: '../'+ kittn.src.style +'maps/_sprite-svg.scss'
               }
             }
           },
           symbol : {
-            sprite: 'symbol-sprite.svg',
-            dest: CSSImgOnly
+            sprite: kittn.src.images.vectorSprite.symbolName,
+            dest: kittn.dist.cssimg
           }
         }
       }
     ))
-    .pipe(gulp.dest('dist/'));
-});
-
-// --- Copy Tasks --------------
-
-/**
- * Move JS
- * @description Copy Bower Files to 'dist/assets/javascripts/'.
- * Its a temporaly directory, the final JS files comes
- * later in the 'js' directory
- */
-gulp.task('move-js', function () {
-  sources.copyjs.forEach(function(item) {
-    gulp.src(item.src)
-      .pipe(gulp.dest(targetDirJS));
-  });
+    .pipe(gulp.dest(kittn.dist.base));
 });
 
 /**
- * Move First
- * @description Copy the Default Build Files to distribution
+ * Minfiy Images
+ * @description Compress all Images in distribution
+ * Inline Images (SVG, PNG, JPG, GIF)
  */
-gulp.task('move-first', function () {
-  build.files.forEach(function(item) {
-    gulp.src(item.src)
-      .pipe(gulp.dest(targetDirBase + item.dest));
-  });
-});
-
-/**
- * Move Fonts
- * @description Copy the Font Fils to distribution
- */
-gulp.task('move-fonts', function () {
-  fonts.files.forEach(function(item) {
-    gulp.src(item.src)
-      .pipe(gulp.dest(targetDirFonts));
-  });
-});
-
-/**
- * Move Bitmaps
- * @description Move all Bitmap Images (from bitmap-assets) to the .dist Folder
- */
-gulp.task('move-bitmaps', function() {
-  gulp.src('src/stash/images/bitmaps-assets/**/*.{png,jpeg,jpg,gif,webp}')
-    .pipe(gulp.dest(targetDirCSSImg+'bitmaps/'))
-});
-
-/**
- * Move SVG Images
- * @description Move all SVG Images (from /svgsingle) to the .dist Folder
- */
-gulp.task('move-svg', function() {
-  gulp.src('src/stash/images/svgsingle/**/*.svg')
-    .pipe(gulp.dest(targetDirCSSImg+'svgfiles/'))
-});
-
-/**
- * Move Image Files
- * @description Combine Move-Bitmaps and Move SVG
- */
-gulp.task('move-images', [
-  'move-svg',
-  'move-bitmaps'
-]);
-
-/**
- * Combine Javascript
- * @description Combine Scripts from Browser to script.js
- */
-gulp.task('combine-js', function() {
-  gulp.src(sources.combinejs)
-    .pipe(concat('scripts.js'))
-    .pipe(gulp.dest(targetDirJS));
-});
-
-/**
- * Modernizr
- * @description Build a customized Modernizr File
- */
-gulp.task('modernizr-build', function() {
-  gulp.src('node_modules/gulp-modernizr/build/modernizr-custom.js')
-    .pipe(modernizr({
-      crawl: false,
-      options : [
-        'setClasses',
-        'addTest',
-        'html5printshiv',
-        'testAllProps',
-        'fnBind'
-      ],
-      tests: modernizrTests
+gulp.task('minify:images', function () {
+  gulp.src(kittn.dist.cssimg + '/**/*')
+    .pipe($.imagemin({
+      optimizationLevel: kittn.minify.images.optimizationLevel,
+      use: [
+        pngquant(kittn.minify.images.pngquant)],
+      svgoPlugins: [kittn.minify.images.svgoPlugins],
+      progressive: kittn.minify.images.progressive,
+      interlaced: kittn.minify.images.interlaced
     }))
-    .pipe(gulp.dest(targetDirJS))
+    .pipe(gulp.dest(kittn.dist.cssimg));
 });
 
 /**
- * Conditionizr
- * @description Task for Combine and Generate Conditionizr Test File
+ * Minify Javascript
+ * @description Compress all Javascript Files in the dist folder
  */
-gulp.task('conditionizr-tests', function() {
-  gulp.src(sources.conditionizr)
-    .pipe(concat('conditionizr.js'))
-    .pipe(gulp.dest(targetDirJS));
+gulp.task('minify:js', function() {
+  gulp.src([kittn.dist.js + '*.js'])
+    .pipe($.uglify(kittn.minify.javascript.options))
+    .pipe($.header(banner, { pkg : pkg } ))
+    .pipe(gulp.dest(kittn.dist.js));
+});
+
+/**
+ * Minify CSS Files
+ * @description Compress CSS Files in distribution
+ */
+gulp.task('minify:css', function() {
+  return gulp.src(kittn.dist.css + '*.css')
+    .pipe($.csso())
+    .pipe(gulp.dest(kittn.dist.css));
 });
 
 /**
  * Javascript Code Quality
  * @description Check the JS Code Quality
  */
-gulp.task('js-quality', function() {
-  gulp.src([targetDirJS + '*.js'])
-    .pipe(jshint())
-    .pipe(jshint.reporter(stylish));
-});
-
-// ---- PUBLISHING TASKS ----------------
-
-/**
- * Compress Images
- * @description Compress all Images in distribution
- * Inline Images (SVG, PNG, JPG, GIF)
- */
-gulp.task('compress-images', function () {
-  gulp.src(targetDirCSSImg + '/**/*')
-    .pipe(imagemin({
-      optimizationLevel: 3,
-      use: [
-        pngquant({
-          quality: '75-88',
-          speed: 4
-      })],
-      svgoPlugins: [{
-        removeViewBox: false,
-        removeDesc: true,
-        cleanupIDs: false
-      }],
-      progressive: true,
-      interlaced: true
-    }))
-    .pipe(gulp.dest(targetDirCSSImg));
+gulp.task('codequality:js', function() {
+  gulp.src([kittn.dist.js + '*.js'])
+    .pipe($.jshint())
+    .pipe($.jshint.reporter(stylish));
 });
 
 /**
- * Compress Javascript
- * @description Compress all Javascript Files in distribution
- */
-gulp.task('compress-js', function() {
-  gulp.src([targetDirJS + '*.js'])
-    .pipe(uglify({
-      mangle: false
-    }))
-    .pipe(header(banner, { pkg : pkg } ))
-    .pipe(gulp.dest(targetDirJS));
-});
-
-/**
- * Compress CSS Files
- * @description Compress CSS Files in distribution
- */
-gulp.task('compress-css', function() {
-  return gulp.src(targetDirCSS + '*.css')
-    .pipe(csso())
-    .pipe(gulp.dest(targetDirCSS));
-});
-
-/**
- * Banner CSS
+ * Header CSS
  * @description Add Header to the CSS Files
  */
-gulp.task('banner-css', function(){
-  gulp.src(targetDirCSS + '*.css')
-  .pipe(header(banner, { pkg : pkg } ))
-    .pipe(gulp.dest(targetDirCSS));
+gulp.task('header:css', function(){
+  gulp.src(kittn.dist.css + '*.css')
+    .pipe($.header(banner, { pkg : pkg } ))
+    .pipe(gulp.dest(kittn.dist.css));
 });
 
 /**
- * Bump
+  * Bump
  * @description Bump the version property within `bower.json` and `package.json`.
  * --type=pre will bump the prerelease version *.*.*-x
  * --type=patch or no flag will bump the patch version *.*.x
@@ -706,7 +430,7 @@ gulp.task('banner-css', function(){
  * --version=1.2.3 will bump to a specific version and ignore other flags
  */
 // Update bower, component, npm at once:
-gulp.task('bump', function(){
+gulp.task('version:bump', function(){
   var type = args.type || 'patch';
   var version = args.version;
   var options = {};
@@ -719,7 +443,7 @@ gulp.task('bump', function(){
   }
 
   return gulp.src(['./bower.json', './package.json'])
-  .pipe(bump(options))
+  .pipe($.bump(options))
   .pipe(gulp.dest('./'));
 });
 
@@ -732,7 +456,7 @@ gulp.task('styleguide', function() {
   var guide = args.guide || 'yes';
 
   if (guide == 'yes') {
-    return gulp.src(targetDirCSS+cssFileName+'.css')
+    return gulp.src(kittn.dist.css + pkg.cssFileName + '.css')
       .pipe(styleguide.generate({
           title: 'Styleguide for: '+pkg.name+' (v.'+pkg.version+')',
           server: false,
@@ -745,67 +469,65 @@ gulp.task('styleguide', function() {
   }
 });
 
+
 // MAIN TASK BLOCK ------------------------------------------------------
 
 /**
  * Rebuild all Images
  * Copy to distribution, build Sprites
  */
-gulp.task('rebuild-images', [
-  'build-bitmap-sprite',
-  'build-svg-sprite',
-  'move-images'
+gulp.task('rebuild:images', [
+  'copy:bitmaps',
+  'copy:vectors',
+  'build:bitmapSprite',
+  'build:vectorSprite'
 ]);
 
 /**
  * Rebuild all JS Files
  * Copy to distribution
  */
-gulp.task('rebuild-js', [
-  'modernizr-build',
-  'move-js',
-  'build-js',
-  'combine-js',
-  'conditionizr-tests'
+gulp.task('rebuild:js', [
+  'build:modernizr',
+  'copy:js',
+  'compiler:js',
+  'combine:js',
+  'build:conditionizr'
 ]);
 
 /**
  * Starting Task for the first Build off the Project Structure
  */
 gulp.task('init',[
-  'move-first',
-  'move-fonts',
-  'rebuild-js',
-  'rebuild-images',
-  cssCompiler,<% if(projectstructure == 'Jade Template') { %>
-  'jade'<% } else if(projectstructure == 'Twig Template') { %>
-  'twig'<% } else if(projectstructure == 'Uncompiled Structure') { %>
-  'structure'<% } %>
+  'copy:launch',
+  'copy:fonts',
+  'rebuild:js',
+  'rebuild:images',
+  'compiler:css',
+  'compiler:template'
 ]);
 
 /**
  * Default Task - start the Watch Tasks for SASS,
  * JADE, JS and activate the Browser Watch
  */
-gulp.task('watch-bin', function() {
+gulp.task('watch', function() {
 
   // Watch the SCSS Folder for changes - compile CSS
-  gulp.watch(['src/sass/**/*.scss','src/sass/**/*.sass'], [cssCompiler]);
+  gulp.watch([kittn.src.style + '**/*.scss'], ['compiler:css']);
 
-  // Watch the Structure<% if(projectstructure == 'Jade Template') { %>
-  gulp.watch(['src/structure/**/*.jade'], ['jade']);<% } else if(projectstructure == 'Twig Template') { %>
-  gulp.watch(['src/structure/**/*.twig'], ['twig']);<% } else if(projectstructure == 'Uncompiled Structure') { %>
-  gulp.watch(['src/structure/**/**'], ['structure']);<% } %>
+  // Watch the Structure
+   gulp.watch([kittn.src.template + templateFileEnding], ['compiler:template']);
 
   // Watch the JS SRC Folder for Changes - Lint JS and copy it to tmp
-  gulp.watch('src/js/**/*.js', ['build-js']);
+  gulp.watch('src/js/**/*.js', ['compiler:js']);
 });
 
 /**
  * Default gulp Task 'gulp'
  * watch the working dirs - activates the compilers and refresh the browser
  */
-gulp.task('default', ['browser-sync', 'watch-bin']);
+gulp.task('default', ['browser-sync', 'watch']);
 
 //----------------- PUBLISHING --------------------------
 
@@ -816,21 +538,45 @@ gulp.task('default', ['browser-sync', 'watch-bin']);
  * Compress Files
  */
 gulp.task('publish', function(callback) {
-  sequence(
-    'bump',
+  runSequence(
+    'version:bump',
     [
-      cssCompiler,
-      'styleguide'
+      'compiler:css',
     ],
     [
-      'compress-css'
+      'header:css'
     ],
     [
-      'banner-css',
-      'js-quality',
-      'compress-js',
-      'compress-images',
+      'styleguide',
+      'codequality:js'
     ],
-    callback
-  );
+    callback);
 });
+
+/**
+ * Manual Deploy
+ *
+ * @description: Deploy Task for an manual build
+ * e.g. manual FTP Upload or simple Deploy
+ */
+gulp.task('deploy:manual', function(callback) {
+  runSequence(
+    'publish',
+    [
+      'minify:js',
+      'minify:images',
+      'minify:css'
+    ],
+    callback);
+});
+
+/**
+ * Automatic Deploy
+ *
+ * @description: Deploy Task for an automated Build Process
+ */
+gulp.task('deploy:auto', [
+  'minify:js',
+  'minify:images',
+  'minify:css'
+]);

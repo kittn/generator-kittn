@@ -63,7 +63,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
       },{
         type: 'confirm',
         name: 'projectjquery',
-        message: 'Include new (2.1.4 => y) or Old (1.9.3 => n) jQuery Version?',
+        message: 'Include new (2.1.4 => y) or Old (1.11.3 => n) jQuery Version?',
         default: true
       },{
         type: 'list',
@@ -72,7 +72,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
         choices: [
           "Jade Template",
           "Twig Template",
-          "Uncompiled Structure"
+          "Uncompiled"
         ]
       },{
         type: 'list',
@@ -135,41 +135,45 @@ var KittnGenerator = yeoman.generators.Base.extend({
     // Move the SRC Folder
 
     this.directory('src/js/', 'src/js/');
-    this.directory('src/stash/', 'src/stash/');
-    this.directory('src/sass/', 'src/sass/');
+    this.directory('src/style/', 'src/style/');
+    this.directory('src/fonts/', 'src/fonts/');
+    this.directory('src/images/', 'src/images/');
+    this.directory('src/scripts/', 'src/scripts/');
+    this.directory('src/.system/', 'src/.system/');
 
     // Add SCSS Files with the desired Filename
-    this.copy('_style.scss', 'src/sass/'+this.projectcssfilename+'.scss');
+    this.copy('_style.scss', 'src/style/'+this.projectcssfilename+'.scss');
 
     // IE8 get his own CSS File for Fallbacks
     if (this.projectiecompatible == true ) {
-      this.copy('_style-ie8.scss', 'src/sass/'+this.projectcssfilename+'-ie8.scss');
+      this.copy('_style-ie8.scss', 'src/style/'+this.projectcssfilename+'-ie8.scss');
     }
 
     // Include the Jade Working Dir
     if ( this.projectstructure == 'Jade Template' ) {
-      this.directory('src/jade/', 'src/structure/');
-      this.copy('_site-header.jade', 'src/structure/parts/_site-header.jade');
-      this.copy('_site-scripts.jade', 'src/structure/parts/_site-scripts.jade');
+      this.directory('src/jade/', 'src/template/');
+      this.copy('_site-header.jade', 'src/template/parts/_site-header.jade');
+      this.copy('_site-scripts.jade', 'src/template/parts/_site-scripts.jade');
 
     // Include the Twig Working Dir
     } else if ( this.projectstructure == 'Twig Template' ) {
-      this.directory('src/twig/', 'src/structure/');
-      this.copy('_site-header.twig', 'src/structure/parts/site-header.twig');
-      this.copy('_site-scripts.twig', 'src/structure/parts/site-scripts.twig');
+      this.directory('src/twig/', 'src/template/');
+      this.copy('_site-header.twig', 'src/template/parts/site-header.twig');
+      this.copy('_site-scripts.twig', 'src/template/parts/site-scripts.twig');
 
-    // As Alternative build a uncompiled Structure Folder - good for work on native
+    // As Alternative build a Uncompiled Folder - good for work on native
     // templates with PHP
-    } else if ( this.projectstructure == 'Uncompiled Structure' ) {
-      this.directory('src/structure/', 'src/structure/');
+    } else if ( this.projectstructure == 'Uncompiled' ) {
+      this.directory('src/template/', 'src/template/');
     }
   },
 
   projectfiles: function () {
     this.copy('_package.json', 'package.json');
+    this.copy('_config.json', 'config.json');
     this.copy('_bower.json', 'bower.json');
     this.copy('_gulpfile.js', 'gulpfile.js');
-    this.copy('_setup.scss', 'src/sass/_setup.scss');
+    this.copy('_setup.scss', 'src/style/_setup.scss');
     this.copy('_readme.md', 'readme.md');
     this.copy('_gitignore', '.gitignore');
     this.copy('bowerrc', '.bowerrc');
@@ -179,7 +183,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    this.installDependencies();
+    // this.installDependencies();
   }
 });
 
