@@ -3,8 +3,7 @@
 .sass-cache
 *.css.map
 node_modules
-src/stash/bower
-/icon.png
+src/bower
 .idea/
 <% if (projectUsage == 'Integrate in Wordpress' ) { %>
 

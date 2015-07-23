@@ -23,6 +23,7 @@
 @import "framework/helper/bem";
 
 // ---- Import the Setup ----
+@import "defaults";
 @import "setup";
 
 // Mixins and Functions
@@ -38,11 +39,8 @@
 @import "framework/modules/images";
 @import "framework/modules/color";
 @import "framework/modules/breakpoints";
-@import "framework/modules/triangle";
 @import "framework/modules/modernizr";
-@import "framework/modules/grid-generator";
 @import "framework/modules/wireframes";
-@import "framework/modules/buttons";
 
 // Layout [ESSENTIAL]
 @import "framework/partials/pre-generators";

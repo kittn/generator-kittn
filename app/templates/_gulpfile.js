@@ -3,6 +3,7 @@
 
 // Set the Task Variables
 var gulp         = require('gulp'),
+    gutil        = require('gulp-util'),
     pkg          = require('./package.json'), // Get Data from Package File
     kittn        = require('./config.json'), // Get the Config Data
     $            = require('gulp-load-plugins')(),
@@ -113,7 +114,7 @@ gulp.task('compiler:css', function(){
   if(kittn.css.compiler === 'libsass') {
     return gulp.src(kittn.src.style + '**/*.scss')
       // Activate Sourcemaps or not
-      .pipe(kittn.css.sourcemap ? $.sourcemaps.init() : $.gutil.noop())
+      .pipe(kittn.css.sourcemap ? $.sourcemaps.init() : gutil.noop())
       // Libsass Task
       .pipe($.sass.sync()
         .on('error', $.sass.logError)
@@ -121,9 +122,9 @@ gulp.task('compiler:css', function(){
       // Stream to PostCSS
       .pipe($.postcss(cssPostCSS))
       // Combine Media Queries
-      .pipe(kittn.css.combineMQ ? $.combineMediaQueries({ log: true }) : $.gutil.noop())
+      .pipe(kittn.css.combineMQ ? $.combineMediaQueries({ log: true }) : gutil.noop())
       // Write the SourceMap
-      .pipe(kittn.css.sourcemap ? $.sourcemaps.write('.') : $.gutil.noop())
+      .pipe(kittn.css.sourcemap ? $.sourcemaps.write('.') : gutil.noop())
       .pipe(gulp.dest(kittn.dist.css));
 
     // Rubysass Compiler
@@ -134,9 +135,9 @@ gulp.task('compiler:css', function(){
       // Stream to PostCSS
       .pipe($.postcss(cssPostCSS))
       // Combine Media Queries
-      .pipe(kittn.css.combineMQ ? $.combineMediaQueries({ log: true }) : $.gutil.noop())
+      .pipe(kittn.css.combineMQ ? $.combineMediaQueries({ log: true }) : gutil.noop())
       // Write the SourceMap
-      .pipe(kittn.css.sourcemap ? $.sourcemaps.write('.') : $.gutil.noop())
+      .pipe(kittn.css.sourcemap ? $.sourcemaps.write('.') : gutil.noop())
       .pipe(gulp.dest(kittn.dist.css));
   }
 });
@@ -221,6 +222,7 @@ gulp.task('compiler:js', function() {
   gulp.src([kittn.src.js + '*.js','!'+kittn.src.js+'_*.js'])
     .pipe($.changed(kittn.dist.js, { extension: '.js' }))
     .pipe($.plumber())
+    .pipe($.include())
     .pipe($.jshint())
     .pipe($.jshint.reporter(stylish))
     .pipe(gulp.dest(kittn.dist.js));
@@ -336,7 +338,7 @@ gulp.task('build:vectorSprite', function() {
           spacing : { // Add padding
             padding : kittn.src.images.vectorSprite.padding
           },
-          dest : kittn.dist.cssimg + 'svgfiles/'
+          dest : kittn.dist.vectors
         },
         mode: {
           view: {  // Activate the «view» mode
@@ -347,7 +349,7 @@ gulp.task('build:vectorSprite', function() {
             render : {
               scss : {
                 template: kittn.src.system + 'tpl_svgsprite.scss',
-                dest: '../'+ kittn.src.style +'maps/_sprite-svg.scss'
+                dest: kittn.src.style +'maps/_sprite-svg.scss'
               }
             }
           },
@@ -358,7 +360,7 @@ gulp.task('build:vectorSprite', function() {
         }
       }
     ))
-    .pipe(gulp.dest(kittn.dist.base));
+    .pipe(gulp.dest('./'));
 });
 
 /**
@@ -421,7 +423,7 @@ gulp.task('header:css', function(){
 });
 
 /**
-  * Bump
+ * Bump
  * @description Bump the version property within `bower.json` and `package.json`.
  * --type=pre will bump the prerelease version *.*.*-x
  * --type=patch or no flag will bump the patch version *.*.x
@@ -429,7 +431,6 @@ gulp.task('header:css', function(){
  * --type=major will bump the major version x.*.*
  * --version=1.2.3 will bump to a specific version and ignore other flags
  */
-// Update bower, component, npm at once:
 gulp.task('version:bump', function(){
   var type = args.type || 'patch';
   var version = args.version;
@@ -520,7 +521,8 @@ gulp.task('watch', function() {
    gulp.watch([kittn.src.template + templateFileEnding], ['compiler:template']);
 
   // Watch the JS SRC Folder for Changes - Lint JS and copy it to tmp
-  gulp.watch('src/js/**/*.js', ['compiler:js']);
+  gulp.watch(kittn.src.js + '**/*.js', ['compiler:js']);
+
 });
 
 /**

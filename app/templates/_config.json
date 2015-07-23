@@ -13,7 +13,7 @@
       },
       "vectorSprite": {
         "files": "src/images/vectorSprite-assets/",
-        "name": "vector-sprite.png",
+        "name": "vector-sprite.svg",
         "symbolName": "symbol-sprite.svg",
         "maxHeight" : 30,
         "maxWidth": 30,

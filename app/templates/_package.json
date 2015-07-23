@@ -37,6 +37,7 @@
     "gulp-sourcemaps": "1.5.2",
     "gulp-svg-sprite": "^1.2.6",
     "gulp-uglify": "1.2.0",
+    "gulp-include": "^2.0.2",
     "gulp-util": "3.0.6",<% if ( projectstructure == 'Twig Template' ) { %>
     "gulp-twig": "^0.3.0",<% } else if ( projectstructure == 'Jade Template' ) { %>
     "gulp-jade": "1.0.1",

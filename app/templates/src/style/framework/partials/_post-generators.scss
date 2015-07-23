@@ -16,8 +16,3 @@
   @include icon-generator($kittn-font-icons);
 }
 
-// Include the Base Grid Generator
-@include main-grid-generator($kittn-grid-setup);
-
-// Include all Buttons
-@include button-generator();

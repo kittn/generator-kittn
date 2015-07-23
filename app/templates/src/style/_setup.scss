@@ -12,54 +12,6 @@ $kittn-global-spacing: 20;
 // @type Number
 $kittn-default-unit: px;
 
-// BEM Prefixes for Elements and Modifiers
-//
-// @type Map
-$kittn-bem: (
-  element: '__',
-  modifier: '--',
-  instance: '---'
-);
-
-// Kittn Directory Organisation
-//
-// @type Map
-$kittn-directorys: (
-  fonts: '../fonts/',
-  images: '../img/',
-  svgonly: '../img/svgfiles/',
-  bitmaps: '../img/bitmaps/',
-  bitmap: 'bitmaps/'
-);
-
-$kittn-spritefiles: (
-  bitmap-sprite: 'sprite.png',
-  vector-sprite: 'vector-sprite.png'
-);
-
-// Activate Base Features
-//
-// - 'debugging' {Bool} - Activate the CSS Debugging Features
-// - 'box-sizing' {Bool} - Activate the new old Box Model ;P
-// - 'baseline' {Bool} - Activate Baseline Features
-// - 'hyphens' {Bool} - All Words would be breaked with Hyphens
-// - 'viewport-fix' {Bool} - Activate Viewport-Fixes for Windows Mobile 8
-// - 'mobile-first' {Bool} - Grid and Breakpoints oriented from Smallest to Biggest Size
-// - 'ie8-fallback' {Bool} - Integrate some IE8 Fallbacks
-//
-// @type Map
-$kittn-activate: (
-  debugging: false,
-  box-sizing: true,
-  baseline: false,
-  antialias: true,
-  hyphens: false,
-  viewport-fix: false,
-  mobile-first: true,<% if (projectiecompatible == true) { %>
-  ie8-fallbacks: true<% } else { %>
-  ie8-fallbacks: false<% } %>
-);
-
 // Map off all Breakpoints and Behaviors
 //
 // - 'Name' {*} - Breakpoint Name
@@ -105,66 +57,7 @@ $kittn-breakpoint-map: (
     visibility: false,
     step: true,
     fontsize: 100
-  ),
-  7: (
-    size: 1480px,
-    visibility: false,
-    step: false,
-    fontsize: false
   )
-);
-
-// Setup the Base Grid
-//
-// - 'activate' {Bool} - Activates the Generator
-// - 'silent' {Book} - Generated classes are silent [%]
-// - 'container-name' {*} - Name of the container class
-// - 'row-name' {*} - Name of the row class
-// - 'colum-name' {*} - Name of the colums
-// - 'size-name' {*} - Name of the size classes [prefix]
-// - 'offset-name' {*} - Name of the offset classes [prefix]
-// - 'pushpull-name' {*} - Name of the pushpull classes [prefix]
-// - 'breakpoint' {*} - This breakpoint will modifiy the grid [$kittn-breakpoint-map]
-// - 'colums' {Number} - Maximum colums
-// - 'spacing' {Number} - Padding of the colums
-// - 'layouttype' {*} - `inline`, `table`, `flex`, `block`
-// - 'valign' {*} - `top`, `bottom`, `baseline`, `middle`
-// - 'container-adaptive' {Bool} - adaptive or fluid
-// - 'container-width' {List} - Main Width off the Grid
-// - 'container-position' {*} - `center`, `left`, `right`
-// - 'container-offset' {Number} - The Size of the Outer Gutter
-// - 'container-ie8-style' {Bool|Number} - When is set on 'true' IE8 get a static Container
-// - 'colum-extras' {Bool} - Want to include the additional colum classes
-// - 'size-extend' {Bool|*} - Size classes can be extended with other classes
-// - 'size-select' {Bool|List} - You can select the size classes
-// - 'offset-activate' {Bool} - Activate the offset classes
-// - 'pushpull-activate' {Bool} - Activate the push&pull classes
-//
-// @type Map
-$kittn-grid-setup: (
-  activate: false,
-  silent: true,
-  container-name: 'container',
-  row-name: 'row',
-  colum-name: 'column',
-  size-name: 'width',
-  offset-name: 'offset',
-  pushpull-name: 'pushpull',
-  breakpoint: 4,
-  colums: 12,
-  spacing: 10,
-  layouttype: block,
-  valign: top,
-  container-adaptive: false,
-  container-width: 320 1180,
-  container-position: center,
-  container-offset: 0,
-  container-ie8-style: false,
-  colum-extras: false,
-  size-extend: false,
-  size-select: false,
-  offset-activate: false,
-  pushpull-activate: false
 );
 
 // Load and integrate all FontFaces.
@@ -445,61 +338,3 @@ $kittn-tables: (
   padding: 8px, // {Number}
   trigger: 400px, // {Number} Trigger Size for responsive Tables
 );
-
-// Button Map
-// You can add more than one button, any attribute is optional
-//
-// - {*} buttonname - Name of the Button
-//   - global
-//     - {Color|Bool} color - Text Color
-//     - {Color|Bool} background (transparent) - Background Color
-//     - {*|Bool} display (inline-block) - Display Type
-//     - {Number|Bool} width - Width of the button
-//     - {Number|Bool} fontsize - Text Fontsize
-//     - {Number|Bool} lineheight - Text Lineheight
-//     - {Number|Bool} height - Button height
-//     - {*|Bool} align (center) - Text Align
-//     - {Number|Bool} padding-v - Vertical Padding
-//     - {Number|Bool} padding-h (0) - Horizontal Padding
-//     - {*|Bool} weight - Font Weight
-//     - {*|Bool} style - Font style
-//     - {*|Bool} family - Font Family
-//     - {*|Bool} transition - State transition
-//     - {*|Bool} shadow - Box Shadow
-//     - {*|Bool} border - Border Style
-//     - {Number|Bool} radius - Border Radius
-//   - hover
-//     - {Color|Bool} color - Text Color
-//     - {Color|Bool} background - Background Color
-//     - {*|Bool} weight - Font Weight
-//     - {*|Bool} shadow - Box Shadow
-//     - {*|Bool} border - Border Style
-//   - active - Active State style (optional)
-//     - {Color|Bool} color - Text Color
-//     - {Color|Bool} background - Background Color
-//     - {*|Bool} weight - Font Weight
-//     - {*|Bool} shadow - Box Shadow
-//     - {*|Bool} border - Border Style
-//
-// @type Map
-$kittn-button: (
-  default: (
-    global: (
-      color: c('white'),
-      background: c('primary'),
-      fontsize: 14,
-      lineheight: 30,
-      padding-v: 20px,
-      transition: 300ms ease-in-out,
-    ),
-    hover: (
-      color: c('white'),
-      background: darken(c('primary'),15),
-    )
-  )
-);
-
-// Define the Style how the Buttons are generated
-//
-// @type * - 'silent' or 'class'
-$kittn-gen-buttons: silent;

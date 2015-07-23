@@ -3,6 +3,7 @@
 // ===================================================
 
 // Get Data from a API Map
+//
 // @param {Map} $map - Map
 // @param {Arglist} $keys - Keys to fetch
 // @return {*}
@@ -11,6 +12,7 @@
 }
 
 // Build the Prefix for Constructor Classes
+//
 // @param {map} $map - API Map
 // @return {*}
 @function ct($map) {
@@ -18,6 +20,7 @@
 }
 
 // Integrate Comments in a Constructor with a check
+//
 // @param {map} $map - API Map
 @mixin c-comment($map) {
   @if v($map,type) != 'silent' { @at-root {
@@ -26,6 +29,7 @@
 
 
 // Store Styles in a Pseudo Container
+//
 // Use only inside bundled Components
 //
 // @param {string} $name - Storage Name
@@ -36,6 +40,7 @@
 }
 
 // Unload Styles from a Pseudo Container
+//
 // Use only inside bundled Components
 //
 // @param {string} $name - Storage Name

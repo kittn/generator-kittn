@@ -173,7 +173,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.copy('_config.json', 'config.json');
     this.copy('_bower.json', 'bower.json');
     this.copy('_gulpfile.js', 'gulpfile.js');
-    this.copy('_setup.scss', 'src/style/_setup.scss');
+    this.copy('_defaults.scss', 'src/style/_defaults.scss');
     this.copy('_readme.md', 'readme.md');
     this.copy('_gitignore', '.gitignore');
     this.copy('bowerrc', '.bowerrc');
@@ -183,7 +183,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
   },
 
   install: function () {
-    // this.installDependencies();
+     //this.installDependencies();
   }
 });
 
