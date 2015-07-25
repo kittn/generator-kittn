@@ -1,0 +1,122 @@
+// ===================================================
+// OffCanvas
+// ===================================================
+
+// Offcanvas
+//
+// @description: Generate a simple OffCanvas Skeleton. You need a Trigger Element,
+// the Javascript you will find in the JS Folder (src/js).
+//
+// @example
+// <div class="ROOT">
+//   <div class="ROOT__on">...</div>
+//   <div class="ROOT__off">
+//     <div class="ROOT__off__scroll">...</div>
+//   </div>
+// </div>
+//
+// @param {number} $width - OffCanvas Width
+// @param {map}    $o - Additional Params
+//        {*}      $o.break - Breakpoint
+//        {string} $o.name - Name (can be a class or placeholder)
+//        {string} $o.state-name - Name from the active State class.
+//        {string} $o.position - Offcanvas Position (left / right)
+//        {bool}   $o.offOverOn - Shift the Offcanvas over OnCanvas
+//        {number} $o.time - Timing for the transition
+@mixin offcanvas($width: 300px, $o: ()) {
+
+  // Mixin Default Vars
+  $o: map-merge((
+    name: '.canvas',
+    state-name: 'is-offcanvas',
+    break: 4,
+    position: 'right',
+    offOverOn: true,
+    time: 400ms
+  ),$o);
+
+  // Style Container
+  @at-root %canvas-base-style {
+    min-height: 100vh;
+    transition: transform map-get($o, time) cubic-bezier(0.42, 0, 0.32, 0.99);
+  }
+
+  // Modify the Body when Offcanvas is active
+  // Prevents to scroll the Page.
+  body.#{map-get($o, state-name)} & {
+    overflow: hidden;
+
+    @include break(map-get($o, break)) {
+      overflow: inherit;
+    }
+  }
+
+  // Base Class
+  #{map-get($o, name)} {
+    position: relative;
+
+    // On Canvas
+    &__on {
+      @extend %canvas-base-style;
+
+      // Active State
+      .#{map-get($o, state-name)} & {
+        position: relative;
+        // Move OffCanvas in the Stack Levels
+        @if map-get($o, offOverOn) { z-index: 10;} else { z-index: 1;}
+
+        // Build the Distance based on the Directions
+        @if map-get($o, position) == 'right' {
+          transform: translateX(-($width));
+        } @else {
+          transform: translateX($width);
+        }
+
+        // Reset the OffCanvas Position on Bigger Screensizes
+        @include break(map-get($o, break)) {
+          transform: translateX(0);
+        }
+      }
+    }
+
+    // Off Canvas Elements
+    &__off {
+      @extend %canvas-base-style;
+      min-height: 100vh;
+      width: $width;
+      position: fixed;
+      top: 0;
+      // Move OffCanvas in the Stack Levels
+      @if map-get($o, offOverOn) { z-index: 1;} else { z-index: 10;}
+
+      // Offcanvas Position is variable
+      @if map-get($o, position) == 'right' {
+        right: 0;
+        transform: translateX($width);
+      } @else {
+        left: 0;
+        transform: translateX(-($width));
+      }
+
+      // Active State
+      .#{map-get($o, state-name)} & {
+        transform: translateX(0);
+
+        // Move Offcanvas off Screen on bigger screensizes
+        @include break(map-get($o, break)) {
+          @if map-get($o, position) == 'right' {
+            transform: translateX($width);
+          } @else {
+            transform: translateX(-($width));
+          }
+        }
+      }
+
+      // Inner Scrollcontainer
+      &__scroll {
+        height: 100%;
+        overflow: scroll;
+      }
+    }
+  }
+}
