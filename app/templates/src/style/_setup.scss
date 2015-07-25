@@ -24,13 +24,13 @@ $kittn-default-unit: px;
 $kittn-breakpoint-map: (
   1: (
     size: 320px,
-    visibility: true,
+    visibility: false,
     step: true,
     fontsize: false
   ),
   2: (
     size: 480px,
-    visibility: true,
+    visibility: false,
     step: false,
     fontsize: false
   ),
