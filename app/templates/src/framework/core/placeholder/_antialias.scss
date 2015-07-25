@@ -1,0 +1,21 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+// Activate Antialias on Webkit Browsers
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin antialias($extend: false) {
+  @if $extend {
+    @extend %antialias;
+
+  } @else {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+// Placeholder Class
+%antialias {
+  @include antialias(false);
+}

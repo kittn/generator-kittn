@@ -1,0 +1,59 @@
+// ===================================================
+// Bar
+// ===================================================
+
+// Setup a Bar Element
+//
+// @param  {*}  $variant  - 'f' for fixed, 'a' for absolute
+// @param  {*}  $position - 't' Top, 'b' Bottom, 'l' Left, 'r' Right
+// @param  {*}  $z-index (9999)  - The Z-Index
+@mixin bar($variant, $position, $z: z(bar)) {
+
+  // Set the position variant
+  @if $variant == f {
+    position: fixed;
+  } @else {
+    position: absolute;
+  }
+
+  // Set the z-index
+  z-index: $z;
+
+  // Set Position and Dimension
+  @if $position == l {
+    left: 0;
+    top: 0;
+    height: 100%;
+
+  } @else if $position == r {
+    right: 0;
+    top: 0;
+    height: 100%;
+
+  } @else if $position == b {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+  } @else {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+// Define a Top Bar at the Top of the Viewport
+//
+// @param {value}  $z       - The Z-Index
+// @param {*}      $variant - 'f' for fixed, 'a' for absolute
+@mixin bar-top($z: 9999, $variant: f) {
+  @include bar($variant, t, 9999);
+}
+
+// Define a Bottom Bar at the Bottom of the Viewport
+//
+// @param {value}  $z       - The Z-Index
+// @param {*}      $variant - 'f' for fixed, 'a' for absolute
+@mixin bar-bottom($z: 9999, $variant: f) {
+  @include bar($variant, b, 9999);
+}

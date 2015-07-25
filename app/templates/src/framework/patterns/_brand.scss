@@ -1,0 +1,31 @@
+// ===================================================
+// Brand Pattern
+// ===================================================
+
+%brand {
+  font-size: inherit;
+  line-height: 1;
+  margin-bottom: 0;
+
+  a,
+  span,
+  i {
+    display: block;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  // Extend when included a Image logo
+  &--logo {
+    @extend %brand;
+
+    a,
+    span,
+    i {
+      @include cleartext;
+    }
+  }
+}

@@ -1,0 +1,19 @@
+// -------------------------------------
+// Breakpoint
+// -------------------------------------
+
+// Pick the Values from the Breakpoint Map
+//
+// @param   {*}   $target - The required Breakpoint
+// @param   {Map} $entrys ($kittn-breakpoint-map) - Connection to the Breakpoint Map
+//
+// @returns {Number}
+@function bp($target, $entrys: $kittn-breakpoint-map) {
+
+  // Pick the Values
+  @if map-has-key($entrys,$target) {
+    @return map-get(map-get($entrys,$target),size);
+  } @else {
+    @warn 'The Breakpoint "#{$target}" are not available in the Breakpoint Map! Possible Breakpointkeys are: "#{map-keys($entrys)}"';
+  }
+}

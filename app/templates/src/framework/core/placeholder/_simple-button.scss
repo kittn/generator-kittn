@@ -1,0 +1,28 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+// Simple Button Element that build a default style for every Button Element
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin simple-button($extend: false) {
+  @if $extend {
+    @extend %simple-button;
+
+  } @else {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+%simple-button {
+  @include simple-button(false);
+}

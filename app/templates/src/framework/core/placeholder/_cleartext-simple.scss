@@ -1,0 +1,22 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+// Simpler Cleartext
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin cleartext-simple($extend: false) {
+  @if $extend {
+    @extend %cleartext-simple;
+
+  } @else {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+// Placeholder Class
+%cleartext-simple {
+  @include cleartext-simple(false);
+}

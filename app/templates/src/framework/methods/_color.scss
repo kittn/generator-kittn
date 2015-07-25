@@ -1,0 +1,72 @@
+// ===================================================
+// Color Methods
+// ===================================================
+
+// Mixin to get Color Values from the Color Map
+//
+// @access private
+//
+// @param  {*}     $target            - Color Key from Map
+// @param  {*}     $attrib (color)    - The Color Attribute
+// @param  {Bool}  $imp (false)       - For !important setting
+// @param  {Map}   $map (stylecolors) - Color Map
+@mixin _color($target, $attrib: color, $imp: false, $map: $kittn-color-map) {
+
+  // Check if '$target' is in the Map
+  @if map-has-key($map,$target) {
+    // Put the Data in a own map
+    $colors : map-get($map,$target);
+
+    // Check if the Color have an opacity value
+    // Generate RGBA Colors with an IE8 Fallback (hex)
+    @if map-get($colors,opacity) != false {
+
+      // Generate the IE8 Fallback Colors
+      @include jacket(old) {
+        #{$attrib}: map-get($colors,color) if($imp, !important, null);
+      }
+
+      // Generate RGBA Colors
+      @include jacket(modern) {
+        #{$attrib}: rgba(map-get($colors,color),map-get($colors,opacity)) if($imp, !important, null);
+      }
+
+    // Otherwise use Hex Colors
+    } @else {
+      #{$attrib}: map-get($colors,color) if($imp, !important, null);
+    }
+
+  } @else {
+    @warn 'The Color "#{$target}" are not available in the Color Map! Possible Colorkeys: "#{map-keys($map)}"';
+  }
+}
+
+// Use the desired Color Value from the Map an build a Color Value
+//
+// @param  {*}    $target - The Color Key
+// @param  {Bool} $hard   - For !important setting
+@mixin get-c($target, $hard: false) {
+  @include _color($target, $attrib: color, $imp: $hard);
+}
+
+// Use the desired Color Value from the Map an build a Background-Color Value
+//
+// @param  {*}     $target - The Color Key
+// @param  {Bool}  $hard   - For !important setting
+@mixin get-bc($target, $hard: false) {
+  @include _color($target, $attrib: background-color, $imp: $hard);
+}
+
+// Extend the Element with existing Color Classes
+//
+// @param  {*}  $name - Color Key
+@mixin ext-c($name) {
+  @extend %c#{map-get($kittn-bem, modifier)}#{$name};
+}
+
+// Extend the Element with existing Background-Color Classes
+//
+// @param  {*}  $name - Color Key
+@mixin ext-bc($name) {
+  @extend %bc#{map-get($kittn-bem, modifier)}#{$name};
+}

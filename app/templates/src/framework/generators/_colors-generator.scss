@@ -1,0 +1,46 @@
+// ===================================================
+// Color Generator
+// ===================================================
+
+// Generate Color Classes (or Silent) with all Colors from the Color Map.
+//
+// @access private
+//
+// @type {Map}  $colors - The Desired Map
+@mixin colorgenerator($colors: $kittn-color-map) {
+  @each $value, $entry in $colors {
+
+    // Build Placeholder Classes
+    %c#{map-get($kittn-bem, modifier)}#{$value} {
+      @include _color($value,color);
+    }
+    %bc#{map-get($kittn-bem, modifier)}#{$value} {
+      @include _color($value,background-color);
+    }
+
+    // Set Class for Text Color
+    @if map-get($entry,type) == c {
+      .c#{map-get($kittn-bem, modifier)}#{$value} {
+        @include _color($value,color);
+      }
+    }
+
+    // Set Class for Background-Color
+    @if map-get($entry,type) == b {
+      .bc#{map-get($kittn-bem, modifier)}#{$value} {
+        //@include _color($value,background-color);
+        @extend %bc#{map-get($kittn-bem, modifier)}#{$value};
+      }
+    }
+
+    // Set two Classes for Text & Background-Color
+    @if map-get($entry,type) == bc {
+      .c#{map-get($kittn-bem, modifier)}#{$value} {
+        @extend %c#{map-get($kittn-bem, modifier)}#{$value};
+      }
+      .bc#{map-get($kittn-bem, modifier)}#{$value} {
+        @extend %bc#{map-get($kittn-bem, modifier)}#{$value};
+      }
+    }
+  }
+}

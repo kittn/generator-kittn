@@ -1,0 +1,21 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+// Helper to prevent collapsing Margins
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin decollapse($extend: false) {
+  @if $extend {
+    @extend %decollapse;
+
+  } @else {
+    padding-top: 1px;
+    margin-top: 1px;
+  }
+}
+
+// Placeholder Class
+%decollapse {
+  @include decollapse(false);
+}

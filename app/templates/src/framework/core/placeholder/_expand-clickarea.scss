@@ -1,0 +1,30 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+// Expand the Clickable Area
+//
+// @link http://front-back.com/expand-clickable-areas-for-a-better-touch-experience
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin expand-clickarea($extend: false) {
+  @if $extend {
+    @extend %expand-clickarea;
+
+  } @else {
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      bottom: -10px;
+      right: -10px;
+    }
+  }
+}
+
+// Placeholder Class
+%expand-clickarea {
+  @include expand-clickarea(false);
+}

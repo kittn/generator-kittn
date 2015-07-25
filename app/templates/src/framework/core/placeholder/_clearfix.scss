@@ -1,0 +1,25 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+// Clearfix
+// @description Close Floats
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin clearfix($extend: false) {
+  @if $extend {
+    @extend %clearfix;
+
+  } @else {
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+// Placeholder Class
+%clearfix {
+  @include clearfix(false);
+}

@@ -1,0 +1,22 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+// Shorthand for centering Elements
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin block-center($extend: false) {
+  @if $extend {
+    @extend %block-center;
+
+  } @else {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+// Placeholder Class
+%block-center {
+  @include block-center(false);
+}

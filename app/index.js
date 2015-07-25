@@ -140,6 +140,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.directory('src/images/', 'src/images/');
     this.directory('src/scripts/', 'src/scripts/');
     this.directory('src/.system/', 'src/.system/');
+    this.directory('src/framework/', 'src/framework/');
 
     // Add SCSS Files with the desired Filename
     this.copy('_style.scss', 'src/style/'+this.projectcssfilename+'.scss');
@@ -173,7 +174,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.copy('_config.json', 'config.json');
     this.copy('_bower.json', 'bower.json');
     this.copy('_gulpfile.js', 'gulpfile.js');
-    this.copy('_defaults.scss', 'src/style/_defaults.scss');
+    this.copy('_defaults.scss', 'src/framework/_defaults.scss');
     this.copy('_readme.md', 'readme.md');
     this.copy('_gitignore', '.gitignore');
     this.copy('bowerrc', '.bowerrc');

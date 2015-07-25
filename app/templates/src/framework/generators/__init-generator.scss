@@ -1,0 +1,21 @@
+// ===================================================
+// Start Generators
+// ===================================================
+
+// Activate the Font Generator
+@include fontface-generator();
+
+// Include Color and Visibility Generators
+@include colorgenerator($kittn-color-map);
+
+// Include the visibility Classes only on modern browsers
+@include jacket(modern) {
+  @include visibility;
+}
+
+// Generate the Baseclasses for the Icons
+@if map-get($kittn-iconfont, name) {
+  @include icon-font-generator(map-get($kittn-iconfont, name));
+  @include icon-generator($kittn-font-icons);
+}
+

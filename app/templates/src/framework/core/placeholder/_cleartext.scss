@@ -1,0 +1,24 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+// Method for Text Replacement
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin cleartext($extend: false) {
+  @if $extend {
+    @extend %cleartext;
+
+  } @else {
+    background-color: transparent;
+    border: 0;
+    color: transparent;
+    font: 0/0 a;
+    text-shadow: none;
+  }
+}
+
+// Placeholder Class
+%cleartext {
+  @include cleartext(false);
+}

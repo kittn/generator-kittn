@@ -1,56 +1,34 @@
+// -----------------------------------
 //  Sass Loader
 // -----------------------------------
 
 @charset "UTF-8";
 
-// Setup Maps
-@import "maps/sprite-bitmap";
-@import "maps/sprite-svg";
-@import "maps/fontstacks";
-@import "maps/iconfontlist";
-@import "maps/zmap";
+// Import Map Data
+@import "maps/__import-maps";
 
-// --- Import External Libs
-@import "framework/helper/jacket";
-@import "framework/helper/sassylists";
+// Core
+@import "../framework/core/__import-core";
 
-// --- Import Internal Libs
-@import "framework/helper/typechecks";
-@import "framework/helper/maps";
-@import "framework/helper/constructor";
-@import "framework/helper/fonts";
-@import "framework/helper/helper";
-@import "framework/helper/bem";
-
-// ---- Import the Setup ----
-@import "defaults";
+// Import Setup Data
+@import "../framework/defaults";
 @import "setup";
 
-// Mixins and Functions
-@import "framework/helper/debug";
-@import "framework/modules/shorthands";
-@import "framework/modules/lines";
-@import "framework/modules/typography";
-@import "framework/modules/dimensions";
-@import "framework/modules/positioning";
-@import "framework/modules/grid";
-@import "framework/modules/spacer";
-@import "framework/modules/iconfont";
-@import "framework/modules/images";
-@import "framework/modules/color";
-@import "framework/modules/breakpoints";
-@import "framework/modules/modernizr";
-@import "framework/modules/wireframes";
+// Methods
+@import "../framework/methods/__import-methods";
 
-// Layout [ESSENTIAL]
-@import "framework/partials/pre-generators";
-@import "framework/partials/normalize";
-@import "framework/partials/post-generators";
-// @import "framework/partials/tables";
+// Generators
+@import "../framework/generators/__import-generators";
 
-// Import specific Script Styles (from /skriptstyles)
+// Partials
+@import "../framework/partials/_normalize";
+// @import "../framework/partials/_tables";
+// @import "../framework/partials/_print";
 
-// Load the Template Components
+// UI Pattern
+@import "../framework/patterns/__import-patterns";
+
+// App
 @import "application/app";
 
 // Load the Template Stylesheet

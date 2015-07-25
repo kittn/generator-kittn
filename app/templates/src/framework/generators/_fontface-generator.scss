@@ -1,0 +1,20 @@
+// ===================================================
+// Fontface Generator
+// ===================================================
+
+// Include all Font Faces from the Font Face Map
+// Will be activated with Internal Functions
+//
+// @depend on fontface.scss
+@mixin fontface-generator($map: $kittn-fontface-map ) {
+  @each $name, $entry in $map {
+    $n: if(map-get($entry,filename) == false, $name, map-get($entry,filename));
+    @include fontface(
+      $fontname: $name,
+      $filename: $n,
+      $fontweight: map-get($entry,weight),
+      $fontstyle: map-get($entry,style),
+      $svgoption: map-get($entry,svgoption)
+    );
+  }
+}

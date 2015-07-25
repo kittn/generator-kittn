@@ -1,0 +1,18 @@
+// ===================================================
+// Overlap
+// ===================================================
+
+// Overlapps a Element over the Side Padding
+//
+// @param  {list}  $size - The Sidevalues, one value can be used for two sides, two values first for left second for right
+@mixin overlap($size) {
+  @if length($size) == 1 {
+    margin-left: 0 - if(unitless($size), $size + 0px, $size);
+    margin-right: 0 - if(unitless($size), $size + 0px, $size);
+  }
+
+  @if length($size) == 2 {
+    margin-left: 0 - if(unitless(nth($size,1)), nth($size,1) + 0px, nth($size,1));
+    margin-right: 0 - if(unitless(nth($size,2)), nth($size,2) + 0px, nth($size,2));
+  }
+}

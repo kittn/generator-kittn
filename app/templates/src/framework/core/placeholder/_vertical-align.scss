@@ -1,0 +1,25 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+// Allows vertical centering of elements with unknown dimensions.
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin vertical-align($extend: false) {
+  @if $extend {
+    @extend %vertical-align;
+
+  } @else {
+    &:after {
+      content: '';
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+  }
+}
+
+// Placeholder Class
+%vertical-align {
+  @include vertical-align(false);
+}

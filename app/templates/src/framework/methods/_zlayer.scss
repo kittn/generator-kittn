@@ -1,0 +1,67 @@
+// ===================================================
+// ZLayer
+// ===================================================
+
+// Get the Named Z-Index from the z-map
+//
+// @param   {*}   $layer - The layer to use
+// @param   {Map} $z-layers ($kittn-zlayer-map) - Connection through Z-Map
+//
+// @returns {Number}
+@function z($layer, $z-layers: $kittn-zlayer-map) {
+  @if not map-has-key($z-layers, $layer) {
+    @warn "No z-index found in $z-layers map for '#{$layer}'. Possible ZLayers: #{map-keys($z-layers)}";
+    @return null;
+  } @else {
+    @return map-get($z-layers, $layer);
+  }
+}
+
+// Get the associated Z-Index from the Map,
+// build the Z-Index
+//
+// @param  {*}       $layer - The layer to use
+// @param  {number}  $offset - Add or substract an offset
+@mixin z($layer, $offset: 0) {
+
+  // Setup Var
+  $o: 0;
+
+  // Check if Offset is a Number
+  @if type-of($offset) == 'number' {
+    $o: if($offset != 0, round(strip-units($offset)),0);
+  } @else {
+    @warn 'Offset is not a number';
+  }
+
+  // Insert Z-Index
+  z-index: z($layer) + $o;
+}
+
+// Gives a Layer a new Z-Index
+//
+// @param  {number}   $index    - Z-index
+// @param  {number}   $offset   - Offset
+// @param  {string}   $position - Position. Values: 'bool', 'r' relative, 'a' absolute, 'f' fixed
+@mixin restack($index, $offset: 0, $position: false) {
+
+  // If 'position' is false no position value will be added
+  @if $position != false {
+    @if $position == r {
+      position: relative;
+    }
+    @if $position == a {
+      position: absolute;
+    }
+    @if $position == f {
+      position: fixed;
+    }
+  }
+
+  // If Index is a number set the z-index in free mode
+  @if type-of($index) == 'number' {
+    z-index: $index + $offset;
+  } @else {
+    @include z($index, $offset);
+  }
+}

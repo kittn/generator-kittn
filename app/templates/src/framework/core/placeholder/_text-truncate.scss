@@ -1,0 +1,24 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+// Mixin for truncating Text
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin text-truncate($extend: false) {
+  @if $extend {
+    @extend %text-truncate;
+
+  } @else {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+  }
+}
+
+// Placeholder Class
+%text-truncate {
+  @include text-truncate(false);
+}

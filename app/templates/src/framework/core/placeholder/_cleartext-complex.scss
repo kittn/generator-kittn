@@ -1,0 +1,28 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+// Text Replacement Method from HTML5 Boilerplate
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin cleartext-complex($extend: false) {
+  @if $extend {
+    @extend %cleartext-complex;
+
+  } @else {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    &:before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 150%;
+    }
+  }
+}
+
+// Placeholder Class
+%cleartext-complex {
+  @include cleartext-complex(false);
+}

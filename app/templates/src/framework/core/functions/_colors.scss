@@ -1,0 +1,217 @@
+// ===================================================
+// Various Color Functions
+// ===================================================
+
+// Calculate the Luma Value from a Color
+//
+// @param  {Color}  $color - Color Value
+//
+// @returns {Number}
+@function luma($color) {
+  @return (red($color) * .299) + (green($color) * .587) + (blue($color) * .114);
+}
+
+// Check if Color1 is greater than Color2, return true
+//
+// @param  {Color}  $color1 - Color Value
+// @param  {Color}  $color2 - Color Value
+//
+// @returns {Bool}
+@function luma-gte($color1, $color2) {
+  @if luma($color1) >= luma($color2) {
+    @return true;
+  }
+  @else {
+    @return false;
+  }
+}
+
+// Check if Color1 is smaller than Color2, return true
+//
+// @param  {Color}  $color1 - Color Value
+// @param  {Color}  $color2 - Color Value
+//
+// @returns {Bool}
+@function luma-lte($color1, $color2) {
+  @if luma($color1) <= luma($color2) {
+    @return true;
+  }
+  @else {
+    @return false;
+  }
+}
+
+// Calculate the Luma Difference between Color1 and Color2
+//
+// @param  {Color}  $color1 - Color Value
+// @param  {Color}  $color2 - Color Value
+//
+// @returns {Number}
+@function luma-diff($color1, $color2) {
+  @return luma($color1) - luma($color2);
+}
+
+// Tint up the Color - normally mix with white
+//
+// @param  {Color}   $color             - The Color value
+// @param  {Number}  $amount            - The Mix Value
+// @param  {color}   $tint-color (#fff) - Color for Tint
+//
+// @returns {Color}
+@function tint($color, $amount, $tint-color: #fff) {
+  @return mix($tint-color, $color, clamp(strip-units($amount), 0, 100));
+}
+
+// Shade down the Color - normally mix with black
+//
+// @param  {Color}  $color              - The Color value
+// @param  {Number} $amount             - The Mix Value
+// @param  {Color}  $shade-color (#000) - Color for Tint
+//
+// @returns {Color}
+@function shade($color, $amount, $shade-color: #000) {
+  @return mix($shade-color, $color, clamp(strip-units($amount), 0, 100));
+}
+
+// Pick the Color Values from the Color Map
+//
+// @param  {*}  $target - Desired color
+// @param  {*}  $map    - Color Map
+//
+// @returns {Color}
+//
+// @throws Color is not included in the map
+@function c($target, $map: $kittn-color-map) {
+  @if map-has-key($map,$target) {
+    @return map-get(map-get($map,$target),color);
+  } @else {
+
+
+    @if map-filled($map) {
+      @warn "The color '#{$target}' is not included in the map. Possible Colorkeys: #{map-keys($map)}";
+    } @else {
+      @warn "The Color Map is Empty"
+    }
+  }
+}
+
+// Build a Color list with eval steps
+//
+// @param {List} $color - Color Values
+// @param {Number} $steps - Number off steps to reach the other color
+// @param {Bool|Number} $pointer - Move the Pointer to one Color Value from the list
+//
+// @returns {Color|List} - Returns a List off colors or one color value
+@function color-scale($color, $steps: 2, $pointer: false) {
+  // Define default vars
+  $list: null;
+  $colors: null;
+
+  // Manipulate Steps when is too low
+  @if $steps < 2 {
+    $steps: 2;
+    @warn 'Step Number is too low - is clamped to minimum off 2';
+  }
+
+  // Calculate the step size
+  $c: 100 / ($steps - 1);
+
+  // Check the length of the color value
+  @if length($color) == 2 {
+
+    // If $pointer is false generate a color list
+    @if $pointer == false {
+
+      // Loop it
+      @for $i from 0 through ($steps - 1) {
+        $colors: mix(nth($color,1), nth($color,2), (100 - ($c * ($i))));
+
+        // Add Values to the list
+        $list: append($list, $colors);
+      }
+
+      // Return a list with Color Values
+      @return $list;
+
+    } @else {
+
+      // Check $pointer values
+      $pointer: strip-units($pointer);
+      $pointer: clamp($pointer, 0, $steps);
+
+      // Build the Color Value
+      $colors: mix(nth($color,1), nth($color,2), (100 - ($c * ($pointer - 1))));
+
+      // Return Color
+      @return $colors;
+    }
+
+  } @else {
+    @warn 'Not enough Color Values - the Function need two Values.'
+  }
+}
+
+// Build an individual Color Stack
+//
+// @param {List} $color - Color Values
+// @param {List} $stacks - Individual steps between the color mix
+//
+// @returns {List}
+@function color-stack($color, $stacks) {
+  // Define default vars
+  $list: null;
+  $own-stack: null;
+  $stack-value: null;
+
+  // Check the length of the color value
+  @if length($color) == 2 {
+
+    // Function need minimum two stack values
+    @if length($stacks) > 1 {
+
+      // Filter all Values above 100 from stacks list
+      @for $o from 1 through length($stacks) {
+        @if nth($stacks, $o) <= 100 {
+          $own-stack: append($own-stack, nth($stacks,$o));
+        }
+      }
+
+      // Remove Duplicates
+      $own-stack: sl-remove-duplicates($own-stack);
+
+      // Get length
+      $stack-length: length($own-stack);
+
+      // Loop it
+      @for $i from 1 through ($stack-length - 1){
+        // Clamp the Stack value
+        $mod: clamp(nth($stacks, $i), 0, 100);
+
+        // Build Color Value
+        $colors: mix(nth($color,1), nth($color,2), $mod);
+
+        // Add Values to the list
+        $list: append($list, $colors);
+      }
+
+      // Return the Color Values as list
+      @return $list;
+
+    } @else if length($stacks) == 1 {
+      // Clamp the Stack value
+      $mod: clamp($stacks, 0, 100);
+
+      // Build Color Value
+      $colors: mix(nth($color,1), nth($color,2), $mod);
+
+      // Return the Color Values as list
+      @return $colors;
+
+    } @else {
+      @warn 'Not enough Stacks to build a Color Stack'
+    }
+
+  } @else {
+    @warn 'Not enough Color Values - the Function need two Values.'
+  }
+}

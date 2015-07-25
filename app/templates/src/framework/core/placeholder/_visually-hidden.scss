@@ -1,0 +1,27 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+// Visually hides elements without hiding them from screen readers or crawlers.
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin visually-hidden($extend: false) {
+  @if $extend {
+    @extend %visually-hidden;
+
+  } @else {
+    border: 0;
+    clip: rect(0,0,0,0);
+    height: 1px;
+    width: 1px;
+    margin: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+  }
+}
+
+// Placeholder Class
+%visually-hidden {
+  @include visually-hidden();
+}

@@ -1,0 +1,20 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+// Activate the Hardware Acceleration on Webkit Browsers
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin performance($extend: false) {
+  @if $extend {
+    @extend %performance;
+
+  } @else {
+    transform: translate3d(0,0,0);
+  }
+}
+
+// Placeholder Class
+%performance {
+  @include performance(false);
+}

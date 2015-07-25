@@ -1,0 +1,21 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+// Vertical Center Elements
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin vertical-center($extend: false) {
+  @if $extend {
+    @extend %vertical-center;
+
+  } @else {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+// Placeholder Class
+%vertical-center {
+  @include vertical-center(false);
+}
