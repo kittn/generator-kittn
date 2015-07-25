@@ -394,9 +394,9 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 //
 // @param  {Number} $colum - The desired Columsize
 // @param  {Map}  $o - Setup Vars
-//       :: {number} $o.max  - The Max available columssizes. Default are 12 Colums per row
-//       :: {boolean} $o.flex - Flexbox Option - when active it uses only the $size
-//       :: {number} $o.gutter  - Calculate the Size with the SpanCalc Formula Generator
+//         {number} $o.max  - The Max available columssizes. Default are 12 Colums per row
+//         {boolean} $o.flex - Flexbox Option - when active it uses only the $size
+//         {number} $o.gutter  - Calculate the Size with the SpanCalc Formula Generator
 @mixin span($colum: 1, $o: ()) {
 
   // Mixin Default Vars
@@ -482,11 +482,6 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   }
 }
 
-  // Old Decrepated Mixin Name (dropped with Kittn 2.5)
-  @mixin pixel-grid($colum: 1, $o: ()) {
-    @include static-colum($colum: $colum, $o: $o);
-  }
-
 // Generate all Colum Sizes, it can be also preselected
 //
 // @param  {number} $colums         - Number of generated columns
@@ -503,7 +498,8 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     select: false,
     name: false,
     extend: false,
-    silent: false
+    silent: false,
+    gutter: false
   ),$o);
 
   // Variable Routing
@@ -511,14 +507,14 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   $name   : map-get($o,name);
   $extend : map-get($o,extend);
   $silent : map-get($o,silent);
+  $gutter : map-get($o,gutter);
   $p      : null;
 
   // Class Prefix (realClass or silentClass)
   @if $silent {
     $p: '%';
-    @if $name == false {
-      $name: 'span';
-    }
+
+    @if $name == false { $name: 'span'; }
 
   } @else {
     $p: '.';
@@ -532,7 +528,8 @@ $mobile-first: map-get($kittn-activate, mobile-first);
       @if $name == false {
         &#{$bem-modifier}#{$i} {
           @include span($i, (
-            max: strip-units($colums)
+            max: strip-units($colums),
+            gutter: $gutter
           ));
 
           // Connect the Classes with other Classes
@@ -545,13 +542,13 @@ $mobile-first: map-get($kittn-activate, mobile-first);
         // Generate a List with Selector Names for Control
         @if $silent {
           // If no name available include a empty name for the silent class
-
           /* #{$p}#{$name}#{$bem-modifier}#{$i} */
         }
 
         #{$p}#{$name}#{$bem-modifier}#{$i} {
           @include span($i, (
-            max: strip-units($colums)
+            max: strip-units($colums),
+            gutter: $gutter
           ));
 
           // Connect the Classes with other Classes
@@ -580,7 +577,8 @@ $mobile-first: map-get($kittn-activate, mobile-first);
         @if $name == false {
           &#{$bem-modifier}#{nth($clean-list, $i)} {
             @include span(nth($clean-list, $i), (
-              max: strip-units($colums)
+              max: strip-units($colums),
+              gutter: $gutter
             ));
 
             // Connect the Classes with other Classes
@@ -594,9 +592,11 @@ $mobile-first: map-get($kittn-activate, mobile-first);
           @if $silent {
             /* #{$p}#{$name}#{$bem-modifier}#{nth($clean-list, $i)} */
           }
+
           #{$p}#{$name}#{$bem-modifier}#{nth($clean-list, $i)} {
             @include span(nth($clean-list, $i), (
-              max: strip-units($colums)
+              max: strip-units($colums),
+              gutter: $gutter
             ));
 
             // Connect the Classes with other Classes
@@ -607,65 +607,6 @@ $mobile-first: map-get($kittn-activate, mobile-first);
         }
       }
     }
-  }
-}
-
-// Scales down a generated Grid
-//
-// @param  {number} $colums       - Number of generated columns
-// @param  {map}  $o        - Setup Vars
-//         :name [boolean|string] - Classname when the Mixin is not nested in a class.
-//         :devide [number]       - Devide the Grid and rearange the sizes
-@mixin grid-devide($colums: 12, $o: ()) {
-
-  // Mixin default vars
-  $o: map-merge((
-    name: false,
-    devide: 2
-  ),$o);
-
-  // Variable Routing
-  $name   : map-get($o,name);
-  $devide : map-get($o,devide);
-
-  // Check if the Devider is useable
-  $check: $colums / $devide;
-
-  @if round($check) == $check {
-
-    // Reduce the Loop
-    $count: $colums / $devide;
-
-    @for $i from 1 through $count {
-
-      // Build a Unique Extend ID
-      $extend: unique-id();
-
-      // Build the Placeholder
-      @at-root {
-        %#{$extend} {
-          @include grid-size($i, (
-            max: $count,
-          ));
-        }
-      }
-
-      @for $o from 1 through $devide {
-        // Use outer Classes or free defined selectors
-        @if $name != false {
-          #{$name}#{$bem-modifier}#{$i + ($count * ($o - 1))} {
-              @extend %#{$extend};
-          }
-
-        } @else {
-          &#{$bem-modifier}#{$i + ($count * ($o - 1))} {
-            @extend %#{$extend};
-          }
-        }
-      }
-    }
-  } @else {
-    @warn 'Please check your Devider Number.';
   }
 }
 
@@ -701,11 +642,6 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     margin-right: span($c,$m);
   }
 }
-
-  // Old Decrepated Mixin Name (dropped with Kittn 2.5)
-  @mixin grid-offset($colum: 1, $o: ()) {
-    @include offset($colum: $colum, $o: $o);
-  }
 
 // Generate a set off Offsets (left and right)
 //
@@ -783,11 +719,6 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   }
 }
 
-  // Old Decrepated Mixin Name (dropped with Kittn 2.5)
-  @mixin grid-offset-generator($colums: 12, $o: ()) {
-    @include offset-generator($colums: $colums, $o: $o);
-  }
-
 // Move a Colum with Position:Relative to left or right -
 // Elements can move out off the container or it change the order
 //
@@ -830,11 +761,6 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     left: span($c, $m);
   }
 }
-
-  // Old Decrepated Mixin Name (dropped with Kittn 2.5)
-  @mixin grid-pushpull($colum: 1, $o: ()) {
-    @include pushpull($colum: $colum, $o: $o);
-  }
 
 // Generate the Push&Pull Classes
 //
@@ -922,11 +848,6 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   }
 }
 
-  // Old Decrepated Mixin Name (dropped with Kittn 2.5)
-  @mixin grid-pushpull-generator($colums: 12, $o: ()) {
-    @include pushpull-generator($colums: $colums, $o: $o);
-  }
-
 // Normalize all Grid Classes. Works only when you not silent the Grid Classes
 //
 // @param  {map}  $o         - Setup Vars
@@ -1001,8 +922,3 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     @warn 'Please set the Name for the normalization'
   }
 }
-
-  // Old Decrepated Mixin Name (dropped with Kittn 2.5)
-  @mixin grid-normalizer($o: ()) {
-    @include grid-reset($o: $o);
-  }
