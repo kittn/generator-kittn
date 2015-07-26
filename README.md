@@ -29,20 +29,23 @@ Intialize your Project
 **`gulp`**<br>
 Default Task with BrowserSync (CSS and HTML Injection)
 
-**`gulp publish`**<br>
+**`gulp deploy:manual`**<br>
 Publish the Project for Production - you can Bump the Version with Enviroment Vars.<br>Example $ gulp publish --type=major => for a Major Release
 
-**`gulp rebuild-js`**<br>
+**`gulp deploy:auto`**<br>
+Minify JS, Images, CSS. Is for a automated Build Process, comes after a Gulp Init.
+
+**`gulp rebuild:js`**<br>
 Rebuild all JS files, copy - combine - rename.
 
-**`gulp rebuild-jade`**<br>
-Rebuild all Jade Files.
-
-**`gulp rebuild-images`**<br>
+**`gulp rebuild:images`**<br>
 Rebuild all Image Files, copy it to distribution, build Bitmap- and Vector Sprites.
 
-**`gulp move-image`**<br>
-Move Image Files from src/stash/images/bitmap-assets and scr/stash/images/svgsingle to distribution
+**`gulp copy:bitmaps`**<br>
+Move Image Files from src/stash/images/bitmap-assets to distribution
+
+**`gulp copy:vectors`**<br>
+Move Image Files from scr/stash/images/svgsingle to distribution
 
 ## Dependencies
 
