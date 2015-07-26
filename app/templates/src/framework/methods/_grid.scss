@@ -6,44 +6,49 @@
 $bem-modifier: map-get($kittn-bem, modifier);
 $mobile-first: map-get($kittn-activate, mobile-first);
 
-// Calculate the Size in Percent
+// Calculate the width from a column in percent
 //
-// @param  {Number}  $colums         - Colums
-// @param  {Number}  $maxColums (12) - Max Colums
+// @param  {Number} $columns     - Columns
+// @param  {Number} $maxcolumns  - Max Columns [12]
 //
-// @returns {Number}                 - Percentage Value
-@function span($colums, $maxColums: 12) {
+// @returns {Number}            - Percentage Value
+@function span($columns, $maxcolumns: 12) {
   // Clean up
-  $colums: strip-units($colums);
-  $maxColums: strip-units($maxColums);
+  $columns: strip-units($columns);
+  $maxcolumns: strip-units($maxcolumns);
 
   // Clamp the Number
-  $colums: clamp($colums, 0, $maxColums);
+  $columns: clamp($columns, 0, $maxcolumns);
 
-  @return percentage($colums / $maxColums);
+  @return percentage($columns / $maxcolumns);
 }
 
-// Build the Calc Formula
+// Build a formula so CSS can Calculate the relative Width.
+// Is also usefull to include margins, the cssCalc can compensate this.
 //
-// @param {number}  $colums - Number of Colums
-// @param {number}  $gutter - The outer margin
-@function span-calc($colums, $gutter: 0) {
-  $colums: strip-units($colums);
+// @param {number} $columns - Number of Columns
+// @param {number} $gutter - Margin Width for 2 Sides [0]
+@function span-calc($columns, $gutter: 0) {
+  $columns: strip-units($columns);
 
   @if unitless($gutter) {
     $gutter: $gutter + 0px;
   }
 
-  @return calc((100% / #{$colums}) - #{$gutter * 2});
+  @return calc((100% / #{$columns}) #{if($gutter != 0, (- #{$gutter * 2}), '')});
 }
 
 // Setup the Grid Size in Steps based on the Breakpoints
+//
+// @param {map}    $map - Connection to the Breakpoint Map
 @mixin adaptive($map: $kittn-breakpoint-map) {
+
+  // Add a empty List
   $list: ();
 
   // Move Values in a list
   @each $name, $entry in $map {
-    @if map-get($entry, step) == true {
+    @if map-get($entry, step) {
       $list: append($list, map-get($entry,size), comma);
     }
   }
@@ -67,12 +72,12 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 // Generate the Page Container, Size and Float Direction
 //
-// @param  {list} $width        - Container Size. The Max and Min Width of the container. One Value only the Container is static
-// @param  {Map}  $o      - Setup Vars
-//         :pos [value]         - (values: center | left | right) The Position of the Container, default is centered container
-//         :gutter [number]     - The Size of the Outer Gutter only active with $pos left or right
-//         :spacing [number]    - Side Padding of the Container
-//         :static-ie [boolean] - When is set on 'true' IE8 get a static Container
+// @param  {list}   $width       - Container Size. The Max and Min Width of the container. One Value only the Container is static [320 1180]
+// @param  {Map}    $o           - Setup Args
+//         {string} $o.pos       - Container position ([center], left, right)
+//         {number} $o.gutter    - Side Spacing - only relevant on Container Position left or right [0]
+//         {number} $o.spacing   - Side Padding of the Container [10]
+//         {bool}   $o.static-ie - When is set on 'true' IE8 get a static Container [false]
 @mixin container($width: 320 1180, $o: ()) {
 
   // Mixin Default Vars
@@ -98,6 +103,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     // right positioned
     float: right;
 
+    // Add Margin when over Zero Size
     @if $gutter > 0 { margin-right: unit-check($gutter); }
 
   } @else {
@@ -122,8 +128,9 @@ $mobile-first: map-get($kittn-activate, mobile-first);
         width: $width-val-1 + 0px;
 
       } @else {
-        // Sort the Values
         width: 100%;
+
+        // Sort the Values
         min-width: if($width-val-1 < $width-val-2, $width-val-1, $width-val-2);
         max-width: if($width-val-1 < $width-val-2, $width-val-2, $width-val-1);
       }
@@ -166,11 +173,11 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 // Build the outer Container that hold the Grid-Columns
 //
-// @param  {number} $spacing - To reset the margin off a nested rows. Set it to the Colum Guttersize.
-// @param  {Map}    $o - Setup Vars
-//         :layout [value]   - The type from the Layout, values: inline | table | fixedtable | flex | block (default)
-//         :valign [string]  - Vertical Align, values: top (default), bottom, baseline, middle
-//         :align [value]    - Horizontal align, values: justify | center | right | left (default)
+// @param  {number} $spacing   - To reset the margin off a nested rows. Size from the Gutter. [10]
+// @param  {Map}    $o         - Setup Args
+//         {string} $o.layout  - The type from the Layout ([block], inline, table, fixedtable, flex)
+//         {string} $o.valign  - Vertical align. ([top], bottom, baseline, middle)
+//         {string} $o.align   - Horizontal align. ([left], justify, center, right, left)
 @mixin row($spacing: 10, $o: ()) {
 
   // Mixin Default Vars
@@ -185,25 +192,25 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   $valign : map-get($o,valign);
   $align  : map-get($o,align);
 
-  // Setup posible Vertical Align Values
+  // Setup possible Vertical Align Values
   $valign-values: top, bottom, baseline, middle;
 
-  // Check if the Valign Values are posible
+  // Check if the vertical-align Values are possible
   @if index($valign-values, $valign) {
-
 
     // Setup the Layout
     @if $layout == inline {
       vertical-align: $valign;
       font-size: 0.1px;
 
-      // Setup the horizontal Align for the inner Colums
+      // Setup the horizontal Align for the inner Columns
       @if $align == justify {
         &:after {
           content: '';
           display: inline-block;
           width: 100%;
         }
+
       } @else if $align == center {
         text-align: center;
 
@@ -240,8 +247,10 @@ $mobile-first: map-get($kittn-activate, mobile-first);
       // Vertical Alignment
       @if $valign == top {
         align-items: flex-start;
+
       } @else if $aling == middle {
         align-items: center;
+
       } @else if $align == bottom {
         align-items: flex-end;
       }
@@ -260,17 +269,16 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   }
 }
 
-
-// Build the Base Style for all Colums. Include the Mixin in your Colum Class
+// Build the Base Style for all Columns. Include the Mixin in your Column Class
 //
-// @param  {number} $spacing - Colum Sidespacing
-// @param  {Map}    $o - Setup Vars
-//         :layout [value]   - The type from the Layout, values: inline | table | flex | block (default)
-//         :extras [boolean] - For include additional classes for the colums
-//         :valign [string]  - Vertical Align, values: top (default), bottom, baseline, middle
-//         :align [value]    - Horizontal align, values: justify | center | right | left (default)
-//         :gutter {bool}    - Vertical Gutter
-@mixin colum($spacing: 10, $o: ()) {
+// @param  {number} $spacing  - Column Side-Spacing
+// @param  {Map}    $o        - Setup Vars
+//         {string} $o.layout - The type from the Layout, values: ([block], inline, table, flex)
+//         {bool}   $o.extras - For include additional classes for the columns [false]
+//         {string} $o.valign - Vertical align ([top], bottom, baseline, middle)
+//         {string} $o.align  - Horizontal align ([left], justify, center, right, left)
+//         {number} $o.gutter - Vertical Gutter [false]
+@mixin column($spacing: 10, $o: ()) {
 
   // Mixin Default Vars
   $o: map-merge((
@@ -287,17 +295,17 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   $valign : map-get($o,valign);
   $align  : map-get($o,align);
 
-  // Setup posible Vertical Align Values
+  // Setup possible Vertical Align Values
   $valign-values: top, bottom, baseline, middle;
   $align-values: left, right, center;
 
-  // Set the Colum Spacing to establish the Colum Gutter
+  // Set the Column Spacing to establish the Column Gutter
   @if $spacing > 0 {
     padding-left: unit-check($spacing);
     padding-right: unit-check($spacing);
   }
 
-  // Include Extra Classes for the Colums
+  // Include Extra Classes for the Columns
   @if $extras != false {
     min-height: 1px;
 
@@ -307,13 +315,9 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     }
 
     @if $layout == block {
-      &#{$bem-modifier}left {
-        float: left !important;
-      }
+      &#{$bem-modifier}left { float: left !important; }
 
-      &#{$bem-modifier}right {
-        float: right !important;
-      }
+      &#{$bem-modifier}right { float: right !important; }
 
       &#{$bem-modifier}center {
         float: none !important;
@@ -323,7 +327,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     }
   }
 
-  // Setup the Colum Layout
+  // Setup the Column Layout
   @if $layout == inline {
     // Style the Inline-Block Layout
     display: inline-block;
@@ -331,7 +335,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     word-spacing: normal;
     white-space: normal;
 
-    // Check if the Valign Value is available
+    // Check if the Vertical-Align Value is available
     @if index($valign-values, $valign) {
       vertical-align: $valign;
 
@@ -348,10 +352,10 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     }
 
   } @else if $layout == table {
-    // Style the Table Layout
+    // Set to Table Layout
     display: table-cell;
 
-    // Check if the Valign Value is available
+    // Check if the Vertical-Align Value is available
     @if index($valign-values, $valign) {
       vertical-align: $valign;
 
@@ -360,6 +364,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     }
 
   } @else if $layout == flex {
+    // Size for Flexbox comes from span
     flex: 0 0 auto;
 
   } @else {
@@ -374,9 +379,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     @if $layout == right {
       float: right;
 
-      &:last-child {
-        float: left;
-      }
+      &:last-child {  float: left; }
 
     } @else if $align == center {
       margin-left: auto;
@@ -391,21 +394,19 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     } @else {
       float: left;
 
-      &:last-child {
-        float: right;
-      }
+      &:last-child { float: right; }
     }
   }
 }
 
-// Generate a Grid Colum Size
+// Generate a Grid Column Size
 //
-// @param  {Number} $colum - The desired Columsize
-// @param  {Map}  $o - Setup Vars
-//         {number} $o.max  - The Max available columssizes. Default are 12 Colums per row
-//         {boolean} $o.flex - Flexbox Option - when active it uses only the $size
-//         {number} $o.gutter  - Calculate the Size with the SpanCalc Formula Generator
-@mixin span($colum: 1, $o: ()) {
+// @param  {Number} $column   - Number of Columns [1]
+// @param  {Map}    $o        - Setup Args
+//         {number} $o.max    - Max available Columns. [12]
+//         {bool}   $o.flex   - Flexbox Option. [false]
+//         {number} $o.gutter - Calculate the Size with the Calc Formula [false]
+@mixin span($column: 1, $o: ()) {
 
   // Mixin Default Vars
   $o: map-merge((
@@ -423,7 +424,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   $m: strip-units($max);
 
   // Cleanup Size
-  $s: clamp(strip-units($colum), 0, $m);
+  $s: clamp(strip-units($column), 0, $m);
 
   // Check if Flexbox is active
   @if $flex == false {
@@ -434,7 +435,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     }
 
   } @else {
-    // Generate the Flexbox Width
+    // Set the Flexbox width
     @if $gutter {
       flex-basis: span-calc($s, $gutter);
       max-width: span-calc($s, $gutter);
@@ -445,14 +446,14 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   }
 }
 
-// Generate a Pixel Based Grid Colums
+// Generate a Pixel Based Grid Columns
 //
-// @param  {Number} $colum  - The desired Columsize
-// @param  {Map}  $o  - Setup Vars
-//         $o.max [number]    - The Max available columssizes. Default are 12 Colums per row
-//         $o.margin [number] - Margin on the left and right side
-//         $o.:space [number]  -  Max Width in Px from the outer Container
-@mixin static-colum($colum: 1, $o: ()) {
+// @param  {Number} $column   - Number of Columns [1]
+// @param  {Map}    $o        - Setup Args
+//         {number} $o.max    - Max available Columns. [12]
+//         {number} $o.margin - Margin for the left and right Side [10]
+//         {number} $o.space  - Max Width in Px for the outer Container [1180]
+@mixin static-colum($column: 1, $o: ()) {
 
   // Mixin default vars
   $o: map-merge((
@@ -462,15 +463,15 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   ),$o);
 
   // Variable Routing
-  $max    : map-get($o,max);
-  $margin : map-get($o,margin);
-  $space  : map-get($o,space);
+  $max    : map-get($o, max);
+  $margin : map-get($o, margin);
+  $space  : map-get($o, space);
 
   // Cleanup Max
   $m: strip-units($max);
 
   // Cleanup Size
-  $s: clamp(strip-units($colum), 0, $m);
+  $s: clamp(strip-units($column), 0, $m);
 
   // Cleanup Margin
   $g: strip-units($margin) * 2;
@@ -490,16 +491,16 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   }
 }
 
-// Generate all Colum Sizes, it can be also preselected
+// Generate Column Sizes, it can be also preselected
 //
-// @param  {number} $colums         - Number of generated columns
-// @param  {map}    $o        - Setup Vars
-//         :colums [number]         - Maximum Colums
-//         :select [boolean|list]   - Include a List with the Sizes that you want. Duplicate will be removed
-//         :name [boolean|string]   - Classname when the Mixin is not nested in a class.
-//         :extend [boolean|string] - Connect the generated classes with a other class.
-//         :silent [bool]      - Generate Placeholder Classes
-@mixin grid-generator($colums: 12, $o: ()) {
+// @param  {number} $columns   - Number of generated columns [12]
+// @param  {map}    $o         - Setup Vars
+//         {list}   $o.select  - Include a List with the Sizes that you want. [false]
+//         {string} $o.name    - Classname when the Mixin is not nested in a class. [false]
+//         {string} $o.extend  - Connect the generated classes with a other class. [false]
+//         {bool}   $o.silent  - Generate Placeholder Classes. [false]
+//         {number} $o.gutter  - Calculate the Size with the Calc Formula [false]
+@mixin grid-generator($columns: 12, $o: ()) {
 
   // Mixin Default Vars
   $o: map-merge((
@@ -511,11 +512,11 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   ),$o);
 
   // Variable Routing
-  $select : map-get($o,select);
-  $name   : map-get($o,name);
-  $extend : map-get($o,extend);
-  $silent : map-get($o,silent);
-  $gutter : map-get($o,gutter);
+  $select : map-get($o, select);
+  $name   : map-get($o, name);
+  $extend : map-get($o, extend);
+  $silent : map-get($o, silent);
+  $gutter : map-get($o, gutter);
   $p      : null;
 
   // Class Prefix (realClass or silentClass)
@@ -530,13 +531,13 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
   @if $select == false {
     // Generate a whole List off Colum Size Classes
-    @for $i from 1 through strip-units($colums) {
+    @for $i from 1 through strip-units($columns) {
 
       // Use outer Classes or free defined selectors
       @if $name == false {
         &#{$bem-modifier}#{$i} {
           @include span($i, (
-            max: strip-units($colums),
+            max: strip-units($columns),
             gutter: $gutter
           ));
 
@@ -555,7 +556,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
         #{$p}#{$name}#{$bem-modifier}#{$i} {
           @include span($i, (
-            max: strip-units($colums),
+            max: strip-units($columns),
             gutter: $gutter
           ));
 
@@ -568,7 +569,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     }
 
   } @else {
-    // Generate a List with preselected colum size classes
+    // Generate a List with preselected column size classes
     // Clean Up the List
     $clean-list: sl-remove-duplicates(sl-sort($select));
 
@@ -578,14 +579,14 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     // Connect the Classes
     // Build a individual Loop
     @for $i from 1 through $loop-length {
-      // Dont Generate when the Numbers are bigger than maxColums and lower than 1
-      @if (nth($select, $i)) <= $colums and (nth($select, $i)) >= 1 {
+      // Dont Generate when the Numbers are bigger than maxcolumns and lower than 1
+      @if (nth($select, $i)) <= $columns and (nth($select, $i)) >= 1 {
 
         // Use outer Classes or free defined selectors
         @if $name == false {
           &#{$bem-modifier}#{nth($clean-list, $i)} {
             @include span(nth($clean-list, $i), (
-              max: strip-units($colums),
+              max: strip-units($columns),
               gutter: $gutter
             ));
 
@@ -603,7 +604,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
           #{$p}#{$name}#{$bem-modifier}#{nth($clean-list, $i)} {
             @include span(nth($clean-list, $i), (
-              max: strip-units($colums),
+              max: strip-units($columns),
               gutter: $gutter
             ));
 
@@ -618,14 +619,13 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   }
 }
 
-// Generate the Offset Width for a Colum
+// Generate the Offset Width for a Column
 //
-// @param  {Number} $colum    - The desired Offset-Columsize
-// @param  {map}    $o  - Setup Vars
-//         :size [number]     - The required colum size
-//         :max [number]      - Max Colums
-//         :direction [value] - The Direction off the Offset (default: left)
-@mixin offset($colum: 1, $o: ()) {
+// @param  {Number} $column      - The desired Offset-Size based on the Columnsizes [1]
+// @param  {map}    $o           - Setup Vars
+//         {number} $o.max       - Max Offset Classes [12]
+//         {string} $o.direction - Direction off the Offset ([left], right)
+@mixin offset($column: 1, $o: ()) {
 
   // Mixin default Vars
   $o: map-merge((
@@ -640,8 +640,8 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   // Cleanup Max
   $m: strip-units($max);
 
-  // Cleanup Colums
-  $c: clamp(strip-units($colum), 0, $m);
+  // Cleanup Columns
+  $c: clamp(strip-units($column), 0, $m);
 
   @if $direction == left {
     margin-left: span($c,$m);
@@ -651,13 +651,13 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   }
 }
 
-// Generate a set off Offsets (left and right)
+// Generate a set of Offset Classes
 //
-// @param  {number} $colums    - Number of generated offset columns
-// @param  {map}  $o     - Setup Vars
-//         :name [bool|string] - You can include a classname (non nested mixin), default name is '.offset', Otherwise set it to 'false', the parent Classname will be used as base name
-//         :silent [bool]      - Generate Placeholder Classes
-@mixin offset-generator($colums: 12, $o: ()) {
+// @param  {number} $columns  - Number of generated offset columns
+// @param  {map}    $o        - Setup Args
+//         {string} $o.name   - Add a classname (without dot) or use the Parent Class Name [false]
+//         {bool}   $o.silent - Make it silent
+@mixin offset-generator($columns: 12, $o: ()) {
 
   // Mixin default Vars
   $o: map-merge((
@@ -684,7 +684,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   }
 
   // Cleanup Max
-  $m: strip-units($colums);
+  $m: strip-units($columns);
 
   // Generate offset Classes
   @for $i from 1 through ($m - 1) {
@@ -727,15 +727,15 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   }
 }
 
-// Move a Colum with Position:Relative to left or right -
+// Move a Column with Position:Relative to left or right -
 // Elements can move out off the container or it change the order
 //
-// @param  {Number} $colum    - The desired Push & Pullsize
-// @param  {map}  $o    - Setup Vars
-//         :max [number]      - Max Colums
-//         :direction [value] - The Direction off the Offset (default: push), values: push | pull
-//         :extend [bool]     - With 'true' the class will connected with a other class.
-@mixin pushpull($colum: 1, $o: ()) {
+// @param  {Number} $column      - Width of Push & Pull Class, based on Columnsizes [1]
+// @param  {map}    $o           - Setup args
+//         {number} $o.max       - Max Push & Pull Columns [12]
+//         {string} $o.direction - The Direct ion off the Offset ([push], pull)
+//         {bool}   $o.extend    - Connected with a other class. [false]
+@mixin pushpull($column: 1, $o: ()) {
 
   // Mixin default vars
   $o: map-merge((
@@ -752,8 +752,8 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   // Cleanup Max
   $m: strip-units($max);
 
-  // Cleanup Colums
-  $c: clamp(strip-units($colum), 0, $m);
+  // Cleanup Columns
+  $c: clamp(strip-units($column), 0, $m);
 
   @if $extend == false {
     position: relative;
@@ -772,13 +772,12 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 // Generate the Push&Pull Classes
 //
-// @param  {number} $colums    - Number of generated offset columns
-// @param  {map}    $o   - Setup Vars
-//         :max [number]       - The Maximum Colums (default: 12)
-//         :name [bool|string] - You can include a classname (non nested mixin), default name is '.move', Otherwise set it to 'false', the parent Classname will be used as base name
-//         :extend [bool]      - With 'true' the class will connected with a other class.
-//         :silent [bool]      - Generate Placeholder Classes
-@mixin pushpull-generator($colums: 12, $o: ()) {
+// @param  {number} $columns  - Number of generated offset columns
+// @param  {map}    $o        - Setup args
+//         {string} $o.name   - Add a classname (without dot) or use the Parent Class Name [false]
+//         {bool}   $o.extend - With 'true' the class will connected with a other class. [false]
+//         {bool}   $o.silent - Connected with a other class. [false]
+@mixin pushpull-generator($columns: 12, $o: ()) {
 
   // Mixin default Vars
   $o: map-merge((
@@ -788,9 +787,9 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   ),$o);
 
   // Variable Routing
-  $name   : map-get($o,name);
-  $extend : map-get($o,extend);
-  $silent : map-get($o,silent);
+  $name   : map-get($o, name);
+  $extend : map-get($o, extend);
+  $silent : map-get($o, silent);
   $p      : null;
 
   // Class Prefix (realClass or silentClass)
@@ -807,7 +806,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   }
 
   // Cleanup Max
-  $m: strip-units($colums);
+  $m: strip-units($columns);
 
   // Generate the Push&Pull Classes
   @for $i from 1 through ($m - 1) {
@@ -856,12 +855,12 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   }
 }
 
-// Normalize all Grid Classes. Works only when you not silent the Grid Classes
+// Reset Grid Objects. Works only when you not silent the Grid Classes
 //
-// @param  {map}  $o         - Setup Vars
-//         :name [string]    - Desired Name off the Selector that need to remodified
-//         :option [value]   - The style Type, values: blockgrid (default), inlinetable, offset, pushpull
-//         :important [bool] - Add an Important to the Attribute
+// @param  {map}    $o           - Setup Vars
+//         {string} $o.name      - Desired Name off the Selector that need to modified [false]
+//         {string} $o.option    - Layout Type. ([blockgrid], inlinetable, offset, pushpull)
+//         {bool}   $o.important - Add an Important to the Attribute [false]
 @mixin grid-reset($o: ()) {
 
   // Mixin default vars
@@ -927,6 +926,6 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     }
 
   } @else {
-    @warn 'Please set the Name for the normalization'
+    @warn 'Please set the Name for the reset'
   }
 }
