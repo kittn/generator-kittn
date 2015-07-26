@@ -269,6 +269,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 //         :extras [boolean] - For include additional classes for the colums
 //         :valign [string]  - Vertical Align, values: top (default), bottom, baseline, middle
 //         :align [value]    - Horizontal align, values: justify | center | right | left (default)
+//         :gutter {bool}    - Vertical Gutter
 @mixin colum($spacing: 10, $o: ()) {
 
   // Mixin Default Vars
@@ -276,7 +277,8 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     layout: block,
     extras: false,
     valign: top,
-    align: left
+    align: left,
+    gutter: false
   ),$o);
 
   // Variable Routing
@@ -364,6 +366,11 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     // Style for the Block layout
     display: block;
 
+    @if $gutter {
+      margin-left: $gutter;
+      margin-right: $gutter;
+    }
+
     @if $layout == right {
       float: right;
 
@@ -372,7 +379,8 @@ $mobile-first: map-get($kittn-activate, mobile-first);
       }
 
     } @else if $align == center {
-      margin: 0 auto
+      margin-left: auto;
+      margin-right: auto;
 
     } @else if $align == leftleft {
       float: left;
