@@ -2,12 +2,11 @@
 // Maps Helper
 // ===================================================
 
-
-// Fetch nested keys
+// Easier way to get values from a nested map
 //
-// @param {Map} $map - Map
-// @param {Arglist} $keys - Keys to fetch
-// @return {*}
+// @param  {map}    $map  - Map that
+// @param  {args}   $keys - Keys to fetch
+// @return {map}
 @function map-deep-get($map, $keys...) {
   @each $key in $keys {
     $map: map-get($map, $key);
@@ -16,12 +15,15 @@
   @return $map;
 }
 
-// Update a key deeply nested
+// Easier way to set values from a nested map
+//
 // @author Hugo Giraudel
-// @param {Map} $map - Map to update
-// @param {Arglist} $keys - Keys to access to value to update
-// @param {*} $value - New value (last member of `$keys`)
-// @return {Map} - Updated map
+//
+// @param  {map}    $map   - Map to update
+// @param  {args}   $keys  - Keys to access to value to update
+// @param  {*}      $value - New value (last member of `$keys`)
+//
+// @return {Map}    Updated map
 @function map-deep-set($map, $keys.../*, $value */) {
   $map-list: ($map,);
   $result: null;
@@ -42,10 +44,13 @@
 }
 
 // Test if map got all `$keys` at first level
+//
 // @author Hugo Giraudel
-// @param {Map} $map - Map
-// @param {Arglist} $keys - Keys to test
-// @return {Bool}
+//
+// @param  {map}     $map  - Map
+// @param  {args}    $keys - Keys to test
+//
+// @return {bool}
 @function map-has-keys($map, $keys...) {
   @each $key in $keys {
     @if not map-has-key($map, $key) {
@@ -57,10 +62,13 @@
 }
 
 // Test if map got all `$keys` nested with each others
+//
 // @author Hugo Giraudel
-// @param {Map} $map - Map
-// @param {Arglist} $keys - Keys to test
-// @return {Bool}
+//
+// @param  {map}    $map  - Map
+// @param  {args}   $keys - Keys to test
+//
+// @return {bool}
 @function map-has-nested-keys($map, $keys...) {
   @each $key in $keys {
     @if not map-has-key($map, $key) {
@@ -74,10 +82,11 @@
 
 // An equivalent of `zip` function but for maps.
 // Takes two lists, the first for keys, second for values.
-// @param {List} $keys - Keys for map
-// @param {List} $values - Values for map
-// @return {Map} Freshly created map
-// @see http://sass-lang.com/documentation/Sass/Script/Functions.html#zip-instance_method
+//
+// @param  {list}   $keys   - Keys for map
+// @param  {list}   $values - Values for map
+//
+// @return {map}    Freshly created map
 @function map-zip($keys, $values) {
   $l-keys: length($keys);
   $l-values: length($values);
@@ -100,14 +109,13 @@
   @return $map;
 }
 
-// jQuery-style extend function
-// About `map-merge()`:
-// * only takes 2 arguments
-// * is not recursive
-// @param {Map} $map - first map
-// @param {ArgList} $maps - other maps
-// @param {Bool} $deep - recursive mode
-// @return {Map}
+// Merge Maps recursive
+//
+// @param  {map}    $map  - first map
+// @param  {args}   $maps - other maps
+// @param  {bool}   $deep - recursive mode
+//
+// @return {map}
 @function map-extend($map, $maps.../*, $deep */) {
   $last: nth($maps, -1);
   $deep: $last == true;

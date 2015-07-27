@@ -4,9 +4,9 @@
 
 // Strip Units from Values
 //
-// @param  {Number}  $number - Value
+// @param  {number} $number - Value
 //
-// @returns {Number}       - Unitless Value
+// @return {number} Value without units
 @function strip-units($number) {
   // If the Value is not a Number Break the Function
   @if type-of($number) != 'number' {
@@ -18,7 +18,7 @@
     @if unitless($number) {
       @return $number;
 
-    // Otherwise Remove the Units
+    // Remove the Units
     } @else {
       @return $number / ($number * 0 + 1);
     }
@@ -27,9 +27,9 @@
 
 // Add the Default Unit on unitless Values
 //
-// @param  {Number}  $value - Value
+// @param  {number} $value - Value
 //
-// @returns {Number}
+// @return {number}
 @function unit-check($value) {
   @if unitless($value) {
     @if $kittn-default-unit == rem {
@@ -47,11 +47,11 @@
 // Clamp a Number between a min and max values,
 // Perfect for percentage
 //
-// @param  {Number}  $value - The Value that need to be clamped
-// @param  {Number}  $min   - The posible minimal value
-// @param  {Number}  $max   - The possible max Value
+// @param  {number} $value - The Value that need to be clamped
+// @param  {number} $min   - The possible minimal value
+// @param  {number} $max   - The possible max Value
 //
-// @returns {Number}        - Clamped Value
+// @return {number}        - Clamped Value
 @function clamp($value, $min, $max) {
   @return if($value > $max, $max, if($value < $min, $min, $value));
 }

@@ -10,19 +10,9 @@
 
 // Tests whether `$list` has at least 2 values.
 //
-// @ignore Documentation: http://sassylists.com/documentation.html#sl-has-multiple-values
+// @param {list}   $list - list to run test against
 //
-// @param {List} $list - list to run test against
-//
-// @example
-// sl-has-multiple-values(a)
-// // false
-//
-// @example
-// sl-has-multiple-values(a b)
-// // true
-//
-// @return {Bool}
+// @return {bool}
 @function sl-has-multiple-values($list) {
   @return length($list) > 1;
 }
@@ -31,11 +21,11 @@
 //
 // @access private
 //
-// @param {*}       $a      - first value
-// @param {*}       $b      - second value
-// @param {List}    $matrix - alphabetical order
+// @param  {*}      $a      - first value
+// @param  {*}      $b      - second value
+// @param  {list}   $matrix - alphabetical order
 //
-// @return {Bool}
+// @return {bool}
 @function sl-str-compare($a, $b, $order) {
   @if type-of($a) == "number" and type-of($b) == "number" {
     @return $a < $b;
@@ -57,16 +47,10 @@
 
 // Casts `$value` into a list.
 //
-// @ignore Documentation: http://sassylists.com/documentation.html#sl-to-list
+// @param  {*}      $value     - value to cast to list
+// @param  {string} $separator - separator to use
 //
-// @param {*} $value - value to cast to list
-// @param {String} $separator (space) - separator to use
-//
-// @example
-// sl-to-list(a b c, comma)
-// // a, b, c
-//
-// @return {List}
+// @return {list}
 @function sl-to-list($value, $separator: list-separator($value)) {
   @return join((), $value, $separator);
 }
@@ -80,17 +64,9 @@
 
 // Reverses the order of `$list`.
 //
-// @ignore Documentation: http://sassylists.com/documentation.html#sl-reverse
+// @param  {list}   $list - list to reverse
 //
-// @param {List} $list - list to reverse
-//
-// @requires sl-to-list
-//
-// @example
-// sl-reverse(a b c)
-// // c b a
-//
-// @return {List}
+// @return {list}
 @function sl-reverse($list) {
   @if sl-missing-dependencies(sl-to-list) == true { @return null; }
 
@@ -118,15 +94,7 @@
 
 // Removes duplicate values from `$list`.
 //
-// @ignore Documentation: http://sassylists.com/documentation.html#sl-remove-duplicates
-//
-// @param {List} $list - list to remove duplicates from
-//
-// @requires sl-to-list
-//
-// @example
-// sl-remove-duplicates(a b a b)
-// // a b
+// @param  {list}   $list - list to remove duplicates from
 //
 // @return {List}
 @function sl-remove-duplicates($list) {
@@ -152,22 +120,8 @@
 
 // Sorts values of `$list` using quick-sort algorithm using `$order`.
 //
-// @ignore Documentation: http://sassylists.com/documentation.html#sl-sort
-//
-// @requires sl-str-compare
-// @requires sl-has-multiple-values
-// @requires sl-to-list
-//
-// @param {List} $list  - list to sort
-// @param {List} $order - order to respect
-//
-// @example
-// sl-sort(b a c)
-// // a b c
-//
-// @example
-// sl-sort(3 5 1)
-// // 1 3 5
+// @param  {list}   $list  - list to sort
+// @param  {list}   $order - order to respect
 //
 // @return {List}
 @function sl-sort($list, $order: "!" "#" "$" "%" "&" "'" "(" ")" "*" "+" "," "-" "." "/" "[" "\\" "]" "^" "_" "{" "|" "}" "~" "0" "1" "2" "3" "4" "5" "6" "7" "8" "9" "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z") {

@@ -4,7 +4,7 @@
 
 // Calculate the Luma Value from a Color
 //
-// @param  {Color}  $color - Color Value
+// @param  {color}   $color - Color Value
 //
 // @returns {Number}
 @function luma($color) {
@@ -13,10 +13,10 @@
 
 // Check if Color1 is greater than Color2, return true
 //
-// @param  {Color}  $color1 - Color Value
-// @param  {Color}  $color2 - Color Value
+// @param  {color}  $color2 - Color Value
+// @param  {color}  $color1 - Color Value
 //
-// @returns {Bool}
+// @returns {bool}
 @function luma-gte($color1, $color2) {
   @if luma($color1) >= luma($color2) {
     @return true;
@@ -28,10 +28,10 @@
 
 // Check if Color1 is smaller than Color2, return true
 //
-// @param  {Color}  $color1 - Color Value
-// @param  {Color}  $color2 - Color Value
+// @param  {color}  $color1 - Color Value
+// @param  {color}  $color2 - Color Value
 //
-// @returns {Bool}
+// @returns {bool}
 @function luma-lte($color1, $color2) {
   @if luma($color1) <= luma($color2) {
     @return true;
@@ -43,19 +43,19 @@
 
 // Calculate the Luma Difference between Color1 and Color2
 //
-// @param  {Color}  $color1 - Color Value
-// @param  {Color}  $color2 - Color Value
+// @param  {color}  $color1 - Color Value
+// @param  {color}  $color2 - Color Value
 //
-// @returns {Number}
+// @returns {number}
 @function luma-diff($color1, $color2) {
   @return luma($color1) - luma($color2);
 }
 
 // Tint up the Color - normally mix with white
 //
-// @param  {Color}   $color             - The Color value
-// @param  {Number}  $amount            - The Mix Value
-// @param  {color}   $tint-color (#fff) - Color for Tint
+// @param  {color}  $color      - Color value
+// @param  {number} $amount     - Mix Value
+// @param  {color}  $tint-color - Color for Tint [#fff]
 //
 // @returns {Color}
 @function tint($color, $amount, $tint-color: #fff) {
@@ -64,9 +64,9 @@
 
 // Shade down the Color - normally mix with black
 //
-// @param  {Color}  $color              - The Color value
-// @param  {Number} $amount             - The Mix Value
-// @param  {Color}  $shade-color (#000) - Color for Tint
+// @param  {color}  $color       - Color value
+// @param  {number} $amount      - Mix Value
+// @param  {color}  $shade-color - Color for Tint [#000]
 //
 // @returns {Color}
 @function shade($color, $amount, $shade-color: #000) {
@@ -75,18 +75,17 @@
 
 // Pick the Color Values from the Color Map
 //
-// @param  {*}  $target - Desired color
-// @param  {*}  $map    - Color Map
+// @param  {string} $target - Desired color
+// @param  {map}    $map    - Color Map [$kittn-color-map]
 //
-// @returns {Color}
+// @returns {color}
 //
 // @throws Color is not included in the map
 @function c($target, $map: $kittn-color-map) {
-  @if map-has-key($map,$target) {
-    @return map-get(map-get($map,$target),color);
+  @if map-has-key($map, $target) {
+    @return map-get(map-get($map, $target), color);
+
   } @else {
-
-
     @if map-filled($map) {
       @warn "The color '#{$target}' is not included in the map. Possible Colorkeys: #{map-keys($map)}";
     } @else {
@@ -97,11 +96,11 @@
 
 // Build a Color list with eval steps
 //
-// @param {List} $color - Color Values
-// @param {Number} $steps - Number off steps to reach the other color
-// @param {Bool|Number} $pointer - Move the Pointer to one Color Value from the list
+// @param {list}   $color   - Color Values
+// @param {number} $steps   - Number off steps to reach the other color [2]
+// @param {number} $pointer - Move the Pointer to one Color Value from the list [false]
 //
-// @returns {Color|List} - Returns a List off colors or one color value
+// @returns {list}          - Returns a List off colors or one color value
 @function color-scale($color, $steps: 2, $pointer: false) {
   // Define default vars
   $list: null;
@@ -153,10 +152,10 @@
 
 // Build an individual Color Stack
 //
-// @param {List} $color - Color Values
-// @param {List} $stacks - Individual steps between the color mix
+// @param {list}   $color  - Color Values
+// @param {list}   $stacks - Individual steps between the color mix
 //
-// @returns {List}
+// @returns {list}
 @function color-stack($color, $stacks) {
   // Define default vars
   $list: null;

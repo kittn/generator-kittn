@@ -5,14 +5,15 @@
 // Function for including Font Families from the Fontstack list.
 // It is also possible to prepand own Fonts to the Stack
 //
-// @param  {*}    $family - Font-Family from the Stack
-// @param  {list} $append - The extra Fontfaces that prepanded to the stack
+// @param  {string} $family - Font-Family from the Stack
+// @param  {list}   $append - Additional Fonts that prepend to the list
 //
 // @throws 'Not Availalbe' when the Font is not in the stack
 @function ff($family, $append...) {
   @if map-has-key($kittn-fontstack-map, $family) {
     @if length($append) > 0 {
       @return append($append, map-get($kittn-fontstack-map, $family), comma);
+
     } @else {
       @return map-get($kittn-fontstack-map, $family);
     }

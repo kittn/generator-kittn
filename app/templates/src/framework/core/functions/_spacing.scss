@@ -2,13 +2,13 @@
 // Spacings
 // ===================================================
 
-// Multiply the Spacing Value to generate Spacings
+// Multiply the Spacing Value to generate Spacings, integrate the Unit
 //
-// @param  {Number}  $lines - Multiplicator for Spacing
-// @param  {Bool}    $hard (false) - For including an !important
-// @param  {Number}  $size ($kittn-global-spacing) - Connection to the Base Spacing
+// @param  {number} $lines - Multiplier for spacing
+// @param  {bool}   $hard  - Include an !important [false]
+// @param  {number} $size  - Connection to the Base Spacing [$kittn-global-spacing]
 //
-// @returns {Value}
+// @return {number}
 @function s($lines, $hard: false, $size: $kittn-global-spacing) {
   @if is-number($lines) {
     $u: unit-check(0);
@@ -19,14 +19,14 @@
 }
 
 // Multiply the Spacing Value to generate Spacings
-// Calculates Spacings in a other Way - needed for map values
+// The Unit is variable
 //
-// @param  {Number}  $lines - Multiplicator for Spacing
-// @param  {Bool}    $imp (false) - For including an !important
-// @param  {*}       $u (false) - Unit
-// @param  {Number}  $size ($kittn-global-spacing) - Connection to the Base Spacing
+// @param  {number} $lines - Multiplicator for Spacing
+// @param  {bool}   $imp   - For including an !important [false]
+// @param  {*}      $u     - Unit [false]
+// @param  {number} $size  - Connection to the Base Spacing [$kittn-global-spacing]
 //
-// @returns {Value}
+// @return {number}
 @function gap($lines, $imp: false, $u: false, $size: $kittn-global-spacing) {
   @if type-of($lines) == 'number' {
 
@@ -34,20 +34,12 @@
     @if $u != false {
 
       // Setup other Units
-      @if $u == none {
-        $u: 0;
-      }
-      @if $u == px or $u == p {
-        $u: 0px;
-      }
+      @if $u == none { $u: 0; }
+      @if $u == px or $u == p { $u: 0px; }
 
-      @if $u == em or $u == e {
-        $u: 0em;
-      }
+      @if $u == em or $u == e { $u: 0em; }
 
-      @if $u == rem or $u == r {
-        $u: 0rem;
-      }
+      @if $u == rem or $u == r { $u: 0rem; }
 
       @if $imp != false {
         @return strip-units($lines) * $size + $u !important;
