@@ -10,8 +10,8 @@
 //
 // @access private
 //
-// @param  {List}  $features - The checked features
-// @param  {Bool}  $supports - Internal yep nope routing
+// @param  {list}   $features - Checked features
+// @param  {bool}   $supports - Internal yep nope routing
 @mixin modernizr($features, $supports) {
   $internal-check: true;
   $prefix: if($supports, '', 'no-');
@@ -45,7 +45,7 @@
 
 // Route the Yep Styling
 //
-// @param  {List}  $features - The checked features
+// @param  {List}   $features - The checked features
 @mixin yep($features...) {
   @include modernizr($features, $supports: true) {
     @content;
@@ -54,7 +54,7 @@
 
 // Route the Nope Styling
 //
-// @param  {List}  $features - The checked features
+// @param  {List}   $features - The checked features
 @mixin nope($features...) {
   @include modernizr($features, $supports: false) {
     @content;

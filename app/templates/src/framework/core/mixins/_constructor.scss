@@ -2,6 +2,11 @@
 // Constructor Helper - use only inside Constructors
 // ===================================================
 
+// Define the global API Map, otherwise
+// the Components throw an error because there
+// need a outer API Map for Merging
+$api: ();
+
 // Get Data from a API Map
 //
 // @param {Map} $map - Map

@@ -4,7 +4,10 @@
 
 // Set the Position for the Position Mixins
 //
-// @param {list} $position - Position Values. one value = top, two values = top left, four values = top right bottom left. For Zero Position (0) set the value to 'z'
+// one value = top, two values = top left, four values = top right bottom left.
+// For Zero Position (0) set the value to 'z'
+//
+// @param  {list}   $position - Position Values.
 @mixin pos($position) {
 
   // Setup internal vars
@@ -17,17 +20,11 @@
 
   } @else {
     // Build the Position Matrix
-    @if $count == 1 {
-      $targets: top;
-    }
+    @if $count == 1 { $targets: top; }
 
-    @if $count == 2 {
-      $targets: top left;
-    }
+    @if $count == 2 { $targets: top left; }
 
-    @if $count == 4 {
-      $targets: top right bottom left;
-    }
+    @if $count == 4 { $targets: top right bottom left; }
 
     // Include the Attributes
     @for $i from 1 through $count {

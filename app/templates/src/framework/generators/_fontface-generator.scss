@@ -11,10 +11,12 @@
     $n: if(map-get($entry,filename) == false, $name, map-get($entry,filename));
     @include fontface(
       $fontname: $name,
-      $filename: $n,
-      $fontweight: map-get($entry,weight),
-      $fontstyle: map-get($entry,style),
-      $svgoption: map-get($entry,svgoption)
+      $o: (
+        name: $n,
+        weight: map-get($entry,weight),
+        style: map-get($entry,style),
+        svg: map-get($entry,svgoption)
+      )
     );
   }
 }

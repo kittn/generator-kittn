@@ -3,12 +3,13 @@
 // ===================================================
 
 // Break
+// Get a breakpoint from the Map and build the Media Query
 //
-// @param  {*}  $target - The required Breakpoint
-// @param  {*}  $mode - The Media Query Mode. Values: 'between', 'max', 'min' ,'auto' (default - setup with mobile-first:true/false)
-// @param  {Map} $list ($kittn-breakpoint-map) - Connection to the Breakpoint Map
+// @param  {*}      $target - Required Breakpoint
+// @param  {string} $mode   - Media Query Mode. (between, max, min ,[auto])
+// @param  {map}    $list   - Connection to the Breakpoint Map [$kittn-breakpoint-map]
 @mixin break($target, $mode: auto, $list: $kittn-breakpoint-map) {
-
+  // Between two values
   @if $mode == between {
 
     // Check the Length
@@ -37,12 +38,9 @@
       @warn "You have to use two values on '$target' for a breakpoint that sit between."
     }
 
-
   } @else {
     // Reduce Target to one when needed
-    @if length($target) > 1 {
-      $target: nth($target,1);
-    }
+    @if length($target) > 1 { $target: nth($target,1); }
 
     // Remove Units from $target
     $target: strip-units($target);
@@ -53,14 +51,11 @@
     @if $mode == auto {
       @if map-get($kittn-activate, mobile-first) {
         $size: $size;
-        @media screen and (min-width: $size) {
-          @content;
-        }
+        @media screen and (min-width: $size) { @content; }
+
       } @else {
         $size: $size - 1;
-        @media screen and (max-width: $size) {
-          @content;
-        }
+        @media screen and (max-width: $size) { @content; }
       }
     } @else {
       // Setup for different Modes

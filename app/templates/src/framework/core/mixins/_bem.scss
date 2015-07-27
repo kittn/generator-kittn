@@ -2,15 +2,10 @@
 // BEM Helper
 // ===================================================
 
-// Define the global API Var, otherwise
-// the Components throw an error because there
-// need a outer API Map for Merging
-$api: ();
-
 // Build a BEM Element
 //
-// @param  {string}  $name - The selector name
-@mixin e($name) {
+// @param  {string} $name - Selector name
+@mixin element($name) {
   @at-root {
     &#{map-get($kittn-bem, element)}#{$name} {
       @content;
@@ -21,29 +16,22 @@ $api: ();
 // Build a BEM Modifier
 // Add a Modification to a style
 //
-// @param  {*}     $name           - The selector name
-// @param  {bool}  $extend (false) - If the Modifier need to be extended with parent
-@mixin m($name, $extend: false) {
-  // Internal Extend Var
-  $e: &;
-
+// @param  {string} $name - Selector name
+@mixin modifier($name, $extend: false) {
   @at-root {
     &#{map-get($kittn-bem, modifier)}#{$name} {
-      // Extend with the Parent Element
-      @if $extend != false {
-        @extend #{$e};
-      }
       @content;
     }
   }
 }
 
 // Build a BEM Instance
-// Modify an existing Style. The Instanz use the Parent and add the
-// modification
+// Use the Style from a parent Element and combine it to an Instance
 //
-// @param  {*} $name - Instance name
-@mixin i($name) {
+// @param  {string} $name - Instance name
+@mixin instance($name) {
+
+  // Get the Parent Selector name
   $e: &;
 
   @at-root {
@@ -55,9 +43,9 @@ $api: ();
   }
 }
 
-// Setup the Root Element for the following chained Modifers
+// Setup the Root Element for chained Modifiers
 //
-// @param  {*}  $name - The selector name
+// @param  {sting} $name - Selector root Name
 //
 // @example
 //  .test {
@@ -80,7 +68,7 @@ $api: ();
 
 // Chain the Modifiers
 //
-// @param  {string} $name - The selector name, only the name
+// @param  {string} $name - Modifier names
 //
 // @example
 //  .test {
