@@ -84,7 +84,7 @@ gulp.task('browser-sync', function() {
         forms  : true }
     },
       server: bsServer,
-      open: kittn.browsersync.openbowser
+      open: kittn.browsersync.openbrowser
     });
 });
 

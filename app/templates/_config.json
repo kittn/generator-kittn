@@ -37,7 +37,7 @@
     "compiler": true
   },
   "browsersync": {
-    "openBrowser": true,
+    "openbrowser": true,
     "proxy": false
   },
   "files": {
