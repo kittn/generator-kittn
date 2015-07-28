@@ -4,10 +4,10 @@
 
 // Scale a container with Aspect Ratio
 //
-// @param   {list}        $dimension           The actual size from the container
-// @param   {bool|number} $scale:  1         The scale Factor
-// @param   {bool|list}   $resize:   false     Triggers with 'w' (width) or 'h', than the new size
-//                                              e.g. w 200 => new width with 200px
+// @param  {list}   $dimension - The actual size from the container
+// @param  {number} $scale     - Scale Factor [1]
+// @param  {list}   $resize    - Calculate the nes size ($scale must 'false')
+//                               e.g. w 200 => new width with 200px (w, h, bool)
 @mixin scale($dimension, $scale: 1, $resize: false) {
   $dim1: null;
   $dim2: null;
@@ -22,22 +22,16 @@
   }
 
   // Add a unix when not defined
-  @if unitless($dim1) {
-    $dim1: $dim1 + 0px;
-  }
-   @if unitless($dim2) {
-    $dim2: $dim2 + 0px;
-  }
+  @if unitless($dim1) { $dim1: $dim1 + 0px;}
+  @if unitless($dim2) { $dim2: $dim2 + 0px; }
 
   // Simple recalculate the Dimension with a Factor
   @if $scale {
-
     width: $dim1 * $scale;
     height: $dim2 * $scale;
 
   // Resize the Container with the Aspect Ratio
   } @else {
-
     @if nth($resize,1) == w {
       width: nth($resize,2) + 0px;
       height: ($dim2 / $dim1) * nth($resize,2) + 0px;

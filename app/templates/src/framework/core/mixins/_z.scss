@@ -4,8 +4,8 @@
 
 // Get the Named Z-Index from the z-map
 //
-// @param   {*}   $layer - The layer to use
-// @param   {Map} $z-layers ($kittn-zlayer-map) - Connection through Z-Map
+// @param  {*}   $layer - The layer to use
+// @param  {Map} $z-layers ($kittn-zlayer-map) - Connection through Z-Map
 //
 // @returns {Number}
 @function z($layer, $z-layers: $kittn-zlayer-map) {
@@ -36,32 +36,4 @@
 
   // Insert Z-Index
   z-index: z($layer) + $o;
-}
-
-// Gives a Layer a new Z-Index
-//
-// @param  {number}   $index    - Z-index
-// @param  {number}   $offset   - Offset
-// @param  {string}   $position - Position. Values: 'bool', 'r' relative, 'a' absolute, 'f' fixed
-@mixin restack($index, $offset: 0, $position: false) {
-
-  // If 'position' is false no position value will be added
-  @if $position != false {
-    @if $position == r {
-      position: relative;
-    }
-    @if $position == a {
-      position: absolute;
-    }
-    @if $position == f {
-      position: fixed;
-    }
-  }
-
-  // If Index is a number set the z-index in free mode
-  @if type-of($index) == 'number' {
-    z-index: $index + $offset;
-  } @else {
-    @include z($index, $offset);
-  }
 }

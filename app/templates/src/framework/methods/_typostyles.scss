@@ -4,10 +4,10 @@
 
 // Walks trough the Typo Map and get the Values
 //
-// @param   {*} $entry     - Key
-// @param   {*} $attribute - Attribute to get
+// @param  {*}      $entry     - Key
+// @param  {*}      $attribute - Attribute to get
 //
-// @returns {*}
+// @return {*}
 @function tw($entry, $attribute) {
   @if map-has-key($kittn-typostyles-map,$entry) {
     @return map-get(map-get($kittn-typostyles-map,$entry),$attribute);
@@ -19,14 +19,14 @@
 
 // Include a Fontsize from the Fontstyle Map
 //
-// @param   {*} $entry     - Key
+// @param  {*}      $entry - Key
 @mixin get-fontsize($entry) {
   @include fontsize(tw($entry,font-size));
 }
 
 // Connect a Element with a established Typostyle
 //
-// @param {*} $entry - Key
+// @param  {*}      $entry - Key
 @mixin ext-typo($entry) {
   @extend .#{$entry};
 }

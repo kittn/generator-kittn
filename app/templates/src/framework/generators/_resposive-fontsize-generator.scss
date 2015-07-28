@@ -4,7 +4,7 @@
 
 // Generate Responsive Fonts, based on the Breakpoint Map
 //
-// @param {number} $base - The Base Font Size in percent
+// @param  {number} $base - The Base Font Size in percent
 @mixin responsive-fontsize($base) {
   $list: ();
 
@@ -15,7 +15,7 @@
     }
   }
 
-  // // Clean up Duplicates
+  // Delete any Duplicates
   $list: sl-remove-duplicates($list);
 
   // Sort the List

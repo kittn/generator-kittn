@@ -4,7 +4,8 @@
 
 // Overlapps a Element over the Side Padding
 //
-// @param  {list}  $size - The Sidevalues, one value can be used for two sides, two values first for left second for right
+// @param  {list}   $size - Value to be overlapped on the left and right side. You can define two sides
+//                          with one value, or left and right selective
 @mixin overlap($size) {
   @if length($size) == 1 {
     margin-left: 0 - if(unitless($size), $size + 0px, $size);

@@ -8,8 +8,8 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 // Calculate the width from a column in percent
 //
-// @param  {Number} $columns     - Columns
-// @param  {Number} $maxcolumns  - Max Columns [12]
+// @param  {number} $columns     - Columns
+// @param  {number} $maxcolumns  - Max Columns [12]
 //
 // @returns {Number}            - Percentage Value
 @function span($columns, $maxcolumns: 12) {
@@ -24,7 +24,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 }
 
 // Build a formula so CSS can Calculate the relative Width.
-// Is also usefull to include margins, the cssCalc can compensate this.
+// Is also useful to include margins, the cssCalc can compensate this.
 //
 // @param {number} $columns - Number of Columns
 // @param {number} $gutter - Margin Width for 2 Sides [0]

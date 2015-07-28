@@ -98,7 +98,7 @@ gulp.task('compiler:css', function(){
     // Include Assets
     assets(
       options = {
-        basePath: kittn.dist.base,
+        basePath: kittn.templatePath.root,
         loadPaths: [
           kittn.dist.cssimg
         ]
@@ -153,10 +153,9 @@ gulp.task('compiler:template', function(){
   var templateLocals = {
     siteTitle: pkg.name,
     cssName: pkg.cssFileName,
-    assetsCss: kittn.dist.css,
-    assetsCssImg: kittn.dist.cssimg,
-    assetsImg: kittn.dist.htmlimg,
-    assetsJs: kittn.dist.js
+    assetsCss: kittn.templatePath.css,
+    assetsImg: kittn.templatePath.htmlimg,
+    assetsJs: kittn.templatePath.js
   };
 
   // Twig Compiler

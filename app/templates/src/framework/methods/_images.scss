@@ -13,14 +13,14 @@
 
 // images Internal Mixin for include Images
 //
-// @param   {string} $name            Image Name
-// @param   {string} $filetype        Filetype
-// @param   {string} $dir             File Directory
-// @param   {bool|string} $repeat     Background Repeat
-// @param   {bool|string} $offset     Background Position
-// @param   {number} $scale           Image Scale
-// @param   {bool|string} $dimensions Use Image Dimensions
-@mixin images($name, $filetype, $dir, $repeat, $offset, $scale, $dimensions ) {
+// @param {string} $name        - Image Name
+// @param {string} $filetype    - Filetype
+// @param {string} $dir         - File Directory
+// @param {string} $repeat      - Background Repeat (regular css value)
+// @param {string} $offset      - Background Position (regular css value)
+// @param {number} $scale       - Scale factor
+// @param {string} $dimensions  - Use Image Dimensions (bool, both, height, width)
+@mixin _images($name, $filetype, $dir, $repeat, $offset, $scale, $dimensions ) {
   // Default Vars
   $sh: null;
   $sw: null;
@@ -64,19 +64,45 @@
   }
 }
 
+// Include Sprite Dimensions (internal)
+//
+// @access private
+//
+// @param  {string} $dim   - Dimensiontype
+// @param  {map}    $map   - Map
+// @param  {number} $sh    - Height value that subtracted from the Container
+// @param  {number} $sw    - Width value that subtracted from the Container
+// @param  {number} $scale - Scale Factor
+@mixin _spriteDimension($dim, $map, $sh, $sw, $scale: 1) {
+  @if $scale == false {
+    $scale: 1;
+  }
+
+  @if $dim == 'both' {
+    height: map-get($map,height) * $scale - $sh;
+    width: map-get($map,width) * $scale - $sw;
+
+  } @else if $dim == 'width' {
+    width: map-get($map,width) * $scale - $sw;
+
+  } @else if $dim == 'height' {
+    height: map-get($map,height) * $scale - $sh;
+  }
+}
+
 // Sprite Mixin (internal)
-// ========
+//
 // Get the Data from the Map File
 //
-// @param   {string} $name    Name from the Sprite Image in the Map
-// @param   {bool}   $dim:    true          Include the Sprite Dimensions
-// @param   {number} $scale: false         scale factor
-// @param   {string} $repeat: false         Background Repeat when needed
-// @param   {list}   $sub:    0             Substract Container Dimension
-@mixin sprite($mapfile, $basefile, $dim, $scale, $repeat, $sub) {
+// @param {map}    $mapfile   - Sprite map
+// @param {map}    $basefile  - Basemap
+// @param {bool}   $dim       - Use Sprite Dimensions (bool, both, width, height)
+// @param {number} $scale     - Scale Factor
+// @param {string} $repeat    - Background Repeat (regular css value)
+// @param {number} $sub       - Substract Container Dimension
+@mixin _sprite($mapfile, $basefile, $dim, $scale, $repeat, $sub) {
   $sh: null;
   $sw: null;
-
 
   // Scale Values from the List
   @if length($sub) > 1 {
@@ -95,13 +121,14 @@
   @if $scale == false {
     background-position: (map-get($mapfile,posX) - ($sw / 2)) (map-get($mapfile,posY) - ($sh / 2));
 
-    @if $dim {
-      height: map-get($mapfile,height) - $sh;
-      width: map-get($mapfile,width) - $sw;
-    }
+    //@if $dim {
+    //  height: map-get($mapfile,height) - $sh;
+    //  width: map-get($mapfile,width) - $sw;
+    //}
+    @include _spriteDimension($dim: $dim, $map: $mapfile, $sh: $sh, $sw: $sw, $scale: 1);
 
-  // With a scale the Mixin recalculate the Size of the Spritefile
-  // and the Sprite
+    // With a scale the Mixin recalculate the Size of the Spritefile
+    // and the Sprite
   } @else {
     $bgX: map-get($basefile,width) * $scale;
     $bgY: map-get($basefile,height) * $scale;
@@ -114,96 +141,86 @@
     background-size: $bgX $bgY;
 
     // Include Dimension and scale it
-    @if $dim {
-      height: map-get($mapfile,height) * $scale - $sh;
-      width: map-get($mapfile,width) * $scale - $sw;
-    }
+    //@if $dim {
+    //  height: map-get($mapfile,height) * $scale - $sh;
+    //  width: map-get($mapfile,width) * $scale - $sw;
+    //}
+
+    @include _spriteDimension($dim: $dim, $map: $mapfile, $sh: $sh, $sw: $sw, $scale: $scale);
   }
 }
 
 // Including Bitmap images
 //
-// @param  {*}    $name     - Name of the Image
-// @map    {*}    $options
-//         :dimensions[both] >  'both' = height & width
-//                              'width' = width
-//                              'height' = height
-//         :offset[false]    >  The Image Position - can be 'false'
-//         :repeat[false]    >  Image Repeat - native CSS Declaration
-//         :scale[1]         >  Resize factor [1]
-//                              Single Value (h & w),
-//                              Two Values (w h)
-//         :filetype['png']  >  Image Filetype ['png']
-@mixin bitmap($name, $options: ()) {
+// @param  {string} $name         - Name of the Image
+// @param  {map}    $o            - Setup Args
+//         {string} $o.dimensions - Use Image Dimensions ([both], bool, height, width)
+//         {string} $o.offset     - Image Position ([false], bool, regular css value)
+//         {string} $o.repeat     - Background Repeat (bool, regular css value)
+//         {list}   $o.scale      - Scale factor  ([1], one Value = h = w, two Value = w & h)
+//         {string} $o.filetype   - Image Filetype ['png']
+@mixin bitmap($name, $o: ()) {
 
   // Custom Options
-  $options: map-merge((
+  $o: map-merge((
     dimensions: both,
     offset: false,
     repeat: false,
     scale: 1,
     filetype: 'png'
-  ), $options);
+  ), $o);
 
   // Set the Background Image
-  background-image: url('#{map-get($kittn-directorys, bitmaps)}#{$name}.#{map-get($options,filetype)}');
+  background-image: url('#{map-get($kittn-directorys, bitmaps)}#{$name}.#{map-get($o,filetype)}');
 
   // Call the Image Mixin
-  @include images($name: $name, $filetype: map-get($options,filetype), $dir: #{map-get($kittn-directorys, bitmaps)}, $repeat: map-get($options,repeat), $offset: map-get($options, offset), $scale: map-get($options, scale), $dimensions: map-get($options,dimensions) );
+  @include _images($name: $name, $filetype: map-get($o,filetype), $dir: #{map-get($kittn-directorys, bitmaps)}, $repeat: map-get($o,repeat), $offset: map-get($o, offset), $scale: map-get($o, scale), $dimensions: map-get($o,dimensions) );
 }
 
 // Include Vector Images
 //
-// @param  {*}    $name     - Name of the Image
-// @map    {*}    $options
-//         :dimensions[both] >  'both' = height & width
-//                              'width' = width
-//                              'height' = height
-//         :offset[false]    >  The Image Position - can be 'false'
-//         :repeat[false]    >  Image Repeat - native CSS Declaration
-//         :scale[1]         >  Resize factor [1]
-//                              Single Value (h & w),
-//                              Two Values (w h)
-@mixin vector($name, $options: ()) {
+// @param  {string} $name         - Name of the Image
+// @param  {map}    $o            - Setup Args
+//         {string} $o.dimensions - Use Image Dimensions ([both], bool, height, width)
+//         {string} $o.offset     - Image Position ([false], bool, regular css value)
+//         {string} $o.repeat     - Background Repeat (bool, regular css value)
+//         {list}   $o.scale      - Scale factor  ([1], one Value = h = w, two Value = w & h)
+@mixin vector($name, $o: ()) {
 
   // Custom Options
-  $options: map-merge((
+  $o: map-merge((
     dimensions: both,
     offset: false,
     repeat: false,
     scale: 1,
-  ), $options);
+  ), $o);
 
   // Set the Background Image
   background-image: url('#{map-get($kittn-directorys, svgonly)}#{$name}.svg');
 
   // Call the Image Mixin
-  @include images($name: $name, $filetype: 'svg', $dir: #{map-get($kittn-directorys, svgonly)}, $repeat: map-get($options,repeat), $offset: map-get($options, offset), $scale: map-get($options, scale), $dimensions: map-get($options,dimensions) );
+  @include _images($name: $name, $filetype: 'svg', $dir: #{map-get($kittn-directorys, svgonly)}, $repeat: map-get($o,repeat), $offset: map-get($o, offset), $scale: map-get($o, scale), $dimensions: map-get($o,dimensions) );
 }
 
 // Vector Sprite
 // =============
 // Include a Vector Sprite
 //
-// @param  {string} $name    Name from the Sprite SVG in the Map
-// @map    {*}    $options
-//         :dimensions[both] >  'both' = height & width
-//                              'width' = width
-//                              'height' = height
-//         :resize           >  Scale the Image
-//         :repeat[false]    >  Image Repeat - native CSS Declaration
-//         :substract[1]     >  Resize factor [1]
-//                              Single Value (h & w),
-//                              Two Values (w h)
-@mixin vsprite($name, $options: ()) {
+// @param  {string} $name         - Name from the Sprite SVG in the Map
+// @map    {*}      $o            - Setup args
+//         {string} $o.dimensions - Use Sprite Dimensions ([both], bool, width, height)
+//         {number} $o.scale      - Scale Factor [false]
+//         {string} $o.repeat     - Background Repeat (regular css value) [false]
+//         {number} $o.subtract   - Subtract Container Dimension [0]
+@mixin vsprite($name, $o: ()) {
 
   // Custom Options
-  $options: map-merge((
+  $o: map-merge((
     dimensions: both,
     scale: false,
     repeat: false,
-    substract: 0,
-  ), $options);
+    subtract: 0,
+  ), $o);
 
   // Check if Sprite is in the Map
   @if map-has-key($svgsprites,$name) {
@@ -212,13 +229,13 @@
     @extend %svgsprite;
 
     // Call the Sprite Mixin
-    @include sprite(
-      $mapfile: map-get($svgsprites,$name),
-      $basefile: $svgspritebase,
-      $scale: map-get($options,scale),
-      $dim: map-get($options,dimensions),
-      $repeat: map-get($options,repeat),
-      $sub: map-get($options, substract)
+    @include _sprite(
+    $mapfile: map-get($svgsprites,$name),
+    $basefile: $svgspritebase,
+    $scale: map-get($o,scale),
+    $dim: map-get($o,dimensions),
+    $repeat: map-get($o,repeat),
+    $sub: map-get($o, subtract)
     );
 
   } @else {
@@ -230,26 +247,21 @@
 // ======
 // Include a Bitmap Spirte
 //
-// @param  {string} $name    Name from the Sprite Image in the Map
-// @param  {string} $name    Name from the Sprite Image in the Map
-// @map    {*}    $options
-//         :dimensions[both] >  'both' = height & width
-//                              'width' = width
-//                              'height' = height
-//         :scale           >  Scale the Image
-//         :repeat[false]    >  Image Repeat - native CSS Declaration
-//         :substract[1]     >  scale factor [1]
-//                              Single Value (h & w),
-//                              Two Values (w h)
-@mixin sprite($name, $options: ()) {
+// @param  {string} $name         - Name from the Sprite SVG in the Map
+// @map    {map}    $o            - Setup args
+//         {string} $o.dimensions - Use Sprite Dimensions ([both], bool, width, height)
+//         {number} $o.scale      - Scale Factor [false]
+//         {string} $o.repeat     - Background Repeat (regular css value) [false]
+//         {number} $o.subtract   - Subtract Container Dimension [0]
+@mixin sprite($name, $o: ()) {
 
-   // Custom Options
-   $options: map-merge((
-     dimensions: both,
-     scale: false,
-     repeat: false,
-     substract: 0,
-   ), $options);
+  // Custom Options
+  $o: map-merge((
+    dimensions: both,
+    scale: false,
+    repeat: false,
+    subtract: 0,
+  ), $o);
 
   // Check if Sprite is in the Map
   @if map-has-key($bitmapsprites,$name) {
@@ -258,13 +270,13 @@
     @extend %bitmapsprite;
 
     // Call the Sprite Mixin
-    @include sprite(
-      $mapfile: map-get($bitmapsprites,$name),
-      $basefile: $bitmapspritebase,
-      $scale: map-get($options,scale),
-      $dim: map-get($options,dimensions),
-      $repeat: map-get($options,repeat),
-      $sub: map-get($options, substract)
+    @include _sprite(
+    $mapfile: map-get($bitmapsprites,$name),
+    $basefile: $bitmapspritebase,
+    $scale: map-get($o,scale),
+    $dim: map-get($o,dimensions),
+    $repeat: map-get($o,repeat),
+    $sub: map-get($o, subtract)
     );
 
   } @else {

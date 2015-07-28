@@ -6,25 +6,25 @@
 //
 // @requires color-scale()
 //
-// @param {Map} $wire
-//  - levels {Number} - How many levels the wire classes are nested
-//  - colors {List} - Color Values, min and max
-//
 // @example
 //    <div class="wire" data-title="header"></div>
-@mixin wireframe-generator($wire) {
+//
+// @param  {map}    $o         - Setup Args
+//         {number} $o.levels  - How many levels the wire classes are nested [10]
+//         {list}   $o.colors  - Color Values, min and max [#fbfbfb #8d8d8d]
+@mixin wireframe-generator($o) {
   // Setup
-  $wire: map-merge((
+  $o: map-merge((
     levels: 10,
     color: #fbfbfb #8d8d8d
-  ),$wire);
+  ),$o);
 
   // Default Vars
   $s: null;
   $selector: &;
 
+  // Setup Base Wireframe Style
   @at-root {
-    // Setup Base Wireframe Style
     #{$selector} {
       min-height: 1px;
       overflow: hidden;
@@ -33,19 +33,19 @@
       &:before {
         content: attr(data-title);
         @include pivot-center;
-        color: darken(nth(map-get($wire,color),2),10);
+        color: darken(nth(map-get($o,color),2),10);
         font-size: 16px;
         text-transform: lowercase;
       }
     }
 
     // Build individual wireframe styles
-    @for $i from 1 through map-get($wire,levels) {
+    @for $i from 1 through map-get($o,levels) {
 
       // Extend the Selector
       $s: append($s, $selector);
 
-      $c: color-scale(nth(map-get($wire,color),1) nth(map-get($wire,color),2), map-get($wire,levels), $i);
+      $c: color-scale(nth(map-get($o,color),1) nth(map-get($o,color),2), map-get($o,levels), $i);
 
       #{$s} {
         background-color: $c;

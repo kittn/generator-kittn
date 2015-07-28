@@ -3,9 +3,11 @@
 // ===================================================
 
 // Generate Visibility Classes
+//
+// @param {map}    $map - Map
 @mixin visibility($map: $kittn-breakpoint-map ) {
   @each $name, $entry in $map {
-    @if map-get($entry,visibility) == true {
+    @if map-get($entry,visibility) {
 
       .hidden-to#{map-get($kittn-bem, modifier)}#{$name} {
         display: none;

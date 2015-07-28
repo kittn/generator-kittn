@@ -1,30 +1,4 @@
 {
-  "src": {
-    "style": "src/style/",
-    "template": "src/template/",
-    "js": "src/js/",
-    "bower": "src/bower/",
-    "scripts" : "src/scripts",
-    "fonts": "src/fonts/",
-    "images": {
-      "bitmapSprite": {
-        "files": "src/images/bitmapSprite-assets/",
-        "name": "sprite.png"
-      },
-      "vectorSprite": {
-        "files": "src/images/vectorSprite-assets/",
-        "name": "vector-sprite.svg",
-        "symbolName": "symbol-sprite.svg",
-        "maxHeight" : 30,
-        "maxWidth": 30,
-        "padding": 0
-
-      },
-      "bitmaps": "src/images/bitmapSingle-assets/",
-      "vectors": "src/images/vectorSingle-assets/"
-    },
-    "system": "src/.system/"
-  },
   "dist": {<% if (projectUsage == 'Building HTML Prototypes' ) { %>
     "base": "dist/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
     "base": "dist/wp-content/themes/<%= projectname %>/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
@@ -39,6 +13,12 @@
     "cssimgRoot": "/assets/img/",
     "markup": "dist/",
     "htmlimg": "dist/images/"
+  },
+  "templatePath": {
+    "root": "./",
+    "css": "assets/css/",
+    "js": "assets/js/",
+    "image": "images/"
   },
   "css": {
     "compiler": "libsass",
@@ -138,5 +118,30 @@
         "mangle": false
       }
     }
+  },
+  "src": {
+    "style": "src/style/",
+    "template": "src/template/",
+    "js": "src/js/",
+    "bower": "src/bower/",
+    "scripts" : "src/scripts",
+    "fonts": "src/fonts/",
+    "images": {
+      "bitmapSprite": {
+      "files": "src/images/bitmapSprite-assets/",
+      "name": "sprite.png"
+    },
+    "vectorSprite": {
+      "files": "src/images/vectorSprite-assets/",
+      "name": "vector-sprite.svg",
+      "symbolName": "symbol-sprite.svg",
+      "maxHeight" : 30,
+      "maxWidth": 30,
+      "padding": 0
+    },
+    "bitmaps": "src/images/bitmapSingle-assets/",
+    "vectors": "src/images/vectorSingle-assets/"
+    },
+    "system": "src/.system/"
   }
 }

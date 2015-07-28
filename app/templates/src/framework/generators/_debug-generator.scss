@@ -2,6 +2,7 @@
 // Element Debugger
 // ===================================================
 
+// Generate Debug Styling
 @if map-get($kittn-activate, debugging) == true {
 
   $deb-color-error: #f00c00;

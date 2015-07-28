@@ -6,9 +6,9 @@
 //
 // @access private
 //
-// @param  {*}  $pos - Position Value. Values: `left`, `center`, `right`, `top`, `middle`, `bottom`, `number`, `bool`
-// @param  {*}  $axis - The Position Axis. Values: `vert`, `horz`
-@function position-translate($pos, $axis) {
+// @param  {string} $pos - Position Value. (left, center, right, top, middle, bottom, number, bool)
+// @param  {string} $axis - The Position Axis. (vert, horz)
+@function _position-translate($pos, $axis) {
   $result: null;
 
   @if is-number($pos) {
@@ -32,57 +32,43 @@
 
 // Move the Pivot Point from a Element, based on 2D CSS Transform
 //
-// @param {*} $vert (middle) - Vertical Position from the Pivot Point. Values: 'top' ,'middle' ,'bottom' ,'number' ,'bool'
-// @param {*} $horz (false)  - Horizontal Position from the Pivot Point. Values: 'left', 'center', 'right', 'number', 'bool'
+// @param  {string} $vert - Vertical Position from the Pivot Point. ([middle], top, bottom, number, bool)
+// @param  {string} $horz - Horizontal Position from the Pivot Point. ([false], left, center, right, number, bool)
 @mixin pivot($vert: middle, $horz: false) {
   $v: null;
   $h: null;
 
   // If Vert is active
-  @if $vert {
-    $v: position-translate($vert, vert);
-  }
+  @if $vert { $v: _position-translate($vert, vert); }
 
   // If Horz is active
-  @if $horz {
-    $h: position-translate($horz, horz);
-  }
+  @if $horz { $h: _position-translate($horz, horz); }
 
   // Set the Pivot Point
   @if $v and $h {
     transform: translate((0 - $h + 0%), (0 - $v + 0%));
 
   } @else {
-    @if $v {
-      transform: translateY(0 - $v + 0%);
-    }
+    @if $v { transform: translateY(0 - $v + 0%); }
 
-    @if $h {
-      transform: translateX(0 - $h + 0%);
-    }
+    @if $h { transform: translateX(0 - $h + 0%); }
   }
 }
 
 // Move an Element
 //
-// @param {Number} $vert - Vertical Position
-// @param {Number} $horz - Horizontal Position
-// @param {*} $type - Position Type
+// @param {Number} $vert - Vertical Position [50]
+// @param {Number} $horz - Horizontal Position [false]
+// @param {string} $type - Position Type ([absolute], fixed)
 @mixin slide($vert: 50, $horz: false, $type: absolute) {
 
-  @if $vert or $horz {
-    position: $type;
-  }
+  @if $vert or $horz { position: $type; }
 
   // If Vert is Active
-  @if $vert {
-    top: position-translate($vert, vert) + 0%;
-  }
+  @if $vert { top: _position-translate($vert, vert) + 0%; }
 
   // If Horz is active
-  @if $horz {
-    left: position-translate($horz, horz) + 0%;
-  }
+  @if $horz { left: _position-translate($horz, horz) + 0%; }
 }
 
 // Center a absolute positioned Element in the middle
@@ -99,27 +85,28 @@
 
 // Moving an absolute position element in the Center - optional in the Middle (with Height)
 //
-// @param  {List}  $element - Width and the Height of the Element
-@mixin absolute-middle($element: 0 0) {
+// @param  {list}   $dimension - Dimensions from the Element (Width and the Height)
+@mixin absolute-middle($dimension: 0 0) {
   $width  : 0 !default;
   $height : 0 !default;
 
   // Setup the Sizes
-  @if length($element) == 2 {
-    $width: if(unitless(nth($element,1)),nth($element,1) + 0px, nth($element,1));
-    $height: if(unitless(nth($element,2)),nth($element,2) + 0px, nth($element,2));
+  @if length($dimension) == 2 {
+    $width: if(unitless(nth($dimension,1)),nth($dimension,1) + 0px, nth($dimension,1));
+    $height: if(unitless(nth($dimension,2)),nth($dimension,2) + 0px, nth($dimension,2));
 
   } @else {
-    $width: if(unitless($element),$element + 0px, $element);
+    $width: if(unitless($dimension),$dimension + 0px, $dimension);
   }
 
   // Build the Style
-  @if length($element) == 2 {height: $height}
+  @if length($dimension) == 2 { height: $height }
+
   width: $width;
   position: absolute;
   left: 50%;
 
-  @if length($element) == 2 {
+  @if length($dimension) == 2 {
     top: 50%;
     margin-top: 0 - ($height / 2);
   }

@@ -2,11 +2,10 @@
 // Alignment
 // ===================================================
 
-
 // Mixin to Insert Height and Lineheight on a Simple Way
 //
-// @param  {Number}  $height - Heightvalue
-// @param  {Number}  $factor - The multiply factor
+// @param  {number} $height - Height
+// @param  {number} $factor - Multiplier
 @mixin align-height($height, $factor: 1) {
   height: if(unitless($height), $height + 0px, $height);
   line-height: if(unitless($height), $height + 0px, $height) * strip-units($factor);
@@ -14,8 +13,8 @@
 
 // Mixin to Insert Height and Lineheight on a Simple Way
 //
-// @param  {Number}  $size - Fontsize
-// @param  {Number}  $factor - The multiply factor
+// @param  {number} $size   - Fontsize
+// @param  {number} $factor - Multiplier
 @mixin align-fontsize($size, $factor: 1.2) {
   font-size: if(unitless($size), $size + 0px, $size);
   line-height: if(unitless($size), $size + 0px, $size) * strip-units($factor);
@@ -23,16 +22,16 @@
 
 // Center and Middle a Element in a box
 //
-// @param  {number}  $size - Width and or Height
+// @param  {number} $size - Width and/or Height
 @mixin center($size) {
   @include size($size, $size);
   text-align: center;
 }
 
-// Build a perfect Circle
+// Center Circle
 //
-// @param  {value}  $size - The Size of the Circle
-@mixin perfect-circle($size) {
+// @param  {value}  $size - Size of the Circle
+@mixin center-circle($size) {
   @include center($size);
   border-radius: if(unitless($size), $size + 0px, $size);
 }

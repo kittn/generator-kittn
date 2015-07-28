@@ -15,14 +15,14 @@
 //   </div>
 // </div>
 //
-// @param {number} $width - OffCanvas Width
-// @param {map}    $o - Additional Params
-//        {*}      $o.break - Breakpoint
-//        {string} $o.name - Name (can be a class or placeholder)
-//        {string} $o.state-name - Name from the active State class.
-//        {string} $o.position - Offcanvas Position (left / right)
-//        {bool}   $o.offOverOn - Shift the Offcanvas over OnCanvas
-//        {number} $o.time - Timing for the transition
+// @param {number} $width        - OffCanvas Width [300px]
+// @param {map}    $o            - Setup Args
+//        {string} $o.name       - Name (can be a class or placeholder) ['.canvas']
+//        {string} $o.state-name - Name from the active State class. ['is-offcanvas']
+//        {*}      $o.break      - Breakpoint [4]
+//        {string} $o.position   - Offcanvas Position ([right] / left)
+//        {bool}   $o.offOverOn  - Shift the Offcanvas over OnCanvas [true]
+//        {number} $o.time       - Timing for the transition [400ms]
 @mixin offcanvas($width: 300px, $o: ()) {
 
   // Mixin Default Vars

@@ -5,18 +5,27 @@
 // Include all Font Faces from the Font Face Map
 // Will be activated with Internal Functions
 //
-// @depend on fontface.scss
+// @depend on fontface()
+//
+// @param  {map}    $map - Map
 @mixin fontface-generator($map: $kittn-fontface-map ) {
-  @each $name, $entry in $map {
-    $n: if(map-get($entry,filename) == false, $name, map-get($entry,filename));
-    @include fontface(
-      $fontname: $name,
-      $o: (
-        name: $n,
-        weight: map-get($entry,weight),
-        style: map-get($entry,style),
-        svg: map-get($entry,svgoption)
-      )
-    );
+  // Check if fontface mixin exists
+  @if mixin_exists(fontface) {
+    // Run through the map
+    @each $name, $entry in $map {
+
+      // Call the Mixin
+      @include fontface(
+        $fontname: $name,
+        $o: (
+          filename: map-get($entry,filename),
+          weight: map-get($entry,weight),
+          style: map-get($entry,style),
+          svg: map-get($entry,svgoption)
+        )
+      );
+    }
+  } @else {
+    @warn "Fontface mixin dosen't exists";
   }
 }

@@ -4,8 +4,8 @@
 
 // Recalculate the heightvalues to rem
 //
-// @param   {*}       $arg   - Attribute
-// @param   {Number}  $size  - Value
+// @param   {*}      $arg  - Attribute
+// @param   {number} $size - Value
 @mixin remsize($arg, $lines) {
   @if map-get($kittn-typo, unit) == px {
     #{$arg}: $lines * map-get($kittn-typo, line-height) + 0px;
@@ -27,8 +27,8 @@
 
 // Recalculate the heightvalues to px
 //
-// @param   {*}       $arg   - Attribute
-// @param   {Number}  $size  - Value
+// @param   {*}      $arg  - Attribute
+// @param   {number} $size - Value
 @mixin pxsize($arg, $size) {
   @if unitless($size) {
     @if map-get($kittn-typo, unit) == px {
@@ -55,9 +55,9 @@
 
 // Calculate the heightvalues
 //
-// @param  {*}       $arg      - Attribute
-// @param  {Number}  $size     - Size
-// @param  {Bool}    $baseline - When 'true', the Value follow the Baselinerule
+// @param  {*}      $arg      - Attribute
+// @param  {number} $size     - Size
+// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
 @mixin rem($arg, $size, $baseline: map-get($kittn-activate, baseline)) {
   @if unitless($size) {
     $size: strip-units($size);
@@ -73,24 +73,24 @@
 
 // Calculate the Lineheight from PX to REM, provides a px Fallback
 //
-// @param  {Number}  $size     - Size
-// @param  {Bool}    $baseline - When 'true', the Value follow the Baselinerule
+// @param  {number} $size     - Size
+// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
 @mixin lineheight($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(line-height, $size, $baseline);
 }
 
 // Caluclate the Font Size in PX to REM with Fallback
 //
-// @param  {Number}  $size - Font Size
+// @param  {Number} $size - Font Size
 @mixin fontsize($size) {
   @include pxsize(font-size, $size);
 }
 
 // Calculate Fontsize and Lineheight
 //
-// @param   {Number}       $fontsize   - Font Size
-// @param   {Bool|Number}  $lineheight (false) - Lineheight for the Font - can be false than used the factor
-// @param   {Number}       $factor (1.2)    - The Calculationfactor
+// @param  {number} $fontsize   - Font Size
+// @param  {number} $lineheight - Lineheight for the Font - can be false than used the factor [false]
+// @param  {number} $factor     - The Calculationfactor [1.2]
 @mixin fontcalc($fontsize, $lineheight: false, $factor: 1.2) {
   @include fontsize($fontsize);
 
@@ -106,7 +106,7 @@
 // Calculate the Margin Bottom from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {Bool}    $baseline - When 'true', the Value follow the Baselinerule
+// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
 @mixin marginbottom($size, $baseline: map-get($kittn-activate, baseline)){
   @include rem(margin-bottom, $size, $baseline);
 }
@@ -114,7 +114,7 @@
 // Calculate the Margin Top from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {Bool}    $baseline - When 'true', the Value follow the Baselinerule
+// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
 @mixin margintop($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(margin-top,$size, $baseline);
 }
@@ -122,7 +122,7 @@
 // Calculate the Margin Left from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {Bool}    $baseline - When 'true', the Value follow the Baselinerule
+// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
 @mixin marginleft($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(margin-left,$size, $baseline);
 }
@@ -130,7 +130,7 @@
 // Calculate the Margin Right from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {Bool}    $baseline - When 'true', the Value follow the Baselinerule
+// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
 @mixin marginright($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(margin-right,$size, $baseline);
 }
@@ -138,7 +138,7 @@
 // Calculate the Padding Top from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {Bool}    $baseline - When 'true', the Value follow the Baselinerule
+// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
 @mixin paddingtop($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(padding-top, $size, $baseline);
 }
@@ -146,7 +146,7 @@
 // Calculate the Padding Bottom from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {Bool}    $baseline - When 'true', the Value follow the Baselinerule
+// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
 @mixin paddingbottom($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(padding-bottom, $size, $baseline);
 }
@@ -154,7 +154,7 @@
 // Calculate the Padding Left from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {Bool}    $baseline - When 'true', the Value follow the Baselinerule
+// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
 @mixin paddingleft($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(padding-left, $size, $baseline);
 }
@@ -162,7 +162,7 @@
 // Calculate the Padding Right from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {Bool}    $baseline - When 'true', the Value follow the Baselinerule
+// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
 @mixin paddingright($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(padding-right, $size, $baseline);
 }
@@ -170,7 +170,7 @@
 // Calculate the Height from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {Bool}    $baseline - When 'true', the Value follow the Baselinerule
+// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
 @mixin height($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(height, $size, $baseline);
 }

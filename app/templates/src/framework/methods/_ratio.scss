@@ -4,8 +4,8 @@
 
 // A Floating Grid System
 //
-// @param  {list}    $ratio (1)        - The Ratio between width and height
-// @param  {string}  $selector (false) - Target selector
+// @param  {list}   $ratio    - Ratio between width and height [1]
+// @param  {string} $selector - Use the following child element or a named selector [false]
 @mixin ratio($ratio: 1, $selector: false) {
 
   $sel: null;
@@ -47,9 +47,9 @@
   }
 }
 
-// Remove Ratio Values
+// Reset Ratio
 //
-// @param  {string}  $selector (false) - Target selector
+// @param  {string} $selector - Use the following child element or a named selector [false]
 @mixin unratio($selector: false) {
   $sel: null;
 

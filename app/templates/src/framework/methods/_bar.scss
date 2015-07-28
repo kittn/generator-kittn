@@ -4,9 +4,9 @@
 
 // Setup a Bar Element
 //
-// @param  {*}  $variant  - 'f' for fixed, 'a' for absolute
-// @param  {*}  $position - 't' Top, 'b' Bottom, 'l' Left, 'r' Right
-// @param  {*}  $z-index (9999)  - The Z-Index
+// @param  {string} $variant  - Position Variant (f = fixed, a = absolute)
+// @param  {string} $position - Position (t = Top, b = Bottom, l = Left, r = Right)
+// @param  {number} $z-index  - Z-Index [z(bar)]
 @mixin bar($variant, $position, $z: z(bar)) {
 
   // Set the position variant
@@ -44,16 +44,16 @@
 
 // Define a Top Bar at the Top of the Viewport
 //
-// @param {value}  $z       - The Z-Index
-// @param {*}      $variant - 'f' for fixed, 'a' for absolute
+// @param  {number} $z       - Z-Index
+// @param  {string} $variant - Position Variant ([f = fixed], a = absolute)
 @mixin bar-top($z: 9999, $variant: f) {
   @include bar($variant, t, 9999);
 }
 
 // Define a Bottom Bar at the Bottom of the Viewport
 //
-// @param {value}  $z       - The Z-Index
-// @param {*}      $variant - 'f' for fixed, 'a' for absolute
+// @param  {number} $z       - Z-Index
+// @param  {string} $variant - Position Variant ([f = fixed], a = absolute)
 @mixin bar-bottom($z: 9999, $variant: f) {
   @include bar($variant, b, 9999);
 }

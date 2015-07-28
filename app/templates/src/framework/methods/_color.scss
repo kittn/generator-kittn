@@ -6,10 +6,10 @@
 //
 // @access private
 //
-// @param  {*}     $target            - Color Key from Map
-// @param  {*}     $attrib (color)    - The Color Attribute
-// @param  {Bool}  $imp (false)       - For !important setting
-// @param  {Map}   $map (stylecolors) - Color Map
+// @param  {string} $target - Color Keyword
+// @param  {string} $attrib - Color Attribute [color]
+// @param  {bool}   $imp    - For !important [false]
+// @param  {map}    $map    - Color Map [$kittn-color-map]
 @mixin _color($target, $attrib: color, $imp: false, $map: $kittn-color-map) {
 
   // Check if '$target' is in the Map
@@ -43,30 +43,30 @@
 
 // Use the desired Color Value from the Map an build a Color Value
 //
-// @param  {*}    $target - The Color Key
-// @param  {Bool} $hard   - For !important setting
+// @param  {string} $target - Color Keyword
+// @param  {bool}   $hard   - For !important [false]
 @mixin get-c($target, $hard: false) {
   @include _color($target, $attrib: color, $imp: $hard);
 }
 
 // Use the desired Color Value from the Map an build a Background-Color Value
 //
-// @param  {*}     $target - The Color Key
-// @param  {Bool}  $hard   - For !important setting
+// @param  {string} $target - Color Keyword
+// @param  {bool}   $hard   - For !important [false]
 @mixin get-bc($target, $hard: false) {
   @include _color($target, $attrib: background-color, $imp: $hard);
 }
 
 // Extend the Element with existing Color Classes
 //
-// @param  {*}  $name - Color Key
+// @param  {string} $name - Name from the Color Selector
 @mixin ext-c($name) {
   @extend %c#{map-get($kittn-bem, modifier)}#{$name};
 }
 
 // Extend the Element with existing Background-Color Classes
 //
-// @param  {*}  $name - Color Key
+// @param  {string} $name - Name from the Color Selector
 @mixin ext-bc($name) {
   @extend %bc#{map-get($kittn-bem, modifier)}#{$name};
 }

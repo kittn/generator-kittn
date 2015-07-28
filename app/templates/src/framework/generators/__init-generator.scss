@@ -2,10 +2,10 @@
 // Start Generators
 // ===================================================
 
-// Activate the Font Generator
+// Include all Fontfaces from the Setup Map
 @include fontface-generator();
 
-// Include Color and Visibility Generators
+// Generate all Colors as Class or Placeholder
 @include colorgenerator($kittn-color-map);
 
 // Include the visibility Classes only on modern browsers

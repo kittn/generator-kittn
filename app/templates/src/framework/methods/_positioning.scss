@@ -4,7 +4,10 @@
 
 // Shorthand for Relative positioning
 //
-// @param {list} $position - Position Values. one value = top, two values = top left, four values = top right bottom left. For Zero Position (0) set the value to 'z'
+// one value = top, two values = top left, four values = top right bottom left.
+// For Zero Position (0) set the value to 'z'
+//
+// @param {list}   $pos - Position Values [0]
 @mixin relative($pos: 0) {
   position: relative;
   @include pos($pos);
@@ -12,7 +15,10 @@
 
 // Shorthand for Absolute positioning
 //
-// @param {list} $position - Position Values. one value = top, two values = top left, four values = top right bottom left. For Zero Position (0) set the value to 'z'
+// one value = top, two values = top left, four values = top right bottom left.
+// For Zero Position (0) set the value to 'z'
+//
+// @param {list}   $pos - Position Values [0]
 @mixin absolute($pos: 0) {
   position: absolute;
   @include pos($pos);
@@ -20,7 +26,10 @@
 
 // Shorthand for Fixed positioning
 //
-// @param {List} $position - Position Values. one value = top, two values = top left, four values = top right bottom left. For Zero Position (0) set the value to 'z'
+// one value = top, two values = top left, four values = top right bottom left.
+// For Zero Position (0) set the value to 'z'
+//
+// @param {list}   $pos - Position Values [0]
 @mixin fixed($pos: 0) {
   position: fixed;
   @include pos($pos);
@@ -35,12 +44,3 @@
   bottom: inherit;
 }
 
-
-// Span a Element in the Height and Width absolute positioned
-@mixin tighten-up {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}

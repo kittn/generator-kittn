@@ -3,10 +3,13 @@
 // ===================================================
 
 // Generate the Typo based on the Typo-Map
+//
+// @param  {map}    $map - Map
 @mixin typogenerator($map: $kittn-typostyles-map) {
   @each $style, $entry in $map {
     $selector: null;
 
+    // Build the Selector
     @if map-get($entry,tag) != false {
       $selector: '.#{$style},#{$style}';
 
@@ -14,12 +17,16 @@
       $selector: '.#{$style}';
     }
 
+    // Add Style
     #{$selector} {
-      @if map-get($entry,extend) != false { @extend #{map-get($entry,extend)} }
+      // Extend with a outer class
+      @if map-get($entry,extend) { @extend #{map-get($entry,extend)} }
 
+      // Set the Fontsize
       @include fontsize(map-get($entry,font-size));
 
-      @if map-get($entry,line-height) != false {
+      // Add the Line-Height
+      @if map-get($entry,line-height) {
         @if map-get($entry,line-height) == d {
           line-height: 1;
 
@@ -31,14 +38,15 @@
         }
       }
 
-      @if map-get($entry,margin-bottom) != false {
+      // Add a Bottom Margin
+      @if map-get($entry,margin-bottom) {
         @include marginbottom(map-get($entry,margin-bottom));
       }
 
-      @if map-get($entry,font-weight) != false {
+      // Include Font-Weight
+      @if map-get($entry,font-weight) {
         font-weight: map-get($entry,font-weight);
       }
     }
-
   }
 }

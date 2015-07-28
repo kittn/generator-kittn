@@ -4,40 +4,44 @@
 
 // Generate the Font-Face
 //
-// @param  {string} $filename   - Font filename
+// @param  {string} $fontname   - Fontname
 // @param  {map}    $o          - Setup args
-//         {string} $o.name     - Desired fontname, otherwise use the filename [$filename]
-//         {string} $o.weight   - Fontweight [Normal]
+//         {string} $o.name     - Desired filename, otherwise use the Fontname [false]
+//         {string} $o.weight   - Fontweight [normal]
 //         {string} $o.style    - Fontstyle [normal]
 //         {bool}   $o.svg      - Activate the addition route to the SVG Font [false]
 //                                Better Rendering from Iconfonts on Firefox
-@mixin fontface($filename, $o: ()) {
+@mixin fontface($fontname, $o: ()) {
 
   // Mixin Default Vars
   $o: map-merge((
-    name: $filename,
+    filename: false,
     weight: normal,
     style: normal,
     svg: false
   ),$o);
 
+  // If 'filename' is false use the fontname
+  $filename: if(map-get($o, filename), map-get($o, filename), $fontname);
+
   // Standardfont
   @font-face {
-    font-family: map-get($o, name);
+    font-family: $fontname;
     src: url('#{map-get($kittn-directorys, fonts)}#{$filename}.eot');
     src: url('#{map-get($kittn-directorys, fonts)}#{$filename}.eot?#iefix') format('eot'),
-         url('#{map-get($kittn-directorys, fonts)}#{$filename}.woff') format('woff'),
-         url('#{map-get($kittn-directorys, fonts)}#{$filename}.ttf') format('truetype'),
-         url('#{map-get($kittn-directorys, fonts)}#{$filename}.svg##{$filename}') format('svg');
+    url('#{map-get($kittn-directorys, fonts)}#{$filename}.woff') format('woff'),
+    url('#{map-get($kittn-directorys, fonts)}#{$filename}.ttf') format('truetype'),
+    url('#{map-get($kittn-directorys, fonts)}#{$filename}.svg##{$fontname}') format('svg');
     font-weight : map-get($o, weight);
     font-style  : map-get($o, style); }
 
+  // Additional SVG Variant for better Fontrendering on Firefox (especially for Iconfonts)
   @if map-get($o, svg) {
     // Hard route to SVG Fonts for sharper Results on webkit browsers
     @include jacket(modern) {
       @media screen and (-webkit-min-device-pixel-ratio: 0) {
         @font-face {
-          font-family: map-get($o, name);
+          font-family: $fontname;
           src: url('#{map-get($kittn-directorys, fonts)}#{$filename}.svg') format('svg');
           font-weight : map-get($o, weight);
           font-style  : map-get($o, style);

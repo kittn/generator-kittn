@@ -4,14 +4,15 @@
 
 // For include Element Dimensions in Width, Height and Lineheight. When '$size' have only one Value will height and width the same (square)
 //
-// @param  {List}  $size - Width and or Height
-// @param  {Bool}  $lineheight (false) - On 'true' lineheight will be set to the same $size, otherwise use a Number
+// @param  {list}   $size       - Width and/or Height
+// @param  {bool}   $lineheight - Line-height can also added. Either it use the 'size' Value or a Number [false]
 @mixin size($size, $lineheight: false) {
   @if length($size) <= 2 {
     @if length($size) == 2 {
       width: if(unitless(nth($size,1)),nth($size,1) + 0px, nth($size,1));
       height: if(unitless(nth($size,2)),nth($size,2) + 0px, nth($size,2));
 
+      // Add Line-height
       @if $lineheight {
         @if is-number($lineheight) {
           line-height: if(unitless($lineheight), $lineheight + 0px, $lineheight);
