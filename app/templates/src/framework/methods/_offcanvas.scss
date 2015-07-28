@@ -20,9 +20,10 @@
 //        {string} $o.name       - Name (can be a class or placeholder) ['.canvas']
 //        {string} $o.state-name - Name from the active State class. ['is-offcanvas']
 //        {*}      $o.break      - Breakpoint [4]
-//        {string} $o.position   - Offcanvas Position ([right] / left)
-//        {bool}   $o.offOverOn  - Shift the Offcanvas over OnCanvas [true]
+//        {string} $o.position   - OffCanvas Position ([right] / left)
+//        {bool}   $o.offOverOn  - Shift the OffCanvas over OnCanvas [true]
 //        {number} $o.time       - Timing for the transition [400ms]
+//        {bool}   $o.responsive - Viewportsizes over the Breakpoint, reset OffCanvas [true]
 @mixin offcanvas($width: 300px, $o: ()) {
 
   // Mixin Default Vars
@@ -32,7 +33,8 @@
     break: 4,
     position: 'right',
     offOverOn: true,
-    time: 400ms
+    time: 400ms,
+    responsive: true
   ),$o);
 
   // Style Container
@@ -46,8 +48,11 @@
   body.#{map-get($o, state-name)} & {
     overflow: hidden;
 
-    @include break(map-get($o, break)) {
-      overflow: inherit;
+    // Reset OffCanvas on Bigger Screensizes
+    @if map-get($o, responsive) {
+      @include break(map-get($o, break)) {
+        overflow: inherit;
+      }
     }
   }
 
@@ -72,9 +77,12 @@
           transform: translateX($width);
         }
 
-        // Reset the OffCanvas Position on Bigger Screensizes
-        @include break(map-get($o, break)) {
-          transform: translateX(0);
+        // Reset OffCanvas on Bigger Screensizes
+        @if map-get($o, responsive) {
+          // Reset the OffCanvas Position on Bigger Screensizes
+          @include break(map-get($o, break)) {
+            transform: translateX(0);
+          }
         }
       }
     }
@@ -86,6 +94,7 @@
       width: $width;
       position: fixed;
       top: 0;
+
       // Move OffCanvas in the Stack Levels
       @if map-get($o, offOverOn) { z-index: 1;} else { z-index: 10;}
 
@@ -98,16 +107,20 @@
         transform: translateX(-($width));
       }
 
+
       // Active State
       .#{map-get($o, state-name)} & {
         transform: translateX(0);
 
-        // Move Offcanvas off Screen on bigger screensizes
-        @include break(map-get($o, break)) {
-          @if map-get($o, position) == 'right' {
-            transform: translateX($width);
-          } @else {
-            transform: translateX(-($width));
+        // Reset OffCanvas on Bigger Screensizes
+        @if map-get($o, responsive) {
+          // Move Offcanvas off Screen on bigger screensizes
+          @include break(map-get($o, break)) {
+            @if map-get($o, position) == 'right' {
+              transform: translateX($width);
+            } @else {
+              transform: translateX(-($width));
+            }
           }
         }
       }
