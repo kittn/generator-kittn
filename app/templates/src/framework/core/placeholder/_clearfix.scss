@@ -5,7 +5,7 @@
 // Clearfix
 // @description Close Floats
 //
-// @param {Bool} $extend - On 'true' the Class would be extended
+// @param {bool} $extend - On 'true' the Class would be extended
 @mixin clearfix($extend: false) {
   @if $extend {
     @extend %clearfix;

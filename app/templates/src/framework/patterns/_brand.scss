@@ -2,6 +2,20 @@
 // Brand Pattern
 // ===================================================
 
+// Use this Brand Pattern for Logos
+// to remove any Fontstyle but, also
+// when you include a graphical logo
+//
+// @example
+// .brand { @extend %brand; }
+//
+// <h1 class="brand">
+//   <a href="#">Brandname</a>
+// </h1>
+//
+// <h1 class="brand---logo">
+//   <a href="#">Logo</a>
+// </h1>
 %brand {
   font-size: inherit;
   line-height: 1;
@@ -19,7 +33,7 @@
   }
 
   // Extend when included a Image logo
-  &--logo {
+  &---logo {
     @extend %brand;
 
     a,
