@@ -35,7 +35,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     $gutter: $gutter + 0px;
   }
 
-  @return calc((100% / #{$columns}) #{if($gutter != 0, (- #{$gutter * 2}), '')});
+  @return calc((100% / #{$columns}) - #{if($gutter != 0, (#{$gutter * 2}), '')});
 }
 
 // Setup the Grid Size in Steps based on the Breakpoints
