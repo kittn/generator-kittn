@@ -74,7 +74,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 //
 // @param  {list}   $width       - Container Size. The Max and Min Width of the container. One Value only the Container is static [320 1180]
 // @param  {Map}    $o           - Setup Args
-//         {string} $o.pos       - Container position ([center], left, right)
+//         {string} $o.position  - Container position ([center], left, right)
 //         {number} $o.gutter    - Side Spacing - only relevant on Container Position left or right [0]
 //         {number} $o.spacing   - Side Padding of the Container [10]
 //         {bool}   $o.static-ie - When is set on 'true' IE8 get a static Container [false]
@@ -93,6 +93,15 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   $gutter    : map-get($o, gutter);
   $spacing   : map-get($o, spacing);
   $static-ie : map-get($o, static-ie);
+
+
+  // Map with the possible Arguments
+  $check: (
+    position: (center, left, right)
+  );
+
+  // Check the Possible Arguments, on fail put a warning in the Console
+  @include warn-args($check, position, map-get($o, position), 'container');
 
   // Position for the Container
   @if $position == left {
@@ -176,8 +185,8 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 // @param  {number} $spacing   - To reset the margin off a nested rows. Size from the Gutter. [10]
 // @param  {Map}    $o         - Setup Args
 //         {string} $o.layout  - The type from the Layout ([block], inline, table, fixedtable, flex)
-//         {string} $o.valign  - Vertical align. ([top], bottom, baseline, middle)
-//         {string} $o.align   - Horizontal align. ([left], justify, center, right, left)
+//         {string} $o.valign  - Vertical align. ([top], bottom, baseline, middle, stretch, baseline)
+//         {string} $o.align   - Horizontal align. ([left], justify, center, right, left, spacebetween, spacearound)
 @mixin row($spacing: 10, $o: ()) {
 
   // Mixin Default Vars
@@ -192,80 +201,94 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   $valign : map-get($o,valign);
   $align  : map-get($o,align);
 
-  // Setup possible Vertical Align Values
-  $valign-values: top, bottom, baseline, middle;
+  // Map with the possible Arguments
+  $check: (
+    layout: (block, inline, table, fixedtable, flex),
+    align: (left, justify, center, right, left, spacebetween, spacearound),
+    valign: (top, bottom, baseline, middle, stretch, baseline)
+  );
 
-  // Check if the vertical-align Values are possible
-  @if index($valign-values, $valign) {
+  // Check the Possible Arguments, on fail put a warning in the Console
+  @include warn-args($check, layout, map-get($o, layout), 'row');
+  @include warn-args($check, valign, map-get($o, valign), 'row');
+  @include warn-args($check, align, map-get($o, align), 'row');
 
-    // Setup the Layout
-    @if $layout == inline {
-      vertical-align: $valign;
-      font-size: 0.1px;
+  // Setup the Layout
+  @if $layout == inline {
+    vertical-align: $valign;
+    font-size: 0.1px;
 
-      // Setup the horizontal Align for the inner Columns
-      @if $align == justify {
-        &:after {
-          content: '';
-          display: inline-block;
-          width: 100%;
-        }
-
-      } @else if $align == center {
-        text-align: center;
-
-      } @else if $align == right {
-        text-align: right;
+    // Setup the horizontal Align for the inner Columns
+    @if $align == justify {
+      &:after {
+        content: '';
+        display: inline-block;
+        width: 100%;
       }
 
-    } @else if $layout == table {
-      display: table;
-      width: 100%;
+    } @else if $align == center {
+      text-align: center;
 
-    } @else if $layout == fixedtable {
-      display: table;
-      width: 100%;
-      table-layout: fixed;
+    } @else if $align == right {
+      text-align: right;
+    }
 
-    } @else if $layout == flex {
-      display: flex;
+  } @else if $layout == table {
+    display: table;
+    width: 100%;
 
-      // Add Flexbox Horizontal Align
-      @if $align == left {
-        justify-content: flex-start;
-        text-align: start;
+  } @else if $layout == fixedtable {
+    display: table;
+    width: 100%;
+    table-layout: fixed;
 
-      } @else if $align == center {
-        justify-content: center;
-        text-align: center;
+  } @else if $layout == flex {
+    display: flex;
 
-      } @else if $align == right {
-        justify-content: flex-end;
-        text-align: end;
-      }
+    // Add Flexbox Horizontal Align
+    @if $align == left {
+      justify-content: flex-start;
+      text-align: start;
 
-      // Vertical Alignment
-      @if $valign == top {
-        align-items: flex-start;
+    } @else if $align == center {
+      justify-content: center;
+      text-align: center;
 
-      } @else if $aling == middle {
-        align-items: center;
+    } @else if $align == right {
+      justify-content: flex-end;
+      text-align: end;
 
-      } @else if $align == bottom {
-        align-items: flex-end;
-      }
+    } @else if $align == spacebetween {
+      justify-content: space-between;
 
-    } @else {
-      @include clearfix();
+    } @else if $align == spacearound {
+      justity-content: space-around;
+    }
 
-      & & {
-        margin-left: 0 - unit-check($spacing);
-        margin-right: 0 - unit-check($spacing);
-      }
+    // Vertical Alignment
+    @if $valign == top {
+      align-items: flex-start;
+
+    } @else if $valign == middle {
+      align-items: center;
+
+    } @else if $valign == bottom {
+      align-items: flex-end;
+
+    } @else if $valign == stretch {
+      align-items: stretch;
+
+    } @else if $valign == baseline {
+      align-items: baseline;
     }
 
   } @else {
-    @warn 'The Valign Value "#{$valign}" is not posible!';
+    @include clearfix();
+
+    & & {
+      margin-left: 0 - unit-check($spacing);
+      margin-right: 0 - unit-check($spacing);
+    }
   }
 }
 
@@ -275,8 +298,8 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 // @param  {Map}    $o        - Setup Vars
 //         {string} $o.layout - The type from the Layout, values: ([block], inline, table, flex)
 //         {bool}   $o.extras - For include additional classes for the columns [false]
-//         {string} $o.valign - Vertical align ([top], bottom, baseline, middle)
-//         {string} $o.align  - Horizontal align ([left], justify, center, right, left)
+//         {string} $o.valign - Vertical align ([top], bottom, baseline, middle, stretch)
+//         {string} $o.align  - Horizontal align ([left], justify, center, right, left, superleft, superright)
 //         {number} $o.gutter - Vertical Gutter [false]
 @mixin column($spacing: 10, $o: ()) {
 
@@ -294,10 +317,19 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   $extras : map-get($o,extras);
   $valign : map-get($o,valign);
   $align  : map-get($o,align);
+  $gutter : map-get($o,gutter);
 
-  // Setup possible Vertical Align Values
-  $valign-values: top, bottom, baseline, middle;
-  $align-values: left, right, center;
+  // Map with the possible Arguments
+  $check: (
+    layout: (block, inline, table, flex),
+    align: (left, justify, center, right, left, superleft, superright),
+    valign: (top, bottom, baseline, middle, stretch)
+  );
+
+  // Check the Possible Arguments, on fail put a warning in the Console
+  @include warn-args($check, layout, map-get($o, layout), 'column');
+  @include warn-args($check, valign, map-get($o, valign), 'column');
+  @include warn-args($check, align, map-get($o, align), 'column');
 
   // Set the Column Spacing to establish the Column Gutter
   @if $spacing > 0 {
@@ -334,38 +366,35 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     letter-spacing: normal;
     word-spacing: normal;
     white-space: normal;
-
-    // Check if the Vertical-Align Value is available
-    @if index($valign-values, $valign) {
-      vertical-align: $valign;
-
-    } @else {
-      @warn 'The Valign Value "#{$valign}" is not posible!';
-    }
-
-    // Check if the Align Value is available
-    @if index($align-values, $align) {
-      text-align: $align;
-
-    } @else {
-      @warn 'The Align Value "#{$align}" is not posible!';
-    }
+    vertical-align: $valign;
+    text-align: $align;
 
   } @else if $layout == table {
     // Set to Table Layout
     display: table-cell;
+    vertical-align: $valign;
 
-    // Check if the Vertical-Align Value is available
-    @if index($valign-values, $valign) {
-      vertical-align: $valign;
-
-    } @else {
-      @warn 'The Valign Value "#{$valign}" is not posible!';
-    }
 
   } @else if $layout == flex {
     // Size for Flexbox comes from span
     flex: 0 0 auto;
+
+    // Set vertical align
+    @if $valign == top {
+      align-items: flex-start;
+
+    } @else if $valign == bottom {
+      align-items: flex-end;
+
+    } @else if $valign == baseline {
+      align-items: baseline;
+
+    } @else if $valign == middle {
+      align-items: center;
+
+    } @else if $valing == stretch {
+      align-items: stretch;
+    }
 
   } @else {
     // Style for the Block layout
@@ -385,15 +414,14 @@ $mobile-first: map-get($kittn-activate, mobile-first);
       margin-left: auto;
       margin-right: auto;
 
-    } @else if $align == leftleft {
+    } @else if $align == superleft {
       float: left;
 
-    } @else if $align == rightright {
+    } @else if $align == superright {
       float: right;
 
     } @else {
       float: left;
-
       &:last-child { float: right; }
     }
   }
