@@ -93,7 +93,8 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   $gutter    : map-get($o, gutter);
   $spacing   : map-get($o, spacing);
   $static-ie : map-get($o, static-ie);
-
+  $width-val-1: null;
+  $width-val-2: null;
 
   // Map with the possible Arguments
   $check: (
@@ -262,7 +263,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
       justify-content: space-between;
 
     } @else if $align == spacearound {
-      justity-content: space-around;
+      justify-content: space-around;
     }
 
     // Vertical Alignment
@@ -392,7 +393,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     } @else if $valign == middle {
       align-items: center;
 
-    } @else if $valing == stretch {
+    } @else if $valign == stretch {
       align-items: stretch;
     }
 
@@ -665,6 +666,14 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   $max       : map-get($o,max);
   $direction : map-get($o,direction);
 
+  // Map with the possible Arguments
+  $check: (
+    direction: (left, right)
+  );
+
+  // Check the Possible Arguments, on fail put a warning in the Console
+  @include warn-args($check, direction, map-get($o, direction), 'offset');
+
   // Cleanup Max
   $m: strip-units($max);
 
@@ -776,6 +785,14 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   $max       : map-get($o,max);
   $direction : map-get($o,direction);
   $extend    : map-get($o,extend);
+
+  // Map with the possible Arguments
+  $check: (
+    direction: (push, pull)
+  );
+
+  // Check the Possible Arguments, on fail put a warning in the Console
+  @include warn-args($check, direction, map-get($o, direction), 'pushpull');
 
   // Cleanup Max
   $m: strip-units($max);
@@ -902,6 +919,14 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   $name      : map-get($o,name);
   $option    : map-get($o,option);
   $important : map-get($o,important);
+
+  // Map with the possible Arguments
+  $check: (
+    option: (blockgrid, inlinetable, offset, pushpull)
+  );
+
+  // Check the Possible Arguments, on fail put a warning in the Console
+  @include warn-args($check, option, map-get($o, option), 'grid-reset');
 
   // Set internal default var
   $i: null;
