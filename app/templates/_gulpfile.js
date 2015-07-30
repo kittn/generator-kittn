@@ -59,7 +59,7 @@ gulp.task('browser-sync', function() {
     bsServer = false;
   } else {
     bsProxy = false;
-    bsServer = { baseDir : kittn.dist.base};
+    bsServer = { baseDir : kittn.dist.browserSyncDir};
   }
 
   // Init the HTML Injector
