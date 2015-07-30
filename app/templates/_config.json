@@ -1,26 +1,36 @@
 {
-  "dist": {<% if (projectUsage == 'Building HTML Prototypes' ) { %>
+  "dist": {<% if (projectUsage == 'Building HTML Prototypes' || projectUsage == 'Integrate in KirbyCMS') { %>
     "base": "dist/",
     "markup": "dist/",
-    "browserSyncDir": "dist/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
-    "base": "dist/wp-content/themes/<%= projectname %>/",
-    "markup": "dist/wp-content/themes/<%= projectname %>/",
-    "browserSyncDir": "dist/wp-content/themes/<%= projectname %>/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
-    "base": "dist/public/",
-    "markup": "dist/public/",
-    "browserSyncDir": "dist/public/",<% } if (projectUsage == 'Integrate in KirbyCMS' ) { %>
-    "base": "dist/",
-    "markup": "dist/",
-    "browserSyncDir": "dist/",<% } %>
-    "markup": "dist/",
+    "browserSyncDir": "dist/",
     "css": "dist/assets/css/",
     "js": "dist/assets/js/",
     "fonts": "dist/assets/fonts/",
     "cssimg": "dist/assets/img/",
     "bitmaps": "dist/assets/img/bitmaps/",
     "vectors": "dist/assets/img/svgfiles/",
-    "cssimgRoot": "/assets/img/",
-    "htmlimg": "dist/images/"
+    "htmlimg": "dist/images/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
+    "base": "dist/wp-content/themes/<%= projectname %>/",
+    "markup": "dist/wp-content/themes/<%= projectname %>/",
+    "browserSyncDir": "dist/wp-content/themes/<%= projectname %>/",
+    "css": "dist/wp-content/themes/<%= projectname %>/assets/css/",
+    "js": "dist/wp-content/themes/<%= projectname %>/assets/js/",
+    "fonts": "dist/wp-content/themes/<%= projectname %>/assets/fonts/",
+    "cssimg": "dist/wp-content/themes/<%= projectname %>/assets/img/",
+    "bitmaps": "dist/wp-content/themes/<%= projectname %>/assets/img/bitmaps/",
+    "vectors": "dist/wp-content/themes/<%= projectname %>/assets/img/svgfiles/",
+    "htmlimg": "dist/wp-content/themes/<%= projectname %>/images/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
+    "base": "dist/public/",
+    "markup": "dist/public/",
+    "browserSyncDir": "dist/public/",
+    "css": "dist/public/assets/css/",
+    "js": "dist/public/assets/js/",
+    "fonts": "dist/public/assets/fonts/",
+    "cssimg": "dist/public/assets/img/",
+    "bitmaps": "dist/public/assets/img/bitmaps/",
+    "vectors": "dist/public/assets/img/svgfiles/",
+    "htmlimg": "dist/public/images/",<% } %>
+    "cssimgRoot": "/assets/img/"
   },
   "templatePath": {
     "root": "./",
