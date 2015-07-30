@@ -5,7 +5,7 @@
 // Gives a Layer a new Z-Index
 //
 // @param  {number} $index    - Z-index
-// @param  {number} $offset   - ZIndes Offset [0]
+// @param  {number} $offset   - Z-index Offset [0]
 // @param  {string} $position - Position. ([false], r = relative, a = absolute, f = fixed)
 @mixin restack($index, $offset: 0, $position: false) {
 
