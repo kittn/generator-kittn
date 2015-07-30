@@ -8,12 +8,6 @@ var chalk = require('chalk');
 var KittnGenerator = yeoman.generators.Base.extend({
   init: function () {
     this.pkg = require('../package.json');
-
-    // this.on('end', function () {
-    //   if (!this.options['skip-install']) {
-    //     this.installDependencies();
-    //   }
-    // });
   },
 
   askFor: function () {
@@ -23,7 +17,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
     var welcome =
       '\n ' +
       '\n    /\\___/\\       '+
-      '\n    ) .  . (       '+
+      '\n    )      (       '+
       '\n   =\\     /=      .--------------------------.'+
       '\n     )   (        |   Kitty, Kitty, Kitty !  |'+
       '\n    /     \\       | ------------------------ |'+
@@ -184,7 +178,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
   },
 
   install: function () {
-     //this.installDependencies();
+     this.installDependencies();
   }
 });
 
