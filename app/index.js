@@ -42,17 +42,17 @@ var KittnGenerator = yeoman.generators.Base.extend({
       },{
         type: 'input',
         name: 'projectdescription',
-        message: 'A Short description',
+        message: 'Project description',
         default: 'undefinied'
       },{
         type: 'input',
         name: 'projectcssfilename',
-        message: 'CSS Filename',
+        message: 'Filename for the CSS File (without fileending)',
         default: 'style'
       },{
         type: 'confirm',
         name: 'projectiecompatible',
-        message: 'Do you need IE8 compatibility?',
+        message: 'IE8 compatibility needed?',
         default: false
       },{
         type: 'confirm',
@@ -64,8 +64,8 @@ var KittnGenerator = yeoman.generators.Base.extend({
         name: 'projectstructure',
         message: 'How do you want to compile your Structure with Jade or Twig? Otherwise you can use the Copy Task to move Files from src to your dist dir.',
         choices: [
-          "Jade Template",
           "Twig Template",
+          "Jade Template",
           "Uncompiled"
         ]
       },{
