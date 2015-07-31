@@ -36,9 +36,8 @@
   &---logo {
     @extend %brand;
 
-    a,
-    span,
-    i {
+    a span {
+      display: block;
       @include cleartext;
     }
   }
