@@ -188,19 +188,22 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 //         {string} $o.layout  - The type from the Layout ([block], inline, table, fixedtable, flex)
 //         {string} $o.valign  - Vertical align. ([top], bottom, baseline, middle, stretch, baseline)
 //         {string} $o.align   - Horizontal align. ([left], justify, center, right, left, spacebetween, spacearound)
+//         {number} $o.overlap - Let the Row overlap the parent Container [false]
 @mixin row($spacing: 10, $o: ()) {
 
   // Mixin Default Vars
   $o: map-merge((
     layout: block,
     valign: top,
-    align: left
+    align: left,
+    overlap: false
   ),$o);
 
   // Variable Routing
   $layout : map-get($o,layout);
   $valign : map-get($o,valign);
   $align  : map-get($o,align);
+  $overlap: map-get($o,overlap);
 
   // Map with the possible Arguments
   $check: (
@@ -285,7 +288,20 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
   } @else {
     @include clearfix();
+  }
 
+  // Add the Margins
+  @if $overlap {
+    // Let the Row Overlap
+    @include overlap($overlap);
+
+    // Reset the inner Margin
+    & & {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  } @else {
+    // Reset the inner Margin
     & & {
       margin-left: 0 - unit-check($spacing);
       margin-right: 0 - unit-check($spacing);
