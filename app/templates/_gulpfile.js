@@ -18,16 +18,17 @@ var gulp         = require('gulp'),
     assets       = require('postcss-assets'),
     prefix       = require('autoprefixer-core');
 
-// Define the Template Filetype
-var templateFileEnding;
+// Define the Template Files
+var templateFiles;
 
 if(kittn.template.compiler === 'twig') {
-  templateFileEnding = '**/*.twig';
+  templateFiles = kittn.src.template + '**/*.twig';
 } else if (kittn.template.compiler === 'jade') {
-  templateFileEnding = '**/*.jade';
+  templateFiles = kittn.src.template + '**/*.jade';
 } else {
-  templateFileEnding = '**/**';
+  templateFiles = kittn.src.structure + '**/**';
 }
+
 
 /**
  * Banner
@@ -518,7 +519,7 @@ gulp.task('watch', function() {
   gulp.watch([kittn.src.style + '**/*.scss'], ['compiler:css']);
 
   // Watch the Structure
-   gulp.watch([kittn.src.template + templateFileEnding], ['compiler:template']);
+  gulp.watch([templateFiles], ['compiler:template']);
 
   // Watch the JS SRC Folder for Changes - Lint JS and copy it to tmp
   gulp.watch(kittn.src.js + '**/*.js', ['compiler:js']);

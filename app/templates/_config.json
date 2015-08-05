@@ -21,7 +21,7 @@
     "vectors": "dist/wp-content/themes/<%= projectname %>/assets/img/svgfiles/",
     "htmlimg": "dist/wp-content/themes/<%= projectname %>/images/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
     "base": "dist/public/",
-    "markup": "dist/public/",
+    "markup": "dist/templates/",
     "browserSyncDir": "dist/public/",
     "css": "dist/public/assets/css/",
     "js": "dist/public/assets/js/",
@@ -141,6 +141,7 @@
   "src": {
     "style": "src/style/",
     "template": "src/template/",
+    "structure": "src/structure/",
     "js": "src/js/",
     "bower": "src/bower/",
     "scripts" : "src/scripts",

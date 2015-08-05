@@ -136,6 +136,10 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.directory('src/.system/', 'src/.system/');
     this.directory('src/framework/', 'src/framework/');
 
+    // As Alternative build a Uncompiled Folder - good for work on native
+    // templates with PHP
+    this.directory('src/structure/', 'src/structure/');
+
     // Add SCSS Files with the desired Filename
     this.copy('_style.scss', 'src/style/'+this.projectcssfilename+'.scss');
 
@@ -155,11 +159,6 @@ var KittnGenerator = yeoman.generators.Base.extend({
       this.directory('src/twig/', 'src/template/');
       this.copy('_site-header.twig', 'src/template/parts/site-header.twig');
       this.copy('_site-scripts.twig', 'src/template/parts/site-scripts.twig');
-
-    // As Alternative build a Uncompiled Folder - good for work on native
-    // templates with PHP
-    } else if ( this.projectstructure == 'Uncompiled' ) {
-      this.directory('src/template/', 'src/template/');
     }
   },
 
