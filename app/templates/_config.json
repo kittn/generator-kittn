@@ -36,7 +36,8 @@
     "root": "./",
     "css": "assets/css/",
     "js": "assets/js/",
-    "image": "images/"
+    "cssimage": "assets/img/",
+    "contentimage": "images/"
   },
   "css": {
     "compiler": "libsass",

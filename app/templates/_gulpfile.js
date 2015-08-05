@@ -154,8 +154,9 @@ gulp.task('compiler:template', function(){
     siteTitle: pkg.name,
     cssName: pkg.cssFileName,
     assetsCss: kittn.templatePath.css,
-    assetsImg: kittn.templatePath.htmlimg,
-    assetsJs: kittn.templatePath.js
+    assetsImg: kittn.templatePath.contentimage,
+    assetsJs: kittn.templatePath.js,
+    assetsCssImg: kittn.templatePath.cssimage
   };
 
   // Twig Compiler
