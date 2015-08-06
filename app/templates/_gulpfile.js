@@ -197,7 +197,7 @@ gulp.task('compiler:template', function(){
 
   // Simple Copy Files
   } else {
-    gulp.src(kittn.src.template + '**/**')
+    gulp.src(kittn.src.structure + '**/**')
       .pipe($.changed(kittn.dist.markup))
       .pipe(gulp.dest(kittn.dist.markup));
   }
