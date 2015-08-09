@@ -21,10 +21,9 @@ var gulp         = require('gulp'),
 // Define the Template Files
 var templateFiles;
 
-if(kittn.template.compiler === 'twig') {
-  templateFiles = kittn.src.template + '**/*.twig';
-} else if (kittn.template.compiler === 'jade') {
-  templateFiles = kittn.src.template + '**/*.jade';
+if(kittn.template.compiler === 'twig') {<% if ( projectstructure == 'Twig Template' ) { %>
+  templateFiles = kittn.src.template + '**/*.twig';<% } else if ( projectstructure == 'Jade Template' ) { %>
+  templateFiles = kittn.src.template + '**/*.jade';<% } %>
 } else {
   templateFiles = kittn.src.structure + '**/**';
 }
@@ -65,7 +64,7 @@ gulp.task('browser-sync', function() {
 
   // Init the HTML Injector
   browserSync.use(htmlInjector, {
-    files: kittn.dist.base + '**/*.html'
+    files: kittn.dist.markup + '**/*.html'
   });
 
   // Browser Sync

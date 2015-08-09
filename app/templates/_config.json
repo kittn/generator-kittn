@@ -53,7 +53,7 @@
     ]
   },
   "template": {
-    "compiler": true
+    "compiler": <% if ( projectstructure == 'Twig Template' || projectstructure == 'Jade Template' ) { %>true<% } else { %>false<% } %>
   },
   "browsersync": {
     "openbrowser": true,
