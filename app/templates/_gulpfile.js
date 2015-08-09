@@ -21,7 +21,7 @@ var gulp         = require('gulp'),
 // Define the Template Files
 var templateFiles;
 
-if(kittn.template.compiler === 'twig') {<% if ( projectstructure == 'Twig Template' ) { %>
+if(kittn.template.compiler) {<% if ( projectstructure == 'Twig Template' ) { %>
   templateFiles = kittn.src.template + '**/*.twig';<% } else if ( projectstructure == 'Jade Template' ) { %>
   templateFiles = kittn.src.template + '**/*.jade';<% } %>
 } else {
