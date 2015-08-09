@@ -372,9 +372,8 @@ gulp.task('minify:images', function () {
   gulp.src(kittn.dist.cssimg + '/**/*')
     .pipe($.imagemin({
       optimizationLevel: kittn.minify.images.optimizationLevel,
-      use: [
-        pngquant(kittn.minify.images.pngquant)],
-      svgoPlugins: [kittn.minify.images.svgoPlugins],
+      use: [pngquant(kittn.minify.images.pngquant)],
+      svgoPlugins: kittn.minify.images.svgoPlugins,
       progressive: kittn.minify.images.progressive,
       interlaced: kittn.minify.images.interlaced
     }))

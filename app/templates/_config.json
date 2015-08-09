@@ -67,7 +67,6 @@
     "jsCombineFilename": "scripts.js",
     "jsCopy": [<% if (projectiecompatible == true ) { %>
       "src/bower/selectivizr/selectivizr.js"<% } %>
-
     ],
     "fonts": [],
     "launch": [
@@ -124,11 +123,20 @@
         "quality": "75-88",
         "speed": 4
       },
-      "svgoPlugins": {
-        "removeViewBox": false,
-        "removeDesc": true,
-        "cleanupIDs": false
-      },
+      "svgoPlugins": [
+        {"cleanupIDs": false},
+        {"removeComments": true},
+        {"removeViewBox": false},
+        {"removeDesc": true},
+        {"removeUselessDefs": false},
+        {"removeDoctype": true},
+        {"removeEmptyText": true},
+        {"removeUnknownsAndDefaults": true},
+        {"removeEmptyContainers": true},
+        {"collapseGroups": true},
+        {"removeUselessStrokeAndFill": true},
+        {"convertStyleToAttrs": true}
+      ],
       "progressive": true,
       "interlaced": true
     },
