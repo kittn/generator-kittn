@@ -19,7 +19,7 @@ var gulp         = require('gulp'),
     prefix       = require('autoprefixer-core');
 
 // Define the Template Files
-var templateFiles;
+var templateFiles, globalJSMinify, globalCSSMinify, globalImageMinify;
 
 if(kittn.template.compiler) {<% if ( projectstructure == 'Twig Template' ) { %>
   templateFiles = kittn.src.template + '**/*.twig';<% } else if ( projectstructure == 'Jade Template' ) { %>
@@ -28,7 +28,24 @@ if(kittn.template.compiler) {<% if ( projectstructure == 'Twig Template' ) { %>
   templateFiles = kittn.src.structure + '**/**';
 }
 
+// Global Minifier - will be activated on the Publish Task. Only active when the regular minfier is deactivated
+if(kittn.minify.automatic.jsFiles == false && kittn.minify.automatic.jsCombine == false && kittn.minify.automatic.jsCopy == false && kittn.minify.automatic.jsModernizr == false && kittn.minify.automatic.jsConditionizr == false) {
+  globalJSMinify = true;
+} else {
+  globalJSMinify = false;
+}
 
+if(kittn.minify.automatic.jsFiles == false) {
+  globalCSSMinify = true;
+} else {
+  globalCSSMinify = false;
+}
+
+if(kittn.minify.automatic.vector == false && kittn.minify.automatic.bitmaps == false && kittn.minify.automatic.vectorSprite == false && kittn.minify.automatic.bitmapSprite == false) {
+  globalImageMinify = true;
+} else {
+  globalImageMinify = false;
+}
 /**
  * Banner
  * @description Define the Header that be integrated in the published
@@ -123,6 +140,8 @@ gulp.task('compiler:css', function(){
       .pipe($.postcss(cssPostCSS))
       // Combine Media Queries
       .pipe(kittn.css.combineMQ ? $.combineMediaQueries({ log: true }) : gutil.noop())
+      // Minify CSS
+      .pipe(kittn.minify.automatic.css ? $.csso() : gutil.noop())
       // Write the SourceMap
       .pipe(kittn.css.sourcemap ? $.sourcemaps.write('.') : gutil.noop())
       .pipe(gulp.dest(kittn.dist.css));
@@ -136,6 +155,8 @@ gulp.task('compiler:css', function(){
       .pipe($.postcss(cssPostCSS))
       // Combine Media Queries
       .pipe(kittn.css.combineMQ ? $.combineMediaQueries({ log: true }) : gutil.noop())
+      // Minify CSS
+      .pipe(kittn.minify.automatic.css ? $.csso() : gutil.noop())
       // Write the SourceMap
       .pipe(kittn.css.sourcemap ? $.sourcemaps.write('.') : gutil.noop())
       .pipe(gulp.dest(kittn.dist.css));
@@ -209,6 +230,7 @@ gulp.task('compiler:template', function(){
 gulp.task('combine:js', function() {
   gulp.src(kittn.files.jsCombine)
     .pipe($.concat(kittn.files.jsCombineFilename))
+    .pipe(kittn.minify.automatic.jsCombine ? $.uglify(kittn.minify.javascript.options) : gutil.noop())
     .pipe(gulp.dest(kittn.dist.js));
 });
 
@@ -225,6 +247,7 @@ gulp.task('compiler:js', function() {
     .pipe($.include())
     .pipe($.jshint())
     .pipe($.jshint.reporter(stylish))
+    .pipe(kittn.minify.automatic.jsFiles ? $.uglify(kittn.minify.javascript.options) : gutil.noop())
     .pipe(gulp.dest(kittn.dist.js));
 });
 
@@ -259,6 +282,7 @@ gulp.task('copy:js', function () {
   kittn.files.jsCopy.forEach(function(item) {
     gulp.src(item)
       .pipe($.changed(kittn.dist.js))
+      .pipe(kittn.minify.automatic.jsCopy ? $.uglify(kittn.minify.javascript.options) : gutil.noop())
       .pipe(gulp.dest(kittn.dist.js));
   });
 });
@@ -269,6 +293,15 @@ gulp.task('copy:js', function () {
  */
 gulp.task('copy:bitmaps', function() {
   gulp.src(kittn.src.images.bitmaps + '**/*.{png,jpeg,jpg,gif,webp}')
+    .pipe($.changed(kittn.src.images.bitmaps + '**/*.{png,jpeg,jpg,gif,webp}'))
+    .pipe(kittn.minify.automatic.bitmaps ? $.imagemin({
+      optimizationLevel: kittn.minify.images.optimizationLevel,
+      use: [
+        pngquant(kittn.minify.images.pngquant)],
+      progressive: kittn.minify.images.progressive,
+      interlaced: kittn.minify.images.interlaced
+    }) : gutil.noop()
+  )
     .pipe(gulp.dest(kittn.dist.bitmaps));
 });
 
@@ -278,6 +311,11 @@ gulp.task('copy:bitmaps', function() {
  */
 gulp.task('copy:vectors', function() {
   gulp.src(kittn.src.images.vectors + '**/*.svg')
+    .pipe($.changed(kittn.src.images.vectors + '**/*.svg'))
+    .pipe(kittn.minify.automatic.vector ? $.imagemin({
+      svgoPlugins: kittn.minify.images.svgoPlugins
+    }) : gutil.noop()
+  )
     .pipe(gulp.dest(kittn.dist.vectors));
 });
 
@@ -288,8 +326,10 @@ gulp.task('copy:vectors', function() {
 gulp.task('build:conditionizr', function() {
   gulp.src(kittn.conditionizr.files)
     .pipe($.concat(kittn.conditionizr.filename))
+    .pipe(kittn.minify.automatic.jsConditionizr ? $.uglify(kittn.minify.javascript.options) : gutil.noop())
     .pipe(gulp.dest(kittn.dist.js));
 });
+
 
 /**
  * Build Modernizr
@@ -302,6 +342,7 @@ gulp.task('build:modernizr', function() {
       options : kittn.modernizr.options,
       tests: kittn.modernizr.tests
     }))
+    .pipe(kittn.minify.automatic.jsModernizr ? $.uglify(kittn.minify.javascript.options) : gutil.noop())
     .pipe(gulp.dest(kittn.dist.js));
 });
 
@@ -312,6 +353,14 @@ gulp.task('build:modernizr', function() {
 gulp.task('build:bitmapSprite', function () {
   gulp.src(kittn.src.images.bitmapSprite.files + '**/*.png')
     .pipe($.if('*.png',
+      kittn.minify.automatic.bitmapSprite ? $.imagemin({
+        optimizationLevel: kittn.minify.images.optimizationLevel,
+        use: [
+          pngquant(kittn.minify.images.pngquant)]
+      }) : gutil.noop()
+
+    ))
+    .pipe($.if('*.png',
       $.spritesmith({
         imgName: kittn.src.images.bitmapSprite.name,
         cssName: '_sprite-bitmap.scss',
@@ -319,7 +368,7 @@ gulp.task('build:bitmapSprite', function () {
         cssTemplate: kittn.src.system + 'tpl_bitmapsprite.scss'
       })
     ))
-    .pipe($.if('*.png',gulp.dest(kittn.dist.cssimg),gulp.dest(kittn.src.style + 'maps/')))
+    .pipe($.if('*.png',gulp.dest(kittn.dist.cssimg),gulp.dest(kittn.src.style + 'maps/')));
 });
 
 /**
@@ -328,6 +377,12 @@ gulp.task('build:bitmapSprite', function () {
  */
 gulp.task('build:vectorSprite', function() {
   gulp.src(kittn.src.images.vectorSprite.files + '**/*.svg')
+    .pipe(
+    kittn.minify.automatic.vectorSprite ? $.imagemin({
+      svgoPlugins: kittn.minify.images.svgoPlugins
+    }) : gutil.noop()
+
+  )
     .pipe($.svgSprite(
       config = {
         shape: {
@@ -370,13 +425,16 @@ gulp.task('build:vectorSprite', function() {
  */
 gulp.task('minify:images', function () {
   gulp.src(kittn.dist.cssimg + '/**/*')
-    .pipe($.imagemin({
-      optimizationLevel: kittn.minify.images.optimizationLevel,
-      use: [pngquant(kittn.minify.images.pngquant)],
-      svgoPlugins: kittn.minify.images.svgoPlugins,
-      progressive: kittn.minify.images.progressive,
-      interlaced: kittn.minify.images.interlaced
-    }))
+    .pipe($.if(globalImageMinify == true,
+      $.imagemin({
+        optimizationLevel: kittn.minify.images.optimizationLevel,
+        use: [
+          pngquant(kittn.minify.images.pngquant)],
+        svgoPlugins: kittn.minify.images.svgoPlugins,
+        progressive: kittn.minify.images.progressive,
+        interlaced: kittn.minify.images.interlaced
+      })
+    ))
     .pipe(gulp.dest(kittn.dist.cssimg));
 });
 
@@ -386,8 +444,9 @@ gulp.task('minify:images', function () {
  */
 gulp.task('minify:js', function() {
   gulp.src([kittn.dist.js + '*.js'])
-    .pipe($.uglify(kittn.minify.javascript.options))
-    .pipe($.header(banner, { pkg : pkg } ))
+    .pipe($.if(globalJSMinify == true,
+      $.uglify(kittn.minify.javascript.options)
+    ))
     .pipe(gulp.dest(kittn.dist.js));
 });
 
@@ -397,7 +456,9 @@ gulp.task('minify:js', function() {
  */
 gulp.task('minify:css', function() {
   return gulp.src(kittn.dist.css + '*.css')
-    .pipe($.csso())
+    .pipe($.if(globalCSSMinify == true,
+      $.csso()
+    ))
     .pipe(gulp.dest(kittn.dist.css));
 });
 
@@ -419,6 +480,16 @@ gulp.task('header:css', function(){
   gulp.src(kittn.dist.css + '*.css')
     .pipe($.header(banner, { pkg : pkg } ))
     .pipe(gulp.dest(kittn.dist.css));
+});
+
+/**
+ * Header JS
+ * @description Add Header to JS Files
+ */
+gulp.task('header:js', function(){
+  gulp.src(kittn.dist.js + '*.js')
+    .pipe($.header(banner, { pkg : pkg } ))
+    .pipe(gulp.dest(kittn.dist.js));
 });
 
 /**
@@ -540,29 +611,36 @@ gulp.task('default', ['browser-sync', 'watch']);
  */
 gulp.task('publish', function(callback) {
   runSequence(
-    'version:bump',
     [
-      'compiler:css',
+      'compiler:css'
     ],
     [
-      'header:css'
+      'version:bump',
+    ],
+    [
+      'minify:css',
+      'minify:js',
+      'minify:images'
+    ],
+    [
+      'header:css',
+      'header:js'
     ],
     [
       'styleguide',
-      'codequality:js'
     ],
     callback);
 });
 
+
 /**
- * Manual Deploy
+ * Automatic Deploy
  *
- * @description: Deploy Task for an manual build
- * e.g. manual FTP Upload or simple Deploy
+ * @description: Deploy Task for an automated Build Process
  */
-gulp.task('deploy:manual', function(callback) {
+gulp.task('deploy', function(callback) {
   runSequence(
-    'publish',
+    'init',
     [
       'minify:js',
       'minify:images',
@@ -570,14 +648,3 @@ gulp.task('deploy:manual', function(callback) {
     ],
     callback);
 });
-
-/**
- * Automatic Deploy
- *
- * @description: Deploy Task for an automated Build Process
- */
-gulp.task('deploy:auto', [
-  'minify:js',
-  'minify:images',
-  'minify:css'
-]);

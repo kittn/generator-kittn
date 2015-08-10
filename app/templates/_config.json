@@ -117,6 +117,18 @@
     ]
   },
   "minify": {
+    "automatic": {
+      "jsFiles": true,
+      "jsCombine": true,
+      "jsCopy": true,
+      "jsModernizr": true,
+      "jsConditionizr": true,
+      "css": true,
+      "vector": true,
+      "bitmaps": true,
+      "vectorSprite": true,
+      "bitmapSprite": true
+    },
     "images": {
       "optimizationLevel": 3,
       "pngquant": {
