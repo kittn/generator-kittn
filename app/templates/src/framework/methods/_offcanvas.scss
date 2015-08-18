@@ -90,7 +90,7 @@
     // Off Canvas Elements
     &__off {
       @extend %canvas-base-style;
-      min-height: 100vh;
+      height: 100vh;
       width: $width;
       position: fixed;
       top: 0;
