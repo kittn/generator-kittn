@@ -51,26 +51,17 @@
 
 // Insert the Icon Value as Content
 //
-// @param  {*}   $name    - Key to the Map Entry
-// @param  {Map} $o - Setup Args
-//         {bool} $o.extend - Extend with a Class [false]
-//         {bool} $o.font  - Inside a Media Query use the Iconfont Mixin [false]
-@mixin icon($name, $o: ()) {
-
-  // Default Setup
-  $o: map-merge((
-    extend: false,
-    font: false
-  ),$o);
-
-  @if map-get($o, extend) != false or map-get($o, font) != false {
-    @if map-get($o, extend) != false {
-      @extend #{map-get($o, extend)};
-    }
-    @if map-get($o, font) != false {
-      @include iconfont(map-get($o, font))
+// @param  {*}  $name    - Key to the Map Entry
+// @param  {*}  $connect - Can be connected with the %iconfontcontainer, or a Iconfont (mixin), or false ['container']
+@mixin icon($name, $connect: 'container') {
+  @if $connect != false {
+    @if $connect == 'container' {
+      @extend %iconfont;
+    } @else {
+      @include iconfont(map-get($o, font));
     }
   }
+
   content: icon($name);
 }
 

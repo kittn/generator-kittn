@@ -73,25 +73,23 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 // Generate the Page Container, Size and Float Direction
 //
 // @param  {list}   $width       - Container Size. The Max and Min Width of the container. One Value only the Container is static [320 1180]
+// @param  {number} $spacing     - Side Padding of the Container [10]
 // @param  {Map}    $o           - Setup Args
 //         {string} $o.position  - Container position ([center], left, right)
 //         {number} $o.gutter    - Side Spacing - only relevant on Container Position left or right [0]
-//         {number} $o.spacing   - Side Padding of the Container [10]
 //         {bool}   $o.static-ie - When is set on 'true' IE8 get a static Container [false]
-@mixin container($width: 320 1180, $o: ()) {
+@mixin container($width: 320 1180, $spacing: 10, $o: ()) {
 
   // Mixin Default Vars
   $o: map-merge((
     position: center,
     gutter: 0,
-    spacing: 10,
     static-ie: false
   ),$o);
 
   // Variable Routing
   $position  : map-get($o, position);
   $gutter    : map-get($o, gutter);
-  $spacing   : map-get($o, spacing);
   $static-ie : map-get($o, static-ie);
   $width-val-1: null;
   $width-val-2: null;
@@ -184,23 +182,21 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 // Build the outer Container that hold the Grid-Columns
 //
 // @param  {number} $spacing   - To reset the margin off a nested rows. Size from the Gutter. [10]
+// @param  {string} $layout    - The type from the Layout ([block], inline, table, fixedtable, flex)
 // @param  {Map}    $o         - Setup Args
-//         {string} $o.layout  - The type from the Layout ([block], inline, table, fixedtable, flex)
 //         {string} $o.valign  - Vertical align. ([top], bottom, baseline, middle, stretch, baseline)
 //         {string} $o.align   - Horizontal align. ([left], justify, center, right, left, spacebetween, spacearound)
 //         {number} $o.overlap - Let the Row overlap the parent Container [false]
-@mixin row($spacing: 10, $o: ()) {
+@mixin row($spacing: 10, $layout: 'block', $o: ()) {
 
   // Mixin Default Vars
   $o: map-merge((
-    layout: block,
     valign: top,
     align: left,
     overlap: false
   ),$o);
 
   // Variable Routing
-  $layout : map-get($o,layout);
   $valign : map-get($o,valign);
   $align  : map-get($o,align);
   $overlap: map-get($o,overlap);
@@ -309,17 +305,16 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 // Build the Base Style for all Columns. Include the Mixin in your Column Class
 //
 // @param  {number} $spacing  - Column Side-Spacing
+// @param  {string} $layout   - The type from the Layout, values: ([block], inline, table, flex)
 // @param  {Map}    $o        - Setup Vars
-//         {string} $o.layout - The type from the Layout, values: ([block], inline, table, flex)
 //         {bool}   $o.extras - For include additional classes for the columns [false]
 //         {string} $o.valign - Vertical align ([top], bottom, baseline, middle, stretch)
 //         {string} $o.align  - Horizontal align ([left], justify, center, right, left, superleft, superright)
 //         {number} $o.gutter - Vertical Gutter [false]
-@mixin column($spacing: 10, $o: ()) {
+@mixin column($spacing: 10, $layout: 'block', $o: ()) {
 
   // Mixin Default Vars
   $o: map-merge((
-    layout: block,
     extras: false,
     valign: top,
     align: left,
@@ -327,7 +322,6 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   ),$o);
 
   // Variable Routing
-  $layout : map-get($o,layout);
   $extras : map-get($o,extras);
   $valign : map-get($o,valign);
   $align  : map-get($o,align);
