@@ -1,0 +1,22 @@
+// ===================================================
+// Hyphen Class
+// ===================================================
+
+// Mixin for Hyphenating Text
+//
+// Works not on Chrome
+//
+// @param {Bool} $extend - On 'true' the Class would be extended
+@mixin text-hyphen($extend: false) {
+  @if $extend {
+    @extend %text-hyphen;
+
+  } @else {
+    hyphens: auto;
+  }
+}
+
+// Placeholder Class
+%text-hyphen {
+  @include text-hyphen(false);
+}
