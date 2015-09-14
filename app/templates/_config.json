@@ -60,9 +60,8 @@
     "proxy": false
   },
   "files": {
-    "jsCombine" : [<% if (projectjquery == true ) { %>
-      "src/bower/jquery/dist/jquery.js"<% } else { %>
-      "src/bower/jquery/jquery.js"<% } %>
+    "jsCombine" : [
+      "src/bower/jquery/dist/jquery.js"
     ],
     "jsCombineFilename": "scripts.js",
     "jsCopy": [<% if (projectiecompatible == true ) { %>
