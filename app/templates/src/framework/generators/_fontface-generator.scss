@@ -21,7 +21,7 @@
           filename: map-get($entry,filename),
           weight: map-get($entry,weight),
           style: map-get($entry,style),
-          svg: map-get($entry,svgoption)
+          short: map-get($entry,short)
         )
       );
     }

@@ -49,7 +49,7 @@
       "ie 8",<% } else { %>
       "ie 9",<% } %>
       "chrome 30",
-      "firefox 24"
+      "firefox 30"
     ]
   },
   "template": {

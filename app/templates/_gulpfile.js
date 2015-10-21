@@ -11,12 +11,10 @@ var gulp         = require('gulp'),
     browserSync  = require('browser-sync').create(),
     runSequence  = require('run-sequence'),
     path         = require('path'),
-    styleguide   = require('sc5-styleguide'),
-    htmlInjector = require('bs-html-injector'),
     stylish      = require('jshint-stylish'),
     pngquant     = require('imagemin-pngquant'),
     assets       = require('postcss-assets'),
-    prefix       = require('autoprefixer-core');
+    prefix       = require('autoprefixer');
 
 // Define the Template Files
 var templateFiles, globalJSMinify, globalCSSMinify, globalImageMinify;
@@ -79,14 +77,9 @@ gulp.task('browser-sync', function() {
     bsServer = { baseDir : kittn.dist.browserSyncDir};
   }
 
-  // Init the HTML Injector
-  browserSync.use(htmlInjector, {
-    files: kittn.dist.markup + '**/*.html'
-  });
-
   // Browser Sync
   browserSync.init([
-      kittn.dist.base + '**/*.php',
+      kittn.dist.base + '**/*.{php,html}',
       kittn.dist.css +'**/*.css' ,
       kittn.dist.cssimg + '**/*.{jpg,gif,png,svg}',
       kittn.dist.js + '**/*.js'],
@@ -518,27 +511,27 @@ gulp.task('version:bump', function(){
   .pipe(gulp.dest('./'));
 });
 
-/**
- * Styleguide
- * @description Build the Styleguide
- * --guide=no will disable the Building on the Publish Task
- */
-gulp.task('styleguide', function() {
-  var guide = args.guide || 'yes';
-
-  if (guide == 'yes') {
-    return gulp.src(kittn.dist.css + pkg.cssFileName + '.css')
-      .pipe(styleguide.generate({
-          title: 'Styleguide for: '+pkg.name+' (v.'+pkg.version+')',
-          server: false,
-          rootPath: 'styleguide/',
-          appRoot: '../styleguide',
-          overviewPath: 'readme.md'
-        }))
-      .pipe(styleguide.applyStyles())
-      .pipe(gulp.dest('styleguide/'));
-  }
-});
+///**
+// * Styleguide
+// * @description Build the Styleguide
+// * --guide=no will disable the Building on the Publish Task
+// */
+//gulp.task('styleguide', function() {
+//  var guide = args.guide || 'yes';
+//
+//  if (guide == 'yes') {
+//    return gulp.src(kittn.dist.css + pkg.cssFileName + '.css')
+//      .pipe(styleguide.generate({
+//          title: 'Styleguide for: '+pkg.name+' (v.'+pkg.version+')',
+//          server: false,
+//          rootPath: 'styleguide/',
+//          appRoot: '../styleguide',
+//          overviewPath: 'readme.md'
+//        }))
+//      .pipe(styleguide.applyStyles())
+//      .pipe(gulp.dest('styleguide/'));
+//  }
+//});
 
 
 // MAIN TASK BLOCK ------------------------------------------------------
@@ -625,9 +618,6 @@ gulp.task('publish', function(callback) {
     [
       'header:css',
       'header:js'
-    ],
-    [
-      'styleguide',
     ],
     callback);
 });

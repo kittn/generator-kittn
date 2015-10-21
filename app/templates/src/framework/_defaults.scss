@@ -51,3 +51,13 @@ $kittn-activate: (
   mobile-first: true,
   ie8-fallbacks: false
 );
+
+// Global spacing unit, used for Spacer and Lines Mixins.
+//
+// @type Number
+$kittn-global-spacing: 20;
+
+// Default unit for unitless values.
+//
+// @type Number
+$kittn-default-unit: px;

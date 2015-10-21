@@ -2,7 +2,15 @@
 // Framework Defaults
 // ------------------------------------
 
+// Global spacing unit, used for Spacer and Lines Mixins.
+//
+// @type Number
+$kittn-global-spacing: 20;
 
+// Default unit for unitless values.
+//
+// @type Number
+$kittn-default-unit: px;
 
 // BEM Prefixes for Elements and Modifiers
 //
@@ -48,6 +56,6 @@ $kittn-activate: (
   hyphens: false,
   viewport-fix: false,
   mobile-first: true,<% if (projectiecompatible == true) { %>
-ie8-fallbacks: true<% } else { %>
-ie8-fallbacks: false<% } %>
+  ie8-fallbacks: true<% } else { %>
+  ie8-fallbacks: false<% } %>
 );
