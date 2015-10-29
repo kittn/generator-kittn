@@ -68,7 +68,7 @@
       "src/bower/selectivizr/selectivizr.js"<% } %>
     ],
     "fonts": [],
-    "launch": [<% } if (projectUsage == 'Building HTML Prototypes' { %>
+    "launch": [<% if (projectUsage == 'Building HTML Prototypes') { %>
       {"src": "favicon.png", "dest": "assets/img/system/"},
       {"src": "spinner.gif", "dest": "assets/img/system/"},
       {"src": ".htaccess", "dest": ""},

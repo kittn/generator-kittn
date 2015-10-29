@@ -177,7 +177,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
   },
 
   install: function () {
-     this.installDependencies();
+    this.installDependencies();
   }
 });
 
