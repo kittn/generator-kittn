@@ -4,7 +4,7 @@
 
 Yeoman Generator for the Kittn Toolkit. Scaffolds and Prepare the Toolkit for you.
 
-[Documentation](http://kittn.de). 
+[Documentation](http://gisu.github.io/generator-kittn/). 
 
 ## Install
 
