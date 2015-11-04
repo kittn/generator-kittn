@@ -4,8 +4,8 @@
 
 // Vertical Center Elements
 //
-// @param {Bool} $extend - On 'true' the Class would be extended
-@mixin vertical-center($extend: false) {
+// @param {Bool} $extend - Set it on false the mixin will used as regular mixin [:true]
+@mixin vertical-center($extend: true) {
   @if $extend {
     @extend %vertical-center;
 

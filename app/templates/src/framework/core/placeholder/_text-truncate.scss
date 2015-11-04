@@ -4,8 +4,8 @@
 
 // Mixin for truncating Text
 //
-// @param {Bool} $extend - On 'true' the Class would be extended
-@mixin text-truncate($extend: false) {
+// @param {Bool} $extend - Set it on false the mixin will used as regular mixin [:true]
+@mixin text-truncate($extend: true) {
   @if $extend {
     @extend %text-truncate;
 

@@ -4,8 +4,8 @@
 
 // Method for Text Replacement
 //
-// @param {Bool} $extend - On 'true' the Class would be extended
-@mixin cleartext($extend: false) {
+// @param {Bool} $extend - Set it on false the mixin will used as regular mixin [:true]
+@mixin cleartext($extend: true) {
   @if $extend {
     @extend %cleartext;
 

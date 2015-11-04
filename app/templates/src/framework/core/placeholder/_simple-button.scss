@@ -4,8 +4,8 @@
 
 // Simple Button Element that build a default style for every Button Element
 //
-// @param {Bool} $extend - On 'true' the Class would be extended
-@mixin simple-button($extend: false) {
+// @param {Bool} $extend - Set it on false the mixin will used as regular mixin [:true]
+@mixin simple-button($extend: true) {
   @if $extend {
     @extend %simple-button;
 

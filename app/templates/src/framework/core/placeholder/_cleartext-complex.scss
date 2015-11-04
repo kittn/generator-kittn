@@ -4,8 +4,8 @@
 
 // Text Replacement Method from HTML5 Boilerplate
 //
-// @param {Bool} $extend - On 'true' the Class would be extended
-@mixin cleartext-complex($extend: false) {
+// @param {Bool} $extend - Set it on false the mixin will used as regular mixin [:true]
+@mixin cleartext-complex($extend: true) {
   @if $extend {
     @extend %cleartext-complex;
 

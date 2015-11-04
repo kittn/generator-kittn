@@ -6,7 +6,7 @@
 //
 // @link http://front-back.com/expand-clickable-areas-for-a-better-touch-experience
 //
-// @param {Bool} $extend - On 'true' the Class would be extended
+// @param {Bool} $extend - Set it on false the mixin will used as regular mixin [:true]
 @mixin expand-clickarea($extend: false) {
   @if $extend {
     @extend %expand-clickarea;

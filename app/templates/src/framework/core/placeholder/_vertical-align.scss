@@ -4,8 +4,8 @@
 
 // Allows vertical centering of elements with unknown dimensions.
 //
-// @param {Bool} $extend - On 'true' the Class would be extended
-@mixin vertical-align($extend: false) {
+// @param {Bool} $extend - Set it on false the mixin will used as regular mixin [:true]
+@mixin vertical-align($extend: true) {
   @if $extend {
     @extend %vertical-align;
 

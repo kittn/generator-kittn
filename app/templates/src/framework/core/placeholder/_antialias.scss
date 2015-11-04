@@ -4,8 +4,8 @@
 
 // Activate Antialias on Webkit Browsers
 //
-// @param {Bool} $extend - On 'true' the Class would be extended
-@mixin antialias($extend: false) {
+// @param {Bool} $extend - Set it on false the mixin will used as regular mixin [:true]
+@mixin antialias($extend: true) {
   @if $extend {
     @extend %antialias;
 
