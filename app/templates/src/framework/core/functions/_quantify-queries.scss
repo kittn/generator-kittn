@@ -1,0 +1,136 @@
+// ===================================================
+// Quantify Queries
+// ===================================================
+
+// Last Simple Selector
+// Find the last simple selector in a given selector
+// @access private
+// @param  {list | string} $selector - A single selector
+// @return {string}                  - The last simple selector in $selector
+@function _last-simple-selector($selector) {
+  $parsed: selector-parse($selector);
+
+  @if length($parsed) > 1 {
+    @error '`#{$selector}` contains #{length($parsed)} selectors and the `_last-simple-selector()`function accepts only 1.';
+  }
+  $last-simple-selector: nth(nth($parsed, 1), -1);
+
+  @return $last-simple-selector;
+}
+
+
+// Build Quantity Selector
+// Builds the selector for the quantity query
+// @access private
+// @param  {string} $selector-append      - The selector to be appended
+// @param  {string} $last-selector        - The item's selector
+// @return {list}                         - The final quantity query selector
+@function _build-quantity-selector($selector-append, $last-selector) {
+  $quantity-selector: ();
+
+  @each $s in & {
+    $last-simple-selector: '~' + if($last-selector, $last-selector, _last-simple-selector($s));
+    $sel: selector-append($s, $selector-append);
+    $sel2: selector-nest($sel, $last-simple-selector);
+    $quantity-selector: append($quantity-selector, $sel, 'comma');
+    $quantity-selector: append($quantity-selector, $sel2 , 'comma');
+  }
+
+  @return $quantity-selector;
+}
+
+
+// At least
+// Query when total items is at least N items
+// @param  {number} $count - Quantity to match (equal or more)
+@mixin at-least($count, $selector: null) {
+  $selector-append: ':nth-last-child(n+#{$count})';
+
+  @if type-of($count) != 'number' or not unitless($count) or $count < 1 {
+    @error '`#{$count}` is not a valid number for `at-least`';
+  }
+
+  @if $selector != null and (type-of($selector) != 'string' or length($selector) > 1) {
+    @error '`#{$selector}` is not a valid selector for `at-least`';
+  }
+
+  $at-least-selector: _build-quantity-selector($selector-append, $selector);
+
+  @at-root #{$at-least-selector} {
+    @content;
+  }
+}
+
+
+// At most
+// Query when total items is at most N items
+// @param  {number} $count - Quantity to match (equal or less)
+@mixin at-most($count, $selector: null) {
+  $selector-append: ':nth-last-child(-n+#{$count}):first-child';
+
+  @if type-of($count) != 'number' or not unitless($count) or $count < 1 {
+    @error '`#{$count}` is not a valid number for `at-most`.';
+  }
+
+  @if $selector != null and (type-of($selector) != 'string' or length($selector) > 1) {
+    @error '`#{$selector}` is not a valid selector for `at-most`';
+  }
+
+  $at-most-selector: _build-quantity-selector($selector-append, $selector);
+
+  @at-root #{$at-most-selector} {
+    @content;
+  }
+}
+
+
+// Between
+// Query when total items is at least X items and at most Y items
+// @param  {number} $at-least - Lower quantity of items to match
+// @param  {number} $at-most - Higher quantity of items to match
+@mixin between($first, $last, $selector: null) {
+  $selector-append: ':nth-last-child(n+#{$first}):nth-last-child(-n+#{$last}):first-child';
+
+  @if type-of($first) != 'number' or not unitless($first) or $first < 1 {
+    @error '`#{$first}` is not a valid number for `between`';
+  }
+
+  @if type-of($last) != 'number' or not unitless($last) or $last < 1 {
+    @error '`#{$last}` is not a valid number for `between`';
+  }
+
+  @if $first > $last {
+    @error '#{$first} can´t be larger that #{$last} for `between`';
+  }
+
+  @if $selector != null and (type-of($selector) != 'string' or length($selector) > 1) {
+    @error '`#{$selector}` is not a valid selector for `between`';
+  }
+
+  $between-selector: _build-quantity-selector($selector-append, $selector);
+
+  @at-root #{$between-selector} {
+    @content;
+  }
+}
+
+// Exactly
+// Query when total items is exactly N items
+// @param  {number} $count - Quantity to match (equal)
+@mixin exactly($count, $selector: null) {
+  $selector-append: ':nth-last-child(#{$count}):first-child';
+
+  @if type-of($count) != 'number' or not unitless($count) or $count < 1 {
+    @error '`#{$count}` is not a valid number for `exactly`';
+  }
+
+  @if $selector != null and (type-of($selector) != 'string' or length($selector) > 1) {
+    @error '`#{$selector}` is not a valid selector for `exactly`';
+  }
+
+  $exactly-selector: _build-quantity-selector($selector-append, $selector);
+
+  @at-root #{$exactly-selector} {
+    @content;
+  }
+}

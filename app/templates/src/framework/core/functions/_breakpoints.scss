@@ -4,10 +4,10 @@
 
 // Pick the Values from the Breakpoint Map
 //
-// @param  {*}      $target - Required Breakpoint
+// @param  {*}      $target  - Selected Breakpoint
 // @param  {map}    $entries - Connection to the Breakpoint Map
 //
-// @returns {Number}
+// @returns {number}         - Return the breakpoint width
 @function bp($target, $entries: $kittn-breakpoint-map) {
 
   // Pick the Values

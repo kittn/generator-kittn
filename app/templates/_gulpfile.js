@@ -286,7 +286,7 @@ gulp.task('copy:js', function () {
  */
 gulp.task('copy:bitmaps', function() {
   gulp.src(kittn.src.images.bitmaps + '**/*.{png,jpeg,jpg,gif,webp}')
-    .pipe($.changed(kittn.src.images.bitmaps + '**/*.{png,jpeg,jpg,gif,webp}'))
+    .pipe($.changed(kittn.dist.bitmaps + '**/*.{png,jpeg,jpg,gif,webp}'))
     .pipe(kittn.minify.automatic.bitmaps ? $.imagemin({
       optimizationLevel: kittn.minify.images.optimizationLevel,
       use: [
