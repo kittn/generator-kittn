@@ -120,16 +120,3 @@
     }
   }
 }
-
-// Modify a Style with the Context. Used for Component
-// Building. The Context is in this more an external modifier.
-//
-// @param   {map} $map  Connection to the API Map
-// @param   {string} $name Contextname of the outer Class
-@mixin context($map, $name) {
-  @if v($map, context) == $name {
-    .#{$name} & {
-      @content;
-    }
-  }
-}
