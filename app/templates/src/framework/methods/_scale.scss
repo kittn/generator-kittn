@@ -2,12 +2,25 @@
 // Scale
 // ===================================================
 
+// Scale
+// =====
 // Scale a container with Aspect Ratio
 //
 // @param  {list}   $dimension - The actual size from the container
 // @param  {number} $scale     - Scale Factor [1]
 // @param  {list}   $resize    - Calculate the nes size ($scale must 'false')
 //                               e.g. w 200 => new width with 200px (w, h, bool)
+//
+// @example
+//   .box {
+//     @include scale(20 40, .5);
+//   }
+//
+// @output
+//   .box {
+//     width: 10px;
+//     height: 20px;
+//   }
 @mixin scale($dimension, $scale: 1, $resize: false) {
   $dim1: null;
   $dim2: null;

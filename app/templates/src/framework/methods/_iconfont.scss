@@ -2,11 +2,20 @@
 // Iconfont Helper
 // ===================================================
 
-// Get the Icon from the Map
+// Icon
+// ====
+// Get the Iconcode from the Iconmap
 //
 // @param  {string} $name - Icon Keyword
 //
-// @returns {*}
+// @return {*}
+//
+// @example
+//   .icon {
+//     &:before {
+//       content: icon('myIcon');
+//     }
+//   }
 @function icon($name) {
   @if map-has-key($kittn-font-icons,$name) {
     @return map-get($kittn-font-icons,$name);
@@ -15,12 +24,31 @@
   }
 }
 
-
+// Iconfont
+// ========
 // Build the Base Attributes for all Font Icons
 //
 // @access private
 //
 // @param  {string} $iconFontName - Iconfont Name
+//
+// @example
+//   .iconfont {
+//     @include iconfont(myFont);
+//   }
+//
+// @output
+//   .iconfont {
+//     -webkit-font-smoothing: antialiased;
+//     -moz-osx-font-smoothing: grayscale;
+//     display: inline-block;
+//     font-family: myFont;
+//     font-style: normal;
+//     font-weight: normal !important;
+//     speak: none;
+//     text-decoration: inherit;
+//     line-height: 1;
+//   }
 @mixin iconfont($iconFontName) {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -33,9 +61,33 @@
   line-height: 1;
 }
 
+// Icon Font Base
+// ==============
 // Build the Base Icon Font Behavior
 //
 // @param  {string} $iconFontName - Iconfont Name
+//
+// @example
+//   @include icon-font-base(myFont);
+//
+// @output
+//   // %iconfont,
+//   [class^="f-icon--"]:before,
+//   [class*=" f-icon--"]:before,
+//   [data-icon]:before {
+//     -webkit-font-smoothing: antialiased;
+//     -moz-osx-font-smoothing: grayscale;
+//     display: inline-block;
+//     font-family: myFont;
+//     font-style: normal;
+//     font-weight: normal !important;
+//     speak: none;
+//     text-decoration: inherit;
+//     line-height: 1; }
+//
+//   [data-icon]:before {
+//     content: attr(data-icon);
+//   }
 @mixin icon-font-base($iconFontName) {
   [class^="#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}"],
   [class*=" #{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}"],
@@ -49,10 +101,39 @@
     content: attr(data-icon); }
 }
 
+// Icon
+// ====
 // Insert the Icon Value as Content
 //
 // @param  {*}  $name    - Key to the Map Entry
-// @param  {*}  $connect - Can be connected with the %iconfontcontainer, or a Iconfont (mixin), or false ['container']
+// @param  {*}  $connect - Can be connected with the %iconfontcontainer,
+//                         or a Iconfont (mixin), or false ['container']
+//
+// @example
+//   .icon {
+//     @include icon(myIcon, container);
+//   }
+//
+// @output
+//   [class^="f-icon--"]:before,
+//   [class*=" f-icon--"]:before,
+//   [data-icon]:before,
+//   .icon:before {
+//     -webkit-font-smoothing: antialiased;
+//     -moz-osx-font-smoothing: grayscale;
+//     display: inline-block;
+//     font-family: myIconFont;
+//     font-style: normal;
+//     font-weight: normal !important;
+//     speak: none;
+//     text-decoration: inherit;
+//     line-height: 1; }
+//
+//   [data-icon]:before {
+//     content: attr(data-icon); }
+//
+//   .icon {
+//     content: "icon"; }
 @mixin icon($name, $connect: 'container') {
   @if $connect != false {
     @if $connect == 'container' {
@@ -65,10 +146,16 @@
   content: icon($name);
 }
 
-
-// Extend a Class with a Icon Font Class
+// Ext Icon
+// ========
+// Extend a Class with an existing Icon Font Class
 //
 // @param  {string} $name - Name off the Icon (from the Map)
+//
+// @example
+//   .icon {
+//     @include ext-icon(myIcon);
+//   }
 @mixin ext-icon($name) {
   @extend .#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}#{$name};
 }

@@ -2,12 +2,24 @@
 // Typostyles
 // ===================================================
 
+// TW
+// ==
 // Walks trough the Typo Map and get the Values
 //
 // @param  {*}      $entry     - Key
 // @param  {*}      $attribute - Attribute to get
 //
 // @return {*}
+//
+// @example
+//   .box {
+//     font-size: tw(h1, font-size) + 0px;
+//   }
+//
+// @output
+//   .box {
+//     font-size: 36px;
+//   }
 @function tw($entry, $attribute) {
   @if map-has-key($kittn-typostyles-map,$entry) {
     @return map-get(map-get($kittn-typostyles-map,$entry),$attribute);
@@ -17,16 +29,35 @@
   }
 }
 
+// Get Fontsize
+// ============
 // Include a Fontsize from the Fontstyle Map
 //
 // @param  {*}      $entry - Key
+//
+// @example
+//   .box {
+//     @include get-fontsize(h1);
+//   }
+//
+// @output
+//   .box {
+//     font-size: 2.25rem;
+//   }
 @mixin get-fontsize($entry) {
   @include fontsize(tw($entry,font-size));
 }
 
+// Ext Typo
+// ========
 // Connect a Element with a established Typostyle
 //
 // @param  {*}      $entry - Key
+//
+// @example
+//   .typo {
+//     @include ext-typo(h1);
+//   }
 @mixin ext-typo($entry) {
   @extend .#{$entry};
 }

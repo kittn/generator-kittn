@@ -21,6 +21,8 @@ $spacer-options: (
   ph: padding-horizontal
 ) !global;
 
+// Margin Padding
+// ==============
 // Private Mixin for build easy margin and paddings
 //
 // @access private
@@ -35,6 +37,14 @@ $spacer-options: (
 //     @include _margin-padding((
 //       value: 10 20em
 //     ));
+//   }
+//
+// @output
+//   .box {
+//     padding-top: 10px;
+//     padding-right: 20em;
+//     padding-bottom: 10px;
+//     padding-left: 20em;
 //   }
 @mixin _margin-padding($o) {
   // Setup Default var
@@ -94,15 +104,25 @@ $spacer-options: (
   }
 }
 
+// Padding
+// =======
 // Generate Paddings for all four sides off a box.
+//
+// @param  {list}   $value     - Generate all four sides, with different length of values. [false]
+// @param  {bool}   $important - For include a '!important' [false]
 //
 // @example
 //   .box {
 //     @include padding(10 30 4rem 5%);
 //   }
 //
-// @param  {list}   $value     - Generate all four sides, with different length of values. [false]
-// @param  {bool}   $important - For include a '!important' [false]
+// @output
+//   .box {
+//     padding-top: 10px;
+//     padding-right: 30px;
+//     padding-bottom: 4rem;
+//     padding-left: 5%;
+//   }
 @mixin padding($value: null, $important: false) {
   @include _margin-padding((
     value: $value,
@@ -111,15 +131,25 @@ $spacer-options: (
   ));
 }
 
+// Margin
+// ======
 // Generate Margins for all four sides off a box.
+//
+// @param  {list}   $value     - Generate all four sides, with different length of values. [false]
+// @param  {bool}   $important - For include a '!important' [false]
 //
 // @example
 //   .box {
 //     @include margin(10 30 4rem 5%);
 //   }
 //
-// @param  {list}   $value     - Generate all four sides, with different length of values. [false]
-// @param  {bool}   $important - For include a '!important' [false]
+// @output
+//   .box {
+//     margin-top: 10px;
+//     margin-right: 30px;
+//     margin-bottom: 4rem;
+//     margin-left: 5%;
+//   }
 @mixin margin($value: null, $important: false) {
   @include _margin-padding((
     value: $value,
@@ -128,6 +158,8 @@ $spacer-options: (
   ));
 }
 
+// Spacer
+// ======
 // Generate Spacing based on the Global Spacing
 //
 // w = width, h = height, lh = line-height, pt = padding-top,
@@ -140,6 +172,18 @@ $spacer-options: (
 // @param {Number} $lines     - Spacing Multiplicator [1]
 // @param {Bool}   $important - Overwrite Values with !important [false]
 // @param {Number} $size      - Global Size Value [$kittn-global-spacing]
+//
+// @example
+//   .box {
+//     @include spacer(pt mb h, 2 1 10);
+//   }
+//
+// @output
+//   .box {
+//     padding-top: 40px;
+//     margin-bottom: 20px;
+//     height: 200px;
+//   }
 @mixin spacer($options, $lines: 1, $important: false, $size: $kittn-global-spacing) {
 
   // Remove Duplicates
@@ -192,8 +236,9 @@ $spacer-options: (
     }
   }
 }
-
-// Reset Spacing
+// Spacer Reset
+// =============
+// Reset all spacing Spacing
 //
 // w = width, h = height, lh = line-height, pt = padding-top,
 // pb = padding-bottom, pl = padding-left, pr = padding-right
@@ -203,6 +248,18 @@ $spacer-options: (
 //
 // @param {List}   $options   - Spacing Type (w, h, lh, pt, pb, pl, pr, mt, mb, ml, mr, mv, mh, pv, ph)
 // @param {Bool}   $important - Overwrite Values with !important [false]
+//
+// @example
+//   .box {
+//     @include spacer-reset(pt mb h);
+//   }
+//
+// @output
+//   .box {
+//     padding-top: inherit;
+//     margin-bottom: inherit;
+//     height: inherit;
+//   }
 @mixin spacer-reset($options, $important: false) {
   // Remove Duplicates
   $o: sl-remove-duplicates($options);

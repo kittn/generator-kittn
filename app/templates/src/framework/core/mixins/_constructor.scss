@@ -28,27 +28,56 @@ $api: ();
 //
 // @param {map} $map - API Map
 @mixin c-comment($map) {
-  @if v($map,type) != 'silent' { @at-root {
-@content
-}}}
+  @if v($map,type) != 'silent' {
+    @at-root {
+      @content
+    }
+  }
+}
 
-
-// Store Styles in a Pseudo Container
-//
+// Store
+// =====
+// Store Styles in a Pseudo Container.
 // Use only inside bundled Components
 //
 // @param {string} $name - Storage Name
+//
+// @example
+//   .box {
+//     $api: (
+//       selector: 'box'
+//     );
+//
+//     @include store(storage) {
+//       height: 200px;
+//       width: 50px;
+//     }
+//   }
 @mixin store($name) {
   @at-root %#{v($api,selector)}#{$name} {
     @content;
   }
 }
 
-// Unload Styles from a Pseudo Container
-//
+// Yield
+// =====
+// Unload Styles from a Pseudo Container.
 // Use only inside bundled Components
 //
 // @param {string} $name - Storage Name
+//
+// @example
+//   .box {
+//     .child {
+//       @include yield(storage);
+//     }
+//   }
+//
+// @output
+//   .box .child {
+//     height: 200px;
+//     width: 50px;
+//   }
 @mixin yield($name) {
   @extend %#{v($api,selector)}#{$name};
 }

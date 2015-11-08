@@ -8,6 +8,8 @@
 // @link https://github.com/Team-Sass/SassyLists
 // ===================================================
 
+// Has multiple values
+// ===================
 // Tests whether `$list` has at least 2 values.
 //
 // @param {list}   $list - list to run test against
@@ -17,6 +19,8 @@
   @return length($list) > 1;
 }
 
+// Str Compare
+// ===========
 // Compares `$a` and `$b` based on `$order`.
 //
 // @access private
@@ -45,6 +49,8 @@
   @return str-length($a) < str-length($b);
 }
 
+// To List
+// =======
 // Casts `$value` into a list.
 //
 // @param  {*}      $value     - value to cast to list
@@ -61,7 +67,8 @@
   @return sl-to-list($value);
 }
 
-
+// Reverse
+// =======
 // Reverses the order of `$list`.
 //
 // @param  {list}   $list - list to reverse
@@ -92,6 +99,8 @@
   @return sl-reverse($list);
 }
 
+// Remove duplicates
+// =================
 // Removes duplicate values from `$list`.
 //
 // @param  {list}   $list - list to remove duplicates from
@@ -118,6 +127,8 @@
 }
 
 
+// Sort
+// ====
 // Sorts values of `$list` using quick-sort algorithm using `$order`.
 //
 // @param  {list}   $list  - list to sort

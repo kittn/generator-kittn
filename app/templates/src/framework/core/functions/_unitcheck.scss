@@ -2,11 +2,24 @@
 // Unit Checks
 // ===================================================
 
+// Strip Units
+// ===========
 // Strip Units from Values
 //
 // @param  {number} $number - Value
 //
 // @return {number} Value without units
+//
+// @example
+//   .box {
+//     $s: 25px;
+//     width: strip-units($s) + 0%;
+//   }
+//
+// @output
+//   .box {
+//     width: 25%;
+//   }
 @function strip-units($number) {
   // If the Value is not a Number Break the Function
   @if type-of($number) != 'number' {
@@ -25,17 +38,32 @@
   }
 }
 
+// Unit Check
+// ==========
 // Add the Default Unit on unitless Values
 //
 // @param  {number} $value - Value
 //
 // @return {number}
+//
+// @example
+//   .box {
+//     $s: 25;
+//     width: unit-check($s);
+//   }
+//
+// @output
+//   .box {
+//     width: 25px;
+//   }
 @function unit-check($value) {
   @if unitless($value) {
     @if $kittn-default-unit == rem {
       @return $value + 0rem;
+
     } @else if $kittn-default-unit == em {
       @return $value + 0em;
+
     } @else {
       @return $value + 0px;
     }
@@ -52,6 +80,20 @@
 // @param  {number} $max   - The possible max Value
 //
 // @return {number}        - Clamped Value
+//
+// @example
+//   .box {
+//     $s1: 25;
+//     $s2: 13;
+//     width: clamp($s1, 5, 20) + 0px;
+//     height: clamp($s2, 5, 20) + 0px;
+//   }
+//
+// @output
+//   .box {
+//     width: 20px;
+//     height: 13px;
+//   }
 @function clamp($value, $min, $max) {
   @return if($value > $max, $max, if($value < $min, $min, $value));
 }

@@ -2,21 +2,33 @@
 // Various Color Functions
 // ===================================================
 
+// Luma
+// ====
 // Calculate the Luma Value from a Color
 //
 // @param  {color}   $color - Color Value
 //
-// @returns {Number}
+// @return {Number}
+//
+// @example
+//   .test {
+//     content: luma(red);
+//   }
 @function luma($color) {
   @return (red($color) * .299) + (green($color) * .587) + (blue($color) * .114);
 }
 
-// Check if Color1 is greater than Color2, return true
+// Luma Gte
+// ========
+// Check if Color1 is greater than Color2.
 //
 // @param  {color}  $color2 - Color Value
 // @param  {color}  $color1 - Color Value
 //
-// @returns {bool}
+// @return {bool}
+//
+// @example
+//   @if luma-gte(red, blue) {}
 @function luma-gte($color1, $color2) {
   @if luma($color1) >= luma($color2) {
     @return true;
@@ -26,12 +38,17 @@
   }
 }
 
-// Check if Color1 is smaller than Color2, return true
+// Luma Lte
+// ========
+// Check if Color1 is smaller than Color2.
 //
 // @param  {color}  $color1 - Color Value
 // @param  {color}  $color2 - Color Value
 //
-// @returns {bool}
+// @return {bool}
+//
+// @example
+//   @if luma-lte(red, blue) {}
 @function luma-lte($color1, $color2) {
   @if luma($color1) <= luma($color2) {
     @return true;
@@ -41,46 +58,73 @@
   }
 }
 
+// Luma Diff
+// =========
 // Calculate the Luma Difference between Color1 and Color2
 //
 // @param  {color}  $color1 - Color Value
 // @param  {color}  $color2 - Color Value
 //
-// @returns {number}
+// @return {number}
+//
+// @example
+//   .test {
+//     content: luma-diff(red, blue);
+//   }
 @function luma-diff($color1, $color2) {
   @return luma($color1) - luma($color2);
 }
 
+// Tint
+// ====
 // Tint up the Color - normally mix with white
 //
 // @param  {color}  $color      - Color value
 // @param  {number} $amount     - Mix Value
 // @param  {color}  $tint-color - Color for Tint [#fff]
 //
-// @returns {Color}
+// @return {Color}
+//
+// @example
+//   .test {
+//     color: tint(#00e5ff,20);
+//   }
 @function tint($color, $amount, $tint-color: #fff) {
   @return mix($tint-color, $color, clamp(strip-units($amount), 0, 100));
 }
 
+// Shade
+// =====
 // Shade down the Color - normally mix with black
 //
 // @param  {color}  $color       - Color value
 // @param  {number} $amount      - Mix Value
 // @param  {color}  $shade-color - Color for shade [#000]
 //
-// @returns {Color}
+// @return {Color}
+//
+// @example
+//   .test {
+//     color: shade(#00e5ff,10);
+//   }
 @function shade($color, $amount, $shade-color: #000) {
   @return mix($shade-color, $color, clamp(strip-units($amount), 0, 100));
 }
 
+// C
+// =
 // Pick the Color Values from the Color Map
 //
 // @param  {string} $target - Desired color
 // @param  {map}    $map    - Color Map [$kittn-color-map]
 //
-// @returns {color}
+// @return {color}
 //
-// @throws Color is not included in the map
+// @example
+//   .box {
+//     color: c('white');
+//     background-color: c('primary');
+//   }
 @function c($target, $map: $kittn-color-map) {
   @if map-has-key($map, $target) {
     @return map-get(map-get($map, $target), color);
@@ -94,13 +138,27 @@
   }
 }
 
+// Color Scale
+// ===========
 // Build a Color list with eval steps
 //
 // @param {list}   $color   - Color Values
 // @param {number} $steps   - Number off steps to reach the other color [2]
 // @param {number} $pointer - Move the Pointer to one Color Value from the list [false]
 //
-// @returns {list}          - Returns a List off colors or one color value
+// @return {list}          - Returns a List off colors or one color value
+//
+// @example
+//   .test {
+//     content: color-scale(red blue, 20, 5);
+//     content: color-scale(red yellow, 10);
+//   }
+//
+// @output
+//   .test {
+//     content: #c90036;
+//     content: red #ff1c00 #ff3900 #ff5500 #ff7100 #ff8e00 #ffaa00 #ffc600 #ffe300 yellow;
+//   }
 @function color-scale($color, $steps: 2, $pointer: false) {
   // Define default vars
   $list: null;
@@ -150,12 +208,26 @@
   }
 }
 
+// Color Stack
+// ===========
 // Build an individual Color Stack
 //
 // @param {list}   $color  - Color Values
 // @param {list}   $stacks - Individual steps between the color mix
 //
-// @returns {list}
+// @return {list}
+//
+// @example
+//   .test {
+//     content: color-stack(red blue,2 3 4 5 10);
+//     content: color-stack(red yellow, 1 5 10);
+//   }
+//
+// @output
+//   .test {
+//     content: #0500fa #0800f7 #0a00f5 #0d00f2 #1900e6;
+//     content: #fffc00 #fff200 #ffe600;
+//   }
 @function color-stack($color, $stacks) {
   // Define default vars
   $list: null;

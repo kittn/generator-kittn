@@ -2,13 +2,25 @@
 // Fontfamily
 // ===================================================
 
+// FF
+// ==
 // Function for including Font Families from the Fontstack list.
 // It is also possible to prepand own Fonts to the Stack
 //
 // @param  {string} $family - Font-Family from the Stack
 // @param  {list}   $append - Additional Fonts that prepend to the list
 //
-// @throws 'Not Availalbe' when the Font is not in the stack
+// @example
+//   .text {
+//     font-family: ff('helvetica');
+//     font-family: ff('arial', 'Montserrat');
+//   }
+//
+// @output
+//   .text {
+//     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+//     font-family: "Montserrat", Arial, sans-serif;
+//   }
 @function ff($family, $append...) {
   @if map-has-key($kittn-fontstack-map, $family) {
     @if length($append) > 0 {

@@ -11,7 +11,11 @@
   background: url('#{map-get($kittn-directorys, images)}#{map-get($kittn-spritefiles,bitmap-sprite)}') no-repeat;
 }
 
-// images Internal Mixin for include Images
+// Images
+// ======
+// Internal Mixin for include Images
+//
+// @access private
 //
 // @param {string} $name        - Image Name
 // @param {string} $filetype    - Filetype
@@ -64,6 +68,8 @@
   }
 }
 
+// SpriteDimensions
+// ================
 // Include Sprite Dimensions (internal)
 //
 // @access private
@@ -90,9 +96,11 @@
   }
 }
 
-// Sprite Mixin (internal)
+// Sprite
+// ======
+// Sprite Mixin (internal). Get the Data from the Map File
 //
-// Get the Data from the Map File
+// @access private
 //
 // @param {map}    $mapfile   - Sprite map
 // @param {map}    $basefile  - Basemap
@@ -150,7 +158,11 @@
   }
 }
 
+// Bitmap
+// ======
 // Including Bitmap images
+//
+// @require {mixin} _image
 //
 // @param  {string} $name         - Name of the Image
 // @param  {map}    $o            - Setup Args
@@ -159,6 +171,43 @@
 //         {string} $o.repeat     - Background Repeat (bool, regular css value)
 //         {list}   $o.scale      - Scale factor  ([1], one Value = h = w, two Value = w & h)
 //         {string} $o.filetype   - Image Filetype ['png']
+//
+// @example
+//   .bitmap-1 {
+//     @include bitmap(image);
+//   }
+//   .bitmap-2 {
+//     @include bitmap(image, $o: (
+//       scale: .5
+//     ));
+//   }
+//   .bitmap-3 {
+//     @include bitmap(image, $o: (
+//       dimensions: false,
+//       repeat: repeat-x
+//     ));
+//   }
+//
+// @output
+//   .bitmap-1 {
+//     background-image: url("../img/bitmaps/image.png");
+//     background-repeat: no-repeat;
+//     width: 412px;
+//     height: 48px;
+//   }
+//
+//   .bitmap-2 {
+//     background-image: url("../img/bitmaps/image.png");
+//     background-repeat: no-repeat;
+//     width: 206px;
+//     height: 24px;
+//     background-size: 206px 24px;
+//   }
+//
+//   .bitmap-3 {
+//     background-image: url("../img/bitmaps/image.png");
+//     background-repeat: repeat-x;
+//   }
 @mixin bitmap($name, $o: ()) {
 
   // Custom Options
@@ -177,6 +226,8 @@
   @include _images($name: $name, $filetype: map-get($o,filetype), $dir: #{map-get($kittn-directorys, bitmaps)}, $repeat: map-get($o,repeat), $offset: map-get($o, offset), $scale: map-get($o, scale), $dimensions: map-get($o,dimensions) );
 }
 
+// Vector
+// ======
 // Include Vector Images
 //
 // @param  {string} $name         - Name of the Image
@@ -185,6 +236,32 @@
 //         {string} $o.offset     - Image Position ([false], bool, regular css value)
 //         {string} $o.repeat     - Background Repeat (bool, regular css value)
 //         {list}   $o.scale      - Scale factor  ([1], one Value = h = w, two Value = w & h)
+//
+// @example
+//   .vector-1 {
+//     @include vector(logo);
+//   }
+//   .vector-2 {
+//     @include vector(logo, $o: (
+//       scale: 10
+//     ));
+//   }
+//
+// @output
+//   .vector-1 {
+//     background-image: url("../img/svgfiles/logo.svg");
+//     background-repeat: no-repeat;
+//     width: 282px;
+//     height: 101px;
+//   }
+//
+//   .vector-2 {
+//     background-image: url("../img/svgfiles/logo.svg");
+//     background-repeat: no-repeat;
+//     width: 2820px;
+//     height: 1010px;
+//     background-size: 2820px 1010px;
+//   }
 @mixin vector($name, $o: ()) {
 
   // Custom Options
@@ -211,7 +288,34 @@
 //         {string} $o.dimensions - Use Sprite Dimensions ([both], bool, width, height)
 //         {number} $o.scale      - Scale Factor [false]
 //         {string} $o.repeat     - Background Repeat (regular css value) [false]
-//         {number} $o.subtract   - Subtract Container Dimension [0]
+//         {list}   $o.subtract   - Subtract Container Dimension [0]
+//
+// @example
+//   .vector-1 {
+//     @include vsprite(picto-calendar);
+//   }
+//   .vector-2 {
+//     @include vsprite(picto-clock, $o: (
+//       scale: 2,
+//       subtract: 10 20
+//     ));
+//   }
+//
+// @output
+//   .vector-1, .vector-2 {
+//     background: url("../img/vector-sprite.svg") no-repeat;
+//   }
+//   .vector-1 {
+//     background-position: 0px 0px;
+//     height: 30px;
+//     width: 29.38px;
+//   }
+//   .vector-2 {
+//     background-position: -63.76px -10px;
+//     background-size: 178px 60px;
+//     height: 40px;
+//     width: 50px;
+//   }
 @mixin vsprite($name, $o: ()) {
 
   // Custom Options
@@ -230,12 +334,12 @@
 
     // Call the Sprite Mixin
     @include _sprite(
-    $mapfile: map-get($svgsprites,$name),
-    $basefile: $svgspritebase,
-    $scale: map-get($o,scale),
-    $dim: map-get($o,dimensions),
-    $repeat: map-get($o,repeat),
-    $sub: map-get($o, subtract)
+      $mapfile: map-get($svgsprites,$name),
+      $basefile: $svgspritebase,
+      $scale: map-get($o,scale),
+      $dim: map-get($o,dimensions),
+      $repeat: map-get($o,repeat),
+      $sub: map-get($o, subtract)
     );
 
   } @else {
@@ -253,6 +357,32 @@
 //         {number} $o.scale      - Scale Factor [false]
 //         {string} $o.repeat     - Background Repeat (regular css value) [false]
 //         {number} $o.subtract   - Subtract Container Dimension [0]
+//
+// @example
+//   .sprite-1 {
+//     @include sprite(jump-right);
+//   }
+//   .sprite-2 {
+//     @include sprite(menu-icon, $o: (
+//       scale: .5
+//     ));
+//   }
+//
+// @output
+//   .sprite-1, .sprite-2 {
+//     background: url("../img/sprite.png") no-repeat;
+//   }
+//   .sprite-1 {
+//     background-position: -40px 0px;
+//     height: 21px;
+//     width: 21px;
+//   }
+//   .sprite-2 {
+//     background-position: 0px 0px;
+//     background-size: 30.5px 20px;
+//     height: 20px;
+//     width: 20px;
+//   }
 @mixin sprite($name, $o: ()) {
 
   // Custom Options
@@ -271,12 +401,12 @@
 
     // Call the Sprite Mixin
     @include _sprite(
-    $mapfile: map-get($bitmapsprites,$name),
-    $basefile: $bitmapspritebase,
-    $scale: map-get($o,scale),
-    $dim: map-get($o,dimensions),
-    $repeat: map-get($o,repeat),
-    $sub: map-get($o, subtract)
+      $mapfile: map-get($bitmapsprites,$name),
+      $basefile: $bitmapspritebase,
+      $scale: map-get($o,scale),
+      $dim: map-get($o,dimensions),
+      $repeat: map-get($o,repeat),
+      $sub: map-get($o, subtract)
     );
 
   } @else {

@@ -2,10 +2,22 @@
 // Vertical Sizes
 // ===================================================
 
-// Recalculate the heightvalues to rem
+// Remsize
+// =======
+// Recalculate the px values to rem, with lines option
 //
 // @param   {*}      $arg  - Attribute
 // @param   {number} $size - Value
+//
+// @example
+//   .box {
+//     @include remsize(font-size, 3);
+//   }
+//
+// @output
+//   .box {
+//     font-size: 3.9375rem;
+//   }
 @mixin remsize($arg, $lines) {
   @if map-get($kittn-typo, unit) == px {
     #{$arg}: $lines * map-get($kittn-typo, line-height) + 0px;
@@ -25,10 +37,22 @@
   }
 }
 
-// Recalculate the heightvalues to px
+// PX Size
+// =======
+// Recalculate the px values to rem
 //
 // @param   {*}      $arg  - Attribute
 // @param   {number} $size - Value
+//
+// @example
+//   .box {
+//     @include pxsize(font-size, 13);
+//   }
+//
+// @output
+//   .box {
+//     font-size: 0.8125rem;
+//   }
 @mixin pxsize($arg, $size) {
   @if unitless($size) {
     @if map-get($kittn-typo, unit) == px {
@@ -53,11 +77,24 @@
   }
 }
 
-// Calculate the heightvalues
+// Rem
+// ===
+// Calculate the Rem Sizes, with Baseline Option
 //
 // @param  {*}      $arg      - Attribute
 // @param  {number} $size     - Size
-// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
+// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule
+//                              [map-get($kittn-activate, baseline)]
+//
+// @example
+//   .box {
+//     @include rem(font-size,14);
+//   }
+//
+// @output
+//   .box {
+//     font-size: 0.875rem;
+//   }
 @mixin rem($arg, $size, $baseline: map-get($kittn-activate, baseline)) {
   @if unitless($size) {
     $size: strip-units($size);
@@ -71,26 +108,64 @@
   }
 }
 
+// Lineheight
+// ==========
 // Calculate the Lineheight from PX to REM, provides a px Fallback
 //
 // @param  {number} $size     - Size
-// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
+// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule
+//                              [map-get($kittn-activate, baseline)]
+//
+// @example
+//   .box {
+//     @include lineheight(32);
+//   }
+//
+// @output
+//   .box {
+//     line-height: 2rem;
+//   }
 @mixin lineheight($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(line-height, $size, $baseline);
 }
 
+// Fontsize
+// ========
 // Caluclate the Font Size in PX to REM with Fallback
 //
 // @param  {Number} $size - Font Size
+//
+// @example
+//   .box {
+//     @include fontsize(14);
+//   }
+//
+// @output
+//   .box {
+//     font-size: 0.875rem;
+//   }
 @mixin fontsize($size) {
   @include pxsize(font-size, $size);
 }
 
+// Fontcalc
+// ========
 // Calculate Fontsize and Lineheight
 //
 // @param  {number} $fontsize   - Font Size
 // @param  {number} $lineheight - Lineheight for the Font - can be false than used the factor [false]
 // @param  {number} $factor     - The Calculationfactor [1.2]
+//
+// @example
+//   .box {
+//     @include fontcalc(14);
+//   }
+//
+// @output
+//   .box {
+//     font-size: 0.875rem;
+//     line-height: 1.05rem;
+//   }
 @mixin fontcalc($fontsize, $lineheight: false, $factor: 1.2) {
   @include fontsize($fontsize);
 
@@ -101,76 +176,191 @@
   }
 }
 
-
-
+// Marginbottom
+// ============
 // Calculate the Margin Bottom from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
+// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+//                              [map-get($kittn-activate, baseline)]
+//
+// @example
+//   .box {
+//     @include marginbottom(30);
+//   }
+//
+// @output
+//   .box {
+//     margin-bottom: 1.875rem;
+//   }
 @mixin marginbottom($size, $baseline: map-get($kittn-activate, baseline)){
   @include rem(margin-bottom, $size, $baseline);
 }
 
+// Margintop
+// =========
 // Calculate the Margin Top from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
+// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+//                              [map-get($kittn-activate, baseline)]
+//
+// @example
+//   .box {
+//     @include margintop(30);
+//   }
+//
+// @output
+//   .box {
+//     margin-top: 1.875rem;
+//   }
 @mixin margintop($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(margin-top,$size, $baseline);
 }
 
+// Marginleft
+// ==========
 // Calculate the Margin Left from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
+// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+//                              [map-get($kittn-activate, baseline)]
+//
+// @example
+//   .box {
+//     @include marginleft(30);
+//   }
+//
+// @output
+//   .box {
+//     margin-left: 1.875rem;
+//   }
 @mixin marginleft($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(margin-left,$size, $baseline);
 }
 
+// Marginright
+// ===========
 // Calculate the Margin Right from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
+// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+//                              [map-get($kittn-activate, baseline)]
+//
+// @example
+//   .box {
+//     @include marginright(30);
+//   }
+//
+// @output
+//   .box {
+//     margin-right: 1.875rem;
+//   }
 @mixin marginright($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(margin-right,$size, $baseline);
 }
 
+// Paddingtop
+// ==========
 // Calculate the Padding Top from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
+// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+//                              [map-get($kittn-activate, baseline)]
+//
+// @example
+//   .box {
+//     @include paddingtop(30);
+//   }
+//
+// @output
+//   .box {
+//     padding-top: 1.875rem;
+//   }
 @mixin paddingtop($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(padding-top, $size, $baseline);
 }
 
+// Paddingbottom
+// =============
 // Calculate the Padding Bottom from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
+// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+//                              [map-get($kittn-activate, baseline)]
+//
+// @example
+//   .box {
+//     @include paddingbottom(30);
+//   }
+//
+// @output
+//   .box {
+//     padding-bottom: 1.875rem;
+//   }
 @mixin paddingbottom($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(padding-bottom, $size, $baseline);
 }
 
+// Paddingleft
+// ===========
 // Calculate the Padding Left from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
+// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+//                              [map-get($kittn-activate, baseline)]
+//
+// @example
+//   .box {
+//     @include paddingleft(30);
+//   }
+//
+// @output
+//   .box {
+//     padding-left: 1.875rem;
+//   }
 @mixin paddingleft($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(padding-left, $size, $baseline);
 }
 
+// Paddingright
+// ============
 // Calculate the Padding Right from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
+// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+//                              [map-get($kittn-activate, baseline)]
+//
+// @example
+//   .box {
+//     @include paddingright(30);
+//   }
+//
+// @output
+//   .box {
+//     padding-right: 1.875rem;
+//   }
 @mixin paddingright($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(padding-right, $size, $baseline);
 }
 
+// Height
+// ======
 // Calculate the Height from PX to REM, provides a px Fallback
 //
 // @param  {Number}  $size     - Size
-// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule [map-get($kittn-activate, baseline)]
+// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+//                              [map-get($kittn-activate, baseline)]
+//
+// @example
+//   .box {
+//     @include height(200);
+//   }
+//
+// @output
+//   .box {
+//     height: 12.5rem;
+//   }
 @mixin height($size, $baseline: map-get($kittn-activate, baseline)) {
   @include rem(height, $size, $baseline);
 }

@@ -2,10 +2,14 @@
 // Pos
 // ===================================================
 
-// Set the Position for the Position Mixins
-//
-// one value = top, two values = top left, four values = top right bottom left.
+// Pos
+// ===
+// Set the Position for the Position Mixins.
 // For Zero Position (0) set the value to 'z'
+//
+// - One value = top
+// - Two values = top left
+// - Four values = top right bottom left
 //
 // @param  {list}   $position - Position Values.
 @mixin pos($position) {

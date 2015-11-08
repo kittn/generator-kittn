@@ -8,6 +8,24 @@
 // @param  {*}      $target - Required Breakpoint
 // @param  {string} $mode   - Media Query Mode. (between, max, min ,[auto])
 // @param  {map}    $list   - Connection to the Breakpoint Map [$kittn-breakpoint-map]
+//
+// @example
+//   .box {
+//     height: 20px;
+//     @include break(4) {
+//       height: 200px;
+//     }
+//   }
+//
+// @output
+//   .box {
+//     height: 20px;
+//   }
+//   @media screen and (min-width: 768px) {
+//     .box {
+//       height: 200px;
+//     }
+//   }
 @mixin break($target, $mode: auto, $list: $kittn-breakpoint-map) {
   // Between two values
   @if $mode == between {

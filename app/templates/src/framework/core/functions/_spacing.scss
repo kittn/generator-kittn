@@ -2,6 +2,8 @@
 // Spacings
 // ===================================================
 
+// S
+// =
 // Multiply the Spacing Value to generate Spacings, integrate the Unit
 //
 // @param  {number} $lines - Multiplier for spacing
@@ -9,6 +11,16 @@
 // @param  {number} $size  - Connection to the Base Spacing [$kittn-global-spacing]
 //
 // @return {number}
+//
+// @example
+//   .space {
+//     margin-bottom: s(2);
+//   }
+//
+// @output
+//   .space {
+//     margin-bottom: 40px;
+//   }
 @function s($lines, $hard: false, $size: $kittn-global-spacing) {
   @if is-number($lines) {
     $u: unit-check(0);
@@ -18,15 +30,27 @@
   }
 }
 
+// Gap
+// ===
 // Multiply the Spacing Value to generate Spacings
 // The Unit is variable
 //
-// @param  {number} $lines - Multiplicator for Spacing
+// @param  {number} $lines - Multiplier for Spacing
 // @param  {bool}   $imp   - For including an !important [false]
 // @param  {*}      $u     - Unit [false]
 // @param  {number} $size  - Connection to the Base Spacing [$kittn-global-spacing]
 //
 // @return {number}
+//
+// @example
+//   .space {
+//     margin-bottom: gap(.25, $u: em);
+//   }
+//
+// @output
+//   .space {
+//     margin-bottom: 5em;
+//   }
 @function gap($lines, $imp: false, $u: false, $size: $kittn-global-spacing) {
   @if type-of($lines) == 'number' {
 
@@ -35,6 +59,7 @@
 
       // Setup other Units
       @if $u == none { $u: 0; }
+
       @if $u == px or $u == p { $u: 0px; }
 
       @if $u == em or $u == e { $u: 0em; }

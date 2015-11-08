@@ -41,32 +41,95 @@
   }
 }
 
+// Get C
+// =====
 // Use the desired Color Value from the Map an build a Color Value
 //
 // @param  {string} $target - Color Keyword
 // @param  {bool}   $hard   - For !important [false]
+//
+// @example
+//   .color-1 {
+//     @include get-c('primary');
+//   }
+//   .color-2 {
+//     @include get-c('primary', true);
+//   }
+//
+// @output
+//   .color-1 {
+//     color: #f29300;
+//   }
+//   .color-2 {
+//     color: #f29300 !important;
+//   }
 @mixin get-c($target, $hard: false) {
   @include _color($target, $attrib: color, $imp: $hard);
 }
 
+// Get BC
+// ======
 // Use the desired Color Value from the Map an build a Background-Color Value
 //
 // @param  {string} $target - Color Keyword
 // @param  {bool}   $hard   - For !important [false]
+//
+// @example
+//   .background {
+//     @include get-bc('alert');
+//   }
+//
+// @output
+//   .background {
+//     background-color: #ef462a;
+//   }
 @mixin get-bc($target, $hard: false) {
   @include _color($target, $attrib: background-color, $imp: $hard);
 }
 
+// Ext C
+// =====
 // Extend the Element with existing Color Classes
 //
 // @param  {string} $name - Name from the Color Selector
+//
+// @example
+//   %c--alert {
+//     @include get-c('alert');
+//   }
+//   .important-text {
+//     @include ext-c('alert');
+//   }
+//   .alert-text {
+//     @include ext-c('alert');
+//   }
+//
+// @output
+//   .important-text, .alert-text {
+//     color: #ef462a;
+//   }
 @mixin ext-c($name) {
   @extend %c#{map-get($kittn-bem, modifier)}#{$name};
 }
 
+// Ext BC
+// ======
 // Extend the Element with existing Background-Color Classes
 //
 // @param  {string} $name - Name from the Color Selector
+//
+// @example
+//   %bc--primary {
+//     @include get-bc('primary');
+//   }
+//   .button {
+//     @include ext-bc('primary');
+//   }
+//
+// @output
+//   .button {
+//     background-color: #f29300;
+//   }
 @mixin ext-bc($name) {
   @extend %bc#{map-get($kittn-bem, modifier)}#{$name};
 }

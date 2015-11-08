@@ -3,7 +3,11 @@
 // ===================================================
 
 
-// Modifiy the Fontsizing when REM is active
+// Rembase
+// =======
+// Calculate a Fontsize to REM
+//
+// @access private
 @function rembase() {
   @if map-get($kittn-typo, unit) == rem {
     @return 16;
@@ -12,12 +16,24 @@
   }
 }
 
-// REM Calculator
+// REM
+// ===
+// Calculate px in rem
 //
 // @param  {number} $px   - The Size in PX
 // @param  {number} $base - The Base for the calculation
 //
 // @return {Number}  Return the size in rem
+//
+// @example
+//   .test {
+//     font-size: rem(14);
+//   }
+//
+// @output
+//   .test {
+//     font-size: 0.875rem;
+//   }
 @function rem($px, $base: rembase()) {
   @if unitless($px) {
     @return #{$px / $base}rem;

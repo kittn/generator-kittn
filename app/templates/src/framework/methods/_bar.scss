@@ -1,13 +1,29 @@
 // ===================================================
-// Bar
+// Bar Elements
 // ===================================================
 
-// Setup a Bar Element
+// Bar
+// ===
+// Style for Bar Elements
 //
 // @param  {string} $variant  - Position Variant (f = fixed, a = absolute)
 // @param  {string} $position - Position (t = Top, b = Bottom, l = Left, r = Right)
-// @param  {number} $z-index  - Z-Index [z(bar)]
-@mixin bar($variant, $position, $z: z(bar)) {
+// @param  {number} $z-index  - Z-Index [9999]
+//
+// @example
+//   .header {
+//     @include bar($variant: f, $position: t);
+//   }
+//
+// @output
+//   .header {
+//     position: fixed;
+//     z-index: 9999;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//   }
+@mixin bar($variant, $position, $z: 9999) {
 
   // Set the position variant
   @if $variant == f {
@@ -42,18 +58,54 @@
   }
 }
 
-// Define a Top Bar at the Top of the Viewport
+// Bar Top
+// =======
+// Set for a Barelement at the top from the Viewport or Document
+//
+// @require {mixin} bar
 //
 // @param  {number} $z       - Z-Index
 // @param  {string} $variant - Position Variant ([f = fixed], a = absolute)
+//
+// @example
+//   .header {
+//     @include bar-top($z: 10, $variant: a);
+//   }
+//
+// @output
+//   .header {
+//     position: absolute;
+//     z-index: 10;
+//     top: 0;
+//     left: 0;
+//     width: 100%;
+//   }
 @mixin bar-top($z: 9999, $variant: f) {
-  @include bar($variant, t, 9999);
+  @include bar($variant, t, $z);
 }
 
-// Define a Bottom Bar at the Bottom of the Viewport
+// Bar Bottom
+// ==========
+// Set for a Barelement at the bottom from the Viewport or Document
+//
+// @require {mixin} bar
 //
 // @param  {number} $z       - Z-Index
 // @param  {string} $variant - Position Variant ([f = fixed], a = absolute)
+//
+// @example
+//   .footer {
+//     @include bar-bottom();
+//   }
+//
+// @output
+//   .footer {
+//     position: fixed;
+//     z-index: 9999;
+//     bottom: 0;
+//     left: 0;
+//     width: 100%;
+//   }
 @mixin bar-bottom($z: 9999, $variant: f) {
-  @include bar($variant, b, 9999);
+  @include bar($variant, b, $z);
 }

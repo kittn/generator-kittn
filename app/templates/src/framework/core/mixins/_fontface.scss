@@ -10,6 +10,34 @@
 //         {string} $o.weight   - Fontweight [normal]
 //         {string} $o.style    - Fontstyle [normal]
 //         {bool}   $o.short    - Use the Short Fontface Declaration [true]
+//
+// @example
+//   @include fontface(myArial,(
+//     filename: 'arial'
+//   ));
+//   @include fontface(myVerdana, (
+//     short: false
+//   ));
+//
+// @output
+//   @font-face {
+//     font-family: myArial;
+//     src: url("../fonts/arial.woff2") format("woff2"),
+//          url("../fonts/arial.woff") format("woff");
+//     font-weight: normal;
+//     font-style: normal;
+//   }
+//
+//   @font-face {
+//     font-family: myVerdana;
+//     src: url("../fonts/myVerdana.eot");
+//     src: url("../fonts/myVerdana.eot?#iefix") format("eot"),
+//          url("../fonts/myVerdana.woff") format("woff"),
+//          url("../fonts/myVerdana.ttf") format("truetype"),
+//          url("../fonts/myVerdana.svg#myVerdana") format("svg");
+//     font-weight: normal;
+//     font-style: normal;
+//   }
 @mixin fontface($fontname, $o: ()) {
 
   // Mixin Default Vars

@@ -2,6 +2,8 @@
 // Type Checks
 // ===================================================
 
+// Is True
+// =======
 // Checks if a Value is included
 //
 // @param  {*}     $value - Included value to check
@@ -11,6 +13,8 @@
   @return if($value == null, false, $value and $value != null and $value != "" and $value != ());
 }
 
+// Is Map
+// ======
 // Checks if Value is a map
 //
 // @param  {*}      $value - Included value to check
@@ -20,6 +24,8 @@
   @return type-of($value) == "map";
 }
 
+// Is List
+// =======
 // Checks if Value is a list
 //
 // @param  {*}      $value - Included value to check
@@ -29,6 +35,8 @@
   @return type-of($value) == "list";
 }
 
+// Is Number
+// =========
 // Checks if Value is a number
 //
 // @param  {*}      $value - Included value to check
@@ -38,6 +46,8 @@
   @return type-of($value) == "number";
 }
 
+// Is String
+// =========
 // Checks if Value is a string
 //
 // @param  {*}      $value - Included value to check
@@ -47,6 +57,8 @@
   @return type-of($value) == "string";
 }
 
+// Is Not String
+// =============
 // Checks if Value is not a string
 //
 // @param  {*}      $value - Included value to check
@@ -56,6 +68,8 @@
   @return type-of($value) != "string";
 }
 
+// Is Nested
+// =========
 // Check if the Selector is nested
 //
 // @return {bool}
@@ -75,6 +89,8 @@
   }
 }
 
+// Is Map Filled
+// =============
 // Check if a map has entries
 //
 // @param  {map}    $map - Map

@@ -2,10 +2,23 @@
 // Overlap
 // ===================================================
 
+// Overlap
+// =======
 // Overlapps a Element over the Side Padding
 //
 // @param  {list}   $size - Value to be overlapped on the left and right side. You can define two sides
 //                          with one value, or left and right selective
+//
+// @example
+//   .overlap {
+//     @include overlap(20);
+//   }
+//
+// @output
+//   .overlap {
+//     margin-left: -20px;
+//     margin-right: -20px;
+//   }
 @mixin overlap($size) {
   @if length($size) == 1 {
     margin-left: 0 - if(unitless($size), $size + 0px, $size);

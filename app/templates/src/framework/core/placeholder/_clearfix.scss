@@ -3,7 +3,8 @@
 // ===================================================
 
 // Clearfix
-// @description Close Floats
+// ========
+// Close Floats
 //
 // @param {bool} $extend - Set it on false the mixin will used as regular mixin [:true]
 @mixin clearfix($extend: true) {

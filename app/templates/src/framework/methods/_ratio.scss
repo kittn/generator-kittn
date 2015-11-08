@@ -2,12 +2,37 @@
 // Ratio Calculator
 // ===================================================
 
+// Ratio
+// =====
 // A Floating Grid System
 //
 // @param  {list}   $ratio    - Ratio between width and height [1]
 // @param  {string} $selector - Use the following child element or a named selector [false]
+//
+// @example
+//   .box {
+//     @include ratio(200 400);
+//   }
+//
+// @output
+//   .box {
+//     overflow: hidden;
+//     position: relative;
+//   }
+//   .box:before {
+//     content: '';
+//     display: block;
+//     height: 0;
+//     padding-top: 200%;
+//   }
+//   .box > * {
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     height: 100%;
+//     width: 100%;
+//   }
 @mixin ratio($ratio: 1, $selector: false) {
-
   $sel: null;
   $rat1: null;
   $rat2: null;
@@ -47,10 +72,30 @@
   }
 }
 
-// Reset Ratio
+// Ratio Reset
+// ===========
+// Reset any ratio
 //
 // @param  {string} $selector - Use the following child element or a named selector [false]
-@mixin unratio($selector: false) {
+//
+// @example
+//   .box {
+//     @include ratio-reset();
+//   }
+//
+// @output
+//   .box:before {
+//     height: auto;
+//     padding-top: 0;
+//   }
+//   .box > * {
+//     position: inherit;
+//     left: inherit;
+//     top: inherit;
+//     height: inherit;
+//     width: inherit;
+//   }
+@mixin ratio-reset($selector: false) {
   $sel: null;
 
   &:before {
