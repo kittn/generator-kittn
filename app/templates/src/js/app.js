@@ -4,6 +4,3 @@
 $(document).ready(function() {
   // Paste your JS here
 });
-
-
-

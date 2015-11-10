@@ -2,16 +2,6 @@
 //          Base Setup
 // ------------------------------------------------------------
 
-// Global spacing unit, used for Spacer and Lines Mixins.
-//
-// @type Number
-$kittn-global-spacing: 20;
-
-// Default unit for unitless values.
-//
-// @type Number
-$kittn-default-unit: px;
-
 // Map off all Breakpoints and Behaviors
 //
 // - 'Name' {*} - Breakpoint Name
@@ -24,13 +14,13 @@ $kittn-default-unit: px;
 $kittn-breakpoint-map: (
   1: (
     size: 320px,
-    visibility: true,
+    visibility: false,
     step: true,
     fontsize: false
   ),
   2: (
     size: 480px,
-    visibility: true,
+    visibility: false,
     step: false,
     fontsize: false
   ),
@@ -65,7 +55,7 @@ $kittn-breakpoint-map: (
 //   - 'filename' {Bool|*} - Filename, when 'false' the Fontname will be used
 //   - 'weight' {*} - The associated Fontweight
 //   - 'style' {*} - The associated Font Style
-//   - 'svgoption' {Bool} - Activate the addition route to the SVG Font
+//   - 'short' {Bool} - Use the Short Syntax for Fontfaces (Use not when Support => IE8 or Android => 4.3)
 //
 // @type Map
 $kittn-fontface-map: (
@@ -74,7 +64,7 @@ $kittn-fontface-map: (
   //   filename: false,
   //   weight: normal,
   //   style: normal,
-  //   svgoption: true
+  //   short: true
   // )
 );
 

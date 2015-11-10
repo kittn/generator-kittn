@@ -1,0 +1,152 @@
+// ===================================================
+// Tables
+// ===================================================
+
+table {
+  max-width: 100%;
+  @if map-get($kittn-tables, margin) != false {
+      margin-bottom: map-get($kittn-tables, margin);
+    }
+  @if map-get($kittn-tables, background) != false {
+    background-color: map-get($kittn-tables, background);
+  }
+}
+
+th {
+  text-align: left;
+}
+
+.table {
+  width: 100%;
+  @if map-get($kittn-tables, margin) != false {
+    margin-bottom: map-get($kittn-tables, margin);
+  }
+
+  > thead, > tbody, > tfoot {
+    > tr {
+      > th, > td {
+        @if map-get($kittn-tables, padding) != false {
+          padding: map-get($kittn-tables, padding);
+        }
+        @include lineheight(map-get($kittn-typo, line-height));
+        vertical-align: top;
+        @if map-get($kittn-tables, border-color) != false {
+          border-top: 1px solid map-get($kittn-tables, border-color);
+        }
+      }
+    }
+  }
+  > thead > tr > th {
+    vertical-align: bottom;
+    @if map-get($kittn-tables, border-color) != false {
+      border-bottom: 2px solid map-get($kittn-tables, border-color);
+    }
+  }
+  > caption + thead, > colgroup + thead, > thead:first-child {
+    > tr:first-child {
+      > th, > td {
+        border-top: 0;
+      }
+    }
+  }
+  @if map-get($kittn-tables, border-color) != false {
+    > tbody + tbody {
+      border-top: 2px solid map-get($kittn-tables, border-color);
+    }
+  }
+}
+
+
+// ---- Bordered Tables ----
+@if map-get($kittn-tables, border-color) != false {
+  .table-bordered {
+    border: 1px solid map-get($kittn-tables, border-color);
+    > thead, > tbody, > tfoot {
+      > tr {
+        > th, > td {
+          border: 1px solid map-get($kittn-tables, border-color);
+        }
+      }
+    }
+    > thead > tr {
+      > th, > td {
+        border-bottom-width: 2px;
+      }
+    }
+  }
+}
+
+@if map-get($kittn-tables, background-zebra) != false {
+  .table-zebra {
+    > tbody > tr:nth-child(odd) {
+      > td, > th {
+        background-color: map-get($kittn-tables, background-zebra);
+      }
+    }
+  }
+}
+
+@if map-get($kittn-tables, background-hover) != false  {
+  .table-hover {
+    > tbody, > tr:hover {
+      > td, > th {
+        background-color: map-get($kittn-tables, background-hover);
+      }
+    }
+  }
+}
+
+.responsive-table {
+  @media screen and (max-width: map-get($kittn-tables, trigger)) {
+    width: 100%;
+    @if map-get($kittn-tables, margin) != false {
+      margin-bottom: map-get($kittn-tables, margin);
+    }
+    overflow-y: hidden;
+    overflow-x: scroll;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -webkit-overflow-scrolling: touch;
+    @if map-get($kittn-tables, border-color) != false {
+      border: 1px solid map-get($kittn-tables, border-color);
+    }
+
+    > .table {
+      margin-bottom: 0;
+
+      > thead, > tbody, > tfoot {
+        > tr {
+          > th, > td {
+            white-space: nowrap;
+          }
+        }
+      }
+    }
+    @if map-get($kittn-tables, border-color) != false {
+      > .table-bordered {
+        border: 0;
+
+        > thead, > tbody, > tfoot {
+          > tr {
+            > th:first-child, td:first-child {
+              border-left: 0;
+            }
+            > th:last-child, td:last-child {
+              border-right: 0;
+            }
+          }
+        }
+      }
+    }
+
+    > tbody, > tfoot {
+      tr:last-child {
+        > th, > td {
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+}
+
+
+

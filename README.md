@@ -1,6 +1,6 @@
 # Generator-Kittn
 
-![kittn-generator](https://cloud.githubusercontent.com/assets/442468/8157040/9e662dd2-1351-11e5-999d-50ce79792d14.png)
+![kittn-generator](https://cloud.githubusercontent.com/assets/442468/10710315/3347b1d6-7a55-11e5-868e-0fcb9ebed9ad.png)
 
 Yeoman Generator for the Kittn Toolkit. Scaffolds and Prepare the Toolkit for you.
 
@@ -29,41 +29,38 @@ Intialize your Project
 **`gulp`**<br>
 Default Task with BrowserSync (CSS and HTML Injection)
 
-**`gulp publish`**<br>
-Publish the Project for Production - you can Bump the Version with Enviroment Vars.<br>Example $ gulp publish --type=major => for a Major Release
-
-**`gulp rebuild-js`**<br>
+**`gulp rebuild:js`**<br>
 Rebuild all JS files, copy - combine - rename.
 
-**`gulp rebuild-jade`**<br>
-Rebuild all Jade Files.
-
-**`gulp rebuild-images`**<br>
+**`gulp rebuild:images`**<br>
 Rebuild all Image Files, copy it to distribution, build Bitmap- and Vector Sprites.
 
-**`gulp move-image`**<br>
-Move Image Files from src/stash/images/bitmap-assets and scr/stash/images/svgsingle to distribution
+**`gulp copy:bitmaps`**<br>
+Move Image Files from src/stash/images/bitmap-assets to distribution
+
+**`gulp copy:vectors`**<br>
+Move Image Files from scr/stash/images/svgsingle to distribution
+
+**`gulp deploy:manual`**<br>
+Publish the Project for Production - you can Bump the Version with Enviroment Vars.<br>Example $ gulp publish --type=major => for a Major Release
+
+**`gulp deploy:auto`**<br>
+Minify JS, Images, CSS. Is for a automated Build Process, comes after a Gulp Init.
 
 ## Dependencies
 
-- Node >= 0.10.0
+- Node >= 4.4.x
 - Gulp 3.9.0
 - Bower 1.4.0
-- Yeoman 1.4.0
+- Yeoman 1.4.8
 
 ## Optional Dependencies
 - Ruby >= 1.9.0
-- Sass 3.4.0
-
-The Generator will install this Dependencies, when there are not available:
-
-- Bower >= 1.4.0
-- Yeoman 1.2.0
+- Ruby-Sass 3.4.18 
 
 ## Special Thanks to
 
 - Hugo Giraudel (@HugoGiraudel) - for his awesome Sass Scripts
-- Daniel Guillan (@danielguillan) - Modernizr Mixins
 - Team Sass - Jacket
 
 ## Author

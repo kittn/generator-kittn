@@ -1,44 +1,43 @@
 {
-  "src": {
-    "style": "src/style/",
-    "template": "src/template/",
-    "js": "src/js/",
-    "bower": "src/bower/",
-    "scripts" : "src/scripts",
-    "fonts": "src/fonts/",
-    "images": {
-      "bitmapSprite": {
-        "files": "src/images/bitmapSprite-assets/",
-        "name": "sprite.png"
-      },
-      "vectorSprite": {
-        "files": "src/images/vectorSprite-assets/",
-        "name": "vector-sprite.svg",
-        "symbolName": "symbol-sprite.svg",
-        "maxHeight" : 30,
-        "maxWidth": 30,
-        "padding": 0
-
-      },
-      "bitmaps": "src/images/bitmapSingle-assets/",
-      "vectors": "src/images/vectorSingle-assets/"
-    },
-    "system": "src/.system/"
-  },
-  "dist": {<% if (projectUsage == 'Building HTML Prototypes' ) { %>
-    "base": "dist/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
-    "base": "dist/wp-content/themes/<%= projectname %>/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
-    "base": "dist/public/",<% } if (projectUsage == 'Integrate in KirbyCMS' ) { %>
-    "base": "dist/",<% } %>
+  "dist": {<% if (projectUsage == 'Building HTML Prototypes' || projectUsage == 'Integrate in KirbyCMS') { %>
+    "base": "dist/",
+    "markup": "dist/",
+    "browserSyncDir": "dist/",
     "css": "dist/assets/css/",
     "js": "dist/assets/js/",
     "fonts": "dist/assets/fonts/",
     "cssimg": "dist/assets/img/",
     "bitmaps": "dist/assets/img/bitmaps/",
     "vectors": "dist/assets/img/svgfiles/",
-    "cssimgRoot": "/assets/img/",
-    "markup": "dist/",
-    "htmlimg": "dist/images/"
+    "htmlimg": "dist/images/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
+    "base": "dist/wp-content/themes/<%= projectname %>/",
+    "markup": "dist/wp-content/themes/<%= projectname %>/",
+    "browserSyncDir": "dist/wp-content/themes/<%= projectname %>/",
+    "css": "dist/wp-content/themes/<%= projectname %>/assets/css/",
+    "js": "dist/wp-content/themes/<%= projectname %>/assets/js/",
+    "fonts": "dist/wp-content/themes/<%= projectname %>/assets/fonts/",
+    "cssimg": "dist/wp-content/themes/<%= projectname %>/assets/img/",
+    "bitmaps": "dist/wp-content/themes/<%= projectname %>/assets/img/bitmaps/",
+    "vectors": "dist/wp-content/themes/<%= projectname %>/assets/img/svgfiles/",
+    "htmlimg": "dist/wp-content/themes/<%= projectname %>/images/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
+    "base": "dist/public/",
+    "markup": "dist/craft/templates/",
+    "browserSyncDir": "dist/public/",
+    "css": "dist/public/assets/css/",
+    "js": "dist/public/assets/js/",
+    "fonts": "dist/public/assets/fonts/",
+    "cssimg": "dist/public/assets/img/",
+    "bitmaps": "dist/public/assets/img/bitmaps/",
+    "vectors": "dist/public/assets/img/svgfiles/",
+    "htmlimg": "dist/public/images/",<% } %>
+    "cssimgRoot": "/assets/img/"
+  },
+  "templatePath": {
+    "root": "./",
+    "css": "assets/css/",
+    "js": "assets/js/",
+    "cssimage": "assets/img/",
+    "contentimage": "images/"
   },
   "css": {
     "compiler": "libsass",
@@ -50,33 +49,33 @@
       "ie 8",<% } else { %>
       "ie 9",<% } %>
       "chrome 30",
-      "firefox 24"
+      "firefox 30"
     ]
   },
   "template": {
-    "compiler": true
+    "compiler": <% if ( projectstructure == 'Twig Template' || projectstructure == 'Jade Template' ) { %>true<% } else { %>false<% } %>
   },
   "browsersync": {
-    "openBrowser": true,
+    "openbrowser": true,
     "proxy": false
   },
   "files": {
-    "jsCombine" : [<% if (projectjquery == true ) { %>
-      "src/bower/jquery/dist/jquery.js"<% } else { %>
-      "src/bower/jquery/jquery.js"<% } %>
+    "jsCombine" : [
+      "src/bower/jquery/dist/jquery.js"
     ],
     "jsCombineFilename": "scripts.js",
     "jsCopy": [<% if (projectiecompatible == true ) { %>
       "src/bower/selectivizr/selectivizr.js"<% } %>
-
     ],
     "fonts": [],
-    "launch": [
+    "launch": [<% if (projectUsage == 'Building HTML Prototypes') { %>
+      {"src": "favicon.png", "dest": "assets/img/system/"},
+      {"src": "spinner.gif", "dest": "assets/img/system/"},
       {"src": ".htaccess", "dest": ""},
       {"src": "404.html", "dest": ""},
-      {"src": "robots.txt", "dest": ""},
+      {"src": "robots.txt", "dest": ""}<% } if (projectUsage == 'Integrate in Wordpress' || projectUsage == 'Integrate in KirbyCMS' || projectUsage == 'Integrate in CraftCMS') { %>
       {"src": "favicon.png", "dest": "assets/img/system/"},
-      {"src": "spinner.gif", "dest": "assets/img/system/"}
+      {"src": "spinner.gif", "dest": "assets/img/system/"}<% } %>
     ]
   },
   "modernizr": {
@@ -119,17 +118,38 @@
     ]
   },
   "minify": {
+    "automatic": {
+      "jsFiles": true,
+      "jsCombine": true,
+      "jsCopy": true,
+      "jsModernizr": true,
+      "jsConditionizr": true,
+      "css": true,
+      "vector": true,
+      "bitmaps": true,
+      "vectorSprite": true,
+      "bitmapSprite": true
+    },
     "images": {
       "optimizationLevel": 3,
       "pngquant": {
         "quality": "75-88",
         "speed": 4
       },
-      "svgoPlugins": {
-        "removeViewBox": false,
-        "removeDesc": true,
-        "cleanupIDs": false
-      },
+      "svgoPlugins": [
+        {"cleanupIDs": false},
+        {"removeComments": true},
+        {"removeViewBox": false},
+        {"removeDesc": true},
+        {"removeUselessDefs": false},
+        {"removeDoctype": true},
+        {"removeEmptyText": true},
+        {"removeUnknownsAndDefaults": true},
+        {"removeEmptyContainers": true},
+        {"collapseGroups": true},
+        {"removeUselessStrokeAndFill": true},
+        {"convertStyleToAttrs": true}
+      ],
       "progressive": true,
       "interlaced": true
     },
@@ -138,5 +158,31 @@
         "mangle": false
       }
     }
+  },
+  "src": {
+    "style": "src/style/",
+    "template": "src/template/",
+    "structure": "src/structure/",
+    "js": "src/js/",
+    "bower": "src/bower/",
+    "scripts" : "src/scripts",
+    "fonts": "src/fonts/",
+    "images": {
+      "bitmapSprite": {
+      "files": "src/images/bitmapSprite-assets/",
+      "name": "sprite.png"
+    },
+    "vectorSprite": {
+      "files": "src/images/vectorSprite-assets/",
+      "name": "vector-sprite.svg",
+      "symbolName": "symbol-sprite.svg",
+      "maxHeight" : 30,
+      "maxWidth": 30,
+      "padding": 0
+    },
+    "bitmaps": "src/images/bitmapSingle-assets/",
+    "vectors": "src/images/vectorSingle-assets/"
+    },
+    "system": "src/.system/"
   }
 }

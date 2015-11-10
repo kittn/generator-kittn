@@ -1,0 +1,105 @@
+// ===================================================
+// Unit Checks
+// ===================================================
+
+/// Strip Units from Values
+///
+/// @group core-unitcheck
+///
+/// @param  {number} $number - Value
+///
+/// @return {number} Value without units
+///
+/// @example scss - scss
+///   .box {
+///     $s: 25px;
+///     width: strip-units($s) + 0%;
+///   }
+///
+/// @example css - css
+///   .box {
+///     width: 25%;
+///   }
+@function strip-units($number) {
+  // If the Value is not a Number Break the Function
+  @if type-of($number) != 'number' {
+    @warn "#{$number} is not a number for strip-unit.";
+    @return false;
+
+  } @else {
+    // If the Value is unitless
+    @if unitless($number) {
+      @return $number;
+
+    // Remove the Units
+    } @else {
+      @return $number / ($number * 0 + 1);
+    }
+  }
+}
+
+/// Add the Default Unit on unitless Values
+///
+/// @group core-unitcheck
+///
+/// @param  {number} $value - Value
+///
+/// @return {number}
+///
+/// @example scss - scss
+///   .box {
+///     $s: 25;
+///     width: unit-check($s);
+///   }
+///
+/// @example css - css
+///   .box {
+///     width: 25px;
+///   }
+@function unit-check($value) {
+  @if unitless($value) {
+    @if $kittn-default-unit == rem {
+      @return $value + 0rem;
+
+    } @else if $kittn-default-unit == em {
+      @return $value + 0em;
+
+    } @else {
+      @return $value + 0px;
+    }
+  } @else {
+    @return $value;
+  }
+}
+
+/// Clamp a Number between a min and max values,
+/// Perfect for percentage
+///
+/// @group core-unitcheck
+///
+/// @param  {number} $value - The Value that need to be clamped
+/// @param  {number} $min   - The possible minimal value
+/// @param  {number} $max   - The possible max Value
+///
+/// @return {number}        - Clamped Value
+///
+/// @example scss - scss
+///   .box {
+///     $s1: 25;
+///     $s2: 13;
+///     width: clamp($s1, 5, 20) + 0px;
+///     height: clamp($s2, 5, 20) + 0px;
+///   }
+///
+/// @example css - css
+///   .box {
+///     width: 20px;
+///     height: 13px;
+///   }
+@function clamp($value, $min, $max) {
+  @return if($value > $max, $max, if($value < $min, $min, $value));
+}
+
+
+
+

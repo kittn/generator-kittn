@@ -1,0 +1,66 @@
+// ===================================================
+// Media Object Pattern
+// ===================================================
+
+// Media Object with Flexbox
+//
+// @example
+// <div class="%media">
+//   <figure class="%media__figure--left">
+//     <img src="...">
+//   </figure>
+//   <div class="%media__body">
+//     ...
+//   </div>
+// </div>
+%media-flex {
+  display: flex;
+  align-items: flex-start;
+
+  &__figure {
+    &--right {
+      margin-right: s(1);
+    }
+
+    &--left {
+      margin-right: s(1);
+    }
+  }
+
+  &__body {
+    flex: 1;
+  }
+}
+
+// Media Object with Floats
+//
+// @example
+// <div class="%media">
+//   <figure class="%media__figure--left">
+//     <img src="...">
+//   </figure>
+//   <div class="%media__body">
+//     ...
+//   </div>
+// </div>
+%media-float {
+  @include clearfix();
+
+  &__figure {
+    float: left;
+
+    &--right {
+      margin-right: s(1);
+    }
+
+    &--left {
+      margin-right: s(1);
+    }
+  }
+
+  &__body {
+    float: left;
+  }
+}
+
+

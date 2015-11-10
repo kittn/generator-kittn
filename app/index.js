@@ -8,12 +8,6 @@ var chalk = require('chalk');
 var KittnGenerator = yeoman.generators.Base.extend({
   init: function () {
     this.pkg = require('../package.json');
-
-    // this.on('end', function () {
-    //   if (!this.options['skip-install']) {
-    //     this.installDependencies();
-    //   }
-    // });
   },
 
   askFor: function () {
@@ -23,7 +17,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
     var welcome =
       '\n ' +
       '\n    /\\___/\\       '+
-      '\n    ) .  . (       '+
+      '\n    )      (       '+
       '\n   =\\     /=      .--------------------------.'+
       '\n     )   (        |   Kitty, Kitty, Kitty !  |'+
       '\n    /     \\       | ------------------------ |'+
@@ -48,17 +42,17 @@ var KittnGenerator = yeoman.generators.Base.extend({
       },{
         type: 'input',
         name: 'projectdescription',
-        message: 'A Short description',
+        message: 'Project description',
         default: 'undefinied'
       },{
         type: 'input',
         name: 'projectcssfilename',
-        message: 'CSS Filename',
+        message: 'Filename for the CSS File (without fileending)',
         default: 'style'
       },{
         type: 'confirm',
         name: 'projectiecompatible',
-        message: 'Do you need IE8 compatibility?',
+        message: 'IE8 compatibility needed?',
         default: false
       },{
         type: 'confirm',
@@ -70,8 +64,8 @@ var KittnGenerator = yeoman.generators.Base.extend({
         name: 'projectstructure',
         message: 'How do you want to compile your Structure with Jade or Twig? Otherwise you can use the Copy Task to move Files from src to your dist dir.',
         choices: [
-          "Jade Template",
           "Twig Template",
+          "Jade Template",
           "Uncompiled"
         ]
       },{
@@ -140,6 +134,11 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.directory('src/images/', 'src/images/');
     this.directory('src/scripts/', 'src/scripts/');
     this.directory('src/.system/', 'src/.system/');
+    this.directory('src/framework/', 'src/framework/');
+
+    // As Alternative build a Uncompiled Folder - good for work on native
+    // templates with PHP
+    this.directory('src/structure/', 'src/structure/');
 
     // Add SCSS Files with the desired Filename
     this.copy('_style.scss', 'src/style/'+this.projectcssfilename+'.scss');
@@ -160,11 +159,6 @@ var KittnGenerator = yeoman.generators.Base.extend({
       this.directory('src/twig/', 'src/template/');
       this.copy('_site-header.twig', 'src/template/parts/site-header.twig');
       this.copy('_site-scripts.twig', 'src/template/parts/site-scripts.twig');
-
-    // As Alternative build a Uncompiled Folder - good for work on native
-    // templates with PHP
-    } else if ( this.projectstructure == 'Uncompiled' ) {
-      this.directory('src/template/', 'src/template/');
     }
   },
 
@@ -173,7 +167,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.copy('_config.json', 'config.json');
     this.copy('_bower.json', 'bower.json');
     this.copy('_gulpfile.js', 'gulpfile.js');
-    this.copy('_defaults.scss', 'src/style/_defaults.scss');
+    this.copy('_defaults.scss', 'src/framework/_defaults.scss');
     this.copy('_readme.md', 'readme.md');
     this.copy('_gitignore', '.gitignore');
     this.copy('bowerrc', '.bowerrc');
@@ -183,7 +177,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
   },
 
   install: function () {
-     this.installDependencies();
+    this.installDependencies();
   }
 });
 

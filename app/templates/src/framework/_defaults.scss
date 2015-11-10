@@ -2,16 +2,6 @@
 // Framework Defaults
 // ------------------------------------
 
-// Global spacing unit, used for Spacer and Lines Mixins.
-//
-// @type Number
-$kittn-global-spacing: 20;
-
-// Default unit for unitless values.
-//
-// @type Number
-  $kittn-default-unit: px;
-
 // BEM Prefixes for Elements and Modifiers
 //
 // @type Map
@@ -32,9 +22,12 @@ $kittn-directorys: (
   bitmap: 'bitmaps/'
 );
 
+// Kitten Sprite Files name
+//
+// @type Map
 $kittn-spritefiles: (
   bitmap-sprite: 'sprite.png',
-  vector-sprite: 'vector-sprite.svg'
+  vector-sprite: 'vector-sprite.png'
 );
 
 // Activate Base Features
@@ -42,7 +35,7 @@ $kittn-spritefiles: (
 // - 'debugging' {Bool} - Activate the CSS Debugging Features
 // - 'box-sizing' {Bool} - Activate the new old Box Model ;P
 // - 'baseline' {Bool} - Activate Baseline Features
-// - 'hyphens' {Bool} - All Words would be breaked with Hyphens
+// - 'hyphens' {Bool} - All Words would be braked with Hyphens
 // - 'viewport-fix' {Bool} - Activate Viewport-Fixes for Windows Mobile 8
 // - 'mobile-first' {Bool} - Grid and Breakpoints oriented from Smallest to Biggest Size
 // - 'ie8-fallback' {Bool} - Integrate some IE8 Fallbacks
@@ -55,7 +48,16 @@ $kittn-activate: (
   antialias: true,
   hyphens: false,
   viewport-fix: false,
-  mobile-first: true,<% if (projectiecompatible == true) { %>
-  ie8-fallbacks: true<% } else { %>
-  ie8-fallbacks: false<% } %>
+  mobile-first: true,
+  ie8-fallbacks: false
 );
+
+// Global spacing unit, used for Spacer and Lines Mixins.
+//
+// @type Number
+$kittn-global-spacing: 20;
+
+// Default unit for unitless values.
+//
+// @type Number
+$kittn-default-unit: px;
