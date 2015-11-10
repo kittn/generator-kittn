@@ -4,7 +4,7 @@
 
 Yeoman Generator for the Kittn Toolkit. Scaffolds and Prepare the Toolkit for you.
 
-[Documentation](http://gisu.github.io/generator-kittn/). 
+[Documentation](http://kittn.de/). 
 
 ## Install
 
@@ -24,10 +24,10 @@ The Generator will ask you some questions, at the end it will prepare the Projec
 ## Commands
 
 **`gulp init`**<br>
-Intialize your Project
+Intialize your Project and the Sass Documentation (/sassdocs/)
 
 **`gulp`**<br>
-Default Task with BrowserSync (CSS and HTML Injection)
+Default Task with BrowserSync
 
 **`gulp rebuild:js`**<br>
 Rebuild all JS files, copy - combine - rename.
@@ -42,7 +42,7 @@ Move Image Files from src/stash/images/bitmap-assets to distribution
 Move Image Files from scr/stash/images/svgsingle to distribution
 
 **`gulp deploy:manual`**<br>
-Publish the Project for Production - you can Bump the Version with Enviroment Vars.<br>Example $ gulp publish --type=major => for a Major Release
+Publish the Project for Production - you can Bump the Version with Enviroment Vars.<br>Example: $ gulp publish --type=major` => for a Major Release
 
 **`gulp deploy:auto`**<br>
 Minify JS, Images, CSS. Is for a automated Build Process, comes after a Gulp Init.
