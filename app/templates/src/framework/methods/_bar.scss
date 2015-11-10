@@ -2,27 +2,27 @@
 // Bar Elements
 // ===================================================
 
-// Bar
-// ===
-// Style for Bar Elements
-//
-// @param  {string} $variant  - Position Variant (f = fixed, a = absolute)
-// @param  {string} $position - Position (t = Top, b = Bottom, l = Left, r = Right)
-// @param  {number} $z-index  - Z-Index [9999]
-//
-// @example
-//   .header {
-//     @include bar($variant: f, $position: t);
-//   }
-//
-// @output
-//   .header {
-//     position: fixed;
-//     z-index: 9999;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//   }
+/// Style for Bar Elements
+///
+/// @group methods-bar
+///
+/// @param  {string} $variant  - Position Variant (f = fixed, a = absolute)
+/// @param  {string} $position - Position (t = Top, b = Bottom, l = Left, r = Right)
+/// @param  {number} $z-index  - Z-Index [9999]
+///
+/// @example scss - scss
+///   .header {
+///     @include bar($variant: f, $position: t);
+///   }
+///
+/// @example css - css
+///   .header {
+///     position: fixed;
+///     z-index: 9999;
+///     top: 0;
+///     left: 0;
+///     width: 100%;
+///   }
 @mixin bar($variant, $position, $z: 9999) {
 
   // Set the position variant
@@ -58,54 +58,54 @@
   }
 }
 
-// Bar Top
-// =======
-// Set for a Barelement at the top from the Viewport or Document
-//
-// @require {mixin} bar
-//
-// @param  {number} $z       - Z-Index
-// @param  {string} $variant - Position Variant ([f = fixed], a = absolute)
-//
-// @example
-//   .header {
-//     @include bar-top($z: 10, $variant: a);
-//   }
-//
-// @output
-//   .header {
-//     position: absolute;
-//     z-index: 10;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//   }
+/// Set for a Barelement at the top from the Viewport or Document
+///
+/// @group methods-bar
+///
+/// @require {mixin} bar
+///
+/// @param  {number} $z           - Z-Index
+/// @param  {string} $variant [f] - Position Variant (f = fixed, a = absolute)
+///
+/// @example scss - scss
+///   .header {
+///     @include bar-top($z: 10, $variant: a);
+///   }
+///
+/// @example css - css
+///   .header {
+///     position: absolute;
+///     z-index: 10;
+///     top: 0;
+///     left: 0;
+///     width: 100%;
+///   }
 @mixin bar-top($z: 9999, $variant: f) {
   @include bar($variant, t, $z);
 }
 
-// Bar Bottom
-// ==========
-// Set for a Barelement at the bottom from the Viewport or Document
-//
-// @require {mixin} bar
-//
-// @param  {number} $z       - Z-Index
-// @param  {string} $variant - Position Variant ([f = fixed], a = absolute)
-//
-// @example
-//   .footer {
-//     @include bar-bottom();
-//   }
-//
-// @output
-//   .footer {
-//     position: fixed;
-//     z-index: 9999;
-//     bottom: 0;
-//     left: 0;
-//     width: 100%;
-//   }
+/// Set for a Barelement at the bottom from the Viewport or Document
+///
+/// @group methods-bar
+///
+/// @require {mixin} bar
+///
+/// @param  {number} $z           - Z-Index
+/// @param  {string} $variant [f] - Position Variant (f = fixed, a = absolute)
+///
+/// @example scss - scss
+///   .footer {
+///     @include bar-bottom();
+///   }
+///
+/// @example css - css
+///   .footer {
+///     position: fixed;
+///     z-index: 9999;
+///     bottom: 0;
+///     left: 0;
+///     width: 100%;
+///   }
 @mixin bar-bottom($z: 9999, $variant: f) {
   @include bar($variant, b, $z);
 }

@@ -2,30 +2,31 @@
 // Breakpoint Helper
 // ===================================================
 
-// Break
-// Get a breakpoint from the Map and build the Media Query
-//
-// @param  {*}      $target - Required Breakpoint
-// @param  {string} $mode   - Media Query Mode. (between, max, min ,[auto])
-// @param  {map}    $list   - Connection to the Breakpoint Map [$kittn-breakpoint-map]
-//
-// @example
-//   .box {
-//     height: 20px;
-//     @include break(4) {
-//       height: 200px;
-//     }
-//   }
-//
-// @output
-//   .box {
-//     height: 20px;
-//   }
-//   @media screen and (min-width: 768px) {
-//     .box {
-//       height: 200px;
-//     }
-//   }
+/// Get a breakpoint from the Map and build the Media Query
+///
+/// @param  {*}      $target                       - Required Breakpoint
+/// @param  {string} $mode [auto]                  - Media Query Mode. (between, max, min, auto)
+/// @param  {map}    $list [$kittn-breakpoint-map] - Connection to the Breakpoint Map
+///
+/// @content
+///
+/// @example scss - scss
+///   .box {
+///     height: 20px;
+///     @include break(4) {
+///       height: 200px;
+///     }
+///   }
+///
+/// @example css - css
+///   .box {
+///     height: 20px;
+///   }
+///   @media screen and (min-width: 768px) {
+///     .box {
+///       height: 200px;
+///     }
+///   }
 @mixin break($target, $mode: auto, $list: $kittn-breakpoint-map) {
   // Between two values
   @if $mode == between {

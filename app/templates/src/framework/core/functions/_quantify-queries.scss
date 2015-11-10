@@ -2,15 +2,17 @@
 // Quantify Queries
 // ===================================================
 
-// Last Simple Selector
-// ====================
-// Find the last simple selector in a given selector
-//
-// @access private
-//
-// @param  {list} $selector - A single selector
-//
-// @return {string}         - The last simple selector in $selector
+/// Find the last simple selector in a given selector
+///
+/// @group core-quantify-queries
+///
+/// @author Daniel Guillan
+///
+/// @access private
+///
+/// @param  {list} $selector - A single selector
+///
+/// @return {string}         - The last simple selector in $selector
 @function _last-simple-selector($selector) {
   $parsed: selector-parse($selector);
 
@@ -22,17 +24,18 @@
   @return $last-simple-selector;
 }
 
-
-// Build Quantity Selector
-// =======================
-// Builds the selector for the quantity query
-//
-// @access private
-//
-// @param  {string} $selector-append      - The selector to be appended
-// @param  {string} $last-selector        - The item's selector
-//
-// @return {list}                         - The final quantity query selector
+/// Builds the selector for the quantity query
+///
+/// @group core-quantify-queries
+///
+/// @author Daniel Guillan
+///
+/// @access private
+///
+/// @param  {string} $selector-append      - The selector to be appended
+/// @param  {string} $last-selector        - The item's selector
+///
+/// @return {list} - The final quantity query selector
 @function _build-quantity-selector($selector-append, $last-selector) {
   $quantity-selector: ();
 
@@ -47,25 +50,28 @@
   @return $quantity-selector;
 }
 
-
-// At least
-// ========
-// Query when total items is at least N items
-//
-// @param  {number}  $count - Quantity to match (equal or more)
-//
-// @example scss
-//   ul li {
-//     @include at-least(4) {
-//       color: red;
-//     }
-//   }
-//
-// @output
-//   ul li:nth-last-child(n+4),
-//   ul li:nth-last-child(n+4) ~ li {
-//     color: red;
-//   }
+/// Query when total items is at least N items
+///
+/// @group core-quantify-queries
+///
+/// @author Daniel Guillan
+///
+/// @param  {number}  $count - Quantity to match (equal or more)
+///
+/// @content
+///
+/// @example scss - scss
+///   ul li {
+///     @include at-least(4) {
+///       color: red;
+///     }
+///   }
+///
+/// @example css - css
+///   ul li:nth-last-child(n+4),
+///   ul li:nth-last-child(n+4) ~ li {
+///     color: red;
+///   }
 @mixin at-least($count, $selector: null) {
   $selector-append: ':nth-last-child(n+#{$count})';
 
@@ -84,25 +90,28 @@
   }
 }
 
-
-// At most
-// =======
-// Query when total items is at most N items
-//
-// @param  {number} $count - Quantity to match (equal or less)
-//
-// @example
-//   ul li {
-//     @include at-most(4) {
-//       color: red;
-//     }
-//   }
-//
-// @output
-//   ul li:nth-last-child(-n+4):first-child,
-//   ul li:nth-last-child(-n+4):first-child ~ li {
-//     color: red;
-//   }
+/// Query when total items is at most N items
+///
+/// @group core-quantify-queries
+///
+/// @author Daniel Guillan
+///
+/// @param  {number} $count - Quantity to match (equal or less)
+///
+/// @content
+///
+/// @example scss - scss
+///   ul li {
+///     @include at-most(4) {
+///       color: red;
+///     }
+///   }
+///
+/// @example css - css
+///   ul li:nth-last-child(-n+4):first-child,
+///   ul li:nth-last-child(-n+4):first-child ~ li {
+///     color: red;
+///   }
 @mixin at-most($count, $selector: null) {
   $selector-append: ':nth-last-child(-n+#{$count}):first-child';
 
@@ -121,26 +130,29 @@
   }
 }
 
-
-// Between
-// =======
-// Query when total items is at least X items and at most Y items
-//
-// @param  {number} $at-least - Lower quantity of items to match
-// @param  {number} $at-most - Higher quantity of items to match
-//
-// @example
-//   ul li {
-//     @include between(4, 8) {
-//       color: red;
-//     }
-//   }
-//
-// @output
-//   ul li:nth-last-child(n+4):nth-last-child(-n+8):first-child,
-//   ul li:nth-last-child(n+4):nth-last-child(-n+8):first-child ~ li {
-//     color: red;
-//   }
+/// Query when total items is at least X items and at most Y items
+///
+/// @group core-quantify-queries
+///
+/// @author Daniel Guillan
+///
+/// @param  {number} $at-least - Lower quantity of items to match
+/// @param  {number} $at-most - Higher quantity of items to match
+///
+/// @content
+///
+/// @example scss - scss
+///   ul li {
+///     @include between(4, 8) {
+///       color: red;
+///     }
+///   }
+///
+/// @example css - css
+///   ul li:nth-last-child(n+4):nth-last-child(-n+8):first-child,
+///   ul li:nth-last-child(n+4):nth-last-child(-n+8):first-child ~ li {
+///     color: red;
+///   }
 @mixin between($first, $last, $selector: null) {
   $selector-append: ':nth-last-child(n+#{$first}):nth-last-child(-n+#{$last}):first-child';
 
@@ -167,24 +179,28 @@
   }
 }
 
-// Exactly
-// =======
-// Query when total items is exactly N items
-//
-// @param  {number} $count - Quantity to match (equal)
-//
-// @example
-//   ul li {
-//     @include exactly(4) {
-//       color: red;
-//     }
-//   }
-//
-// @output
-//   ul li:nth-last-child(4):first-child,
-//   ul li:nth-last-child(4):first-child ~ li {
-//     color: red;
-//   }
+/// Query when total items is exactly N items
+///
+/// @group core-quantify-queries
+///
+/// @author Daniel Guillan
+///
+/// @param  {number} $count - Quantity to match (equal)
+///
+/// @content
+///
+/// @example scss - scss
+///   ul li {
+///     @include exactly(4) {
+///       color: red;
+///     }
+///   }
+///
+/// @example css - css
+///   ul li:nth-last-child(4):first-child,
+///   ul li:nth-last-child(4):first-child ~ li {
+///     color: red;
+///   }
 @mixin exactly($count, $selector: null) {
   $selector-append: ':nth-last-child(#{$count}):first-child';
 

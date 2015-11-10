@@ -2,9 +2,11 @@
 // Typography Generator
 // ===================================================
 
-// Generate the Typo based on the Typo-Map
-//
-// @param  {map}    $map - Map
+/// Generate the Typo based on the Typo-Map
+///
+/// @group generators
+///
+/// @param  {map}    $map [$kittn-typostyles-map] - Map
 @mixin typogenerator($map: $kittn-typostyles-map) {
   @each $style, $entry in $map {
     $selector: null;

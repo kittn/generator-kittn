@@ -2,24 +2,24 @@
 // Maps Helper
 // ===================================================
 
-// Map Deep Get
-// ============
-// Easier way to get values from a nested map
-//
-// @param  {map}    $map  - Map that
-// @param  {args}   $keys - Keys to fetch
-//
-// @return {map}
-//
-// @example
-//   .text {
-//     font-size: map-deep-get($typo, h1, font-size) + px;
-//   }
-//
-// @output
-//   .text {
-//     font-size: 36px;
-//   }
+/// Easier way to get values from a nested map
+///
+/// @group core-map
+///
+/// @param  {map}    $map  - Map that
+/// @param  {args}   $keys - Keys to fetch
+///
+/// @return {map}
+///
+/// @example scss - scss
+///   .text {
+///     font-size: map-deep-get($typo, h1, font-size) + px;
+///   }
+///
+/// @example css - css
+///   .text {
+///     font-size: 36px;
+///   }
 @function map-deep-get($map, $keys...) {
   @each $key in $keys {
     $map: map-get($map, $key);
@@ -28,33 +28,33 @@
   @return $map;
 }
 
-// Map Deep Set
-// ============
-// Easier way to set values from a nested map
-//
-// @author Hugo Giraudel
-//
-// @param  {map}    $map   - Map to update
-// @param  {args}   $keys  - Keys to access to value to update
-// @param  {*}      $value - New value (last member of `$keys`)
-//
-// @return {Map}    Updated map
-//
-// @example
-//   $test: (
-//     name: kittn,
-//     type: toolkit
-//   );
-//
-//   .text {
-//     $test: map-deep-set($test,type, css);
-//     content: map-deep-get($test,type);
-//   }
-//
-// @output
-//   .text {
-//     content: css;
-//   }
+/// Easier way to set values from a nested map
+///
+/// @author Hugo Giraudel
+///
+/// @group core-map
+///
+/// @param  {map}    $map   - Map to update
+/// @param  {args}   $keys  - Keys to access to value to update
+/// @param  {*}      $value - New value (last member of `$keys`)
+///
+/// @return {map}    Updated map
+///
+/// @example scss - scss
+///   $test: (
+///     name: kittn,
+///     type: toolkit
+///   );
+///
+///   .text {
+///     $test: map-deep-set($test,type, css);
+///     content: map-deep-get($test,type);
+///   }
+///
+/// @example css - css
+///   .text {
+///     content: css;
+///   }
 @function map-deep-set($map, $keys.../*, $value */) {
   $map-list: ($map,);
   $result: null;
@@ -74,31 +74,31 @@
   @return $result;
 }
 
-// Map has Keys
-// ============
-// Test if map got all `$keys` at first level
-//
-// @author Hugo Giraudel
-//
-// @param  {map}     $map  - Map
-// @param  {args}    $keys - Keys to test
-//
-// @return {bool}
-//
-// @example
-//   $test: (
-//     name: kittn,
-//     type: toolkit
-//   );
-//
-//   .text {
-//     content: map-has-keys($test,type);
-//   }
-//
-// @output
-//   .text {
-//     content: true;
-//   }
+/// Test if map got all `$keys` at first level
+///
+/// @author Hugo Giraudel
+///
+/// @group core-map
+///
+/// @param  {map}     $map  - Map
+/// @param  {args}    $keys - Keys to test
+///
+/// @return {bool}
+///
+/// @example scss - scss
+///   $test: (
+///     name: kittn,
+///     type: toolkit
+///   );
+///
+///   .text {
+///     content: map-has-keys($test,type);
+///   }
+///
+/// @example css - css
+///   .text {
+///     content: true;
+///   }
 @function map-has-keys($map, $keys...) {
   @each $key in $keys {
     @if not map-has-key($map, $key) {
@@ -109,31 +109,31 @@
   @return true;
 }
 
-// Map has nested Keys
-// ===================
-// Test if map got all `$keys` nested with each others
-//
-// @author Hugo Giraudel
-//
-// @param  {map}    $map  - Map
-// @param  {args}   $keys - Keys to test
-//
-// @return {bool}
-//
-// @example
-//   $test: (
-//     name: kittn,
-//     type: toolkit
-//   );
-//
-//   .text {
-//     content: map-has-nested-keys($test,type);
-//   }
-//
-// @output
-//   .text {
-//     content: true;
-//   }
+/// Test if map got all `$keys` nested with each others
+///
+/// @author Hugo Giraudel
+///
+/// @group core-map
+///
+/// @param  {map}    $map  - Map
+/// @param  {args}   $keys - Keys to test
+///
+/// @return {bool}
+///
+/// @example scss - scss
+///   $test: (
+///     name: kittn,
+///     type: toolkit
+///   );
+///
+///   .text {
+///     content: map-has-nested-keys($test,type);
+///   }
+///
+/// @example css - css
+///   .text {
+///     content: true;
+///   }
 @function map-has-nested-keys($map, $keys...) {
   @each $key in $keys {
     @if not map-has-key($map, $key) {
@@ -145,26 +145,26 @@
   @return true;
 }
 
-// Map Zip
-// =======
-// An equivalent of `zip` function but for maps.
-// Takes two lists, the first for keys, second for values.
-//
-// @param  {list}   $keys   - Keys for map
-// @param  {list}   $values - Values for map
-//
-// @return {map}    Freshly created map
-//
-// @example
-//   $keys: name, type;
-//   $values: kittn, toolkit;
-//   $new-map: map-zip($keys,$values);
-//
-// @output
-//   $new-map: (
-//     name: kittn,
-//     type: toolkit
-//   );
+/// An equivalent of `zip` function but for maps.
+/// Takes two lists, the first for keys, second for values.
+///
+/// @group core-map
+///
+/// @param  {list}   $keys   - Keys for map
+/// @param  {list}   $values - Values for map
+///
+/// @return {map}    Freshly created map
+///
+/// @example scss - scss
+///   $keys: name, type;
+///   $values: kittn, toolkit;
+///   $new-map: map-zip($keys,$values);
+///
+/// @example css - css
+///   $new-map: (
+///     name: kittn,
+///     type: toolkit
+///   );
 @function map-zip($keys, $values) {
   $l-keys: length($keys);
   $l-values: length($values);
@@ -187,8 +187,6 @@
   @return $map;
 }
 
-// Map Extend
-// ==========
 // Merge Maps recursive
 //
 // @param  {map}    $map  - first map

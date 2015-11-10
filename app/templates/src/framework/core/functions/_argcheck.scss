@@ -2,15 +2,13 @@
 // Argument Check
 // ===================================================
 
-// Check Args
-// ==========
-// Check the availibility from arguments
-//
-// @param  {map}    $map  - Agumentlist map
-// @param  {string} $list - List with Arguments
-// @param  {string} $key  - Argument
-//
-// @return {bool}
+/// Check if the keys are available in the map
+///
+/// @param  {map}    $map  - Agumentlist map
+/// @param  {string} $list - List with Arguments
+/// @param  {string} $key  - Argument
+///
+/// @return {bool}
 @function check-args($map, $list, $key) {
   @if index(map-get($map, $list), $key) {
     @return true;
@@ -19,14 +17,14 @@
   }
 }
 
-// Warn Args
-// =========
-// Add a warning to the Console when the wrong Keyword is used
-//
-// @param  {map}    $map  - Agumentlist map
-// @param  {string} $list - List with Arguments
-// @param  {string} $key  - Argument
-// @param  {string} $name - Name from the Mixin that drop the Warning
+/// Add a warning to the Console when the wrong Keyword is used
+///
+/// @require {function} check-args
+///
+/// @param  {map}    $map  - Agumentlist map
+/// @param  {string} $list - List with Arguments
+/// @param  {string} $key  - Argument
+/// @param  {string} $name - Name from the Mixin that drop the Warning
 @mixin warn-args($map, $list, $key, $name) {
   @if not(check-args($map, $list, $key)) {
     @warn "ERROR in Mixin [#{$name}()]. The Argument '#{$key}' is not valid. Use one of these Arguments: (#{map-get($map, $list)})";

@@ -8,28 +8,28 @@
 // @link https://github.com/Team-Sass/SassyLists
 // ===================================================
 
-// Has multiple values
-// ===================
-// Tests whether `$list` has at least 2 values.
-//
-// @param {list}   $list - list to run test against
-//
-// @return {bool}
+/// Tests whether `$list` has at least 2 values.
+///
+/// @group core-sasslists
+///
+/// @param {list}   $list - list to run test against
+///
+/// @return {bool}
 @function sl-has-multiple-values($list) {
   @return length($list) > 1;
 }
 
-// Str Compare
-// ===========
-// Compares `$a` and `$b` based on `$order`.
-//
-// @access private
-//
-// @param  {*}      $a      - first value
-// @param  {*}      $b      - second value
-// @param  {list}   $matrix - alphabetical order
-//
-// @return {bool}
+/// Compares `$a` and `$b` based on `$order`.
+///
+/// @group core-sasslists
+///
+/// @access private
+///
+/// @param  {*}      $a      - first value
+/// @param  {*}      $b      - second value
+/// @param  {list}   $matrix - alphabetical order
+///
+/// @return {bool}
 @function sl-str-compare($a, $b, $order) {
   @if type-of($a) == "number" and type-of($b) == "number" {
     @return $a < $b;
@@ -49,31 +49,33 @@
   @return str-length($a) < str-length($b);
 }
 
-// To List
-// =======
-// Casts `$value` into a list.
-//
-// @param  {*}      $value     - value to cast to list
-// @param  {string} $separator - separator to use
-//
-// @return {list}
+/// Casts `$value` into a list.
+///
+/// @group core-sasslists
+///
+/// @param  {*}      $value     - value to cast to list
+/// @param  {string} $separator - separator to use
+///
+/// @return {list}
 @function sl-to-list($value, $separator: list-separator($value)) {
   @return join((), $value, $separator);
 }
 
-// @requires sl-to-list
+// @require {function} sl-to-list
 // @alias sl-to-list
 @function sl-listify($value) {
   @return sl-to-list($value);
 }
 
-// Reverse
-// =======
-// Reverses the order of `$list`.
-//
-// @param  {list}   $list - list to reverse
-//
-// @return {list}
+/// Reverses the order of `$list`.
+///
+/// @group core-sasslists
+///
+/// @requires {function} sl-to-list
+///
+/// @param  {list}   $list - list to reverse
+///
+/// @return {list}
 @function sl-reverse($list) {
   @if sl-missing-dependencies(sl-to-list) == true { @return null; }
 
@@ -93,19 +95,19 @@
   @return sl-to-list($list);
 }
 
-// @requires sl-reverse
+// @require {function} sl-reverse
 // @alias sl-reverse
 @function sl-mirror($list) {
   @return sl-reverse($list);
 }
 
-// Remove duplicates
-// =================
-// Removes duplicate values from `$list`.
-//
-// @param  {list}   $list - list to remove duplicates from
-//
-// @return {List}
+/// Removes duplicate values from `$list`.
+///
+/// @group core-sasslists
+///
+/// @param  {list}   $list - list to remove duplicates from
+///
+/// @return {List}
 @function sl-remove-duplicates($list) {
   @if sl-missing-dependencies(sl-to-list) == true { @return null; }
 
@@ -127,14 +129,14 @@
 }
 
 
-// Sort
-// ====
-// Sorts values of `$list` using quick-sort algorithm using `$order`.
-//
-// @param  {list}   $list  - list to sort
-// @param  {list}   $order - order to respect
-//
-// @return {List}
+/// Sorts values of `$list` using quick-sort algorithm using `$order`.
+///
+/// @group core-sasslists
+///
+/// @param  {list}   $list  - list to sort
+/// @param  {list}   $order - order to respect
+///
+/// @return {List}
 @function sl-sort($list, $order: "!" "#" "$" "%" "&" "'" "(" ")" "*" "+" "," "-" "." "/" "[" "\\" "]" "^" "_" "{" "|" "}" "~" "0" "1" "2" "3" "4" "5" "6" "7" "8" "9" "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z") {
   @if sl-missing-dependencies(sl-str-compare, sl-has-multiple-values, sl-to-list) == true { @return null; }
 

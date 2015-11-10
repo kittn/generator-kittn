@@ -2,17 +2,15 @@
 // Breakpoint
 // -------------------------------------
 
-// BP
-// ==
-// Pick the Values from the Breakpoint Map
-//
-// @param  {*}      $target  - Selected Breakpoint
-// @param  {map}    $entries - Connection to the Breakpoint Map
-//
-// @returns {number}         - Return the breakpoint width
-//
-// @example
-//   @media screen and (min-width: bp(2) ){ ... }
+/// Pick the Values from the Breakpoint Map
+///
+/// @param  {*}      $target  - Selected Breakpoint
+/// @param  {map}    $entries - Connection to the Breakpoint Map
+///
+/// @returns {number}         - Return the breakpoint width
+///
+/// @example scss
+///   @media screen and (min-width: bp(2) ){ ... }
 @function bp($target, $entries: $kittn-breakpoint-map) {
 
   // Pick the Values

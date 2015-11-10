@@ -286,7 +286,7 @@ gulp.task('copy:js', function () {
  */
 gulp.task('copy:bitmaps', function() {
   gulp.src(kittn.src.images.bitmaps + '**/*.{png,jpeg,jpg,gif,webp}')
-    .pipe($.changed(kittn.dist.bitmaps + '**/*.{png,jpeg,jpg,gif,webp}'))
+    .pipe($.changed(kittn.dist.bitmaps))
     .pipe(kittn.minify.automatic.bitmaps ? $.imagemin({
       optimizationLevel: kittn.minify.images.optimizationLevel,
       use: [
@@ -304,7 +304,7 @@ gulp.task('copy:bitmaps', function() {
  */
 gulp.task('copy:vectors', function() {
   gulp.src(kittn.src.images.vectors + '**/*.svg')
-    .pipe($.changed(kittn.src.images.vectors + '**/*.svg'))
+    .pipe($.changed(kittn.src.images.vectors))
     .pipe(kittn.minify.automatic.vector ? $.imagemin({
       svgoPlugins: kittn.minify.images.svgoPlugins
     }) : gutil.noop()

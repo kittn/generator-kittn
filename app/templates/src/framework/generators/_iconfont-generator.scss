@@ -2,9 +2,11 @@
 // Iconfont Generator
 // ===================================================
 
-// Generate the Icon Classes
-//
-// @param  {map}    $kittn-font-icons - Icon Font Map
+/// Generate the Icon Classes
+///
+/// @group generators
+///
+/// @param  {map}    $icons [$kittn-font-icons] - Icon Font Map
 @mixin icon-generator($icons: $kittn-font-icons) {
   @each $name, $icon in $icons {
     .#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}#{$name}:before {

@@ -2,11 +2,38 @@
 // Placeholder Class
 // ===================================================
 
-// Vertical Align
-// ==============
-// Allows vertical centering of elements with unknown dimensions.
-//
-// @param {Bool} $extend - Set it on false the mixin will used as regular mixin [:true]
+/// Allows vertical centering of elements with unknown dimensions.
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core-placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include vertical-align();
+///   }
+///   .box-2 {
+///     @include vertical-align();
+///   }
+///   .box-3 {
+///     @include break(4) {
+///       @include vertical-align(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1:after, .box-2:after {
+///     content: '';
+///     height: 100%;
+///     display: inline-block;
+///     vertical-align: middle; }
+///
+///   @media screen and (min-width: 768px) {
+///     .box-3:after {
+///       content: '';
+///       height: 100%;
+///       display: inline-block;
+///       vertical-align: middle; } }
 @mixin vertical-align($extend: true) {
   @if $extend {
     @extend %vertical-align;

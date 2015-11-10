@@ -2,25 +2,23 @@
 // Spacings
 // ===================================================
 
-// S
-// =
-// Multiply the Spacing Value to generate Spacings, integrate the Unit
-//
-// @param  {number} $lines - Multiplier for spacing
-// @param  {bool}   $hard  - Include an !important [false]
-// @param  {number} $size  - Connection to the Base Spacing [$kittn-global-spacing]
-//
-// @return {number}
-//
-// @example
-//   .space {
-//     margin-bottom: s(2);
-//   }
-//
-// @output
-//   .space {
-//     margin-bottom: 40px;
-//   }
+/// Multiply the Spacing Value to generate Spacings, integrate the Unit
+///
+/// @param  {number} $lines                        - Multiplier for spacing
+/// @param  {bool}   $hard [false]                 - Include an !important
+/// @param  {number} $size [$kittn-global-spacing] - Connection to the Base Spacing
+///
+/// @return {number}
+///
+/// @example scss - scss
+///   .space {
+///     margin-bottom: s(2);
+///   }
+///
+/// @example css - css
+///   .space {
+///     margin-bottom: 40px;
+///   }
 @function s($lines, $hard: false, $size: $kittn-global-spacing) {
   @if is-number($lines) {
     $u: unit-check(0);
@@ -30,27 +28,25 @@
   }
 }
 
-// Gap
-// ===
-// Multiply the Spacing Value to generate Spacings
-// The Unit is variable
-//
-// @param  {number} $lines - Multiplier for Spacing
-// @param  {bool}   $imp   - For including an !important [false]
-// @param  {*}      $u     - Unit [false]
-// @param  {number} $size  - Connection to the Base Spacing [$kittn-global-spacing]
-//
-// @return {number}
-//
-// @example
-//   .space {
-//     margin-bottom: gap(.25, $u: em);
-//   }
-//
-// @output
-//   .space {
-//     margin-bottom: 5em;
-//   }
+/// Multiply the Spacing Value to generate Spacings
+/// The Unit is variable
+///
+/// @param  {number} $lines                        - Multiplier for Spacing
+/// @param  {bool}   $imp [false]                  - For including an !important
+/// @param  {*}      $u [false]                    - Unit
+/// @param  {number} $size [$kittn-global-spacing] - Connection to the Base Spacing
+///
+/// @return {number}
+///
+/// @example scss - scss
+///   .space {
+///     margin-bottom: gap(.25, $u: em);
+///   }
+///
+/// @example css - css
+///   .space {
+///     margin-bottom: 5em;
+///   }
 @function gap($lines, $imp: false, $u: false, $size: $kittn-global-spacing) {
   @if type-of($lines) == 'number' {
 

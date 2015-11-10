@@ -2,17 +2,18 @@
 // Color Scale Generator
 // ===================================================
 
-// Build a Set of Colors based on the Color-Scale Function
-//
-// @requires color-scale()
-//
-// @param  {map}    $o           - Setup Vars
-//         {list}   $o.color     - Color Values [#000 #000]
-//         {number} $o.steps     - Number off steps to reach the other color [5]
-//         {*}      $o.attribute - Attribute [background-color]
-//         {bool}   $o.extend    - For extending the classes with other Classes [false]
+/// Build a Set of Colors based on the Color-Scale Function
+///
+/// @group generators
+///
+/// @requires color-scale()
+///
+/// @param  {map}    $o                              - Setup Vars
+/// @param  {list}   $o.color [#000 #000]            - Color Values
+/// @param  {number} $o.steps [5]                    - Number off steps to reach the other color
+/// @param  {*}      $o.attribute [background-color] - Attribute
+/// @param  {bool}   $o.extend [false]               - For extending the classes with other Classes
 @mixin color-scale-generator($o: ()) {
-
   // Setup
   $o: map-merge((
     color: #000 #000,

@@ -2,16 +2,18 @@
 // Wireframe Generator
 // ===================================================
 
-// Generate Stylingclasses for Wireframes
-//
-// @requires color-scale()
-//
-// @example
-//    <div class="wire" data-title="header"></div>
-//
-// @param  {map}    $o         - Setup Args
-//         {number} $o.levels  - How many levels the wire classes are nested [10]
-//         {list}   $o.colors  - Color Values, min and max [#fbfbfb #8d8d8d]
+/// Generate Stylingclasses for Wireframes
+///
+/// @group generators
+///
+/// @requires color-scale()
+///
+/// @param  {map}    $o         - Setup Args
+/// @param  {number} $o.levels  - How many levels the wire classes are nested [10]
+/// @param  {list}   $o.colors  - Color Values, min and max [#fbfbfb #8d8d8d]
+///
+/// @example html - structure
+///    <div class="wire" data-title="header"></div>
 @mixin wireframe-generator($o) {
   // Setup
   $o: map-merge((

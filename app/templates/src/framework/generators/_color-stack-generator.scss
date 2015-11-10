@@ -2,15 +2,17 @@
 // Color Stack Generator
 // ===================================================
 
-// Generate Stack off individual Colors
-//
-// @requires color-stack()
-//
-// @param  {map}    $o           - Setup Vars
-//         {list}   $o.color     - Color Values [#000 #000]
-//         {list}   $o.stacks    - Individual steps between the color mix [30 60 90]
-//         {*}      $o.attribute - Attribute [background-color]
-//         {bool}   $o.extend    - For extending the classes with other Classes [false]
+/// Generate Stack off individual Colors
+///
+/// @group generators
+///
+/// @requires color-stack()
+///
+/// @param  {map}    $o                              - Setup Vars
+/// @param  {list}   $o.color [#000 #000]            - Color Values
+/// @param  {list}   $o.stacks [30 60 90]            - Individual steps between the color mix
+/// @param  {*}      $o.attribute [background-color] - Attribute
+/// @param  {bool}   $o.extend [false]               - For extending the classes with other Classes
 @mixin color-stack-generator($o: ()) {
   // Default Setup
   $o: map-merge((

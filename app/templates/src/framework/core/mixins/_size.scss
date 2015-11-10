@@ -2,39 +2,37 @@
 // Size
 // ===================================================
 
-// Size
-// ====
-// For include Element Dimensions in Width, Height and Lineheight.
-// When '$size' have only one Value will height and width the same (square)
-//
-// @param  {list}   $size       - Width and/or Height
-// @param  {bool}   $lineheight - Line-height can also added. Either it use the 'size' Value or a Number [false]
-//
-// @example
-//   .box-1 {
-//     @include size(40);
-//   }
-//   .box-2 {
-//     @include size(200 3rem);
-//   }
-//   .box-3 {
-//     @include size(50 20, 20);
-//   }
-//
-// @output
-//   .box-1 {
-//     width: 40px;
-//     height: 40px;
-//   }
-//   .box-2 {
-//     width: 200px;
-//     height: 3rem;
-//   }
-//   .box-3 {
-//     width: 50px;
-//     height: 20px;
-//     line-height: 20px;
-//   }
+/// For include Element Dimensions in Width, Height and Line-Height.
+/// When '$size' have only one Value will height and width the same (square)
+///
+/// @param  {list}   $size               - Width and/or Height
+/// @param  {bool}   $lineheight [false] - Line-Height can also added. Either it use the 'size' Value or a Number
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include size(40);
+///   }
+///   .box-2 {
+///     @include size(200 3rem);
+///   }
+///   .box-3 {
+///     @include size(50 20, 20);
+///   }
+///
+/// @example css - css
+///   .box-1 {
+///     width: 40px;
+///     height: 40px;
+///   }
+///   .box-2 {
+///     width: 200px;
+///     height: 3rem;
+///   }
+///   .box-3 {
+///     width: 50px;
+///     height: 20px;
+///     line-height: 20px;
+///   }
 @mixin size($size, $lineheight: false) {
   @if length($size) <= 2 {
     @if length($size) == 2 {

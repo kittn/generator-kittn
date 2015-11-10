@@ -2,12 +2,14 @@
 // Fontface Generator
 // ===================================================
 
-// Include all Font Faces from the Font Face Map
-// Will be activated with Internal Functions
-//
-// @depend on fontface()
-//
-// @param  {map}    $map - Map
+/// Include all Font Faces from the Font Face Map
+/// Will be activated with Internal Functions
+///
+/// @group generators
+///
+/// @requires {mixin} fontface
+///
+/// @param  {map}    $map - Map
 @mixin fontface-generator($map: $kittn-fontface-map ) {
   // Check if fontface mixin exists
   @if mixin_exists(fontface) {

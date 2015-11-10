@@ -2,14 +2,16 @@
 // Color Methods
 // ===================================================
 
-// Mixin to get Color Values from the Color Map
-//
-// @access private
-//
-// @param  {string} $target - Color Keyword
-// @param  {string} $attrib - Color Attribute [color]
-// @param  {bool}   $imp    - For !important [false]
-// @param  {map}    $map    - Color Map [$kittn-color-map]
+/// Mixin to get Color Values from the Color Map
+///
+/// @group methods-color
+///
+/// @access private
+///
+/// @param  {string} $target                 - Color Keyword
+/// @param  {string} $attrib [color]         - Color Attribute
+/// @param  {bool}   $imp [false]            - For !important
+/// @param  {map}    $map [$kittn-color-map] - Color Map
 @mixin _color($target, $attrib: color, $imp: false, $map: $kittn-color-map) {
 
   // Check if '$target' is in the Map
@@ -41,95 +43,95 @@
   }
 }
 
-// Get C
-// =====
-// Use the desired Color Value from the Map an build a Color Value
-//
-// @param  {string} $target - Color Keyword
-// @param  {bool}   $hard   - For !important [false]
-//
-// @example
-//   .color-1 {
-//     @include get-c('primary');
-//   }
-//   .color-2 {
-//     @include get-c('primary', true);
-//   }
-//
-// @output
-//   .color-1 {
-//     color: #f29300;
-//   }
-//   .color-2 {
-//     color: #f29300 !important;
-//   }
+/// Use the desired Color Value from the Map an build a Color Value
+///
+/// @group methods-color
+///
+/// @param  {string} $target       - Color Keyword
+/// @param  {bool}   $hard [false] - For !important
+///
+/// @example scss - scss
+///   .color-1 {
+///     @include get-c('primary');
+///   }
+///   .color-2 {
+///     @include get-c('primary', true);
+///   }
+///
+/// @example css - css
+///   .color-1 {
+///     color: #f29300;
+///   }
+///   .color-2 {
+///     color: #f29300 !important;
+///   }
 @mixin get-c($target, $hard: false) {
   @include _color($target, $attrib: color, $imp: $hard);
 }
 
-// Get BC
-// ======
-// Use the desired Color Value from the Map an build a Background-Color Value
-//
-// @param  {string} $target - Color Keyword
-// @param  {bool}   $hard   - For !important [false]
-//
-// @example
-//   .background {
-//     @include get-bc('alert');
-//   }
-//
-// @output
-//   .background {
-//     background-color: #ef462a;
-//   }
+/// Use the desired Color Value from the Map an build a Background-Color Value
+///
+/// @group methods-color
+///
+/// @param  {string} $target       - Color Keyword
+/// @param  {bool}   $hard [false] - For !important
+///
+/// @example scss - scss
+///   .background {
+///     @include get-bc('alert');
+///   }
+///
+/// @example css - css
+///   .background {
+///     background-color: #ef462a;
+///   }
 @mixin get-bc($target, $hard: false) {
   @include _color($target, $attrib: background-color, $imp: $hard);
 }
 
-// Ext C
-// =====
-// Extend the Element with existing Color Classes
-//
-// @param  {string} $name - Name from the Color Selector
-//
-// @example
-//   %c--alert {
-//     @include get-c('alert');
-//   }
-//   .important-text {
-//     @include ext-c('alert');
-//   }
-//   .alert-text {
-//     @include ext-c('alert');
-//   }
-//
-// @output
-//   .important-text, .alert-text {
-//     color: #ef462a;
-//   }
+/// Extend the Element with existing Color Classes
+///
+/// @group methods-color
+///
+/// @param  {string} $name - Name from the Color Selector
+///
+/// @example scss - scss
+///   %c--alert {
+///     @include get-c('alert');
+///   }
+///   .important-text {
+///     @include ext-c('alert');
+///   }
+///   .alert-text {
+///     @include ext-c('alert');
+///   }
+///
+/// @example css - css
+///   .important-text, .alert-text {
+///     color: #ef462a;
+///   }
 @mixin ext-c($name) {
   @extend %c#{map-get($kittn-bem, modifier)}#{$name};
 }
 
-// Ext BC
-// ======
-// Extend the Element with existing Background-Color Classes
-//
-// @param  {string} $name - Name from the Color Selector
-//
-// @example
-//   %bc--primary {
-//     @include get-bc('primary');
-//   }
-//   .button {
-//     @include ext-bc('primary');
-//   }
-//
-// @output
-//   .button {
-//     background-color: #f29300;
-//   }
+/// Extend the Element with existing Background-Color Classes
+///
+/// @group methods-color
+///
+/// @param  {string} $name - Name from the Color Selector
+///
+/// @example scss - scss
+///   %bc--primary {
+///     @include get-bc('primary');
+///   }
+///   .button {
+///     @include ext-bc('primary');
+///   }
+///
+/// @example css - css
+///   .button {
+///     background-color: #f29300;
+///   }
 @mixin ext-bc($name) {
   @extend %bc#{map-get($kittn-bem, modifier)}#{$name};
 }

@@ -2,9 +2,11 @@
 // Responsive Fontsize Generator
 // ===================================================
 
-// Generate Responsive Fonts, based on the Breakpoint Map
-//
-// @param  {number} $base - The Base Font Size in percent
+/// Generate Responsive Fonts, based on the Breakpoint Map
+///
+/// @group generators
+///
+/// @param  {number} $base - The Base Font Size in percent
 @mixin responsive-fontsize($base) {
   $list: ();
 

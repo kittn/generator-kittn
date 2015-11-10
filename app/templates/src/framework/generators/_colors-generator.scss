@@ -2,11 +2,13 @@
 // Color Generator
 // ===================================================
 
-// Generate Color Classes (or Silent) with all Colors from the Color Map.
-//
-// @access private
-//
-// @type {map}    $colors - Map with Colors
+/// Generate Color Classes (or Silent) with all Colors from the Color Map.
+///
+/// @group generators
+///
+/// @access private
+///
+/// @type {map}    $colors [$kittn-color-map] - Map with Colors
 @mixin colorgenerator($colors: $kittn-color-map) {
   // Mixin check
   @if mixin_exists(_color) {
