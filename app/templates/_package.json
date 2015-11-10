@@ -47,6 +47,7 @@
     "jshint-stylish": "^2.0.1",
     "markdown": "0.5.0",
     "matchdep": "0.3.0",
+    "sassdoc": "^2.1.15",
     "postcss-assets": "^3.0.2",
     "run-sequence": "1.1.4",
     "vinyl": "^0.4.6",

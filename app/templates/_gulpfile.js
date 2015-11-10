@@ -14,9 +14,10 @@ var gulp         = require('gulp'),
     stylish      = require('jshint-stylish'),
     pngquant     = require('imagemin-pngquant'),
     assets       = require('postcss-assets'),
-    prefix       = require('autoprefixer');
+    prefix       = require('autoprefixer'),
+    sassdoc      = require('sassdoc');
 
-// Define the Template Files
+    // Define the Template Files
 var templateFiles, globalJSMinify, globalCSSMinify, globalImageMinify;
 
 if(kittn.template.compiler) {<% if ( projectstructure == 'Twig Template' ) { %>
@@ -533,6 +534,13 @@ gulp.task('version:bump', function(){
 //  }
 //});
 
+/**
+ * Build the CSS Framework Documentation
+ */
+gulp.task('sassdoc', function () {
+  return gulp.src('src/framework/**/*.scss')
+    .pipe(sassdoc());
+});
 
 // MAIN TASK BLOCK ------------------------------------------------------
 
@@ -563,6 +571,7 @@ gulp.task('rebuild:js', [
  * Starting Task for the first Build off the Project Structure
  */
 gulp.task('init',[
+  'sassdoc',
   'copy:launch',
   'copy:fonts',
   'rebuild:js',

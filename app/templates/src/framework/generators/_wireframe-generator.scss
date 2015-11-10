@@ -6,11 +6,11 @@
 ///
 /// @group generators
 ///
-/// @requires color-scale()
+/// @require {function} color-scale
 ///
-/// @param  {map}    $o         - Setup Args
-/// @param  {number} $o.levels  - How many levels the wire classes are nested [10]
-/// @param  {list}   $o.colors  - Color Values, min and max [#fbfbfb #8d8d8d]
+/// @param  {map}    $o                          - Setup Args
+/// @param  {number} $o.levels [10]              - How many levels the wire classes are nested
+/// @param  {list}   $o.colors [#fbfbfb #8d8d8d] - Color Values, min and max
 ///
 /// @example html - structure
 ///    <div class="wire" data-title="header"></div>
