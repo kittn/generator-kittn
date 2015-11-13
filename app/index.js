@@ -32,7 +32,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
       '\n ';
     console.log(welcome);
 
-    // Different Questions
+    // Ask something to setup the project skeleton
     var prompts = [
       {
         type: 'input',
@@ -106,6 +106,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
       }
     ];
 
+    // Get Data from prompts
     this.prompt(prompts, function (props) {
       this.projectname = props.projectname;
       this.projectdescription = props.projectdescription;
@@ -126,8 +127,25 @@ var KittnGenerator = yeoman.generators.Base.extend({
 
   app: function () {
 
-    // Move the SRC Folder
+    // Add the Template Vars for the Process
+    var template_params = {
+      projectname : this.projectname,
+      projectdescription : this.projectdescription,
+      projectversion : this.projectversion,
+      projectauthor : this.projectauthor,
+      projectmail : this.projectmail,
+      projecturl : this.projecturl,
+      projectissues : this.projectissues,
+      projectrepo : this.projectrepo,
+      projectcssfilename : this.projectcssfilename,
+      projectiecompatible : this.projectiecompatible,
+      projectjquery : this.projectjquery,
+      projectstructure : this.projectstructure,
+      projectUsage : this.projectUsage,
+      pkg: this.pkg
+    }
 
+    // Move the SRC Folder
     this.directory('src/js/', 'src/js/');
     this.directory('src/style/', 'src/style/');
     this.directory('src/fonts/', 'src/fonts/');
@@ -141,39 +159,114 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.directory('src/structure/', 'src/structure/');
 
     // Add SCSS Files with the desired Filename
-    this.copy('_style.scss', 'src/style/'+this.projectcssfilename+'.scss');
+    this.fs.copyTpl(
+      this.templatePath('_style.scss'),
+      this.destinationPath('src/style/'+this.projectcssfilename+'.scss'),
+      template_params
+    );
 
     // IE8 get his own CSS File for Fallbacks
     if (this.projectiecompatible == true ) {
-      this.copy('_style-ie8.scss', 'src/style/'+this.projectcssfilename+'-ie8.scss');
+      this.fs.copyTpl(
+        this.templatePath('_style-ie8.scss'),
+        this.destinationPath('src/style/'+this.projectcssfilename+'-ie8.scss'),
+        template_params
+      );
     }
 
     // Include the Jade Working Dir
     if ( this.projectstructure == 'Jade Template' ) {
       this.directory('src/jade/', 'src/template/');
-      this.copy('_site-header.jade', 'src/template/parts/_site-header.jade');
-      this.copy('_site-scripts.jade', 'src/template/parts/_site-scripts.jade');
+
+      // Add the Template Header
+      this.fs.copyTpl(
+        this.templatePath('_site-header.jade'),
+        this.destinationPath('src/template/parts/_site-header.jade'),
+        template_params
+      );
+
+      // Add the Template Footer (Script Files)
+      this.fs.copyTpl(
+        this.templatePath('_site-scripts.jade'),
+        this.destinationPath('src/template/parts/_site-scripts.jade'),
+        template_params
+      );
 
     // Include the Twig Working Dir
     } else if ( this.projectstructure == 'Twig Template' ) {
       this.directory('src/twig/', 'src/template/');
-      this.copy('_site-header.twig', 'src/template/parts/site-header.twig');
-      this.copy('_site-scripts.twig', 'src/template/parts/site-scripts.twig');
-    }
-  },
 
-  projectfiles: function () {
-    this.copy('_package.json', 'package.json');
-    this.copy('_config.json', 'config.json');
-    this.copy('_bower.json', 'bower.json');
-    this.copy('_gulpfile.js', 'gulpfile.js');
-    this.copy('_defaults.scss', 'src/framework/_defaults.scss');
-    this.copy('_readme.md', 'readme.md');
-    this.copy('_gitignore', '.gitignore');
-    this.copy('bowerrc', '.bowerrc');
-    this.copy('editorconfig', '.editorconfig');
-    this.copy('jshintrc', '.jshintrc');
-    this.copy('todo.md', 'todo.md');
+      // Add the Template Header
+      this.fs.copyTpl(
+        this.templatePath('_site-header.twig'),
+        this.destinationPath('src/template/parts/site-header.twig'),
+        template_params
+      );
+
+      // Add the Template Footer (Script Files)
+      this.fs.copyTpl(
+        this.templatePath('_site-scripts.twig'),
+        this.destinationPath('src/template/parts/site-scripts.twig'),
+        template_params
+      );
+    }
+
+    // Include some other important files
+    this.fs.copyTpl(
+      this.templatePath('_package.json'),
+      this.destinationPath('package.json'),
+      template_params
+    );
+    this.fs.copyTpl(
+      this.templatePath('_config.json'),
+      this.destinationPath('config.json'),
+      template_params
+    );
+    this.fs.copyTpl(
+      this.templatePath('_bower.json'),
+      this.destinationPath('bower.json'),
+      template_params
+    );
+    this.fs.copyTpl(
+      this.templatePath('_gulpfile.js'),
+      this.destinationPath('gulpfile.js'),
+      template_params
+    );
+    this.fs.copyTpl(
+      this.templatePath('_defaults.scss'),
+      this.destinationPath('src/framework/_defaults.scss'),
+      template_params
+    );
+    this.fs.copyTpl(
+      this.templatePath('_readme.md'),
+      this.destinationPath('readme.md'),
+      template_params
+    );
+    this.fs.copyTpl(
+      this.templatePath('_gitignore'),
+      this.destinationPath('gitignore'),
+      template_params
+    );
+    this.fs.copyTpl(
+      this.templatePath('bowerrc'),
+      this.destinationPath('.bowerrc'),
+      template_params
+    );
+    this.fs.copyTpl(
+      this.templatePath('editorconfig'),
+      this.destinationPath('.editorconfig'),
+      template_params
+    );
+    this.fs.copyTpl(
+      this.templatePath('jshintrc'),
+      this.destinationPath('.jshintrc'),
+      template_params
+    );
+    this.fs.copyTpl(
+      this.templatePath('todo.md'),
+      this.destinationPath('todo.md'),
+      template_params
+    );
   },
 
   install: function () {

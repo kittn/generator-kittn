@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "3.0.1",
+  "version": "3.0.2",
   "description": "Kittn Scaffolding and Frontend Toolchain",
   "license": "MIT",
   "main": "app/index.js",
@@ -28,7 +28,7 @@
     "twig"
   ],
   "dependencies": {
-    "yeoman-generator": "^0.19.0",
+    "yeoman-generator": "^0.21.1",
     "chalk": "^1.0.0",
     "yosay": "^1.0.2"
   },
