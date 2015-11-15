@@ -178,6 +178,7 @@ gulp.task('compiler:template', function(){
   if(kittn.template.compiler) {<% if ( projectstructure == 'Twig Template' ) { %>
     // TWIG
     return gulp.src(kittn.src.template + '*.twig')
+      .pipe($.changed(kittn.dist.markup, {extension: '.html'}))
       .pipe($.plumber())
       .pipe($.twig({ data: templateLocals }))
       .on('error', $.notify.onError(function (error) {
