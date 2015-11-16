@@ -41,10 +41,11 @@ Move Image Files from src/stash/images/bitmap-assets to distribution
 **`gulp copy:vectors`**<br>
 Move Image Files from scr/stash/images/svgsingle to distribution
 
-**`gulp deploy:manual`**<br>
-Publish the Project for Production - you can Bump the Version with Enviroment Vars.<br>Example: $ gulp publish --type=major` => for a Major Release
+**`gulp publish`**<br>
+Publish the Project for Production - you can Bump the Version with Enviroment Vars.
+Example: `$ gulp publish --type=major` => for a Major Release
 
-**`gulp deploy:auto`**<br>
+**`gulp deploy`**<br>
 Minify JS, Images, CSS. Is for a automated Build Process, comes after a Gulp Init.
 
 ## Dependencies
