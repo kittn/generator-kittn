@@ -2,9 +2,9 @@
 *.sassc
 .sass-cache
 *.css.map
-node_modules
-src/bower
-.idea/
+/node_modules
+/src/bower
+/.idea
 <% if (projectUsage == 'Integrate in Wordpress' ) { %>
 
 # Wordpress Specific

@@ -244,7 +244,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
     );
     this.fs.copyTpl(
       this.templatePath('_gitignore'),
-      this.destinationPath('gitignore'),
+      this.destinationPath('.gitignore'),
       template_params
     );
     this.fs.copyTpl(
