@@ -513,28 +513,6 @@ gulp.task('version:bump', function(){
   .pipe(gulp.dest('./'));
 });
 
-///**
-// * Styleguide
-// * @description Build the Styleguide
-// * --guide=no will disable the Building on the Publish Task
-// */
-//gulp.task('styleguide', function() {
-//  var guide = args.guide || 'yes';
-//
-//  if (guide == 'yes') {
-//    return gulp.src(kittn.dist.css + pkg.cssFileName + '.css')
-//      .pipe(styleguide.generate({
-//          title: 'Styleguide for: '+pkg.name+' (v.'+pkg.version+')',
-//          server: false,
-//          rootPath: 'styleguide/',
-//          appRoot: '../styleguide',
-//          overviewPath: 'readme.md'
-//        }))
-//      .pipe(styleguide.applyStyles())
-//      .pipe(gulp.dest('styleguide/'));
-//  }
-//});
-
 /**
  * Build the CSS Framework Documentation
  */
