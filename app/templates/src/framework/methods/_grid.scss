@@ -326,7 +326,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   );
 
   // Check the Possible Arguments, on fail put a warning in the Console
-  @include warn-args($check, layout, map-get($o, layout), 'row');
+  @include warn-args($check, layout, $layout, 'row');
   @include warn-args($check, valign, map-get($o, valign), 'row');
   @include warn-args($check, align, map-get($o, align), 'row');
 
@@ -478,7 +478,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   );
 
   // Check the Possible Arguments, on fail put a warning in the Console
-  @include warn-args($check, layout, map-get($o, layout), 'column');
+  @include warn-args($check, layout, $layout, 'column');
   @include warn-args($check, valign, map-get($o, valign), 'column');
   @include warn-args($check, align, map-get($o, align), 'column');
 
