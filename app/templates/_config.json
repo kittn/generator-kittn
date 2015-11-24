@@ -117,6 +117,10 @@
       "src/bower/conditionizr/detects/ie8.js"<% } %>
     ]
   },
+  "styleguide": {
+    "rootPath": "styleguide/",
+    "appRoot": "../styleguide"
+  },
   "minify": {
     "automatic": {
       "jsFiles": true,
@@ -124,7 +128,7 @@
       "jsCopy": true,
       "jsModernizr": true,
       "jsConditionizr": true,
-      "css": true,
+      "css": false,
       "vector": true,
       "bitmaps": true,
       "vectorSprite": true,

@@ -15,6 +15,7 @@ var gulp         = require('gulp'),
     pngquant     = require('imagemin-pngquant'),
     assets       = require('postcss-assets'),
     prefix       = require('autoprefixer'),
+    styleguide   = require('sc5-styleguide'),
     sassdoc      = require('sassdoc');
 
     // Define the Template Files
@@ -521,6 +522,28 @@ gulp.task('sassdoc', function () {
     .pipe(sassdoc());
 });
 
+/**
+ * Styleguide
+ * @description Build the Styleguide
+ * --guide=no will disable the Building on the Publish Task
+ */
+gulp.task('styleguide', function() {
+  var guide = args.guide || 'yes';
+
+  if (guide == 'yes') {
+    return gulp.src(kittn.dist.css + pkg.cssFileName + '.css')
+      .pipe(styleguide.generate({
+        title: 'Styleguide for: '+pkg.name+' (v.'+pkg.version+')',
+        server: false,
+        rootPath: kittn.styleguide.rootPath,
+        appRoot: kittn.styleguide.appRoot,
+        overviewPath: 'readme.md'
+      }))
+      .pipe(styleguide.applyStyles())
+      .pipe(gulp.dest(kittn.styleguide.rootPath));
+  }
+});
+
 // MAIN TASK BLOCK ------------------------------------------------------
 
 /**
@@ -597,6 +620,9 @@ gulp.task('publish', function(callback) {
     ],
     [
       'version:bump',
+    ],
+    [
+      'styleguide'
     ],
     [
       'minify:css',
