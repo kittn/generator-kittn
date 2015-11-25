@@ -85,7 +85,7 @@
 
   // Modify the Body when Offcanvas is active
   // Prevents to scroll the Page.
-  body.#{map-get($o, state-name)} & {
+  body.#{map-get($o, state-name)} {
     overflow: hidden;
 
     // Reset OffCanvas on Bigger Screensizes
@@ -108,7 +108,7 @@
       .#{map-get($o, state-name)} & {
         position: relative;
         // Move OffCanvas in the Stack Levels
-        @if map-get($o, offOverOn) { z-index: 10;} else { z-index: 1;}
+        @if map-get($o, offOverOn) { z-index: 10;} @else { z-index: 1;}
 
         // Build the Distance based on the Directions
         @if map-get($o, position) == 'right' {
@@ -136,7 +136,7 @@
       top: 0;
 
       // Move OffCanvas in the Stack Levels
-      @if map-get($o, offOverOn) { z-index: 1;} else { z-index: 10;}
+      @if map-get($o, offOverOn) { z-index: 1;} @else { z-index: 10;}
 
       // Offcanvas Position is variable
       @if map-get($o, position) == 'right' {
