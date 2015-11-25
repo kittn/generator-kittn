@@ -50,7 +50,7 @@ Minify JS, Images, CSS. Is for a automated Build Process, comes after a Gulp Ini
 
 ## Dependencies
 
-- Node >= 4.4.x
+- Node >= 4.2.x
 - Gulp 3.9.0
 - Bower 1.4.0
 - Yeoman 1.4.8
