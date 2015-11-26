@@ -18,8 +18,8 @@ var offCanvasToggle = function(button) {
       event.preventDefault();
 
       // Toggle the ToggleClass
-      $root.classList.toggle('is-offCanvas');
-      $button.classList.toggle('is-offCanvas');
+      $root.classList.toggle('is-offcanvas');
+      $button.classList.toggle('is-offcanvas');
     });
 
   } else {

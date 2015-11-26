@@ -452,9 +452,7 @@ gulp.task('minify:js', function() {
  */
 gulp.task('minify:css', function() {
   return gulp.src(kittn.dist.css + '*.css')
-    .pipe($.if(globalCSSMinify == true,
-      $.csso()
-    ))
+    .pipe($.csso())
     .pipe(gulp.dest(kittn.dist.css));
 });
 
@@ -614,6 +612,9 @@ gulp.task('default', ['browser-sync', 'watch']);
  * Compress Files
  */
 gulp.task('publish', function(callback) {
+  // Temporary overwrite Minify CSS
+  kittn.minify.automatic.css = false;
+
   runSequence(
     [
       'compiler:css'
