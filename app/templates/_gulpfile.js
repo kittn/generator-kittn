@@ -12,6 +12,7 @@ var gulp         = require('gulp'),
     runSequence  = require('run-sequence'),
     path         = require('path'),
     stylish      = require('jshint-stylish'),
+    strip        = require('gulp-strip-banner'),
     pngquant     = require('imagemin-pngquant'),
     assets       = require('postcss-assets'),
     postcssSVG   = require('postcss-svg'),
@@ -494,6 +495,7 @@ gulp.task('codequality:js', function() {
  */
 gulp.task('header:css', function(){
   gulp.src(kittn.dist.css + '*.css')
+    .pipe(strip())
     .pipe($.header(banner, { pkg : pkg } ))
     .pipe(gulp.dest(kittn.dist.css));
 });
@@ -504,6 +506,7 @@ gulp.task('header:css', function(){
  */
 gulp.task('header:js', function(){
   gulp.src(kittn.dist.js + '*.js')
+    .pipe(strip())
     .pipe($.header(banner, { pkg : pkg } ))
     .pipe(gulp.dest(kittn.dist.js));
 });
