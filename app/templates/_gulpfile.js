@@ -14,6 +14,7 @@ var gulp         = require('gulp'),
     stylish      = require('jshint-stylish'),
     pngquant     = require('imagemin-pngquant'),
     assets       = require('postcss-assets'),
+    postcssSVG   = require('postcss-svg'),
     prefix       = require('autoprefixer'),
     styleguide   = require('sc5-styleguide'),
     sassdoc      = require('sassdoc');
@@ -119,6 +120,11 @@ gulp.task('compiler:css', function(){
     prefix({
       browsers: kittn.css.prefix,
       cascade: false
+    }),
+    // Inline SVG Images
+    postcssSVG({
+      defaults: '[fill]:#444',
+      paths: [kittn.dist.vectors]
     })
   ];
 
@@ -415,6 +421,22 @@ gulp.task('build:vectorSprite', function() {
 });
 
 /**
+ * SymbolCleanup
+ * @description Remove FillColor from SVG Symbols
+ */
+gulp.task('build:symbolCleanup', function(){
+  return gulp.src(kittn.dist.cssimg + kittn.src.images.vectorSprite.symbolName)
+    .pipe($.cheerio({
+      run: function ($) {
+        $('[fill]').removeAttr('fill');
+        $('[fill-rule]').removeAttr('fill-rule');
+      },
+      parserOptions: { xmlMode: true }
+    }))
+    .pipe(gulp.dest(kittn.dist.cssimg));
+});
+
+/**
  * Minfiy Images
  * @description Compress all Images in distribution
  * Inline Images (SVG, PNG, JPG, GIF)
@@ -548,12 +570,19 @@ gulp.task('styleguide', function() {
  * Rebuild all Images
  * Copy to distribution, build Sprites
  */
-gulp.task('rebuild:images', [
-  'copy:bitmaps',
-  'copy:vectors',
-  'build:bitmapSprite',
-  'build:vectorSprite'
-]);
+gulp.task('rebuild:images', function(callback) {
+  runSequence(
+    [
+      'copy:bitmaps',
+      'copy:vectors',
+      'build:bitmapSprite',
+      'build:vectorSprite'
+    ],
+    [
+      'build:symbolCleanup'
+    ],
+    callback);
+});
 
 /**
  * Rebuild all JS Files
@@ -570,15 +599,23 @@ gulp.task('rebuild:js', [
 /**
  * Starting Task for the first Build off the Project Structure
  */
-gulp.task('init',[
-  'sassdoc',
-  'copy:launch',
-  'copy:fonts',
-  'rebuild:js',
-  'rebuild:images',
-  'compiler:css',
-  'compiler:template'
-]);
+gulp.task('init', function(callback) {
+  runSequence(
+    [
+      'sassdoc'
+    ],
+    [
+      'copy:launch',
+      'copy:fonts',
+      'rebuild:js',
+      'rebuild:images'
+    ],
+    [
+      'compiler:css',
+      'compiler:template'
+    ],
+    callback);
+});
 
 /**
  * Default Task - start the Watch Tasks for SASS,

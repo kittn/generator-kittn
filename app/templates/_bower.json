@@ -6,6 +6,7 @@
     "jquery": "2.1.4",<% } %>
     "modernizr": "2.8.3",
     "selectivizr-new": "1.0.3",
-    "conditionizr": "4.4.0"
+    "conditionizr": "4.4.0",
+    "svg4everybody": "~2.0.0"
   }
 }
