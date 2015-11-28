@@ -12,7 +12,7 @@
   },
   "cssFileName": "<%= projectcssfilename %>",
   "devDependencies": {
-    "autoprefixer": "^6.0.3",
+    "autoprefixer": "^6.1.1",
     "browser-sync": "2.10.0",
     "css-parse": "1.5.3",
     "gulp": "^3.9.0",

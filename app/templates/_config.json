@@ -44,12 +44,10 @@
     "combineMQ": false,
     "sourcemap": true,
     "prefix": [
-      "last 2 version",
-      "> 1%",<% if (projectiecompatible == true ) { %>
+      "last 2 version",<% if (projectiecompatible == true ) { %>
       "ie 8",<% } else { %>
       "ie 9",<% } %>
-      "chrome 30",
-      "firefox 30"
+      "> 5%"
     ]
   },
   "template": {
