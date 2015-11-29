@@ -546,25 +546,85 @@ gulp.task('sassdoc', function () {
 });
 
 /**
+ * Styleguide Generate
+ * @description Read out CSS File to Generate the Styleguide
+ */
+gulp.task('styleguide:generate', function() {
+  return gulp.src(kittn.dist.css + pkg.cssFileName + '.css')
+    .pipe(styleguide.generate({
+      title: 'Styleguide for: '+pkg.name+' (v.'+pkg.version+')',
+      server: false,
+      rootPath: kittn.styleguide.rootPath,
+      appRoot: kittn.styleguide.appRoot,
+      overviewPath: kittn.styleguide.overviewPath,
+      disableHtml5Mode: kittn.styleguide.disableHtml5Mode,
+      disableEncapsulation: kittn.styleguide.disableEncapsulation,
+      extraHead: kittn.styleguide.extraHead
+    }))
+    .pipe(styleguide.applyStyles())
+    .pipe(gulp.dest(kittn.styleguide.rootPath));
+});
+
+/**
+ * Styleguide Assets
+ * @description Copy all Assets to Styleguide
+ */
+gulp.task('styleguide:assets', function(){
+  // Copy Fonts
+  gulp.src(kittn.dist.fonts + '**/*')
+    .pipe(gulp.dest(kittn.styleguide.rootPath + '/fonts'));
+
+  // Copy Images
+  gulp
+    .src(kittn.dist.cssimg + '**/*')
+    .pipe(gulp.dest(kittn.styleguide.rootPath + '/assets/img'));
+
+  // Copy JS
+  gulp
+    .src(kittn.dist.js + '**/*')
+    .pipe(gulp.dest(kittn.styleguide.rootPath + '/assets/js'));
+});
+
+/**
  * Styleguide
  * @description Build the Styleguide
  * --guide=no will disable the Building on the Publish Task
  */
-gulp.task('styleguide', function() {
+gulp.task('styleguide', function(callback) {
+  // Default Build Variable
   var guide = args.guide || 'yes';
 
+  // Overwrite Kittn CSS Minification
+  kittn.minify.automatic.css = false;
+
   if (guide == 'yes') {
-    return gulp.src(kittn.dist.css + pkg.cssFileName + '.css')
-      .pipe(styleguide.generate({
-        title: 'Styleguide for: '+pkg.name+' (v.'+pkg.version+')',
-        server: false,
-        rootPath: kittn.styleguide.rootPath,
-        appRoot: kittn.styleguide.appRoot,
-        overviewPath: 'readme.md'
-      }))
-      .pipe(styleguide.applyStyles())
-      .pipe(gulp.dest(kittn.styleguide.rootPath));
+    runSequence(
+      [
+        'compiler:css'
+      ],
+      [
+        'styleguide:generate',
+        'styleguide:assets'
+      ],
+      callback);
   }
+});
+
+/**
+ * Styleguide View
+ * @description Use the BrowserSync Server for Display the Styleguide
+ */
+gulp.task('styleguide:view', function() {
+  // Browser Sync
+  browserSync.init([],
+    { options: {
+      debugInfo: true,
+      watchTask: false,
+      ghostMode: false
+    },
+      server: kittn.styleguide.rootPath,
+      open: true
+    });
 });
 
 // MAIN TASK BLOCK ------------------------------------------------------
@@ -656,9 +716,6 @@ gulp.task('publish', function(callback) {
   kittn.minify.automatic.css = false;
 
   runSequence(
-    [
-      'compiler:css'
-    ],
     [
       'version:bump',
     ],

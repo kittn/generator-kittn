@@ -117,7 +117,11 @@
   },
   "styleguide": {
     "rootPath": "styleguide/",
-    "appRoot": "../styleguide"
+    "appRoot": "http://localhost:3000",
+    "overviewPath": "readme.md",
+    "disableEncapsulation": false,
+    "disableHtml5Mode": false,
+    "extraHead": []
   },
   "minify": {
     "automatic": {
