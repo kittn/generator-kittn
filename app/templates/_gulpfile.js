@@ -558,9 +558,12 @@ gulp.task('version:bump', function(){
  */
 gulp.task('sassdoc', function () {
   return gulp.src('src/framework/**/*.scss')
-    .pipe(sassdoc());
+    .pipe(sassdoc(
+      options = {
+        dest: 'doc/sassdoc'
+      }
+    ));
 });
-
 /**
  * Styleguide Generate
  * @description Read out CSS File to Generate the Styleguide
@@ -570,7 +573,7 @@ gulp.task('styleguide:generate', function() {
     .pipe(styleguide.generate({
       title: 'Styleguide for: '+pkg.name+' (v.'+pkg.version+')',
       server: false,
-      rootPath: kittn.styleguide.rootPath,
+      rootPath: 'doc/styleguide/',
       appRoot: kittn.styleguide.appRoot,
       overviewPath: kittn.styleguide.overviewPath,
       disableHtml5Mode: kittn.styleguide.disableHtml5Mode,
@@ -578,7 +581,7 @@ gulp.task('styleguide:generate', function() {
       extraHead: kittn.styleguide.extraHead
     }))
     .pipe(styleguide.applyStyles())
-    .pipe(gulp.dest(kittn.styleguide.rootPath));
+    .pipe(gulp.dest('doc/styleguide/'));
 });
 
 /**
@@ -588,17 +591,17 @@ gulp.task('styleguide:generate', function() {
 gulp.task('styleguide:assets', function(){
   // Copy Fonts
   gulp.src(kittn.dist.fonts + '**/*')
-    .pipe(gulp.dest(kittn.styleguide.rootPath + '/fonts'));
+    .pipe(gulp.dest('doc/styleguide/fonts'));
 
   // Copy Images
   gulp
     .src(kittn.dist.cssimg + '**/*')
-    .pipe(gulp.dest(kittn.styleguide.rootPath + '/assets/img'));
+    .pipe(gulp.dest('doc/styleguide/assets/img'));
 
   // Copy JS
   gulp
     .src(kittn.dist.js + '**/*')
-    .pipe(gulp.dest(kittn.styleguide.rootPath + '/assets/js'));
+    .pipe(gulp.dest('doc/styleguide/assets/js'));
 });
 
 /**
@@ -638,7 +641,7 @@ gulp.task('styleguide:view', function() {
       watchTask: false,
       ghostMode: false
     },
-      server: kittn.styleguide.rootPath,
+      server: 'doc/styleguide/',
       open: true
     });
 });

@@ -5,6 +5,7 @@
 /node_modules
 /src/bower
 /.idea
+/doc
 <% if (projectUsage == 'Integrate in Wordpress' ) { %>
 
 # Wordpress Specific

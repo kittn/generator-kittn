@@ -116,7 +116,6 @@
     ]
   },
   "styleguide": {
-    "rootPath": "styleguide/",
     "appRoot": "http://localhost:3000",
     "overviewPath": "readme.md",
     "disableEncapsulation": false,
