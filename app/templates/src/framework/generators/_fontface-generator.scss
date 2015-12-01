@@ -11,10 +11,35 @@
 ///
 /// @param  {map}    $map - Map
 @mixin fontface-generator($map: $kittn-fontface-map ) {
+  // Add Counter
+  $counter: 1;
+
   // Check if fontface mixin exists
   @if mixin_exists(fontface) {
+/*
+  FontFaces
+
+  Styleguide 1.7
+*/
     // Run through the map
     @each $name, $entry in $map {
+
+      // Move the Counter Up to count the Loop
+      $counter: $counter + 1;
+/*
+  Font: #{$name}
+
+  markup:
+  <h2 style="font-family: #{$name}">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</h2>
+  <p style="font-family: #{$name}">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+  sg-wrapper:
+  <div class="sg-body">
+    <sg-wrapper-content/>
+  </div>
+
+  Styleguide 1.7.#{$counter}
+*/
 
       // Call the Mixin
       @include fontface(

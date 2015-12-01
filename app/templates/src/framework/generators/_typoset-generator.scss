@@ -8,17 +8,49 @@
 ///
 /// @param  {map}    $map [$kittn-typostyles-map] - Map
 @mixin typogenerator($map: $kittn-typostyles-map) {
+  // Add Counter
+  $counter: 1;
+
   @each $style, $entry in $map {
     $selector: null;
+
+    // Move the Counter Up to count the Loop
+    $counter: $counter + 1;
 
     // Build the Selector
     @if map-get($entry,tag) != false {
       $selector: '.#{$style},#{$style}';
+/*
+  #{$style}
+
+  markup:
+  <#{$style}>Lorem Ipsum it dolor</#{$style}>
+  <p class="#{$style}">Lorem Ipsum it dolor</p>
+
+  sg-wrapper:
+  <div class="sg-body">
+    <sg-wrapper-content/>
+  </div>
+
+  Styleguide 1.1.#{$counter}
+*/
 
     } @else {
       $selector: '.#{$style}';
-    }
+/*
+  #{$style}
 
+  markup:
+  <p class="#{$style}">Lorem Ipsum it dolor</p>
+
+  sg-wrapper:
+  <div class="sg-body">
+    <sg-wrapper-content/>
+  </div>
+
+  Styleguide 1.1.#{$counter}
+*/
+    }
     // Add Style
     #{$selector} {
       // Extend with a outer class

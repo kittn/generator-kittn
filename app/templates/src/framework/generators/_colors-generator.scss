@@ -12,8 +12,32 @@
 @mixin colorgenerator($colors: $kittn-color-map) {
   // Mixin check
   @if mixin_exists(_color) {
-    @each $value, $entry in $colors {
+/*
+  Colors
 
+  Styleguide 1.6
+*/
+    // Add Counter
+    $counter: 1;
+
+    @each $value, $entry in $colors {
+      // Move the Counter Up to count the Loop
+      $counter: $counter + 1;
+/*
+  #{$value}
+
+  Colorvalue #{c($value)}
+
+  markup:
+  <div class="sg-body" style="border-radius: 200px; height: 200px; width: 200px; background-color:#{c($value)}; box-shadow: 0 0 10px rgba(0,0,0,0.2);"></div>
+
+  sg-wrapper:
+  <div class="sg-body">
+    <sg-wrapper-content/>
+  </div>
+
+  Styleguide 1.6.#{$counter}
+*/
       // Build Placeholder Classes
       %c#{map-get($kittn-bem, modifier)}#{$value} {
         @include _color($value,color);
@@ -49,6 +73,4 @@
   } @else {
     @warn "_color Mixin dosen't exists!"
   }
-
-
 }
