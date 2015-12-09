@@ -67,12 +67,14 @@
     ],
     "fonts": [],
     "launch": [<% if (projectUsage == 'Building HTML Prototypes') { %>
-      {"src": "favicon.png", "dest": "assets/img/system/"},
+      {"src": "facebook-og-image.jpg", "dest": "assets/img/system/"},
+      {"src": "twitter-og-image.jpg", "dest": "assets/img/system/"},
       {"src": "spinner.gif", "dest": "assets/img/system/"},
       {"src": ".htaccess", "dest": ""},
       {"src": "404.html", "dest": ""},
       {"src": "robots.txt", "dest": ""}<% } if (projectUsage == 'Integrate in Wordpress' || projectUsage == 'Integrate in KirbyCMS' || projectUsage == 'Integrate in CraftCMS') { %>
-      {"src": "favicon.png", "dest": "assets/img/system/"},
+      {"src": "facebook-og-image.jpg", "dest": "assets/img/system/"},
+      {"src": "twitter-og-image.jpg", "dest": "assets/img/system/"},
       {"src": "spinner.gif", "dest": "assets/img/system/"}<% } %>
     ]
   },
@@ -98,8 +100,7 @@
       "inlinesvg",
       "respond",
       "hsla",
-      "rgba",
-      "webgl"
+      "rgba"
     ]
   },
   "conditionizr": {
@@ -188,6 +189,7 @@
     "bitmaps": "src/images/bitmapSingle-assets/",
     "vectors": "src/images/vectorSingle-assets/"
     },
+    "htmlimages": "src/images/htmlimages/",
     "system": "src/.system/"
   }
 }

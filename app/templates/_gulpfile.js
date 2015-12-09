@@ -454,7 +454,63 @@ gulp.task('build:symbolCleanup', function(){
 });
 
 /**
- * Minfiy Images
+ * htmlImages
+ * @description Copy and Compress all Images
+ * Inline Images (SVG, PNG, JPG, GIF)
+ */
+gulp.task('htmlimages', function () {
+  gulp.src(kittn.src.htmlimages + '**/*.{png,jpeg,jpg,gif,webp,svg}')
+    .pipe($.changed(kittn.dist.htmlimg))
+    .pipe($.imagemin({
+        optimizationLevel: kittn.minify.images.optimizationLevel,
+        use: [
+          pngquant(kittn.minify.images.pngquant)],
+        svgoPlugins: kittn.minify.images.svgoPlugins,
+        progressive: kittn.minify.images.progressive,
+        interlaced: kittn.minify.images.interlaced
+      })
+    )
+    .pipe(gulp.dest(kittn.dist.htmlimg));
+});
+
+/**
+ * BuildFavicon
+ * @description Build a set of Favicons
+ */
+gulp.task('build:favicon', function () {
+  gulp.src(kittn.src.system + 'favicon.png')
+    .pipe($.favicons({
+      appName: pkg.title,
+      appDescription: pkg.description,
+      developerName: pkg.author.name,
+      developerURL: pkg.author.url,
+      background: '#fff',
+      path: kittn.dist.cssimgRoot + 'system/',
+      url: '',
+      display: 'standalone',
+      orientation: 'portrait',
+      version: pkg.version,
+      logging: false,
+      online: false,
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: true,
+        coast: true,
+        favicons: true,
+        firefox: true,
+        opengraph: false,
+        twitter: false,
+        windows: true,
+        yandex: false
+      },
+      html: kittn.dist.markup + '_favicon.html'
+    }))
+    .pipe(gulp.dest(kittn.dist.cssimg + 'system/'));
+});
+
+/**
+ * Minify Images
  * @description Compress all Images in distribution
  * Inline Images (SVG, PNG, JPG, GIF)
  */
@@ -687,6 +743,7 @@ gulp.task('init', function(callback) {
       'sassdoc'
     ],
     [
+      'build:favicon',
       'copy:launch',
       'copy:fonts',
       'rebuild:js',
