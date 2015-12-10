@@ -395,7 +395,7 @@ gulp.task('build:bitmapSprite', function () {
  * @description Build an SVG Vector Sprite and a Map file
  */
 gulp.task('build:vectorSprite', function() {
-  gulp.src(kittn.src.images.vectorSprite.files + '**/*.svg')
+  return gulp.src(kittn.src.images.vectorSprite.files + '**/*.svg')
     .pipe(
     kittn.minify.automatic.vectorSprite ? $.imagemin({
       svgoPlugins: kittn.minify.images.svgoPlugins
@@ -445,7 +445,8 @@ gulp.task('build:symbolCleanup', function(){
   return gulp.src(kittn.dist.cssimg + kittn.src.images.vectorSprite.symbolName)
     .pipe($.cheerio({
       run: function ($) {
-        $('[fill]').removeAttr('fill');
+        $('[fill^="#"]').removeAttr('fill');
+        $('[fill^="none"]').removeAttr('fill');
         $('[fill-rule]').removeAttr('fill-rule');
       },
       parserOptions: { xmlMode: true }
