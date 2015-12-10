@@ -27,7 +27,7 @@ $api: ();
 ///
 /// @return {*}
 @function ct($map) {
-  @return if(v($map,type) == 'silent', '%', '.');
+  @return unquote(if(v($map,type) == 'silent', '%', '.'));
 }
 
 /// Integrate Comments in a Constructor with a check
