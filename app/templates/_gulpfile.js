@@ -648,7 +648,7 @@ gulp.task('styleguide:generate', function() {
 gulp.task('styleguide:assets', function(){
   // Copy Fonts
   gulp.src(kittn.dist.fonts + '**/*')
-    .pipe(gulp.dest('doc/styleguide/fonts'));
+    .pipe(gulp.dest('doc/styleguide/assets/fonts'));
 
   // Copy Images
   gulp
