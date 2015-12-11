@@ -45,7 +45,8 @@ body {
   min-height: 100%;
 }
 
-body {
+body,
+.sg-body {
   margin: 0;
   position: relative;
   color: map-get($kittn-color-route, text);

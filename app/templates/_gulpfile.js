@@ -631,6 +631,7 @@ gulp.task('styleguide:generate', function() {
       title: 'Styleguide for: '+pkg.name+' (v.'+pkg.version+')',
       server: false,
       rootPath: 'doc/styleguide/',
+      commonClass: 'sg-body',
       appRoot: kittn.styleguide.appRoot,
       overviewPath: kittn.styleguide.overviewPath,
       disableHtml5Mode: kittn.styleguide.disableHtml5Mode,
