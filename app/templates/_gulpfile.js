@@ -749,7 +749,8 @@ gulp.task('init', function(callback) {
       'copy:launch',
       'copy:fonts',
       'rebuild:js',
-      'rebuild:images'
+      'rebuild:images',
+      'htmlimages'
     ],
     [
       'compiler:css',
