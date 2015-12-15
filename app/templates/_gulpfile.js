@@ -20,9 +20,11 @@ var gulp         = require('gulp'),
     styleguide   = require('sc5-styleguide'),
     sassdoc      = require('sassdoc');
 
-    // Define the Template Files
 var templateFiles, globalJSMinify, globalCSSMinify, globalImageMinify;
 
+var templateCompleteRefresh = false;
+
+// Define the Template Files
 if(kittn.template.compiler) {<% if ( projectstructure == 'Twig Template' ) { %>
   templateFiles = kittn.src.template + '**/*.twig';<% } else if ( projectstructure == 'Jade Template' ) { %>
   templateFiles = kittn.src.template + '**/*.jade';<% } %>
@@ -202,7 +204,7 @@ gulp.task('compiler:template', function(){
   if(kittn.template.compiler) {<% if ( projectstructure == 'Twig Template' ) { %>
     // TWIG
     return gulp.src(kittn.src.template + '*.twig')
-      .pipe($.changed(kittn.dist.markup, {extension: '.html'}))
+      .pipe(templateCompleteRefresh === false ? $.changed(kittn.dist.markup, {extension: '.html'}) : gutil.noop())
       .pipe($.plumber())
       .pipe($.twig({ data: templateLocals }))
       .on('error', $.notify.onError(function (error) {
@@ -237,7 +239,7 @@ gulp.task('compiler:template', function(){
   // Simple Copy Files
   } else {
     gulp.src(kittn.src.structure + '**/**')
-      .pipe($.changed(kittn.dist.markup))
+      .pipe(templateCompleteRefresh === false ? $.changed(kittn.dist.markup) : gutil.noop())
       .pipe(gulp.dest(kittn.dist.markup));
   }
 });
@@ -261,7 +263,7 @@ gulp.task('combine:js', function() {
 // Check written JS and move it into tmp
 gulp.task('compiler:js', function() {
   gulp.src([kittn.src.js + '*.js','!'+kittn.src.js+'_*.js'])
-    .pipe($.changed(kittn.dist.js, { extension: '.js' }))
+    .pipe(templateCompleteRefresh === false ? $.changed(kittn.dist.js, { extension: '.js' }) : gutil.noop())
     .pipe($.plumber())
     .pipe($.include())
     .pipe($.jshint())
@@ -300,7 +302,7 @@ gulp.task('copy:fonts', function () {
 gulp.task('copy:js', function () {
   kittn.files.jsCopy.forEach(function(item) {
     gulp.src(item)
-      .pipe($.changed(kittn.dist.js))
+      .pipe(templateCompleteRefresh === false ? $.changed(kittn.dist.js) : gutil.noop())
       .pipe(kittn.minify.automatic.jsCopy ? $.uglify(kittn.minify.javascript.options) : gutil.noop())
       .pipe(gulp.dest(kittn.dist.js));
   });
@@ -312,7 +314,7 @@ gulp.task('copy:js', function () {
  */
 gulp.task('copy:bitmaps', function() {
   gulp.src(kittn.src.images.bitmaps + '**/*.{png,jpeg,jpg,gif,webp}')
-    .pipe($.changed(kittn.dist.bitmaps))
+    .pipe(templateCompleteRefresh === false ? $.changed(kittn.dist.bitmaps) : gutil.noop())
     .pipe(kittn.minify.automatic.bitmaps ? $.imagemin({
       optimizationLevel: kittn.minify.images.optimizationLevel,
       use: [
@@ -330,6 +332,7 @@ gulp.task('copy:bitmaps', function() {
  */
 gulp.task('copy:vectors', function() {
   gulp.src(kittn.src.images.vectors + '**/*.svg')
+    .pipe(templateCompleteRefresh === false ? $.changed(kittn.src.images.vectors) : gutil.noop())
     .pipe($.changed(kittn.src.images.vectors))
     .pipe(kittn.minify.automatic.vector ? $.imagemin({
       svgoPlugins: kittn.minify.images.svgoPlugins
@@ -396,8 +399,7 @@ gulp.task('build:bitmapSprite', function () {
  */
 gulp.task('build:vectorSprite', function() {
   return gulp.src(kittn.src.images.vectorSprite.files + '**/*.svg')
-    .pipe(
-    kittn.minify.automatic.vectorSprite ? $.imagemin({
+    .pipe(kittn.minify.automatic.vectorSprite ? $.imagemin({
       svgoPlugins: kittn.minify.images.svgoPlugins
     }) : gutil.noop()
 
@@ -461,7 +463,7 @@ gulp.task('build:symbolCleanup', function(){
  */
 gulp.task('htmlimages', function () {
   gulp.src(kittn.src.htmlimages + '**/*.{png,jpeg,jpg,gif,webp,svg}')
-    .pipe($.changed(kittn.dist.htmlimg))
+    .pipe(templateCompleteRefresh === false ? $.changed(kittn.dist.htmlimg) : gutil.noop())
     .pipe($.imagemin({
         optimizationLevel: kittn.minify.images.optimizationLevel,
         use: [
@@ -740,6 +742,10 @@ gulp.task('rebuild:js', [
  * Starting Task for the first Build off the Project Structure
  */
 gulp.task('init', function(callback) {
+
+  // Write all Templates without check the Changed Files
+  templateCompleteRefresh = true;
+
   runSequence(
     [
       'sassdoc'
@@ -820,8 +826,29 @@ gulp.task('publish', function(callback) {
  * @description: Deploy Task for an automated Build Process
  */
 gulp.task('deploy', function(callback) {
+
+  // Overwrite the Changed Check
+  templateCompleteRefresh = true;
+
+  // Don't generate Sourcemap for Deploy
+  kittn.css.sourcemap = false;
+
   runSequence(
-    'init',
+    [
+      'version:bump',
+    ],
+    [
+      'build:favicon',
+      'copy:launch',
+      'copy:fonts',
+      'rebuild:js',
+      'rebuild:images',
+      'htmlimages'
+    ],
+    [
+      'compiler:css',
+      'compiler:template'
+    ],
     [
       'minify:js',
       'minify:images',
