@@ -14,6 +14,7 @@ var gulp         = require('gulp'),
     stylish      = require('jshint-stylish'),
     strip        = require('gulp-strip-banner'),
     pngquant     = require('imagemin-pngquant'),
+    jpegCompress = require('imagemin-jpeg-recompress'),
     assets       = require('postcss-assets'),
     postcssSVG   = require('postcss-svg'),
     prefix       = require('autoprefixer'),
@@ -318,7 +319,13 @@ gulp.task('copy:bitmaps', function() {
     .pipe(kittn.minify.automatic.bitmaps ? $.imagemin({
       optimizationLevel: kittn.minify.images.optimizationLevel,
       use: [
-        pngquant(kittn.minify.images.pngquant)],
+        pngquant(kittn.minify.images.pngquant),
+        jpegCompress({
+          loops: 3,
+          min: 75,
+          max: 95
+        })
+      ],
       progressive: kittn.minify.images.progressive,
       interlaced: kittn.minify.images.interlaced
     }) : gutil.noop()
@@ -467,7 +474,13 @@ gulp.task('htmlimages', function () {
     .pipe($.imagemin({
         optimizationLevel: kittn.minify.images.optimizationLevel,
         use: [
-          pngquant(kittn.minify.images.pngquant)],
+          pngquant(kittn.minify.images.pngquant),
+          jpegCompress({
+            loops: 3,
+            min: 75,
+            max: 95
+          })
+        ],
         svgoPlugins: kittn.minify.images.svgoPlugins,
         progressive: kittn.minify.images.progressive,
         interlaced: kittn.minify.images.interlaced
