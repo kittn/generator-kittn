@@ -680,10 +680,15 @@ gulp.task('styleguide:assets', function(){
   gulp.src(kittn.dist.fonts + '**/*')
     .pipe(gulp.dest('doc/styleguide/assets/fonts'));
 
-  // Copy Images
+  // Copy CSS Images
   gulp
     .src(kittn.dist.cssimg + '**/*')
     .pipe(gulp.dest('doc/styleguide/assets/img'));
+
+  // Copy HTML Images
+  gulp
+    .src(kittn.dist.htmlimg + '**/*')
+    .pipe(gulp.dest('doc/styleguide/images'));
 
   // Copy JS
   gulp
