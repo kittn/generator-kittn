@@ -8,6 +8,7 @@
     "selectivizr-new": "1.0.3",
     "conditionizr": "4.5.0",
     "svg4everybody": "~2.0.0",
-    "lazysizes": "~1.3.2"
+    "lazysizes": "~1.3.2",
+    "css-element-queries": "~0.3.0"
   }
 }

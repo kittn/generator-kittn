@@ -520,7 +520,7 @@ gulp.task('build:favicon', function () {
         windows: true,
         yandex: false
       },
-      html: kittn.dist.markup + '_favicon.html'
+      html: kittn.src.system + 'favicon.html'
     }))
     .pipe(gulp.dest(kittn.dist.cssimg + 'system/'));
 });

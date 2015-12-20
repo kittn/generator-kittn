@@ -258,6 +258,11 @@ var KittnGenerator = yeoman.generators.Base.extend({
       template_params
     );
     this.fs.copyTpl(
+      this.templatePath('nvmrc'),
+      this.destinationPath('.nvmrc'),
+      template_params
+    );
+    this.fs.copyTpl(
       this.templatePath('jshintrc'),
       this.destinationPath('.jshintrc'),
       template_params
