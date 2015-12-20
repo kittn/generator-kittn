@@ -15,15 +15,51 @@ var gulp         = require('gulp'),
     strip        = require('gulp-strip-banner'),
     pngquant     = require('imagemin-pngquant'),
     jpegCompress = require('imagemin-jpeg-recompress'),
-    assets       = require('postcss-assets'),
-    postcssSVG   = require('postcss-svg'),
-    prefix       = require('autoprefixer'),
     styleguide   = require('sc5-styleguide'),
     sassdoc      = require('sassdoc');
 
 var templateFiles, globalJSMinify, globalCSSMinify, globalImageMinify;
 
 var templateCompleteRefresh = false;
+
+// Default Config for PostCSS Plugins
+var cssPostCSS = [
+  // Add :matches Selector
+  require('postcss-selector-matches'),
+  // Include Assets
+  require('postcss-assets')({
+    basePath: kittn.templatePath.root,
+    loadPaths: [
+      kittn.dist.cssimg
+    ]
+  }),
+  // Prefixer
+  require('autoprefixer')({
+    browsers: kittn.css.prefix,
+    cascade: false
+  }),
+  // Inline SVG Images
+  require('postcss-svg')({
+    defaults: '[fill]:#444',
+    paths: [kittn.dist.vectors]
+  }),
+  // Include the LostGrid System
+  require('lost')({/**/}),
+  // Include Size Short hands
+  require('postcss-short-size'),
+  // Fix some Flexbox Bugs
+  require('postcss-flexbugs-fixes')
+];
+
+// Final Optimisation with CSSNano
+var postCSSNano = [
+  require('cssnano')({
+    zindex: false,
+    discardUnused: false,
+    reduceIdents: false,
+    mergeIdents: false
+  })
+];
 
 // Define the Template Files
 if(kittn.template.compiler) {<% if ( projectstructure == 'Twig Template' ) { %>
@@ -126,28 +162,6 @@ gulp.task('browser-sync', function() {
  */
 gulp.task('compiler:css', function(){
 
-  // Default Config for PostCSS Plugins
-  var cssPostCSS = [
-    // Include Assets
-    assets(
-      options = {
-        basePath: kittn.templatePath.root,
-        loadPaths: [
-          kittn.dist.cssimg
-        ]
-      }),
-    // Prefixer
-    prefix({
-      browsers: kittn.css.prefix,
-      cascade: false
-    }),
-    // Inline SVG Images
-    postcssSVG({
-      defaults: '[fill]:#444',
-      paths: [kittn.dist.vectors]
-    })
-  ];
-
   // Libsass Compiler
   if(kittn.css.compiler === 'libsass') {
     return gulp.src(kittn.src.style + '**/*.scss')
@@ -162,7 +176,7 @@ gulp.task('compiler:css', function(){
       // Combine Media Queries
       .pipe(kittn.css.combineMQ ? $.combineMediaQueries({ log: true }) : gutil.noop())
       // Minify CSS
-      .pipe(kittn.minify.automatic.css ? $.csso() : gutil.noop())
+      .pipe(kittn.minify.automatic.css ? $.postcss(postCSSNano) : gutil.noop())
       // Write the SourceMap
       .pipe(kittn.css.sourcemap ? $.sourcemaps.write('.') : gutil.noop())
       .pipe(gulp.dest(kittn.dist.css));
@@ -177,7 +191,7 @@ gulp.task('compiler:css', function(){
       // Combine Media Queries
       .pipe(kittn.css.combineMQ ? $.combineMediaQueries({ log: true }) : gutil.noop())
       // Minify CSS
-      .pipe(kittn.minify.automatic.css ? $.csso() : gutil.noop())
+      .pipe(kittn.minify.automatic.css ? $.postcss(postCSSNano) : gutil.noop())
       // Write the SourceMap
       .pipe(kittn.css.sourcemap ? $.sourcemaps.write('.') : gutil.noop())
       .pipe(gulp.dest(kittn.dist.css));
@@ -563,7 +577,7 @@ gulp.task('minify:js', function() {
  */
 gulp.task('minify:css', function() {
   return gulp.src(kittn.dist.css + '*.css')
-    .pipe($.csso())
+    .pipe($.postcss(postCSSNano))
     .pipe(gulp.dest(kittn.dist.css));
 });
 
