@@ -267,11 +267,6 @@ var KittnGenerator = yeoman.generators.Base.extend({
       this.destinationPath('.jshintrc'),
       template_params
     );
-    this.fs.copyTpl(
-      this.templatePath('todo.md'),
-      this.destinationPath('todo.md'),
-      template_params
-    );
   },
 
   install: function () {
