@@ -57,6 +57,7 @@
     "postcss-flexbugs-fixes": "^2.0.0",
     "postcss-selector-matches": "^2.0.1",
     "postcss-short-size": "^1.0.0",
+    "lost": "^6.6.2",
     "run-sequence": "1.1.4",
     "cssnano": "^3.4.0",
     "vinyl": "^0.4.6",
