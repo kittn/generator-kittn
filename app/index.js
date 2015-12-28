@@ -1,11 +1,11 @@
 'use strict';
 var util = require('util');
 var path = require('path');
-var yeoman = require('yeoman-generator');
 var yosay = require('yosay');
 var chalk = require('chalk');
+var yeoman = require('yeoman-generator');
 
-var KittnGenerator = yeoman.generators.Base.extend({
+var KittnGenerator = yeoman.Base.extend({
   init: function () {
     this.pkg = require('../package.json');
   },
@@ -59,19 +59,19 @@ var KittnGenerator = yeoman.generators.Base.extend({
         name: 'projectstructure',
         message: 'How do you want to compile your Structure with Jade or Twig? Otherwise you can use the Copy Task to move Files from src to your dist dir.',
         choices: [
-          "Twig Template",
-          "Jade Template",
-          "Uncompiled"
+          'Twig Template',
+          'Jade Template',
+          'Uncompiled'
         ]
       },{
         type: 'list',
         name: 'projectUsage',
         message: 'How do you want to use Kittn? Yeoman can integrate the Toolkit for you (setting Path etc.)',
         choices: [
-          "Building HTML Prototypes",
-          "Integrate in CraftCMS",
-          "Integrate in Wordpress",
-          "Integrate in KirbyCMS"
+          'Building HTML Prototypes',
+          'Integrate in CraftCMS',
+          'Integrate in Wordpress',
+          'Integrate in KirbyCMS'
         ]
       },{
         type: 'input',
@@ -122,7 +122,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
   app: function () {
 
     // Add the Template Vars for the Process
-    var template_params = {
+    var templateParams = {
       projectname : this.projectname,
       projectdescription : this.projectdescription,
       projectversion : this.projectversion,
@@ -136,7 +136,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
       projectstructure : this.projectstructure,
       projectUsage : this.projectUsage,
       pkg: this.pkg
-    }
+    };
 
     // Move the SRC Folder
     this.directory('src/js/', 'src/js/');
@@ -156,52 +156,52 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.fs.copyTpl(
       this.templatePath('_style.scss'),
       this.destinationPath('src/style/'+this.projectcssfilename+'.scss'),
-      template_params
+      templateParams
     );
 
     // IE8 get his own CSS File for Fallbacks
-    if (this.projectiecompatible == true ) {
+    if (this.projectiecompatible === true ) {
       this.fs.copyTpl(
         this.templatePath('_style-ie8.scss'),
         this.destinationPath('src/style/'+this.projectcssfilename+'-ie8.scss'),
-        template_params
+        templateParams
       );
     }
 
     // Include the Jade Working Dir
-    if ( this.projectstructure == 'Jade Template' ) {
+    if ( this.projectstructure === 'Jade Template' ) {
       this.directory('src/jade/', 'src/template/');
 
       // Add the Template Header
       this.fs.copyTpl(
         this.templatePath('_site-header.jade'),
         this.destinationPath('src/template/parts/_site-header.jade'),
-        template_params
+        templateParams
       );
 
       // Add the Template Footer (Script Files)
       this.fs.copyTpl(
         this.templatePath('_site-scripts.jade'),
         this.destinationPath('src/template/parts/_site-scripts.jade'),
-        template_params
+        templateParams
       );
 
     // Include the Twig Working Dir
-    } else if ( this.projectstructure == 'Twig Template' ) {
+    } else if ( this.projectstructure === 'Twig Template' ) {
       this.directory('src/twig/', 'src/template/');
 
       // Add the Template Header
       this.fs.copyTpl(
         this.templatePath('_site-header.twig'),
         this.destinationPath('src/template/parts/site-header.twig'),
-        template_params
+        templateParams
       );
 
       // Add the Template Footer (Script Files)
       this.fs.copyTpl(
         this.templatePath('_site-scripts.twig'),
         this.destinationPath('src/template/parts/site-scripts.twig'),
-        template_params
+        templateParams
       );
     }
 
@@ -209,72 +209,72 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.fs.copyTpl(
       this.templatePath('_package.json'),
       this.destinationPath('package.json'),
-      template_params
+      templateParams
     );
     this.fs.copyTpl(
       this.templatePath('_config.json'),
       this.destinationPath('gulpfile/config.json'),
-      template_params
+      templateParams
     );
     this.fs.copyTpl(
       this.templatePath('_bower.json'),
       this.destinationPath('bower.json'),
-      template_params
+      templateParams
     );
     this.fs.copyTpl(
       this.templatePath('_gulpfile.babel.js'),
       this.destinationPath('gulpfile.babel.js'),
-      template_params
+      templateParams
     );
     this.fs.copyTpl(
       this.templatePath('_defaults.scss'),
       this.destinationPath('src/framework/_defaults.scss'),
-      template_params
+      templateParams
     );
     this.fs.copyTpl(
       this.templatePath('_readme.md'),
       this.destinationPath('readme.md'),
-      template_params
+      templateParams
     );
     this.fs.copyTpl(
       this.templatePath('_gitignore'),
       this.destinationPath('.gitignore'),
-      template_params
+      templateParams
     );
     this.fs.copyTpl(
       this.templatePath('bowerrc'),
       this.destinationPath('.bowerrc'),
-      template_params
+      templateParams
     );
     this.fs.copyTpl(
       this.templatePath('editorconfig'),
       this.destinationPath('.editorconfig'),
-      template_params
+      templateParams
     );
     this.fs.copyTpl(
       this.templatePath('nvmrc'),
       this.destinationPath('.nvmrc'),
-      template_params
+      templateParams
     );
     this.fs.copyTpl(
       this.templatePath('babelrc'),
       this.destinationPath('.babelrc'),
-      template_params
+      templateParams
     );
     this.fs.copyTpl(
       this.templatePath('jshintrc'),
       this.destinationPath('.jshintrc'),
-      template_params
+      templateParams
     );
     this.fs.copyTpl(
       this.templatePath('_templateFiles.js'),
       this.destinationPath('gulpfile/lib/templateFiles.js'),
-      template_params
+      templateParams
     );
     this.fs.copyTpl(
       this.templatePath('_compile-html.js'),
       this.destinationPath('gulpfile/tasks/compile-html.js'),
-      template_params
+      templateParams
     );
   },
 

@@ -14,7 +14,7 @@
     "node": ">=4.1.0"
   },
   "scripts": {
-    "server": "gulp",
+    "start": "gulp",
     "init": "gulp init",
     "publish": "gulp publish",
     "deploy": "gulp deploy",
