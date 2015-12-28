@@ -20,6 +20,7 @@ const bundleJs = (bundler) => {
     .pipe(source(kc.files.jsApp.srcName))
     .pipe(buffer())
     .pipe(env == 'development' ?  $.sourcemaps.init({ loadMaps: true }) : gutil.noop())
+    .pipe(env == 'production' ? $.uglify(kc.minify.javascript.options) : gutil.noop())
     .pipe(env == 'development' ?  $.sourcemaps.write('.') : gutil.noop())
     .pipe(gulp.dest(kc.dist.js))
 }

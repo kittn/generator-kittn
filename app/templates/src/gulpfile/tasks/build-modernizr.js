@@ -10,7 +10,7 @@ import gulpLoadPlugins from 'gulp-load-plugins'
 const $ = gulpLoadPlugins()
 
 const buildModernizrTask = () => {
-  gulp
+  return gulp
     .src('node_modules/gulp-modernizr/build/modernizr-custom.js')
     .pipe($.modernizr({
       crawl: false,

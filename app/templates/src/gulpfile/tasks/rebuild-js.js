@@ -4,15 +4,20 @@
  */
 
 import gulp from 'gulp'
+import runSequence from 'run-sequence'
 
-const rebuildJsTask =
-  [
-    'build:modernizr',
-    'build:conditionizr',
-    'copy:js',
-    'compiler:js'
-  ]
-
+const rebuildJsTask = (cb) => {
+  runSequence (
+    [
+      'build:modernizr',
+      'build:conditionizr'
+    ],
+    [
+      'copy:js',
+      'compiler:js'
+    ],
+  cb)
+}
 
 gulp.task('rebuild:js', rebuildJsTask)
 module.exports = rebuildJsTask

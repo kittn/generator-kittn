@@ -10,7 +10,7 @@ import gulpLoadPlugins from 'gulp-load-plugins'
 const $ = gulpLoadPlugins()
 
 const buildConditionizrTask = () => {
-  gulp
+  return gulp
     .src(kc.conditionizr.files)
     .pipe($.concat(kc.conditionizr.filename))
     .pipe(gulp.dest(kc.dist.js))
