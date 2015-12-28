@@ -1,6 +1,3 @@
-//=require _conditionizr.js
-
 // Main JS File
-$(document).ready(function() {
-  // Paste your JS here
-});
+import modernizrLoad from './partial/modernizer-loader.js'
+import conditionizrInit from './partial/conditionizr-init.js'

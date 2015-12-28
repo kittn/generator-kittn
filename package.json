@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "3.0.80",
+  "version": "3.1.0",
   "description": "Kittn Scaffolding and Frontend Toolchain",
   "license": "MIT",
   "main": "app/index.js",
@@ -10,12 +10,15 @@
     "email": "gisu2onic@gmail.com",
     "url": "https://github.com/gisu"
   },
-  "scripts": {
-    "test": "mocha"
-  },
   "files": [
     "app"
   ],
+  "engines": {
+    "node": ">=4.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "keywords": [
     "yeoman-generator",
     "postcss",
@@ -23,6 +26,9 @@
     "svgsprite",
     "ruby-sass",
     "yeoman",
+    "browserify",
+    "babel",
+    "es6",
     "jade",
     "gulp",
     "twig"
@@ -32,7 +38,5 @@
     "chalk": "^1.0.0",
     "yosay": "^1.0.2"
   },
-  "devDependencies": {
-    "mocha": "*"
-  }
+  "devDependencies": {}
 }

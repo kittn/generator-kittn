@@ -55,11 +55,6 @@ var KittnGenerator = yeoman.generators.Base.extend({
         message: 'IE8 compatibility needed?',
         default: false
       },{
-        type: 'confirm',
-        name: 'projectjquery',
-        message: 'Include new (2.1.4 => y) or Old (1.11.3 => n) jQuery Version?',
-        default: true
-      },{
         type: 'list',
         name: 'projectstructure',
         message: 'How do you want to compile your Structure with Jade or Twig? Otherwise you can use the Copy Task to move Files from src to your dist dir.',
@@ -118,7 +113,6 @@ var KittnGenerator = yeoman.generators.Base.extend({
       this.projectrepo = props.projectrepo;
       this.projectcssfilename = props.projectcssfilename;
       this.projectiecompatible = props.projectiecompatible;
-      this.projectjquery = props.projectjquery;
       this.projectstructure = props.projectstructure;
       this.projectUsage = props.projectUsage;
       done();
@@ -139,7 +133,6 @@ var KittnGenerator = yeoman.generators.Base.extend({
       projectrepo : this.projectrepo,
       projectcssfilename : this.projectcssfilename,
       projectiecompatible : this.projectiecompatible,
-      projectjquery : this.projectjquery,
       projectstructure : this.projectstructure,
       projectUsage : this.projectUsage,
       pkg: this.pkg
@@ -153,6 +146,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
     this.directory('src/scripts/', 'src/scripts/');
     this.directory('src/.system/', 'src/.system/');
     this.directory('src/framework/', 'src/framework/');
+    this.directory('src/gulpfile/', 'gulpfile/');
 
     // As Alternative build a Uncompiled Folder - good for work on native
     // templates with PHP
@@ -219,7 +213,7 @@ var KittnGenerator = yeoman.generators.Base.extend({
     );
     this.fs.copyTpl(
       this.templatePath('_config.json'),
-      this.destinationPath('config.json'),
+      this.destinationPath('gulpfile/config.json'),
       template_params
     );
     this.fs.copyTpl(
@@ -228,8 +222,8 @@ var KittnGenerator = yeoman.generators.Base.extend({
       template_params
     );
     this.fs.copyTpl(
-      this.templatePath('_gulpfile.js'),
-      this.destinationPath('gulpfile.js'),
+      this.templatePath('_gulpfile.babel.js'),
+      this.destinationPath('gulpfile.babel.js'),
       template_params
     );
     this.fs.copyTpl(
@@ -263,8 +257,23 @@ var KittnGenerator = yeoman.generators.Base.extend({
       template_params
     );
     this.fs.copyTpl(
+      this.templatePath('babelrc'),
+      this.destinationPath('.babelrc'),
+      template_params
+    );
+    this.fs.copyTpl(
       this.templatePath('jshintrc'),
       this.destinationPath('.jshintrc'),
+      template_params
+    );
+    this.fs.copyTpl(
+      this.templatePath('_templateFiles.js'),
+      this.destinationPath('gulpfile/lib/templateFiles.js'),
+      template_params
+    );
+    this.fs.copyTpl(
+      this.templatePath('_compile-html.js'),
+      this.destinationPath('gulpfile/tasks/compile-html.js'),
       template_params
     );
   },

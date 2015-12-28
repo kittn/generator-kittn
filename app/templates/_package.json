@@ -1,5 +1,5 @@
 {
-  "title": "<%= projectname %>",
+  "title": "SiteTitle",
   "name": "<%= projectname %>",
   "description": "<%= projectdescription %>",
   "version": "<%= projectversion %>",
@@ -10,47 +10,59 @@
     "email": "<%= projectmail %>",
     "url": "<%= projecturl %>"
   },
-  "cssFileName": "<%= projectcssfilename %>",
+  "engines": {
+    "node": ">=4.1.0"
+  },
+  "scripts": {
+    "server": "gulp",
+    "init": "gulp init",
+    "publish": "gulp publish",
+    "deploy": "gulp deploy",
+    "styleguide": "gulp styleguide:generate && gulp styleguide:view",
+    "js": "gulp rebuild:js",
+    "inlineimages": "gulp rebuild:images",
+    "contentimages": "gulp copy:contentimages"
+  },
   "devDependencies": {
-    "autoprefixer": "^6.1.1",
-    "browser-sync": "2.10.0",
+    "autoprefixer": "^6.2.2",
+    "browser-sync": "2.10.1",
     "css-parse": "1.5.3",
     "gulp": "^3.9.0",
     "gulp-bump": "1.0.0",
     "gulp-changed": "1.3.0",
     "gulp-cheerio": "^0.6.2",
-    "gulp-combine-media-queries": "^0.2.0",
     "gulp-concat": "2.6.0",
     "gulp-header": "~1.7.1",
     "gulp-strip-banner": "0.0.2",
     "gulp-if": "^2.0.0",
     "gulp-imagemin": "2.4.0",
     "gulp-jshint": "1.10.0",
-    "gulp-load-plugins": "^1.0.0",
+    "gulp-load-plugins": "^1.1.0",
     "gulp-modernizr": "^1.0.0-alpha",
     "gulp-notify": "2.2.0",
     "gulp-plumber": "1.0.1",
     "gulp-postcss": "^6.0.1",
-    "gulp-prettify": "0.3.0",
-    "gulp-ruby-sass": "2.0.5",
+    "gulp-prettify": "0.4.0",
+    "gulp-ruby-sass": "2.0.6",
     "gulp-sass": "2.1.1",
     "gulp-favicons": "2.1.5",
     "gulp-sourcemaps": "1.6.0",
     "gulp-svg-sprite": "^1.2.14",
-    "gulp-uglify": "1.2.0",
+    "gulp-uglify": "1.5.1",
     "gulp-include": "^2.0.2",
-    "gulp-util": "3.0.6",<% if ( projectstructure == 'Twig Template' ) { %>
+    "gulp-util": "3.0.7",<% if ( projectstructure == 'Twig Template' ) { %>
     "gulp-twig": "^0.4.0",<% } else if ( projectstructure == 'Jade Template' ) { %>
     "gulp-jade": "1.1.0",
     "gulp-jade-find-affected": "^0.2.2",<% } %>
     "gulp.spritesmith": "6.0.0",
+    "gulp-watch": "^4.3.5",
     "imagemin-pngquant": "^4.2.0",
     "imagemin-svgo": "^4.1.2",
     "imagemin-jpeg-recompress": "^4.3.0",
     "jshint-stylish": "^2.0.1",
     "markdown": "0.5.0",
     "matchdep": "0.3.0",
-    "sassdoc": "2.1.15",
+    "sassdoc": "2.1.19",
     "sc5-styleguide": "^0.3.41",
     "postcss-assets": "^3.0.2",
     "postcss-svg": "^1.0.4",
@@ -58,15 +70,34 @@
     "postcss-selector-matches": "^2.0.1",
     "postcss-short-size": "^1.0.0",
     "lost": "^6.6.2",
-    "run-sequence": "1.1.4",
+    "run-sequence": "1.1.5",
     "cssnano": "^3.4.0",
-    "vinyl": "^0.4.6",
-    "yargs": "^3.10.0"
+    "vinyl": "^1.1.0",
+    "yargs": "^3.10.0",
+    "require-dir": "^0.3.0",
+    "babel": "^6.3.26",
+    "babel-core": "^6.3.26",
+    "babel-preset-es2015": "^6.3.13",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "browserify-shim": "^3.8.11",
+    "utils-merge": "^1.0.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.6.1"
+  },
+  "dependencies": {<% if ( projectiecompatible == true ) { %>
+    "jquery": "1.11.3",
+    "selectivizr": "^1.0.3",<% } else { %>
+    "jquery": "^2.1.4",<% } %>
+    "conditionizr": "^4.5.0",
+    "svg4everybody": "^2.0.1",
+    "lazysizes": "^1.3.2",
+    "cq-prolyfill": "^0.2.5"
   },
   "licenses": [
     {
       "type": "MIT"
     }
-  ],
-  "dependencies": {}
+  ]
 }

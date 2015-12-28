@@ -9,7 +9,7 @@
     "cssimg": "dist/assets/img/",
     "bitmaps": "dist/assets/img/bitmaps/",
     "vectors": "dist/assets/img/svgfiles/",
-    "htmlimg": "dist/images/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
+    "contentimage": "dist/images/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
     "base": "dist/wp-content/themes/<%= projectname %>/",
     "markup": "dist/wp-content/themes/<%= projectname %>/",
     "browserSyncDir": "dist/wp-content/themes/<%= projectname %>/",
@@ -19,7 +19,7 @@
     "cssimg": "dist/wp-content/themes/<%= projectname %>/assets/img/",
     "bitmaps": "dist/wp-content/themes/<%= projectname %>/assets/img/bitmaps/",
     "vectors": "dist/wp-content/themes/<%= projectname %>/assets/img/svgfiles/",
-    "htmlimg": "dist/wp-content/themes/<%= projectname %>/images/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
+    "contentimage": "dist/wp-content/themes/<%= projectname %>/images/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
     "base": "dist/public/",
     "markup": "dist/craft/templates/",
     "browserSyncDir": "dist/public/",
@@ -29,7 +29,7 @@
     "cssimg": "dist/public/assets/img/",
     "bitmaps": "dist/public/assets/img/bitmaps/",
     "vectors": "dist/public/assets/img/svgfiles/",
-    "htmlimg": "dist/public/images/",<% } %>
+    "contentimage": "dist/public/images/",<% } %>
     "cssimgRoot": "/assets/img/"
   },
   "templatePath": {
@@ -41,8 +41,7 @@
   },
   "css": {
     "compiler": "libsass",
-    "combineMQ": false,
-    "sourcemap": true,
+    "filename": "<%= projectcssfilename %>",
     "prefix": [
       "last 2 version",<% if (projectiecompatible == true ) { %>
       "ie 8",<% } else { %>
@@ -51,6 +50,7 @@
     ]
   },
   "template": {
+    "globalTitle": "myPage",
     "compiler": <% if ( projectstructure == 'Twig Template' || projectstructure == 'Jade Template' ) { %>true<% } else { %>false<% } %>
   },
   "browsersync": {
@@ -58,18 +58,23 @@
     "proxy": false
   },
   "files": {
-    "jsCombine" : [
-      "src/bower/jquery/dist/jquery.js"
-    ],
-    "jsCombineFilename": "scripts.js",
+    "jsApp": {
+      "srcName": "app.js",
+      "distName": "app.js"
+    },
     "jsCopy": [<% if (projectiecompatible == true ) { %>
-      "src/bower/selectivizr/selectivizr.js"<% } %>
+      "node_modules/selectivizr/selectivizr.js",<% } %>
+      "node_modules/cq-prolyfill/cq-prolyfill.js",
+      "node_modules/lazysizes/plugins/respimg/ls.respimg.js"
     ],
+    "jsCombine": {
+      "files": [],
+      "filename": "scripts.js"
+    },
     "fonts": [],
     "launch": [<% if (projectUsage == 'Building HTML Prototypes') { %>
       {"src": "facebook-og-image.jpg", "dest": "assets/img/system/"},
       {"src": "twitter-og-image.jpg", "dest": "assets/img/system/"},
-      {"src": "spinner.gif", "dest": "assets/img/system/"},
       {"src": ".htaccess", "dest": ""},
       {"src": "404.html", "dest": ""},
       {"src": "robots.txt", "dest": ""}<% } if (projectUsage == 'Integrate in Wordpress' || projectUsage == 'Integrate in KirbyCMS' || projectUsage == 'Integrate in CraftCMS') { %>
@@ -106,14 +111,14 @@
   "conditionizr": {
     "filename": "conditionizr.js",
     "files": [
-      "src/bower/conditionizr/dist/conditionizr.js",
-      "src/bower/conditionizr/detects/chrome.js",
-      "src/bower/conditionizr/detects/safari.js",
-      "src/bower/conditionizr/detects/firefox.js",
-      "src/bower/conditionizr/detects/ie11.js",
-      "src/bower/conditionizr/detects/ie10.js",
-      "src/bower/conditionizr/detects/ie9.js"<% if (projectiecompatible == true ) { %>,
-      "src/bower/conditionizr/detects/ie8.js"<% } %>
+      "node_modules/conditionizr/dist/conditionizr.js",
+      "node_modules/conditionizr/detects/chrome.js",
+      "node_modules/conditionizr/detects/safari.js",
+      "node_modules/conditionizr/detects/firefox.js",
+      "node_modules/conditionizr/detects/ie11.js",
+      "node_modules/conditionizr/detects/ie10.js",
+      "node_modules/conditionizr/detects/ie9.js"<% if (projectiecompatible == true ) { %>,
+      "node_modules/conditionizr/detects/ie8.js"<% } %>
     ]
   },
   "styleguide": {
@@ -124,18 +129,6 @@
     "extraHead": []
   },
   "minify": {
-    "automatic": {
-      "jsFiles": true,
-      "jsCombine": true,
-      "jsCopy": true,
-      "jsModernizr": true,
-      "jsConditionizr": true,
-      "css": false,
-      "vector": true,
-      "bitmaps": true,
-      "vectorSprite": true,
-      "bitmapSprite": true
-    },
     "images": {
       "optimizationLevel": 3,
       "pngquant": {
@@ -189,7 +182,7 @@
     "bitmaps": "src/images/bitmapSingle-assets/",
     "vectors": "src/images/vectorSingle-assets/"
     },
-    "htmlimages": "src/images/htmlimages/",
+    "contentimage": "src/images/htmlimages/",
     "system": "src/.system/"
   }
 }

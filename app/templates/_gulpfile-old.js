@@ -207,7 +207,7 @@ gulp.task('compiler:template', function(){
 
   // Set Base Locals
   var templateLocals = {
-    siteTitle: pkg.name,
+    siteTitle: pkg.title,
     cssName: pkg.cssFileName,
     assetsCss: kittn.templatePath.css,
     assetsImg: kittn.templatePath.contentimage,
