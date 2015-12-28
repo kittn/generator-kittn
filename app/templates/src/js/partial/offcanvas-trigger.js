@@ -2,28 +2,39 @@
  * Open and Close the OffCanvas Area
  *
  * @example
- * offCanvasToggle('offcanvasTrigger');
+ * offCanvasToggle('offcanvas-trigger---open', 'offcanvas-trigger---close');
  *
  * @param   {string} button Classname from the Trigger Element
  */
-var offCanvasToggle = function(button) {
 
-  var $button = document.getElementsByClassName(button)[0];
-  var $root =  document.getElementsByTagName('body')[0];
+const offCanvasToggle = (open, close) => {
 
-  if ($button) {
-    // Bind Eventhandler
-    $button.addEventListener('click', function(event) {
-      // Prevent Default Clicks
-      event.preventDefault();
+  const $buttonClose = document.getElementsByClassName(close)[0]
+  const $buttonOpen = document.getElementsByClassName(open)[0]
+  const $root =  document.getElementsByTagName('body')[0]
 
-      // Toggle the ToggleClass
-      $root.classList.toggle('is-offcanvas');
-      $button.classList.toggle('is-offcanvas');
-    });
 
-  } else {
-    console.log('Function offCanvasToggle Fail. Button: (' + button + ') not exist. Please use the right classname.');
-    return false;
-  }
-};
+  // Close Event
+  $buttonClose.addEventListener('click', function(event) {
+    // Prevent Default Clicks
+    event.preventDefault()
+
+    // Toggle the ToggleClass
+    $root.classList.remove('is-offcanvas')
+    $buttonClose.classList.remove('is-offcanvas')
+    $buttonOpen.classList.remove('is-offcanvas')
+  });
+
+  // Open Event
+  $buttonOpen.addEventListener('click', function(event) {
+    // Prevent Default Clicks
+    event.preventDefault()
+
+    // Toggle the ToggleClass
+    $root.classList.add('is-offcanvas')
+    $buttonClose.classList.add('is-offcanvas')
+    $buttonOpen.classList.add('is-offcanvas')
+  })
+}
+
+module.exports = offCanvasToggle

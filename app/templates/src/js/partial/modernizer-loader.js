@@ -1,14 +1,18 @@
-// Loading Function for Modernizr
-function loadJS(u) {
-  var r = document.getElementsByTagName("script")[0],
-      s = document.createElement("script");
-  s.src = u;r.parentNode.insertBefore(s,r);
-}
+/**
+ * Modernizr Fallback Loader
+ * @description It will loaded Global with Browserify Shim
+ * The test are asynchron now
+ * https://github.com/Modernizr/Modernizr#new-asynchronous-event-listeners
+ */
 
-(function() {
-  // Modernizr Load Fallback for responsive Image
-  if(!Modernizr.picture) {
-    loadJS('assets/js/ls.respimg.min.js');
+// JS Loader
+// https://github.com/pyrsmk/toast
+import toast from 'pyrsmk-toast'
+import Modernizr from 'modernizr'
+
+// Test for Pictur
+Modernizr.on('picture', ( result ) => {
+  if (!result) {
+    toast('assets/js/ls.respimg.min.js');
   }
-
-})();
+})

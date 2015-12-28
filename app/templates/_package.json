@@ -93,7 +93,14 @@
     "conditionizr": "^4.5.0",
     "svg4everybody": "^2.0.1",
     "lazysizes": "^1.3.2",
-    "cq-prolyfill": "^0.2.5"
+    "cq-prolyfill": "^0.2.5",
+    "pyrsmk-toast": "^1.2.7"
+  },
+  "browserify": {
+    "transform": [ "browserify-shim" ]
+  },
+  "browserify-shim": {
+    "Modernizr": "global:Modernizr"
   },
   "licenses": [
     {
