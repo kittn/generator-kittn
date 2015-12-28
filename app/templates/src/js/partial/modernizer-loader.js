@@ -8,7 +8,7 @@
 // JS Loader
 // https://github.com/pyrsmk/toast
 import toast from 'pyrsmk-toast'
-import Modernizr from 'modernizr'
+import Modernizr from 'Modernizr'
 
 // Test for Pictur
 Modernizr.on('picture', ( result ) => {
