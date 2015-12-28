@@ -1,8 +1,8 @@
 # Generator-Kittn
 
-![kittn-generator](https://cloud.githubusercontent.com/assets/442468/10710315/3347b1d6-7a55-11e5-868e-0fcb9ebed9ad.png)
+[![Build Status](https://travis-ci.org/gisu/generator-kittn.svg?branch=master)](https://travis-ci.org/gisu/generator-kittn) [![bitHound Overall Score](https://www.bithound.io/github/gisu/generator-kittn/badges/score.svg)](https://www.bithound.io/github/gisu/generator-kittn) [![bitHound Dependencies](https://www.bithound.io/github/gisu/generator-kittn/badges/dependencies.svg)](https://www.bithound.io/github/gisu/generator-kittn/master/dependencies/npm)
 
-[![bitHound Overall Score](https://www.bithound.io/github/gisu/generator-kittn/badges/score.svg)](https://www.bithound.io/github/gisu/generator-kittn)[![bitHound Dependencies](https://www.bithound.io/github/gisu/generator-kittn/badges/dependencies.svg)](https://www.bithound.io/github/gisu/generator-kittn/master/dependencies/npm)
+![kittn-generator](https://cloud.githubusercontent.com/assets/442468/10710315/3347b1d6-7a55-11e5-868e-0fcb9ebed9ad.png)
 
 Yeoman Generator for the Kittn Toolkit. Scaffolds and Prepare the Toolkit for you.
 
