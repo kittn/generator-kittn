@@ -1,7 +1,5 @@
 language: node_js
 node_js:
-  - '4.2.1'
-before_install:
-  - currentfolder=${PWD##*/}
-  - if [ "$currentfolder" != 'generator-kittn' ]; then cd .. && eval "mv $currentfolder generator-kittn" && cd generator-kittn; fi
-
+  - '0.12'
+  - v4
+  - v5
