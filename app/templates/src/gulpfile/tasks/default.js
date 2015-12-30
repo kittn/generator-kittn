@@ -3,16 +3,22 @@
  * watch the working dirs - activates the compilers and refresh the browser
  */
 import gulp from 'gulp'
+import runSequence from 'run-sequence'
 
-// Overwrite Changed Checks
-global.htmlChangedCheck = false
+const defaultTask = (cb) => {
 
-const defaultTask = [
-  'browser-sync',
-  'watch',
-  'watch:js'
-]
+  // Overwrite Changed Checks
+  global.changedOverride = false
+
+  runSequence(
+    [
+      'browser-sync',
+      'watch',
+      'watch:js'
+    ],
+    cb)
+}
+
 
 gulp.task('default', defaultTask)
-
 module.exports = defaultTask

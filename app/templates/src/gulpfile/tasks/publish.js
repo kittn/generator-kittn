@@ -10,6 +10,9 @@ import runSequence from 'run-sequence'
 
 const publishTask = (cb) => {
 
+  // Overwrite Changed Checks
+  global.changedOverride = true
+
   runSequence(
     [
       'version:bump',
