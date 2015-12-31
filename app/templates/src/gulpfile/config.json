@@ -30,6 +30,15 @@
       "ie 9"
     ]
   },
+  "cssabove": {
+    "width": "320",
+    "height": "480",
+    "minify": true,
+    "inline": true,
+    "sources": [
+      "index.html"
+    ]
+  },
   "template": {
     "compiler": true
   },
