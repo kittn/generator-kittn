@@ -5,9 +5,7 @@
 /node_modules
 /src/bower
 /.idea
-/doc
-<% if (projectUsage == 'Integrate in Wordpress' ) { %>
-
+/doc<% if (projectUsage == 'Integrate in Wordpress' ) { %>
 # Wordpress Specific
 dist/*.log
 dist/.htaccess
@@ -24,16 +22,13 @@ dist/wp-content/uploads/
 dist/wp-content/wp-cache-config.php
 dist/wp-content/plugins/hello.php
 dist/readme.html
-dist/license.txt
-<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
-
+dist/license.txt<% } else if (projectUsage == 'Integrate in CraftCMS' ) { %>
 # Craft CMS Specific
 dist/craft/storage/*
 !dist/craft/storage/logo/*
-<% } if (projectUsage == 'Integrate in KirbyCMS' ) { %>
-
+<% } else if (projectUsage == 'Integrate in KirbyCMS' ) { %>
 # KirbyCMS Specific
 panel/
 site/panel
-docs
-<% } %>
+docs<% } else { %>
+dist/<% } %>

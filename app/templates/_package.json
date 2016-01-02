@@ -16,13 +16,13 @@
   "scripts": {
     "start": "gulp",
     "init": "gulp init",
-    "publish": "gulp publish",
-    "deploy": "gulp deploy",
+    "publish": "gulp publish --env=production",
+    "deploy": "gulp deploy --env=production",
     "styleguide": "gulp styleguide:generate && gulp styleguide:view",
     "js": "gulp rebuild:js",
     "inlineimages": "gulp rebuild:images",
     "contentimages": "gulp copy:contentimages",
-    "above": "gulp optimize:aboveTheFold"
+    "critical": "gulp optimize:criticalCss --critical=true"
   },
   "devDependencies": {
     "autoprefixer": "^6.2.2",
@@ -92,10 +92,11 @@
     "jquery": "1.11.3",
     "selectivizr": "^1.0.3",<% } else { %>
     "jquery": "^2.1.4",<% } %>
+    "html5shiv": "^3.7.3",
     "conditionizr": "^4.5.0",
     "svg4everybody": "^2.0.1",
     "lazysizes": "^1.3.2",
-    "cq-prolyfill": "^0.2.5",
+    "css-element-queries": "^0.3.0",
     "pyrsmk-toast": "^1.2.7"
   },
   "browserify": {

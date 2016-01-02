@@ -8,10 +8,10 @@
 import gulp from 'gulp'
 import runSequence from 'run-sequence'
 
-const publishTask = (cb) => {
+// Overwrite the Changed Check
+global.changedOverride = true
 
-  // Overwrite Changed Checks
-  global.changedOverride = true
+const publishTask = (cb) => {
 
   runSequence(
     [
@@ -28,6 +28,9 @@ const publishTask = (cb) => {
     ],
     [
       'header:add'
+    ],
+    [
+      'optimize:criticalCss'
     ],
     cb)
 }

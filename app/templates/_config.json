@@ -49,6 +49,15 @@
       "> 5%"
     ]
   },
+  "cssabove": {
+    "width": "320",
+    "height": "480",
+    "minify": true,
+    "inline": true,
+    "sources": [
+      "index.html"
+    ]
+  },
   "template": {
     "globalTitle": "myPage",
     "compiler": <% if ( projectstructure == 'Twig Template' || projectstructure == 'Jade Template' ) { %>true<% } else { %>false<% } %>
@@ -64,8 +73,8 @@
     },
     "jsCopy": [<% if (projectiecompatible == true ) { %>
       "node_modules/selectivizr/selectivizr.js",<% } %>
-      "node_modules/cq-prolyfill/cq-prolyfill.js",
-      "node_modules/lazysizes/plugins/respimg/ls.respimg.js"
+      "node_modules/lazysizes/plugins/respimg/ls.respimg.js",
+      "node_modules/html5shiv/dist/html5shiv.js"
     ],
     "jsCombine": {
       "files": [],
@@ -86,25 +95,24 @@
     "options": [
       "setClasses",
       "addTest",
-      "html5printshiv",
       "testAllProps",
       "fnBind"
     ],
     "tests": [
       "cssanimations",
       "csstransforms",
-      "csstransforms3d",
       "csstransitions",
       "backgroundblendmode",
       "bgsizecover",
-      "preserve3d",
       "flexbox",
       "touch",
       "svg",
       "inlinesvg",
       "respond",
       "hsla",
-      "rgba"
+      "rgba",
+      "webgl",
+      "picture"
     ]
   },
   "conditionizr": {
@@ -121,6 +129,7 @@
     ]
   },
   "styleguide": {
+    "rootPath": "styleguide/",
     "appRoot": "http://localhost:3000",
     "overviewPath": "readme.md",
     "disableEncapsulation": false,
@@ -167,19 +176,19 @@
     "fonts": "src/fonts/",
     "images": {
       "bitmapSprite": {
-      "files": "src/images/bitmapSprite-assets/",
-      "name": "sprite.png"
-    },
-    "vectorSprite": {
-      "files": "src/images/vectorSprite-assets/",
-      "name": "vector-sprite.svg",
-      "symbolName": "symbol-sprite.svg",
-      "maxHeight" : 30,
-      "maxWidth": 30,
-      "padding": 0
-    },
-    "bitmaps": "src/images/bitmapSingle-assets/",
-    "vectors": "src/images/vectorSingle-assets/"
+        "files": "src/images/bitmapSprite-assets/",
+        "name": "sprite.png"
+      },
+      "vectorSprite": {
+        "files": "src/images/vectorSprite-assets/",
+        "name": "vector-sprite.svg",
+        "symbolName": "symbol-sprite.svg",
+        "maxHeight" : 30,
+        "maxWidth": 30,
+        "padding": 0
+      },
+      "bitmaps": "src/images/bitmapSingle-assets/",
+      "vectors": "src/images/vectorSingle-assets/"
     },
     "contentimage": "src/images/htmlimages/",
     "system": "src/.system/"

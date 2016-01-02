@@ -10,10 +10,13 @@ import gulp from 'gulp'
 import gutil from 'gulp-util'
 import gulpLoadPlugins from 'gulp-load-plugins'
 import errorHandler from '../lib/errorHandler'
+import yargs from 'yargs'
 
+const args = yargs.argv
 const $ = gulpLoadPlugins()
 
 const compilerHtmlTask = () => {
+  const siteEnv = args.env || 'development'
 
   // Set Base Locals
   const templateLocals = {
@@ -22,7 +25,8 @@ const compilerHtmlTask = () => {
     assetsCss: kc.templatePath.css,
     assetsImg: kc.templatePath.contentimage,
     assetsJs: kc.templatePath.js,
-    assetsCssImg: kc.templatePath.cssimage
+    assetsCssImg: kc.templatePath.cssimage,
+    environment: siteEnv
   };
 
   // Twig Compiler

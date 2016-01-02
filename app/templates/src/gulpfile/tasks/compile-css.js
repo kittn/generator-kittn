@@ -27,7 +27,7 @@ const compilerCssTask = () => {
       .pipe($.sass({})
         .on('error', errorHandler))
       .pipe($.postcss(preCssConf()))
-      .pipe(kc.css.sourcemap ? $.sourcemaps.write('.') : gutil.noop())
+      .pipe(env == 'development' ? $.sourcemaps.write('.') : gutil.noop())
       .pipe(gulp.dest(kc.dist.css))
 
     // Rubysass Compiler
