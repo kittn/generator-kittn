@@ -4,7 +4,7 @@
  * Inline Images (SVG, PNG, JPG, GIF)
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 import copyImages from '../lib/copyImages'
 

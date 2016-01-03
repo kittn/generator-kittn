@@ -1,5 +1,5 @@
 
-import kc from '../config.json'
+import kc from '../../config.json'
 
 const globalMinifyCheck = () => {
   const gminify = {

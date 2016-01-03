@@ -213,7 +213,7 @@ var KittnGenerator = yeoman.Base.extend({
     );
     this.fs.copyTpl(
       this.templatePath('_config.json'),
-      this.destinationPath('gulpfile/config.json'),
+      this.destinationPath('config.json'),
       templateParams
     );
     this.fs.copyTpl(

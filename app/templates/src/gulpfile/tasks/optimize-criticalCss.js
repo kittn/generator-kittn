@@ -2,7 +2,8 @@
  * Critical CSS
  * @description Generate Inline CSS for the Above the fold optimization
  */
-import kc from '../config.json'
+
+import kc from '../../config.json'
 import gulp from 'gulp'
 import critical from 'critical'
 import yargs from 'yargs'

@@ -3,7 +3,7 @@
  * @description Task for Combine and Generate Conditionizr Test File
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 import gulpLoadPlugins from 'gulp-load-plugins'
 

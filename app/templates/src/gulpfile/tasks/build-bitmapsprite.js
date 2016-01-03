@@ -3,7 +3,7 @@
  * @description Build the Bitmap Sprite File and the SCSS Map
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 import gulpLoadPlugins from 'gulp-load-plugins'
 

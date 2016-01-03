@@ -8,7 +8,7 @@
  * --version=1.2.3 will bump to a specific version and ignore other flags
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 import gulpLoadPlugins from 'gulp-load-plugins'
 import yargs from 'yargs'

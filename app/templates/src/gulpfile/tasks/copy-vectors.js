@@ -3,7 +3,7 @@
  * @description Move all SVG Images (from vectorSingle-assets) to the .dist Folder
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 import gutil from 'gulp-util'
 import gulpLoadPlugins from 'gulp-load-plugins'

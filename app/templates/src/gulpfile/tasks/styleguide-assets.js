@@ -3,7 +3,7 @@
  * @description Copy all Assets to Styleguide
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 
 const styleguideAssetsTask = () => {

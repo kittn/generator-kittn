@@ -1,4 +1,5 @@
-import kc from '../config.json'
+
+import kc from '../../config.json'
 
 const postCSSNano = () => {
   return [

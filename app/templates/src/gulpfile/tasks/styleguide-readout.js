@@ -3,7 +3,7 @@
  * @description Read out CSS File to Generate the Styleguide
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import pkg from '../../package.json'
 import gulp from 'gulp'
 import styleguide from 'sc5-styleguide'

@@ -3,7 +3,7 @@
  * @description Remove FillColor from SVG Symbols
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 import gulpLoadPlugins from 'gulp-load-plugins'
 

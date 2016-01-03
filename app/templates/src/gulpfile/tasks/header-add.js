@@ -2,7 +2,7 @@
  * Add a Header to CSS and JS files
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 import strip from 'gulp-strip-banner'
 import globalMinify from '../lib/global-minify'

@@ -1,7 +1,8 @@
 /**
  * Watch JS Files with Watchify and recompile it with Browserify and Babelify
  */
-import kc from '../config.json'
+
+import kc from '../../config.json'
 import gulp from 'gulp'
 import bundleJs from '../lib/bundle-js'
 import browserify from 'browserify'

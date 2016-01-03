@@ -3,7 +3,7 @@
  * @description Check the JS Code Quality
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 import stylish from 'jshint-stylish'
 import gulpLoadPlugins from 'gulp-load-plugins'

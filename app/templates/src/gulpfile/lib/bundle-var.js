@@ -1,4 +1,4 @@
-import kc from '../config.json'
+import kc from '../../config.json'
 import browserify from 'browserify'
 import babelify from 'babelify'
 import yargs from 'yargs'

@@ -3,7 +3,7 @@
  * @description Refresh the Browser after File Change.
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 import browserSync from 'browser-sync'
 

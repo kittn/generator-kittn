@@ -2,7 +2,8 @@
  * Tthe Watch Tasks for SASS,
  * JADE, JS and activate BrowserSync
  */
-import kc from '../config.json'
+
+import kc from '../../config.json'
 import gulp from 'gulp'
 import watch from 'gulp-watch'
 import templateFiles from '../lib/templateFiles'

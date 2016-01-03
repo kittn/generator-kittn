@@ -1,6 +1,7 @@
 /**
  * Compile JS with Babelify and Watchify
  */
+
 import gulp from 'gulp'
 import bundleJs from '../lib/bundle-js'
 import bundleVar from '../lib/bundle-var'

@@ -4,7 +4,7 @@
  * --guide=no will disable the Building on the Publish Task
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 import yargs from 'yargs'
 import runSequence from 'run-sequence'

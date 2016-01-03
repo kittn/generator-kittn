@@ -3,7 +3,7 @@
  * @description Copy the Default Build Files to distribution
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 
 const copyLaunchTask = () => {

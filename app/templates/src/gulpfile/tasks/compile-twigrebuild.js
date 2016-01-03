@@ -4,7 +4,7 @@
  * @description Compiles Twig without Changed Check, used for Affected Files like layout.twig
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import pkg from '../../package.json'
 import gulp from 'gulp'
 import gutil from 'gulp-util'

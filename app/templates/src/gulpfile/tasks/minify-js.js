@@ -3,7 +3,7 @@
  * @description Compress all Javascript Files in the dist folder
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 import gulpLoadPlugins from 'gulp-load-plugins'
 

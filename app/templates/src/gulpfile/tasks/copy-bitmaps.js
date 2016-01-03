@@ -2,7 +2,7 @@
  * Copy Bitmaps
  * @description Move all Bitmap Images (from bitmapSingle-assets) to the .dist Folder
  */
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 import copyImages from '../lib/copyImages'
 

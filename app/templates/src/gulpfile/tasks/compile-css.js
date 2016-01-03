@@ -2,7 +2,8 @@
  * CSS Compiler Task
  * watch the working dirs - activates the compilers and refresh the browser
  */
-import kc from '../config.json'
+
+import kc from '../../config.json'
 import gulp from 'gulp'
 import gutil from 'gulp-util'
 import browserSync from 'browser-sync'

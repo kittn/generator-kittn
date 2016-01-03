@@ -3,7 +3,7 @@
  * @description Copy the Font Fils to distribution
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 import gutil from 'gulp-util'
 import gulpLoadPlugins from 'gulp-load-plugins'

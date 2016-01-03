@@ -3,7 +3,7 @@
  * @description Build a set of Favicons
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import pkg from '../../package.json'
 import gulp from 'gulp'
 import gulpLoadPlugins from 'gulp-load-plugins'

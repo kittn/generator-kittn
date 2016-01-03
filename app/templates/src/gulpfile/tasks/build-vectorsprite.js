@@ -3,7 +3,7 @@
  * @description Build an SVG Vector Sprite and a Map file
  */
 
-import kc from '../config.json'
+import kc from '../../config.json'
 import gulp from 'gulp'
 import gulpLoadPlugins from 'gulp-load-plugins'
 import svgo from 'imagemin-svgo'
