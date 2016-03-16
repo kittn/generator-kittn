@@ -10,9 +10,12 @@
 import toast from 'pyrsmk-toast'
 import Modernizr from 'Modernizr'
 
+// Get Hostname
+const host = '//' + window.location.hostname
+
 // Test for Pictur
 Modernizr.on('picture', ( result ) => {
   if (!result) {
-    toast('assets/js/ls.respimg.min.js');
+    toast(host + '/assets/js/ls.respimg.js');
   }
 })

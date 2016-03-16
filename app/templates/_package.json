@@ -95,8 +95,9 @@
     "html5shiv": "^3.7.3",
     "conditionizr": "^4.5.0",
     "svg4everybody": "^2.0.3",
-    "lazysizes": "^1.4.0",
-    "css-element-queries": "^0.3.2",
+    "lazysizes": "^1.4.0",<% if (projectquery == 'ElementQuery') { %>
+    "css-element-queries": "^0.3.2",<% } else { %>
+    "cq-prolyfill": "^0.3.2",<% } %>
     "pyrsmk-toast": "^1.2.7"
   },
   "browserify": {

@@ -74,6 +74,14 @@ var KittnGenerator = yeoman.Base.extend({
           'Integrate in KirbyCMS'
         ]
       },{
+        type: 'list',
+        name: 'projectquery',
+        message: 'Outside from MediaQueries you can use ElementQueries or ContainerQueries',
+        choices: [
+          'ContainerQuery',
+          'ElementQuery'
+        ]
+      },{
         type: 'input',
         name: 'projectversion',
         message: 'The Version Number',
@@ -115,6 +123,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectiecompatible = props.projectiecompatible;
       this.projectstructure = props.projectstructure;
       this.projectUsage = props.projectUsage;
+      this.projectquery = props.projectquery;
       done();
     }.bind(this));
   },
@@ -135,6 +144,7 @@ var KittnGenerator = yeoman.Base.extend({
       projectiecompatible : this.projectiecompatible,
       projectstructure : this.projectstructure,
       projectUsage : this.projectUsage,
+      projectquery : this.projectquery,
       pkg: this.pkg
     };
 
@@ -274,6 +284,11 @@ var KittnGenerator = yeoman.Base.extend({
     this.fs.copyTpl(
       this.templatePath('_compile-html.js'),
       this.destinationPath('gulpfile/tasks/compile-html.js'),
+      templateParams
+    );
+    this.fs.copyTpl(
+      this.templatePath('_app.js'),
+      this.destinationPath('src/js/app.js'),
       templateParams
     );
   },

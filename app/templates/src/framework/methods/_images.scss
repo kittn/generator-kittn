@@ -223,7 +223,7 @@
   background-image: url('#{map-get($kittn-directorys, bitmaps)}#{$name}.#{map-get($o,filetype)}');
 
   // Call the Image Mixin
-  @include _images($name: $name, $filetype: map-get($o,filetype), $dir: #{map-get($kittn-directorys, bitmaps)}, $repeat: map-get($o,repeat), $offset: map-get($o, offset), $scale: map-get($o, scale), $dimensions: map-get($o,dimensions) );
+  @include _images($name: $name, $filetype: map-get($o,filetype), $dir: #{map-get($kittn-directorys, bitmap)}, $repeat: map-get($o,repeat), $offset: map-get($o, offset), $scale: map-get($o, scale), $dimensions: map-get($o,dimensions) );
 }
 
 /// Include Vector Images
@@ -276,7 +276,7 @@
   background-image: url('#{map-get($kittn-directorys, svgonly)}#{$name}.svg');
 
   // Call the Image Mixin
-  @include _images($name: $name, $filetype: 'svg', $dir: #{map-get($kittn-directorys, svgonly)}, $repeat: map-get($o,repeat), $offset: map-get($o, offset), $scale: map-get($o, scale), $dimensions: map-get($o,dimensions) );
+  @include _images($name: $name, $filetype: 'svg', $dir: #{map-get($kittn-directorys, vector)}, $repeat: map-get($o,repeat), $offset: map-get($o, offset), $scale: map-get($o, scale), $dimensions: map-get($o,dimensions) );
 }
 
 /// Include a Vector Sprite
