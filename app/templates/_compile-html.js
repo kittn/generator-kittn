@@ -49,7 +49,7 @@ const compilerHtmlTask = () => {
 
     // Simple Copy Files
   } else {
-    gulp.src(kc.src.structure + '**/**')
+    gulp.src([kc.src.structure + '**/**' , kc.src.structure + '**/.*'])
       .pipe(global.changedOverride === false ? $.changed(kc.dist.markup) : gutil.noop())
       .pipe(gulp.dest(kc.dist.markup))
   }
