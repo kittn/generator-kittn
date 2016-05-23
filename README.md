@@ -70,6 +70,7 @@ Minify JS, Images, CSS. Is for a automated Build Process, comes after a Gulp Ini
 
 - Hugo Giraudel (@HugoGiraudel) - for his awesome Sass Scripts
 - Team Sass - Jacket
+- LukyVj (@LukyVj) - for Family.scss
 
 ## Author
 Sascha Fuchs @gisugosu
