@@ -59,7 +59,7 @@
   },
   "template": {
     "globalTitle": "myPage",
-    "compiler": <% if ( projectstructure == 'Twig Template') { %>true<% } else { %>false<% } %>
+    "compiler": <% if ( projectstructure == 'Twig Template' && projectUsage == 'Building HTML Prototypes') { %>true<% } else { %>false<% } %>
   },
   "browsersync": {
     "openbrowser": true,

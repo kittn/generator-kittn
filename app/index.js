@@ -21,9 +21,9 @@ var KittnGenerator = yeoman.Base.extend({
       '\n     )   (        |   Kitty, Kitty, Kitty !  |'+
       '\n    /     \\       | ------------------------ |'+
       '\n    )     (       | Welcome to the marvelous |'+
-      '\n   /       \\      |     Kittn generator!     |'+
+      '\n   /       \\      |     kittn generator!     |'+
       '\n   \\       /      |_________________________/'+
-      '\n    \\__ __/                           v3.5.0'+
+      '\n    \\__ __/                         v3.50.0'+
       '\n       ))'+
       '\n      //'+
       '\n     (('+
@@ -48,20 +48,8 @@ var KittnGenerator = yeoman.Base.extend({
         name: 'projectcssfilename',
         message: 'Filename for the CSS File (without fileending)',
         default: 'style'
-      },{
-        type: 'confirm',
-        name: 'projectiecompatible',
-        message: 'IE8 compatibility needed?',
-        default: false
-      },{
-        type: 'list',
-        name: 'projectstructure',
-        message: 'Do you want to compile your Structure with Twig, or you want to use a vanilla (html, php) Structure Files?',
-        choices: [
-          'Twig Template',
-          'Uncompiled'
-        ]
-      },{
+      },
+      {
         type: 'list',
         name: 'projectUsage',
         message: 'How do you want to use Kittn? Yeoman can integrate the Toolkit for you (setting Path etc.)',
@@ -71,7 +59,24 @@ var KittnGenerator = yeoman.Base.extend({
           'Integrate in Wordpress',
           'Integrate in KirbyCMS'
         ]
-      },{
+      },
+      {
+        when: function(props) { return (/Building HTML Prototypes/i).test(props.projectUsage); },
+        type: 'list',
+        name: 'projectstructure',
+        message: 'Do you want to compile your Structure with Twig, or you want to use a vanilla (html, php) Structure Files?',
+        choices: [
+          'Twig Template',
+          'Uncompiled'
+        ]
+      },
+      {
+        type: 'confirm',
+        name: 'projectiecompatible',
+        message: 'IE8 compatibility needed?',
+        default: false
+      },
+      {
         type: 'list',
         name: 'projectquery',
         message: 'Outside from MediaQueries you can use ElementQueries or ContainerQueries',
@@ -170,8 +175,6 @@ var KittnGenerator = yeoman.Base.extend({
       this.directory('src/structure/', 'src/structure/');
     }
 
-
-
     // Add SCSS Files with the desired Filename
     this.fs.copyTpl(
       this.templatePath('_style.scss'),
@@ -187,7 +190,6 @@ var KittnGenerator = yeoman.Base.extend({
         templateParams
       );
     }
-
 
     // Include the Twig Working Dir
     if ( this.projectstructure === 'Twig Template' ) {
@@ -223,86 +225,103 @@ var KittnGenerator = yeoman.Base.extend({
       this.destinationPath('package.json'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('_config.json'),
       this.destinationPath('config.json'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('_bower.json'),
       this.destinationPath('bower.json'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('_gulpfile.babel.js'),
       this.destinationPath('gulpfile.babel.js'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('_defaults.scss'),
       this.destinationPath('src/framework/_defaults.scss'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('_readme.md'),
       this.destinationPath('readme.md'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('_gitignore'),
       this.destinationPath('.gitignore'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('bowerrc'),
       this.destinationPath('.bowerrc'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('editorconfig'),
       this.destinationPath('.editorconfig'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('nvmrc'),
       this.destinationPath('.nvmrc'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('babelrc'),
       this.destinationPath('.babelrc'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('jshintrc'),
       this.destinationPath('.jshintrc'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('_templateFiles.js'),
       this.destinationPath('gulpfile/lib/templateFiles.js'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('_compile-html.js'),
       this.destinationPath('gulpfile/tasks/compile-html.js'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('_app.js'),
       this.destinationPath('src/js/app.js'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('_watch-js.js'),
       this.destinationPath('gulpfile/tasks/watch-js.js'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('_bundle-var.js'),
       this.destinationPath('gulpfile/lib/bundle-var.js'),
       templateParams
     );
+
     this.fs.copyTpl(
       this.templatePath('_browsersync.js'),
       this.destinationPath('gulpfile/tasks/browsersync.js'),
@@ -311,7 +330,7 @@ var KittnGenerator = yeoman.Base.extend({
   },
 
   install: function () {
-    this.installDependencies();
+    // this.installDependencies();
   }
 });
 
