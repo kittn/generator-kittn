@@ -21,11 +21,12 @@ const browserSyncTask = () => {
   }
 
   // Browser Sync
-  browserSync.init([
-    kc.dist.css + '**/*.css',
-    kc.dist.base + '**/*.{php,html}',
-    kc.dist.cssimg + '**/*.{jpg,gif,png,svg}',
-    kc.dist.js + '**/*.js'],
+  browserSync.init([<% if (projectvue == false ) { %>
+    kc.dist.js + '**/*.js',<% } %>
+    kc.dist.css + '**/*.css',<% if (projectUsage == 'Integrate in CraftCMS' ) { %>
+    kc.dist.markup + 'templates/**/*.{php,html,twig}',<% } else { %>
+    kc.dist.base + '**/*.{php,html}',<% } %>
+    kc.dist.cssimg + '**/*.{jpg,gif,png,svg}'],
     { options: {
       debugInfo: true,
       watchTask: true,
@@ -38,9 +39,9 @@ const browserSyncTask = () => {
       },
       notify: {
         styles: [
-          'padding: 10px 20px;',
+          'padding: 8px 16px;',
           'position: fixed;',
-          'font-size: 14px;',
+          'font-size: 12px;',
           'font-weight: bold',
           'z-index: 9999;',
           'top: inherit',

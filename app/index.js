@@ -9,7 +9,6 @@ var KittnGenerator = yeoman.Base.extend({
   init: function () {
     this.pkg = require('../package.json');
   },
-
   askFor: function () {
     var done = this.async();
 
@@ -24,7 +23,7 @@ var KittnGenerator = yeoman.Base.extend({
       '\n    )     (       | Welcome to the marvelous |'+
       '\n   /       \\      |     Kittn generator!     |'+
       '\n   \\       /      |_________________________/'+
-      '\n    \\__ __/'+
+      '\n    \\__ __/                           v3.5.0'+
       '\n       ))'+
       '\n      //'+
       '\n     (('+
@@ -57,10 +56,9 @@ var KittnGenerator = yeoman.Base.extend({
       },{
         type: 'list',
         name: 'projectstructure',
-        message: 'How do you want to compile your Structure with Jade or Twig? Otherwise you can use the Copy Task to move Files from src to your dist dir.',
+        message: 'Do you want to compile your Structure with Twig, or you want to use a vanilla (html, php) Structure Files?',
         choices: [
           'Twig Template',
-          'Jade Template',
           'Uncompiled'
         ]
       },{
@@ -81,6 +79,11 @@ var KittnGenerator = yeoman.Base.extend({
           'ContainerQuery',
           'ElementQuery'
         ]
+      },{
+        type: 'confirm',
+        name: 'projectvue',
+        message: 'Want to use Vue.js?',
+        default: false
       },{
         type: 'input',
         name: 'projectversion',
@@ -124,6 +127,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectstructure = props.projectstructure;
       this.projectUsage = props.projectUsage;
       this.projectquery = props.projectquery;
+      this.projectvue = props.projectvue;
       done();
     }.bind(this));
   },
@@ -145,6 +149,7 @@ var KittnGenerator = yeoman.Base.extend({
       projectstructure : this.projectstructure,
       projectUsage : this.projectUsage,
       projectquery : this.projectquery,
+      projectvue : this.projectvue,
       pkg: this.pkg
     };
 
@@ -158,9 +163,14 @@ var KittnGenerator = yeoman.Base.extend({
     this.directory('src/framework/', 'src/framework/');
     this.directory('src/gulpfile/', 'gulpfile/');
 
-    // As Alternative build a Uncompiled Folder - good for work on native
-    // templates with PHP
-    this.directory('src/structure/', 'src/structure/');
+    // Put Craft Base Files in Structure or simple Structure Files
+    if ( this.projectUsage === 'Integrate in CraftCMS' ) {
+      this.directory('src/craftstructure/', 'src/structure/');
+    } else {
+      this.directory('src/structure/', 'src/structure/');
+    }
+
+
 
     // Add SCSS Files with the desired Filename
     this.fs.copyTpl(
@@ -178,39 +188,31 @@ var KittnGenerator = yeoman.Base.extend({
       );
     }
 
-    // Include the Jade Working Dir
-    if ( this.projectstructure === 'Jade Template' ) {
-      this.directory('src/jade/', 'src/template/');
-
-      // Add the Template Header
-      this.fs.copyTpl(
-        this.templatePath('_site-header.jade'),
-        this.destinationPath('src/template/parts/_site-header.jade'),
-        templateParams
-      );
-
-      // Add the Template Footer (Script Files)
-      this.fs.copyTpl(
-        this.templatePath('_site-scripts.jade'),
-        this.destinationPath('src/template/parts/_site-scripts.jade'),
-        templateParams
-      );
 
     // Include the Twig Working Dir
-    } else if ( this.projectstructure === 'Twig Template' ) {
+    if ( this.projectstructure === 'Twig Template' ) {
       this.directory('src/twig/', 'src/template/');
 
       // Add the Template Header
       this.fs.copyTpl(
         this.templatePath('_site-header.twig'),
-        this.destinationPath('src/template/parts/site-header.twig'),
+        this.destinationPath('src/template/parts/_site-header.twig'),
         templateParams
       );
 
       // Add the Template Footer (Script Files)
       this.fs.copyTpl(
         this.templatePath('_site-scripts.twig'),
-        this.destinationPath('src/template/parts/site-scripts.twig'),
+        this.destinationPath('src/template/parts/_site-scripts.twig'),
+        templateParams
+      );
+    }
+
+
+    if ( this.projectUsage === 'Integrate in CraftCMS' ) {
+      this.fs.copyTpl(
+        this.templatePath('_document-header.html'),
+        this.destinationPath('src/structure/templates/_parts/document-header.html'),
         templateParams
       );
     }
@@ -289,6 +291,21 @@ var KittnGenerator = yeoman.Base.extend({
     this.fs.copyTpl(
       this.templatePath('_app.js'),
       this.destinationPath('src/js/app.js'),
+      templateParams
+    );
+    this.fs.copyTpl(
+      this.templatePath('_watch-js.js'),
+      this.destinationPath('gulpfile/tasks/watch-js.js'),
+      templateParams
+    );
+    this.fs.copyTpl(
+      this.templatePath('_bundle-var.js'),
+      this.destinationPath('gulpfile/lib/bundle-var.js'),
+      templateParams
+    );
+    this.fs.copyTpl(
+      this.templatePath('_browsersync.js'),
+      this.destinationPath('gulpfile/tasks/browsersync.js'),
       templateParams
     );
   },

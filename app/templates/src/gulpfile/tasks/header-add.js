@@ -3,6 +3,7 @@
  */
 
 import kc from '../../config.json'
+import pkg from '../../package.json'
 import gulp from 'gulp'
 import strip from 'gulp-strip-banner'
 import globalMinify from '../lib/global-minify'

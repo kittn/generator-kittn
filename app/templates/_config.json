@@ -21,7 +21,7 @@
     "vectors": "dist/wp-content/themes/<%= projectname %>/assets/img/svgfiles/",
     "contentimage": "dist/wp-content/themes/<%= projectname %>/images/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
     "base": "dist/public/",
-    "markup": "dist/craft/templates/",
+    "markup": "dist/craft/",
     "browserSyncDir": "dist/public/",
     "css": "dist/public/",
     "js": "dist/public/assets/js/",
@@ -40,7 +40,6 @@
     "contentimage": "images/"
   },
   "css": {
-    "compiler": "libsass",
     "filename": "<%= projectcssfilename %>",
     "prefix": [
       "last 2 version",<% if (projectiecompatible == true ) { %>
@@ -60,7 +59,7 @@
   },
   "template": {
     "globalTitle": "myPage",
-    "compiler": <% if ( projectstructure == 'Twig Template' || projectstructure == 'Jade Template' ) { %>true<% } else { %>false<% } %>
+    "compiler": <% if ( projectstructure == 'Twig Template') { %>true<% } else { %>false<% } %>
   },
   "browsersync": {
     "openbrowser": true,

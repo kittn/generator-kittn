@@ -8,11 +8,13 @@ import bundleJs from '../lib/bundle-js'
 import browserify from 'browserify'
 import watchify from 'watchify'
 import babelify from 'babelify'
-import merge from 'utils-merge'
+import merge from 'utils-merge'<% if (projectvue == true ) { %>
+import vueify from 'vueify'
+import hmr from 'browserify-hmr'<% } %>
 
 const watchJsTask = () => {
   var args = merge(watchify.args, { debug: true })
-  var bundler = watchify(browserify(kc.src.js + kc.files.jsApp.srcName, args)).transform(babelify.configure({presets: ["es2015"]}))
+  var bundler = watchify(browserify(kc.src.js + kc.files.jsApp.srcName, args))<% if (projectvue == true ) { %>.plugin(hmr)<% } %>.transform(babelify.configure({presets: ["es2015"]}))<% if (projectvue == true ) { %>.transform(vueify)<% } %>
 
   bundleJs(bundler)
 

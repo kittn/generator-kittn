@@ -20,33 +20,14 @@ const $ = gulpLoadPlugins()
 const compilerCssTask = () => {
   const env = args.env || 'development'
 
-  // Libsass Compiler
-  if(kc.css.compiler === 'libsass') {
-    return gulp
-      .src(kc.src.style + '**/*.scss')
-      .pipe(env == 'development' ? $.sourcemaps.init() : gutil.noop())
-      .pipe($.sass({})
-        .on('error', errorHandler))
-      .pipe($.postcss(preCssConf()))
-      .pipe(env == 'development' ? $.sourcemaps.write('.') : gutil.noop())
-      .pipe(gulp.dest(kc.dist.css))
-
-    // Rubysass Compiler
-  } else if(kc.css.compiler === 'rubysass') {
-
-    // Use the Environment Var and transform to BOOL
-    if (env === 'development') {
-      const rubySourceMap = true
-    } else {
-      const rubySourceMap = false
-    }
-
-    return $.rubySass(kc.src.style + '**/*.scss', { sourcemap: rubySourceMap })
-      .on('error', errorHandler)
-      .pipe($.postcss(preCssConf))
-      .pipe(rubySourceMap ? $.sourcemaps.write('.') : gutil.noop())
-      .pipe(gulp.dest(kc.dist.css))
-  }
+  return gulp
+    .src(kc.src.style + '**/*.scss')
+    .pipe(env == 'development' ? $.sourcemaps.init() : gutil.noop())
+    .pipe($.sass({})
+      .on('error', errorHandler))
+    .pipe($.postcss(preCssConf()))
+    .pipe(env == 'development' ? $.sourcemaps.write('.') : gutil.noop())
+    .pipe(gulp.dest(kc.dist.css))
 };
 
 gulp.task('compiler:css', compilerCssTask)

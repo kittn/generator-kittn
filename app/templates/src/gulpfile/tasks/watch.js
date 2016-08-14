@@ -16,11 +16,6 @@ const watchTask = () => {
 
   // Watch the Structure
   gulp.watch([templateFiles()], ['compiler:html'])
-
-  <% if ( projectstructure == 'Twig Template' ) { %>// When a Template File is modified all Child rerendered
-  if(kc.template.compiler) {
-    gulp.watch([kc.src.template + 'templates/*.twig'], ['compiler:twigRebuild'])
-  }<% }%>
 }
 
 gulp.task('watch', ['browser-sync'], watchTask)

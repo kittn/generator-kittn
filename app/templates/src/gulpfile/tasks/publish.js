@@ -18,9 +18,6 @@ const publishTask = (cb) => {
       'version:bump',
     ],
     [
-      'styleguide:generate'
-    ],
-    [
       'minify:js',
       'minify:contentimages',
       'minify:inlineimages',

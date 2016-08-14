@@ -1,7 +1,7 @@
 /**
  * Template Compiler
  *
- * @description Compiles with Jade or Twig (the decision too has been taken in the packet generating), also copy only the Files.
+ * @description Compile Twig Files to HTML or copy Structure Files (usefull for PHP or Source Files for a CMS Compiler.
  */
 
 import kc from '../../config.json'
@@ -31,24 +31,19 @@ const compilerHtmlTask = () => {
 
   // Twig Compiler
   if(kc.template.compiler) {
-    // TWIG // Jade
-    return <% if ( projectstructure == 'Jade Template' ) { %>gulp.src([kc.src.template + '*.jade',kc.src.template + '_*.jade'])<% } else { %>gulp.src(kc.src.template + '*.twig')<% } %><% if ( projectstructure == 'Twig Template' ) { %>
-      .pipe(global.changedOverride === false ? $.changed(kc.dist.markup, {extension: '.html'}) : gutil.noop())<% } %>
-      .pipe($.plumber())<% if ( projectstructure == 'Twig Template' ) { %>
-      .pipe($.twig({ data: templateLocals }))<% } else if ( projectstructure == 'Jade Template' ) { %>
-      .pipe($.jadeFindAffected())
-      .pipe($.jade({
-        pretty: true,
-        locals: templateLocals
-      }))<% } %>
+    // TWIG Compiler
+    return gulp.src(kc.src.template + '**/[^_]*.{html,twig,rss}')
+      .pipe(global.changedOverride === false ? $.changed(kc.dist.markup, {extension: '.{html,twig,rss}'}) : gutil.noop())
+      .pipe($.plumber())
+      .pipe($.twig({ data: templateLocals }))
       .on('error', errorHandler)
       .pipe($.prettify({
         'indent_size': 2
       }))
       .pipe(gulp.dest(kc.dist.markup))
 
-    // Simple Copy Files
   } else {
+    // Simple Copy Files
     gulp.src([kc.src.structure + '**/**' , kc.src.structure + '**/.*'])
       .pipe(global.changedOverride === false ? $.changed(kc.dist.markup) : gutil.noop())
       .pipe(gulp.dest(kc.dist.markup))

@@ -1,0 +1,21 @@
+{#
+  Content Builder
+  ---------------
+  The Binding file for the NEO Content Builder. You can use it also for Matrix Content Builder, for this case remove `.length(1)`.
+  
+  Add the ContentBuilder with a simple Include.
+#}
+
+{% if entry.contentBuilder.level(1)|length %}
+  {% for content in entry.contentBuilder.level(1) %}
+    
+    {% switch content.type %}
+
+      {# Example Module #}
+      {% case 'example' %}
+        {% include '_components/example.html' %}
+
+    {% endswitch %}
+
+  {% endfor %}
+{% endif %}
