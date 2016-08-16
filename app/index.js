@@ -14,25 +14,25 @@ var KittnGenerator = yeoman.Base.extend({
 
     // Custom Greeting
     var welcome =
-      '\n ' +
-      '\n    /\\___/\\       '+
-      '\n    )      (       '+
-      '\n   =\\     /=      .--------------------------.'+
-      '\n     )   (        |   Kitty, Kitty, Kitty !  |'+
-      '\n    /     \\       | ------------------------ |'+
-      '\n    )     (       | Welcome to the marvelous |'+
-      '\n   /       \\      |     kittn generator!     |'+
-      '\n   \\       /      |_________________________/'+
-      '\n    \\__ __/                         v3.50.0'+
-      '\n       ))'+
-      '\n      //'+
-      '\n     (('+
-      '\n      \\) '+
-      '\n ';
+          '\n ' +
+          '\n    /\\___/\\       ' +
+          '\n    )      (       ' +
+          '\n   =\\     /=      .--------------------------.' +
+          '\n     )   (        |   Kitty, Kitty, Kitty !  |' +
+          '\n    /     \\       | ------------------------ |' +
+          '\n    )     (       | Welcome to the marvelous |' +
+          '\n   /       \\      |     kittn generator!     |' +
+          '\n   \\       /      |_________________________/' +
+          '\n    \\__ __/                         v3.50.0' +
+          '\n       ))' +
+          '\n      //' +
+          '\n     ((' +
+          '\n      \\) ' +
+          '\n ';
     console.log(welcome);
 
     // Ask something to setup the project skeleton
-    var prompts = [
+    return this.prompt([
       {
         type: 'input',
         name: 'projectname',
@@ -61,7 +61,9 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
-        when: function(props) { return (/Building HTML Prototypes/i).test(props.projectUsage); },
+        when: function(props) {
+          return props.projectUsage === 'Building HTML Prototypes';
+        },
         type: 'list',
         name: 'projectstructure',
         message: 'Do you want to compile your Structure with Twig, or you want to use a vanilla (html, php) Structure Files?',
@@ -115,24 +117,29 @@ var KittnGenerator = yeoman.Base.extend({
         message: 'URL to the Git-Repo',
         default: 'http://........'
       }
-    ];
+    ]).then(function (props) {
+      function checkAnswer(prop) {
+        if (prop) {
+          return prop
+        } else {
+          return false
+        }
+      }
 
-    // Get Data from prompts
-    this.prompt(prompts, function (props) {
-      this.projectname = props.projectname;
-      this.projectdescription = props.projectdescription;
-      this.projectversion = props.projectversion;
-      this.projectauthor = props.projectauthor;
-      this.projectmail = props.projectmail;
-      this.projecturl = props.projecturl;
-      this.projectissues = props.projectissues;
-      this.projectrepo = props.projectrepo;
-      this.projectcssfilename = props.projectcssfilename;
+      this.projectname         = props.projectname;
+      this.projectdescription  = props.projectdescription;
+      this.projectversion      = props.projectversion;
+      this.projectauthor       = props.projectauthor;
+      this.projectmail         = props.projectmail;
+      this.projecturl          = props.projecturl;
+      this.projectissues       = props.projectissues;
+      this.projectrepo         = props.projectrepo;
+      this.projectcssfilename  = props.projectcssfilename;
       this.projectiecompatible = props.projectiecompatible;
-      this.projectstructure = props.projectstructure;
-      this.projectUsage = props.projectUsage;
-      this.projectquery = props.projectquery;
-      this.projectvue = props.projectvue;
+      this.projectstructure    = checkAnswer(props.projectstructure);
+      this.projectUsage        = props.projectUsage;
+      this.projectquery        = props.projectquery;
+      this.projectvue          = props.projectvue;
       done();
     }.bind(this));
   },
