@@ -4,6 +4,7 @@ var path = require('path');
 var yosay = require('yosay');
 var chalk = require('chalk');
 var yeoman = require('yeoman-generator');
+var mkdirp = require('mkdirp');
 
 var KittnGenerator = yeoman.Base.extend({
   init: function () {
@@ -166,6 +167,7 @@ var KittnGenerator = yeoman.Base.extend({
     };
 
     // Move the SRC Folder
+    mkdirp.sync('dist/');
     this.directory('src/js/', 'src/js/');
     this.directory('src/style/', 'src/style/');
     this.directory('src/fonts/', 'src/fonts/');
@@ -178,6 +180,8 @@ var KittnGenerator = yeoman.Base.extend({
     // Put Craft Base Files in Structure or simple Structure Files
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {
       this.directory('src/craftstructure/', 'src/structure/');
+    } else if ( this.projectUsage === 'Integrate in Wordpress' ) {
+      this.directory('src/wpstructure/', 'src/.system/wordpress/');
     } else {
       this.directory('src/structure/', 'src/structure/');
     }
@@ -337,7 +341,7 @@ var KittnGenerator = yeoman.Base.extend({
   },
 
   install: function () {
-    this.installDependencies();
+    // this.installDependencies();
   }
 });
 
