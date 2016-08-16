@@ -81,7 +81,6 @@
     "utils-merge": "^1.0.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",<% if (projectvue == true ) { %>
-    "vue": "1.0.26",
     "vueify": "^8.7.0",
     "vue-resource": "^0.9.3",
     "vue-router": "^0.7.13",
@@ -92,7 +91,8 @@
   "dependencies": {<% if ( projectiecompatible == true ) { %>
     "jquery": "1.11.3",
     "selectivizr": "^1.0.3",<% } else { %>
-    "jquery": "^3.1.0",<% } %>
+    "jquery": "^3.1.0",<% } if (projectvue == true ) { %>
+    "vue": "1.0.26",<% } %>
     "html5shiv": "^3.7.3",
     "conditionizr": "^4.5.0",
     "svg4everybody": "^2.1.0",
