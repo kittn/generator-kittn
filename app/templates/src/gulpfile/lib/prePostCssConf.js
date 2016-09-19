@@ -2,8 +2,12 @@ import kc from '../../config.json'
 
 const preCssConf = () => {
   return [
-    // Add :matches Selector
-    require('postcss-selector-matches'),
+    // CSS Level 4 Stuff
+    require('postcss-custom-selectors'),
+    require('postcss-custom-media'),
+    require('postcss-pseudo-class-any-link'),
+    require('postcss-custom-properties'),
+    require('postcss-easings'),
     // Include Assets
     require('postcss-assets')({
       basePath: kc.templatePath.root,

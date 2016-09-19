@@ -24,7 +24,7 @@ var KittnGenerator = yeoman.Base.extend({
           '\n    )     (       | Welcome to the marvelous |' +
           '\n   /       \\      |     kittn generator!     |' +
           '\n   \\       /      |_________________________/' +
-          '\n    \\__ __/                         v3.50.0' +
+          '\n    \\__ __/                         v3.50.10' +
           '\n       ))' +
           '\n      //' +
           '\n     ((' +
@@ -84,9 +84,15 @@ var KittnGenerator = yeoman.Base.extend({
         name: 'projectquery',
         message: 'Outside from MediaQueries you can use ElementQueries or ContainerQueries',
         choices: [
+          'native MediaQuery',
           'ContainerQuery',
           'ElementQuery'
         ]
+      },{
+        type: 'confirm',
+        name: 'projectjquery',
+        message: 'Want to use jQuery?',
+        default: false
       },{
         type: 'confirm',
         name: 'projectvue',
@@ -140,6 +146,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectstructure    = checkAnswer(props.projectstructure);
       this.projectUsage        = props.projectUsage;
       this.projectquery        = props.projectquery;
+      this.projectjquery       = props.projectjquery;
       this.projectvue          = props.projectvue;
       done();
     }.bind(this));
@@ -162,6 +169,7 @@ var KittnGenerator = yeoman.Base.extend({
       projectstructure : this.projectstructure,
       projectUsage : this.projectUsage,
       projectquery : this.projectquery,
+      projectjquery : this.projectjquery,
       projectvue : this.projectvue,
       pkg: this.pkg
     };
@@ -298,8 +306,8 @@ var KittnGenerator = yeoman.Base.extend({
     );
 
     this.fs.copyTpl(
-      this.templatePath('jshintrc'),
-      this.destinationPath('.jshintrc'),
+      this.templatePath('eslintrc'),
+      this.destinationPath('.eslintrc'),
       templateParams
     );
 

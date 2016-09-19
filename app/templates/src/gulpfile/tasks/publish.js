@@ -26,9 +26,6 @@ const publishTask = (cb) => {
     [
       'header:add'
     ],
-    [
-      'optimize:criticalCss'
-    ],
     cb)
 }
 

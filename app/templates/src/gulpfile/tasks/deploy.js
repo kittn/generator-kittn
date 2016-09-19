@@ -34,9 +34,6 @@ const deployTask = (cb) => {
       'minify:inlineimages',
       'minify:css'
     ],
-    [
-      'optimize:criticalCss'
-    ],
     cb)
 }
 

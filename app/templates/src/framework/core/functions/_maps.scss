@@ -224,3 +224,38 @@
   }
   @return $map;
 }
+
+/// Map get length (non recursive)
+///
+/// @param   {$map}  $map - Main Map
+///
+/// @return {number}  Length from the Map
+@function map-get-length($map) {
+  $map-list : map-keys($map);
+
+  $map-length: length($map-list);
+
+  @return $map-length;
+}
+
+/// Map Get First Index
+///
+/// @param   {$map}  $map - Main Map
+///
+/// @return {number}  First Key Index
+@function map-first-index($map) {
+  $map-list: map-keys($map);
+
+  @return nth($map-list,1);
+}
+
+/// Map Get Last Index
+///
+/// @param   {$map}  $map - Main Map
+///
+/// @return {number}  Last Key Index
+@function map-last-index($map) {
+  $map-list: map-keys($map);
+
+  @return nth($map-list, map-get-length($map))
+}
