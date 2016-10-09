@@ -25,45 +25,30 @@ The Generator will ask you some questions, at the end it will prepare the Projec
 
 ## Commands
 
-_With 3.10.0 i added NPM Script Shorthands_
+_With Webpack you have to use NPM Script Commands_
 
 **`npm run init`**<br>
 Intialize your Project and the Sass Documentation (/sassdocs/)
 
-**`npm run server`**<br>
-Default Task with BrowserSync
+**`npm run development`**<br>
+Main development task with BrowserSync and Webpack
 
-**`npm run js`**<br>
-Rebuild all JS files, copy - combine - rename.
-
-**`npm run inlineimages`**<br>
-Rebuild all Image Files for CSS, copy it to distribution, build Bitmap- and Vector Sprites.
-
-**`npm run contentimages`**<br>
-Rebuild all Image Files for HTML, copy it to distribution, build Bitmap- and Vector Sprites.
-
-**`gulp copy:bitmaps`**<br>
-Move Image Files from src/stash/images/bitmap-assets to distribution
-
-**`gulp copy:vectors`**<br>
-Move Image Files from scr/stash/images/svgsingle to distribution
-
-**`npm run publish`**<br>
-Publish the Project for Production - you can Bump the Version with Enviroment Vars.
-Example: `$ gulp publish --type=major` => for a Major Release
-
-**`npm run deploy`**<br>
+**`npm run deployment`**<br>
 Minify JS, Images, CSS. Is for a automated Build Process, comes after a Gulp Init.
+
+**`npm run scripts`**<br>
+Rebuild all JS Files except the Application JS File
+
+**`npm run inlineassets`**<br>
+Rebuild all Image Files for CSS, copy it to distribution, build Bitmap- and Vector Sprites.
 
 ## Dependencies
 
-- Node >= 4.2.x
-- Gulp 3.9.0
+- Node >= 6.x
+- Gulp 3.9.1
 - Yeoman 1.4.8
 
 ## Optional Dependencies
-- Ruby >= 1.9.0
-- Ruby-Sass 3.4.18 
 - Bower 1.4.0
 
 ## Special Thanks to

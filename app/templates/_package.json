@@ -19,7 +19,7 @@
     "init": "gulp init && npm run subtask:bundlewebpack",
     "development": "gulp",
     "deployment": "npm run subtask:bundlewebpack && npm run subtask:deploygulp",
-    "js": "gulp rebuild:js",
+    "scripts": "gulp rebuild:js",
     "inlineassets": "gulp rebuild:images",
     "documentassets": "gulp copy:contentimages"
   },
