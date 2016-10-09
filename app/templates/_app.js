@@ -5,8 +5,8 @@ import cq from 'cq-prolyfill'<% } if (projectvue === true ) { %>
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'<% } %>
-import modernizrLoad from './partial/modernizer-loader.js'
-import conditionizrInit from './partial/conditionizr-init.js'<% if (projectvue === true ) { %>
+import modernizrLoad from './partial/modernizer-loader' // eslint-disable-line
+import conditionizrInit from './partial/conditionizr-init' // eslint-disable-line <% if (projectvue === true ) { %>
 import App from './app.vue'
 import store from './store/store'
 

@@ -6,37 +6,57 @@
 import kc from '../../config.json'
 import gulp from 'gulp'
 import browserSync from 'browser-sync'
+import webpack from 'webpack'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
+import webpackSettings from '../../webpack.config.babel'
+
+const bundler = webpack(webpackSettings)
 
 const browserSyncTask = () => {
   // Build a condition when Proxy is active
-  var bsProxy, bsServer;
+  let bsProxy
+  let bsServer
 
   // Condition for Proxy
   if(kc.browsersync.proxy) {
-    bsProxy = kc.browsersync.proxy;
-    bsServer = false;
+    bsProxy = kc.browsersync.proxy
+    bsServer = false
   } else {
-    bsProxy = false;
-    bsServer = { baseDir : kc.dist.browserSyncDir};
+    bsProxy = false
+    bsServer = { baseDir : kc.dist.browserSyncDir }
   }
 
   // Browser Sync
   browserSync.init([<% if (projectvue == false ) { %>
-    kc.dist.js + '**/*.js',<% } %>
-    kc.dist.css + '**/*.css',<% if (projectUsage == 'Integrate in CraftCMS' ) { %>
-    kc.dist.markup + 'templates/**/*.{php,html,twig}',<% } else { %>
-    kc.dist.base + '**/*.{php,html}',<% } %>
-    kc.dist.cssimg + '**/*.{jpg,gif,png,svg}'],
+      kc.dist.js + '**/*.js',<% } %>
+      kc.dist.css + '**/*.css',<% if (projectUsage == 'Integrate in CraftCMS' ) { %>
+      kc.dist.markup + 'templates/**/*.{php,html,twig}',<% } else { %>
+      kc.dist.base + '**/*.{php,html}',<% } %>
+      kc.dist.cssimg + '**/*.{jpg,gif,png,svg}'
+    ],
     { options: {
       debugInfo: true,
       watchTask: true,
       proxy: bsProxy,
-      ghostMode: {
-        clicks : true,
-        scroll : true,
-        links  : true,
-        forms  : true }
+
+        ghostMode: {
+        clicks: true,
+        scroll: true,
+        links: true,
+        forms: true }
       },
+
+      logLevel: 'info',
+
+      middleware: [
+        webpackDevMiddleware(bundler, {
+          publicPath: webpackSettings.output.publicPath,
+          stats: { colors: true }
+        }),
+        webpackHotMiddleware(bundler)
+      ],
+
       notify: {
         styles: [
           'padding: 8px 16px;',
@@ -53,6 +73,7 @@ const browserSyncTask = () => {
           'text-transform: uppercase'
         ]
       },
+
       server: bsServer,
       open: kc.browsersync.openbrowser
     });

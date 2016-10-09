@@ -13,8 +13,7 @@ const rebuildJsTask = (cb) => {
       'build:conditionizr'
     ],
     [
-      'copy:js',
-      'compiler:js'
+      'copy:js'
     ],
   cb)
 }

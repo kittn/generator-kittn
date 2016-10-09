@@ -341,20 +341,14 @@ var KittnGenerator = yeoman.Base.extend({
     );
 
     this.fs.copyTpl(
-      this.templatePath('_watch-js.js'),
-      this.destinationPath('gulpfile/tasks/watch-js.js'),
-      templateParams
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('_bundle-var.js'),
-      this.destinationPath('gulpfile/lib/bundle-var.js'),
-      templateParams
-    );
-
-    this.fs.copyTpl(
       this.templatePath('_browsersync.js'),
       this.destinationPath('gulpfile/tasks/browsersync.js'),
+      templateParams
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('_webpack.config.babel.js'),
+      this.destinationPath('webpack.config.babel.js'),
       templateParams
     );
   },
