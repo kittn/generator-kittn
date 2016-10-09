@@ -23,7 +23,8 @@
     "contentimages": "gulp copy:contentimages",
     "critical": "gulp optimize:criticalCss --critical=true"
   },
-  "devDependencies": {
+  "devDependencies": {<% if (projectvue === true ) { %>
+    "aliasify": "^2.0.0",<% } %>
     "autoprefixer": "^6.4.0",
     "browser-sync": "2.14.3",
     "css-parse": "2.0.0",
@@ -93,9 +94,10 @@
     "jquery": "1.11.3",<% } %>
     "selectivizr": "^1.0.3",<% } else { if (projectjquery === true) { %>
     "jquery": "^3.1.0",<% } } if (projectvue === true ) { %>
-    "vue": "1.0.26",
-    "vue-resource": "^1.0.0",
-    "vue-router": "^0.7.13",<% } %>
+    "vue": "^2.0.1",
+    "vue-resource": "^1.0.3",
+    "vue-router": "^2.0.0",
+    "vuex": "^2.0.0",<% } %>
     "html5shiv": "^3.7.3",
     "conditionizr": "^4.5.0",
     "svg4everybody": "^2.1.0",
@@ -109,7 +111,12 @@
   },
   "browserify-shim": {
     "Modernizr": "global:Modernizr"
-  },
+  },<% if (projectvue === true ) { %>
+  "aliasify": {
+    "aliases": {
+      "vue": "vue/dist/vue"
+    }
+  },<% } %>
   "licenses": [
     {
       "type": "MIT"

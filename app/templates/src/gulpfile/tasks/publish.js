@@ -23,9 +23,6 @@ const publishTask = (cb) => {
       'minify:inlineimages',
       'minify:css'
     ],
-    [
-      'header:add'
-    ],
     cb)
 }
 

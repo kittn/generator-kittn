@@ -238,6 +238,17 @@ var KittnGenerator = yeoman.Base.extend({
       );
     }
 
+    if ( this.projectvue === true ) {
+      this.directory('src/vue-components/', 'src/js/components/');
+      this.directory('src/vuex/', 'src/js/store/');
+
+      this.fs.copyTpl(
+        this.templatePath('_app.vue'),
+        this.destinationPath('src/js/app.vue'),
+        templateParams
+      );
+    }
+
     // Include some other important files
     this.fs.copyTpl(
       this.templatePath('_package.json'),

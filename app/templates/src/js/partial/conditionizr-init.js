@@ -1,3 +1,4 @@
+/* eslint-disable */
 conditionizr.config({
   tests: {
     'ie11': ['class'],

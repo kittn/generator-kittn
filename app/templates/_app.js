@@ -6,11 +6,10 @@ import Vue from 'vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'<% } %>
 import modernizrLoad from './partial/modernizer-loader.js'
-import conditionizrInit from './partial/conditionizr-init.js'
-<% if (projectvue === true ) { %>
-// Vue Twig Delimiters
-Vue.config.delimiters = ['@{', '}']
-Vue.config.unsafeDelimiters = ['@@{', '}']
+import conditionizrInit from './partial/conditionizr-init.js'<% if (projectvue === true ) { %>
+import App from './app.vue'
+import store from './store/store'
+
 // Adding Vue Plugins
 Vue.use(VueResource)
 Vue.use(VueRouter)<% } %>
@@ -20,7 +19,6 @@ cq({ postcss: true })<% } if (projectvue === true ) { %>
 
 // Vue App
 new Vue({
-  el: '#app',
-
-  components: {}
-})<% } %>
+  store,
+  render: h => h(App)
+}).$mount('#app')<% } %>

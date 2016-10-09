@@ -20,6 +20,7 @@
     "indent": 0,
     "no-console": 1,
     "no-new": 2,
+    "object-curly-spacing": 1,
     "arrow-body-style": [2, "as-needed"],
     "no-param-reassign": [2, { "props" : false }],
     "func-names": 0,
