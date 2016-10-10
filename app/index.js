@@ -24,7 +24,7 @@ var KittnGenerator = yeoman.Base.extend({
           '\n    )     (       | Welcome to the marvelous |' +
           '\n   /       \\      |     kittn generator!     |' +
           '\n   \\       /      |_________________________/' +
-          '\n    \\__ __/                         v3.50.10' +
+          '\n    \\__ __/                          v3.80.10' +
           '\n       ))' +
           '\n      //' +
           '\n     ((' +
@@ -49,6 +49,17 @@ var KittnGenerator = yeoman.Base.extend({
         name: 'projectcssfilename',
         message: 'Filename for the CSS File (without fileending)',
         default: 'style'
+      },
+      {
+        type: 'list',
+        name: 'projectcssstructure',
+        message: 'CSS Style Structure',
+        choices: [
+          'Own Structure',
+          'Atomic Design',
+          'ITCSS',
+          'OOCSS'
+        ]
       },
       {
         type: 'list',
@@ -84,7 +95,7 @@ var KittnGenerator = yeoman.Base.extend({
         name: 'projectquery',
         message: 'Outside from MediaQueries you can use ElementQueries or ContainerQueries',
         choices: [
-          'native MediaQuery',
+          'Native MediaQuery',
           'ContainerQuery',
           'ElementQuery'
         ]
@@ -98,7 +109,20 @@ var KittnGenerator = yeoman.Base.extend({
         name: 'projectvue',
         message: 'Want to use Vue.js?',
         default: false
-      },{
+      },
+      {
+        when: function(props) {
+          return props.projectvue === true;
+        },
+        type: 'list',
+        name: 'projectvueversion',
+        message: 'Vue Version. When you only use .vue Files Runtime is perfect, if you need parsing from .html Files you need the Standalone Version.',
+        choices: [
+          'Runtime-Only',
+          'Standalone'
+        ]
+      },
+      {
         type: 'input',
         name: 'projectversion',
         message: 'The Version Number',
@@ -148,6 +172,8 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectquery        = props.projectquery;
       this.projectjquery       = props.projectjquery;
       this.projectvue          = props.projectvue;
+      this.projectcssstructure = props.projectcssstructure;
+      this.projectvueversion   = props.projectvueversion;
       done();
     }.bind(this));
   },
@@ -171,6 +197,8 @@ var KittnGenerator = yeoman.Base.extend({
       projectquery : this.projectquery,
       projectjquery : this.projectjquery,
       projectvue : this.projectvue,
+      projectcssstructure: this.projectcssstructure,
+      projectvueversion: this.projectvueversion,
       pkg: this.pkg
     };
 
@@ -208,6 +236,25 @@ var KittnGenerator = yeoman.Base.extend({
         this.destinationPath('src/style/'+this.projectcssfilename+'-ie8.scss'),
         templateParams
       );
+    }
+
+    // Copy the CSS Structure
+    switch(this.projectcssstructure) {
+      case 'Atomic Design':
+        this.directory('src/cssstructures/atomic', 'src/style/application/')
+        break
+
+      case 'ITCSS':
+        this.directory('src/cssstructures/itcss', 'src/style/application/')
+        break
+
+      case 'OOCSS':
+        this.directory('src/cssstructures/oocss', 'src/style/application/')
+        break
+
+      default:
+        this.directory('src/cssstructures/own', 'src/style/application/')
+        break
     }
 
     // Include the Twig Working Dir

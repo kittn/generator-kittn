@@ -42,6 +42,9 @@ Rebuild all JS Files except the Application JS File
 **`npm run inlineassets`**<br>
 Rebuild all Image Files for CSS, copy it to distribution, build Bitmap- and Vector Sprites.
 
+**`npm run documentassets`**<br>
+Copy all Imagefiles for Documentusage.
+
 ## Dependencies
 
 - Node >= 6.x

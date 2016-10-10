@@ -114,7 +114,7 @@ const config = {
       '',
       '.js'
     ],
-    alias: {<% if (projectvue === true ) { %>
+    alias: {<% if (projectvue === true && projectvueversion === 'Standalone' ) { %>
       'vue': 'vue/dist/vue.js'<% } %>
     }
   },

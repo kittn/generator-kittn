@@ -1,7 +1,7 @@
 <template>
-  <h1>
-    Hello World
-  </h1>
+  <h2>
+    Hello World i am Vue
+  </h2>
 </template>
 
 <script>
