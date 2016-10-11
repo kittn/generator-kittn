@@ -179,7 +179,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectjquery       = props.projectjquery;
       this.projectvue          = props.projectvue;
       this.projectcssstructure = props.projectcssstructure;
-      this.projectvueversion   = props.projectvueversion;
+      this.projectvueversion   = checkAnswer(props.projectvueversion);
       this.projectyarn         = props.projectyarn;
       done();
     }.bind(this));
