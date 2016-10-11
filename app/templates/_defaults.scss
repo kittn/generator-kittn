@@ -25,10 +25,10 @@ $kittn-bem: (
 //
 // @type Map
 $kittn-directorys: (
-  fonts: '/assets/fonts/',
-  images: '/assets/img/',
-  svgonly: '/assets/img/svgfiles/',
-  bitmaps: '/assets/img/bitmaps/',
+  fonts: './assets/fonts/',
+  images: './assets/img/',
+  svgonly: './assets/img/svgfiles/',
+  bitmaps: './assets/img/bitmaps/',
   bitmap: 'bitmaps/',
   vector: 'svgfiles/'
 );

@@ -123,6 +123,12 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
+        type: 'confirm',
+        name: 'projectyarn',
+        message: 'Do you want to use Yarn Package Manager? (https://yarnpkg.com/)',
+        default: false
+      },
+      {
         type: 'input',
         name: 'projectversion',
         message: 'The Version Number',
@@ -174,6 +180,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectvue          = props.projectvue;
       this.projectcssstructure = props.projectcssstructure;
       this.projectvueversion   = props.projectvueversion;
+      this.projectyarn         = props.projectyarn;
       done();
     }.bind(this));
   },
@@ -199,6 +206,7 @@ var KittnGenerator = yeoman.Base.extend({
       projectvue : this.projectvue,
       projectcssstructure: this.projectcssstructure,
       projectvueversion: this.projectvueversion,
+      projectyarn: this.projectyarn,
       pkg: this.pkg
     };
 
@@ -401,7 +409,14 @@ var KittnGenerator = yeoman.Base.extend({
   },
 
   install: function () {
-    this.installDependencies();
+    if (this.projectyarn) {
+      this.spawnCommand('yarn');
+    } else {
+      this.installDependencies({
+        bower: false,
+        npm: true
+      });
+    }
   }
 });
 
