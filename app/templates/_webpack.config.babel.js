@@ -125,12 +125,15 @@ const config = {
 }
 
 if(env == 'development') {
+  const DashboardPlugin = require('webpack-dashboard/plugin')
+
   module.exports = merge(config, {
     entry: [
       'webpack/hot/dev-server',
       'webpack-hot-middleware/client'
     ],
     plugins: [
+      new DashboardPlugin({ port: 3002 }),
       new webpack.HotModuleReplacementPlugin()
     ]
   })
