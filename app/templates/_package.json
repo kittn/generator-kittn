@@ -14,15 +14,16 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "subtask:bundlewebpack": "webpack --config webpack.config.babel.js -p --colors --env=production --bundle=production",
+    "subtask:bundlewebpack": "webpack --config webpack.config.babel.js -p --colors --env=production --env.bundle=production",
     "subtask:deploygulp": "gulp deploy --env=production",
-    "init": "gulp init && npm run subtask:bundlewebpack",
-    "development": "gulp",
+    "init": "gulp init --env=init && npm run subtask:bundlewebpack",
+    "develop": "gulp",
     "devdashboard": "webpack-dashboard -p 3002 -- gulp",
-    "deployment": "npm run subtask:bundlewebpack && npm run subtask:deploygulp",
+    "deploy": "npm run subtask:bundlewebpack && npm run subtask:deploygulp",
     "scripts": "gulp rebuild:js",
-    "inlineassets": "gulp rebuild:images",
-    "documentassets": "gulp copy:contentimages"
+    "uiimages": "gulp rebuild:images",
+    "htmlassets": "gulp copy:contentimages",
+    "template": "gulp compiler:html"
   },
   "devDependencies": {
     "autoprefixer": "^6.4.0",
@@ -97,7 +98,7 @@
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
-    "webpack": "^1.13.2",
+    "webpack": "2.1.0-beta.25",
     "webpack-dashboard": "^0.2.0",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.12.2",

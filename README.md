@@ -14,6 +14,10 @@ Yeoman Generator for the Kittn Toolkit. Scaffolds and Prepare the Toolkit for yo
 $ npm install -g generator-kittn
 ```
 
+## Optional 
+You can use now Yarn with Kittn, instead off NPM. https://yarnpkg.com/
+
+
 ## Usage
 Jump in your Working Directory and type: 
 
@@ -30,20 +34,26 @@ _With Webpack you have to use NPM Script Commands_
 **`npm run init`**<br>
 Intialize your Project and the Sass Documentation (/sassdocs/)
 
-**`npm run development`**<br>
+**`npm run develop`**<br>
 Main development task with BrowserSync and Webpack
 
-**`npm run deployment`**<br>
+**`npm run devdashboard`**<br>
+Main development task with Webpack Dashboard - More NASA Style :D
+
+**`npm run deploy`**<br>
 Minify JS, Images, CSS. Is for a automated Build Process, comes after a Gulp Init.
 
 **`npm run scripts`**<br>
 Rebuild all JS Files except the Application JS File
 
-**`npm run inlineassets`**<br>
+**`npm run uiimages`**<br>
 Rebuild all Image Files for CSS, copy it to distribution, build Bitmap- and Vector Sprites.
 
-**`npm run documentassets`**<br>
+**`npm run htmlassets`**<br>
 Copy all Imagefiles for Documentusage.
+
+**`npm run template`**<br>
+Copy all or Generate the Template Files.
 
 ## Dependencies
 

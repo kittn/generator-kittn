@@ -24,7 +24,7 @@ var KittnGenerator = yeoman.Base.extend({
           '\n    )     (       | Welcome to the marvelous |' +
           '\n   /       \\      |     kittn generator!     |' +
           '\n   \\       /      |_________________________/' +
-          '\n    \\__ __/                          v3.80.10' +
+          '\n    \\__ __/                          v3.80.15' +
           '\n       ))' +
           '\n      //' +
           '\n     ((' +

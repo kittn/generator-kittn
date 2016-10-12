@@ -9,7 +9,7 @@ const argv = yargs.argv
 const env = argv.env || 'development'
 
 const nodeEnv = process.env.NODE_ENV || 'production'
-const bundle = argv.bundle || 'primary'
+const bundle = env.bundle || 'primary'
 
 const ROOT_PATH = path.resolve(__dirname)
 const PUBLIC_PATH = path.join(ROOT_PATH, 'dist/')
@@ -62,28 +62,24 @@ const config = {
   output: configSegment.output,
   module: {
 
-    preLoaders: [<% if (projectvue === true ) { %>
+    rules: [<% if (projectvue === true ) { %>
       {
+        enforce: 'pre',
         test: /\.vue$/,
         loader: 'eslint-loader',
         include: path.join( ROOT_PATH, 'src/js' ),
         exclude: /node_modules/
-      },<% } %>
-      {
+      },<% } %>{
+        enforce: 'pre',
         test: /\.js$/,
         loader: 'eslint-loader',
         include: path.join( ROOT_PATH, 'src/js' ),
         exclude: /node_modules/
-      }
-    ],
-
-    loaders: [<% if (projectvue === true ) { %>
-      {
+      },<% if (projectvue === true ) { %>{
         test: /\.vue$/,
         include: path.join( ROOT_PATH, 'src/js' ),
         loader: 'vue'
-      },<% } %>
-      {
+      },<% } %>{
         test: /\.js$/,
         include: path.join( ROOT_PATH, 'src/js' ),
         exclude: /node_modules/,
@@ -100,18 +96,21 @@ const config = {
     }),
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.NoErrorsPlugin(),
+    new webpack.LoaderOptionsPlugin({
+      options: {
+        eslint: {
+          failOnError  : false,
+          failOnWarning: false,
+          configFile   : './.eslintrc',
+          formatter    : require('eslint-formatter-pretty')
+        }
+      }
+    })
   ],
-  eslint: {
-    failOnError: false,
-    failOnWarning: false,
-    configFile: './.eslintrc',
-    formatter: eslintPretty
-  },
 
   resolve: {
     extensions: [<% if (projectvue === true ) { %>
       '.vue',<% } %>
-      '',
       '.js'
     ],
     alias: {<% if (projectvue === true && projectvueversion === 'Standalone' ) { %>

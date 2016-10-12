@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "3.80.12",
+  "version": "3.80.15",
   "description": "Kittn Scaffolding and Frontend Toolchain",
   "license": "MIT",
   "main": "app/index.js",
@@ -27,6 +27,7 @@
     "ruby-sass",
     "yeoman",
     "webpack",
+    "yarn",
     "babel",
     "es6",
     "gulp",
