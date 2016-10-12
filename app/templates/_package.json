@@ -54,9 +54,12 @@
     "gulp-twig": "^0.5.0",<% } %>
     "gulp.spritesmith": "6.2.1",
     "gulp-watch": "^4.3.9",
+    "imagemin-gifsicle": "^5.1.0",
+    "imagemin-jpeg-recompress": "^5.0.0",
+    "imagemin-jpegtran": "^5.0.2",
+    "imagemin-optipng": "^5.2.1",
     "imagemin-pngquant": "^5.0.0",
     "imagemin-svgo": "^5.1.0",
-    "imagemin-jpeg-recompress": "^5.0.0",
     "markdown": "0.5.0",
     "matchdep": "1.0.1",
     "sassdoc": "2.1.20",
