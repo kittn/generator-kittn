@@ -24,7 +24,7 @@ var KittnGenerator = yeoman.Base.extend({
           '\n    )     (       | Welcome to the marvelous |' +
           '\n   /       \\      |     kittn generator!     |' +
           '\n   \\       /      |_________________________/' +
-          '\n    \\__ __/                          v3.80.15' +
+          '\n    \\__ __/                          v' + this.pkg.version +
           '\n       ))' +
           '\n      //' +
           '\n     ((' +
@@ -68,8 +68,7 @@ var KittnGenerator = yeoman.Base.extend({
         choices: [
           'Building HTML Prototypes',
           'Integrate in CraftCMS',
-          'Integrate in Wordpress',
-          'Integrate in KirbyCMS'
+          'Integrate in Wordpress'
         ]
       },
       {
@@ -83,6 +82,90 @@ var KittnGenerator = yeoman.Base.extend({
           'Twig Template',
           'Uncompiled'
         ]
+      },
+      {
+        when: function(props) {
+          return props.projectUsage === 'Integrate in Wordpress';
+        },
+        type: 'confirm',
+        name: 'projectwpcli',
+        message: 'Do you have installed WP-CLI? (for automatic install)',
+        default: false
+      },
+      {
+        when: function(props) {
+          return props.projectUsage === 'Integrate in CraftCMS';
+        },
+        type: 'confirm',
+        name: 'projectcraftcli',
+        message: 'Do you have installed Craft-CLI? (for automatic install)',
+        default: false
+      },
+      {
+        when: function(props) {
+          return props.projectUsage !== 'Building HTML Prototypes';
+        },
+        type: 'confirm',
+        name: 'projectcredential',
+        message: 'Want to enter your URL and Database Credentials for your local Environment?',
+        default: false
+      },
+      {
+        when: function(props) {
+          return props.projectcredential === true;
+        },
+        type: 'list',
+        name: 'credentialprotocol',
+        message: 'HTTP or HTTPS',
+        choices: [
+          'http',
+          'https'
+        ]
+      },
+      {
+        when: function(props) {
+          return props.projectcredential === true;
+        },
+        type: 'input',
+        name: 'credentialdomain',
+        message: 'Domain without HTTP or HTTPS',
+        default: 'localhost'
+      },
+      {
+        when: function(props) {
+          return props.projectcredential === true;
+        },
+        type: 'input',
+        name: 'credentialdbserver',
+        message: 'DB Server Host without ending slash',
+        default: 'localhost'
+      },
+      {
+        when: function(props) {
+          return props.projectcredential === true;
+        },
+        type: 'input',
+        name: 'credentialdbuser',
+        message: 'DB User',
+        default: 'root'
+      },
+      {
+        when: function(props) {
+          return props.projectcredential === true;
+        },
+        type: 'input',
+        name: 'credentialdbpass',
+        message: 'DB Password',
+        default: 'root'
+      },
+      {
+        when: function(props) {
+          return props.projectcredential === true;
+        },
+        type: 'input',
+        name: 'credentialdbdatabase',
+        message: 'DB Database',
+        default: ''
       },
       {
         type: 'confirm',
@@ -163,24 +246,34 @@ var KittnGenerator = yeoman.Base.extend({
         }
       }
 
-      this.projectname         = props.projectname;
-      this.projectdescription  = props.projectdescription;
-      this.projectversion      = props.projectversion;
-      this.projectauthor       = props.projectauthor;
-      this.projectmail         = props.projectmail;
-      this.projecturl          = props.projecturl;
-      this.projectissues       = props.projectissues;
-      this.projectrepo         = props.projectrepo;
-      this.projectcssfilename  = props.projectcssfilename;
-      this.projectiecompatible = props.projectiecompatible;
-      this.projectstructure    = checkAnswer(props.projectstructure);
-      this.projectUsage        = props.projectUsage;
-      this.projectquery        = props.projectquery;
-      this.projectjquery       = props.projectjquery;
-      this.projectvue          = props.projectvue;
-      this.projectcssstructure = props.projectcssstructure;
-      this.projectvueversion   = checkAnswer(props.projectvueversion);
-      this.projectyarn         = props.projectyarn;
+      this.projectname          = props.projectname;
+      this.projectdescription   = props.projectdescription;
+      this.projectversion       = props.projectversion;
+      this.projectauthor        = props.projectauthor;
+      this.projectmail          = props.projectmail;
+      this.projecturl           = props.projecturl;
+      this.projectissues        = props.projectissues;
+      this.projectrepo          = props.projectrepo;
+      this.projectcssfilename   = props.projectcssfilename;
+      this.projectiecompatible  = props.projectiecompatible;
+      this.projectstructure     = checkAnswer(props.projectstructure);
+      this.projectUsage         = props.projectUsage;
+      this.projectquery         = props.projectquery;
+      this.projectjquery        = props.projectjquery;
+      this.projectvue           = props.projectvue;
+      this.projectcssstructure  = props.projectcssstructure;
+      this.projectvueversion    = checkAnswer(props.projectvueversion);
+      this.projectyarn          = props.projectyarn;
+      this.projectwpcli         = props.projectwpcli;
+      this.projectcraftcli      = props.projectcraftcli;
+      this.projectcredential    = props.projectcredential;
+      this.credentialprotocol   = props.credentialprotocol;
+      this.credentialdomain     = props.credentialdomain;
+      this.credentialdbserver   = props.credentialdbserver;
+      this.credentialdbuser     = props.credentialdbuser;
+      this.credentialdbpass     = props.credentialdbpass;
+      this.credentialdbdatabase = props.credentialdbdatabase;
+
       done();
     }.bind(this));
   },
@@ -189,24 +282,33 @@ var KittnGenerator = yeoman.Base.extend({
 
     // Add the Template Vars for the Process
     var templateParams = {
-      projectname : this.projectname,
-      projectdescription : this.projectdescription,
-      projectversion : this.projectversion,
-      projectauthor : this.projectauthor,
-      projectmail : this.projectmail,
-      projecturl : this.projecturl,
-      projectissues : this.projectissues,
-      projectrepo : this.projectrepo,
-      projectcssfilename : this.projectcssfilename,
-      projectiecompatible : this.projectiecompatible,
-      projectstructure : this.projectstructure,
-      projectUsage : this.projectUsage,
-      projectquery : this.projectquery,
-      projectjquery : this.projectjquery,
-      projectvue : this.projectvue,
-      projectcssstructure: this.projectcssstructure,
-      projectvueversion: this.projectvueversion,
-      projectyarn: this.projectyarn,
+      projectname          : this.projectname,
+      projectdescription   : this.projectdescription,
+      projectversion       : this.projectversion,
+      projectauthor        : this.projectauthor,
+      projectmail          : this.projectmail,
+      projecturl           : this.projecturl,
+      projectissues        : this.projectissues,
+      projectrepo          : this.projectrepo,
+      projectcssfilename   : this.projectcssfilename,
+      projectiecompatible  : this.projectiecompatible,
+      projectstructure     : this.projectstructure,
+      projectUsage         : this.projectUsage,
+      projectquery         : this.projectquery,
+      projectjquery        : this.projectjquery,
+      projectvue           : this.projectvue,
+      projectcssstructure  : this.projectcssstructure,
+      projectvueversion    : this.projectvueversion,
+      projectyarn          : this.projectyarn,
+      projectcraftcli      : this.projectcraftcli,
+      projectwpcli         : this.projectwpcli,
+      projectcredential    : this.projectcredential,
+      credentialprotocol   : this.credentialprotocol,
+      credentialdomain     : this.credentialdomain,
+      credentialdbserver   : this.credentialdbserver,
+      credentialdbuser     : this.credentialdbuser,
+      credentialdbpass     : this.credentialdbpass,
+      credentialdbdatabase : this.credentialdbdatabase,
       pkg: this.pkg
     };
 
@@ -223,11 +325,54 @@ var KittnGenerator = yeoman.Base.extend({
 
     // Put Craft Base Files in Structure or simple Structure Files
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {
-      this.directory('src/craftstructure/', 'src/structure/');
+      this.directory('src/skeletons/craftcms/', 'src/structure/');
+
+      // Add Server Credentials
+      if ( this.projectcredential ) {
+        this.fs.copyTpl(
+          this.templatePath('_craft-db.php'),
+          this.destinationPath('src/structure/config/db.php'),
+          templateParams
+        );
+
+        this.fs.copyTpl(
+          this.templatePath('_craft-general.php'),
+          this.destinationPath('src/structure/config/general.php'),
+          templateParams
+        );
+      }
+
     } else if ( this.projectUsage === 'Integrate in Wordpress' ) {
-      this.directory('src/wpstructure/', 'src/.system/wordpress/');
+      this.directory('src/skeletons/wordpress/', 'src/structure/');
+
+      this.fs.copyTpl(
+        this.templatePath('_wp-footer.php'),
+        this.destinationPath('src/structure/template/wp-footer.php'),
+        templateParams
+      );
+
+      this.fs.copyTpl(
+        this.templatePath('_wp-header.php'),
+        this.destinationPath('src/structure/template/wp-header.php'),
+        templateParams
+      );
+
+      // Add Server Credentials
+      if ( this.projectcredential ) {
+        this.fs.copyTpl(
+          this.templatePath('_wp-db--local.php'),
+          this.destinationPath('src/structure/config/wp-config/wp-db--local.php'),
+          templateParams
+        );
+        this.fs.copyTpl(
+          this.templatePath('_wp-config-sample.php'),
+          this.destinationPath('src/structure/config/wp-config-sample.php'),
+          templateParams
+        );
+      }
+
     } else {
-      this.directory('src/structure/', 'src/structure/');
+      this.directory('src/skeletons/simplesstructure/', 'src/structure/');
     }
 
     // Add SCSS Files with the desired Filename
@@ -249,25 +394,25 @@ var KittnGenerator = yeoman.Base.extend({
     // Copy the CSS Structure
     switch(this.projectcssstructure) {
       case 'Atomic Design':
-        this.directory('src/cssstructures/atomic', 'src/style/application/')
+        this.directory('src/skeletons/css/atomic', 'src/style/application/')
         break
 
       case 'ITCSS':
-        this.directory('src/cssstructures/itcss', 'src/style/application/')
+        this.directory('src/skeletons/css/itcss', 'src/style/application/')
         break
 
       case 'OOCSS':
-        this.directory('src/cssstructures/oocss', 'src/style/application/')
+        this.directory('src/skeletons/css/oocss', 'src/style/application/')
         break
 
       default:
-        this.directory('src/cssstructures/own', 'src/style/application/')
+        this.directory('src/skeletons/css/own', 'src/style/application/')
         break
     }
 
     // Include the Twig Working Dir
     if ( this.projectstructure === 'Twig Template' ) {
-      this.directory('src/twig/', 'src/template/');
+      this.directory('src/skeletons/twig/', 'src/template/');
 
       // Add the Template Header
       this.fs.copyTpl(
@@ -287,15 +432,15 @@ var KittnGenerator = yeoman.Base.extend({
 
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {
       this.fs.copyTpl(
-        this.templatePath('_document-header.html'),
+        this.templatePath('_craft-document-header.html'),
         this.destinationPath('src/structure/templates/_parts/document-header.html'),
         templateParams
       );
     }
 
     if ( this.projectvue === true ) {
-      this.directory('src/vue-components/', 'src/js/components/');
-      this.directory('src/vuex/', 'src/js/store/');
+      this.directory('src/skeletons/vue/components/', 'src/js/components/');
+      this.directory('src/skeletons/vue/vuex/', 'src/js/store/');
 
       this.fs.copyTpl(
         this.templatePath('_app.vue'),
@@ -410,12 +555,27 @@ var KittnGenerator = yeoman.Base.extend({
 
   install: function () {
     if (this.projectyarn) {
-      this.spawnCommand('yarn');
+      var done = this.async();
+      this.spawnCommand('yarn').on('close', done);
     } else {
       this.installDependencies({
         bower: false,
         npm: true
       });
+    }
+
+    // Put Craft Base Files in Structure or simple Structure Files
+    if ( this.projectUsage === 'Integrate in CraftCMS' ) {
+      if ( this.projectcraftcli ) {
+        var done = this.async();
+        this.spawnCommand('craft', ['install', './dist/']).on('close', done);
+      }
+    } else if ( this.projectUsage === 'Integrate in Wordpress' ) {
+      if ( this.projectwpcli ) {
+        var done = this.async();
+        this.spawnCommand('wp', ['core', 'download', '--path=dist', '--locale=de_DE']).on('close', done);
+
+      }
     }
   }
 });

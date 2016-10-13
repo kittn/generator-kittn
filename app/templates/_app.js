@@ -12,11 +12,10 @@ import store from './store/store'
 
 // Adding Vue Plugins
 Vue.use(VueResource)
-Vue.use(VueRouter)<% } %>
-<% if (projectquery === 'ContainerQuery') { %>
+Vue.use(VueRouter)<% } %><% if (projectquery === 'ContainerQuery') { %>
+
 // Init Container Queries
 cq({ postcss: true })<% } if (projectvue === true ) { %>
-
 // Vue App
 new Vue({
   store,

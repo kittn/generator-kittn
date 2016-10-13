@@ -9,7 +9,8 @@
     "cssimg": "dist/assets/img/",
     "bitmaps": "dist/assets/img/bitmaps/",
     "vectors": "dist/assets/img/svgfiles/",
-    "contentimage": "dist/images/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
+    "contentimage": "dist/images/",
+    "webpackjsassets": "assets/js/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
     "base": "dist/wp-content/themes/<%= projectname %>/",
     "markup": "dist/wp-content/themes/<%= projectname %>/",
     "browserSyncDir": "dist/wp-content/themes/<%= projectname %>/",
@@ -19,7 +20,8 @@
     "cssimg": "dist/wp-content/themes/<%= projectname %>/assets/img/",
     "bitmaps": "dist/wp-content/themes/<%= projectname %>/assets/img/bitmaps/",
     "vectors": "dist/wp-content/themes/<%= projectname %>/assets/img/svgfiles/",
-    "contentimage": "dist/wp-content/themes/<%= projectname %>/images/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
+    "contentimage": "dist/wp-content/themes/<%= projectname %>/images/",
+    "webpackjsassets": "wp-content/themes/<%= projectname %>/assets/js/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
     "base": "dist/public/",
     "markup": "dist/craft/",
     "browserSyncDir": "dist/public/",
@@ -29,7 +31,8 @@
     "cssimg": "dist/public/assets/img/",
     "bitmaps": "dist/public/assets/img/bitmaps/",
     "vectors": "dist/public/assets/img/svgfiles/",
-    "contentimage": "dist/public/images/",<% } %>
+    "contentimage": "dist/public/images/",
+    "webpackjsassets": "public/assets/js/",<% } %>
     "cssimgRoot": "/assets/img/"
   },
   "templatePath": {
@@ -63,7 +66,7 @@
   },
   "browsersync": {
     "openbrowser": true,
-    "proxy": false
+    "proxy": <% if (projectcredential) { %>"<%= credentialdomain %>"<% } else { %>false<% } %>
   },
   "files": {
     "jsApp": {
@@ -167,8 +170,9 @@
   },
   "src": {
     "style": "src/style/",
-    "template": "src/template/",
-    "structure": "src/structure/",
+    "template": "src/template/",<% if (projectUsage === 'Integrate in Wordpress' ) { %>
+    "structure": "src/structure/template/",<% } else { %>
+    "structure": "src/structure/",<% } %>
     "js": "src/js/",
     "bower": "src/bower/",
     "scripts" : "src/scripts",

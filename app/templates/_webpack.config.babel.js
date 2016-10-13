@@ -4,22 +4,21 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import merge from 'webpack-merge'
 import yargs from 'yargs'
 import eslintPretty from 'eslint-formatter-pretty'
+import kittnConf from './config.json'
 
 const argv = yargs.argv
 const env = argv.env || 'development'
-
 const nodeEnv = process.env.NODE_ENV || 'production'
 const bundle = env.bundle || 'primary'
 
 const ROOT_PATH = path.resolve(__dirname)
 const PUBLIC_PATH = path.join(ROOT_PATH, 'dist/')
-
-const ASSET_JS_PATH = 'assets/js/'
+const ASSET_JS_PATH = kittnConf.dist.webpackjsassets
 
 const PRIMARY_FILE_NAME = 'app.js'
 const PRIMARY_FILE_HANDLE = 'app'
 
-
+// Different Config Sections
 const configSelect = bundle => {
   switch (bundle) {
     case 'primary':
@@ -55,6 +54,7 @@ const configSelect = bundle => {
 
 const configSegment = configSelect(bundle)
 
+// Webpack Config
 const config = {
   devtool: 'source-map',
   context: path.join( ROOT_PATH, 'src'),

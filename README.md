@@ -66,6 +66,7 @@ Copy all or Generate the Template Files.
 
 ## Special Thanks to
 
+- David Hellmann (@davidhellmann) - for his Wordpress Boilerplate
 - Hugo Giraudel (@HugoGiraudel) - for his awesome Sass Scripts
 - Team Sass - Jacket
 - LukyVj (@LukyVj) - for Family.scss
