@@ -15,7 +15,7 @@ return array(
     'server'   => '<%= credentialdbserver %>',
     'user'     => '<%= credentialdbuser %>',
     'password' => '<%= credentialdbpass %>',
-    'database' => '<%= credantialdbdatabase %>'
+    'database' => '<%= credentialdbdatabase %>'
   ),
   'PROD:DOMAIN' => array(
     'server'   => 'localhost',

@@ -1,0 +1,11 @@
+/*
+  Central Style File
+  ==================
+  You can load here all Files from Application with Wildcard
+
+  @import "vendor" !not-sassy;
+  @import "./local.css";
+  @import "config.json";
+  @import "reset";
+  @import "application/elements/*.css";
+*/

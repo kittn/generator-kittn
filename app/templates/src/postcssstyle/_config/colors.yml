@@ -1,0 +1,9 @@
+--- # UI Colors
+primary: "#f29300"
+black: "#3c3c3c"
+gray: "#636363"
+white: "#fff"
+alert: "#ef462a"
+success: "#38cc3b"
+warning: "#f5a11c"
+hightlight: "#f8e64b"

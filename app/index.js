@@ -52,6 +52,15 @@ var KittnGenerator = yeoman.Base.extend({
       },
       {
         type: 'list',
+        name: 'projectstylecompiler',
+        message: 'Do you want to use Sass and PostCSS in a Mixed Compiler, or do you want to use PostCSS only (for using CSS Level 4 Features). PostCSS only is without the Kittn CSS Framework',
+        choices: [
+          'Sass with PostCSS',
+          'PostCSS Only'
+        ]
+      },
+      {
+        type: 'list',
         name: 'projectcssstructure',
         message: 'CSS Style Structure',
         choices: [
@@ -273,6 +282,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.credentialdbuser     = props.credentialdbuser;
       this.credentialdbpass     = props.credentialdbpass;
       this.credentialdbdatabase = props.credentialdbdatabase;
+      this.projectstylecompiler = props.projectstylecompiler;
 
       done();
     }.bind(this));
@@ -309,19 +319,98 @@ var KittnGenerator = yeoman.Base.extend({
       credentialdbuser     : this.credentialdbuser,
       credentialdbpass     : this.credentialdbpass,
       credentialdbdatabase : this.credentialdbdatabase,
+      projectstylecompiler : this.projectstylecompiler,
       pkg: this.pkg
     };
 
     // Move the SRC Folder
     mkdirp.sync('dist/');
     this.directory('src/js/', 'src/js/');
-    this.directory('src/style/', 'src/style/');
     this.directory('src/fonts/', 'src/fonts/');
     this.directory('src/images/', 'src/images/');
     this.directory('src/scripts/', 'src/scripts/');
     this.directory('src/.system/', 'src/.system/');
-    this.directory('src/framework/', 'src/framework/');
     this.directory('src/gulpfile/', 'gulpfile/');
+
+    if ( this.projectstylecompiler === 'Sass with PostCSS' ) {
+      this.directory('src/framework/', 'src/framework/');
+      this.directory('src/sassstyle/', 'src/style/');
+
+      this.fs.copyTpl(
+        this.templatePath('_defaults.scss'),
+        this.destinationPath('src/framework/_defaults.scss'),
+        templateParams
+      );
+
+      // Copy Gulp Task for Sprite Building
+      this.fs.copyTpl(
+        this.templatePath('_sass-build-bitmapsprite.js'),
+        this.destinationPath('gulpfile/tasks/build-bitmapsprite.js'),
+        templateParams
+      );
+
+      // Copy the Style Generator Task
+      this.fs.copyTpl(
+        this.templatePath('_sass-compile-css.js'),
+        this.destinationPath('gulpfile/tasks/compile-css.js'),
+        templateParams
+      );
+
+      // Add SCSS Files with the desired Filename
+      this.fs.copyTpl(
+        this.templatePath('_style.scss'),
+        this.destinationPath('src/style/'+this.projectcssfilename+'.scss'),
+        templateParams
+      );
+
+      // IE8 get his own CSS File for Fallbacks
+      if (this.projectiecompatible === true ) {
+        this.fs.copyTpl(
+          this.templatePath('_style-ie8.scss'),
+          this.destinationPath('src/style/'+this.projectcssfilename+'-ie8.scss'),
+          templateParams
+        );
+      }
+
+    } else {
+      this.directory('src/postcssstyle/', 'src/style/');
+
+      // Copy Gulp Task for Sprite Building
+      this.fs.copyTpl(
+        this.templatePath('_postcss-build-bitmapsprite.js'),
+        this.destinationPath('gulpfile/tasks/build-bitmapsprite.js'),
+        templateParams
+      );
+
+      // Copy the Style Generator Task
+      this.fs.copyTpl(
+        this.templatePath('_sass-compile-postcss.js'),
+        this.destinationPath('gulpfile/tasks/compile-css.js'),
+        templateParams
+      );
+
+      // Add SCSS Files with the desired Filename
+      this.fs.copyTpl(
+        this.templatePath('_style-postcss.css'),
+        this.destinationPath('src/style/'+this.projectcssfilename+'.css'),
+        templateParams
+      );
+
+      // IE8 get his own CSS File for Fallbacks
+      if (this.projectiecompatible === true ) {
+        this.fs.copyTpl(
+          this.templatePath('_style-postcss-ie8.css'),
+          this.destinationPath('src/style/'+this.projectcssfilename+'-ie8.css'),
+          templateParams
+        );
+      }
+    }
+
+    this.fs.copyTpl(
+      this.templatePath('_watch.js'),
+      this.destinationPath('gulpfile/tasks/watch.js'),
+      templateParams
+    );
 
     // Put Craft Base Files in Structure or simple Structure Files
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {
@@ -375,22 +464,6 @@ var KittnGenerator = yeoman.Base.extend({
       this.directory('src/skeletons/simplesstructure/', 'src/structure/');
     }
 
-    // Add SCSS Files with the desired Filename
-    this.fs.copyTpl(
-      this.templatePath('_style.scss'),
-      this.destinationPath('src/style/'+this.projectcssfilename+'.scss'),
-      templateParams
-    );
-
-    // IE8 get his own CSS File for Fallbacks
-    if (this.projectiecompatible === true ) {
-      this.fs.copyTpl(
-        this.templatePath('_style-ie8.scss'),
-        this.destinationPath('src/style/'+this.projectcssfilename+'-ie8.scss'),
-        templateParams
-      );
-    }
-
     // Copy the CSS Structure
     switch(this.projectcssstructure) {
       case 'Atomic Design':
@@ -408,6 +481,11 @@ var KittnGenerator = yeoman.Base.extend({
       default:
         this.directory('src/skeletons/css/own', 'src/style/application/')
         break
+    }
+
+    // Delete _application.scss from Structure dir, if PostCSS is active
+    if ( this.projectstylecompiler === 'PostCSS Only' ) {
+      this.fs.delete('src/style/application/_application.scss')
     }
 
     // Include the Twig Working Dir
@@ -474,11 +552,7 @@ var KittnGenerator = yeoman.Base.extend({
       templateParams
     );
 
-    this.fs.copyTpl(
-      this.templatePath('_defaults.scss'),
-      this.destinationPath('src/framework/_defaults.scss'),
-      templateParams
-    );
+
 
     this.fs.copyTpl(
       this.templatePath('_readme.md'),
