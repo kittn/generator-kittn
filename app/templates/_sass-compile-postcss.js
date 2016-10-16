@@ -39,8 +39,8 @@ const compilerCssTask = () => {
   const env = args.env || 'development'
 
   const opts = {
-    basePath: 'src/style/_config/',
-    maps: ['typo.yml', 'colors.yml', 'breakpoints.yml', 'sprites.yml']
+    basePath: 'src/style/maps/',
+    maps: ['sprites.yml']
   }
 
   const processors = [
@@ -60,7 +60,9 @@ const compilerCssTask = () => {
     sassstyleMixin({}),
     sassstyleFunctions({}),
     propertyLookup({}),
-    fontmagican({}),
+    fontmagican({
+      foundries: 'google'
+    }),
     cssnext({
       browsers: ['last 1 version']
     }),

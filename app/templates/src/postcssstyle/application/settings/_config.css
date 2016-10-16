@@ -1,0 +1,82 @@
+/*
+  Configuration
+  =============
+*/
+
+:root {
+  /* Breakpoints */
+  --break-one: 320px;
+  --break-two: 480px;
+  --break-three: 560px;
+  --break-fourth: 768px;
+  --break-fifth: 960px;
+  --break-sixth: 1180px;
+
+  /* Base Colors */
+  --color-primary: #f29300;
+  --color-black: #3c3c3c;
+  --color-white: #fff;
+  --color-gray: #636363;
+  --color-alert: #ef462a;
+  --color-success: #38cc3b;
+  --color-warning: #f5a11c;
+  --color-hightlight: #f8e64b;
+
+  /* UI Colors */
+  --uic-body: var(--color-white);
+  --uic-text: var(--color-black);
+  --uic-headline: var(--color-black);
+  --uic-blockquote: var(--color-black);
+  --uic-hightlight-bg: color(var(--color-primary) tint(20%));
+  --uic-hightlight-text: color(var(--color-primary) shade(10%));
+  --uic-link: var(--color-primary);
+  --uic-link-hover: color(var(--color-primary) shade(15%));
+  --uic-link-active: color(var(--color-primary) shade(25%));
+
+  /* Base Typo*/
+  --tbase-fontscale: 85%;
+  --tbase-fontsize: 16px;
+  --tbase-lineheight: 21px;
+
+  /* Base Typo for Headings */
+  --tbaseheading-lineheight: 1;
+  --tbaseheading-fontweight: normal;
+  --tbaseheading-marginbottom: 20px;
+
+  /* Typo Styles */
+  --ts-h1-fontsize: 36px;
+  --ts-h1-lineheight: 1;
+  --ts-h1-fontweight: normal;
+  --ts-h1-marginbottom: 10px;
+  --ts-h1-base: true;
+
+  --ts-h2-fontsize: 32px;
+  --ts-h2-lineheight: 1;
+  --ts-h2-fontweight: normal;
+  --ts-h2-marginbottom: 10px;
+  --ts-h2-base: true;
+
+  --ts-h3-fontsize: 28px;
+  --ts-h3-lineheight: 1;
+  --ts-h3-fontweight: normal;
+  --ts-h3-marginbottom: 10px;
+  --ts-h3-base: true;
+
+  --ts-h4-fontsize: 25px;
+  --ts-h4-lineheight: 1;
+  --ts-h4-fontweight: normal;
+  --ts-h4-marginbottom: 10px;
+  --ts-h4-base: true;
+
+  --ts-h5-fontsize: 22px;
+  --ts-h5-lineheight: 1;
+  --ts-h5-fontweight: normal;
+  --ts-h5-marginbottom: 10px;
+  --ts-h5-base: true;
+
+  --ts-h6-fontsize: 19px;
+  --ts-h6-lineheight: 1;
+  --ts-h6-fontweight: normal;
+  --ts-h6-marginbottom: 10px;
+  --ts-h6-base: true;
+}

@@ -18,11 +18,6 @@ const preCssConf = () => {
       browsers: kc.css.prefix,
       cascade: false
     }),
-    // Inline SVG Images
-    require('postcss-svg')({
-      defaults: '[fill]:#444',
-      paths: [kc.dist.vectors]
-    }),
     // Include the LostGrid System
     require('lost')({}),
     // Include Size Short hands

@@ -9,3 +9,22 @@
   @import "reset";
   @import "application/elements/*.css";
 */
+@import "../../node_modules/normalize.css/normalize.css";<% if (projectcssstructure === 'ITCSS') { %>
+@import "application/settings/*.css";
+@import "application/tools/*.css";
+@import "application/generic/*.css";
+@import "application/elements/*.css";
+@import "application/objects/*.css";
+@import "application/components/*.css";
+@import "application/trumps/*.css";<% } else if (projectcssstructure === 'Atomic Design') { %>
+@import "application/settings/*.css";
+@import "application/utilities/*.css";
+@import "application/atoms/*.css";
+@import "application/molecules/*.css";
+@import "application/organisms/*.css";
+@import "application/templates/*.css";<% } else if (projectcssstructure === 'OOCSS') { %>
+@import "application/settings/*.css";
+@import "application/utilities/*.css";
+@import "application/objects/*.css";
+@import "application/pages/*.css";<% } else { %>
+@import "application/settings/*.css";<% } %>

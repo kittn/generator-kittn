@@ -31,7 +31,7 @@ const buildBitmapSpriteTaks = () => {
         }
       })
     ))
-    .pipe($.if('*.png',gulp.dest(kc.dist.cssimg),gulp.dest(kc.src.style + '_config/')))
+    .pipe($.if('*.png',gulp.dest(kc.dist.cssimg),gulp.dest(kc.src.style + 'maps/')))
 }
 
 gulp.task('build:bitmapSprite', buildBitmapSpriteTaks)

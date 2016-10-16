@@ -332,15 +332,33 @@ var KittnGenerator = yeoman.Base.extend({
     this.directory('src/.system/', 'src/.system/');
     this.directory('src/gulpfile/', 'gulpfile/');
 
+    // Copy the CSS Structure
+    switch(this.projectcssstructure) {
+      case 'Atomic Design':
+        this.directory('src/skeletons/css/atomic', 'src/style/application/')
+        break
+
+      case 'ITCSS':
+        this.directory('src/skeletons/css/itcss', 'src/style/application/')
+        break
+
+      case 'OOCSS':
+        this.directory('src/skeletons/css/oocss', 'src/style/application/')
+        break
+
+      default:
+        this.directory('src/skeletons/css/own', 'src/style/application/')
+        break
+    }
+
+    // Delete _application.scss from Structure dir, if PostCSS is active
+    if ( this.projectstylecompiler === 'PostCSS Only' ) {
+      this.fs.delete('src/style/application/_application.scss')
+    }
+
     if ( this.projectstylecompiler === 'Sass with PostCSS' ) {
       this.directory('src/framework/', 'src/framework/');
       this.directory('src/sassstyle/', 'src/style/');
-
-      this.fs.copyTpl(
-        this.templatePath('_defaults.scss'),
-        this.destinationPath('src/framework/_defaults.scss'),
-        templateParams
-      );
 
       // Copy Gulp Task for Sprite Building
       this.fs.copyTpl(
@@ -406,12 +424,6 @@ var KittnGenerator = yeoman.Base.extend({
       }
     }
 
-    this.fs.copyTpl(
-      this.templatePath('_watch.js'),
-      this.destinationPath('gulpfile/tasks/watch.js'),
-      templateParams
-    );
-
     // Put Craft Base Files in Structure or simple Structure Files
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {
       this.directory('src/skeletons/craftcms/', 'src/structure/');
@@ -434,18 +446,6 @@ var KittnGenerator = yeoman.Base.extend({
     } else if ( this.projectUsage === 'Integrate in Wordpress' ) {
       this.directory('src/skeletons/wordpress/', 'src/structure/');
 
-      this.fs.copyTpl(
-        this.templatePath('_wp-footer.php'),
-        this.destinationPath('src/structure/template/wp-footer.php'),
-        templateParams
-      );
-
-      this.fs.copyTpl(
-        this.templatePath('_wp-header.php'),
-        this.destinationPath('src/structure/template/wp-header.php'),
-        templateParams
-      );
-
       // Add Server Credentials
       if ( this.projectcredential ) {
         this.fs.copyTpl(
@@ -464,56 +464,11 @@ var KittnGenerator = yeoman.Base.extend({
       this.directory('src/skeletons/simplesstructure/', 'src/structure/');
     }
 
-    // Copy the CSS Structure
-    switch(this.projectcssstructure) {
-      case 'Atomic Design':
-        this.directory('src/skeletons/css/atomic', 'src/style/application/')
-        break
 
-      case 'ITCSS':
-        this.directory('src/skeletons/css/itcss', 'src/style/application/')
-        break
-
-      case 'OOCSS':
-        this.directory('src/skeletons/css/oocss', 'src/style/application/')
-        break
-
-      default:
-        this.directory('src/skeletons/css/own', 'src/style/application/')
-        break
-    }
-
-    // Delete _application.scss from Structure dir, if PostCSS is active
-    if ( this.projectstylecompiler === 'PostCSS Only' ) {
-      this.fs.delete('src/style/application/_application.scss')
-    }
 
     // Include the Twig Working Dir
     if ( this.projectstructure === 'Twig Template' ) {
       this.directory('src/skeletons/twig/', 'src/template/');
-
-      // Add the Template Header
-      this.fs.copyTpl(
-        this.templatePath('_site-header.twig'),
-        this.destinationPath('src/template/parts/_site-header.twig'),
-        templateParams
-      );
-
-      // Add the Template Footer (Script Files)
-      this.fs.copyTpl(
-        this.templatePath('_site-scripts.twig'),
-        this.destinationPath('src/template/parts/_site-scripts.twig'),
-        templateParams
-      );
-    }
-
-
-    if ( this.projectUsage === 'Integrate in CraftCMS' ) {
-      this.fs.copyTpl(
-        this.templatePath('_craft-document-header.html'),
-        this.destinationPath('src/structure/templates/_parts/document-header.html'),
-        templateParams
-      );
     }
 
     if ( this.projectvue === true ) {
@@ -551,8 +506,6 @@ var KittnGenerator = yeoman.Base.extend({
       this.destinationPath('gulpfile.babel.js'),
       templateParams
     );
-
-
 
     this.fs.copyTpl(
       this.templatePath('_readme.md'),
@@ -593,30 +546,6 @@ var KittnGenerator = yeoman.Base.extend({
     this.fs.copyTpl(
       this.templatePath('eslintrc'),
       this.destinationPath('.eslintrc'),
-      templateParams
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('_templateFiles.js'),
-      this.destinationPath('gulpfile/lib/templateFiles.js'),
-      templateParams
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('_compile-html.js'),
-      this.destinationPath('gulpfile/tasks/compile-html.js'),
-      templateParams
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('_app.js'),
-      this.destinationPath('src/js/app.js'),
-      templateParams
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('_browsersync.js'),
-      this.destinationPath('gulpfile/tasks/browsersync.js'),
       templateParams
     );
 
