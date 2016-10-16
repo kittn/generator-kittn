@@ -8,9 +8,9 @@ import gulp from 'gulp'
 import gutil from 'gulp-util'
 import browserSync from 'browser-sync'
 import gulpLoadPlugins from 'gulp-load-plugins'
-import errorHandler from './src/gulpfile/lib/errorHandler'
-import preCssConf from './src/gulpfile/lib/prePostCssConf'
-import postCssNano from './src/gulpfile/lib/postCssNano'
+import errorHandler from '../lib/errorHandler'
+import preCssConf from '../lib/prePostCssConf'
+import postCssNano from '../lib/postCssNano'
 import yargs from 'yargs'
 
 const args = yargs.argv
