@@ -3,16 +3,16 @@
   ===================================
  */
 * {
-@if $activate-antialias == true {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  @if $activate-antialias == true {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-@if $activate-newboxmodel == true {
-&, &:before, &:after {
-                box-sizing: inherit;
-              }
-}
+  @if $activate-newboxmodel == true {
+    &, &:before, &:after {
+      box-sizing: inherit;
+    }
+  }
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -23,9 +23,9 @@ dl, dd, ol, ul {
 
 html {
   font-size: $tbase-fontscale;
-@if $activate-newboxmodel == true {
-  box-sizing: border-box;
-}
+  @if $activate-newboxmodel == true {
+    box-sizing: border-box;
+  }
 }
 
 html, body {
@@ -34,11 +34,11 @@ html, body {
 
 body {
   position: relative;
-@if $fontfamily-base != false { font-family: $fontfamily-base; }
-background-color: var(--uic-body);
-color: var(--uic-text);
-font-size: $tbase-fontsize;
-line-height: $tbase-lineheight;
+  @if $fontfamily-base != false { font-family: $fontfamily-base; }
+  background-color: var(--uic-body);
+  color: var(--uic-text);
+  font-size: $tbase-fontsize;
+  line-height: $tbase-lineheight;
 }
 
 select, option,
@@ -50,66 +50,66 @@ input[type="submit"] {
 }
 
 %headings {
-   text-rendering: optimizeLegibility;
-@if $fontfamily-headings != false { font-family: $fontfamily-headings; }
-@if $tbaseheading-lineheight != false { line-height: $tbaseheading-lineheight; }
-@if $tbaseheading-fontweight != false { font-weight: $tbaseheading-fontweight; }
-@if $tbaseheading-marginbottom != false { margin-bottom: $tbaseheading-marginbottom; }
-color: var(--uic-headline);
+  text-rendering: optimizeLegibility;
+  @if $fontfamily-headings != false { font-family: $fontfamily-headings; }
+  @if $tbaseheading-lineheight != false { line-height: $tbaseheading-lineheight; }
+  @if $tbaseheading-fontweight != false { font-weight: $tbaseheading-fontweight; }
+  @if $tbaseheading-marginbottom != false { margin-bottom: $tbaseheading-marginbottom; }
+  color: var(--uic-headline);
 }
 
 h1 {
-@if $ts-h1-base != false { @extend %headings; }
-@if $ts-h1-fontsize != false { font-size: $ts-h1-fontsize; }
-@if $ts-h1-lineheight != false { line-height: $ts-h1-lineheight; }
-@if $ts-h1-fontweight != false { font-weight: $ts-h1-fontweight; }
-@if $ts-h1-marginbottom != false { margin-bottom: $ts-h1-marginbottom; }
+  @if $ts-h1-base != false { @extend %headings; }
+  @if $ts-h1-fontsize != false { font-size: $ts-h1-fontsize; }
+  @if $ts-h1-lineheight != false { line-height: $ts-h1-lineheight; }
+  @if $ts-h1-fontweight != false { font-weight: $ts-h1-fontweight; }
+  @if $ts-h1-marginbottom != false { margin-bottom: $ts-h1-marginbottom; }
 }
 
 h2 {
-@if $ts-h2-base != false { @extend %headings; }
-@if $ts-h2-fontsize != false { font-size: $ts-h2-fontsize; }
-@if $ts-h2-lineheight != false { line-height: $ts-h2-lineheight; }
-@if $ts-h2-fontweight != false { font-weight: $ts-h2-fontweight; }
-@if $ts-h2-marginbottom != false { margin-bottom: $ts-h2-marginbottom; }
+  @if $ts-h2-base != false { @extend %headings; }
+  @if $ts-h2-fontsize != false { font-size: $ts-h2-fontsize; }
+  @if $ts-h2-lineheight != false { line-height: $ts-h2-lineheight; }
+  @if $ts-h2-fontweight != false { font-weight: $ts-h2-fontweight; }
+  @if $ts-h2-marginbottom != false { margin-bottom: $ts-h2-marginbottom; }
 }
 
 h3 {
-@if $ts-h3-base != false { @extend %headings; }
-@if $ts-h3-fontsize != false { font-size: $ts-h3-fontsize; }
-@if $ts-h3-lineheight != false { line-height: $ts-h3-lineheight; }
-@if $ts-h3-fontweight != false { font-weight: $ts-h3-fontweight; }
-@if $ts-h3-marginbottom != false { margin-bottom: $ts-h3-marginbottom; }
+  @if $ts-h3-base != false { @extend %headings; }
+  @if $ts-h3-fontsize != false { font-size: $ts-h3-fontsize; }
+  @if $ts-h3-lineheight != false { line-height: $ts-h3-lineheight; }
+  @if $ts-h3-fontweight != false { font-weight: $ts-h3-fontweight; }
+  @if $ts-h3-marginbottom != false { margin-bottom: $ts-h3-marginbottom; }
 }
 
 h4 {
-@if $ts-h4-base != false { @extend %headings; }
-@if $ts-h4-fontsize != false { font-size: $ts-h4-fontsize; }
-@if $ts-h4-lineheight != false { line-height: $ts-h4-lineheight; }
-@if $ts-h4-fontweight != false { font-weight: $ts-h4-fontweight; }
-@if $ts-h4-marginbottom != false { margin-bottom: $ts-h4-marginbottom; }
+  @if $ts-h4-base != false { @extend %headings; }
+  @if $ts-h4-fontsize != false { font-size: $ts-h4-fontsize; }
+  @if $ts-h4-lineheight != false { line-height: $ts-h4-lineheight; }
+  @if $ts-h4-fontweight != false { font-weight: $ts-h4-fontweight; }
+  @if $ts-h4-marginbottom != false { margin-bottom: $ts-h4-marginbottom; }
 }
 
 h5 {
-@if $ts-h5-base != false { @extend %headings; }
-@if $ts-h5-fontsize != false { font-size: $ts-h5-fontsize; }
-@if $ts-h5-lineheight != false { line-height: $ts-h5-lineheight; }
-@if $ts-h5-fontweight != false { font-weight: $ts-h5-fontweight; }
-@if $ts-h5-marginbottom != false { margin-bottom: $ts-h5-marginbottom; }
+  @if $ts-h5-base != false { @extend %headings; }
+  @if $ts-h5-fontsize != false { font-size: $ts-h5-fontsize; }
+  @if $ts-h5-lineheight != false { line-height: $ts-h5-lineheight; }
+  @if $ts-h5-fontweight != false { font-weight: $ts-h5-fontweight; }
+  @if $ts-h5-marginbottom != false { margin-bottom: $ts-h5-marginbottom; }
 }
 
 h6 {
-@if $ts-h6-base != false { @extend %headings; }
-@if $ts-h6-fontsize != false { font-size: $ts-h6-fontsize; }
-@if $ts-h6-lineheight != false { line-height: $ts-h6-lineheight; }
-@if $ts-h6-fontweight != false { font-weight: $ts-h6-fontweight; }
-@if $ts-h6-marginbottom != false { margin-bottom: $ts-h6-marginbottom; }
+  @if $ts-h6-base != false { @extend %headings; }
+  @if $ts-h6-fontsize != false { font-size: $ts-h6-fontsize; }
+  @if $ts-h6-lineheight != false { line-height: $ts-h6-lineheight; }
+  @if $ts-h6-fontweight != false { font-weight: $ts-h6-fontweight; }
+  @if $ts-h6-marginbottom != false { margin-bottom: $ts-h6-marginbottom; }
 }
 
 p {
-@if $hs-paragraph-margin != false { margin-bottom: $hs-paragraph-margin; }
-
+  @if $hs-paragraph-margin != false { margin-bottom: $hs-paragraph-margin; }
 }
+
 @if $hs-paragraph-following-margin != false {
   p + h1, p + h2, p + h3, p + h4, p + h5, p + h6 {
     margin-top: $hs-paragraph-following-margin;
@@ -120,39 +120,39 @@ a {
   outline: 0;
   line-height: inherit;
   color: var(--uic-link);
-@if $hs-link-decoration-regular != false { text-decoration: $hs-link-decoration-regular }
+  @if $hs-link-decoration-regular != false { text-decoration: $hs-link-decoration-regular }
 
-&:hover {
-   color: var(--uic-link-hover);
-@if $hs-link-decoration-hover != false { text-decoration: $hs-link-decoration-hover }
-}
+  &:hover {
+    color: var(--uic-link-hover);
+    @if $hs-link-decoration-hover != false { text-decoration: $hs-link-decoration-hover }
+  }
 
-&:active {
-   color: var(--uic-link-active);
- }
+  &:active {
+    color: var(--uic-link-active);
+  }
 }
 
 strong, b {
-@if $fontfamily-bold != false { font-family: $fontfamily-bold; }
-@if $fontstyle-bold-weight != false { font-weight: $fontstyle-bold-weight; }
+  @if $fontfamily-bold != false { font-family: $fontfamily-bold; }
+  @if $fontstyle-bold-weight != false { font-weight: $fontstyle-bold-weight; }
 }
 
 em, dfn {
-@if $fontfamily-italic != false { font-family: $fontfamily-italic; }
-@if $fontstyle-italic-style != false { font-style: $fontstyle-italic-style; }
+  @if $fontfamily-italic != false { font-family: $fontfamily-italic; }
+  @if $fontstyle-italic-style != false { font-style: $fontstyle-italic-style; }
 }
 
 abbr {
   font-variant: small-caps;
   text-transform: lowercase;
 
-&[title] {
-   border-bottom: 1px dotted;
+  &[title] {
+     border-bottom: 1px dotted;
 
-&:hover {
-   cursor: help;
- }
-}
+  &:hover {
+     cursor: help;
+   }
+  }
 }
 
 mark, .hightlight, ::selection {
@@ -161,24 +161,24 @@ mark, .hightlight, ::selection {
 }
 
 ul, li {
-@if $hs-list-style != false { list-style-type: $hs-list-style; }
-@if $hs-list-paddingleft != false { padding-left: $hs-list-paddingleft; }
-@if $hs-list-marginbottom != false { margin-bottom: $hs-list-marginbottom; }
+  @if $hs-list-style != false { list-style-type: $hs-list-style; }
+  @if $hs-list-paddingleft != false { padding-left: $hs-list-paddingleft; }
+  @if $hs-list-marginbottom != false { margin-bottom: $hs-list-marginbottom; }
 
-@nest nav & {
-  list-style-type: none;
-  margin-bottom: 0;
-  padding-left: 0;
-}
+  @nest nav & {
+    list-style-type: none;
+    margin-bottom: 0;
+    padding-left: 0;
+  }
 }
 
 ol {
-@if $hs-list-padding-left != false { padding-left: calc($hs-list-padding-left + 2px); }
+  @if $hs-list-paddingleft != false { padding-left: calc($hs-list-paddingleft + 2px); }
 }
 
 li, dt, dd {
-@if $hs-list-fontsize != false { font-size: $hs-list-fontsize; }
-@if $hs-list-lineheight != false { line-height: $hs-list-lineheight; }
+  @if $hs-list-fontsize != false { font-size: $hs-list-fontsize; }
+  @if $hs-list-lineheight != false { line-height: $hs-list-lineheight; }
 }
 
 li > ul, li > ol,
@@ -190,9 +190,9 @@ q {
   quotes: "\201C" "\201D" "\2018" "\2019";
 
 &:before, &:after {
-             content: '';
-             content: none;
-           }
+   content: '';
+   content: none;
+ }
 }
 
 small {
@@ -223,19 +223,19 @@ blockquote {
   margin-left: 0;
   margin-right: 0;
   color: var(--uic-blockquote);
-@if $fontfamily-blockquote != false { font-family: $fontfamily-blockquote; }
-@if $fontstyle-quote-style != false { font-style: $fontstyle-quote-style; }
-@if $fontstyle-quote-weight != false { font-weight: $fontstyle-quote-weight; }
-@if $hs-blockquote-marginbottom != false { margin-bottom: $hs-blockquote-marginbottom; }
+  @if $fontfamily-blockquote != false { font-family: $fontfamily-blockquote; }
+  @if $fontstyle-quote-style != false { font-style: $fontstyle-quote-style; }
+  @if $fontstyle-quote-weight != false { font-weight: $fontstyle-quote-weight; }
+  @if $hs-blockquote-marginbottom != false { margin-bottom: $hs-blockquote-marginbottom; }
 
 & p {
-@if $hs-blockquote-fontsize != false { font-size: $hs-blockquote-fontsize; }
-@if $hs-blockquote-lineheight != false { line-height: $hs-blockquote-lineheight; }
+  @if $hs-blockquote-fontsize != false { font-size: $hs-blockquote-fontsize; }
+  @if $hs-blockquote-lineheight != false { line-height: $hs-blockquote-lineheight; }
 }
 
 & cite {
-@if $hs-cite-fontsize != false { font-size: $hs-cite-fontsize; }
-@if $hs-cite-lineheight != false { line-height: $hs-cite-lineheight; }
+  @if $hs-cite-fontsize != false { font-size: $hs-cite-fontsize; }
+  @if $hs-cite-lineheight != false { line-height: $hs-cite-lineheight; }
 }
 
 & *:last-child {
@@ -248,8 +248,7 @@ img {
   max-width: 100%;
   height: auto;
 
-&[width],
-&[height] {
+&[width], &[height] {
    max-width: none;
  }
 }
@@ -265,9 +264,9 @@ figure {
 }
 
 #map_canvas, .map_canvas {
-& img, & embed, & object {
-                    max-width: none !important;
-                  }
+  & img, & embed, & object {
+    max-width: none !important;
+  }
 }
 
 svg:not(:root) {

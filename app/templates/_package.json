@@ -74,7 +74,6 @@
     "postcss-aspect-ratio": "^1.0.0",
     "postcss-cssnext": "^2.8.0",
     "postcss-extend": "^1.0.5",
-    "postcss-font-magician": "^1.4.0",
     "postcss-map": "^0.8.0",
     "postcss-partial-import": "^2.0.0",
     "postcss-sassy-import": "^1.2.3",

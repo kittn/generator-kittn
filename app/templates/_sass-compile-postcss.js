@@ -23,7 +23,6 @@ import csspartial from 'postcss-partial-import'
 import cssextend from 'postcss-extend'
 import svgfragments from 'postcss-svg-fragments'
 import cssAssets from 'postcss-assets'
-import fontmagican from 'postcss-font-magician'
 import cssReporter from 'postcss-reporter'
 import sassstyleVar from 'postcss-advanced-variables'
 import sassstyleRoot from 'postcss-atroot'
@@ -65,9 +64,6 @@ const compilerCssTask = () => {
     sassstyleMixin({}),
     sassstyleFunctions({}),
     propertyLookup({}),
-    fontmagican({
-      foundries: 'google'
-    }),
     cssnext({
       warnForDuplicates: false,
       browsers: ['last 1 version']
@@ -85,8 +81,8 @@ const compilerCssTask = () => {
     quantityQueries({}),
     cssSizes({}),
     cssAspectRatio({}),
-    flexboxfixes({}),
     lost({}),
+    flexboxfixes({}),
     env === 'production' ? cssnano({
       zindex: false,
       discardUnused: false,
