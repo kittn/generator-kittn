@@ -3,6 +3,7 @@
  */
 
 import kc from '../../config.json'
+import globals from '../../src/style/maps/globals.json'
 import gulp from 'gulp'
 import gutil from 'gulp-util'
 import browserSync from 'browser-sync'
@@ -40,22 +41,26 @@ const compilerCssTask = () => {
 
   const opts = {
     basePath: 'src/style/maps/',
-    maps: ['sprites.yml']
+    maps: ['sprites.yml', 'globals.json']
   }
 
   const processors = [
+    csspartial({}),
+    cssimports({}),
     function(css) { // Spacer Function
       css.walkDecls(function (decl) {
         if (decl.value.match(/spacer/)) {
-          const SPACER = 20
-          decl.value = SPACER * parseFloat(decl.value) + 'px';
+          const SPACER = parseInt(globals.spacer, 10)
+          decl.value = SPACER * parseFloat(decl.value) + 'px'
+        }
+        if (decl.value.match(/pxrem/)) {
+          const BASE = parseInt(globals.baseFontSize, 10)
+          decl.value = parseFloat(decl.value) / BASE + 'rem'
         }
       })
     },
-    cssmap(opts),
-    csspartial({}),
-    cssimports({}),
     sassstyleVar({}),
+    cssmap(opts),
     sassstyleRoot({}),
     sassstyleMixin({}),
     sassstyleFunctions({}),
@@ -82,7 +87,6 @@ const compilerCssTask = () => {
     cssAspectRatio({}),
     flexboxfixes({}),
     lost({}),
-
     env === 'production' ? cssnano({
       zindex: false,
       discardUnused: false,

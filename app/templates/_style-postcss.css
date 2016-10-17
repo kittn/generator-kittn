@@ -27,4 +27,5 @@
 @import "application/utilities/*.css";
 @import "application/objects/*.css";
 @import "application/pages/*.css";<% } else { %>
-@import "application/settings/*.css";<% } %>
+@import "application/settings/*.css";
+@import "_elements.css";<% } %>

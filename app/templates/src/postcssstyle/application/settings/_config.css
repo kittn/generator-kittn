@@ -32,51 +32,89 @@
   --uic-link: var(--color-primary);
   --uic-link-hover: color(var(--color-primary) shade(15%));
   --uic-link-active: color(var(--color-primary) shade(25%));
-
-  /* Base Typo*/
-  --tbase-fontscale: 85%;
-  --tbase-fontsize: 16px;
-  --tbase-lineheight: 21px;
-
-  /* Base Typo for Headings */
-  --tbaseheading-lineheight: 1;
-  --tbaseheading-fontweight: normal;
-  --tbaseheading-marginbottom: 20px;
-
-  /* Typo Styles */
-  --ts-h1-fontsize: 36px;
-  --ts-h1-lineheight: 1;
-  --ts-h1-fontweight: normal;
-  --ts-h1-marginbottom: 10px;
-  --ts-h1-base: true;
-
-  --ts-h2-fontsize: 32px;
-  --ts-h2-lineheight: 1;
-  --ts-h2-fontweight: normal;
-  --ts-h2-marginbottom: 10px;
-  --ts-h2-base: true;
-
-  --ts-h3-fontsize: 28px;
-  --ts-h3-lineheight: 1;
-  --ts-h3-fontweight: normal;
-  --ts-h3-marginbottom: 10px;
-  --ts-h3-base: true;
-
-  --ts-h4-fontsize: 25px;
-  --ts-h4-lineheight: 1;
-  --ts-h4-fontweight: normal;
-  --ts-h4-marginbottom: 10px;
-  --ts-h4-base: true;
-
-  --ts-h5-fontsize: 22px;
-  --ts-h5-lineheight: 1;
-  --ts-h5-fontweight: normal;
-  --ts-h5-marginbottom: 10px;
-  --ts-h5-base: true;
-
-  --ts-h6-fontsize: 19px;
-  --ts-h6-lineheight: 1;
-  --ts-h6-fontweight: normal;
-  --ts-h6-marginbottom: 10px;
-  --ts-h6-base: true;
 }
+
+/* Sassy Variables because now we need some Boolean Conditions */
+
+/* Activate Antialias on all Fonts*/
+$activate-antialias: true;
+/* Activate the New Boxmodel with Box-Sizing */
+$activate-newboxmodel: true;
+
+/* Base Sizes - do not modify here use the globals file */
+$tbase-fontscale: map(globals,baseFontScale);
+$tbase-fontsize: map(globals,baseFontSize);
+$tbase-lineheight: map(globals,baseLineHeight);
+
+/* Base Typo for Headings */
+$tbaseheading-lineheight: 1;
+$tbaseheading-fontweight: normal;
+$tbaseheading-marginbottom: 20px;
+
+/* Font Families */
+$fontfamily-base: 'helvetica', sans-serif;
+$fontfamily-headings: false;
+$fontfamily-bold: false;
+$fontfamily-italic: false;
+$fontfamily-blockquote: false;
+
+/* Font Styles - Font-weight and Style, set it on false if the Font is prepared for the Style */
+$fontstyle-base-weight: false;
+$fontstyle-bold-weight: bold;
+$fontstyle-italic-style: italic;
+$fontstyle-quote-style: italic;
+$fontstyle-quote-weight: false;
+$fontstyle-cite-style: false;
+
+/* Styles for regular HTML Elements - false for regular Behavior */
+$hs-paragraph-margin: 20px;
+$hs-paragraph-following-margin: 30px; /* for Headlines after a Paragraph */
+$hs-link-decoration-regular: false;
+$hs-link-decoration-hover: false;
+$hs-list-style: false;
+$hs-list-paddingleft: false;
+$hs-list-marginbottom: false;
+$hs-list-fontsize: false;
+$hs-list-lineheight: false;
+$hs-blockquote-marginbottom: false;
+$hs-blockquote-fontsize: false;
+$hs-blockquote-lineheight: false;
+$hs-cite-fontsize: false;
+$hs-cite-lineheight: false;
+
+/* Typo Styles */
+$ts-h1-fontsize: 36pxrem;
+$ts-h1-lineheight: 1;
+$ts-h1-fontweight: normal;
+$ts-h1-marginbottom: 10px;
+$ts-h1-base: true;
+
+$ts-h2-fontsize: 32pxrem;
+$ts-h2-lineheight: 1;
+$ts-h2-fontweight: normal;
+$ts-h2-marginbottom: 10px;
+$ts-h2-base: true;
+
+$ts-h3-fontsize: 28pxrem;
+$ts-h3-lineheight: 1;
+$ts-h3-fontweight: normal;
+$ts-h3-marginbottom: 10px;
+$ts-h3-base: true;
+
+$ts-h4-fontsize: 25pxrem;
+$ts-h4-lineheight: 1;
+$ts-h4-fontweight: normal;
+$ts-h4-marginbottom: 10px;
+$ts-h4-base: true;
+
+$ts-h5-fontsize: 22pxrem;
+$ts-h5-lineheight: 1;
+$ts-h5-fontweight: normal;
+$ts-h5-marginbottom: 10px;
+$ts-h5-base: true;
+
+$ts-h6-fontsize: 19pxrem;
+$ts-h6-lineheight: 1;
+$ts-h6-fontweight: normal;
+$ts-h6-marginbottom: 10px;
+$ts-h6-base: true;

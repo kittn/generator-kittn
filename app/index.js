@@ -336,18 +336,54 @@ var KittnGenerator = yeoman.Base.extend({
     switch(this.projectcssstructure) {
       case 'Atomic Design':
         this.directory('src/skeletons/css/atomic', 'src/style/application/')
+
+        if ( this.projectstylecompiler === 'PostCSS Only' ) {
+          this.fs.copyTpl(
+            this.templatePath('_postcss-elements.css'),
+            this.destinationPath('src/style/application/utilities/_elements.css'),
+            templateParams
+          );
+        }
+
         break
 
       case 'ITCSS':
         this.directory('src/skeletons/css/itcss', 'src/style/application/')
+
+        if ( this.projectstylecompiler === 'PostCSS Only' ) {
+          this.fs.copyTpl(
+            this.templatePath('_postcss-elements.css'),
+            this.destinationPath('src/style/application/generic/_elements.css'),
+            templateParams
+          );
+        }
+
         break
 
       case 'OOCSS':
         this.directory('src/skeletons/css/oocss', 'src/style/application/')
+
+        if ( this.projectstylecompiler === 'PostCSS Only' ) {
+          this.fs.copyTpl(
+            this.templatePath('_postcss-elements.css'),
+            this.destinationPath('src/style/application/utilities/_elements.css'),
+            templateParams
+          );
+        }
+
         break
 
       default:
         this.directory('src/skeletons/css/own', 'src/style/application/')
+
+        if ( this.projectstylecompiler === 'PostCSS Only' ) {
+          this.fs.copyTpl(
+            this.templatePath('_postcss-elements.css'),
+            this.destinationPath('src/style/application/_elements.css'),
+            templateParams
+          );
+        }
+
         break
     }
 
