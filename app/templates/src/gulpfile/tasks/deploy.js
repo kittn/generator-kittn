@@ -17,7 +17,6 @@ const deployTask = (cb) => {
       'version:bump',
     ],
     [
-      'build:favicon',
       'copy:launch',
       'copy:fonts',
       'rebuild:js',

@@ -55,6 +55,9 @@ Copy all Imagefiles for Documentusage.
 **`npm run template`**<br>
 Copy all or Generate the Template Files.
 
+**`npm run favicon`**<br>
+Generate Favicons and the HTML Snippet (generated Files you will find in `src/.system/`)
+
 ## Dependencies
 
 - Node >= 6.x
