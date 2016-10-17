@@ -91,7 +91,7 @@ const compilerCssTask = () => {
     cssSizes({}),
     cssAspectRatio({}),
     lost({}),
-    flexboxfixes({}),<% if (if (projectquery === 'ContainerQuery') { %>
+    flexboxfixes({}),<% if (projectquery === 'ContainerQuery') { %>
     function (css) {
       css.walkRules(/:container\(/i, function (rule) {
         rule.selectors = rule.selectors.map(function(selector) {
