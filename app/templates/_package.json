@@ -20,10 +20,11 @@
     "develop": "gulp",
     "devdashboard": "webpack-dashboard -p 3002 -- gulp",
     "deploy": "npm run subtask:bundlewebpack && npm run subtask:deploygulp",
-    "scripts": "gulp rebuild:js",
-    "uiimages": "gulp rebuild:images",
-    "htmlassets": "gulp copy:contentimages",
-    "template": "gulp compiler:html"
+    "scripts": "gulp rebuild:js --env=init",
+    "uiimages": "gulp rebuild:images --env=init",
+    "htmlassets": "gulp copy:contentimages --env=init",
+    "template": "gulp compiler:html --env=init",
+    "favicon": "gulp build:favicon --env=init"
   },
   "devDependencies": {
     "browser-sync": "2.17.1",

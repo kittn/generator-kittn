@@ -5,6 +5,7 @@ import cq from 'cq-prolyfill'<% } if (projectvue === true ) { %>
 import Vue from 'vue'
 import VueResource from 'vue-resource'
 import VueRouter from 'vue-router'<% } %>
+import './partial/kittnad' // Small Advertising for Kittn :)
 import modernizrLoad from './partial/modernizer-loader' // eslint-disable-line
 import conditionizrInit from './partial/conditionizr-init' // eslint-disable-line <% if (projectvue === true ) { %>
 import App from './app.vue'

@@ -64,6 +64,7 @@ const compilerCssTask = () => {
       foundries: 'google'
     }),
     cssnext({
+      warnForDuplicates: false,
       browsers: ['last 1 version']
     }),
     cssextend({}),

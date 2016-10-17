@@ -15,7 +15,6 @@ const initTask = (cb) => {
       'sassdoc:generate'
     ],<% } %>
     [
-      'build:favicon',
       'copy:launch',
       'copy:fonts',
       'rebuild:js',

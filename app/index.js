@@ -53,7 +53,7 @@ var KittnGenerator = yeoman.Base.extend({
       {
         type: 'list',
         name: 'projectstylecompiler',
-        message: 'Do you want to use Sass and PostCSS in a Mixed Compiler, or do you want to use PostCSS only (for using CSS Level 4 Features). PostCSS only is without the Kittn CSS Framework',
+        message: 'Do you want to use Sass and PostCSS in a Mixed Compiler,\n or do you want to use PostCSS only (for using CSS Level 4 Features). \n PostCSS only is without the Kittn CSS Framework',
         choices: [
           'Sass with PostCSS',
           'PostCSS Only'
@@ -146,7 +146,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'input',
         name: 'credentialdbserver',
-        message: 'DB Server Host without ending slash',
+        message: 'Database Server Host without ending slash',
         default: 'localhost'
       },
       {
@@ -155,7 +155,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'input',
         name: 'credentialdbuser',
-        message: 'DB User',
+        message: 'Database User',
         default: 'root'
       },
       {
@@ -164,7 +164,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'input',
         name: 'credentialdbpass',
-        message: 'DB Password',
+        message: 'Database Password',
         default: 'root'
       },
       {
@@ -173,7 +173,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'input',
         name: 'credentialdbdatabase',
-        message: 'DB Database',
+        message: 'Database Name',
         default: ''
       },
       {
@@ -185,7 +185,7 @@ var KittnGenerator = yeoman.Base.extend({
       {
         type: 'list',
         name: 'projectquery',
-        message: 'Outside from MediaQueries you can use ElementQueries or ContainerQueries',
+        message: 'In addition to the media queries, queries or container elements queries can be integrated.',
         choices: [
           'Native MediaQuery',
           'ContainerQuery',
@@ -208,7 +208,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'list',
         name: 'projectvueversion',
-        message: 'Vue Version. When you only use .vue Files Runtime is perfect, if you need parsing from .html Files you need the Standalone Version.',
+        message: 'Vue Version. When you only use .vue Files Runtime is perfect,\n if you need parsing from .html Files you need the Standalone Version.',
         choices: [
           'Runtime-Only',
           'Standalone'
@@ -374,10 +374,17 @@ var KittnGenerator = yeoman.Base.extend({
         templateParams
       );
 
+
+      // Check CSS Filename
+      var cssFileName = this.projectcssfilename;
+      if (this.projectUsage === 'Integrate in Wordpress' && this.projectcssfilename === 'style') {
+        cssFileName = 'wp-style';
+      }
+
       // Add SCSS Files with the desired Filename
       this.fs.copyTpl(
         this.templatePath('_style.scss'),
-        this.destinationPath('src/style/'+this.projectcssfilename+'.scss'),
+        this.destinationPath('src/style/'+cssFileName+'.scss'),
         templateParams
       );
 
@@ -385,7 +392,7 @@ var KittnGenerator = yeoman.Base.extend({
       if (this.projectiecompatible === true ) {
         this.fs.copyTpl(
           this.templatePath('_style-ie8.scss'),
-          this.destinationPath('src/style/'+this.projectcssfilename+'-ie8.scss'),
+          this.destinationPath('src/style/'+cssFileName+'-ie8.scss'),
           templateParams
         );
       }
@@ -461,10 +468,8 @@ var KittnGenerator = yeoman.Base.extend({
       }
 
     } else {
-      this.directory('src/skeletons/simplesstructure/', 'src/structure/');
+      this.directory('src/skeletons/simplestructure', 'src/structure/');
     }
-
-
 
     // Include the Twig Working Dir
     if ( this.projectstructure === 'Twig Template' ) {

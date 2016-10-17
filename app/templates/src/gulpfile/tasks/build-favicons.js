@@ -40,7 +40,7 @@ const buildFaviconTask = () => {
       },
       html: kc.src.system + 'favicon.html'
     }))
-    .pipe(gulp.dest(kc.dist.cssimg + 'system/'))
+    .pipe(gulp.dest(kc.src.system + 'favicons/'))
 }
 
 gulp.task('build:favicon', buildFaviconTask)
