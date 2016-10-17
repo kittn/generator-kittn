@@ -39,6 +39,7 @@
     "root": "./",
     "css": "./",
     "js": "assets/js/",
+    "fonts": "assets/fonts/",
     "cssimage": "assets/img/",
     "contentimage": "images/"
   },

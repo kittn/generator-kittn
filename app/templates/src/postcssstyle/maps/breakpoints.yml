@@ -1,0 +1,19 @@
+--- # Breakpoint Map
+one:
+  size: 320px
+  fontscale: false
+two:
+  size: 480px
+  fontscale: false
+three:
+  size: 560px
+  fontscale: false
+fourth:
+  size: 768px
+  fontscale: false
+fifth:
+  size: 960px
+  fontscale: false
+sixth:
+  size: 1180px
+  fontscale: false

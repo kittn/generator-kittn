@@ -25,6 +25,7 @@ import svgfragments from 'postcss-svg-fragments'
 import cssAssets from 'postcss-assets'
 import cssReporter from 'postcss-reporter'
 import sassstyleVar from 'postcss-advanced-variables'
+import sassstyleAtRules from 'postcss-at-rules-variables'
 import sassstyleRoot from 'postcss-atroot'
 import sassstyleMixin from 'postcss-mixins'
 import sassstyleFunctions from 'postcss-functions'
@@ -40,7 +41,7 @@ const compilerCssTask = () => {
 
   const opts = {
     basePath: 'src/style/maps/',
-    maps: ['sprites.yml', 'globals.json']
+    maps: ['sprites.yml', 'globals.json', 'breakpoints.yml']
   }
 
   const processors = [
@@ -58,7 +59,14 @@ const compilerCssTask = () => {
         }
       })
     },
-    sassstyleVar({}),
+    sassstyleAtRules({}),
+    sassstyleVar({
+      variables: {
+        'pathFont': kc.templatePath.fonts,
+        'pathJs': kc.templatePath.js,
+        'pathImg': kc.templatePath.cssimage
+      }
+    }),
     cssmap(opts),
     sassstyleRoot({}),
     sassstyleMixin({}),
@@ -71,6 +79,7 @@ const compilerCssTask = () => {
     cssextend({}),
     svgfragments({}),
     cssRucksack({
+      autoprefixer: false,
       hexRGBA: false
     }),
     cssAssets({
@@ -82,7 +91,21 @@ const compilerCssTask = () => {
     cssSizes({}),
     cssAspectRatio({}),
     lost({}),
-    flexboxfixes({}),
+    flexboxfixes({}),<% if (if (projectquery === 'ContainerQuery') { %>
+    function (css) {
+      css.walkRules(/:container\(/i, function (rule) {
+        rule.selectors = rule.selectors.map(function(selector) {
+          return selector.replace(/:container\([^)]*\)/gi, function(match) {
+            return '.' + match
+              .replace(/([a-z])\s+([a-z])/gi, '$1|$2')
+              .replace(/\s+/g, '')
+              .replace(/^:container\("([^)]*)"\)$/i, ':container($1)')
+              .replace(/[[\]!"#$%&'()*+,./:;<=>?@^`{|}~]/g, '\\$&')
+              .toLowerCase()
+          })
+        })
+      })
+    },<% } %>
     env === 'production' ? cssnano({
       zindex: false,
       discardUnused: false,

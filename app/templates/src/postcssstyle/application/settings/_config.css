@@ -4,14 +4,6 @@
 */
 
 :root {
-  /* Breakpoints */
-  --break-one: 320px;
-  --break-two: 480px;
-  --break-three: 560px;
-  --break-fourth: 768px;
-  --break-fifth: 960px;
-  --break-sixth: 1180px;
-
   /* Base Colors */
   --color-primary: #f29300;
   --color-black: #3c3c3c;
@@ -33,6 +25,14 @@
   --uic-link-hover: color(var(--color-primary) shade(15%));
   --uic-link-active: color(var(--color-primary) shade(25%));
 }
+
+/* Breakpoints */
+@custom-media --bp-1 (width >= map(breakpoints,one,size));
+@custom-media --bp-2 (width >= map(breakpoints,two,size));
+@custom-media --bp-3 (width >= map(breakpoints,three,size));
+@custom-media --bp-4 (width >= map(breakpoints,fourth,size));
+@custom-media --bp-5 (width >= map(breakpoints,fifth,size));
+@custom-media --bp-6 (width >= map(breakpoints,sixth,size));
 
 /* Sassy Variables because now we need some Boolean Conditions */
 

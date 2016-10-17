@@ -65,6 +65,7 @@
     "matchdep": "1.0.1",<% if ( projectstylecompiler === 'PostCSS Only' ) { %>
     "js-yaml": "^3.6.1",
     "postcss-advanced-variables": "^1.2.2",
+    "postcss-at-rules-variables": "^0.0.25",
     "postcss-atroot": "^0.1.3",
     "postcss-mixins": "^5.3.0",
     "postcss-property-lookup": "^1.2.1",
