@@ -13,9 +13,11 @@ const bundle = env.bundle || 'primary'
 
 const ROOT_PATH = path.resolve(__dirname)
 const PUBLIC_PATH = path.join(ROOT_PATH, 'dist/')
-const ASSET_JS_PATH = kittnConf.dist.webpackjsassets
+const ASSET_JS_PATH = kittnConf.dist.webpackjsassets<% if (projecttypescript) { %>
 
-const PRIMARY_FILE_NAME = 'app.js'
+const PRIMARY_FILE_NAME = 'app.ts'<% } else { %>
+const PRIMARY_FILE_NAME = 'app.js'<% } %>
+const PRIMARY_FILE_NAME_OUTPUT = 'app.js'
 const PRIMARY_FILE_HANDLE = 'app'
 
 // Different Config Sections
@@ -27,7 +29,7 @@ const configSelect = bundle => {
         output: {
           path: path.join(PUBLIC_PATH, ASSET_JS_PATH),
           publicPath: `/${ASSET_JS_PATH}`,
-          filename: PRIMARY_FILE_NAME
+          filename: PRIMARY_FILE_NAME_OUTPUT
         }
       }
       break
@@ -84,7 +86,12 @@ const config = {
         include: path.join( ROOT_PATH, 'src/js' ),
         exclude: /node_modules/,
         loader: 'babel'
-      }
+      }<% if (projecttypescript) { %>,{
+        test: /\.ts$/,
+          include: path.join( ROOT_PATH, 'src/js' ),
+          exclude: /node_modules/,
+          loader: 'awesome-typescript-loader'
+      }<% } %>
     ]
   },
 
@@ -110,7 +117,8 @@ const config = {
 
   resolve: {
     extensions: [<% if (projectvue === true ) { %>
-      '.vue',<% } %>
+      '.vue',<% } if (projecttypescript) { %>
+      '.ts',<% } %>
       '.js'
     ],
     alias: {<% if (projectvue === true && projectvueversion === 'Standalone' ) { %>

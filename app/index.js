@@ -5,6 +5,7 @@ var yosay = require('yosay');
 var chalk = require('chalk');
 var yeoman = require('yeoman-generator');
 var mkdirp = require('mkdirp');
+var clear = require("clear-terminal");
 
 var KittnGenerator = yeoman.Base.extend({
   init: function () {
@@ -12,24 +13,27 @@ var KittnGenerator = yeoman.Base.extend({
   },
   askFor: function () {
     var done = this.async();
-
     // Custom Greeting
     var welcome =
-          '\n ' +
-          '\n    /\\___/\\       ' +
-          '\n    )      (       ' +
-          '\n   =\\     /=      .--------------------------.' +
-          '\n     )   (        |   Kitty, Kitty, Kitty !  |' +
-          '\n    /     \\       | ------------------------ |' +
-          '\n    )     (       | Welcome to the marvelous |' +
-          '\n   /       \\      |     kittn generator!     |' +
-          '\n   \\       /      |_________________________/' +
-          '\n    \\__ __/                          v' + this.pkg.version +
-          '\n       ))' +
-          '\n      //' +
-          '\n     ((' +
-          '\n      \\) ' +
+          '\n ' + chalk.styles.cyan.open +
+          '\n        ___                      ___         ___            ___      ' +
+          '\n       /\\__\\          ___       /\\  \\       /\\  \\          /\\__\\     ' +
+          '\n      /:/  /         /\\  \\      \\:\\  \\      \\:\\  \\        /::|  |    ' +
+          '\n     /:/__/          \\:\\  \\      \\:\\  \\      \\:\\  \\      /:|:|  |    ' +
+          '\n    /::\\__\\____      /::\\__\\     /::\\  \\     /::\\  \\    /:/|:|  |__  ' +
+          '\n   /:/\\:::::\\__\\  __/:/\\/__/    /:/\\:\\__\\   /:/\\:\\__\\  /:/ |:| /\\__\\ ' +
+          '\n   \\/_|:|~~|~    /\\/:/  /      /:/  \\/__/  /:/  \\/__/  \\/__|:|/:/  / ' +
+          '\n      |:|  |     \\::/__/      /:/  /      /:/  /           |:/:/  /  ' +
+          '\n      |:|  |      \\:\\__\\      \\/__/       \\/__/            |::/  /   ' +
+          '\n      |:|  |       \\/__/                                   /:/  /    ' +
+          '\n       \\|__|                                               \\/__/     ' +
+          '\n  ' + chalk.styles.cyan.close +
+          '\n                                                       V.' + chalk.bold(this.pkg.version) +
+          '\n  ' +
+          '\n   Authors: Sascha Fuchs (@gisugosu) ' +
+          '\n   URL    : http://kittn.de   ' +
           '\n ';
+    clear();
     console.log(welcome);
 
     // Ask something to setup the project skeleton
@@ -37,23 +41,35 @@ var KittnGenerator = yeoman.Base.extend({
       {
         type: 'input',
         name: 'projectname',
-        message: 'Please give your project a name (without Spaces)',
+        message: 'Please give the project a name (without Spaces)',
         default: 'kittn'
       },{
         type: 'input',
         name: 'projectdescription',
-        message: 'Project description',
+        message: 'Description of the project',
         default: 'undefinied'
       },{
         type: 'input',
         name: 'projectcssfilename',
-        message: 'Filename for the CSS File (without fileending)',
+        message: 'CSS Filename (only the name without .css or .scss)',
         default: 'style'
+      },
+      {
+        type: 'confirm',
+        name: 'projecttypescript',
+        message: 'Would you like javascript to be processed with Typescript instead of Babel?',
+        default: false
+      },
+      {
+        type: 'confirm',
+        name: 'projectyarn',
+        message: 'As an alternative to NPM, YARN can also be used to reduce installation time.\n\xa0 Yarn must be installed (https://yarnpkg.com/)',
+        default: false
       },
       {
         type: 'list',
         name: 'projectstylecompiler',
-        message: 'Do you want to use Sass and PostCSS in a Mixed Compiler,\n or do you want to use PostCSS only (for using CSS Level 4 Features). \n PostCSS only is without the Kittn CSS Framework',
+        message: 'If you want to use Sass in combination with PostCSS,\n\xa0 or you only want to use PostCSS (which allows you all CSS level 4 features).  \n\xa0 PostCSS only is without the Kittn CSS Framework',
         choices: [
           'Sass with PostCSS',
           'PostCSS Only'
@@ -62,7 +78,7 @@ var KittnGenerator = yeoman.Base.extend({
       {
         type: 'list',
         name: 'projectcssstructure',
-        message: 'CSS Style Structure',
+        message: 'CSS Writing Methodologies',
         choices: [
           'Own Structure',
           'Atomic Design',
@@ -73,7 +89,7 @@ var KittnGenerator = yeoman.Base.extend({
       {
         type: 'list',
         name: 'projectUsage',
-        message: 'How do you want to use Kittn? Yeoman can integrate the Toolkit for you (setting Path etc.)',
+        message: 'For what do you want to use Kittn. The generator can then prepare the project accordingly.',
         choices: [
           'Building HTML Prototypes',
           'Integrate in CraftCMS',
@@ -86,7 +102,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'list',
         name: 'projectstructure',
-        message: 'Do you want to compile your Structure with Twig, or you want to use a vanilla (html, php) Structure Files?',
+        message: 'If you want to generate your HTML with Twig or do not use a compiler \n\xa0 (files like html, php, txt, etc. are only copied when the process is running)?',
         choices: [
           'Twig Template',
           'Uncompiled'
@@ -98,7 +114,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'confirm',
         name: 'projectwpcli',
-        message: 'Do you have installed WP-CLI? (for automatic install)',
+        message: 'Do you have installed WP-CLI? (https://github.com/wp-cli/wp-cli)',
         default: false
       },
       {
@@ -107,7 +123,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'confirm',
         name: 'projectcraftcli',
-        message: 'Do you have installed Craft-CLI? (for automatic install)',
+        message: 'Do you have installed Craft-CLI? (https://github.com/rsanchez/craft-cli)',
         default: false
       },
       {
@@ -125,7 +141,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'list',
         name: 'credentialprotocol',
-        message: 'HTTP or HTTPS',
+        message: 'HTTP or HTTPS?',
         choices: [
           'http',
           'https'
@@ -185,7 +201,7 @@ var KittnGenerator = yeoman.Base.extend({
       {
         type: 'list',
         name: 'projectquery',
-        message: 'In addition to the media queries, queries or container elements queries can be integrated.',
+        message: 'In addition to the media queries, Element Queries (https://github.com/marcj/css-element-queries) \n\xa0 or Container Queries (https://github.com/ausi/cq-prolyfill) can be integrated.',
         choices: [
           'Native MediaQuery',
           'ContainerQuery',
@@ -208,17 +224,11 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'list',
         name: 'projectvueversion',
-        message: 'Vue Version. When you only use .vue Files Runtime is perfect,\n if you need parsing from .html Files you need the Standalone Version.',
+        message: 'Vue Version. When you only use .vue Files Runtime is perfect,\n\xa0 if you need parsing from .html Files you need the Standalone Version.',
         choices: [
           'Runtime-Only',
           'Standalone'
         ]
-      },
-      {
-        type: 'confirm',
-        name: 'projectyarn',
-        message: 'Do you want to use Yarn Package Manager? (https://yarnpkg.com/)',
-        default: false
       },
       {
         type: 'input',
@@ -283,6 +293,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.credentialdbpass     = props.credentialdbpass;
       this.credentialdbdatabase = props.credentialdbdatabase;
       this.projectstylecompiler = props.projectstylecompiler;
+      this.projecttypescript    = props.projecttypescript;
 
       done();
     }.bind(this));
@@ -320,6 +331,7 @@ var KittnGenerator = yeoman.Base.extend({
       credentialdbpass     : this.credentialdbpass,
       credentialdbdatabase : this.credentialdbdatabase,
       projectstylecompiler : this.projectstylecompiler,
+      projecttypescript    : this.projecttypescript,
       pkg: this.pkg
     };
 
@@ -344,7 +356,6 @@ var KittnGenerator = yeoman.Base.extend({
             templateParams
           );
         }
-
         break
 
       case 'ITCSS':
@@ -370,7 +381,6 @@ var KittnGenerator = yeoman.Base.extend({
             templateParams
           );
         }
-
         break
 
       default:
@@ -383,7 +393,6 @@ var KittnGenerator = yeoman.Base.extend({
             templateParams
           );
         }
-
         break
     }
 
@@ -519,6 +528,15 @@ var KittnGenerator = yeoman.Base.extend({
       this.fs.copyTpl(
         this.templatePath('_app.vue'),
         this.destinationPath('src/js/app.vue'),
+        templateParams
+      );
+    }
+
+    // Copy Typescript Starter File
+    if (this.projecttypescript) {
+      this.fs.copyTpl(
+        this.templatePath('_app.ts'),
+        this.destinationPath('src/js/app.ts'),
         templateParams
       );
     }

@@ -120,7 +120,9 @@
     "webpack-dashboard": "^0.2.0",
     "webpack-dev-middleware": "^1.8.4",
     "webpack-hot-middleware": "^2.13.0",
-    "webpack-merge": "^0.14.1",
+    "webpack-merge": "^0.14.1",<% if (projecttypescript) { %>
+    "typescript": "^2.0.3",
+    "awesome-typescript-loader": "^2.2.4",<% } %>
     "extract-text-webpack-plugin": "^1.0.1",<% if (projectvue === true ) { %>
     "css-loader": "^0.25.0",
     "vue-loader": "^9.5.1",<% } %>
