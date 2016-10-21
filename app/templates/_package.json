@@ -125,7 +125,10 @@
     "awesome-typescript-loader": "^2.2.4",<% } %>
     "extract-text-webpack-plugin": "^1.0.1",<% if (projectvue === true ) { %>
     "css-loader": "^0.25.0",
-    "vue-loader": "^9.5.1",<% } %>
+    "vue-loader": "^9.5.1",
+    "sass-loader": "^4.0.2",
+    "stylus-loader": "^2.3.1",
+    "vue-style-loader": "^1.0.0",<% } %>
     "utils-merge": "^1.0.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"

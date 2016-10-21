@@ -524,6 +524,7 @@ var KittnGenerator = yeoman.Base.extend({
     if ( this.projectvue === true ) {
       this.directory('src/skeletons/vue/components/', 'src/js/components/');
       this.directory('src/skeletons/vue/vuex/', 'src/js/store/');
+      this.directory('src/build/', 'build/');
 
       this.fs.copyTpl(
         this.templatePath('_app.vue'),

@@ -1,7 +1,8 @@
 import path from 'path'
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import merge from 'webpack-merge'
+import merge from 'webpack-merge'<% if (projectvue === true ) { %>
+import vueutils from './build/vue-utils'<% } %>
 import yargs from 'yargs'
 import eslintPretty from 'eslint-formatter-pretty'
 import kittnConf from './config.json'
@@ -110,7 +111,15 @@ const config = {
           failOnWarning: false,
           configFile   : './.eslintrc',
           formatter    : require('eslint-formatter-pretty')
-        }
+        }<% if (projectvue === true ) { %>,
+        vue: {
+          loaders: vueutils.cssLoaders({ sourceMap: false }),
+            postcss: [
+            require('autoprefixer')({
+              browsers: ['last 2 versions']
+            })
+          ]
+        }<% } %>
       }
     })
   ],
