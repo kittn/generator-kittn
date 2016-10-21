@@ -2,10 +2,51 @@
 // Breakpoint Helper
 // ===================================================
 
+/// Generate the Between Block
+///
+/// @param  {number} $size       - Size
+/// @param  {string} $mode       - Direction Mode
+///
+/// @private
+@mixin _breakmode($size, $mode) {
+  @if $mode == max {
+    $size: if(map-get($kittn-activate, mobile-first) == true, $size + 1, $size);
+  } @else {
+    $size: if(map-get($kittn-activate, mobile-first) == true, $size, $size + 1);
+  }
+
+  // Insert the Media Query
+  @media screen and (#{if($mode == max, max, min)}-width: $size) {
+    @content;
+  }
+}
+
+/// Generate the Between Block
+///
+/// @param  {number} $size-1       - First Size
+/// @param  {number} $size-2       - Second Size
+///
+/// @private
+@mixin _breakbetween($size-1, $size-2) {
+  // Associate the highest size with Max, and the lowest size with min
+  $size-min: if($size-1 < $size-2, $size-1, $size-2);
+  $size-max: if($size-2 > $size-1, $size-2, $size-1);
+
+  // Modify Size for mobile-first
+  $size-min: if(map-get($kittn-activate, mobile-first), $size-min, $size-min + 1);
+  $size-max: if(map-get($kittn-activate, mobile-first), $size-max + 1, $size-max);
+
+  // Insert the Media Query
+  @media screen and (min-width: $size-min) and (max-width: $size-max) {
+    @content;
+  }
+}
+
+
 /// Get a breakpoint from the Map and build the Media Query
 ///
-/// @param  {*}      $target                       - Required Breakpoint
-/// @param  {string} $mode [auto]                  - Media Query Mode. (between, max, min, auto)
+/// @param  {*}      $target                       - Required Breakpoint (from map)
+/// @param  {string} $mode [auto]                  - Media Query Mode. (max, min, auto)
 /// @param  {map}    $list [$kittn-breakpoint-map] - Connection to the Breakpoint Map
 ///
 /// @content
@@ -13,8 +54,19 @@
 /// @example scss - scss
 ///   .box {
 ///     height: 20px;
-///     @include break(4) {
+///     @include break('4') {
 ///       height: 200px;
+///     }
+///   }
+///
+///   .box2 {
+///     @include break(330px, max) {
+///       display: none;
+///     }
+///   }
+///   .between {
+///     @include break('2' '5') {
+///       display: block;
 ///     }
 ///   }
 ///
@@ -27,69 +79,59 @@
 ///       height: 200px;
 ///     }
 ///   }
+///   @media screen and (max-width: 331px) {
+///    .box {
+///      display: none; } }
+///   @media screen and (min-width: 480px) and (max-width: 961px) {
+///     .between {
+///       display: block; } }
 @mixin break($target, $mode: auto, $list: $kittn-breakpoint-map) {
-  // Between two values
-  @if $mode == between {
+  // Check Target values
+  @if length($target) > 2 {
+    @warn 'You can not use more than two target Values on the Breakpoint';
 
-    // Check the Length
-    @if length($target) == 2 {
-      // Get the Targets
-      $target-1: strip-units(nth($target,1));
-      $target-2: strip-units(nth($target,2));
-
+  } @elseif length($target) == 2 {  // Between mode
+    // Check Units on the Values
+    @if is-string(nth($target,1)) AND is-string(nth($target,2)) { // String Mode
       // Get the Sizes
-      $size-1: unit-check(bp($target-1,$list));
-      $size-2: unit-check(bp($target-2,$list));
+      $size-1: bp(nth($target,1), $list);
+      $size-2: bp(nth($target,2), $list);
 
-      // Associate the highest size with Max, and the lowest size with min
-      $size-min: if($size-1 < $size-2, $size-1, $size-2);
-      $size-max: if($size-2 > $size-1, $size-2, $size-1);
-
-      // Modify Size for mobile-first
-      $size-min: if(map-get($kittn-activate, mobile-first), $size-min, $size-min + 1);
-      $size-max: if(map-get($kittn-activate, mobile-first), $size-max + 1, $size-max);
-
-      // Insert the Media Query
-      @media screen and (min-width: $size-min) and (max-width: $size-max) {
+      @include _breakbetween($size-1, $size-2) {
         @content;
       }
-    } @else {
-      @warn "You have to use two values on '$target' for a breakpoint that sit between."
+
+    } @elseif is-string(nth($target,1)) OR is-string(nth($target,2)) {
+      @warn 'You are mix the Values on the Breakpoint, use Strings or Numbers. Dont mix it';
+
+    } @else { // Number Mode
+      // Get the Sizes
+      $size-1: nth($target,1);
+      $size-2: nth($target,2);
+
+      @include _breakbetween($size-1, $size-2) {
+        @content;
+      }
     }
 
+    // Min or Max Mode
   } @else {
-    // Reduce Target to one when needed
-    @if length($target) > 1 { $target: nth($target,1); }
+    // Check Type
+    @if is-string($target) { // manual value for individual Breakpoint
+      // Get Size from Map
+      $size: bp($target, $list);
 
-    // Remove Units from $target
-    $target: strip-units($target);
-
-    // Get Size from the Map
-    $size: unit-check(bp($target,$list));
-
-    @if $mode == auto {
-      @if map-get($kittn-activate, mobile-first) {
-        $size: $size;
-        @media screen and (min-width: $size) { @content; }
-
-      } @else {
-        $size: $size - 1;
-        @media screen and (max-width: $size) { @content; }
-      }
-    } @else {
-      // Setup for different Modes
-      @if $mode == max {
-        $size: if(map-get($kittn-activate, mobile-first) == true, $size + 1, $size);
-      } @else {
-        $size: if(map-get($kittn-activate, mobile-first) == true, $size, $size + 1);
+      @include _breakmode($size: $size, $mode: $mode) {
+        @content;
       }
 
-      // Insert the Media Query
-      @media screen and (#{if($mode == max, max, min)}-width: $size) {
+    } @else { // Getting the Value from Breakpoint Map
+      // Get Size
+      $size: $target;
+
+      @include _breakmode($size: $size, $mode: $mode) {
         @content;
       }
     }
   }
 }
-
-

@@ -4,7 +4,7 @@
 
 // Map off all Breakpoints and Behaviors
 //
-// - 'Name' {*} - Breakpoint Name
+// - 'Name' {string} - Breakpoint Name
 //   - 'size' {Number} - The width that activate the Trigger
 //   - 'visibility' {Bool} - Set it on true to activate the visibility classes
 //   - 'step' {Bool} - Set the threshold for the grid-stepper mixin
@@ -12,37 +12,37 @@
 //
 // @type Map
 $kittn-breakpoint-map: (
-  1: (
+  '1': (
     size: 320px,
     visibility: false,
     step: true,
     fontsize: false
   ),
-  2: (
+  '2': (
     size: 480px,
     visibility: false,
     step: false,
     fontsize: false
   ),
-  3: (
+  '3': (
     size: 560px,
     visibility: false,
     step: true,
     fontsize: false
   ),
-  4: (
+  '4': (
     size: 768px,
     visibility: false,
     step: true,
     fontsize: 85
   ),
-  5: (
+  '5': (
     size: 960px,
     visibility: false,
     step: true,
     fontsize: 90
   ),
-  6: (
+  '6': (
     size: 1180px,
     visibility: false,
     step: true,
