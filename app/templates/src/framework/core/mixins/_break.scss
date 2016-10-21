@@ -92,17 +92,14 @@
 
   } @elseif length($target) == 2 {  // Between mode
     // Check Units on the Values
-    @if is-string(nth($target,1)) AND is-string(nth($target,2)) { // String Mode
+    @if is-string(nth($target,1)) OR is-string(nth($target,2)) { // Mixed Mode
       // Get the Sizes
-      $size-1: bp(nth($target,1), $list);
-      $size-2: bp(nth($target,2), $list);
+      $size-1: if(is-string(nth($target,1)), bp(nth($target,1), $list), nth($target,1));
+      $size-2: if(is-string(nth($target,2)), bp(nth($target,2), $list), nth($target,2));
 
       @include _breakbetween($size-1, $size-2) {
         @content;
       }
-
-    } @elseif is-string(nth($target,1)) OR is-string(nth($target,2)) {
-      @warn 'You are mix the Values on the Breakpoint, use Strings or Numbers. Dont mix it';
 
     } @else { // Number Mode
       // Get the Sizes
@@ -114,7 +111,7 @@
       }
     }
 
-    // Min or Max Mode
+  // Min or Max Mode
   } @else {
     // Check Type
     @if is-string($target) { // manual value for individual Breakpoint
