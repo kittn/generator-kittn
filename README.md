@@ -1,6 +1,6 @@
 # Generator-Kittn
 
-[![Build Status](https://travis-ci.org/kittn/generator-kittn.svg?branch=master)](https://travis-ci.org/gisu/generator-kittn) [![bitHound Overall Score](https://www.bithound.io/github/kittn/generator-kittn/badges/score.svg)](https://www.bithound.io/github/gisu/generator-kittn) [![bitHound Dependencies](https://www.bithound.io/github/kittn/generator-kittn/badges/dependencies.svg)](https://www.bithound.io/github/kittn/generator-kittn/master/dependencies/npm)
+[![Build Status](https://travis-ci.org/kittn/generator-kittn.svg?branch=master)](https://travis-ci.org/kittn/generator-kittn) [![bitHound Overall Score](https://www.bithound.io/github/kittn/generator-kittn/badges/score.svg)](https://www.bithound.io/github/gisu/generator-kittn) [![bitHound Dependencies](https://www.bithound.io/github/kittn/generator-kittn/badges/dependencies.svg)](https://www.bithound.io/github/kittn/generator-kittn/master/dependencies/npm)
 
 ![kittn-generator](https://cloud.githubusercontent.com/assets/442468/10710315/3347b1d6-7a55-11e5-868e-0fcb9ebed9ad.png)
 
