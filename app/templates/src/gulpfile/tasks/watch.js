@@ -12,7 +12,7 @@ import path from 'path'
 const watchTask = () => {
   <% if (projectstylecompiler === 'Sass with PostCSS') { %>
   // Watch the SCSS Folder for changes - compile CSS
-  gulp.watch([kc.src.style + '**/*.scss'], ['compiler:css'])<% } else { %>
+  gulp.watch([kc.src.style + '**/*.scss', kc.src.style + '**/*.sass'], ['compiler:css'])<% } else { %>
   // Watch the PostCSS Folder for changes - compile CSS
   gulp.watch([kc.src.style + '**/*.css'], ['compiler:css'])<% } %>
 

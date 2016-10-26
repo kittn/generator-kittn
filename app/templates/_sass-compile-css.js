@@ -21,7 +21,7 @@ const compilerCssTask = () => {
   const env = args.env || 'development'
 
   return gulp
-    .src(kc.src.style + '**/*.scss')
+    .src([kc.src.style + '**/*.scss', kc.src.style + '**/*.sass'])
     .pipe(env == 'development' ? $.sourcemaps.init() : gutil.noop())
     .pipe($.sass({})
       .on('error', errorHandler))
