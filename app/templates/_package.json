@@ -14,7 +14,7 @@
     "node": ">=6.0.0"
   },
   "scripts": {
-    "subtask:bundlewebpack": "webpack --config webpack.config.babel.js -p --colors --env=production --env.bundle=production",
+    "subtask:bundlewebpack": "webpack --config webpack.config.babel.js -p --colors --env.bundle=production --env=production",
     "subtask:deploygulp": "gulp deploy --env=production",
     "init": "gulp init --env=init && npm run subtask:bundlewebpack",
     "develop": "gulp",
