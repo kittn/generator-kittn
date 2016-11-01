@@ -1,15 +1,25 @@
 {
   "name": "generator-kittn",
-  "version": "3.82.3",
+  "version": "3.83.2",
   "description": "Kittn Scaffolding and Frontend Toolchain",
   "license": "MIT",
   "main": "app/index.js",
-  "repository": "gisu/generator-kittn",
-  "author": {
-    "name": "sascha fuchs",
-    "email": "gisu2onic@gmail.com",
-    "url": "https://github.com/gisu"
-  },
+  "repository": "kittn/generator-kittn",
+  "author": "Sascha Fuchs <gisu2onic@gmail.com>",
+  "contributors": [
+    {
+      "name": "Lars Eichler",
+      "email": "larseichler.le@gmail.com"
+    },
+    {
+      "name": "David Hellmann",
+      "email": "davidhellmann.com@gmail.com"
+    },
+    {
+      "name": "Martin Herweg",
+      "email": "martinherweg.com@gmail.com"
+    }
+  ],
   "files": [
     "app"
   ],

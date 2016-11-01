@@ -10,7 +10,7 @@ import kittnConf from './config.json'
 const argv = yargs.argv
 const env = argv.env || 'development'
 const nodeEnv = process.env.NODE_ENV || 'production'
-const bundle = env.bundle || 'primary'
+const bundle = env[0].bundle || 'primary'
 
 const ROOT_PATH = path.resolve(__dirname)
 const PUBLIC_PATH = path.join(ROOT_PATH, 'dist/')

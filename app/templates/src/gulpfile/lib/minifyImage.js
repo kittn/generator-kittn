@@ -12,7 +12,7 @@ import jpegCompress from 'imagemin-jpeg-recompress'
 const $ = gulpLoadPlugins()
 
 const minifyImages = (srcfiles, distfiles) => {
-  gulp.src(srcfiles + '/**')
+  gulp.src(['!' + srcfiles + 'system/**', srcfiles + '/**', '!' + srcfiles + kc.src.images.vectorSprite.symbolName])
     .pipe(
       $.imagemin({
         optimizationLevel: kc.minify.images.optimizationLevel,
