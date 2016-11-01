@@ -76,6 +76,18 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
+        when: function(props) {
+          return props.projectstylecompiler === 'Sass with PostCSS';
+        },
+        type: 'list',
+        name: 'projectstylesasscompiler',
+        message: 'Do you want to use *.sass or *.scss?',
+        choices: [
+          'SCSS',
+          'Sass'
+        ]
+      },
+      {
         type: 'list',
         name: 'projectcssstructure',
         message: 'CSS Writing Methodologies',
@@ -293,6 +305,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.credentialdbpass     = props.credentialdbpass;
       this.credentialdbdatabase = props.credentialdbdatabase;
       this.projectstylecompiler = props.projectstylecompiler;
+      this.projectstylesasscompiler = props.projectstylesasscompiler;
       this.projecttypescript    = props.projecttypescript;
 
       done();
@@ -331,6 +344,7 @@ var KittnGenerator = yeoman.Base.extend({
       credentialdbpass     : this.credentialdbpass,
       credentialdbdatabase : this.credentialdbdatabase,
       projectstylecompiler : this.projectstylecompiler,
+      projectstylesasscompiler : this.projectstylesasscompiler,
       projecttypescript    : this.projecttypescript,
       pkg: this.pkg
     };
@@ -347,7 +361,13 @@ var KittnGenerator = yeoman.Base.extend({
     // Copy the CSS Structure
     switch(this.projectcssstructure) {
       case 'Atomic Design':
-        this.directory('src/skeletons/css/atomic', 'src/style/application/')
+        this.directory('src/skeletons/css/atomic', 'src/style/application/');
+        
+        if ( this.projectstylesasscompiler === 'SCSS') {
+          this.template('src/skeletons/css/_application_atomic.scss', 'src/style/application/_application.scss', templateParams);
+        } else {
+          this.template('src/skeletons/css/_application_atomic.scss', 'src/style/application/_application.sass', templateParams);
+        }
 
         if ( this.projectstylecompiler === 'PostCSS Only' ) {
           this.fs.copyTpl(
@@ -360,6 +380,12 @@ var KittnGenerator = yeoman.Base.extend({
 
       case 'ITCSS':
         this.directory('src/skeletons/css/itcss', 'src/style/application/')
+
+        if ( this.projectstylesasscompiler === 'SCSS') {
+          this.template('src/skeletons/css/_application_itcss.scss', 'src/style/application/_application.scss', templateParams);
+        } else {
+          this.template('src/skeletons/css/_application_itcss.scss', 'src/style/application/_application.sass', templateParams);
+        }
 
         if ( this.projectstylecompiler === 'PostCSS Only' ) {
           this.fs.copyTpl(
@@ -374,6 +400,12 @@ var KittnGenerator = yeoman.Base.extend({
       case 'OOCSS':
         this.directory('src/skeletons/css/oocss', 'src/style/application/')
 
+        if ( this.projectstylesasscompiler === 'SCSS') {
+          this.template('src/skeletons/css/_application_oocss.scss', 'src/style/application/_application.scss', templateParams);
+        } else {
+          this.template('src/skeletons/css/_application_oocss.scss', 'src/style/application/_application.sass', templateParams);
+        }
+
         if ( this.projectstylecompiler === 'PostCSS Only' ) {
           this.fs.copyTpl(
             this.templatePath('_postcss-elements.css'),
@@ -385,6 +417,12 @@ var KittnGenerator = yeoman.Base.extend({
 
       default:
         this.directory('src/skeletons/css/own', 'src/style/application/')
+
+        if ( this.projectstylesasscompiler === 'SCSS') {
+          this.template('src/skeletons/css/_application_own.scss', 'src/style/application/_application.scss', templateParams);
+        } else {
+          this.template('src/skeletons/css/_application_own.sass', 'src/style/application/_application.sass', templateParams);
+        }
 
         if ( this.projectstylecompiler === 'PostCSS Only' ) {
           this.fs.copyTpl(
@@ -403,7 +441,12 @@ var KittnGenerator = yeoman.Base.extend({
 
     if ( this.projectstylecompiler === 'Sass with PostCSS' ) {
       this.directory('src/framework/', 'src/framework/');
-      this.directory('src/sassstyle/', 'src/style/');
+
+      if ( this.projectstylesasscompiler === 'SCSS') {
+        this.directory('src/scssstyle/', 'src/style/');
+      } else {
+        this.directory('src/sassstyle/', 'src/style/');
+      }
 
       // Copy Gulp Task for Sprite Building
       this.fs.copyTpl(
@@ -426,20 +469,37 @@ var KittnGenerator = yeoman.Base.extend({
         cssFileName = 'wp-style';
       }
 
-      // Add SCSS Files with the desired Filename
-      this.fs.copyTpl(
-        this.templatePath('_style.scss'),
-        this.destinationPath('src/style/'+cssFileName+'.scss'),
-        templateParams
-      );
+      if ( this.projectstylesasscompiler === 'SCSS') {
+        // Add SCSS Files with the desired Filename
+        this.fs.copyTpl(
+          this.templatePath('_style.scss'),
+          this.destinationPath('src/style/'+cssFileName+'.scss'),
+          templateParams
+        );
+      } else {
+        // Add Sass Files with the desired Filename
+        this.fs.copyTpl(
+          this.templatePath('_style.sass'),
+          this.destinationPath('src/style/'+cssFileName+'.sass'),
+          templateParams
+        );
+      }
 
       // IE8 get his own CSS File for Fallbacks
       if (this.projectiecompatible === true ) {
-        this.fs.copyTpl(
-          this.templatePath('_style-ie8.scss'),
-          this.destinationPath('src/style/'+cssFileName+'-ie8.scss'),
-          templateParams
-        );
+        if ( this.projectstylesasscompiler === 'SCSS') {
+          this.fs.copyTpl(
+            this.templatePath('_style-ie8.scss'),
+            this.destinationPath('src/style/'+cssFileName+'-ie8.scss'),
+            templateParams
+          );
+        } else {
+          this.fs.copyTpl(
+            this.templatePath('_style-ie8.sass'),
+            this.destinationPath('src/style/'+cssFileName+'-ie8.sass'),
+            templateParams
+          );
+        }
       }
 
     } else {

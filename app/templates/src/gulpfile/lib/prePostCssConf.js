@@ -38,9 +38,10 @@ const preCssConf = () => {
     // Include Size Short hands
     require('postcss-short-size'),
     // Fix some Flexbox Bugs
-    require('postcss-flexbugs-fixes')
+    require('postcss-flexbugs-fixes'),
+    // RucksackCSS for CSS Superpowers
+    require('rucksack-css')
   ]
 }
 
 module.exports = preCssConf
-
