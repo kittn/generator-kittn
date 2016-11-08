@@ -5,8 +5,9 @@
     "es6": true,
     "jquery": true
   },
-  "extends" : [
-    "airbnb",
+  "extends" : [<% if (projectscriptlinter == 'airbnb') { %>
+    "airbnb",<% } %><% if (projectscriptlinter == 'standard') { %>
+    "standard",<% } %>
     "vue",
     "plugin:import/errors",
     "plugin:import/warnings"
@@ -18,7 +19,7 @@
     "no-unused-vars": 1,
     "no-undef": 0,
     "indent": 0,
-    "no-console": 1,
+    "no-console": 0,
     "no-new": 2,
     "object-curly-spacing": 1,
     "arrow-body-style": [2, "as-needed"],

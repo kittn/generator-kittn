@@ -5,7 +5,7 @@ var yosay = require('yosay');
 var chalk = require('chalk');
 var yeoman = require('yeoman-generator');
 var mkdirp = require('mkdirp');
-var clear = require("clear-terminal");
+var clear = require('clear-terminal');
 
 var KittnGenerator = yeoman.Base.extend({
   init: function () {
@@ -42,7 +42,16 @@ var KittnGenerator = yeoman.Base.extend({
         type: 'input',
         name: 'projectname',
         message: 'Please give the project a name (without Spaces)',
-        default: 'kittn'
+        default: 'kittn',
+        validate: function (input) {
+          // Do async stuff
+          if (input.indexOf(' ') >= 0 || /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(input)) {
+            // Pass the return value in the done callback
+            console.log('\n' + chalk.styles.red.open + 'No whitespaces or special-chars allowed!' + chalk.styles.red.close);
+            return false;
+          }
+          return true;
+        }
       },{
         type: 'input',
         name: 'projectdescription',
@@ -59,6 +68,31 @@ var KittnGenerator = yeoman.Base.extend({
         name: 'projecttypescript',
         message: 'Would you like javascript to be processed with Typescript instead of Babel?',
         default: false
+      },
+      {
+        when: function(props) {
+          return props.projecttypescript === false;
+        },
+        type: 'list',
+        name: 'projectscriptlinter',
+        message: 'Pick an ESLint preset',
+        choices: [
+          {
+            'name': 'Standard (https://github.com/feross/standard)',
+            'value': 'standard',
+            'short': 'Standard'
+          },
+          {
+            'name': 'AirBNB (https://github.com/airbnb/javascript)',
+            'value': 'airbnb',
+            'short': 'AirBNB'
+          },
+          {
+            'name': 'none (configure it yourself)',
+            'value': 'none',
+            'short': 'none'
+          }
+        ]
       },
       {
         type: 'confirm',
@@ -307,6 +341,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectstylecompiler = props.projectstylecompiler;
       this.projectstylesasscompiler = props.projectstylesasscompiler;
       this.projecttypescript    = props.projecttypescript;
+      this.projectscriptlinter  = props.projectscriptlinter;
 
       done();
     }.bind(this));
@@ -346,6 +381,7 @@ var KittnGenerator = yeoman.Base.extend({
       projectstylecompiler : this.projectstylecompiler,
       projectstylesasscompiler : this.projectstylesasscompiler,
       projecttypescript    : this.projecttypescript,
+      projectscriptlinter  : this.projectscriptlinter,
       pkg: this.pkg
     };
 
