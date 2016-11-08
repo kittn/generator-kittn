@@ -34,13 +34,13 @@ _With Webpack you have to use NPM Script Commands_
 **`npm run init`**<br>
 Intialize your Project and the Sass Documentation (/sassdocs/)
 
-**`npm run develop`**<br>
+**`npm run dev`**<br>
 Main development task with BrowserSync and Webpack
 
 **`npm run devdashboard`**<br>
 Main development task with Webpack Dashboard - More NASA Style :D
 
-**`npm run deploy`**<br>
+**`npm run build`**<br>
 Minify JS, Images, CSS. Is for a automated Build Process, comes after a Gulp Init.
 
 **`npm run scripts`**<br>

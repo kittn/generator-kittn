@@ -720,6 +720,8 @@ var KittnGenerator = yeoman.Base.extend({
   },
 
   install: function () {
+    var _self = this;
+
     if (this.projectyarn) {
       var done = this.async();
       this.spawnCommand('yarn').on('close', done);
@@ -729,6 +731,15 @@ var KittnGenerator = yeoman.Base.extend({
         npm: true
       });
     }
+
+    this.on('end', function () {
+      this.spawnCommand('npm', ['run', 'init']).on('close', function () {
+        _self.log(yosay(
+          'Yeah! You\'re all set and done!' +
+          ' Now simply run `npm run dev` and start coding!'
+        ));
+      });
+    });
 
     // Put Craft Base Files in Structure or simple Structure Files
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {
