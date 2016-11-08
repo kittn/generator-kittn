@@ -362,7 +362,7 @@ var KittnGenerator = yeoman.Base.extend({
     switch(this.projectcssstructure) {
       case 'Atomic Design':
         this.directory('src/skeletons/css/atomic', 'src/style/application/');
-        
+
         if ( this.projectstylesasscompiler === 'SCSS') {
           this.template('src/skeletons/css/_application_atomic.scss', 'src/style/application/_application.scss', templateParams);
         } else {
@@ -421,7 +421,7 @@ var KittnGenerator = yeoman.Base.extend({
         if ( this.projectstylesasscompiler === 'SCSS') {
           this.template('src/skeletons/css/_application_own.scss', 'src/style/application/_application.scss', templateParams);
         } else {
-          this.template('src/skeletons/css/_application_own.sass', 'src/style/application/_application.sass', templateParams);
+          this.template('src/skeletons/css/_application_own.scss', 'src/style/application/_application.sass', templateParams);
         }
 
         if ( this.projectstylecompiler === 'PostCSS Only' ) {

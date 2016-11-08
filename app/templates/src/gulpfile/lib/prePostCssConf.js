@@ -40,7 +40,12 @@ const preCssConf = () => {
     // Fix some Flexbox Bugs
     require('postcss-flexbugs-fixes'),
     // RucksackCSS for CSS Superpowers
-    require('rucksack-css')
+    require('rucksack-css')({
+      autoprefixer: false,
+      hexRGBA: false,
+      easings: false,
+      fontPath: false
+    })
   ]
 }
 
