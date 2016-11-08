@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "4.0.0-alpha.1",
+  "version": "4.0.0-alpha.2",
   "description": "Kittn Scaffolding and Frontend Toolchain",
   "license": "MIT",
   "main": "app/index.js",
@@ -50,5 +50,7 @@
     "yeoman-generator": "^0.24.1",
     "yosay": "^1.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "shelljs": "^0.7.5"
+  }
 }

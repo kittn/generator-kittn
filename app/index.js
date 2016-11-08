@@ -6,6 +6,7 @@ var chalk = require('chalk');
 var yeoman = require('yeoman-generator');
 var mkdirp = require('mkdirp');
 var clear = require('clear-terminal');
+var shelljs = require('shelljs/global');
 
 var KittnGenerator = yeoman.Base.extend({
   init: function () {
@@ -35,6 +36,12 @@ var KittnGenerator = yeoman.Base.extend({
           '\n ';
     clear();
     console.log(welcome);
+
+    var gitInfo = {
+      name: exec('git config user.name', {silent: true}).replace(/\n/g, ''),
+      email: exec('git config user.email', {silent: true}).replace(/\n/g, ''),
+      github: exec('git config github.user', {silent: true}).replace(/\n/g, '')
+    }
 
     // Ask something to setup the project skeleton
     return this.prompt([
@@ -285,12 +292,12 @@ var KittnGenerator = yeoman.Base.extend({
         type: 'input',
         name: 'projectauthor',
         message: 'Project Author Name or Company',
-        default: 'undefinied'
+        default: gitInfo.name
       },{
         type: 'input',
         name: 'projectmail',
         message: 'Mailadress from the Author',
-        default: 'undefined'
+        default: gitInfo.email
       },{
         type: 'input',
         name: 'projecturl',
@@ -300,7 +307,7 @@ var KittnGenerator = yeoman.Base.extend({
         type: 'input',
         name: 'projectrepo',
         message: 'URL to the Git-Repo',
-        default: 'http://........'
+        default: gitInfo.github
       }
     ]).then(function (props) {
       function checkAnswer(prop) {
