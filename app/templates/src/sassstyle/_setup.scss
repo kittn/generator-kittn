@@ -281,7 +281,7 @@ $kittn-color-map: (
     opacity: false,
     type: false
   ),
-  'hightlight': (
+  'highlight': (
     color: #f8e64b,
     opacity: false,
     type: false
@@ -297,7 +297,7 @@ $kittn-color-route: (
   headline: c('gray'), // {Color|Bool}
   blockquote: c('main'), // {Color|Bool}
   highlight-bg: lighten(c('primary'),25), // {Color|Bool}
-  hightlight-text: darken(c('primary'),10), // {Color|Bool}
+  highlight-text: darken(c('primary'),10), // {Color|Bool}
   link: c('primary'), // {Color|Bool}
   link-hover: darken(c('primary'),15), // {Color|Bool}
   link-active: darken(c('primary'),25), // {Color|Bool}
