@@ -85,7 +85,9 @@
       "files": [],
       "filename": "scripts.js"
     },
-    "fonts": [],
+    "fonts": [
+      "src/fonts/**"
+    ],
     "launch": [
       {"src": "favicons/**", "dest": "assets/img/system/"},<% if (projectUsage == 'Building HTML Prototypes') { %>
       {"src": "facebook-og-image.jpg", "dest": "assets/img/system/"},
