@@ -241,7 +241,7 @@ $kittn-color-map: (
     opacity: false,
     type: false
   ),
-  'black': (
+  'main': (
     color: #3c3c3c,
     opacity: false,
     type: false
@@ -266,7 +266,7 @@ $kittn-color-map: (
     opacity: false,
     type: false
   ),
-  'alert': (
+  'danger': (
     color: #ef462a,
     opacity: false,
     type: false
@@ -293,9 +293,9 @@ $kittn-color-map: (
 // @type Map
 $kittn-color-route: (
   body: c('body'), // Body Background
-  text: c('black'), // Base Text Color
+  text: c('main'), // Base Text Color
   headline: c('gray'), // {Color|Bool}
-  blockquote: c('black'), // {Color|Bool}
+  blockquote: c('main'), // {Color|Bool}
   highlight-bg: lighten(c('primary'),25), // {Color|Bool}
   hightlight-text: darken(c('primary'),10), // {Color|Bool}
   link: c('primary'), // {Color|Bool}
