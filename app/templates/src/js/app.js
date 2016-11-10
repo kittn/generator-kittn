@@ -3,7 +3,8 @@ import $ from 'jquery'<% } if (projectquery === 'ElementQuery') { %>
 import eq from 'css-element-queries'<% } else if (projectquery === 'ContainerQuery') { %>
 import cq from 'cq-prolyfill'<% } if (projectvue === true ) { %>
 import Vue from 'vue'
-import VueResource from 'vue-resource'
+import axios from 'axios'
+import VueAxios from 'vue-axios'
 import VueRouter from 'vue-router'<% } %>
 import './partial/kittnad' // Small Advertising for Kittn :)
 import modernizrLoad from './partial/modernizer-loader' // eslint-disable-line
@@ -12,7 +13,7 @@ import App from './app.vue'
 import store from './store/store'
 
 // Adding Vue Plugins
-Vue.use(VueResource)
+Vue.use(VueAxios, axios)
 Vue.use(VueRouter)<% } %><% if (projectquery === 'ContainerQuery') { %>
 
 // Init Container Queries
