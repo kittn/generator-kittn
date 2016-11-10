@@ -19,7 +19,8 @@
     "init": "gulp init --env=init && npm run subtask:bundlewebpack",
     "dev": "gulp",
     "devdashboard": "webpack-dashboard -p 3002 -- gulp",
-    "build": "npm run subtask:bundlewebpack && npm run subtask:deploygulp",
+    "deploy": "npm run subtask:bundlewebpack && npm run subtask:deploygulp",
+    "build": "npm run subtask:bundlewebpack && npm run subtask:deploygulp && gulp rebuild:images --env=init && gulp copy:contentimages --env=init",
     "scripts": "gulp rebuild:js --env=init",
     "uiimages": "gulp rebuild:images --env=init",
     "htmlassets": "gulp copy:contentimages --env=init",
@@ -128,7 +129,7 @@
     "awesome-typescript-loader": "^2.2.4",<% } %>
     "extract-text-webpack-plugin": "^1.0.1",<% if (projectvue === true ) { %>
     "css-loader": "^0.25.0",
-    "vue-loader": "^9.5.1",
+    "vue-loader": "^9.8.1",
     "sass-loader": "^4.0.2",
     "stylus-loader": "^2.3.1",
     "vue-style-loader": "^1.0.0",<% } %>
@@ -140,8 +141,9 @@
     "jquery": "1.11.3",<% } %>
     "selectivizr": "^1.0.3",<% } else { if (projectjquery === true) { %>
     "jquery": "^3.1.0",<% } } if (projectvue === true ) { %>
+    "axios": "^0.15.2",
     "vue": "^2.0.1",
-    "vue-resource": "^1.0.3",
+    "vue-axios": "^1.0.3",
     "vue-router": "^2.0.0",
     "vuex": "^2.0.0",<% } if ( projectstylecompiler === 'PostCSS Only' ) { %>
     "normalize.css": "^5.0.0",<% } %>
