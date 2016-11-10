@@ -121,9 +121,9 @@
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
     "webpack": "2.1.0-beta.25",
-    "webpack-dashboard": "^0.2.0",
+    "webpack-dashboard": "^0.2.0",<% if (projecthmr === true) { %>
     "webpack-dev-middleware": "^1.8.4",
-    "webpack-hot-middleware": "^2.13.0",
+    "webpack-hot-middleware": "^2.13.0",<% } %>
     "webpack-merge": "^0.14.1",<% if (projecttypescript) { %>
     "typescript": "^2.0.3",
     "awesome-typescript-loader": "^2.2.4",<% } %>

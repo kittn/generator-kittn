@@ -6,9 +6,9 @@
 import kc from '../../config.json'
 import gulp from 'gulp'
 import browserSync from 'browser-sync'
-import webpack from 'webpack'
+import webpack from 'webpack'<% if (projecthmr === true) { %>
 import webpackDevMiddleware from 'webpack-dev-middleware'
-import webpackHotMiddleware from 'webpack-hot-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'<% } %>
 import webpackSettings from '../../webpack.config.babel'
 
 const bundler = webpack(webpackSettings)
@@ -48,7 +48,7 @@ const browserSyncTask = () => {
         forms: true }
       },
 
-      logLevel: 'info',
+      logLevel: 'info',<% if (projecthmr === true) { %>
 
       middleware: [
         webpackDevMiddleware(bundler, {
@@ -56,7 +56,7 @@ const browserSyncTask = () => {
           stats: { colors: true }
         }),
         webpackHotMiddleware(bundler)
-      ],
+      ],<% } %>
 
       notify: {
         styles: [

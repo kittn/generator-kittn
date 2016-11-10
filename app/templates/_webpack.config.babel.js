@@ -139,8 +139,7 @@ const config = {
     'Modernizr': 'Modernizr'
   }
 }
-
-if(env == 'development') {
+<% if (projecthmr === true) { %>if(env == 'development') {
   const DashboardPlugin = require('webpack-dashboard/plugin')
 
   module.exports = merge(config, {
@@ -154,5 +153,5 @@ if(env == 'development') {
     ]
   })
 } else {
-  module.exports = merge(config)
-}
+  <% } %>module.exports = merge(config)<% if (projecthmr === true) { %>
+}<% } %>
