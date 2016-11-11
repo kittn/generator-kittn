@@ -48,7 +48,7 @@ var KittnGenerator = yeoman.Base.extend({
       {
         type: 'input',
         name: 'projectname',
-        message: chalk.styles.red.open + '[Project] Name' + chalk.styles.red.close + '\n\xa0 Please give the project a name (without Spaces)',
+        message: chalk.cyan.underline.bold('Project Name') + '\n\xa0 Please give the project a name (without Spaces)',
         default: 'kittn',
         validate: function (input) {
           // Do async stuff
@@ -62,18 +62,18 @@ var KittnGenerator = yeoman.Base.extend({
       },{
         type: 'input',
         name: 'projectdescription',
-        message: chalk.styles.red.open + '[Project] Description' + chalk.styles.red.close + '\n\xa0 Description of the project',
+        message: chalk.cyan.underline.bold('Project Description') + '\n\xa0 Description of the project',
         default: 'undefinied'
       },{
         type: 'input',
         name: 'projectcssfilename',
-        message: chalk.styles.red.open + '[CSS] Filename' + chalk.styles.red.close + '\n\xa0 (only the name without .css or .scss)',
+        message: chalk.cyan.underline.bold('CSS Filename') +  '\n\xa0 (only the name without .css or .scss)',
         default: 'style'
       },
       {
         type: 'confirm',
         name: 'projecttypescript',
-        message: chalk.styles.red.open + '[JS] Transpiler' + chalk.styles.red.close + '\n\xa0 Would you like javascript to be processed with Typescript instead of Babel?',
+        message: chalk.cyan.underline.bold('JS Transpiler') + '\n\xa0 Would you like javascript to be processed with Typescript instead of Babel?',
         default: false
       },
       {
@@ -82,7 +82,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'list',
         name: 'projectscriptlinter',
-        message: chalk.styles.red.open + '[JS] Lint-Settings' + chalk.styles.red.close + '\n\xa0 Pick an ESLint preset',
+        message: chalk.cyan.underline.bold('JS EsLint-Settings') + '\n\xa0 Pick an ESLint preset',
         choices: [
           {
             'name': 'Standard (https://github.com/feross/standard)',
@@ -104,13 +104,13 @@ var KittnGenerator = yeoman.Base.extend({
       {
         type: 'confirm',
         name: 'projectyarn',
-        message: chalk.styles.red.open + '[npm] Yarn' + chalk.styles.red.close + '\n\xa0 As an alternative to NPM, YARN can also be used to reduce installation time.\n\xa0 Yarn must be installed (https://yarnpkg.com/)',
+        message: chalk.cyan.underline.bold('Packagemanger') + '\n\xa0 As an alternative to NPM, YARN can also be used to reduce installation time.\n\xa0 Yarn must be installed (https://yarnpkg.com/)',
         default: false
       },
       {
         type: 'list',
         name: 'projectstylecompiler',
-        message: chalk.styles.red.open + '[CSS] PostCSS' + chalk.styles.red.close + '\n\xa0 If you want to use Sass in combination with PostCSS,\n\xa0 or you only want to use PostCSS (which allows you all CSS level 4 features).  \n\xa0 PostCSS only is without the Kittn CSS Framework',
+        message: chalk.cyan.underline.bold('CSS Compiler Usage') + '\n\xa0 If you want to use Sass in combination with PostCSS,\n\xa0 or you only want to use PostCSS (which allows you all CSS level 4 features).  \n\xa0 PostCSS only is without the Kittn CSS Framework',
         choices: [
           'Sass with PostCSS',
           'PostCSS Only'
@@ -122,7 +122,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'list',
         name: 'projectstylesasscompiler',
-        message: chalk.styles.red.open + '[CSS] Sass' + chalk.styles.red.close + '\n\xa0 Do you want to use *.sass or *.scss?',
+        message: chalk.cyan.underline.bold('Sass Compiler Syntax') + '\n\xa0 Do you want to use *.sass or *.scss?',
         choices: [
           'SCSS',
           'Sass'
@@ -131,7 +131,7 @@ var KittnGenerator = yeoman.Base.extend({
       {
         type: 'list',
         name: 'projectcssstructure',
-        message: chalk.styles.red.open + '[CSS] Structure' + chalk.styles.red.close + '\n\xa0 CSS Writing Methodologies',
+        message: chalk.cyan.underline.bold('CSS Methodologies') + chalk.styles.red.close + '\n\xa0 CSS Writing Methodologies',
         choices: [
           'Own Structure',
           'Atomic Design',
@@ -142,7 +142,7 @@ var KittnGenerator = yeoman.Base.extend({
       {
         type: 'list',
         name: 'projectUsage',
-        message: chalk.styles.red.open + '[Project] Type' + chalk.styles.red.close + '\n\xa0 For what do you want to use Kittn. The generator can then prepare the project accordingly.',
+        message: chalk.cyan.underline.bold('Project Usage') + '\n\xa0 For what do you want to use Kittn. The generator can then prepare the project accordingly.',
         choices: [
           'Building HTML Prototypes',
           'Integrate in CraftCMS',
@@ -155,7 +155,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'list',
         name: 'projectstructure',
-        message: chalk.styles.red.open + '[HTML] Template' + chalk.styles.red.close + '\n\xa0 If you want to generate your HTML with Twig or do not use a compiler \n\xa0 (files like html, php, txt, etc. are only copied when the process is running)?',
+        message: chalk.cyan.underline.bold('HTML Compiler') + '\n\xa0 If you want to generate your HTML with Twig or do not use a compiler \n\xa0 (files like html, php, txt, etc. are only copied when the process is running)?',
         choices: [
           'Twig Template',
           'Uncompiled'
@@ -167,7 +167,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'confirm',
         name: 'projectwpcli',
-        message: chalk.styles.red.open + '[Project] WP-CLI' + chalk.styles.red.close + '\n\xa0 Do you have installed WP-CLI? (https://github.com/wp-cli/wp-cli)',
+        message: chalk.cyan.underline.bold('WP-CLI') + '\n\xa0 Do you have installed WP-CLI? (https://github.com/wp-cli/wp-cli)',
         default: false
       },
       {
@@ -176,7 +176,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'confirm',
         name: 'projectcraftcli',
-        message: chalk.styles.red.open + '[Project] Craft-CLI' + chalk.styles.red.close + '\n\xa0 Do you have installed Craft-CLI? (https://github.com/rsanchez/craft-cli)',
+        message: chalk.cyan.underline.bold('Craft-CLI') + '\n\xa0 Do you have installed Craft-CLI? (https://github.com/rsanchez/craft-cli)',
         default: false
       },
       {
@@ -185,7 +185,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'confirm',
         name: 'projectcredential',
-        message: chalk.styles.red.open + '[Project] Credentials' + chalk.styles.red.close + '\n\xa0 Want to enter your URL and Database Credentials for your local Environment?',
+        message: chalk.cyan.underline.bold('Local Environment Credentials') +  '\n\xa0 Want to enter your URL and Database Credentials for your local Environment?',
         default: false
       },
       {
@@ -194,7 +194,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'list',
         name: 'credentialprotocol',
-        message: chalk.styles.red.open + '[Credentials] HTTP' + chalk.styles.red.close + '\n\xa0 HTTP or HTTPS?',
+        message: chalk.cyan.underline.bold('Credentials HTTP') + '\n\xa0 HTTP or HTTPS?',
         choices: [
           'http',
           'https'
@@ -206,8 +206,8 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'input',
         name: 'credentialdomain',
-        message: chalk.styles.red.open + '[Credentials] Domain-HTTP' + chalk.styles.red.close + '\n\xa0 Domain without HTTP or HTTPS',
-        default: 'localhost'
+        message: chalk.cyan.underline.bold('Credentials Domain Protocol') + '\n\xa0 Domain without HTTP or HTTPS',
+        default: function(props) { return props.projectname + '.local' }
       },
       {
         when: function(props) {
@@ -215,7 +215,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'input',
         name: 'credentialdbserver',
-        message: chalk.styles.red.open + '[DB]' + chalk.styles.red.close + '\n\xa0 Database Server Host without ending slash',
+        message: chalk.cyan.underline.bold('DB Host') + '\n\xa0 Database Server Host without ending slash',
         default: 'localhost'
       },
       {
@@ -224,7 +224,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'input',
         name: 'credentialdbuser',
-        message: chalk.styles.red.open + '[DB]' + chalk.styles.red.close + '\n\xa0 Database User',
+        message: chalk.cyan.underline.bold('DB User') + chalk.styles.red.close + '\n\xa0 Database User',
         default: 'root'
       },
       {
@@ -233,7 +233,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'input',
         name: 'credentialdbpass',
-        message: chalk.styles.red.open + '[DB]' + chalk.styles.red.close + '\n\xa0 Database Password',
+        message: chalk.cyan.underline.bold('DB Pass') + chalk.styles.red.close + '\n\xa0 Database Password',
         default: 'root'
       },
       {
@@ -242,19 +242,19 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'input',
         name: 'credentialdbdatabase',
-        message: chalk.styles.red.open + '[DB]' + chalk.styles.red.close + '\n\xa0 Database Name',
-        default: ''
+        message: chalk.cyan.underline.bold('DB Name') + chalk.styles.red.close + '\n\xa0 Database Name',
+        default: function(props) { return props.projectname }
       },
       {
         type: 'confirm',
         name: 'projectiecompatible',
-        message: chalk.styles.red.open + '[Project] Internet Explorer' + chalk.styles.red.close + '\n\xa0 IE8 compatibility needed?',
+        message: chalk.cyan.underline.bold('Oldie IE?') + chalk.styles.red.close + '\n\xa0 IE8 compatibility needed?',
         default: false
       },
       {
         type: 'list',
         name: 'projectquery',
-        message: chalk.styles.red.open + '[Project] Queries' + chalk.styles.red.close + '\n\xa0 In addition to the media queries, Element Queries (https://github.com/marcj/css-element-queries) \n\xa0 or Container Queries (https://github.com/ausi/cq-prolyfill) can be integrated.',
+        message: chalk.cyan.underline.bold('Media Queries') + '\n\xa0 In addition to the media queries, Element Queries (https://github.com/marcj/css-element-queries) \n\xa0 or Container Queries (https://github.com/ausi/cq-prolyfill) can be integrated.',
         choices: [
           'Native MediaQuery',
           'ContainerQuery',
@@ -263,12 +263,12 @@ var KittnGenerator = yeoman.Base.extend({
       },{
         type: 'confirm',
         name: 'projectjquery',
-        message: chalk.styles.red.open + '[JS] jQuery' + chalk.styles.red.close + '\n\xa0 Want to use jQuery?',
+        message: chalk.cyan.underline.bold('jQuery') + '\n\xa0 Want to use jQuery?',
         default: false
       },{
         type: 'confirm',
         name: 'projectvue',
-        message: chalk.styles.red.open + '[JS] Vuejs' + chalk.styles.red.close + '\n\xa0 Want to use Vue.js?',
+        message: chalk.cyan.underline.bold('Vuejs')  + '\n\xa0 Want to use Vue.js?',
         default: false
       },
       {
@@ -277,7 +277,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'list',
         name: 'projectvueversion',
-        message: chalk.styles.red.open + '[JS] Vuejs Version' + chalk.styles.red.close + '\n\xa0 Vue Version. When you only use .vue Files Runtime is perfect,\n\xa0 if you need parsing from .html Files you need the Standalone Version.',
+        message: chalk.cyan.underline.bold('Vuejs Runtime') + '\n\xa0 Vue Version. When you only use .vue Files Runtime is perfect,\n\xa0 if you need parsing from .html Files you need the Standalone Version.',
         choices: [
           'Runtime-Only',
           'Standalone'
@@ -289,33 +289,33 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'confirm',
         name: 'projecthmr',
-        message: chalk.styles.red.open + '[Build] HMR' + chalk.styles.red.close + '\n\xa0 Enable Hot-Module-Replacement?\n\xa0 You only need this with a MVC like Vuejs, React, etc.',
+        message: chalk.cyan.underline.bold('Transpiler HMR') + '\n\xa0 Enable Hot-Module-Replacement?\n\xa0 You only need this with a MVC like Vuejs, React, etc.',
         default: false
       },
       {
         type: 'input',
         name: 'projectversion',
-        message: chalk.styles.red.open + '[Project] Version' + chalk.styles.red.close + '\n\xa0 The Version Number',
+        message: chalk.cyan.underline.bold('Project Version') + '\n\xa0 The Version Number',
         default: '0.0.1'
       },{
         type: 'input',
         name: 'projectauthor',
-        message: chalk.styles.red.open + '[Project] Author' + chalk.styles.red.close + '\n\xa0 Project Author Name or Company',
+        message: chalk.cyan.underline.bold('Project Author') + '\n\xa0 Project Author Name or Company',
         default: gitInfo.name
       },{
         type: 'input',
         name: 'projectmail',
-        message: chalk.styles.red.open + '[Project] Mail' + chalk.styles.red.close + '\n\xa0 Mailadress from the Author',
+        message: chalk.cyan.underline.bold('Project Mail') + '\n\xa0 Mailadress from the Author',
         default: gitInfo.email
       },{
         type: 'input',
         name: 'projecturl',
-        message: chalk.styles.red.open + '[Project] URL' + chalk.styles.red.close + '\n\xa0 Author URL',
+        message: chalk.cyan.underline.bold('Project URL') + '\n\xa0 Author URL',
         default: 'http://........'
       },{
         type: 'input',
         name: 'projectrepo',
-        message: chalk.styles.red.open + '[Project] Repo-URL' + chalk.styles.red.close + '\n\xa0 URL to the Git-Repo',
+        message: chalk.cyan.underline.bold('Project Repo-URL') + '\n\xa0 URL to the Git-Repo',
         default: gitInfo.github
       }
     ]).then(function (props) {
@@ -743,15 +743,6 @@ var KittnGenerator = yeoman.Base.extend({
       });
     }
 
-    this.on('end', function () {
-      this.spawnCommand('npm', ['run', 'init']).on('close', function () {
-        _self.log(yosay(
-          'Yeah! You\'re all set and done!' +
-          ' Now simply run `npm run dev` and start coding!'
-        ));
-      });
-    });
-
     // Put Craft Base Files in Structure or simple Structure Files
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {
       if ( this.projectcraftcli ) {
@@ -765,7 +756,25 @@ var KittnGenerator = yeoman.Base.extend({
 
       }
     }
+
+    // Finish Task
+    this.on('end', function () {
+      var goodbye =
+            '\n ' + chalk.styles.yellow.open +
+            '\n                    __    .__  __    __ ' +
+            '\n                    |  | _|__|/  |__/  |_  ____ ' +
+            '\n                    |  |/ /  \\   __\\   __\\/    \\ ' +
+            '\n                    |    <|  ||  |  |  | |   |  \\ ' +
+            '\n                    |__|_ \\__||__|  |__| |___|  / ' +
+            '\n                    \\/                   \\/  ' +
+            '\n  ' + chalk.styles.yellow.close  + chalk.styles.green.open +
+            '\n   Now we are finished. Make your last settings and start `npm run init`.' +
+            '\n      When you are finished activate `npm run dev` and happy Coding.' +
+            '\n ' + chalk.styles.green.close;
+      console.log(goodbye);
+    });
   }
 });
 
 module.exports = KittnGenerator;
+
