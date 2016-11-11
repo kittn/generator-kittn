@@ -6,8 +6,8 @@
 import kc from '../../config.json'
 import gulp from 'gulp'
 import browserSync from 'browser-sync'
-import webpack from 'webpack'<% if (projecthmr === true) { %>
-import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpack from 'webpack'
+import webpackDevMiddleware from 'webpack-dev-middleware'<% if (projecthmr === true) { %>
 import webpackHotMiddleware from 'webpack-hot-middleware'<% } %>
 import webpackSettings from '../../webpack.config.babel'
 
@@ -28,8 +28,8 @@ const browserSyncTask = () => {
   }
 
   // Browser Sync
-  browserSync.init([<% if (projectvue == false ) { %>
-      kc.dist.js + '**/*.js',<% } %>
+  browserSync.init([
+      kc.dist.js + '**/*.js',
       kc.dist.css + '**/*.css',<% if (projectUsage == 'Integrate in CraftCMS' ) { %>
       kc.dist.markup + 'templates/**/*.{php,html,twig}',<% } else if (projectUsage == 'Integrate in Wordpress') { %>
       kc.dist.markup + '**/*.{php,html,png,txt,md}',<% } else { %>
@@ -48,15 +48,15 @@ const browserSyncTask = () => {
         forms: true }
       },
 
-      logLevel: 'info',<% if (projecthmr === true) { %>
+      logLevel: 'info',
 
       middleware: [
         webpackDevMiddleware(bundler, {
           publicPath: webpackSettings.output.publicPath,
           stats: { colors: true }
-        }),
-        webpackHotMiddleware(bundler)
-      ],<% } %>
+        })<% if (projecthmr === true) { %>,
+        webpackHotMiddleware(bundler)<% } %>
+      ],
 
       notify: {
         styles: [
