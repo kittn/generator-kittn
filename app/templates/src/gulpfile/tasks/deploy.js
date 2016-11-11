@@ -7,7 +7,7 @@
 import gulp from 'gulp'
 import runSequence from 'run-sequence'
 
-const buildTask = (cb) => {
+const deployTask = (cb) => {
 
   // Overwrite the Changed Check
   global.changedOverride = true
@@ -33,11 +33,9 @@ const buildTask = (cb) => {
       'minify:inlineimages',
       'minify:css'
     ],
-    [
-      'optimize:criticalCss'
-    ],
     cb)
 }
 
-gulp.task('build', buildTask)
-module.exports = buildTask
+gulp.task('deploy', deployTask)
+module.exports = deployTask
+

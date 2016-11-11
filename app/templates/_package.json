@@ -16,11 +16,12 @@
   "scripts": {
     "subtask:bundlewebpack": "webpack --config webpack.config.babel.js -p --colors --env.bundle=production --env=production",
     "subtask:deploygulp": "gulp deploy --env=production",
+    "subtask:buildgulp": "gulp build --env=production --critical",
     "init": "gulp init --env=init && npm run subtask:bundlewebpack",
     "dev": "gulp",
     "devdashboard": "webpack-dashboard -p 3002 -- gulp",
     "deploy": "npm run subtask:bundlewebpack && npm run subtask:deploygulp",
-    "build": "npm run subtask:bundlewebpack && npm run subtask:deploygulp && gulp rebuild:images --env=init && gulp copy:contentimages --env=init",
+    "build": "npm run subtask:bundlewebpack && npm run subtask:buildgulp",
     "scripts": "gulp rebuild:js --env=init",
     "uiimages": "gulp rebuild:images --env=init",
     "htmlassets": "gulp copy:contentimages --env=init",
