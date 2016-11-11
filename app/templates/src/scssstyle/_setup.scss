@@ -12,37 +12,37 @@
 //
 // @type Map
 $kittn-breakpoint-map: (
-  '1': (
+  'xs': (
     size: 320px,
     visibility: false,
     step: true,
     fontsize: false
   ),
-  '2': (
+  's': (
     size: 480px,
     visibility: false,
     step: false,
     fontsize: false
   ),
-  '3': (
+  'sm': (
     size: 560px,
     visibility: false,
     step: true,
     fontsize: false
   ),
-  '4': (
+  'm': (
     size: 768px,
     visibility: false,
     step: true,
     fontsize: 85
   ),
-  '5': (
+  'ml': (
     size: 960px,
     visibility: false,
     step: true,
     fontsize: 90
   ),
-  '6': (
+  'l': (
     size: 1180px,
     visibility: false,
     step: true,
