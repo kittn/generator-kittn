@@ -61,10 +61,18 @@ $kittn-breakpoint-map: (
 $kittn-fontface-map: (
   // EXAMPLE
   // fontname: (
-  //   filename: false,
-  //   weight: normal,
-  //   style: normal,
-  //   short: true
+  //   1: (
+  //     filename: false,
+  //     weight: normal,
+  //     style: normal,
+  //     short: true
+  //   ),
+  //   2: (
+  //     filename: false,
+  //     weight: normal,
+  //     style: italic,
+  //     short: true
+  //   )
   // )
 );
 
