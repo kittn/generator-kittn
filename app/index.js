@@ -712,6 +712,12 @@ var KittnGenerator = yeoman.Base.extend({
     );
 
     this.fs.copyTpl(
+      this.templatePath('sass-lint'),
+      this.destinationPath('.sass-lint.yml'),
+      templateParams
+    );
+
+    this.fs.copyTpl(
       this.templatePath('babelrc'),
       this.destinationPath('.babelrc'),
       templateParams
@@ -777,4 +783,3 @@ var KittnGenerator = yeoman.Base.extend({
 });
 
 module.exports = KittnGenerator;
-

@@ -1,0 +1,87 @@
+rules:
+  class-name-format:
+    - 0
+  property-sort-order:
+    - 1
+    -
+      order:
+        - position
+        - top
+        - right
+        - bottom
+        - left
+        - z-index
+        - float
+        - clear
+        -
+        - display
+        - flex-wrap
+        - align-items
+        - justify-content
+        - visibility
+        - overflow
+        - overflow-x
+        - overflow-y
+        - box-sizing
+        - size
+        - width
+        - min-width
+        - max-width
+        - height
+        - min-height
+        - max-height
+        - padding
+        - padding-top
+        - padding-right
+        - padding-bottom
+        - padding-left
+        - border
+        - border-top
+        - border-right
+        - border-bottom
+        - border-left
+        - border-width
+        - border-left-width
+        - border-right-width
+        - border-left-width
+        - border-right-width
+        - border-color
+        - border-left-color
+        - border-right-color
+        - border-left-color
+        - border-right-color
+        - border-radius
+        - border-top-left-radius
+        - border-top-right-radius
+        - border-bottom-left-radius
+        - border-bottom-right-radius
+        - margin
+        - margin-top
+        - margin-right
+        - margin-bottom
+        - margin-left
+        -
+        - background
+        - background-image
+        - background-color
+        - background-position
+        - background-repeat
+        - background-size
+        - background-attachment
+        - color
+        - opacity
+        - box-shadow
+        -
+        - font-family
+        - font-size
+        - line-height
+        - text-align
+        - text-decoration
+        - text-shadow
+        - list-style-type
+        - # Other
+        - cursor
+        - transition
+        - transition-property
+        - animation
+      separate_groups: true
