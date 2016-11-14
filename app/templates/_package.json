@@ -151,7 +151,7 @@
     "normalize.css": "^5.0.0",<% } %>
     "html5shiv": "^3.7.3",
     "conditionizr": "^4.5.0",
-    "svg4everybody": "^2.1.0",
+    "svgxuse": "^1.1.23",
     "lazysizes": "^2.0.0",<% if (projectquery === 'ElementQuery') { %>
     "css-element-queries": "^0.3.2",<% } else if (projectquery === 'ContainerQuery') { %>
     "cq-prolyfill": "^0.3.2",<% } %>
