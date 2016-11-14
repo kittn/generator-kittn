@@ -129,6 +129,7 @@
     "typescript": "^2.0.3",
     "awesome-typescript-loader": "^2.2.4",<% } %>
     "extract-text-webpack-plugin": "^1.0.1",<% if (projectvue === true ) { %>
+    "es6-promise": "^4.0.5",
     "css-loader": "^0.25.0",
     "vue-loader": "^9.8.1",
     "sass-loader": "^4.0.2",

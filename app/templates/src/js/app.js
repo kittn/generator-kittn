@@ -2,6 +2,7 @@
 import $ from 'jquery'<% } if (projectquery === 'ElementQuery') { %>
 import eq from 'css-element-queries'<% } else if (projectquery === 'ContainerQuery') { %>
 import cq from 'cq-prolyfill'<% } if (projectvue === true ) { %>
+require('es6-promise').polyfill()
 import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
