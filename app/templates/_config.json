@@ -64,7 +64,7 @@
     ]
   },
   "template": {
-    "globalTitle": "myPage",
+    "globalTitle": "<%= projectname %>",
     "compiler": <% if ( projectstructure == 'Twig Template' && projectUsage == 'Building HTML Prototypes') { %>true<% } else { %>false<% } %>
   },
   "browsersync": {
