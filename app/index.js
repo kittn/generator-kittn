@@ -759,8 +759,8 @@ var KittnGenerator = yeoman.Base.extend({
     // check if yarn is available and use it instead of npm
     commandExists('yarn', function(err, commandExists) {
       if(commandExists) {
-        var done = this.async();
-        this.spawnCommand('yarn').on('close', done);
+        var done = _self.async();
+        _self.spawnCommand('yarn').on('close', done);
       } else {
         this.installDependencies({
           bower: false,
