@@ -5,8 +5,9 @@ var yosay = require('yosay');
 var chalk = require('chalk');
 var yeoman = require('yeoman-generator');
 var mkdirp = require('mkdirp');
-var clear = require('clear-terminal');
 var shelljs = require('shelljs/global');
+var commandExists = require('command-exists');
+var clear = require("clear-terminal");
 
 var KittnGenerator = yeoman.Base.extend({
   init: function () {
@@ -14,6 +15,8 @@ var KittnGenerator = yeoman.Base.extend({
   },
   askFor: function () {
     var done = this.async();
+    var wp_cli = false;
+    var craft_cli = false;
     // Custom Greeting
     var welcome =
           '\n ' + chalk.styles.cyan.open +
@@ -37,6 +40,22 @@ var KittnGenerator = yeoman.Base.extend({
     clear();
     console.log(welcome);
 
+    // check if cli tools exist
+    commandExists('wp')
+      .then(function(command){
+        wp_cli = true
+      }).catch(function(){
+      wp_cli = false;
+    });
+
+    commandExists('craft')
+      .then(function(command){
+        craft_cli = true
+      }).catch(function(){
+        craft_cli = false;
+    });
+
+    // check git info
     var gitInfo = {
       name: exec('git config user.name', {silent: true}).replace(/\n/g, ''),
       email: exec('git config user.email', {silent: true}).replace(/\n/g, ''),
@@ -102,12 +121,6 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
-        type: 'confirm',
-        name: 'projectyarn',
-        message: chalk.cyan.underline.bold('Packagemanger') + '\n\xa0 As an alternative to NPM, YARN can also be used to reduce installation time.\n\xa0 Yarn must be installed (https://yarnpkg.com/)',
-        default: false
-      },
-      {
         type: 'list',
         name: 'projectstylecompiler',
         message: chalk.cyan.underline.bold('CSS Compiler Usage') + '\n\xa0 If you want to use Sass in combination with PostCSS,\n\xa0 or you only want to use PostCSS (which allows you all CSS level 4 features).  \n\xa0 PostCSS only is without the Kittn CSS Framework',
@@ -163,20 +176,26 @@ var KittnGenerator = yeoman.Base.extend({
       },
       {
         when: function(props) {
-          return props.projectUsage === 'Integrate in Wordpress';
+          if(props.projectUsage === 'Integrate in Wordpress' && wp_cli) {
+            return true
+          }
+          return false
         },
         type: 'confirm',
         name: 'projectwpcli',
-        message: chalk.cyan.underline.bold('WP-CLI') + '\n\xa0 Do you have installed WP-CLI? (https://github.com/wp-cli/wp-cli)',
+        message: chalk.cyan.underline.bold('WP-CLI') + '\n\xa0 Do you want to install Wordpress?',
         default: false
       },
       {
         when: function(props) {
-          return props.projectUsage === 'Integrate in CraftCMS';
+          if(props.projectUsage === 'Integrate in CraftCMS' && craft_cli) {
+            return true
+          }
+          return false;
         },
         type: 'confirm',
         name: 'projectcraftcli',
-        message: chalk.cyan.underline.bold('Craft-CLI') + '\n\xa0 Do you have installed Craft-CLI? (https://github.com/rsanchez/craft-cli)',
+        message: chalk.cyan.underline.bold('Craft-CLI') + '\n\xa0 Do you want to install Craft?',
         default: false
       },
       {
@@ -345,7 +364,6 @@ var KittnGenerator = yeoman.Base.extend({
       this.projecthmr           = props.projecthmr;
       this.projectcssstructure  = props.projectcssstructure;
       this.projectvueversion    = checkAnswer(props.projectvueversion);
-      this.projectyarn          = props.projectyarn;
       this.projectwpcli         = props.projectwpcli;
       this.projectcraftcli      = props.projectcraftcli;
       this.projectcredential    = props.projectcredential;
@@ -386,7 +404,6 @@ var KittnGenerator = yeoman.Base.extend({
       projecthmr           : this.projecthmr,
       projectcssstructure  : this.projectcssstructure,
       projectvueversion    : this.projectvueversion,
-      projectyarn          : this.projectyarn,
       projectcraftcli      : this.projectcraftcli,
       projectwpcli         : this.projectwpcli,
       projectcredential    : this.projectcredential,
@@ -739,15 +756,18 @@ var KittnGenerator = yeoman.Base.extend({
   install: function () {
     var _self = this;
 
-    if (this.projectyarn) {
-      var done = this.async();
-      this.spawnCommand('yarn').on('close', done);
-    } else {
-      this.installDependencies({
-        bower: false,
-        npm: true
-      });
-    }
+    // check if yarn is available and use it instead of npm
+    commandExists('yarn', function(err, commandExists) {
+      if(commandExists) {
+        var done = this.async();
+        this.spawnCommand('yarn').on('close', done);
+      } else {
+        this.installDependencies({
+          bower: false,
+          npm: true
+        });
+      }
+    });
 
     // Put Craft Base Files in Structure or simple Structure Files
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {
