@@ -8,7 +8,7 @@
 /// @param  {string} $mode       - Direction Mode
 /// @param  {string} $dimension  - Dimension [default: width]
 ///
-/// @private
+/// @access private
 @mixin _breakmode($size, $mode, $dimension) {
   @if $mode == max {
     $size: if(map-get($kittn-activate, mobile-first) == true, $size + 1, $size);
@@ -29,7 +29,7 @@
 /// @param  {number} $size-2       - Second Size
 /// @param  {string} $dimension    - Dimension [default: width]
 ///
-/// @private
+/// @access private
 @mixin _breakbetween($size-1, $size-2, $dimension) {
   // Associate the highest size with Max, and the lowest size with min
   $size-min: if($size-1 < $size-2, $size-1, $size-2);

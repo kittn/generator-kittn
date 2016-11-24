@@ -8,12 +8,12 @@
   {% endif %}
   <link rel="home" href="{{ siteUrl }}" /><% if ( projectiecompatible == true ) { %>
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="{{ siteUrl~'<%= projectcssfilename %>-ie8.css' }}">
+  <link rel="stylesheet" href="{{ siteUrl~'assets/css/<%= projectcssfilename %>-ie8.css' }}">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="{{ siteUrl~'<%= projectcssfilename %>.css' }}">
+  <link rel="stylesheet" href="{{ siteUrl~'assets/css/<%= projectcssfilename %>.css' }}">
   <!--<![endif]--><% } else { %>
-  <link rel="stylesheet" href="{{ siteUrl~'<%= projectcssfilename %>.css' }}"><% } %>
+  <link rel="stylesheet" href="{{ siteUrl~'assets/css/<%= projectcssfilename %>.css' }}"><% } %>
   <style type="text/css">
     body { margin: 50px; font-family: sans-serif; background: #fff; }
     #container { margin: 0 auto; width: 700px;
