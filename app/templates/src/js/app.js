@@ -22,6 +22,7 @@ Vue.use(VueRouter)<% } %><% if (projectquery === 'ContainerQuery') { %>
 cq({ postcss: true })<% } if (projectvue === true ) { %>
 // Vue App
 new Vue({
+  el: '#app',
   store,
   render: h => h(App)
-}).$mount('#app')<% } %>
+})<% } %>

@@ -1,22 +1,23 @@
 'use strict';
-var util = require('util');
-var path = require('path');
-var yosay = require('yosay');
-var chalk = require('chalk');
-var yeoman = require('yeoman-generator');
-var mkdirp = require('mkdirp');
-var shelljs = require('shelljs/global');
+var util          = require('util');
+var path          = require('path');
+var yosay         = require('yosay');
+var chalk         = require('chalk');
+var yeoman        = require('yeoman-generator');
+var mkdirp        = require('mkdirp');
+var shelljs       = require('shelljs/global');
 var commandExists = require('command-exists');
-var clear = require("clear-terminal");
+var clear         = require('clear-terminal');
 
 var KittnGenerator = yeoman.Base.extend({
   init: function () {
     this.pkg = require('../package.json');
   },
   askFor: function () {
-    var done = this.async();
-    var wp_cli = false;
+    var done      = this.async();
+    var wp_cli    = false;
     var craft_cli = false;
+
     // Custom Greeting
     var welcome =
           '\n ' + chalk.styles.cyan.open +
