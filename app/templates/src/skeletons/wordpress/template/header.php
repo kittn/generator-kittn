@@ -8,12 +8,12 @@
   <link rel="profile" href="http://gmpg.org/xfn/11">
   <% if ( projectiecompatible == true ) { %>
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?><%= projectcssfilename %>-ie8.css">
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>assets/css/<%= projectcssfilename %>-ie8.css">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?><%= projectcssfilename %>.css">
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>assets/css/<%= projectcssfilename %>.css">
   <!--<![endif]--><% } else { %>
-  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?><%= projectcssfilename %>.css'"><% } %>
+  <link rel="stylesheet" href="<?php echo get_template_directory_uri(); ?>assets/css/<%= projectcssfilename %>.css'"><% } %>
   <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>assets/system/favicon.png">
   <?php wp_head(); ?>
   <!--[if lt IE 9]>

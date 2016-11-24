@@ -14,7 +14,7 @@
     "base": "dist/wp-content/themes/<%= projectname %>/",
     "markup": "dist/wp-content/themes/<%= projectname %>/",
     "browserSyncDir": "dist/wp-content/themes/<%= projectname %>/",
-    "css": "dist/wp-content/themes/<%= projectname %>/",
+    "css": "dist/wp-content/themes/<%= projectname %>/assets/css/",
     "js": "dist/wp-content/themes/<%= projectname %>/assets/js/",
     "fonts": "dist/wp-content/themes/<%= projectname %>/assets/fonts/",
     "cssimg": "dist/wp-content/themes/<%= projectname %>/assets/img/",
