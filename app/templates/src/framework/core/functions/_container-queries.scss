@@ -11,7 +11,7 @@
 ///
 /// @return {string}
 ///
-/// @private
+/// @access private
 @function cq-prolyfill-add-backslash($string, $search) {
   $index: str-index($string, $search);
   @while $index {
@@ -35,7 +35,7 @@
 ///
 /// @return {string}
 ///
-/// @private
+/// @access private
 @function cq-prolyfill-remove($string, $search) {
   $index: str-index($string, $search);
   @while $index {
@@ -53,7 +53,7 @@
 ///
 /// @return {string}
 ///
-/// @private
+/// @access private
 @function cq-prolyfill-escape($string) {
   @each $char in '[' ']' '!' '"' '#' '$' '%' '&' "'" '(' ')' '*' '+' ',' '.' '/' ':' ';' '<' '=' '>' '?' '@' '^' '`' '{' '|' '}' '~' {
     $string: cq-prolyfill-add-backslash($string, $char);
@@ -69,7 +69,7 @@
 ///
 /// @return {string}
 ///
-/// @private
+/// @access private
 @function cq-prolyfill-strip-spaces($string) {
   // tab, line feed, carriage return and space
   $chars: "\9\a\d\20";
