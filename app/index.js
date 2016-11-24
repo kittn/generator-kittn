@@ -465,49 +465,42 @@ var KittnGenerator = yeoman.Base.extend({
 
     this.directory('src/framework/', 'src/framework/');
 
+    // Define Sass File Type
     if ( this.projectsasssyntax === 'SCSS') {
-      this.directory('src/scssstyle/', 'src/style/');
+      var sassFileEnding = '.scss';
     } else {
-      this.directory('src/sassstyle/', 'src/style/');
+      var sassFileEnding = '.sass';
     }
 
-    // Check CSS Filename
-    var cssFileName = this.projectcssfilename;
-    if (this.projectUsage === 'Integrate in Wordpress' && this.projectcssfilename === 'style') {
-      cssFileName = 'wp-style';
-    }
 
-    if ( this.projectsasssyntax === 'SCSS') {
-      // Add SCSS Files with the desired Filename
-      this.fs.copyTpl(
-        this.templatePath('_style.scss'),
-        this.destinationPath('src/style/'+cssFileName+'.scss'),
-        templateParams
-      );
-    } else {
-      // Add Sass Files with the desired Filename
-      this.fs.copyTpl(
-        this.templatePath('_style.sass'),
-        this.destinationPath('src/style/'+cssFileName+'.sass'),
-        templateParams
-      );
-    }
+    this.directory('src/sassfiles/', 'src/style/');
+
+    // Add SCSS Files with the desired Filename
+    this.fs.copyTpl(
+      this.templatePath('_style.sassfile'),
+      this.destinationPath('src/style/'+this.projectcssfilename+sassFileEnding),
+      templateParams
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('_workfile.sassfile'),
+      this.destinationPath('src/style/_workfile'+sassFileEnding),
+      templateParams
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('_loader.sassfile'),
+      this.destinationPath('src/style/_loader'+sassFileEnding),
+      templateParams
+    );
 
     // IE8 get his own CSS File for Fallbacks
     if (this.projectiecompatible === true ) {
-      if ( this.projectsasssyntax === 'SCSS') {
-        this.fs.copyTpl(
-          this.templatePath('_style-ie8.scss'),
-          this.destinationPath('src/style/'+cssFileName+'-ie8.scss'),
-          templateParams
-        );
-      } else {
-        this.fs.copyTpl(
-          this.templatePath('_style-ie8.sass'),
-          this.destinationPath('src/style/'+cssFileName+'-ie8.sass'),
-          templateParams
-        );
-      }
+      this.fs.copyTpl(
+        this.templatePath('_style-ie8.sassfile'),
+        this.destinationPath('src/style/'+this.projectcssfilename+'-ie8'+sassFileEnding),
+        templateParams
+      );
     }
 
     // Put Craft Base Files in Structure or simple Structure Files
