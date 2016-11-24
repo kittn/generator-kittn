@@ -452,19 +452,19 @@ var KittnGenerator = yeoman.Base.extend({
 
     // Add SCSS Files with the desired Filename
     this.fs.copyTpl(
-      this.templatePath('src/style/_style.scss'),
+      this.templatePath('_style.scss'),
       this.destinationPath('src/style/'+this.projectcssfilename+sassFileEnding),
       templateParams
     );
 
     this.fs.copyTpl(
-      this.templatePath('src/style/_workfile.scss'),
+      this.templatePath('_workfile.scss'),
       this.destinationPath('src/style/_workfile'+sassFileEnding),
       templateParams
     );
 
     this.fs.copyTpl(
-      this.templatePath('src/style/_loader.scss'),
+      this.templatePath('_loader.scss'),
       this.destinationPath('src/style/_loader'+sassFileEnding),
       templateParams
     );

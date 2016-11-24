@@ -3,6 +3,7 @@
 .sass-cache
 *.css.map
 npm-debug.log
+yarn.lock
 /node_modules
 /src/bower
 /.idea

@@ -1,6 +1,6 @@
 // Stylesheet for new Browsers
 // Don't modify here, use the 'workfile'.<% if (projectsasssyntax === 'SCSS') { %>
 $jacket: 'modern';
-@import 'loader';<% } else { %>
+@import 'loader';<% }  else { %>
 $jacket: 'modern'
 @import 'loader'<% } %>
