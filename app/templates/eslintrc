@@ -6,9 +6,9 @@
     "jquery": true
   },
   "extends" : [<% if (projectscriptlinter == 'airbnb') { %>
-    "airbnb",<% } %><% if (projectscriptlinter == 'standard') { %>
-    "standard",<% } %>
-    "vue",
+    "airbnb",<% } if (projectscriptlinter == 'standard') { %>
+    "standard",<% } if ( projectJSFramework === 'Vue.js' ) { %>
+    "vue",<% } %>
     "plugin:import/errors",
     "plugin:import/warnings"
   ],
@@ -20,7 +20,7 @@
     "no-undef": 0,
     "indent": 0,
     "no-console": 0,
-    "no-new": 2,
+    "no-new": 1,
     "object-curly-spacing": 1,
     "arrow-body-style": [2, "as-needed"],
     "no-param-reassign": [2, { "props" : false }],

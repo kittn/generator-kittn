@@ -1,7 +1,7 @@
 import path from 'path'
 import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import merge from 'webpack-merge'<% if (projectvue === true ) { %>
+import merge from 'webpack-merge'<% if ( projectJSFramework === 'Vue.js' ) { %>
 import vueutils from './build/vue-utils'<% } %>
 import yargs from 'yargs'
 import eslintPretty from 'eslint-formatter-pretty'
@@ -65,7 +65,7 @@ const config = {
   output: configSegment.output,
   module: {
 
-    rules: [<% if (projectvue === true ) { %>
+    rules: [<% if ( projectJSFramework === 'Vue.js' ) { %>
       {
         enforce: 'pre',
         test: /\.vue$/,
@@ -78,7 +78,7 @@ const config = {
         loader: 'eslint-loader',
         include: path.join( ROOT_PATH, 'src/js' ),
         exclude: /node_modules/
-      },<% if (projectvue === true ) { %>{
+      },<% if ( projectJSFramework === 'Vue.js' ) { %>{
         test: /\.vue$/,
         include: path.join( ROOT_PATH, 'src/js' ),
         loader: 'vue'
@@ -111,7 +111,7 @@ const config = {
           failOnWarning: false,
           configFile   : './.eslintrc',
           formatter    : require('eslint-formatter-pretty')
-        }<% if (projectvue === true ) { %>,
+        }<% if ( projectJSFramework === 'Vue.js' ) { %>,
         vue: {
           loaders: vueutils.cssLoaders({ sourceMap: false }),
             postcss: [
@@ -125,12 +125,12 @@ const config = {
   ],
 
   resolve: {
-    extensions: [<% if (projectvue === true ) { %>
+    extensions: [<% if ( projectJSFramework === 'Vue.js' ) { %>
       '.vue',<% } if (projecttypescript) { %>
       '.ts',<% } %>
       '.js'
     ],
-    alias: {<% if (projectvue === true && projectvueversion === 'Standalone' ) { %>
+    alias: {<% if ( projectJSFramework === 'Vue.js' && projectvueversion === 'Standalone' ) { %>
       'vue': 'vue/dist/vue.js'<% } %>
     }
   },

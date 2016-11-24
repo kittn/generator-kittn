@@ -275,14 +275,19 @@ var KittnGenerator = yeoman.Base.extend({
         message: chalk.cyan.underline.bold('jQuery') + '\n\xa0 Want to use jQuery?',
         default: false
       },{
-        type: 'confirm',
-        name: 'projectvue',
-        message: chalk.cyan.underline.bold('Vuejs')  + '\n\xa0 Want to use Vue.js?',
-        default: false
+        type: 'list',
+        name: 'projectJSFramework',
+        message: chalk.cyan.underline.bold('JS Frameworks')  + '\n\xa0 Would you like to integrate a JS framework (Vue, React...)?',
+        choices: [
+          'none',
+          'Vue.js',
+          'React.js',
+          'Angular.js'
+        ]
       },
       {
         when: function(props) {
-          return props.projectvue === true;
+          return props.projectJSFramework === 'Vue.js';
         },
         type: 'list',
         name: 'projectvueversion',
@@ -294,7 +299,7 @@ var KittnGenerator = yeoman.Base.extend({
       },
       {
         when: function(props) {
-          return props.projectvue !== true;
+          return props.projectJSFramework === 'none';;
         },
         type: 'confirm',
         name: 'projecthmr',
@@ -350,7 +355,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectUsage         = props.projectUsage;
       this.projectquery         = props.projectquery;
       this.projectjquery        = props.projectjquery;
-      this.projectvue           = props.projectvue;
+      this.projectJSFramework   = props.projectJSFramework;
       this.projecthmr           = props.projecthmr;
       this.projectcssstructure  = props.projectcssstructure;
       this.projectvueversion    = checkAnswer(props.projectvueversion);
@@ -389,7 +394,7 @@ var KittnGenerator = yeoman.Base.extend({
       projectUsage         : this.projectUsage,
       projectquery         : this.projectquery,
       projectjquery        : this.projectjquery,
-      projectvue           : this.projectvue,
+      projectJSFramework   : this.projectJSFramework,
       projecthmr           : this.projecthmr,
       projectcssstructure  : this.projectcssstructure,
       projectvueversion    : this.projectvueversion,
@@ -524,7 +529,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.directory('src/skeletons/twig/', 'src/template/');
     }
 
-    if ( this.projectvue === true ) {
+    if ( this.projectJSFramework === 'Vue.js' ) {
       this.directory('src/skeletons/vue/components/', 'src/js/components/');
       this.directory('src/skeletons/vue/store/', 'src/js/store/');
       this.directory('src/skeletons/vue/shared/', 'src/js/shared/');
