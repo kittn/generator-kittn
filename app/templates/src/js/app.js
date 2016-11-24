@@ -2,7 +2,6 @@
 import $ from 'jquery'<% } if (projectquery === 'ElementQuery') { %>
 import eq from 'css-element-queries'<% } else if (projectquery === 'ContainerQuery') { %>
 import cq from 'cq-prolyfill'<% } if (projectvue === true ) { %>
-require('es6-promise').polyfill()
 import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
@@ -11,7 +10,9 @@ import './partial/kittnad' // Small Advertising for Kittn :)
 import modernizrLoad from './partial/modernizer-loader' // eslint-disable-line
 import conditionizrInit from './partial/conditionizr-init' // eslint-disable-line <% if (projectvue === true ) { %>
 import App from './app.vue'
-import store from './store/store'
+import store from './store/store'<% if (projectvue === true ) { %>
+
+require('es6-promise').polyfill()<% } %>
 
 // Adding Vue Plugins
 Vue.use(VueAxios, axios)
