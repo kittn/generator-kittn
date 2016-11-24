@@ -10,10 +10,10 @@ const initTask = (cb) => {
   // Overwrite the Changed Check
   global.changedOverride = true
 
-  runSequence(<% if ( projectstylecompiler === 'Sass with PostCSS' ) { %>
+  runSequence(
     [
       'sassdoc:generate'
-    ],<% } %>
+    ],
     [
       'copy:launch',
       'copy:fonts',

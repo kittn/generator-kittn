@@ -43,9 +43,9 @@
     "cssimage": "assets/img/",
     "contentimage": "images/"
   },
-  "css": {<% if (projectstylecompiler === 'Sass with PostCSS') { %>
+  "css": {
     "spacer": "20px",
-    "baseFontSize": "16px",<% } %>
+    "baseFontSize": "16px",
     "filename": "<%= projectcssfilename %>",
     "prefix": [
       "last 2 version",<% if (projectiecompatible == true ) { %>
