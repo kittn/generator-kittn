@@ -416,55 +416,6 @@ var KittnGenerator = yeoman.Base.extend({
     this.directory('src/.system/', 'src/.system/');
     this.directory('src/gulpfile/', 'gulpfile/');
 
-    // Copy the CSS Structure
-    switch(this.projectcssstructure) {
-      case 'Atomic Design':
-        this.directory('src/skeletons/css/atomic', 'src/style/application/');
-
-        if ( this.projectsasssyntax === 'SCSS') {
-          this.template('src/skeletons/css/_application_atomic.scss', 'src/style/application/_application.scss', templateParams);
-        } else {
-          this.template('src/skeletons/css/_application_atomic.scss', 'src/style/application/_application.sass', templateParams);
-        }
-
-        break;
-
-      case 'ITCSS':
-        this.directory('src/skeletons/css/itcss', 'src/style/application/')
-
-        if ( this.projectsasssyntax === 'SCSS') {
-          this.template('src/skeletons/css/_application_itcss.scss', 'src/style/application/_application.scss', templateParams);
-        } else {
-          this.template('src/skeletons/css/_application_itcss.scss', 'src/style/application/_application.sass', templateParams);
-        }
-
-        break;
-
-      case 'OOCSS':
-        this.directory('src/skeletons/css/oocss', 'src/style/application/')
-
-        if ( this.projectsasssyntax === 'SCSS') {
-          this.template('src/skeletons/css/_application_oocss.scss', 'src/style/application/_application.scss', templateParams);
-        } else {
-          this.template('src/skeletons/css/_application_oocss.scss', 'src/style/application/_application.sass', templateParams);
-        }
-
-        break;
-
-      default:
-        this.directory('src/skeletons/css/own', 'src/style/application/')
-
-        if ( this.projectsasssyntax === 'SCSS') {
-          this.template('src/skeletons/css/_application_own.scss', 'src/style/application/_application.scss', templateParams);
-        } else {
-          this.template('src/skeletons/css/_application_own.scss', 'src/style/application/_application.sass', templateParams);
-        }
-
-        break;
-    }
-
-    this.directory('src/framework/', 'src/framework/');
-
     // Define Sass File Type
     if ( this.projectsasssyntax === 'SCSS') {
       var sassFileEnding = '.scss';
@@ -472,24 +423,48 @@ var KittnGenerator = yeoman.Base.extend({
       var sassFileEnding = '.sass';
     }
 
+    // Copy the CSS Structure
+    switch(this.projectcssstructure) {
+      case 'Atomic Design':
+        this.directory('src/skeletons/css/atomic', 'src/style/application/');
+        this.template('src/skeletons/css/_application_atomic.scss', 'src/style/application/_application'+sassFileEnding, templateParams);
+        break;
+
+      case 'ITCSS':
+        this.directory('src/skeletons/css/itcss', 'src/style/application/')
+        this.template('src/skeletons/css/_application_itcss.scss', 'src/style/application/_application'+sassFileEnding, templateParams);
+        break;
+
+      case 'OOCSS':
+        this.directory('src/skeletons/css/oocss', 'src/style/application/')
+        this.template('src/skeletons/css/_application_oocss.scss', 'src/style/application/_application'+sassFileEnding, templateParams);
+        break;
+
+      default:
+        this.directory('src/skeletons/css/own', 'src/style/application/')
+        this.template('src/skeletons/css/_application_own.scss', 'src/style/application/_application'+sassFileEnding, templateParams);
+        break;
+    }
+
+    this.directory('src/framework/', 'src/framework/');
 
     this.directory('src/sassfiles/', 'src/style/');
 
     // Add SCSS Files with the desired Filename
     this.fs.copyTpl(
-      this.templatePath('_style.sassfile'),
+      this.templatePath('src/style/_style.scss'),
       this.destinationPath('src/style/'+this.projectcssfilename+sassFileEnding),
       templateParams
     );
 
     this.fs.copyTpl(
-      this.templatePath('_workfile.sassfile'),
+      this.templatePath('src/style/_workfile.scss'),
       this.destinationPath('src/style/_workfile'+sassFileEnding),
       templateParams
     );
 
     this.fs.copyTpl(
-      this.templatePath('_loader.sassfile'),
+      this.templatePath('src/style/_loader.scss'),
       this.destinationPath('src/style/_loader'+sassFileEnding),
       templateParams
     );
