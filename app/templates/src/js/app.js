@@ -27,6 +27,7 @@ cq({ postcss: true })<% } if ( projectJSFramework === 'Vue.js' ) { %>
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
+  router,
   store,
   render: h => h(App)
 })<% } %>
