@@ -21,6 +21,7 @@ Vue.use(VueRouter)<% } %><% if (projectquery === 'ContainerQuery') { %>
 // Init Container Queries
 cq({ postcss: true })<% } if ( projectJSFramework === 'Vue.js' ) { %>
 // Vue App
+/* eslint-disable no-new */
 new Vue({
   el: '#app',
   store,
