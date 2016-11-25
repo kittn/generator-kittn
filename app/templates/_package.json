@@ -133,7 +133,8 @@
     "vue": "^2.0.1",
     "vue-axios": "^1.0.3",
     "vue-router": "^2.0.0",
-    "vuex": "^2.0.0",<% } %>
+    "vuex": "^2.0.0",
+    "vuex-router-sync": "^2.1.1",<% } %>
     "html5shiv": "^3.7.3",
     "conditionizr": "^4.5.0",
     "svgxuse": "^1.1.23",

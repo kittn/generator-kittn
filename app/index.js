@@ -532,6 +532,7 @@ var KittnGenerator = yeoman.Base.extend({
     if ( this.projectJSFramework === 'Vue.js' ) {
       this.directory('src/skeletons/vue/components/', 'src/js/components/');
       this.directory('src/skeletons/vue/store/', 'src/js/store/');
+      this.directory('src/skeletons/vue/router/', 'src/js/router/');
       this.directory('src/skeletons/vue/shared/', 'src/js/shared/');
       this.directory('src/build/', 'build/');
 
