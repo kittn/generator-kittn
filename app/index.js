@@ -299,7 +299,7 @@ var KittnGenerator = yeoman.Base.extend({
       },
       {
         when: function(props) {
-          return props.projectJSFramework === 'none';;
+          return props.projectJSFramework === 'none';
         },
         type: 'confirm',
         name: 'projecthmr',
@@ -356,7 +356,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectquery         = props.projectquery;
       this.projectjquery        = props.projectjquery;
       this.projectJSFramework   = props.projectJSFramework;
-      this.projecthmr           = props.projecthmr;
+      this.projecthmr           = props.projectJSFramework === 'none' ? props.projecthmr : true;
       this.projectcssstructure  = props.projectcssstructure;
       this.projectvueversion    = checkAnswer(props.projectvueversion);
       this.projectwpcli         = props.projectwpcli;
