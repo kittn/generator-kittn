@@ -35,7 +35,7 @@ const configSelect = bundle => {
       }
       break
 
-    // Add More Cases is you need
+    // Add More Cases as you need
 
     case 'production' :
       return {
