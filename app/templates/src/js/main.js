@@ -5,7 +5,6 @@ import cq from 'cq-prolyfill'<% } if ( projectJSFramework === 'Vue.js' ) { %>
 import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import VueRouter from 'vue-router'
 import router from './router/router'
 import store from './store/store'<% } %>
 import './partial/kittnad' // Small Advertising for Kittn :)
