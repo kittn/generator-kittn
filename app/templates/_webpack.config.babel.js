@@ -16,10 +16,10 @@ const ROOT_PATH = path.resolve(__dirname)
 const PUBLIC_PATH = path.join(ROOT_PATH, 'dist/')
 const ASSET_JS_PATH = kittnConf.dist.webpackjsassets<% if (projecttypescript) { %>
 
-const PRIMARY_FILE_NAME = 'app.ts'<% } else { %>
-const PRIMARY_FILE_NAME = 'app.js'<% } %>
-const PRIMARY_FILE_NAME_OUTPUT = 'app.js'
-const PRIMARY_FILE_HANDLE = 'app'
+const PRIMARY_FILE_NAME = 'main.ts'<% } else { %>
+const PRIMARY_FILE_NAME = 'main.js'<% } %>
+const PRIMARY_FILE_NAME_OUTPUT = 'main.js'
+const PRIMARY_FILE_HANDLE = 'main'
 
 // Different Config Sections
 const configSelect = bundle => {

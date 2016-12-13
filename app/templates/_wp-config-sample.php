@@ -31,7 +31,7 @@ if (!defined('ENVIRONMENT')) exit('No database configured for this host');
 $wp_db_config = 'wp-config/wp-db--' . ENVIRONMENT . '.php';
 
 // Check to see if the configuration file for the environment exists
-if (file_exists( __DIR__ . 'wp-config-sample.php/' . $wp_db_config)) {
+if (file_exists( __DIR__ . '/' . $wp_db_config)) {
   require_once($wp_db_config);
 } else {
   // Exit if configuration file does not exist

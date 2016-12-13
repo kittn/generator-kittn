@@ -546,8 +546,8 @@ var KittnGenerator = yeoman.Base.extend({
     // Copy Typescript Starter File
     if (this.projecttypescript) {
       this.fs.copyTpl(
-        this.templatePath('_app.ts'),
-        this.destinationPath('src/js/app.ts'),
+        this.templatePath('_main.ts'),
+        this.destinationPath('src/js/main.ts'),
         templateParams
       );
     }

@@ -11,7 +11,7 @@
   <![endif]--><% } %>
   <script src="<?php bloginfo('template_url'); ?>/assets/js/modernizr.js"></script>
   <script src="<?php bloginfo('template_url'); ?>/assets/js/conditionizr.js"></script>
-  <script src="<?php bloginfo('template_url'); ?>/assets/js/app.js"></script>
+  <script src="<?php bloginfo('template_url'); ?>/assets/js/main.js"></script>
 
   <?php
   $host = $_SERVER['HTTP_HOST'];
