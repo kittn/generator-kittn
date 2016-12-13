@@ -1,0 +1,24 @@
+// ===================================================
+// Fluidtype
+// ===================================================
+
+/// Mixin for Fluidtype
+/// @param   {list}  $fontsize - Min and Max Fontsize in px
+/// @param   {list}  $screensize - [default:false] Min and Max Screensize
+///                                on false it uses the biggest and the smallest size
+///                                from the breakpoint Map
+/// @group fluidtype
+///
+/// @require {function} ft - Fluidtype Function
+///
+/// @example scss - scss
+///   .test {
+///     @include fluidtype(18 24);
+///   }
+@mixin fluidtype($fontsize, $screensize: false) {
+  font-size: nth($fontsize,2) + 0px;
+
+  @media screen and (max-width: nth(ftScreensize($screensize),2) + 0px) {
+    font-size: ft($fontsize, $screensize);
+  }
+}
