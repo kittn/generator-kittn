@@ -2,18 +2,16 @@
 // Fluid Type
 // ===================================================
 
-/// Make a Font Fluid
+/// Generate the Sizes liste
 ///
-/// @param   {list}  $fontsize - Min and Max Fontsize in px
 /// @param   {list}  $screensize - [default:false] Min and Max Screensize
 ///                                on false it uses the biggest and the smallest size
 ///                                from the breakpoint Map
 ///
-/// @return {string}  a String for Calc
-@function ft($fontsize, $screensize: false) {
-  $fMin : strip-units(nth($fontsize,1));
-  $fMax : strip-units(nth($fontsize,2));
-
+/// @return {list}  possible Screensizes
+/// @access private
+/// @group fluidtype
+@function ftScreensize($screensize) {
   $sMin: null;
   $sMax: null;
 
@@ -25,5 +23,31 @@
     $sMax : strip-units(map-deep-get($kittn-breakpoint-map,map-last-index($kittn-breakpoint-map),size));
   }
 
+  $sizes: $sMin, $sMax;
+
+  @return $sizes;
+}
+
+/// Make a Font Fluid
+///
+/// @param   {list}  $fontsize - Min and Max Fontsize in px
+/// @param   {list}  $screensize - [default:false] Min and Max Screensize
+///                                on false it uses the biggest and the smallest size
+///                                from the breakpoint Map
+///
+/// @return {string}  a String for Calc
+///
+/// @group fluidtype
+///
+/// @require {function} ftScreensize
+@function ft($fontsize, $screensize: false) {
+  $fMin : strip-units(nth($fontsize,1));
+  $fMax : strip-units(nth($fontsize,2));
+
+  $sMin: nth(ftScreensize($screensize),1);
+  $sMax: nth(ftScreensize($screensize),2);
+
   @return calc(#{$fMin + 0px} + (#{$fMax} - #{$fMin}) * (100vw - #{$sMin + 0px}) / (#{$sMax} - #{$sMin});
 }
+
+
