@@ -45,6 +45,11 @@ rules:
         - border-right-width
         - border-left-width
         - border-right-width
+        - border-style
+        - border-left-style
+        - border-right-style
+        - border-left-style
+        - border-right-style
         - border-color
         - border-left-color
         - border-right-color

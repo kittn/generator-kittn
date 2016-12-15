@@ -40,7 +40,7 @@ const configSelect = bundle => {
     case 'production' :
       return {
         entry: {
-          app: `./js/${PRIMARY_FILE_NAME}`
+          main: `./js/${PRIMARY_FILE_NAME}`
           // Adding more Files here
         },
         output: {
