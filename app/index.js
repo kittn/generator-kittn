@@ -280,9 +280,7 @@ var KittnGenerator = yeoman.Base.extend({
         message: chalk.cyan.underline.bold('JS Frameworks')  + '\n\xa0 Would you like to integrate a JS framework (Vue, React...)?',
         choices: [
           'none',
-          'Vue.js',
-          'React.js',
-          'Angular.js'
+          'Vue.js'
         ]
       },
       {
@@ -304,6 +302,12 @@ var KittnGenerator = yeoman.Base.extend({
         type: 'confirm',
         name: 'projecthmr',
         message: chalk.cyan.underline.bold('Transpiler HMR') + '\n\xa0 Enable Hot-Module-Replacement?\n\xa0 You only need this with a MVC like Vuejs, React, etc.',
+        default: false
+      },
+      {
+        type: 'confirm',
+        name: 'projectastrum',
+        message: chalk.cyan.underline.bold('Astrum Pattern Lib') + '\n\xa0 Would you like to build up your Pattern Library with Astrum?',
         default: false
       },
       {
@@ -371,6 +375,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectsasssyntax    = props.projectsasssyntax;
       this.projecttypescript    = props.projecttypescript;
       this.projectscriptlinter  = props.projectscriptlinter;
+      this.projectastrum        = props.projectastrum;
 
       done();
     }.bind(this));
@@ -410,6 +415,7 @@ var KittnGenerator = yeoman.Base.extend({
       projectsasssyntax    : this.projectsasssyntax,
       projecttypescript    : this.projecttypescript,
       projectscriptlinter  : this.projectscriptlinter,
+      projectastrum        : this.projectastrum,
       pkg: this.pkg
     };
 
@@ -547,6 +553,16 @@ var KittnGenerator = yeoman.Base.extend({
       this.fs.copyTpl(
         this.templatePath('_app.vue'),
         this.destinationPath('src/js/app.vue'),
+        templateParams
+      );
+    }
+
+    if (this.projectastrum) {
+      this.directory('src/pattern-library/', 'doc/pattern-library/');
+
+      this.fs.copyTpl(
+        this.templatePath('_astrum-config.json'),
+        this.destinationPath('astrum-config.json'),
         templateParams
       );
     }
