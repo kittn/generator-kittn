@@ -3,6 +3,7 @@ import $ from 'jquery'<% } if (projectquery === 'ElementQuery') { %>
 import eq from 'css-element-queries'<% } else if (projectquery === 'ContainerQuery') { %>
 import cq from 'cq-prolyfill'<% } if ( projectJSFramework === 'Vue.js' ) { %>
 import Vue from 'vue'
+import { sync } from 'vuex-router-sync'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router/router'
