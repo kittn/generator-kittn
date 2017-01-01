@@ -26,7 +26,8 @@
     "uiimages": "gulp rebuild:images --env=init",
     "htmlassets": "gulp copy:contentimages --env=init",
     "template": "gulp compiler:html --env=init",
-    "favicon": "gulp build:favicon --env=init"
+    "favicon": "gulp build:favicon --env=init",
+    "assets": "gulp copy:assets --env=init"
   },
   "devDependencies": {
     "browser-sync": "2.17.1",
