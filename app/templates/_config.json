@@ -2,6 +2,7 @@
   "dist": {<% if (projectUsage == 'Building HTML Prototypes' || projectUsage == 'Integrate in KirbyCMS') { %>
     "base": "dist/",
     "markup": "dist/",
+    "assets": "dist/assets/",
     "browserSyncDir": "dist/",
     "css": "dist/assets/css/",
     "js": "dist/assets/js/",
@@ -13,6 +14,7 @@
     "webpackjsassets": "assets/js/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
     "base": "dist/wp-content/themes/<%= projectname %>/",
     "markup": "dist/wp-content/themes/<%= projectname %>/",
+    "assets": "dist/wp-content/themes/<%= projectname %>/assets/",
     "browserSyncDir": "dist/wp-content/themes/<%= projectname %>/",
     "css": "dist/wp-content/themes/<%= projectname %>/assets/css/",
     "js": "dist/wp-content/themes/<%= projectname %>/assets/js/",
@@ -24,6 +26,7 @@
     "webpackjsassets": "wp-content/themes/<%= projectname %>/assets/js/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
     "base": "dist/public/",
     "markup": "dist/craft/",
+    "assets": "dist/public/assets/",
     "browserSyncDir": "dist/public/",
     "css": "dist/public/assets/css/",
     "js": "dist/public/assets/js/",
