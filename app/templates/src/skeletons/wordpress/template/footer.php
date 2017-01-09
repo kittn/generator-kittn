@@ -18,7 +18,7 @@
   if( $host == <% if (projectcredential) { %>"<%= credentialdomain %>"<% } else { %>"localhost"<% } %>) {
     ?>
     <script type='text/javascript' id="__bs_script__">//<![CDATA[
-      document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js'><\/script>".replace("HOST", location.hostname));
+      document.write("<script async src='//HOST:3000/browser-sync/browser-sync-client.js'><\/script>".replace("HOST", location.hostname));
       //]]></script>
   <?php } ?>
 
