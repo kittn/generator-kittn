@@ -654,6 +654,16 @@ var KittnGenerator = yeoman.Base.extend({
       this.destinationPath('webpack.config.babel.js'),
       templateParams
     );
+    this.fs.copyTpl(
+      this.templatePath('_webpack.dev.config.babel.js'),
+      this.destinationPath('webpack.dev.config.babel.js'),
+      templateParams
+    );
+    this.fs.copyTpl(
+      this.templatePath('_webpack.hot-client.js'),
+      this.destinationPath('webpack.hot-client.js'),
+      templateParams
+    );
   },
 
   install: function () {

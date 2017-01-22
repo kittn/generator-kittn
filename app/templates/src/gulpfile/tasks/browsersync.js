@@ -7,9 +7,9 @@ import kc from '../../config.json'
 import gulp from 'gulp'
 import browserSync from 'browser-sync'
 import webpack from 'webpack'
-import webpackDevMiddleware from 'webpack-dev-middleware'<% if (projecthmr === true) { %>
-import webpackHotMiddleware from 'webpack-hot-middleware'<% } %>
-import webpackSettings from '../../webpack.config.babel'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackHotMiddleware from 'webpack-hot-middleware'
+import webpackSettings from '../../webpack.dev.config.babel'
 
 const bundler = webpack(webpackSettings)
 
@@ -28,35 +28,29 @@ const browserSyncTask = () => {
   }
 
   // Browser Sync
-  browserSync.init([
-      kc.dist.js + '**/*.js',
-      kc.dist.css + '**/*.css',<% if (projectUsage == 'Integrate in CraftCMS' ) { %>
-      kc.dist.markup + 'templates/**/*.{php,html,twig}',<% } else if (projectUsage == 'Integrate in Wordpress') { %>
-      kc.dist.markup + '**/*.{php,html,png,txt,md}',<% } else { %>
-      kc.dist.base + '**/*.{php,html}',<% } %>
-      kc.dist.cssimg + '**/*.{jpg,gif,png,svg}'
-    ],
-    { options: {
+  browserSync.init({
       debugInfo: true,
       watchTask: true,
-      proxy: bsProxy,
+      proxy: {
+        target: bsProxy,
+        ws: true,
+        middleware: [
+          webpackDevMiddleware(bundler, {
+            publicPath: webpackSettings.output.publicPath,
+            stats: { colors: true }
+          }),
+          webpackHotMiddleware(bundler)
+        ]
+      },
 
-        ghostMode: {
+      ghostMode: {
         clicks: true,
         scroll: true,
         links: true,
-        forms: true }
+        forms: true
       },
 
       logLevel: 'info',
-
-      middleware: [
-        webpackDevMiddleware(bundler, {
-          publicPath: webpackSettings.output.publicPath,
-          stats: { colors: true }
-        })<% if (projecthmr === true) { %>,
-        webpackHotMiddleware(bundler)<% } %>
-      ],
 
       notify: {
         styles: [
@@ -76,7 +70,16 @@ const browserSyncTask = () => {
       },
 
       server: bsServer,
-      open: kc.browsersync.openbrowser
+      open: kc.browsersync.openbrowser,
+      files: [
+        kc.dist.js + '**/*.js',
+        kc.dist.css + '**/*.css',<% if (projectUsage == 'Integrate in CraftCMS' ) { %>
+    kc.dist.markup + 'templates/**/*.{php,html,twig}',<% } else if (projectUsage == 'Integrate in Wordpress') { %>
+    kc.dist.markup + '**/*.{php,html,png,txt,md}',<% } else { %>
+    kc.dist.base + '**/*.{php,html}',<% } %>
+  kc.dist.cssimg + '**/*.{jpg,gif,png,svg}'
+
+]
     });
 };
 
