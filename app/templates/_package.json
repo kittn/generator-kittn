@@ -18,10 +18,10 @@
     "subtask:deploygulp": "gulp deploy --env=production",
     "subtask:buildgulp": "gulp build --env=production --critical",
     "init": "gulp init --env=init && npm run subtask:bundlewebpack",
-    "dev": "gulp",
+    "dev": "NODE_ENV=development gulp",
     "devdashboard": "webpack-dashboard -p 3002 -- gulp",
     "deploy": "npm run subtask:bundlewebpack && npm run subtask:deploygulp",
-    "build": "npm run subtask:bundlewebpack && npm run subtask:buildgulp",
+    "build": "npm run subtask:bundlewebpack && NODE_ENV=production npm run subtask:buildgulp",
     "scripts": "gulp rebuild:js --env=init",
     "uiimages": "gulp rebuild:images --env=init",
     "htmlassets": "gulp copy:contentimages --env=init",
@@ -108,21 +108,21 @@
     "eslint-plugin-import": "^2.0.0",
     "eslint-plugin-jsx-a11y": "^2.2.2",
     "eslint-plugin-react": "^6.3.0",
-    "webpack": "2.1.0-beta.25",
+    "webpack": "^2.2.0",
     "webpack-dashboard": "^0.2.0",
-    "webpack-dev-middleware": "^1.8.4",<% if (projecthmr === true) { %>
-    "webpack-hot-middleware": "^2.13.0",<% } %>
-    "webpack-merge": "^0.14.1",<% if (projecttypescript) { %>
+    "webpack-dev-middleware": "^1.9.0",
+    "webpack-hot-middleware": "^2.15.0",
+    "webpack-merge": "^2.4.0",<% if (projecttypescript) { %>
     "typescript": "^2.0.3",
     "awesome-typescript-loader": "^2.2.4",<% } %>
-    "extract-text-webpack-plugin": "^1.0.1",<% if ( projectJSFramework === 'Vue.js' ) { %>
+    "extract-text-webpack-plugin": "2.0.0-beta.5",<% if ( projectJSFramework === 'Vue.js' ) { %>
     "css-loader": "^0.25.0",
-    "vue-loader": "^9.8.1",
+    "vue-loader": "^10.0.2",
     "sass-loader": "^4.0.2",
     "stylus": "^0.54.5",
     "stylus-loader": "^2.3.1",
-    "vuex-router-sync": "^3.0.0",
-    "vue-style-loader": "^1.0.0",<% } %>
+    "vue-style-loader": "^1.0.0",
+    "vue-template-compiler": "^2.1.10",<% } %>
     "utils-merge": "^1.0.0",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
@@ -136,7 +136,8 @@
     "vue": "^2.0.1",
     "vue-axios": "^1.0.3",
     "vue-router": "^2.0.0",
-    "vuex": "^2.0.0",<% } %>
+    "vuex": "^2.0.0",
+    "vuex-router-sync": "^3.0.0",<% } %>
     "html5shiv": "^3.7.3",
     "conditionizr": "^4.5.0",
     "svgxuse": "^1.1.23",
