@@ -12,7 +12,11 @@ const env = argv.env || 'development'
 const nodeEnv = process.env.NODE_ENV || 'production'
 
 const ROOT_PATH = path.resolve(__dirname)
+<% if (projectUsage == 'Integrate in CraftCMS') { %>
 const PUBLIC_PATH = path.join(ROOT_PATH, 'dist/public/')
+<% } else { %>
+const PUBLIC_PATH = path.join(ROOT_PATH, 'dist/')
+<% } %>
 const ASSET_JS_PATH = kittnConf.dist.webpackjsassets
 const PRIMARY_FILE_NAME = 'main.js'
 const PRIMARY_FILE_HANDLE = 'main'
