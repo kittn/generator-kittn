@@ -12,7 +12,7 @@ const preCssConf = () => {
         if (decl.value.match(/pxrem/)) {
           decl.value = parseFloat(decl.value) / BASE + 'rem'
         }
-        if (decl.value.match(/rs/)) {
+        if (decl.value.match(/rspace/)) {
           decl.value = SPACER * parseFloat(decl.value) / BASE  + 'rem'
         }
       })
