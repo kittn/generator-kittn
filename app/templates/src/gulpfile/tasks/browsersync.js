@@ -20,7 +20,17 @@ const browserSyncTask = () => {
 
   // Condition for Proxy
   if(kc.browsersync.proxy) {
-    bsProxy = kc.browsersync.proxy
+    bsProxy = {
+      target: kc.browsersync.proxy,
+      ws: true,
+      middleware: [
+        webpackDevMiddleware(bundler, {
+          publicPath: webpackSettings.output.publicPath,
+          stats: { colors: true }
+        }),
+        webpackHotMiddleware(bundler)
+      ]
+    }
     bsServer = false
   } else {
     bsProxy = false
@@ -31,17 +41,7 @@ const browserSyncTask = () => {
   browserSync.init({
       debugInfo: true,
       watchTask: true,
-      proxy: {
-        target: bsProxy,
-        ws: true,
-        middleware: [
-          webpackDevMiddleware(bundler, {
-            publicPath: webpackSettings.output.publicPath,
-            stats: { colors: true }
-          }),
-          webpackHotMiddleware(bundler)
-        ]
-      },
+      proxy: bsProxy,
 
       ghostMode: {
         clicks: true,
