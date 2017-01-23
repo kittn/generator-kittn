@@ -73,7 +73,12 @@ let bundle = {
       'process.env': {
         NODE_ENV: JSON.stringify(nodeEnv)
       }
-    }),
+    }),<% if (projectjquery) { %>
+    new webpack.ProvidePlugin({
+        $: 'jquery',
+        jQuery: 'jquery',
+        'window.jQuery': 'jquery'
+    }),<% } %>
     new webpack.LoaderOptionsPlugin({
       options: {
         eslint: {
