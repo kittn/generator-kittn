@@ -1,0 +1,39 @@
+{#
+  Button Module
+  =============
+  Build a simple Button Element with an outer position Wrapper
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-button' %}
+{% endif %}
+
+{# Define Position Modifier #}
+{% switch data.position %}
+  {% case 'right' %}
+    {% set buttonposition = ' '~classname~'--right' %}
+  {% case 'center' %}
+    {% set buttonposition = ' '~classname~'--center' %}
+  {% default %}
+    {% set buttonposition = '' %}
+{% endswitch %}
+
+{# Define Color Modifier #}
+{% switch data.color %}
+  {% case "secondary" %}
+    {% set buttoncolor = ' '~classname~'--c-secondary' %}
+  {% default %}
+    {% set buttoncolor = '' %}
+{% endswitch %}
+
+{# Build Element Block #}
+<div class="{{ classname }}{{ buttonposition }}">
+  <a itemprop="url"
+     href="{{ data.button.url }}" {{ data.button.target ? ' target="_blank"' }}
+     class="{{ classname }}__element{{ buttoncolor }}{{ data.size ? ' '~classname~'--'~data.size }}{{ data.fullwidth ? ' '~classname~'--fullwidth' }}">
+    {{ data.button.text }}
+  </a>
+</div>

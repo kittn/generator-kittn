@@ -1,0 +1,102 @@
+/*
+  Button
+  ======
+  Button Element with a outer Position Wrapper
+
+  **Elements**
+  .o-button__element : Main Button Element
+*/
+
+.o-button {
+  // Component Config
+  $api: (
+    selector: 'button',
+    breakpoint: 'm',
+    size: (
+      small: (
+        fontsize: 13,
+        padding: 5px 10px
+      ),
+      regular: (
+        fontsize: 16,
+        padding: 10px 15px
+      ),
+      big: (
+        fontsize: 22,
+        padding: 15px 30px
+      )
+    ),
+    color: (
+      primary: (
+        regular: (
+          text: c('white'),
+          background: c('primary'),
+          border: c('primary')
+        ),
+        hover: (
+          text: c('primary'),
+          background: transparent,
+          border: c('primary')
+        )
+      )
+    )
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Base Modifier -------------------------
+  // [root]--big
+  &--big {
+    @include fontsize(v($api,size,big,fontsize));
+    padding: v($api,size,big,padding);
+  }
+
+  // [root]--small
+  &--small {
+    @include fontsize(v($api,size,small,fontsize));
+    padding: v($api,size,small,padding);
+  }
+
+  // [root]--fullwidth
+  &--fullwidth {
+    display: block;
+  }
+
+  // [root]--center
+  &--center {
+    text-align: center;
+  }
+
+  // [root]--right
+  &--right {
+    text-align: right;
+  }
+
+  // Childs --------------------------------
+
+  // [root]__element
+  &__element {
+    color: v($api,color,primary,regular,text);
+    border: 2px solid v($api,color,primary,regular,border);
+    background-color: v($api,color,primary,regular,background);
+    margin-bottom: s(1);
+    font-weight: 700;
+    display: inline-block;
+    line-height: 1;
+    text-align: center;
+    padding: v($api,size,regular,padding);
+    transition: all 300ms ease-in-out;
+    transition-property: color, background-color;
+
+    &:hover {
+      background-color: v($api,color,primary,hover,background);
+      color: v($api,color,primary,hover,text);
+    }
+
+    // Overwrite for secondary Color Style
+    &#{$root}--c-secondary {
+      &:hover {}
+    }
+  }
+}

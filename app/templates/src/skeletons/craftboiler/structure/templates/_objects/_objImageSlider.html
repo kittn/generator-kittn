@@ -1,0 +1,28 @@
+{#
+  Image Slider Element
+  ==============
+#}
+
+{# Include Macros for your #}
+{% import '_macros/my-macro.html' as myMacro %}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-imageslider' %}
+{% endif %}
+
+{# Build Element Block #}
+<figure class="{{ classname }}">
+  <div class="{{ classname }}__wrapper">
+    {% for photo in data.photos %}
+      <div class="{{ classname }}__slide">
+        {{ myMacro.mediaImageSet(photo,data.ratio,'') }}
+      </div>
+    {% endfor %}
+  </div>
+  <div class="{{ classname }}__pagination"></div>
+  <div class="{{ classname }}__button-next"></div>
+  <div class="{{ classname }}__button-prev"></div>
+</figure>

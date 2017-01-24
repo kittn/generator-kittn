@@ -1,0 +1,51 @@
+{#
+  Media Box
+  =========
+  Contentblock with a Image or Video
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-mediabox' %}
+{% endif %}
+
+{% switch data.mediaWidth %}
+  {% case "50" %}
+    {% set width = ' '~classname~'--half' %}
+  {% case "75" %}
+    {% set width = ' '~classname~'--threequater' %}
+  {% default %}
+    {% set width = '' %}
+{% endswitch %}
+
+{# Build Element Block #}
+<div class="{{ classname }}{{ width }}{{ data.mediaPosition == 'right' ? ' '~classname~'--right' }}{{ data.background != 'null' ? ' '~classname~'--colored '~classname~'--c-'~data.background }}">
+
+  {% if data.video or data.photo %}
+    <div class="{{ classname }}__media">
+      {% if data.videobox %}
+        {% if data.video %}
+          <video muted preload="none" autoplay="autoplay" class="{{ classname }}__video" loop>
+            {% for video in data.video %}
+              <source src="{{ video.url }}" type="{{ video.getMimeType }}">
+            {% endfor %}
+            {% if data.photo %}
+              {{ myMacro.mediaImageSet(data.photo.first(), data.mediaRatio, ' '~classname~'__image') }}
+            {% endif %}
+          </video>
+        {% endif %}
+
+      {% else %}
+        {% if data.photo %}
+          {{ myMacro.mediaImageSet(data.photo.first(), data.mediaRatio, ' '~classname~'__image') }}
+        {% endif %}
+      {% endif %}
+    </div>
+  {% endif %}
+
+  <div class="{{ classname }}__body">
+    {{ data.textcontent }}
+  </div>
+</div>

@@ -1,0 +1,96 @@
+/*
+  textslider
+
+  description
+
+  **Elements**
+*/
+.o-textslider {
+  // Component Config
+  $api: (
+    selector: 'textslider',
+    breakpoint: 'm',
+    margin-bottom: s(1),
+    sidemargin: s(2),
+    color: 'black' // black, white or false
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+  padding-left: v($api,sidemargin);
+  padding-right: v($api,sidemargin);
+  margin-bottom: v($api,margin-bottom);
+  padding-bottom: s(1);
+  @extend .swiper-container;
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  // Childs --------------------------------
+
+  // [root]__wrapper
+  &__wrapper {
+    @extend .swiper-wrapper;
+  }
+
+  // [root]__slide
+  &__slide {
+    @extend .swiper-slide;
+
+    // [root]__inner
+    &__inner {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+  // [root]__pagination
+  &__pagination {
+    @extend .swiper-pagination;
+    bottom: 0 !important;
+    opacity: .6;
+
+    @if v($api,color) {
+      @extend .swiper-pagination-#{v($api,color)};
+    }
+  }
+
+  &__button-next,
+  &__button-prev {
+    opacity: .2;
+    transition: opacity 300ms ease-in;
+
+    &:hover {
+      opacity: .8;
+    }
+  }
+
+  // [root]__button-next
+  &__button-next {
+    @extend .swiper-button-next;
+    right: 0;
+
+    @if v($api,color) {
+      @extend .swiper-button-#{v($api,color)};
+    }
+
+
+  }
+
+  // [root]__button-prev
+  &__button-prev {
+    @extend .swiper-button-prev;
+    left: 0;
+
+    @if v($api,color) {
+      @extend .swiper-button-#{v($api,color)};
+    }
+  }
+
+}

@@ -1,0 +1,13 @@
+th [type="checkbox"] + label {
+    margin-right: 6px;
+}
+
+#similarFields .highlight {
+    background: #ffe38f;
+    color: #705400;
+}
+
+form.quick-action {
+    display: inline-block;
+    margin: 0 16px;
+}

@@ -1,0 +1,24 @@
+/*
+  container
+
+  description
+
+  **Elements**
+*/
+.o-container {
+  // Component Config
+  $api: (
+    selector: 'container',
+    breakpoint: 'm'
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+  @include container($width: 320 1024,$spacing: 20);
+}

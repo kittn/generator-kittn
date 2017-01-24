@@ -1,0 +1,21 @@
+{#
+  Spacer
+  ======
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-spacer' %}
+{% endif %}
+
+{% if data.individually %}
+  {% set step = '' %}
+  {% set margin = 'margin-bottom:'~data.individually %}
+{% else %}
+  {% set step = ' o-spacer--'~data.steps %}
+  {% set margin = '' %}
+{% endif %}
+
+<div class="{{ classname }}{{ step }}" style="{{ margin }}"></div>

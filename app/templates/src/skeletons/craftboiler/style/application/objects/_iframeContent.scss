@@ -1,0 +1,76 @@
+/*
+  Iframe Content
+  ==============
+  Modules for embedding iFrame
+
+  **Elements**
+*/
+.o-iframecontent {
+  // Component Config
+  $api: (
+    selector: 'iframecontent',
+    breakpoint: 'm',
+    margin-bottom: s(1)
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+  margin: 0 auto v($api,margin-bottom) auto;
+  position: relative;
+  overflow: hidden;
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+  &#{$root}--s-viewport {
+    @include break(v($api,breakpoint)) {
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+  }
+
+  &#{$root}--s-oversize {
+    @include break(v($api,breakpoint)) {
+      max-width: 100vw;
+      width: 120%;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &#{$root}--s-undersize {
+    max-width: 80%;
+  }
+
+  // Childs --------------------------------
+  // [root]__inner
+  &__inner {
+    position: relative;
+    height: 0;
+
+    > * {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // [root]__caption
+  &__caption {
+    padding-top: 5px;
+    font-size: 90%;
+    color: c('gray');
+    text-align: center;
+  }
+}

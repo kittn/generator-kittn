@@ -1,0 +1,47 @@
+{% extends '_layouts/elementindex' %}
+
+{% includeCssResource "seomatic/css/style.css" %}
+{% includeJsResource "seomatic/js/metalist.js" %}
+
+{% set title = craft.seomatic.getPluginName() %}
+
+{% set elementType = 'Seomatic_Meta' %}
+
+{% set docsUrl = "https://github.com/nystudio107/seomatic/wiki" %}
+
+{% set seomaticSections = {
+    seometrics: { label: "SEOmetrics"|t, url: url('seomatic/seometrics') },
+	meta:		{ label: "Template Meta"|t, url: url('seomatic/meta') },
+	site:		{ label: "Site Meta"|t, url: url('seomatic/site') },
+	identity:	{ label: "Site Identity"|t, url: url('seomatic/identity') },
+	social:		{ label: "Social Media"|t, url: url('seomatic/social') },
+	creator:	{ label: "Site Creator"|t, url: url('seomatic/creator') },
+    settings:   { label: "Settings"|t, url: url('seomatic/settings') },
+} %}
+
+{% set crumbs = [
+    { label: craft.seomatic.getPluginName(), url: url('seomatic') },
+    { label: "Template Meta"|t, url: url('seomatic/meta') },
+] %}
+
+{% if craft.app.version < 2.5 %}
+	{% set tabs = seomaticSections %}
+	{% set selectedTab = 'meta' %}
+{% else %}
+	{% set subnav = seomaticSections %}
+	{% set selectedSubnavItem = 'meta' %}
+{% endif %}
+
+{% block sidebar %}
+
+		<div class="buttons">
+
+				<div class="btngroup submit">
+					<div class="btn submit add icon" id="new-meta">{{ "New Template Meta"|t }}</div>
+				</div>
+
+		</div>
+
+	{{ parent() }}
+
+{% endblock %}

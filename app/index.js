@@ -154,6 +154,15 @@ var KittnGenerator = yeoman.Base.extend({
       },
       {
         when: function(props) {
+          return props.projectUsage === 'Integrate in CraftCMS' && props.projectcssstructure === 'ITCSS';
+        },
+        type: 'confirm',
+        name: 'projectcraftbp',
+        message: chalk.cyan.underline.bold('Craft Bonus Round') + '\n\xa0 Do you want that the Generator implement a Craft Boilerplate? \n\xa0 Adding a Contentbuilder, the Stylefiles (in ITCSS) and some JS Files for Lightboxes, and some Craft Plugins',
+        default: false
+      },
+      {
+        when: function(props) {
           return props.projectUsage === 'Building HTML Prototypes';
         },
         type: 'list',
@@ -265,9 +274,9 @@ var KittnGenerator = yeoman.Base.extend({
         name: 'projectquery',
         message: chalk.cyan.underline.bold('Media Queries') + '\n\xa0 In addition to the media queries, Element Queries (https://github.com/marcj/css-element-queries) \n\xa0 or Container Queries (https://github.com/ausi/cq-prolyfill) can be integrated.',
         choices: [
-          'Native MediaQuery',
           'ContainerQuery',
-          'ElementQuery'
+          'ElementQuery',
+          'Native MediaQuery'
         ]
       },{
         type: 'confirm',
@@ -376,6 +385,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projecttypescript    = props.projecttypescript;
       this.projectscriptlinter  = props.projectscriptlinter;
       this.projectastrum        = props.projectastrum;
+      this.projectcraftbp       = props.projectcraftbp;
 
       done();
     }.bind(this));
@@ -416,6 +426,7 @@ var KittnGenerator = yeoman.Base.extend({
       projecttypescript    : this.projecttypescript,
       projectscriptlinter  : this.projectscriptlinter,
       projectastrum        : this.projectastrum,
+      projectcraftbp       : this.projectcraftbp,
       pkg: this.pkg
     };
 
@@ -515,6 +526,22 @@ var KittnGenerator = yeoman.Base.extend({
           this.destinationPath('src/craftsync/.env.sh'),
           templateParams
         );
+      }
+
+      if (this.projectcraftbp) {
+        // Copy Plugins and Templates
+        this.directory('src/skeletons/craftboiler/structure/', 'src/structure/');
+        // Copy JS Script Files
+        this.directory('src/skeletons/craftboiler/js/', 'src/js/partial/');
+        // Copy Sass Files
+        this.directory('src/skeletons/craftboiler/style/', 'src/style/');
+        // Copy Contentbuilder Config
+        this.fs.copyTpl(
+          this.templatePath('src/skeletons/craftboiler/contentbuilder.json'),
+          this.destinationPath('src/.system/contentbuilder.json'),
+          templateParams
+        );
+
       }
 
     } else if ( this.projectUsage === 'Integrate in Wordpress' ) {

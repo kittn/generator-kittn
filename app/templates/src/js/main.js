@@ -7,7 +7,10 @@ import { sync } from 'vuex-router-sync'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router/router'
-import store from './store/store'<% } %>
+import store from './store/store'<% } %><% if (projectcraftbp === true) { %>
+import initPhotoSwipeFromDOM from './partial/init-photoswipe' // eslint-disable-line
+import './partial/init-heighttransition'
+import './partial/init-swiper'<% } %>
 import lazySizes from 'lazysizes'
 import lazybgset from '../../node_modules/lazysizes/plugins/bgset/ls.bgset'
 import './partial/kittnad' // Small Advertising for Kittn :)

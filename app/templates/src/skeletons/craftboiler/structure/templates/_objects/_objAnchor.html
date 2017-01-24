@@ -1,0 +1,16 @@
+{#
+  Anchor
+  ======
+  Use Smooth Scroll lib
+  https://github.com/cferdinandi/smooth-scroll
+
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-anchor' %}
+{% endif %}
+
+<div class="{{ classname }}" id="{{ data|default('anchor') }}"></div>

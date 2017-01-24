@@ -1,0 +1,9 @@
+{#
+  Content Builder
+  ===============
+#}
+{% if entry.contentBuilder.level(1)|length %}
+  {% for content in entry.contentBuilder.level(1) %}
+    {% include '_builder/_cb-objects' with { data: content } %}
+  {% endfor %}
+{% endif %}

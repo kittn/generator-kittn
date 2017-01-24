@@ -1,0 +1,447 @@
+{% extends "_layouts/cp" %}
+{% import '_includes/forms' as forms %}
+
+{% includeCssResource "css/entry.css" %}
+{% includeCssResource "seomatic/css/style.css" %}
+{% includeCssResource "seomatic/css/css-reset.css" %}
+{% includeCssResource "seomatic/css/prism.min.css" %}
+{% includeCssResource "seomatic/css/bootstrap-tokenfield.css" %}
+{% includeJsResource "seomatic/js/seomatic.js" %}
+{% includeJsResource "seomatic/js/jquery.bpopup.min.js" %}
+{% includeJsResource "seomatic/js/prism.min.js" %}
+{% includeJsResource "seomatic/js/bootstrap-tokenfield.min.js" %}
+{% includeJsResource "seomatic/js/site.js" %}
+
+{% set title = craft.seomatic.getPluginName() %}
+
+{% set fullPageForm = true %}
+{% set hasCustomLayout = true %}
+
+{% set docsUrl = "https://github.com/nystudio107/seomatic/wiki" %}
+
+{% set localeUrlSuffix = "" %}
+{% if craft.isLocalized %}
+    {% set localeUrlSuffix = "/" ~ siteMeta.locale %}
+{% endif %}
+{% set seomaticSections = {
+    seometrics: { label: "SEOmetrics"|t, url: url('seomatic/seometrics') },
+    meta:       { label: "Template Meta"|t, url: url('seomatic/meta') },
+    site:       { label: "Site Meta"|t, url: url('seomatic/site' ~ localeUrlSuffix ) },
+    identity:   { label: "Site Identity"|t, url: url('seomatic/identity' ~ localeUrlSuffix ) },
+    social:     { label: "Social Media"|t, url: url('seomatic/social' ~ localeUrlSuffix ) },
+    creator:    { label: "Site Creator"|t, url: url('seomatic/creator' ~ localeUrlSuffix ) },
+    settings:   { label: "Settings"|t, url: url('seomatic/settings') },
+} %}
+
+{% set crumbs = [
+    { label: craft.seomatic.getPluginName(), url: url('seomatic') },
+    { label: "Site Meta"|t, url: url('seomatic/site') },
+] %}
+
+{% if craft.app.version < 2.5 %}
+    {% set tabs = seomaticSections %}
+    {% set selectedTab = 'site' %}
+{% else %}
+    {% set subnav = seomaticSections %}
+    {% set selectedSubnavItem = 'site' %}
+{% endif %}
+
+{% block main %}
+
+    {% include "seomatic/_preview_display_modal" with {'previewMetaPath': '', 'elementId': 0,  'locale': siteMeta.locale } %}
+    {% include "seomatic/_preview_tags_modal" with {'previewMetaPath': '', 'elementId': 0, 'locale': siteMeta.locale } %}
+    {% include "seomatic/_preview_robots_modal" %}
+
+<!-- Needed for for Craft < 2.5 -->
+
+    {% if craft.app.version < 2.5 %}
+    <form id="site-form" method="post" accept-charset="UTF-8" data-saveshortcut="1" data-saveshortcut-redirect="{{ continueEditingUrl }}">
+    {% endif %}
+
+        <input type="hidden" name="action" value="seomatic/saveSiteMeta" />
+        <input type="hidden" name="redirect" value="seomatic/site{% if craft.isLocalized %}/{{ siteMeta.locale }}{% endif %}" />
+        {{ getCsrfInput() }}
+        <input type="hidden" name="locale" value="{{ siteMeta.locale }}">
+
+        <div class="grid first">
+            <div class="item" data-position="left" data-min-colspan="2">
+                <div id="fields" class="pane">
+                    {% if tabs is defined and tabs|length %}
+                        {% include "_includes/tabs" %}
+                    {% endif %}
+
+                    <h2>{{ "Site Meta" |t }}</h2>
+
+                    {{ forms.textField({
+                        label: "Site SEO Name"|t,
+                        instructions: "This field is used wherever the name of the site is referenced, both at the trailing end of the <code>&lt;title&gt;</code> tag, and in other meta tags on the site.  It is initially set to your Craft <code>{{ siteName }}</code>." |t |raw,
+                        id: "siteSeoName",
+                        class: 'nicetext',
+                        name: "siteSeoName",
+                        value: siteMeta.siteSeoName,
+                        required: true,
+                        locale: siteMeta.locale,
+                    }) }}
+
+                    {{ forms.textField({
+                        label: "Site SEO Title"|t,
+                        instructions: "<a href='http://blog.woorank.com/2014/07/15-title-tag-optimization-guidelines-usability-seo/' target='_blank'>The SEO Title</a> should be between 10 and 70 characters (spaces included).  Make sure your title tag is explicit and contains your most important keywords. Be sure that each page has a unique title tag.  The <code>siteSeoName</code> length is subtracted from the 70 character limit automatically, since it is appended to the <code>seoTitle</code>." |t |raw,
+                        id: 'siteSeoTitle',
+                        class: 'nicetext',
+                        name: 'siteSeoTitle',
+                        value: siteMeta.siteSeoTitle,
+                        maxlength: titleLength,
+                        showCharsLeft: true,
+                        required: false,
+                        locale: siteMeta.locale,
+                    }) }}
+
+                    <div class="field">
+                        <div class="half-width-field half-width-field-left">
+                        {{ forms.selectField({
+                            label: "Site SEO Name Placement"|t,
+                            instructions: "Where the Site SEO Name is placed relative to the Title in the &lt;title&gt; tag" |t |raw,
+                            id: 'siteSeoTitlePlacement',
+                            options: {
+                                "before": "Before"|t,
+                                "after": "After"|t,
+                                "none": "None"|t,
+                            },
+                            name: 'siteSeoTitlePlacement',
+                            value: siteMeta.siteSeoTitlePlacement,
+                            required: false,
+                            locale: siteMeta.locale,
+                        }) }}
+                        </div>
+
+                        <div class="half-width-field">
+                        {{ forms.textField({
+                            label: "Site SEO Name Separator"|t,
+                            instructions: "The character that should be used to separate the Site SEO Name and Title in the &lt;title&gt; tag" |t |raw,
+                            id: 'siteSeoTitleSeparator',
+                            class: 'nicetext smallfield',
+                            name: 'siteSeoTitleSeparator',
+                            value: siteMeta.siteSeoTitleSeparator,
+                            maxlength: 1,
+                            required: true,
+                            locale: siteMeta.locale,
+                        }) }}
+                        </div>
+                    </div>
+
+                    <div class="field" id="siteSeoDescription-field">
+                        <div class="heading">
+                            <label for="siteSeoDescription">{{ "Site SEO Description"|t}}{% if craft.isLocalized and siteMeta.locale %}<span class="locale">{{ siteMeta.locale }}</span>{% endif %}</label>
+                            <div class="instructions"><p>{{ "<a href='http://blog.woorank.com/2013/03/the-importance-of-meta-descriptions/' target='_blank'>The SEO Description</a> should be between 70 and 160 characters (spaces included).  Meta descriptions allow you to influence how your web pages are described and displayed in search results.  Ensure that all of your web pages have a unique meta description that is explicit and contains your most important keywords." |t |raw}}</p></div>
+                        </div>
+                    {{ forms.textarea({
+                        id: 'siteSeoDescription',
+                        class: 'nicetext',
+                        name: 'siteSeoDescription',
+                        value: siteMeta.siteSeoDescription,
+                        maxlength: 160,
+                        showCharsLeft: true,
+                        required: false,
+                        locale: siteMeta.locale,
+                    }) }}
+                    </div>
+
+                    <div class="field" id="siteSeoKeywords-field">
+                        <div class="heading">
+                            <label for="siteSeoDescription">{{ "Site SEO Keywords"|t}}{% if craft.isLocalized and siteMeta.locale %}<span class="locale">{{ siteMeta.locale }}</span>{% endif %}</label>
+                            <div class="instructions"><p>{{ "Google ignores <a href='http://blog.woorank.com/2014/06/meta-element-a-beguiners-guide/#metakeyword' target='_blank'>SEO Keywords tag</a>; though other search engines do look at it.  Utilize it carefully, as improper or spammy use most likely will hurt you, or even have your site marked as spam.  Avoid overstuffing the keywords and do not include keywords that are not related to the specific page you place them on." |t |raw}}</p></div>
+                        </div>
+                    {{ forms.textarea({
+                        id: 'siteSeoKeywords',
+                        class: 'nicetext',
+                        name: 'siteSeoKeywords',
+                        value: siteMeta.siteSeoKeywords,
+                        maxlength: 200,
+                        showCharsLeft: true,
+                        required: false,
+                        locale: siteMeta.locale,
+                    }) }}
+                    </div>
+
+                    <div class="field" id="siteSeoImageId-field">
+                        <div class="heading">
+                            <label for="siteSeoImageId">{{ "Site SEO Image"|t}}{% if craft.isLocalized and siteMeta.locale %}<span class="locale">{{ siteMeta.locale }}</span>{% endif %}</label>
+                            <div class="instructions"><p>{{ "This is the image that will be used for display as the global website brand, as well as on Twitter Cards and Facebook OpenGraph that link to the website, if they are not specified.  The image must be in JPG, PNG, or GIF format." |t |raw}}</p></div>
+                        </div>
+                        <div class="input">
+                            {% if assetsSourceExists %}
+                                {{ forms.elementSelect({
+                                    elements: elements,
+                                    id: 'siteSeoImageId',
+                                    name: 'siteSeoImageId',
+                                    elementType: elementType,
+                                    criteria: {
+                                        'kind': ['image'],
+                                        'localeEnabled': null,
+                                        'locale': craft.locale,
+                                    },
+                                    sourceElementId: siteSeoImageId,
+                                    jsClass: 'Craft.AssetSelectInput',
+                                    addButtonLabel: "Select SEO Image" |t,
+                                    limit: 1,
+                                    locale: siteMeta.locale,
+                                }) }}
+                            {% else %}
+                                <p class="error">No assets sources currently exist. <a href="{{ newAssetsSourceUrl }}">Create one now...</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {{ forms.selectField({
+                        label: "Site SEO Image Transform"|t,
+                        instructions: "The image transform to apply to the Site SEO Image."|t,
+                        id: "siteSeoImageTransform",
+                        options: transformsList,
+                        name: "siteSeoImageTransform",
+                        value: siteMeta.siteSeoImageTransform,
+                        locale: siteMeta.locale,
+                    }) }}
+
+                    {{ forms.selectField({
+                        label: "Site Twitter Card Type"|t,
+                        instructions: "With Twitter Cards, you can attach rich photos and information to Tweets that drive traffic to your website. Users who Tweet links to your content will have a “Card” added to the Tweet that’s visible to all of their followers."|t,
+                        id: "siteTwitterCardType",
+                        options: {
+                            "summary": "Summary Card"|t,
+                            "summary_large_image": "Summary Card with Large Image"|t,
+                        },
+                        name: "siteTwitterCardType",
+                        value: siteMeta.siteTwitterCardType,
+                        locale: siteMeta.locale,
+                    }) }}
+
+                    <div class="field" id="siteSeoTwitterImageId-field">
+                        <div class="heading">
+                            <label for="siteSeoTwitterImageId">{{ "Site Twitter Card Image"|t}}{% if craft.isLocalized and siteMeta.locale %}<span class="locale">{{ siteMeta.locale }}</span>{% endif %}</label>
+                            <div class="instructions"><p>{{ "This is the image that will be used for display on Twitter Cards in tweets that link to the website.  If no image is specified here, the Site SEO Image will be used for Twitter Cards instead.  The image must be in JPG, PNG, or GIF format." |t |raw}}</p></div>
+                        </div>
+                        <div class="input">
+                            {% if assetsSourceExists %}
+                                {{ forms.elementSelect({
+                                    elements: elementsTwitter,
+                                    id: 'siteSeoTwitterImageId',
+                                    name: 'siteSeoTwitterImageId',
+                                    elementType: elementType,
+                                    criteria: {
+                                        'kind': ['image'],
+                                        'localeEnabled': null,
+                                        'locale': craft.locale,
+                                    },
+                                    sourceElementId: siteSeoTwitterImageId,
+                                    jsClass: 'Craft.AssetSelectInput',
+                                    addButtonLabel: "Select Twitter Card Image" |t,
+                                    limit: 1,
+                                    locale: siteMeta.locale,
+                                }) }}
+                            {% else %}
+                                <p class="error">No assets sources currently exist. <a href="{{ newAssetsSourceUrl }}">Create one now...</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {{ forms.selectField({
+                        label: "Site Twitter Card Image Transform"|t,
+                        instructions: "The image transform to apply to the Twitter SEO Image.  Twitter recommends: 120 x 120 pixels minimum size, 1:1 aspect ratio, 1mb max size for Summary Card images, and 280x150 pixels minimum size, 1.86:1 aspect ratio, 1mb max size for Summary Card with Large Image images."|t,
+                        id: "siteSeoTwitterImageTransform",
+                        options: transformsList,
+                        name: "siteSeoTwitterImageTransform",
+                        value: siteMeta.siteSeoTwitterImageTransform,
+                        locale: siteMeta.locale,
+                    }) }}
+
+                    {{ forms.selectField({
+                        label: "Site Facebook OpenGraph Type"|t,
+                        instructions: "Adding OpenGraph tags to your website influences the performance of your links on social media by allowing you to control what appears when a user posts a link to your content on Facebook."|t,
+                        id: "siteOpenGraphType",
+                        options: {
+                            "website": "Website"|t,
+                            "article": "Article"|t,
+                        },
+                        name: "siteOpenGraphType",
+                        value: siteMeta.siteOpenGraphType,
+                        locale: siteMeta.locale,
+                    }) }}
+
+                    <div class="field" id="siteSeoFacebookImageId-field">
+                        <div class="heading">
+                            <label for="siteSeoFacebookImageId">{{ "Site Facebook OpenGraph Image"|t}}{% if craft.isLocalized and siteMeta.locale %}<span class="locale">{{ siteMeta.locale }}</span>{% endif %}</label>
+                            <div class="instructions"><p>{{ "This is the image that will be used for display on Facebook posts that link to the website.  If no image is specified here, the Site SEO Image will be used for Facebook posts instead.  The image must be in JPG, PNG, or GIF format." |t |raw}}</p></div>
+                        </div>
+                        <div class="input">
+                            {% if assetsSourceExists %}
+                                {{ forms.elementSelect({
+                                    elements: elementsFacebook,
+                                    id: 'siteSeoFacebookImageId',
+                                    name: 'siteSeoFacebookImageId',
+                                    elementType: elementType,
+                                    criteria: {
+                                        'kind': ['image'],
+                                        'localeEnabled': null,
+                                        'locale': craft.locale,
+                                    },
+                                    sourceElementId: siteSeoFacebookImageId,
+                                    jsClass: 'Craft.AssetSelectInput',
+                                    addButtonLabel: "Select Facebook OpenGraph Image" |t,
+                                    limit: 1,
+                                    locale: siteMeta.locale,
+                                }) }}
+                            {% else %}
+                                <p class="error">No assets sources currently exist. <a href="{{ newAssetsSourceUrl }}">Create one now...</a></p>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {{ forms.selectField({
+                        label: "Site Facebook OpenGraph Image Transform"|t,
+                        instructions: "The image transform to apply to the Facebook SEO Image.  Facebook recommends: 1200 x 630 pixels minimum size, 1.9:1 aspect ratio, 8mb max size."|t,
+                        id: "siteSeoFacebookImageTransform",
+                        options: transformsList,
+                        name: "siteSeoFacebookImageTransform",
+                        value: siteMeta.siteSeoFacebookImageTransform,
+                        locale: siteMeta.locale,
+                    }) }}
+
+                    {{ forms.selectField({
+                        label: "Site Robots Meta Tag"|t,
+                        instructions: "The robots meta tag lets you utilize a granular, page-specific approach to controlling how an individual page should be indexed and served to users in search results.  Setting it to a blank value means 'no change'."|t,
+                        id: "siteRobots",
+                        options: {
+                            "": "",
+                            "all": "all - Index this page and follow links (default)" |t,
+                            "noindex": "noindex - Do not index this page" |t,
+                            "nofollow": "nofollow - Do not follow links on this page" |t,
+                            "none": "none - Do not index or follow links on this page" |t,
+                        },
+                        name: "siteRobots",
+                        value: siteMeta.siteRobots,
+                        locale: siteMeta.locale,
+                    }) }}
+
+<!-- SiteLinks Search -->
+
+                        <div class="field">
+
+                        <h2>{{ "SiteLinks Search Box" |t }}</h2>
+
+                            <div class="heading">
+                                <div class="instructions"><p>{{ "With <a href='https://developers.google.com/structured-data/slsb-overview' target='_blank'>Google Sitelinks search box</a>, from search results. Search users sometimes use navigational queries, typing in the brand name or URL of a known site or app, only to do a more detailed search once they reach their destination." |t |raw}}</p></div>
+                            </div>
+
+                            <div class="heading">
+                                <label for="siteLinksSearchTargets">{{ "Search Targets"|t}}{% if craft.isLocalized and siteMeta.locale %}<span class="locale">{{ siteMeta.locale }}</span>{% endif %}</label>
+                                <div class="instructions"><p>{{ "This property specifies a search URL pattern for sending queries to your site's search engine.  It must include a string enclosed in curly braces that is a placeholder for the user's search query (e.g., <code>{search_term_string}</code>). The string inside the curly braces must also appear in the name attribute of the query-input property." |t |raw}}</p></div>
+                            </div>
+                            {{ forms.editableTable({
+                                id: 'siteLinksSearchTargets',
+                                name: 'siteLinksSearchTargets',
+                                required: false,
+                                cols: {
+                                    searchtargets: {
+                                        heading: "Search Target" |t,
+                                        type: "singleline" |t,
+                                    },
+                                },
+                                rows: siteMeta.siteLinksSearchTargets,
+                                locale: siteMeta.locale,
+                            }) }}
+                        </div>
+
+                        {{ forms.textField({
+                            label: "Search Query Input"|t,
+                            instructions: "The value for the name attribute of query-input must match the string enclosed inside curly braces in the target property of potentialAction, e.g.: <code>search&#95;term&#95;string</code>" |t |raw,
+                            id: "siteLinksQueryInput",
+                            class: 'nicetext',
+                            name: "siteLinksQueryInput",
+                            value: siteMeta.siteLinksQueryInput,
+                            required: false,
+                            locale: siteMeta.locale,
+                        }) }}
+
+<!-- robots.txt -->
+
+                <h2>{{ "robots.txt" |t }}</h2>
+                    <div class="field" id="siteRobotsTxt-field">
+                        <div class="heading">
+                            <label for="siteRobotsTxt">{{ "robots.txt Template"|t}}{% if craft.isLocalized and siteMeta.locale %}<span class="locale">{{ siteMeta.locale }}</span>{% endif %}</label>
+                            <div class="instructions">{{ "<p>A <code>robots.txt</code> file is a file at the root of your site that indicates those parts of your site you don’t want accessed by search engine crawlers. The file uses the <a href='http://en.wikipedia.org/wiki/Robots_exclusion_standard#About_the_standard' target='_blank'>Robots Exclusion Standard</a>, which is a protocol with a small set of commands that can be used to indicate access to your site by section and by specific kinds of web crawlers (such as mobile crawlers vs desktop crawlers).</p><p>SEOmatic automatically handles requests for <code>/robots.txt</code>.  For this to work, make sure that you do not have an actual <code>robots.txt</code> file in your <code>public/</code> folder (because that will take precedence).  Also note that SEOmatic currently does <strong>not</strong> generate a <code>sitemap.xml</code> for you.</p><p>This is the template used to render it; you have access to all of the Craft &amp; SEOmatic variables.</p><p>This is a full Twig template, so you should use standard <code>{{ myVariable }}</code> or <code>{% set woof = dog.bark %}</code> Twig syntax. Environmental variables must be accessed via <code>{{ craft.config.environmentVariables.myVariable }}</code></p>" |t |raw }}</div>
+                        </div>
+                        {{ forms.textarea({
+                            id: 'siteRobotsTxt',
+                            class: 'nicetext codeStyle',
+                            name: 'siteRobotsTxt',
+                            value: siteMeta.siteRobotsTxt,
+                            required: false,
+                            rows: 15,
+                            locale: siteMeta.locale,
+                        }) }}
+                    </div>
+
+                    <p>&nbsp;</p>
+                    <p>{{ "<p>You can use any Craft <code>environmentVariables</code> in these fields in addition to static text, e.g.:<br /> <code>This is my {baseUrl}</code></p>" |t |raw }}</p>
+
+                </div>
+
+            </div>
+
+            <div class="item" data-position="right" data-colspan="1">
+
+                <div id="preview-display" class="btn big livepreviewbtn secondbtn">
+                    {{ "Preview SEO Meta Display" |t }}
+                </div>
+
+                <div id="preview-tags" class="btn big livepreviewbtn secondbtn">
+                    {{ "Preview SEO Meta Tags" |t }}
+                </div>
+
+                {% if craft.isLocalized %}
+                    <ul id="locales" class="pane">
+                        {% for locale in craft.i18n.getSiteLocales() %}
+                            {% if locale == siteMeta.locale %}
+                                <li class="sel">{{ locale.name }}</li>
+                            {% else %}
+                                <li><a href="{{ url('seomatic/site') ~ '/' ~ locale.id }}">{{ locale.name }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                        <li><p class="instructions">{{ "If any field is left blank for a setting in a particular locale, it will fall back on the primary locale." |t |raw }}</p></li>
+                    </ul>
+                {% endif %}
+
+                <div class="pane">
+                    <div style="text-align:center; margin:0 auto;">
+                        <img src="{{ resourceUrl('seomatic/images/seo_site.svg') }}" width="64px" height="auto" />
+                    </div>
+                    {{ "<p>These SEO Site Meta settings are used to globally define the Meta for the website.  When no SEO Template Meta is found for a webpage, these settings are used by default.</p><p>They are used in combination with the SEO Template Meta & SEO Entry Meta settings to generate <a href='https://developers.google.com/schemas/formats/json-ld?hl=en' target='_blank'>JSON-LD</a> microdata, <a href='http://dublincore.org' target='_blank'>Dublin Core</a> core metadata, <a href='https://dev.twitter.com/cards/overview' target='_blank'>Twitter Cards</a>, <a href='https://developers.facebook.com/docs/sharing/opengraph' target='_blank'>Facebook OpenGraph</a>, and as well as HTML meta tags.<p>If a no Template Meta exists for a template, the SEO Site Meta is used.</p>  <p>If any fields are left blank in a Template Meta, those fields are pulled from the SEO Site Meta.</p><p>You can also dynamically change the <code>seomaticMeta.*</code> variables in your Twig templates, and they will appear in the rendered SEO Meta.</p>" |t |raw }}
+                </div>
+
+                <div id="preview-robots" class="btn big livepreviewbtn secondbtn">
+                    {{ "Preview robots.txt" |t }}
+                </div>
+
+            </div>
+
+<!-- Needed for for Craft < 2.5 -->
+
+            {% if craft.app.version < 2.5 %}
+            <div class="item" data-position="left" data-colspan="1">
+                <div class="buttons">
+                    <div class="btngroup submit first">
+                        <input type="submit" class="btn submit" value="{{ 'Save'|t }}">
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+
+        </div>
+
+<!-- Needed for for Craft < 2.5 -->
+
+    {% if craft.app.version < 2.5 %}
+    </form>
+    {% endif %}
+
+{% endblock %}

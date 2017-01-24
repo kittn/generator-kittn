@@ -1,0 +1,62 @@
+{% extends "_layouts/cp" %}
+
+{% set title = craft.amNav.name %}
+{% set docsUrl = 'https://github.com/am-impact/amnav' %}
+
+{% if currentUser.admin or settings.canDoActions %}
+    {% set extraPageHeaderHtml %}
+        <div class="buttons right">
+            <div class="btngroup submit">
+                <a class="btn submit add icon" href="{{ url('amnav/new') }}">{{ 'New navigation'|t }}</a>
+            </div>
+        </div>
+    {% endset %}
+{% endif %}
+
+{% set content %}
+    <h1>{{ 'Created navigations'|t }}</h1>
+
+    <div id="nonavigations"{% if navigations %} class="hidden"{% endif %}>
+        <p>{{ 'There are no navigations yet.'|t }}</p>
+    </div>
+
+    {% if navigations %}
+        <table id="navigations" class="data fullwidth">
+            <thead>
+                <tr>
+                    <th scope="col" data-attribute="title">{{ 'Title'|t }}</th>
+                    <th scope="col" data-attribute="uri">{{ 'Handle'|t }}</th>
+                    <th scope="col" data-attribute="postDate">{{ 'Create Date'|t }}</th>
+                    <th scope="col" data-attribute="editDate">{{ 'Date Modified'|t }}</th>
+                    {% if currentUser.admin or settings.canDoActions %}<th scope="col" data-attribute="actions">{{ 'Actions'|t }}</th>{% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for navigation in navigations %}
+                    <tr data-id="{{ navigation.id }}" data-name="{{ navigation.name|t }}">
+                        <td><a href="{{ url('amnav/build/' ~ navigation.id) }}">{{ navigation.name }}</a></td>
+                        <td>{{ navigation.handle }}</td>
+                        <td>{{ navigation.dateCreated|date('d-m-Y') }}</td>
+                        <td>{{ navigation.dateUpdated|date('d-m-Y') }}</td>
+                        {% if currentUser.admin or settings.canDoActions %}
+                        <td class="thin">
+                            <a href="{{ url('amnav/edit/' ~ navigation.id) }}" class="settings icon" title="{{ 'Settings'|t }}"></a>
+                            <a class="delete icon" title="{{ 'Delete'|t }}" role="button"></a>
+                        </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endset %}
+
+{% set js %}
+    var adminTable = new Craft.AdminTable({
+        tableSelector: '#navigations',
+        noObjectsSelector: '#nonavigations',
+        deleteAction: 'amNav/deleteNavigation',
+        confirmDeleteMessage: '{{ "Are you sure you want to delete “{name}”?"|t }}'
+    });
+{% endset %}
+{% includeJs js %}

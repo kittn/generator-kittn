@@ -1,0 +1,18 @@
+{#
+  Quote
+  =====
+  Simple Quote module with Cite for displaying the source
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-quote' %}
+{% endif %}
+
+{# Build Element Block #}
+<blockquote class="{{ classname }}">
+  {{ data.copy|md }}
+  {% if data.source %}<cite class="{{ classname }}__cite">{{ data.source }}</cite>{% endif %}
+</blockquote>

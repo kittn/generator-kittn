@@ -1,0 +1,72 @@
+/*
+  layout
+
+  description
+
+  **Elements**
+*/
+.o-layout {
+  // Component Config
+  $api: (
+    selector: 'layout',
+    breakpoint: 'm'
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+
+
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  // Childs --------------------------------
+
+  // [root]__page
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  // [root]__container
+  &__container {
+    @extend .o-container;
+    position: relative;
+  }
+  // [root]__header
+  &__header {
+    background-color: #2bc5f5;
+    margin-bottom: s(1);
+    @include padding(gap(1) 0);
+
+    *, & {
+      color: c('white');
+    }
+
+  }
+
+  // [root]__main
+  &__main {
+    flex: 1 1 auto;
+    margin-bottom: s(2);
+  }
+
+  // [root]__footer
+  &__footer {
+    background-color: #124c61;
+    @include padding(gap(.5) 0);
+    *, & {
+      color: c('white');
+    }
+  }
+
+
+}
