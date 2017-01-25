@@ -77,7 +77,7 @@
       globalModifier)
     %}
 
-    <img data-sizes="auto" src="{{ photos[6].url }}" data-srcset="{{ craft.imager.srcset( photos ) }}" class="{{ elementclass }} lazyload" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
+    <img data-sizes="auto" src="{{ photos|last.url }}" data-srcset="{{ craft.imager.srcset( photos ) }}" class="{{ elementclass }} lazyload" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
   {% else %}
     <img src="{{ craft.imager.base64Pixel(ar|first/ar|last) }}" alt="Thumbnail" class="{{ elementclass }}">
   {% endif %}

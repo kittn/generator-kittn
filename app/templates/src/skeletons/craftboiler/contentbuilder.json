@@ -82,12 +82,46 @@
       "handle": "objAnchor",
       "instructions": "Anker Element f\u00fcr Sprungnavigationen - muss an die entsprechende Stelle platziert werden. Keine Sonderzeichen und darf nicht mit einer Nummer anfangen",
       "required": false,
-      "type": "PlainText",
+      "type": "SuperTable",
       "typesettings": {
-        "placeholder": "Name des Ankers",
-        "maxLength": "",
-        "multiline": "",
-        "initialRows": 4
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Name des Ankers",
+                "handle": "anchorname",
+                "instructions": "",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new2": {
+                "name": "Positionsfix",
+                "handle": "positionfix",
+                "instructions": "Falls der Anker zu hoch oder zu niedrig sitzt, kann man den Positionswert nach justieren (also h\u00f6her oder tiefer).",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "-10px",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
       }
     },
     {

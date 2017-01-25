@@ -1,9 +1,7 @@
 {#
   Anchor
   ======
-  Use Smooth Scroll lib
-  https://github.com/cferdinandi/smooth-scroll
-
+  Use Auto Scroll Lib
 #}
 
 {# Class Overwrite #}
@@ -13,4 +11,4 @@
   {% set classname = 'o-anchor' %}
 {% endif %}
 
-<div class="{{ classname }}" id="{{ data|default('anchor'|lower) }}"></div>
+<div class="{{ classname }}" id="{{ data.anchorname|default('anchor')|lower }}"{{ data.positionfix ? 'style=position:relative;top:'~data.positionfix }}></div>
