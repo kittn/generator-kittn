@@ -8,6 +8,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router/router'
 import store from './store/store'<% } %><% if (projectcraftbp === true) { %>
+import anchorScroll from 'anchor-scroll'
 import initPhotoSwipeFromDOM from './partial/init-photoswipe' // eslint-disable-line
 import './partial/init-heighttransition'
 import './partial/init-swiper'<% } %>
@@ -44,4 +45,14 @@ lazySizesConfig.expFactor = 1.3
 lazySizes.init()<% if (projectquery === 'ContainerQuery') { %>
 
 // Init Container Queries
-cq({ postcss: true })<% } %>
+cq({ postcss: true })<% } %><% if (projectcraftbp === true) { %>
+
+// For Smooth Scrolling Jump Navigation
+anchorScroll.init({
+  updateUrl: true,
+  offset: 0,
+  ease: 'inCube',
+  duration: 1000,
+  selector: '.js-smooth-scroll'
+})
+<% } %>

@@ -81,4 +81,8 @@
   {% case 'objTabWrapper' %}
     {% include '_objects/_objTab' with { data: data.objTabWrapper, name: '' } %}
 
+  {# JumpNavigation #}
+  {% case 'objJumpNavigation' %}
+    {% include '_objects/_objJumpNavigation' with { data: data.objJumpNavigation, name: '' } %}
+
 {% endswitch %}

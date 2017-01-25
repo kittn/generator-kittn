@@ -33,53 +33,6 @@
 {% endmacro %}
 
 
-{# Resposive Image Set #}
-{% macro _responsiveImageSet(attributes) %}
-
-  {# Default Values - can be overwritten #}
-  {% set defaults = {
-    photo: '',
-    imageratio: '57:40',
-    class: 'media__image ',
-    itemprop: 'image'
-  } %}
-
-  {# Merge our two arrays together #}
-  {% set attr = defaults|merge(attributes) %}
-
-  {# Check if image would cropped#}
-  {% if attr.imageratio != 'nocrop' %}
-    {# Transform Image Ratio in a Array #}
-    {% set ratio = attr.imageratio %}
-    {% set ar = ratio|split(':') %}
-    {% set globalModifier = { jpegQuality: 82, ratio: ar|first/ar|last , mode: 'crop', position: 'center-center' } %}
-  {% else %}
-    {% set globalModifier = { jpegQuality: 82 } %}
-  {% endif %}
-
-  {# Check if Image is available#}
-  {% if attr.photo %}
-    {% set photos = craft.imager.transformImage(attr.photo,
-      [
-        { width: 1200 },
-        { width: 1000 },
-        { width: 800 },
-        { width: 600 },
-        { width: 400 },
-        { width: 320 },
-        { width: 50, effects: { blur: 3 }},
-      ],
-      globalModifier)
-    %}
-
-    <img data-sizes="auto" src="{{ photos[6].url }}" data-srcset="{{ craft.imager.srcset( photos ) }}" class="{{ attr.class }} lazyload" role="img" {% if attr.photo.title %}alt="{{ attr.photo.title }}"{% endif %} itemprop="{{ attr.itemprop }}">
-
-  {% else %}
-    <img src="{{ craft.imager.base64Pixel(ar|first/ar|last) }}" alt="Thumbnail" role="img" itemprop="{{ attr.itemprop }}" class="{{ attr.class }}">
-  {% endif %}
-{% endmacro %}
-
-
 {# ===================================================== #}
 {# ----------------- Regular Macros -------------------- #}
 {# ===================================================== #}
@@ -88,16 +41,24 @@
   ===============
 #}
 {% macro mediaImageSet(photo,imageratio,class) %}
-  {% set elementclass = class|default('media-object__image') %}
+  {% set elementclass = class|default('o-media-object__image') %}
 
   {# Check if image would cropped#}
   {% if imageratio != 'nocrop' %}
     {# Transform Image Ratio in a Array #}
     {% set ratio = imageratio|default('35:24') %}
     {% set ar = ratio|split(':') %}
-    {% set globalModifier = { jpegQuality: 83, ratio: ar|first/ar|last , mode: 'crop', position: 'center-center' } %}
+
+    {# Set Focal Point #}
+    {% if photo.focalpoint is defined %}
+      {% set focusPosition = photo.focalpoint %}
+    {% else %}
+      {% set focusPosition = '50% 50%' %}
+    {% endif %}
+
+    {% set globalModifier = { jpegQuality: 82, ratio: ar|first/ar|last , mode: 'crop', position: focusPosition } %}
   {% else %}
-    {% set globalModifier = { jpegQuality: 83 } %}
+    {% set globalModifier = { jpegQuality: 82 } %}
   {% endif %}
 
   {# Check if Image is Available otherwise use a neutral Placeholder #}
@@ -105,9 +66,10 @@
     {# Build the Image Set #}
     {% set photos = craft.imager.transformImage(photo,
       [
+        { width: 1900 },
+        { width: 1200 },
         { width: 800 },
-        { width: 600 },
-        { width: 400 },
+        { width: 500 },
         { width: 320 },
         { width: 150 },
         { width: 30, effects: { blur: 3 }}
@@ -115,114 +77,10 @@
       globalModifier)
     %}
 
-    <img data-sizes="auto" src="{{ photos[4].url }}" data-srcset="{{ craft.imager.srcset( photos ) }}" class="{{ elementclass }} lazyload" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
+    <img data-sizes="auto" src="{{ photos[6].url }}" data-srcset="{{ craft.imager.srcset( photos ) }}" class="{{ elementclass }} lazyload" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
   {% else %}
     <img src="{{ craft.imager.base64Pixel(ar|first/ar|last) }}" alt="Thumbnail" class="{{ elementclass }}">
   {% endif %}
-{% endmacro %}
-
-{#
-  Media Object
-  ============
-#}
-{% macro mediaObject(data,imageratio,source,related,sectionPart) %}
-  <figure class="media-object" role="group" itemscope itemtype="http://schema.org/ImageObject">
-
-    {# Check if a Related Media Object #}
-    {% if related %}
-      {% set photo = data.pageImage.first() %}
-    {% else %}
-      {% set photo = data.photo.first() %}
-    {% endif %}
-
-    <a href="{{ related ? data.url : data.linkup.url }}" role="link" class="media-object__link" itemprop="contentUrl">
-      {{ _self.mediaImageSet(photo,imageratio) }}
-    </a>
-
-    {% if related %}
-      {% if data.title %}
-        <figcaption class="media-object__caption" itemprop="caption description">
-          <h4 class="h6 media-object__headline" role="heading">
-            {{ data.title }}
-          </h4>
-        </figcaption>
-      {% endif %}
-
-    {% else %}
-      {# Free Definition Media Objects #}
-      {% if data.headline %}
-        <figcaption class="media-object__caption" itemprop="caption description">
-          <h4 class="h6 media-object__headline" role="heading">{{ data.headline }}</h4>
-          {% if data.subline %}
-            <p class="media-object__subline">{{ data.subline }}</p>
-          {% endif %}
-        </figcaption>
-      {% endif %}
-
-    {% endif %}{# releated condition #}
-  </figure>
-{% endmacro %}
-
-{#
-  Featured Object
-  ---------------
-  @dependency: _responsiveImageSet
-#}
-{% macro featuredObject(attributes) %}
-
-  {# Default Values - can be overwritten #}
-  {% set defaults = {
-  data: '',
-  class: 'featured__image ',
-  imageratio: '1:1',
-  related: false,
-  caption: false
-  } %}
-
-  {# Merge our two arrays together #}
-  {% set attr = defaults|merge(attributes) %}
-
-  {# Check if a Related #}
-  {% if attr.related %}
-    {% set photo = data.pageImage.first() %}
-    {% set negativ = data.pageImageNegativ %}
-  {% else %}
-    {% set photo = data.photo.first() %}
-    {% set negativ = data.negativ %}
-  {% endif %}
-
-  {#{% set caption = caption|default('true') %}#}
-
-  <figure class="featured{{ negativ ? ' featured--negativ' }}" role="group" itemscope itemtype="http://schema.org/ImageObject">
-    {# Add Featured Image Set #}
-    <div class="featured__wrapper">
-      {{ _self._responsiveImageSet({
-        photo: photo,
-        imageratio: attr.imageratio,
-        class: attr.class,
-        itemprop: 'image'
-      }) }}
-    </div>
-
-    {% if attr.caption == true %}
-      {% if attr.related %}
-        <figcaption class="featured__caption" role="caption description">
-          <h3 class="featured__headline" role="heading">{{ data.title }}</h3>
-          <a href="{{ data.url }}" class="button---calltoaction" role="link" itemprop="contentUrl">Jetzt Entdecken</a>
-        </figcaption>
-
-      {% else %}
-        {% if data.captionHeadline %}
-          <figcaption class="featured__caption" role="caption description">
-            <h3 class="featured__headline" role="heading">{{ data.captionHeadline }}</h3>
-            {% if data.linkup %}
-              <a href="{{ data.linkup.url }}"{{ data.linkup.target ? ' target="_blank"' }} class="button---calltoaction" role="link" itemprop="contentUrl">{{ data.linkup.linkText }}</a>
-            {% endif %}
-          </figcaption>
-        {% endif %}
-      {% endif %}
-    {% endif %}
-  </figure>
 {% endmacro %}
 
 {#
@@ -235,7 +93,7 @@
   {% set defaults = {
     photo: '',
     imageratio: '1:1',
-    class: 'simple-gallery__thumbnail '
+    class: 'o-gallery__thumbnail'
   } %}
 
   {# Merge our two arrays together #}
@@ -247,22 +105,32 @@
     {# Transform Image Ratio in a Array #}
     {% set ratio = attr.imageratio %}
     {% set ar = ratio|split(':') %}
-    {% set globalModifier = { jpegQuality: 75, ratio: ar|first/ar|last , mode: 'crop', position: 'center-center' } %}
+
+    {# Set Focal Point #}
+    {% if photo.focalpoint is defined %}
+      {% set focusPosition = photo.focalpoint %}
+    {% else %}
+      {% set focusPosition = '50% 50%' %}
+    {% endif %}
+
+    {% set globalModifier = { jpegQuality: 82, ratio: ar|first/ar|last , mode: 'crop', position: 'center-center' } %}
 
   {% else %}
-    {% set globalModifier = { jpegQuality: 75 } %}
+    {% set globalModifier = { jpegQuality: 82 } %}
 
   {% endif %}
 
   {# Build the Image Set #}
   {% set photos = craft.imager.transformImage(attr.photo,
     [
+      { width: 1900 },
+      { width: 1200 },
       { width: 800 },
       { width: 500 },
       { width: 320 },
       { width: 150 }
     ],
-  globalModifier)
+    globalModifier)
   %}
 
   <img data-sizes="auto" src="{{ craft.imager.base64Pixel('1:1') }}" data-srcset="{{ craft.imager.srcset( photos ) }}" class="{{ attr.class }} lazyload" role="img" {% if attr.photo.title %}alt="{{ attr.photo.title }}"{% endif %} itemprop="thumbnail">
@@ -336,20 +204,20 @@
   {% endif %}
 {% endmacro %}
 
-
-
 {#
   Site Navigation
   ===============
 #}
 {% macro siteNavigation(classname,sectionPart) %}
+  {% set class = classname|default('o-navigation') %}
+
   <nav class="{{ classname }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
     {% switch sectionPart %}
-      {% case 'footer' %}
-        {% set nav = craft.amNav.getNavRaw("footerNavigation") %}
-      {% default %}
-       {% set nav = craft.amNav.getNavRaw("mainNavigation") %}
-      {% endswitch %}
+      {% case 'footernav' %}
+        {% set nav = craft.amNav.getNavRaw('footerNavigation') %}
+      {% case 'mainnav' %}
+        {% set nav = craft.amNav.getNavRaw('mainNavigation') %}
+    {% endswitch %}
 
     {% for node in nav %}
       {{ _self.addNodeToNavigation(node, loop.index) }}

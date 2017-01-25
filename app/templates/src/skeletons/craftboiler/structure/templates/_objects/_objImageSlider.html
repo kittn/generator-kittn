@@ -3,9 +3,6 @@
   ==============
 #}
 
-{# Include Macros for your #}
-{% import '_macros/my-macro.html' as myMacro %}
-
 {# Class Overwrite #}
 {% if name is defined and name != '' %}
   {% set classname = name %}
@@ -18,7 +15,7 @@
   <div class="{{ classname }}__wrapper">
     {% for photo in data.photos %}
       <div class="{{ classname }}__slide">
-        {{ myMacro.mediaImageSet(photo,data.ratio,'') }}
+        {{ myMacro.mediaImageSet(photo,data.ratio,classname~'__image') }}
       </div>
     {% endfor %}
   </div>

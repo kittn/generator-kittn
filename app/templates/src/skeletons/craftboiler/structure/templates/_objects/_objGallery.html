@@ -4,12 +4,6 @@
   Gallery with Lightbox (Photoswipe) support and a Flexbox Layout
 #}
 
-{# Data Import #}
-{% set data = data | default( input.objGallery ) %}
-
-{# Include Macros for your #}
-{% import '_macros/my-macro.html' as myMacro %}
-
 {# Class Overwrite #}
 {% if name is defined and name != '' %}
   {% set classname = name %}
@@ -18,7 +12,7 @@
 {% endif %}
 
 
-{% for block in data  %}
+{% for block in data %}
   {% if block.type == 'gallery' %}
     {# Get Gallery Count #}
     {% set galleryCount = block.galleryEntries.total() %}
@@ -54,7 +48,7 @@
         {% endif %}
       {% endif %}
 
-    {# Setup for the Smartlayout #}
+      {# Setup for the Smartlayout #}
     {% elseif block.layoutType == 'smart' %}
       {# Gallery Count Mode #}
       {% if galleryCount < 10 %}
@@ -93,20 +87,16 @@
             }) }}
           </a>
           {% if gallery.caption %}
-          <figcaption class="{{ classname }}__caption{{ galleryCount > 1 ? '---hidden' }}" itemprop="caption description">
-            {{ gallery.caption }}
-          </figcaption>
-        {% endif %}
+            <figcaption class="{{ classname }}__caption{{ galleryCount > 1 ? '---hidden' }}" itemprop="caption description">
+              {{ gallery.caption }}
+            </figcaption>
+          {% endif %}
         </figure>
       {% endfor %}
     </div>
 
   {% endif %}
 {% endfor %}
-
-
-
-
 
 {# Root element of PhotoSwipe. Must have class pswp. #}
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

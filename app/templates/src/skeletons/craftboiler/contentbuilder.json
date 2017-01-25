@@ -114,13 +114,14 @@
                 "width": "",
                 "typesettings": {
                   "types": [
+                    "email",
                     "custom",
                     "entry",
                     "asset"
                   ],
                   "defaultText": "LInk",
                   "allowCustomText": 1,
-                  "allowTarget": "",
+                  "allowTarget": 1,
                   "entrySources": [],
                   "entrySelectionLabel": "Select an entry",
                   "assetSources": "*",
@@ -1282,6 +1283,119 @@
     },
     {
       "group": "Objects",
+      "name": "Sprungnavigation",
+      "handle": "objJumpNavigation",
+      "instructions": "Schaltfl\u00e4chen f\u00fcr Sprunnavigationen",
+      "required": false,
+      "type": "Matrix",
+      "typesettings": {
+        "maxBlocks": null,
+        "blockTypes": {
+          "new1": {
+            "name": "Navigation",
+            "handle": "navigation",
+            "fields": {
+              "new1": {
+                "name": "Layout",
+                "handle": "layout",
+                "instructions": "Das Defaultlayout ist eine einfache linksb\u00fcndige Aneinanderreihung der Links, bei voller Breite werden die Buttons so angeordnet das sie auf der vollen Breite Platz haben (brechen bei zu kleiner gr\u00f6\u00dfe aber um das die Buttons untereinander sind). Untereinander da sind die Buttons wie eine Liste angeordnet.",
+                "required": 0,
+                "type": "Dropdown",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Volle Breite",
+                      "value": "fullwidth",
+                      "default": ""
+                    },
+                    {
+                      "label": "Untereinander",
+                      "value": "list",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "Auswahl aus den unterschiedlichen Styles.",
+                "required": 0,
+                "type": "Dropdown",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new3": {
+                "name": "Anker",
+                "handle": "anchorlinks",
+                "instructions": "Die Ankerlinks zu denen gesprungen werden soll",
+                "required": 0,
+                "type": "SuperTable",
+                "typesettings": {
+                  "fieldLayout": "table",
+                  "staticField": null,
+                  "selectionLabel": "Zeile hinzuf\u00fcgen",
+                  "maxRows": null,
+                  "blockTypes": {
+                    "new": {
+                      "fields": {
+                        "new1": {
+                          "name": "Linkname",
+                          "handle": "linkname",
+                          "instructions": "Name des Links",
+                          "required": 0,
+                          "type": "PlainText",
+                          "width": "",
+                          "typesettings": {
+                            "placeholder": "",
+                            "maxLength": "",
+                            "multiline": "",
+                            "initialRows": 4
+                          }
+                        },
+                        "new2": {
+                          "name": "Anker",
+                          "handle": "anchor",
+                          "instructions": "Name des Ankers ohne #",
+                          "required": 0,
+                          "type": "PlainText",
+                          "width": "",
+                          "typesettings": {
+                            "placeholder": "",
+                            "maxLength": "",
+                            "multiline": "",
+                            "initialRows": 4
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
       "name": "Tab",
       "handle": "objTab",
       "instructions": "Das einzelne Tab, bitte den Titel des Tab eingeben",
@@ -1686,20 +1800,6 @@
           },
           "new15": {
             "sortOrder": 20,
-            "name": "Anker",
-            "handle": "objAnchor",
-            "maxBlocks": null,
-            "childBlocks": "",
-            "maxChildBlocks": null,
-            "topLevel": 1,
-            "fieldLayout": {
-              "Tab 1": [
-                "objAnchor"
-              ]
-            }
-          },
-          "new16": {
-            "sortOrder": 21,
             "name": "Accordion Wrapper",
             "handle": "objAccordionWrapper",
             "maxBlocks": null,
@@ -1714,8 +1814,8 @@
               ]
             }
           },
-          "new17": {
-            "sortOrder": 22,
+          "new16": {
+            "sortOrder": 21,
             "name": "Accordion",
             "handle": "objAccordion",
             "maxBlocks": null,
@@ -1745,8 +1845,8 @@
               ]
             }
           },
-          "new18": {
-            "sortOrder": 23,
+          "new17": {
+            "sortOrder": 22,
             "name": "Viewport Span",
             "handle": "objViewportSpan",
             "maxBlocks": null,
@@ -1776,8 +1876,8 @@
               ]
             }
           },
-          "new19": {
-            "sortOrder": 24,
+          "new18": {
+            "sortOrder": 23,
             "name": "Tab Wrapper",
             "handle": "objTabWrapper",
             "maxBlocks": null,
@@ -1792,8 +1892,8 @@
               ]
             }
           },
-          "new20": {
-            "sortOrder": 25,
+          "new19": {
+            "sortOrder": 24,
             "name": "Tab",
             "handle": "objTab",
             "maxBlocks": null,
@@ -1820,6 +1920,34 @@
             "fieldLayout": {
               "Tab 1": [
                 "objTab"
+              ]
+            }
+          },
+          "new20": {
+            "sortOrder": 25,
+            "name": "Anker",
+            "handle": "objAnchor",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Tab 1": [
+                "objAnchor"
+              ]
+            }
+          },
+          "new21": {
+            "sortOrder": 26,
+            "name": "Sprungnavigation",
+            "handle": "objJumpNavigation",
+            "maxBlocks": 1,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Tab 1": [
+                "objJumpNavigation"
               ]
             }
           }

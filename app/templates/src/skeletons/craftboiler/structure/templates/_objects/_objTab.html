@@ -20,7 +20,7 @@
     <div class="{{ classname }}__body">
       <div class="{{ classname }}__inner">
         {% for child in tab.children %}
-          {% include '_builder/_cb-objects' with { input: child } %}
+          {% include '_builder/_cb-objects' with { data: child } %}
         {% endfor %}
       </div>
     </div>

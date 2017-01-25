@@ -59,7 +59,7 @@
   }
 
   // [root]--fullwidth
-  &--fullwidth {
+  &--fullwidth#{$root}--fullwidth {
     display: block;
   }
 
