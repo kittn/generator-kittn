@@ -59,7 +59,7 @@
     #{$root}--l-list & {
       display: block;
       text-align: center;
-      margin-bottom: s(.5);
+      margin-bottom: v($api,gutter);
     }
 
     // Style Modifier

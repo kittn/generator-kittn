@@ -13,7 +13,10 @@
 {# Include the Document Header #}
 {% include '_parts/document-header.html' %}
 
-<body class="{{ entry.slug }}{{ craft.request.isLivePreview ? ' is-livepreview' : '' }}">
+<body class="{{ craft.request.isLivePreview ? ' is-livepreview ' }} {{ ' '~entry.slug~' ' }}">
+  <div class="o-progressloader">
+    <div class="o-progressloader__loader"></div>
+  </div>
   <div class="o-layout__wrapper">
     {% include '_parts/page-header.html' %}
 

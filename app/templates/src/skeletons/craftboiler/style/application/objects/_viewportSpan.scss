@@ -27,6 +27,11 @@
   margin-right: -50vw;
 
   // Base Modifier -------------------------
+  // [root]--fullheight
+  &--fullheight {
+    height: 100vh;
+  }
+
   // [root]--s-default
   &--s-default {
     background-color: #e6e6e6;

@@ -8,9 +8,10 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router/router'
 import store from './store/store'<% } %><% if (projectcraftbp === true) { %>
-import anchorScroll from 'anchor-scroll'
+import progressLoader from './partial/progressloader'
 import initPhotoSwipeFromDOM from './partial/init-photoswipe' // eslint-disable-line
 import './partial/init-heighttransition'
+import './partial/init-autoscroll'
 import './partial/init-swiper'<% } %>
 import lazySizes from 'lazysizes'
 import lazybgset from '../../node_modules/lazysizes/plugins/bgset/ls.bgset'
@@ -47,12 +48,5 @@ lazySizes.init()<% if (projectquery === 'ContainerQuery') { %>
 // Init Container Queries
 cq({ postcss: true })<% } %><% if (projectcraftbp === true) { %>
 
-// For Smooth Scrolling Jump Navigation
-anchorScroll.init({
-  updateUrl: true,
-  offset: 0,
-  ease: 'inCube',
-  duration: 1000,
-  selector: '.js-smooth-scroll'
-})
-<% } %>
+// Activate Progressloader
+progressLoader()<% } %>

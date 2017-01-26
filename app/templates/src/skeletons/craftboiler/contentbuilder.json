@@ -1580,6 +1580,17 @@
                 }
               },
               "new2": {
+                "name": "Volle H\u00f6he",
+                "handle": "fullHeight",
+                "instructions": "Soll der Span auf die voll Viewporth\u00f6he aufgespannt werden",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new3": {
                 "name": "Anker",
                 "handle": "anchor",
                 "instructions": "Falls die Box mit einem Anker f\u00fcr eine Sprungnavigation versehen werden soll, den Namen eintragen.",

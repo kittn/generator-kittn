@@ -11,4 +11,4 @@
   {% set classname = 'o-anchor' %}
 {% endif %}
 
-<div class="{{ classname }}" id="{{ data.anchorname|default('anchor')|lower }}"{{ data.positionfix ? 'style=position:relative;top:'~data.positionfix }}></div>
+<div class="{{ classname }}" id="{{ data.anchorname|default('anchor')|lower }}"{{ data.positionfix != '' ? 'style=position:relative;top:'~data.positionfix }}></div>

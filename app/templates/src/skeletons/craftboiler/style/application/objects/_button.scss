@@ -12,6 +12,7 @@
   $api: (
     selector: 'button',
     breakpoint: 'm',
+    margin-bottom: s(1),
     size: (
       small: (
         fontsize: 13,
@@ -80,7 +81,7 @@
     color: v($api,color,primary,regular,text);
     border: 2px solid v($api,color,primary,regular,border);
     background-color: v($api,color,primary,regular,background);
-    margin-bottom: s(1);
+    margin-bottom: v($api,margin-bottom);
     font-weight: 700;
     display: inline-block;
     line-height: 1;
