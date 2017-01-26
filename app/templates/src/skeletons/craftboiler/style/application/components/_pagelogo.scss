@@ -9,7 +9,8 @@
   // Component Config
   $api: (
     selector: 'pagelogo',
-    breakpoint: 'm'
+    breakpoint: 'm',
+    margin-bottom: s(.5)
   );
 
   // Build root selector
@@ -20,12 +21,26 @@
   // Unload : @include yield(storagename);
 
   // Base Style ----------------------------
+  margin-bottom: v($api,margin-bottom);
 
+  &, a {
+    @include fontsize(50);
+    color: c('white');
+    line-height: 1;
+    font-weight: bold;
+  }
+
+  a {
+    transition: all 300ms ease-in;
+
+    &:hover {
+      color: c('main');
+    }
+  }
 
   // Tags ----------------------------------
 
   // Base Modifier -------------------------
 
   // Childs --------------------------------
-
 }
