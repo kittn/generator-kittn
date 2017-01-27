@@ -1,0 +1,29 @@
+{#
+  Slide Out Box
+  ==============
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-slideoutbox' %}
+{% endif %}
+
+{# Get Style #}
+{% switch data.style %}
+  {% case 'style1' %}
+    {% set style = ' '~classname~'--style1' %}
+  {% default %}
+    {% set style = '' %}
+{% endswitch %}
+
+{# Build Element Block #}
+<div class="{{ classname }}{{ style }}">
+  <div class="{{ classname }}__head">
+    <div class="{{ classname }}__trigger">{{ data.trigger }}</div>
+  </div>
+  <div class="{{ classname }}__body">
+    <div class="{{ classname }}__body__inner">{{ data.body }}</div>
+  </div>
+</div>

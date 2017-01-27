@@ -1,0 +1,49 @@
+/*
+  List
+
+  List Element with different Styles
+
+  **Elements**
+*/
+.o-list {
+  // Component Config
+  $api: (
+    selector: 'list',
+    breakpoint: 'm'
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+  line-height: 1.4;
+
+  // Base Modifier -------------------------
+  // [root]--circle
+  &--circle {
+    list-style: circle;
+  }
+
+  // [root]--square
+  &--square {
+    list-style: square;
+  }
+
+  // [root]--ordered
+  &--ordered {
+    list-style-type: decimal;
+  }
+
+  // Childs --------------------------------
+
+  // [root]__entry
+  &__entry {
+
+    // Costom Modifier
+    #{$root}---custom & {}
+  }
+}

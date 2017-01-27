@@ -1,0 +1,8 @@
+{#
+  Headline
+  ========
+  With Semantic Override
+#}
+
+{# Build Element Block #}
+<{{ data.semantic }}{{ data.override != 'default' ? ' class="'~data.override~'"' }}>{{ data.headline }}</{{ data.semantic }} role="heading">

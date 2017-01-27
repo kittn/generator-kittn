@@ -1,0 +1,226 @@
+{#
+  Macro Collection
+  ================
+#}
+
+{# ===================================================== #}
+{# ---------------- Internal Macros -------------------- #}
+{# ===================================================== #}
+
+{#
+  AmNav Builder
+  =============
+  Needed for SiteNavigation with Am Nav
+
+  @private
+#}
+{% macro addNodeToNavigation(node, index) %}
+  {%- set nodeClasses = [] -%}
+  {%- if node.hasChildren -%}
+    {%- set nodeClasses = nodeClasses|merge(['has-children']) -%}
+  {%- endif -%}
+  {%- if node.active or node.hasActiveChild -%}
+    {%- set nodeClasses = nodeClasses|merge(['is-active']) -%}
+  {%- endif -%}
+  {%- if node.level == 1 and index == 1 -%}
+    {%- set nodeClasses = nodeClasses|merge(['first']) -%}
+  {%- endif -%}
+  {%- if node.listClass|length -%}
+    {%- set nodeClasses = nodeClasses|merge([node.listClass]) -%}
+  {%- endif -%}
+
+  <a href="{{ node.url }}" role="link" {% if nodeClasses|length %} class="{{ nodeClasses|join(' ') }}"{% endif %} title="{{ node.name }}"{% if node.blank %}  target="_blank"{% endif %}>{{ node.name }}</a>
+{% endmacro %}
+
+
+{# ===================================================== #}
+{# ----------------- Regular Macros -------------------- #}
+{# ===================================================== #}
+{#
+  Media Image Set
+  ===============
+#}
+{% macro mediaImageSet(photo,imageratio,class) %}
+  {% set elementclass = class|default('o-media-object__image') %}
+
+  {# Check if image would cropped#}
+  {% if imageratio != 'nocrop' %}
+    {# Transform Image Ratio in a Array #}
+    {% set ratio = imageratio|default('35:24') %}
+    {% set ar = ratio|split(':') %}
+
+    {# Set Focal Point #}
+    {% if photo.focalpoint is defined %}
+      {% set focusPosition = photo.focalpoint %}
+    {% else %}
+      {% set focusPosition = '50% 50%' %}
+    {% endif %}
+
+    {% set globalModifier = { jpegQuality: 82, ratio: ar|first/ar|last , mode: 'crop', position: focusPosition } %}
+  {% else %}
+    {% set globalModifier = { jpegQuality: 82 } %}
+  {% endif %}
+
+  {# Check if Image is Available otherwise use a neutral Placeholder #}
+  {% if photo %}
+    {# Build the Image Set #}
+    {% set photos = craft.imager.transformImage(photo,
+      [
+        { width: 1900 },
+        { width: 1200 },
+        { width: 800 },
+        { width: 500 },
+        { width: 320 },
+        { width: 150 },
+        { width: 30, effects: { blur: 3 }}
+      ],
+      globalModifier)
+    %}
+
+    <img data-sizes="auto" src="{{ photos|last.url }}" data-srcset="{{ craft.imager.srcset( photos ) }}" class="{{ elementclass }} lazyload" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
+  {% else %}
+    <img src="{{ craft.imager.base64Pixel(ar|first/ar|last) }}" alt="Thumbnail" class="{{ elementclass }}">
+  {% endif %}
+{% endmacro %}
+
+{#
+  gallery Image Set
+  =================
+#}
+{% macro galleryImageSet(attributes) %}
+
+  {# Default Values - can be overwritten #}
+  {% set defaults = {
+    photo: '',
+    imageratio: '1:1',
+    class: 'o-gallery__thumbnail'
+  } %}
+
+  {# Merge our two arrays together #}
+  {% set attr = defaults|merge(attributes) %}
+
+  {# Check if image would cropped#}
+  {% if attr.imageratio != 'nocrop' %}
+
+    {# Transform Image Ratio in a Array #}
+    {% set ratio = attr.imageratio %}
+    {% set ar = ratio|split(':') %}
+
+    {# Set Focal Point #}
+    {% if photo.focalpoint is defined %}
+      {% set focusPosition = photo.focalpoint %}
+    {% else %}
+      {% set focusPosition = '50% 50%' %}
+    {% endif %}
+
+    {% set globalModifier = { jpegQuality: 82, ratio: ar|first/ar|last , mode: 'crop', position: 'center-center' } %}
+
+  {% else %}
+    {% set globalModifier = { jpegQuality: 82 } %}
+
+  {% endif %}
+
+  {# Build the Image Set #}
+  {% set photos = craft.imager.transformImage(attr.photo,
+    [
+      { width: 1900 },
+      { width: 1200 },
+      { width: 800 },
+      { width: 500 },
+      { width: 320 },
+      { width: 150 }
+    ],
+    globalModifier)
+  %}
+
+  <img data-sizes="auto" src="{{ craft.imager.base64Pixel('1:1') }}" data-srcset="{{ craft.imager.srcset( photos ) }}" class="{{ attr.class }} lazyload" role="img" {% if attr.photo.title %}alt="{{ attr.photo.title }}"{% endif %} itemprop="thumbnail">
+{% endmacro %}
+
+{#
+  Pagination
+  ==========
+  Generate navigation buttons for paginations
+
+  @param {object}  pages       - Pagination Object
+  @param {object}  craft       - Craft Request Object
+  @param {string}  class       - Classname (default: 'pagination')
+  @param {string}  searchquery - To pass search words from Searchfields (default: false)
+#}
+{% macro pagination(pages,craft,class,searchquery) %}
+  {% set search = searchquery|default(false) %}
+  {% set class = classname|default('o-pagination') %}
+
+  {# Add Pagination only if the Page Number is higher than 1#}
+  {% if pages.totalPages > 1 %}
+
+    <nav class="{{ classname }}" role="navigation">
+      {# Dont display last page when on the first Page #}
+      {% if pages.currentPage > 2 and pages.prevUrl %}
+        <a class="{{ classname }}__link---text" href="{{ pages.firstUrl }}{{ search ? '?q='~search }}" title="Zur ersten Seite">
+          &laquo;
+        </a>
+      {% endif %}
+
+      {# Display the Previous Link if available #}
+      {% if pages.prevUrl %}
+        <a class="{{ classname }}__link---text" href="{{ pages.prevUrl }}{{ search ? '?q='~search }}" title="Zurück zur vorhergehenden Seite">
+          &lsaquo;
+        </a>
+      {% endif %}
+
+      {# Display prev 5 Page Links#}
+      {% for page, url in pages.getPrevUrls(5) %}
+        <a class="{{ classname }}__link---number" href="{{ url }}{{ search ? '?q='~search }}" title="Sprung zur Seite {{ page }}">
+          {{ page }}
+        </a>
+      {% endfor %}
+
+      {# Diplay Current Page#}
+      <span class="{{ classname }}__link---current">
+        {{ pages.currentPage }}
+      </span>
+
+      {# Display next 5 Page Links #}
+      {% for page, url in pages.getNextUrls(5) %}
+        <a class="{{ classname }}__link---number" href="{{ url }}{{ search ? '?q='~search }}" title="Sprung zur Seite {{ page }}">
+          {{ page }}
+        </a>
+      {% endfor %}
+
+      {# Display next Page Link if available#}
+      {% if pages.nextUrl %}
+        <a class="{{ classname }}__link---text" href="{{ pages.nextUrl }}{{ search ? '?q='~search }}" title="Weiter zur nächsten Seite">
+          &rsaquo;
+        </a>
+      {% endif %}
+
+      {# Dont display when on the last page #}
+      {% if (pages.totalPages - 1) > pages.currentPage and pages.totalPages > 2 %}
+        <a class="{{ classname }}__link---text" href="{{ pages.lastUrl }}{{ search ? '?q='~search }}" title="Zur letzten Seite">
+          &raquo;
+        </a>
+      {% endif %}
+    </nav>
+  {% endif %}
+{% endmacro %}
+
+{#
+  Site Navigation
+  ===============
+#}
+{% macro siteNavigation(classname,sectionPart) %}
+  {% set class = classname|default('o-navigation') %}
+
+  <nav class="{{ classname }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    {% switch sectionPart %}
+      {% case 'footernav' %}
+        {% set nav = craft.amNav.getNavRaw('footerNavigation') %}
+      {% case 'mainnav' %}
+        {% set nav = craft.amNav.getNavRaw('mainNavigation') %}
+    {% endswitch %}
+
+    {% for node in nav %}
+      {{ _self.addNodeToNavigation(node, loop.index) }}
+    {% endfor %}
+  </nav>
+{% endmacro %}

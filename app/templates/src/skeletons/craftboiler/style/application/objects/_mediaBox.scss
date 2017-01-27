@@ -1,0 +1,116 @@
+/*
+  Mediabox
+  ========
+  Box for Holding Text and Media (Video or Images)
+
+  **Elements**
+  .o-mediabox__media : Media Container for Images and Videos
+  .o-mediabox__body : Container for Textcontent
+  .o-mediabox__
+*/
+.o-mediabox {
+  // Component Config
+  $api: (
+    selector: 'mediabox',
+    breakpoint: 600px,
+    margin-bottom: s(1),
+    color: (
+      gray: (
+        background: #e4e4e4,
+        text: false
+      )
+    )
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Base Style ----------------------------
+  margin-bottom: v($api,margin-bottom);
+
+  &#{cq('width >= #{v($api,breakpoint)}')} {
+    display: flex;
+  }
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  // Build Color Modifier
+  @each $colorkey,$color in v($api,color) {
+    &--c-#{$colorkey} {
+      @if(v($color,background) != false) {
+        background-color: v($color,background);
+      }
+      @if(v($color,text) != false) {
+        color: v($color,text);
+      }
+    }
+  }
+
+  // Childs --------------------------------
+
+  // [root]__media
+  &__media {
+    flex: 1 1 25%;
+    min-width: 25%;
+    overflow: hidden;
+
+    #{$root}#{cq('width >= #{v($api,breakpoint)}')} & {
+      margin-right: 20px;
+    }
+
+    #{$root}--right & {
+      order: 2;
+    }
+
+    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--right & {
+      margin-right: 0;
+      margin-left: 20px;
+    }
+
+    #{$root}--half & {
+      min-width: 50%;
+    }
+
+    #{$root}--threequater & {
+      min-width: 75%;
+    }
+  }
+
+  // [root]__body
+  &__body {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    #{$root}--colored & {
+      padding-top: 20px;
+      padding-bottom: 20px;
+      padding-left: 0;
+      padding-right: 20px;
+    }
+
+    #{$root}--colored#{$root}--right & {
+      padding-left: 20px;
+      padding-right: 0;
+    }
+
+    *:last-child {
+      margin-bottom: 0;
+    }
+
+    #{$root}#{cq('width >= #{v($api,breakpoint)}')} & {
+      align-self: center;
+    }
+
+  }
+
+  // [root]__video
+  &__video,
+  &__image {
+    width: 100%;
+    display: block;
+    min-height: 100%;
+    object-fit: cover;
+  }
+}

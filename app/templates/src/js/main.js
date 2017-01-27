@@ -7,7 +7,12 @@ import { sync } from 'vuex-router-sync'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router/router'
-import store from './store/store'<% } %>
+import store from './store/store'<% } %><% if (projectcraftbp === true) { %>
+import progressLoader from './partial/progressloader'
+import initPhotoSwipeFromDOM from './partial/init-photoswipe' // eslint-disable-line
+import './partial/init-heighttransition'
+import './partial/init-autoscroll'
+import './partial/init-swiper'<% } %>
 import lazySizes from 'lazysizes'
 import lazybgset from '../../node_modules/lazysizes/plugins/bgset/ls.bgset'
 import './partial/kittnad' // Small Advertising for Kittn :)
@@ -41,4 +46,7 @@ lazySizesConfig.expFactor = 1.3
 lazySizes.init()<% if (projectquery === 'ContainerQuery') { %>
 
 // Init Container Queries
-cq({ postcss: true })<% } %>
+cq({ postcss: true })<% } %><% if (projectcraftbp === true) { %>
+
+// Activate Progressloader
+progressLoader()<% } %>

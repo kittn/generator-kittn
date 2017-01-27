@@ -1,0 +1,61 @@
+/*
+  slideoutbox
+
+  description
+
+  **Elements**
+*/
+.o-slideoutbox {
+  // Component Config
+  $api: (
+    selector: 'slideoutbox',
+    breakpoint: 'm',
+    margin-bottom: s(1)
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+  margin-bottom: v($api,margin-bottom);
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  // Childs --------------------------------
+  // [root]__trigger
+  &__trigger {
+    font-weight: bold;
+    color: c('primary');
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  // [root]__body
+  &__body {
+    height: 0;
+    overflow: hidden;
+    transition: height 300ms ease-in-out;
+
+    // [root]__inner
+    &__inner {
+      padding-top: 10px;
+
+      *:last-child {
+        margin-bottom: 0;
+      }
+
+      #{$root}--style1 & {
+        font-size: 95%;
+        padding-top: 5px;
+        color: c('gray');
+      }
+    }
+  }
+
+}

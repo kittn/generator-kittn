@@ -1,0 +1,14 @@
+{#
+  Horizontal Ruler
+  ================
+  Simple horizontal Ruler
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-horizontalruler' %}
+{% endif %}
+
+<hr class="{{ classname }}{{ data != 'default' ? '---'~data }}">

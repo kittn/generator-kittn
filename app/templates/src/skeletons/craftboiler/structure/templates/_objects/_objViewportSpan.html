@@ -1,0 +1,19 @@
+{#
+  Viewport Span
+  =============
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-viewportspan' %}
+{% endif %}
+
+<div class="{{ classname }}{{ data.style ? ' '~classname~'--s-'~data.style }}"{{ data.anchor ? ' id='~data.anchor }}>
+  <div class="{{ classname }}__inner">
+    {% for child in content.children %}
+      {% include '_builder/_cb-objects' with { data: child } %}
+    {% endfor %}
+  </div>
+</div>

@@ -1,0 +1,41 @@
+/*
+  Quote
+  =====
+  Simple Quote Module with Cite Element
+
+  **Elements**
+*/
+.o-quote {
+  // Component Config
+  $api: (
+    selector: 'quote',
+    breakpoint: 'm',
+    border: (
+      width: 10px,
+      color: c('gray')
+    )
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+  border-left: v($api,border,width) solid v($api,border,color);
+  padding-left: s(1);
+
+  // Tags ----------------------------------
+  p {
+    margin-bottom: 0;
+  }
+  // Base Modifier -------------------------
+
+  // Childs --------------------------------
+  // [root]__cite
+  &__cite {
+    font-size: 90%;
+  }
+}

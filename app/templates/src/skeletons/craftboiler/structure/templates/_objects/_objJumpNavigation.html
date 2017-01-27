@@ -1,0 +1,36 @@
+{#
+  JumpNavigation
+  =============
+  Used for Jumping to Anchors
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-jumpnavigation' %}
+{% endif %}
+
+{% for block in data %}
+  {% if block.type == 'navigation' %}
+
+    {# Set Layoutype Modifer #}
+    {% switch block.layout %}
+      {% case 'fullwidth' %}
+        {% set navstyle = ' '~classname~'--l-fullwidth' %}
+      {% case 'list' %}
+        {% set navstyle = ' '~classname~'--l-list' %}
+      {% default %}
+        {% set navstyle = '' %}
+    {% endswitch %}
+
+    {# Build Element Block #}
+    <nav class="{{ classname }}{{ block.style != 'default' ? ' '~classname~'--s-'~block.style }}{{ navstyle }}">
+      {% for link in block.anchorlinks %}
+        <a href="#{{ link.anchor|lower }}" class="{{ classname }}__link js-smooth-scroll">{{ link.linkname }}</a>
+      {% endfor %}
+    </nav>
+
+  {% endif %}
+{% endfor %}
+

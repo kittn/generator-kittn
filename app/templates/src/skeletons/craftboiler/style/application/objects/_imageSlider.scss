@@ -1,0 +1,75 @@
+/*
+  ImageSlider
+  ===========
+  Classical Slider for Images. Use the Swiper Lib
+
+  **Elements**
+*/
+.o-imageslider {
+  // Component Config
+  $api: (
+    selector: 'imageslider',
+    breakpoint: 'm',
+    margin-bottom: s(2),
+    color: 'white' // black, white or false
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+  margin-bottom: v($api,margin-bottom);
+  @extend .swiper-container;
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  // Childs --------------------------------
+  // [root]__wrapper
+  &__wrapper {
+    @extend .swiper-wrapper;
+  }
+
+  // [root]__slide
+  &__slide {
+    @extend .swiper-slide;
+  }
+  // [root]__pagination
+  &__pagination {
+    @extend .swiper-pagination;
+    @if v($api,color) {
+      @extend .swiper-pagination-#{v($api,color)};
+    }
+  }
+
+  &__button-next,
+  &__button-prev {
+    opacity: .3;
+    transition: opacity 300ms ease-in;
+
+    &:hover {
+      opacity: .8;
+    }
+  }
+
+  // [root]__button-next
+  &__button-next {
+    @extend .swiper-button-next;
+    @if v($api,color) {
+      @extend .swiper-button-#{v($api,color)};
+    }
+  }
+
+  // [root]__button-prev
+  &__button-prev {
+    @extend .swiper-button-prev;
+    @if v($api,color) {
+      @extend .swiper-button-#{v($api,color)};
+    }
+  }
+}

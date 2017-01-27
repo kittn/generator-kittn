@@ -1,0 +1,60 @@
+/*
+  spacer
+
+  description
+
+  **Elements**
+*/
+.o-spacer {
+  // Component Config
+  $api: (
+    selector: 'spacer',
+    breakpoint: 'm'
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+  // [root]--spacerhalf
+  &--spacerhalf {
+    margin-bottom: s(.5);
+  }
+
+  // [root]--spacer1
+  &--spacer1 {
+    margin-bottom: s(1);
+  }
+
+  // [root]--spacer2
+  &--spacer2 {
+    margin-bottom: s(2);
+  }
+
+  // [root]--spacer3
+  &--spacer3 {
+    margin-bottom: s(3);
+  }
+
+  // [root]--spacer4
+  &--spacer4 {
+    margin-bottom: s(4);
+  }
+
+  // [root]--spacer5
+  &--spacer5 {
+    margin-bottom: s(5);
+  }
+
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  // Childs --------------------------------
+
+}

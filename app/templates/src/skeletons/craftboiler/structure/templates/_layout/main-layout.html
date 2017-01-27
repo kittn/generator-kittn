@@ -1,0 +1,33 @@
+{#
+ # Layout template
+ # ---------------
+ # When you want make your own or more
+ #}
+
+{# Include Macros for your #}
+{% import '_macros/my-macro.html' as myMacro %}
+
+<!DOCTYPE html>
+<html lang="de-DE">
+
+{# Include the Document Header #}
+{% include '_parts/document-header.html' %}
+
+<body class="{{ craft.request.isLivePreview ? ' is-livepreview ' }} {{ ' '~entry.slug~' ' }}">
+  <div class="o-progressloader">
+    <div class="o-progressloader__loader"></div>
+  </div>
+  <div class="o-layout__wrapper">
+    {% include '_parts/page-header.html' %}
+
+    <main class="o-layout__main" role="main">
+      {{ block('content') }}
+    </main>
+
+    {% include '_parts/page-footer.html' %}
+  </div>
+
+	{# Adding the Document Footer #}
+	{% include '_parts/document-footer.html' %}
+</body>
+</html>

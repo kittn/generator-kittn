@@ -1,0 +1,36 @@
+{#
+  List Module
+  ===========
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-list' %}
+{% endif %}
+
+{# Define the Listtype with Bulletstyle #}
+{% if data.listtype == 'ul' %}
+  {% set list = 'ul' %}
+  {% switch data.bullet %}
+    {% case "circle" %}
+      {% set style = ' '~classname~'--circle' %}
+    {% case "square" %}
+      {% set style = ' '~classname~'--square' %}
+    {% case "custom" %}
+      {% set style = ' '~classname~'--custom' %}
+    {% default %}
+      {% set style = '' %}
+  {% endswitch %}
+{% else %}
+  {% set list = 'ol' %}
+  {% set style = ' '~classname~'--ordered' %}
+{% endif %}
+
+{# Build Element Block #}
+<{{ list }} class="{{ classname }}{{ style }}">
+  {% for entry in data.list %}
+    <li class="{{ classname }}__entry">{{ entry.entry|raw }}</li>
+  {% endfor %}
+</{{ list }}>

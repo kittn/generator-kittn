@@ -1,0 +1,16 @@
+{% import '_includes/forms' as forms %}
+
+{{ forms.selectField({
+    label: "Display Theme",
+    id: 'kintDisplayTheme',
+    name: 'kintDisplayTheme',
+    options: {
+                'original': 'Original',
+                'solarized': 'Solarized',
+                'solarized-dark': 'Solarized Dark',
+                'aante-light': 'Aante Light'
+    },
+    default: 'original',
+    value: settings.kintDisplayTheme,
+    first: true
+}) }}

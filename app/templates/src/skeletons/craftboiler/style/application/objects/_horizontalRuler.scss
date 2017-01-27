@@ -1,0 +1,39 @@
+/*
+  Horizontalruler
+  ===============
+  description
+
+  **Elements**
+*/
+.o-horizontalruler {
+  // Component Config
+  $api: (
+    selector: 'horizontalruler',
+    breakpoint: 'm'
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+  background-color: rgba(c('gray'),.3);
+  border-top: 0;
+
+
+  // [root]---style1
+  @include instance(style1) {
+    height: 1px;
+    background-color: c('primary');
+  }
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  // Childs --------------------------------
+
+}

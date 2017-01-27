@@ -1,0 +1,26 @@
+{#
+  Accordion Wrapper
+  =================
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-accordion' %}
+{% endif %}
+
+<div class="{{ classname }}{{ data.style ? ' '~classname~'--s-'~data.style : ' '~classname~'--s-default' }}">
+  {% for accordion in content.children %}
+    <div class="{{ classname }}__box">
+      <div class="{{ classname }}__trigger">{{ accordion.objAccordion }}</div>
+      <div class="{{ classname }}__body">
+        <div class="{{ classname }}__inner">
+          {% for child in accordion.children %}
+            {% include '_builder/_cb-objects' with { data: child } %}
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

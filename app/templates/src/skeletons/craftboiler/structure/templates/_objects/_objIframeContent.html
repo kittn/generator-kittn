@@ -1,0 +1,38 @@
+{#
+  Iframe Content
+  ==============
+  For adding iFrame Content thats need to be responsive
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-iframecontent' %}
+{% endif %}
+
+{# Split Aspect Ratio Value #}
+{% set r = data.ratio|default('16:9') %}
+{% set ar = r|split(':') %}
+
+{# Define Size Modifiers #}
+{% switch data.size %}
+  {% case "viewportsize" %}
+    {% set size = ' '~classname~'--s-viewport' %}
+  {% case "oversize" %}
+    {% set size = ' '~classname~'--s-oversize' %}
+  {% case "undersize" %}
+    {% set size = ' '~classname~'--s-undersize' %}
+  {% default %}
+    {% set size = '' %}
+{% endswitch %}
+
+{# Build Element Block #}
+<div class="{{ classname }}{{ size }}">
+  <div class="{{ classname }}__inner" style="padding-bottom: {{ (ar|last)/(ar|first) * 100 }}%">
+    {{ data.embed|raw }}
+  </div>
+  {% if data.caption %}
+    <div class="{{ classname }}__caption">{{ data.caption }}</div>
+  {% endif %}
+</div>

@@ -1,0 +1,45 @@
+{#
+  Media Image
+  ===========
+  Image Container Element, can overlap Pageborder
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-mediaimage' %}
+{% endif %}
+
+{# Define Size Modifier #}
+{% switch data.size %}
+  {% case "viewportsize" %}
+    {% set size = ' '~classname~'--s-viewport' %}
+  {% case "oversize" %}
+    {% set size = ' '~classname~'--s-oversize' %}
+  {% case "undersize" %}
+    {% set size = ' '~classname~'--s-undersize' %}
+  {% default %}
+    {% set size = '' %}
+{% endswitch %}
+
+{# Set Heightrestriction Modifier #}
+{% if not data.ratio|length %}
+  {% if data.heightrestriction %}
+    {% set height = ' '~classname~'--maxheight' %}
+  {% else %}
+    {% set height = '' %}
+  {% endif %}
+{% else %}
+  {% set height = '' %}
+{% endif %}
+
+{# Build Element Block #}
+<figure class="{{ classname }}{{ height }}{{ size }}" role="group" itemscope itemtype="http://schema.org/ImageObject">
+  {{ myMacro.mediaImageSet(data.photo.first(), data.ratio, classname~'__image') }}
+  {% if data.caption %}
+    <figcaption class="{{ classname }}__caption" itemprop="caption description">
+      {{ data.caption }}
+    </figcaption>
+  {% endif %}
+</figure>

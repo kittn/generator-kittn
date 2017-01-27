@@ -1,0 +1,28 @@
+{#
+  Tab Wrapper
+  ===========
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-tab' %}
+{% endif %}
+
+<div class="{{ classname }}{{ data.style ? ' '~classname~'--s-'~data.style : ' '~classname~'--s-default' }}">
+  {# Random Number for identify tabgroup#}
+  {% set tabGroup = random(5000) %}
+
+  {% for key, tab in content.children %}
+    <input type="radio" name="tabs" id="tg{{ tabGroup }}-e{{ key }}" class="{{ classname }}__input" checked="checked">
+    <label class="{{ classname }}__header" for="tg{{ tabGroup }}-e{{ key }}">{{ tab.objTab }}</label>
+    <div class="{{ classname }}__body">
+      <div class="{{ classname }}__inner">
+        {% for child in tab.children %}
+          {% include '_builder/_cb-objects' with { data: child } %}
+        {% endfor %}
+      </div>
+    </div>
+  {% endfor %}
+</div>

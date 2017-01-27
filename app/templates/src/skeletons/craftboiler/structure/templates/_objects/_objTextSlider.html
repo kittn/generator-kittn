@@ -1,0 +1,24 @@
+{#
+  Text Slider Element
+  ==============
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-textslider' %}
+{% endif %}
+
+<div class="{{ classname }}">
+  <div class="{{ classname }}__wrapper">
+    {% for slide in data.slide %}
+      <div class="{{ classname }}__slide">
+        <div class="{{ classname }}__slide__inner">{{ slide.slide }}</div>
+      </div>
+    {% endfor %}
+  </div>
+  <div class="{{ classname }}__pagination"></div>
+  <div class="{{ classname }}__button-next"></div>
+  <div class="{{ classname }}__button-prev"></div>
+</div>

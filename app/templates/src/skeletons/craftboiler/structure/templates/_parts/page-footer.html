@@ -1,0 +1,11 @@
+<footer class="o-layout__footer" role="contentinfo">
+  <div class="o-layout__container">
+    {% if footer.copyright %}
+      <div class="c-copy">
+        {{ footer.copyright }}
+      </div>
+    {% endif %}
+
+    {{ myMacro.siteNavigation('c-footernav', 'footernav') }}
+  </div>
+</footer>

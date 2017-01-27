@@ -1,0 +1,79 @@
+/*
+  Mediaimage
+  ==========
+  With Ratio, Size and Heightrestriction
+
+  **Elements**
+*/
+.o-mediaimage {
+  // Component Config
+  $api: (
+    selector: 'mediaimage',
+    breakpoint: 'm'
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+  margin: 0 auto s(1) auto;
+  position: relative;
+  overflow: hidden;
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  &#{$root}--maxheight {
+    height: 100vh;
+  }
+
+  &#{$root}--s-viewport {
+    @include break(v($api,breakpoint)) {
+      width: 100vw;
+      left: 50%;
+      right: 50%;
+      margin-left: -50vw;
+      margin-right: -50vw;
+    }
+  }
+
+  &#{$root}--s-oversize {
+    @include break(v($api,breakpoint)) {
+      max-width: 100vw;
+      width: 120%;
+      margin-left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+
+  &#{$root}--s-undersize {
+    max-width: 80%;
+  }
+
+
+  // Childs --------------------------------
+  // [root]__image
+  &__image {
+  }
+
+  // [root]__caption
+  &__caption {
+    padding-top: 5px;
+    font-size: 90%;
+    color: c('gray');
+    text-align: center;
+
+    #{$root}--maxheight & {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding-bottom: 5px;
+      background-color: rgba(c('white'),.4);
+      color: c('main');
+    }
+  }
+}

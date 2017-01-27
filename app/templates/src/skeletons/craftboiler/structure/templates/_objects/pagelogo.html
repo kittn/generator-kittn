@@ -1,0 +1,20 @@
+{#
+  Pagelogo
+  ========
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'c-pagelogo' %}
+{% endif %}
+
+{% set slug = slug | default('homepage') %}
+
+
+<{{ data.slug == slug ? 'h1' : 'div' }} class="{{ classname }}">
+{% if data.slug != 'homepage' %}<a href="{{ siteUrl }}">{% endif %}
+  {{ siteName }}
+  {% if data.slug != 'homepage' %}</a>{% endif %}
+</{{ data.slug == slug ? 'h1' : 'div' }}>

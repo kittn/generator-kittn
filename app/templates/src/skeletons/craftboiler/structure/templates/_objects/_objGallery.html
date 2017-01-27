@@ -1,0 +1,149 @@
+{#
+  Gallery
+  =============
+  Gallery with Lightbox (Photoswipe) support and a Flexbox Layout
+#}
+
+{# Class Overwrite #}
+{% if name is defined and name != '' %}
+  {% set classname = name %}
+{% else %}
+  {% set classname = 'o-gallery' %}
+{% endif %}
+
+
+{% for block in data %}
+  {% if block.type == 'gallery' %}
+    {# Get Gallery Count #}
+    {% set galleryCount = block.galleryEntries.total() %}
+
+    {% if galleryCount > 1 %}
+      {% set galCountMode = ' '~classname~'--moreimages' %}
+    {% else %}
+      {% set galCountMode = '' %}
+    {% endif %}
+
+    {# Setup for the Simple Layout #}
+    {% if block.layoutType == 'simple' %}
+      {% set galCountNr = '' %}
+
+      {# Setup the Width #}
+      {% if block.width %}
+        {% set thumbWidth = ' style=width:' ~block.width~' ' %}
+        {% set flexOverwrite = ' '~classname~'--noFlex' %}
+
+      {% else %}
+        {% set thumbWidth = ' ' %}
+        {% set flexOverwrite = '' %}
+      {% endif %}
+
+      {% if block.ratio %}
+        {% set crop = block.ratio %}
+      {% else %}
+        {# Define Crop #}
+        {% if galleryCount > 1 %}
+          {% set crop = '1:1' %}
+        {% else %}
+          {% set crop = 'nocrop' %}
+        {% endif %}
+      {% endif %}
+
+      {# Setup for the Smartlayout #}
+    {% elseif block.layoutType == 'smart' %}
+      {# Gallery Count Mode #}
+      {% if galleryCount < 10 %}
+        {% set galCountNr = ' '~classname~'--'~galleryCount %}
+      {% else %}
+        {% set galCountNr = ' '~classname~'--unlimited' %}
+      {% endif %}
+
+      {% if block.width %}
+        {% set thumbWidth = ' ' %}
+        {% set flexOverwrite = '' %}
+      {% else %}
+        {% set thumbWidth = ' ' %}
+        {% set flexOverwrite = '' %}
+      {% endif %}
+
+      {# Define Crop #}
+      {% if galleryCount > 1 %}
+        {% set crop = '1:1' %}
+      {% else %}
+        {% set crop = 'nocrop' %}
+      {% endif %}
+
+    {% endif %}
+
+    {% set layout = ' '~classname~'--l-'~block.layoutType %}
+
+    {# Build Element Block #}
+    <div class="is-photoswipped {{ classname }}{{ galCountNr }}{{ galCountMode }}{{ layout }}{{ flexOverwrite }}" itemscope itemtype="http://schema.org/ImageGallery">
+      {% for gallery in block.galleryEntries %}
+        <figure class="{{ classname }}__figure" itemprop="associatedMedia"{{ thumbWidth }}itemscope itemtype="http://schema.org/ImageObject">
+          <a class="{{ classname }}__link" href="{{ gallery.photo.first().url }}" itemprop="contentUrl" data-size="{{ gallery.photo.first().width }}x{{ gallery.photo.first().height }}">
+            {{ myMacro.galleryImageSet({
+              photo: gallery.photo.first(),
+              imageratio: crop
+            }) }}
+          </a>
+          {% if gallery.caption %}
+            <figcaption class="{{ classname }}__caption{{ galleryCount > 1 ? '---hidden' }}" itemprop="caption description">
+              {{ gallery.caption }}
+            </figcaption>
+          {% endif %}
+        </figure>
+      {% endfor %}
+    </div>
+
+  {% endif %}
+{% endfor %}
+
+{# Root element of PhotoSwipe. Must have class pswp. #}
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="pswp__bg"></div>
+  <div class="pswp__scroll-wrap">
+
+    {# don't modify these 3 pswp__item elements, data is added later on. #}
+    <div class="pswp__container">
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+      <div class="pswp__item"></div>
+    </div>
+
+    {# Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. #}
+    <div class="pswp__ui pswp__ui--hidden">
+
+      <div class="pswp__top-bar">
+
+        {# Controls are self-explanatory. Order can be changed. #}
+        <div class="pswp__counter"></div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--share" title="Share"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip"></div>
+      </div>
+
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+
+      <div class="pswp__caption">
+        <div class="pswp__caption__center"></div>
+      </div>
+    </div>
+  </div>
+</div>
