@@ -14,6 +14,8 @@ const nodeEnv = process.env.NODE_ENV || 'production'
 const ROOT_PATH = path.resolve(__dirname)
 <% if (projectUsage == 'Integrate in CraftCMS') { %>
 const PUBLIC_PATH = path.join(ROOT_PATH, 'dist/public/')
+<% } if else (projectUsage == 'Integrate in Wordpress') { %>
+const PUBLIC_PATH = path.join(ROOT_PATH, 'dist/wp-content/themes/<%= projectname %>/')
 <% } else { %>
 const PUBLIC_PATH = path.join(ROOT_PATH, 'dist/')
 <% } %>
