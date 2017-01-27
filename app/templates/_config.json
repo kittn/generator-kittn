@@ -12,6 +12,7 @@
     "vectors": "dist/assets/img/svgfiles/",
     "contentimage": "dist/images/",
     "webpackjsassets": "assets/js/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
+    "dist": "dist/",
     "base": "dist/wp-content/themes/<%= projectname %>/",
     "markup": "dist/wp-content/themes/<%= projectname %>/",
     "assets": "dist/wp-content/themes/<%= projectname %>/assets/",
@@ -180,7 +181,9 @@
   "src": {
     "style": "src/style/",
     "template": "src/template/",<% if (projectUsage === 'Integrate in Wordpress' ) { %>
-    "structure": "src/structure/template/",<% } else { %>
+    "structure": "src/structure/template/",
+    "config": "src/structure/config/",
+    "plugins": "src/structure/plugins/",<% } else { %>
     "structure": "src/structure/",<% } %>
     "js": "src/js/",
     "bower": "src/bower/",

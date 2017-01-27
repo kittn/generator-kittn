@@ -21,7 +21,9 @@ const buildTask = (cb) => {
       'copy:fonts',
       'rebuild:js',
       'rebuild:images',
-      'copy:contentimages'
+      'copy:contentimages'<% if (projectUsage === 'Integrate in Wordpress' ) { %>,
+      'copy:wpconfig',
+      'copy:wpplugins'<% } %>
     ],
     [
       'compiler:css',

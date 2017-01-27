@@ -569,10 +569,21 @@ var KittnGenerator = yeoman.Base.extend({
         );
         this.fs.copyTpl(
           this.templatePath('_wp-config-sample.php'),
-          this.destinationPath('src/structure/config/wp-config-sample.php'),
+          this.destinationPath('src/structure/config/wp-config.php'),
           templateParams
         );
       }
+
+      this.fs.copyTpl(
+        this.templatePath('_copy-wpconfig.js'),
+        this.destinationPath('gulpfile/tasks/copy-wpconfig.js'),
+        templateParams
+      );
+      this.fs.copyTpl(
+        this.templatePath('_copy-wpplugins.js'),
+        this.destinationPath('gulpfile/tasks/copy-wpplugins.js'),
+        templateParams
+      );
 
     } else {
       this.directory('src/skeletons/simplestructure', 'src/structure/');
