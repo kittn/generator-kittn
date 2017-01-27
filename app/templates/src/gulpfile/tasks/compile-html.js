@@ -37,8 +37,9 @@ const compilerHtmlTask = () => {
       .pipe($.plumber())
       .pipe($.twig({ data: templateLocals }))
       .on('error', errorHandler)
-      .pipe($.prettify({
-        'indent_size': 2
+      .pipe($.htmlPrettify({
+        indent_char: ' ',
+        indent_size: 2
       }))
       .pipe(gulp.dest(kc.dist.markup))
 
