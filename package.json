@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "4.0.0-alpha.29",
+  "version": "4.0.0-alpha.30",
   "description": "Kittn Scaffolding and Frontend Toolchain",
   "license": "MIT",
   "main": "app/index.js",
