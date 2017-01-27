@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "4.0.0-alpha.27",
+  "version": "4.0.0-alpha.28",
   "description": "Kittn Scaffolding and Frontend Toolchain",
   "license": "MIT",
   "main": "app/index.js",
@@ -48,6 +48,7 @@
     "chalk": "^1.1.3",
     "clear-terminal": "0.0.2",
     "command-exists": "github:mathisonian/command-exists#pull/6/head",
+    "randomstring": "^1.1.5",
     "yeoman-generator": "^0.24.1",
     "yosay": "^1.2.0"
   },

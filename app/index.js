@@ -8,6 +8,17 @@ var mkdirp        = require('mkdirp');
 var shelljs       = require('shelljs/global');
 var commandExists = require('command-exists');
 var clear         = require('clear-terminal');
+var random        = require('randomstring');
+
+// Function for Generate Salt Keys
+var saltKeys = [];
+
+for ( var i = 0; i < 8; i++ ) {
+  saltKeys.push(random.generate({
+    length: 64,
+    charset: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!§$%/()=_;:,.^"
+  }))
+}
 
 var KittnGenerator = yeoman.Base.extend({
   init: function () {
@@ -386,6 +397,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectscriptlinter  = props.projectscriptlinter;
       this.projectastrum        = props.projectastrum;
       this.projectcraftbp       = props.projectcraftbp;
+      this.saltKeys             = saltKeys;
 
       done();
     }.bind(this));
@@ -427,6 +439,7 @@ var KittnGenerator = yeoman.Base.extend({
       projectscriptlinter  : this.projectscriptlinter,
       projectastrum        : this.projectastrum,
       projectcraftbp       : this.projectcraftbp,
+      saltKeys              : this.saltKeys,
       pkg: this.pkg
     };
 
