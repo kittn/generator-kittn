@@ -9,9 +9,6 @@
   // Custom Loader GIF CF7
   require_once('_functions/cf7CustomLoader.php');
 
-  // Add HTML5 Support
-  require_once('_functions/html5Support.php');
-
   // Images Sizes
   require_once('_functions/imagesSizes.php');
 
