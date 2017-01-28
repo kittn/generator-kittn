@@ -169,7 +169,16 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'confirm',
         name: 'projectcraftbp',
-        message: chalk.cyan.underline.bold('Craft Bonus Round') + '\n\xa0 Do you want that the Generator implement a Craft Boilerplate? \n\xa0 Adding a Contentbuilder, the Stylefiles (in ITCSS) and some JS Files for Lightboxes, and some Craft Plugins',
+        message: chalk.cyan.underline.bold('Craft Bonus Round') + '\n\xa0 Do you want that the Generator implement a Craft Starterpack? \n\xa0 Adding a Contentbuilder, the Stylefiles (in ITCSS) and some JS Files for Lightboxes, and some Craft Plugins',
+        default: false
+      },
+      {
+        when: function(props) {
+          return props.projectUsage === 'Integrate in Wordpress' && props.projectcssstructure === 'ITCSS';
+        },
+        type: 'confirm',
+        name: 'projectwordpressbp',
+        message: chalk.cyan.underline.bold('Craft Bonus Round') + '\n\xa0 Do you want that the Generator implement a Craft Starterpack? \n\xa0 Adding a Contentbuilder, the Stylefiles (in ITCSS) and some JS Files for Lightboxes, and some Craft Plugins',
         default: false
       },
       {
@@ -281,15 +290,6 @@ var KittnGenerator = yeoman.Base.extend({
         default: false
       },
       {
-        type: 'list',
-        name: 'projectquery',
-        message: chalk.cyan.underline.bold('Media Queries') + '\n\xa0 In addition to the media queries, Element Queries (https://github.com/marcj/css-element-queries) \n\xa0 or Container Queries (https://github.com/ausi/cq-prolyfill) can be integrated.',
-        choices: [
-          'ContainerQuery',
-          'ElementQuery',
-          'Native MediaQuery'
-        ]
-      },{
         type: 'confirm',
         name: 'projectjquery',
         message: chalk.cyan.underline.bold('jQuery') + '\n\xa0 Want to use jQuery?',
@@ -377,7 +377,6 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectiecompatible  = props.projectiecompatible;
       this.projectstructure     = checkAnswer(props.projectstructure);
       this.projectUsage         = props.projectUsage;
-      this.projectquery         = props.projectquery;
       this.projectjquery        = props.projectjquery;
       this.projectJSFramework   = props.projectJSFramework;
       this.projecthmr           = props.projectJSFramework === 'none' ? props.projecthmr : true;
@@ -397,6 +396,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectscriptlinter  = props.projectscriptlinter;
       this.projectastrum        = props.projectastrum;
       this.projectcraftbp       = props.projectcraftbp;
+      this.projectwordpressbp   = props.projectwordpressbp;
       this.saltKeys             = saltKeys;
 
       done();
@@ -419,7 +419,6 @@ var KittnGenerator = yeoman.Base.extend({
       projectiecompatible  : this.projectiecompatible,
       projectstructure     : this.projectstructure,
       projectUsage         : this.projectUsage,
-      projectquery         : this.projectquery,
       projectjquery        : this.projectjquery,
       projectJSFramework   : this.projectJSFramework,
       projecthmr           : this.projecthmr,
@@ -439,7 +438,8 @@ var KittnGenerator = yeoman.Base.extend({
       projectscriptlinter  : this.projectscriptlinter,
       projectastrum        : this.projectastrum,
       projectcraftbp       : this.projectcraftbp,
-      saltKeys              : this.saltKeys,
+      projectwordpressbp   : this.projectwordpressbp,
+      saltKeys             : this.saltKeys,
       pkg: this.pkg
     };
 

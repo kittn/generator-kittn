@@ -1,13 +1,12 @@
 // Main JS File<% if (projectjquery === true) { %>
-import $ from 'jquery'<% } if (projectquery === 'ElementQuery') { %>
-import eq from 'css-element-queries'<% } else if (projectquery === 'ContainerQuery') { %>
-import cq from 'cq-prolyfill'<% } if ( projectJSFramework === 'Vue.js' ) { %>
+import $ from 'jquery'<% } %>
+import cq from 'cq-prolyfill'<% if ( projectJSFramework === 'Vue.js' ) { %>
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router/router'
-import store from './store/store'<% } %><% if (projectcraftbp === true) { %>
+import store from './store/store'<% } %><% if (projectcraftbp === true || projectwordpressbp === true) { %>
 import progressLoader from './partial/progressloader'
 import initPhotoSwipeFromDOM from './partial/init-photoswipe' // eslint-disable-line
 import './partial/init-heighttransition'
@@ -43,10 +42,10 @@ window.lazySizesConfig.expand = 130
 lazySizesConfig.expFactor = 1.3
 
 // Lazy Sizes Init
-lazySizes.init()<% if (projectquery === 'ContainerQuery') { %>
+lazySizes.init()
 
 // Init Container Queries
-cq({ postcss: true })<% } %><% if (projectcraftbp === true) { %>
+cq({ postcss: true })<% if (projectcraftbp === true) { %>
 
 // Activate Progressloader
 progressLoader()<% } %>

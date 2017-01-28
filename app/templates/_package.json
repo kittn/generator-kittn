@@ -141,9 +141,8 @@
     "html5shiv": "^3.7.3",
     "conditionizr": "^4.5.0",
     "svgxuse": "^1.1.23",
-    "lazysizes": "^2.0.0",<% if (projectquery === 'ElementQuery') { %>
-    "css-element-queries": "^0.3.2",<% } else if (projectquery === 'ContainerQuery') { %>
-    "cq-prolyfill": "^0.3.2",<% } %><% if (projectcraftbp === true) { %>
+    "lazysizes": "^2.0.0",
+    "cq-prolyfill": "^0.3.2",<% if (projectcraftbp === true || projectwordpressbp === true) { %>
     "anchor-scroll": "^2.0.0",
     "photoswipe": "^4.1.1",
     "swiper": "^3.4.1",
