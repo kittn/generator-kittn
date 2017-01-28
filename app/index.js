@@ -541,20 +541,20 @@ var KittnGenerator = yeoman.Base.extend({
         );
       }
 
+      // Install Craft Starterpack
       if (this.projectcraftbp) {
         // Copy Plugins and Templates
-        this.directory('src/skeletons/craftboiler/structure/', 'src/structure/');
+        this.directory('src/skeletons/starterpack/craftcms/structure/', 'src/structure/');
         // Copy JS Script Files
-        this.directory('src/skeletons/craftboiler/js/', 'src/js/partial/');
+        this.directory('src/skeletons/starterpack/general/js/', 'src/js/partial/');
         // Copy Sass Files
-        this.directory('src/skeletons/craftboiler/style/', 'src/style/');
+        this.directory('src/skeletons/starterpack/general/style/', 'src/style/');
         // Copy Contentbuilder Config
         this.fs.copyTpl(
-          this.templatePath('src/skeletons/craftboiler/contentbuilder.json'),
+          this.templatePath('src/skeletons/starterpack/craftcms/contentbuilder.json'),
           this.destinationPath('src/.system/contentbuilder.json'),
           templateParams
         );
-
       }
 
     } else if ( this.projectUsage === 'Integrate in Wordpress' ) {
@@ -584,6 +584,14 @@ var KittnGenerator = yeoman.Base.extend({
         this.destinationPath('gulpfile/tasks/copy-wpplugins.js'),
         templateParams
       );
+
+      // Install Wordpress Starterpack
+      if (this.projectwordpressbp) {
+        // Copy JS Script Files
+        this.directory('src/skeletons/starterpack/general/js/', 'src/js/partial/');
+        // Copy Sass Files
+        this.directory('src/skeletons/starterpack/general/style/', 'src/style/');
+      }
 
     } else {
       this.directory('src/skeletons/simplestructure', 'src/structure/');
