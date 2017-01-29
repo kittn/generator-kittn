@@ -1268,50 +1268,71 @@
                 "typesettings": {
                   "options": [
                     {
+                      "label": "Viertel Spacer",
+                      "value": 25,
+                      "default": ""
+                    },
+                    {
                       "label": "Halber Spacer",
-                      "value": "spacerhalf",
+                      "value": 50,
+                      "default": 1
+                    },
+                    {
+                      "label": "Dreiviertel Spacer",
+                      "value": 75,
                       "default": ""
                     },
                     {
                       "label": "1 Spacer",
-                      "value": "spacer1",
-                      "default": 1
+                      "value": 1,
+                      "default": ""
                     },
                     {
                       "label": "2 Spacer",
-                      "value": "spacer2",
+                      "value": 2,
                       "default": ""
                     },
                     {
                       "label": "3 Spacer",
-                      "value": "spacer3",
+                      "value": 3,
                       "default": ""
                     },
                     {
                       "label": "4 Spacer",
-                      "value": "spacer4",
+                      "value": 4,
                       "default": ""
                     },
                     {
                       "label": "5 Spacer",
-                      "value": "spacer5",
+                      "value": 5,
+                      "default": ""
+                    },
+                    {
+                      "label": "6 Spacer",
+                      "value": 6,
+                      "default": ""
+                    },
+                    {
+                      "label": "7 Spacer",
+                      "value": 7,
+                      "default": ""
+                    },
+                    {
+                      "label": "8 Spacer",
+                      "value": 8,
+                      "default": ""
+                    },
+                    {
+                      "label": "9 Spacer",
+                      "value": 9,
+                      "default": ""
+                    },
+                    {
+                      "label": "10 Spacer",
+                      "value": 10,
                       "default": ""
                     }
                   ]
-                }
-              },
-              "new2": {
-                "name": "Individuell",
-                "handle": "individually",
-                "instructions": "Alternativ kann eine individuelle Gr\u00f6\u00dfe f\u00fcr den Abstand vorgegeben werden",
-                "required": 0,
-                "type": "PlainText",
-                "width": "",
-                "typesettings": {
-                  "placeholder": "",
-                  "maxLength": "",
-                  "multiline": "",
-                  "initialRows": 4
                 }
               }
             }
