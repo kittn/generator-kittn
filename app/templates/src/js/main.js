@@ -47,5 +47,8 @@ lazySizes.init()
 // Init Container Queries
 cq({ postcss: true })<% if (projectcraftbp === true) { %>
 
+// Init Photoswipe
+initPhotoSwipeFromDOM('.is-photoswipped')
+
 // Activate Progressloader
 progressLoader()<% } %>
