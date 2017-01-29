@@ -23,7 +23,7 @@ const pelements = {
  */
 const stateLoading = () => {
   // Give Body a initial Load Class
-  pelements.body.className += pelements.states.loading
+  pelements.body.className += ' ' + pelements.states.loading
 
   // Activate the Bar Element with adding a Class
   pelements.barInner.className += ' ' + pelements.barstates.loading
@@ -34,7 +34,7 @@ const stateLoading = () => {
  */
 const stateInteractive = () => {
   pelements.body.classList.remove(pelements.states.loading)
-  pelements.body.classList.add(pelements.states.interact)
+  pelements.body.className += ' ' + pelements.states.interact
 }
 
 /**
@@ -43,13 +43,13 @@ const stateInteractive = () => {
 const stateComplete = () => {
   // Change Classes for the Progressbar
   pelements.barInner.classList.remove(pelements.barstates.loading)
-  pelements.barInner.classList.add(pelements.barstates.complete)
+  pelements.barInner.className +=  ' ' + pelements.barstates.complete
 
   // After a small Timeout toggle the Body Class
   setTimeout(() => {
     pelements.body.classList.remove(pelements.states.interact)
-  pelements.body.classList.add(pelements.states.complete)
-}, 300)
+    pelements.body.className += ' ' + pelements.states.complete
+  }, 300)
 }
 
 /**
