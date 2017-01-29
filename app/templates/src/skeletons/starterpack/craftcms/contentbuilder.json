@@ -153,7 +153,7 @@
                     "entry",
                     "asset"
                   ],
-                  "defaultText": "LInk",
+                  "defaultText": "Link",
                   "allowCustomText": 1,
                   "allowTarget": 1,
                   "entrySources": [],
@@ -190,19 +190,23 @@
                 }
               },
               "new3": {
-                "name": "Farbe",
-                "handle": "color",
-                "instructions": "Farbe des Buttons, regul\u00e4r wird die Primary Color des Stylesheets verwendet.",
+                "name": "Style",
+                "handle": "style",
+                "instructions": "Style des Buttons",
                 "required": 0,
-                "type": "ButtonBox_Colours",
+                "type": "Dropdown",
                 "width": "",
                 "typesettings": {
                   "options": [
                     {
                       "label": "Default",
                       "value": "default",
-                      "cssColour": "#f29300",
                       "default": 1
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
                     }
                   ]
                 }
