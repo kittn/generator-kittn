@@ -69,12 +69,19 @@
       margin-left: 20px;
     }
 
-    #{$root}--half & {
-      min-width: 50%;
+    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--quarter & {
+      max-width: 25%;
+      width: 25%;
     }
 
-    #{$root}--threequater & {
-      min-width: 75%;
+    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--half & {
+      max-width: 50%;
+      width: 50%;
+    }
+
+    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--threequarter & {
+      max-width: 75%;
+      width: 50%;
     }
   }
 

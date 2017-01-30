@@ -1,7 +1,7 @@
 <?php
 /**
   Quote Module
-  ===============
+  ============
   Simple Quote module with Cite for displaying the source
 */
 

@@ -1,0 +1,3293 @@
+[
+  {
+    "key": "group_588f05fb6d514",
+    "title": "Content Builder",
+    "fields": [
+      {
+        "key": "field_588f05fb7043d",
+        "label": "Content Builder",
+        "name": "content_builder",
+        "type": "flexible_content",
+        "instructions": "Die reinen Inhalts Module, ohne Layout Wrapper wie Accordions",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "button_label": "Weiterer Inhaltsblock",
+        "min": "",
+        "max": "",
+        "layouts": [
+          {
+            "key": "588dbdedaa1ec",
+            "name": "obj_headline",
+            "label": "Headline",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb71f3e",
+                "label": "Headline",
+                "name": "headline",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d1243beba5"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc21c76a6c",
+            "name": "obj_richtext",
+            "label": "Richtext",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb71f52",
+                "label": "Richtext",
+                "name": "richtext",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d0c8982d6a"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc2ac76a70",
+            "name": "obj_list",
+            "label": "Liste",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb71f61",
+                "label": "Liste",
+                "name": "list",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d14386ff5e"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc2cc76a72",
+            "name": "obj_quote",
+            "label": "Zitat",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb71f6e",
+                "label": "Zitat",
+                "name": "quote",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d14776b814"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc30d76a74",
+            "name": "obj_media_box",
+            "label": "Media Box",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb71f7c",
+                "label": "Media Box",
+                "name": "media_box",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d14979e2a5"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc33d76a76",
+            "name": "obj_media_image",
+            "label": "Media Image",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb71f8a",
+                "label": "Media Image",
+                "name": "media_image",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d14ba80c4f"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc35e76a78",
+            "name": "obj_gallery",
+            "label": "Galerie",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb71f98",
+                "label": "Galerie",
+                "name": "gallery",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d14e3b726a"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc38576a7a",
+            "name": "obj_image_slider",
+            "label": "Image Slider",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb71fa8",
+                "label": "Image Slider",
+                "name": "image_slider",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d14ff0cfac"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc3a576a7c",
+            "name": "obj_text_slider",
+            "label": "Text Slider",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb71fb5",
+                "label": "Text Slider",
+                "name": "text_slider",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d151449b86"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc3d176a7e",
+            "name": "obj_iframe_content",
+            "label": "Iframe Content",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb71fc3",
+                "label": "Iframe Content",
+                "name": "iframe_content",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d1538e04f0"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc40c76a80",
+            "name": "obj_button",
+            "label": "Button",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb71fd1",
+                "label": "Button",
+                "name": "button",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_5888b3535d81a"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc42b76a82",
+            "name": "obj_slide_out_box",
+            "label": "Slide Out Box",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb71fde",
+                "label": "Slide Out Box",
+                "name": "slide_out_box",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d1562ba016"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc46976a84",
+            "name": "obj_horizontal_ruler",
+            "label": "Trennlinie",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb71fec",
+                "label": "Trennlinie",
+                "name": "horizontal_ruler",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d1598d02cf"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc49876a86",
+            "name": "obj_spacer",
+            "label": "Spacer",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb71ff9",
+                "label": "Spacer",
+                "name": "spacer",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_5888dbc878ef5"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc4d911e6e",
+            "name": "obj_anchor",
+            "label": "Anker",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb72007",
+                "label": "Anker",
+                "name": "anchor",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_5888dd837949f"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc4ff11e70",
+            "name": "obj_jumpnavigation",
+            "label": "Sprungnavigation",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f05fb72015",
+                "label": "Sprungnavigation",
+                "name": "jumpnavigation",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_5888dfa3c61cf"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588f0672b5c72",
+            "name": "obj_viewport_span",
+            "label": "Viewport Span",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f067db5c73",
+                "label": "Viewport Span",
+                "name": "viewport_span",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d15e595589"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588f1902586e7",
+            "name": "obj_accordion",
+            "label": "Accordion",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f1914586e8",
+                "label": "Accordion",
+                "name": "accordion",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588f0c1c267a3"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588f2b4092d1a",
+            "name": "obj_tab",
+            "label": "Tab",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588f2b4992d1b",
+                "label": "Tab",
+                "name": "tab",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588f2b1962bd2"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          }
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "default"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": [
+      "the_content",
+      "custom_fields"
+    ],
+    "active": 1,
+    "description": "Main Content Builder um Inhalte zu erstellen."
+  },
+  {
+    "key": "group_588dbdb84a8ec",
+    "title": "Content Modules",
+    "fields": [
+      {
+        "key": "field_588dbdd6cf772",
+        "label": "Content Modules",
+        "name": "content_modules",
+        "type": "flexible_content",
+        "instructions": "Die reinen Inhalts Module, ohne Layout Wrapper wie Accordions",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "button_label": "Modul hinzuf\u00fcgen",
+        "min": "",
+        "max": "",
+        "layouts": [
+          {
+            "key": "588dbdedaa1ec",
+            "name": "obj_headline",
+            "label": "Headline",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dbe29cf773",
+                "label": "Headline",
+                "name": "headline",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d1243beba5"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc21c76a6c",
+            "name": "obj_richtext",
+            "label": "Richtext",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc24176a6d",
+                "label": "Richtext",
+                "name": "richtext",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d0c8982d6a"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc2ac76a70",
+            "name": "obj_list",
+            "label": "Liste",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc2b676a71",
+                "label": "Liste",
+                "name": "list",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d14386ff5e"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc2cc76a72",
+            "name": "obj_quote",
+            "label": "Zitat",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc2e676a73",
+                "label": "Zitat",
+                "name": "quote",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d14776b814"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc30d76a74",
+            "name": "obj_media_box",
+            "label": "Media Box",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc31d76a75",
+                "label": "Media Box",
+                "name": "media_box",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d14979e2a5"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc33d76a76",
+            "name": "obj_media_image",
+            "label": "Media Image",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc34776a77",
+                "label": "Media Image",
+                "name": "media_image",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d14ba80c4f"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc35e76a78",
+            "name": "obj_gallery",
+            "label": "Galerie",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc36976a79",
+                "label": "Galerie",
+                "name": "gallery",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d14e3b726a"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc38576a7a",
+            "name": "obj_image_slider",
+            "label": "Image Slider",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc38e76a7b",
+                "label": "Image Slider",
+                "name": "image_slider",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d14ff0cfac"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc3a576a7c",
+            "name": "obj_text_slider",
+            "label": "Text Slider",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc3b276a7d",
+                "label": "Text Slider",
+                "name": "text_slider",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d151449b86"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc3d176a7e",
+            "name": "obj_iframe_content",
+            "label": "Iframe Content",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc3e176a7f",
+                "label": "Iframe Content",
+                "name": "iframe_content",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d1538e04f0"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc40c76a80",
+            "name": "obj_button",
+            "label": "Button",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc41576a81",
+                "label": "Button",
+                "name": "button",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_5888b3535d81a"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc42b76a82",
+            "name": "obj_slide_out_box",
+            "label": "Slide Out Box",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc43776a83",
+                "label": "Slide Out Box",
+                "name": "slide_out_box",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d1562ba016"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc46976a84",
+            "name": "obj_horizontal_ruler",
+            "label": "Trennlinie",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc47e76a85",
+                "label": "Trennlinie",
+                "name": "horizontal_ruler",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_588d1598d02cf"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc49876a86",
+            "name": "obj_spacer",
+            "label": "Spacer",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc4a776a87",
+                "label": "Spacer",
+                "name": "spacer",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_5888dbc878ef5"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc4d911e6e",
+            "name": "obj_anchor",
+            "label": "Anker",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc4e611e6f",
+                "label": "Anker",
+                "name": "anchor",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_5888dd837949f"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          },
+          {
+            "key": "588dc4ff11e70",
+            "name": "obj_jumpnavigation",
+            "label": "Sprungnavigation",
+            "display": "block",
+            "sub_fields": [
+              {
+                "key": "field_588dc51111e71",
+                "label": "Sprungnavigation",
+                "name": "jumpnavigation",
+                "type": "clone",
+                "instructions": "",
+                "required": 0,
+                "conditional_logic": 0,
+                "wrapper": {
+                  "width": "",
+                  "class": "",
+                  "id": ""
+                },
+                "clone": [
+                  "group_5888dfa3c61cf"
+                ],
+                "display": "seamless",
+                "layout": "block",
+                "prefix_label": 0,
+                "prefix_name": 0
+              }
+            ],
+            "min": "",
+            "max": ""
+          }
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "Nur f\u00fcr Interne Zwecke (Sammelpunkt f\u00fcr alle Content Builder Module ohne Wrapper wie Accordions)"
+  },
+  {
+    "key": "group_588f0c1c267a3",
+    "title": "OBJ - Accordion",
+    "fields": [
+      {
+        "key": "field_588f0c1c28c46",
+        "label": "Style",
+        "name": "style",
+        "type": "select",
+        "instructions": "Auswahl der m\u00f6glichen Styles",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Default",
+          "style1": "Style 1"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588f182a12306",
+        "label": "Accordion",
+        "name": "accordion",
+        "type": "repeater",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "collapsed": "",
+        "min": "",
+        "max": "",
+        "layout": "row",
+        "button_label": "Eintrag hinzuf\u00fcgen",
+        "sub_fields": [
+          {
+            "key": "field_588f184112307",
+            "label": "Header",
+            "name": "header",
+            "type": "text",
+            "instructions": "Beschriftung der Schaltfl\u00e4che",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          },
+          {
+            "key": "field_588f187812308",
+            "label": "Body",
+            "name": "body",
+            "type": "clone",
+            "instructions": "Accordion Body f\u00fcr den Inhalt",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "clone": [
+              "group_588dbdb84a8ec"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
+          }
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_5888dd837949f",
+    "title": "OBJ - Anchor",
+    "fields": [
+      {
+        "key": "field_5888de219b8fb",
+        "label": "Anker Name",
+        "name": "anchorname",
+        "type": "text",
+        "instructions": "Name des Ankerfelds. Keine Sonderzeichen oder Umlaute verwenden und nicht mit einer Zahl beginnen.",
+        "required": 1,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "anchor",
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_5888ded99b8fc",
+        "label": "Position",
+        "name": "position",
+        "type": "text",
+        "instructions": "Feld um den Sprungpunkt nach oben oder nach unten zu schieben. Bitte den Wert mit Ma\u00dfeinheit und Vorzeichen eingeben. Z.B: -20px, oder 1.34em (komma durch punkt ersetzten)",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_5888b3535d81a",
+    "title": "OBJ - Button",
+    "fields": [
+      {
+        "key": "field_5888b92717344",
+        "label": "Beschriftung",
+        "name": "label",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "70",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "Link",
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_5888bccf00140",
+        "label": "Stil",
+        "name": "style",
+        "type": "select",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "30",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Default",
+          "style1": "Style 1"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_5888b35c17342",
+        "label": "Volle Breite",
+        "name": "fullwidth",
+        "type": "true_false",
+        "instructions": "Button auf volle Breite?",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "message": "",
+        "default_value": 0
+      },
+      {
+        "key": "field_5888b8a817343",
+        "label": "Position",
+        "name": "position",
+        "type": "select",
+        "instructions": "Positionierung des Buttons",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Linksb\u00fcndig",
+          "center": "Zentriert",
+          "right": "Rechtsb\u00fcndig"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_5888b95e17345",
+        "label": "Zur\u00fcckbutton",
+        "name": "backbutton",
+        "type": "true_false",
+        "instructions": "Ist der Button ein einfacher Zur\u00fcckbutton?",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "message": "",
+        "default_value": 0
+      },
+      {
+        "key": "field_5888b9c417346",
+        "label": "Linktyp",
+        "name": "external",
+        "type": "true_false",
+        "instructions": "Ist der Link extern?",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_5888b95e17345",
+              "operator": "!=",
+              "value": "1"
+            }
+          ]
+        ],
+        "wrapper": {
+          "width": "25",
+          "class": "",
+          "id": ""
+        },
+        "message": "",
+        "default_value": 0
+      },
+      {
+        "key": "field_5888ba3017347",
+        "label": "Interner Link",
+        "name": "internal_link",
+        "type": "page_link",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_5888b9c417346",
+              "operator": "!=",
+              "value": "1"
+            },
+            {
+              "field": "field_5888b95e17345",
+              "operator": "!=",
+              "value": "1"
+            }
+          ]
+        ],
+        "wrapper": {
+          "width": "75",
+          "class": "",
+          "id": ""
+        },
+        "post_type": [
+          "page",
+          "post",
+          "produkte",
+          "stellenangebote",
+          "seminare",
+          "edlreferenzen"
+        ],
+        "taxonomy": [],
+        "allow_null": 0,
+        "allow_archives": 1,
+        "multiple": 0
+      },
+      {
+        "key": "field_5888ba9917348",
+        "label": "Externer Link",
+        "name": "external_link",
+        "type": "url",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_5888b9c417346",
+              "operator": "==",
+              "value": "1"
+            },
+            {
+              "field": "field_5888b95e17345",
+              "operator": "!=",
+              "value": "1"
+            }
+          ]
+        ],
+        "wrapper": {
+          "width": "75",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": ""
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_588d14e3b726a",
+    "title": "OBJ - Galerie",
+    "fields": [
+      {
+        "key": "field_588db9281d0cd",
+        "label": "Galerie",
+        "name": "",
+        "type": "message",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "message": "Layouttyp: Smart f\u00fcr eine Thumbnailanordnung im Tumbler Styles (Photogrid), Simple f\u00fcr eine einfache Aneinanderreihung der Thumbnails. Wichtig f\u00fcr das Smartlayout, alle Bilder m\u00fcssen dann\r\n\r\nThumbnailbreite: Regul\u00e4r ist die Breite der Thumbnails abh\u00e4ngig von der Anzahl der Bilder pro Reihe. Falls das zu Gro\u00df oder zu klein ist, kann man die Breite selbst festlegen.",
+        "new_lines": "wpautop",
+        "esc_html": 0
+      },
+      {
+        "key": "field_588db8811d0ca",
+        "label": "Typ",
+        "name": "layout_type",
+        "type": "select",
+        "instructions": "Layouttyp",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "simple": "Simple",
+          "smart": "Smart"
+        },
+        "default_value": [
+          "simple"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588db8fc1d0cc",
+        "label": "Breite",
+        "name": "width",
+        "type": "text",
+        "instructions": "Thumbnailbreite f\u00fcr simplen Layoutmodus",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "20%",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_588e1032d748b",
+        "label": "Format",
+        "name": "format",
+        "type": "select",
+        "instructions": "In welchen Bildformat die Galerie angelegt werden soll, gilt nur f\u00fcr das Simple Layout",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "square": "1 zu 1",
+          "wide": "16 zu 9",
+          "extrawide": "21 zu 10",
+          "rect": "4 zu 3"
+        },
+        "default_value": [
+          "square"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588dba0d1d0ce",
+        "label": "Galerie Eintr\u00e4ge",
+        "name": "gallery_entries",
+        "type": "repeater",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "collapsed": "",
+        "min": "",
+        "max": "",
+        "layout": "table",
+        "button_label": "Bild hinzuf\u00fcgen",
+        "sub_fields": [
+          {
+            "key": "field_588dba341d0cf",
+            "label": "Bild",
+            "name": "photo",
+            "type": "image",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "40",
+              "class": "",
+              "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "thumbnail",
+            "library": "all",
+            "min_width": 50,
+            "min_height": 50,
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpeg, jpg"
+          },
+          {
+            "key": "field_588dba761d0d0",
+            "label": "Bildunterschrift",
+            "name": "caption",
+            "type": "text",
+            "instructions": "Optionale Bildunterschrift, wird erst in der Lightbox sichtbar.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "60",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          }
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_588d1243beba5",
+    "title": "OBJ - Headline",
+    "fields": [
+      {
+        "key": "field_588d1281170d8",
+        "label": "Headline",
+        "name": "headline",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_588d128f170d9",
+        "label": "Semantische Gr\u00f6\u00dfe",
+        "name": "size",
+        "type": "select",
+        "instructions": "Semantische SEO Gr\u00f6\u00dfe",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "h2": "H2",
+          "h3": "H3",
+          "h4": "H4",
+          "h5": "H5",
+          "h6": "H6"
+        },
+        "default_value": [
+          "h2"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588d12b1170da",
+        "label": "Visuelle Gr\u00f6\u00dfe",
+        "name": "overwrite",
+        "type": "select",
+        "instructions": "Visuelle Gr\u00f6\u00dfe unabh\u00e4ngig von der Semantic",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Default",
+          "h1": "H1",
+          "h2": "H2",
+          "h3": "H3",
+          "h4": "H4",
+          "h5": "H5",
+          "h6": "H6"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_588d1538e04f0",
+    "title": "OBJ - Iframe Content",
+    "fields": [
+      {
+        "key": "field_588d166b43cf2",
+        "label": "Iframe Content",
+        "name": "",
+        "type": "message",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "message": "Zum Einbinden von Inhalten die per Iframe eingebunden werden (z.B. Youtube oder Vimeo Videos, Google Maps oder anderen iFrame inhalt). Unter Embed kommt der iFrame Code (copy&paste).",
+        "new_lines": "wpautop",
+        "esc_html": 0
+      },
+      {
+        "key": "field_588d169643cf3",
+        "label": "Embed",
+        "name": "embed",
+        "type": "text",
+        "instructions": "Iframe Code",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_588d16a043cf4",
+        "label": "Ratio",
+        "name": "ratio",
+        "type": "text",
+        "instructions": "Aspect Ratio des iFrames",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "16:9",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_588d16f343cf6",
+        "label": "Gr\u00f6\u00dfe",
+        "name": "size",
+        "type": "select",
+        "instructions": "Bitte nur bei einspaltigen Layouts verwenden! Hiermit kann man Bilder \u00fcber die Seitenbreite hinaus wachsen lassen.",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Default",
+          "viewportsize": "Viewportbrite",
+          "oversize": "\u00dcber Seitenbreite",
+          "undersize": "Unter Seitenbreite"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588d16c443cf5",
+        "label": "Mediaunterschrift",
+        "name": "caption",
+        "type": "text",
+        "instructions": "Optionale Asset Caption",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "field",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_588d14ff0cfac",
+    "title": "OBJ - Image Slider",
+    "fields": [
+      {
+        "key": "field_588db18db691a",
+        "label": "Bilder",
+        "name": "photos",
+        "type": "repeater",
+        "instructions": "",
+        "required": 1,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "collapsed": "",
+        "min": "",
+        "max": 10,
+        "layout": "table",
+        "button_label": "Slide hinzuf\u00fcgen",
+        "sub_fields": [
+          {
+            "key": "field_588db1afb691b",
+            "label": "Bild",
+            "name": "photo",
+            "type": "image",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "return_format": "array",
+            "preview_size": "rw_small",
+            "library": "all",
+            "min_width": 50,
+            "min_height": 50,
+            "min_size": "",
+            "max_width": "",
+            "max_height": "",
+            "max_size": "",
+            "mime_types": "jpeg, jpg"
+          }
+        ]
+      },
+      {
+        "key": "field_588e627444661",
+        "label": "Ratio",
+        "name": "ratio",
+        "type": "select",
+        "instructions": "Im ungcroppten Format sollten die Bilder im gleichen Format beschnitten werden.",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "uncropped": "Ungecropt",
+          "square": "1 zu 1",
+          "wide": "16 zu 9",
+          "extrawide": "21 zu 10",
+          "rect": "4 zu 3"
+        },
+        "default_value": [
+          "wide"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_5888dfa3c61cf",
+    "title": "OBJ - Jumpnavigation",
+    "fields": [
+      {
+        "key": "field_5888dfb240dce",
+        "label": "Sprungnavigation",
+        "name": "",
+        "type": "message",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "message": "Mit ihr kann eine Sprungnavigation implementiert werden um die Anker anzusteuern. Die Anker m\u00fcssen daher schon gesetzt sein. Auch hier gilt die Namen der Anker ohne Sonderzeichen oder Umlauten und sie d\u00fcrfen nicht mit einer Nummer beginnen.\r\n\r\nDas Default-Layout ist eine einfache linksb\u00fcndige Aneinanderreihung der Links, bei voller Breite werden die Buttons so angeordnet das sie auf der vollen Breite Platz haben (brechen bei zu kleiner Gr\u00f6\u00dfe aber um das die Buttons untereinander sind). Untereinander da sind die Buttons wie eine Liste angeordnet.",
+        "new_lines": "wpautop",
+        "esc_html": 0
+      },
+      {
+        "key": "field_5888e06040dcf",
+        "label": "Layout",
+        "name": "layout",
+        "type": "select",
+        "instructions": "Auswahl des Layouts",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Default",
+          "fullwidth": "Volle Breite",
+          "list": "Untereinander"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_5888e0d640dd0",
+        "label": "Style",
+        "name": "style",
+        "type": "select",
+        "instructions": "Stil der Navigation",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "einfacher Textlink",
+          "style1": "Style 1"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_5888e17d40dd2",
+        "label": "Anker",
+        "name": "anchor",
+        "type": "repeater",
+        "instructions": "Anker",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "collapsed": "",
+        "min": "",
+        "max": "",
+        "layout": "block",
+        "button_label": "Eintrag hinzuf\u00fcgen",
+        "sub_fields": [
+          {
+            "key": "field_5888e1a140dd3",
+            "label": "Linkname",
+            "name": "linkname",
+            "type": "text",
+            "instructions": "Name des Links",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "50",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          },
+          {
+            "key": "field_5888e1e140dd4",
+            "label": "Anker Name",
+            "name": "anchorname",
+            "type": "text",
+            "instructions": "Name des Ankers",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "50",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          }
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_588d14386ff5e",
+    "title": "OBJ - Liste",
+    "fields": [
+      {
+        "key": "field_588d21413d173",
+        "label": "Type",
+        "name": "listtype",
+        "type": "select",
+        "instructions": "Beschreibung der List, ob Unsortiert, Sortiert",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "ul": "Unsortiert",
+          "ol": "Sortiert"
+        },
+        "default_value": [
+          "ul"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588d214d3d174",
+        "label": "Style",
+        "name": "style",
+        "type": "select",
+        "instructions": "Style der Bullets bei Unsortierten Listen",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Default",
+          "circle": "Circle",
+          "square": "Square",
+          "custom": "Custom"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588d21583d175",
+        "label": "Liste",
+        "name": "list",
+        "type": "repeater",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "collapsed": "",
+        "min": "",
+        "max": "",
+        "layout": "table",
+        "button_label": "Eintrag hinzuf\u00fcgen",
+        "sub_fields": [
+          {
+            "key": "field_588d216e3d176",
+            "label": "Eintrag",
+            "name": "entry",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          }
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_588d14ba80c4f",
+    "title": "OBJ - Media Image",
+    "fields": [
+      {
+        "key": "field_588db3795d70d",
+        "label": "Bild",
+        "name": "photo",
+        "type": "image",
+        "instructions": "",
+        "required": 1,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "40",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "array",
+        "preview_size": "thumbnail",
+        "library": "all",
+        "min_width": 50,
+        "min_height": 50,
+        "min_size": "",
+        "max_width": "",
+        "max_height": "",
+        "max_size": "",
+        "mime_types": ""
+      },
+      {
+        "key": "field_588db3a55d70e",
+        "label": "Bildunterschrift",
+        "name": "caption",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "60",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_588e62e6a2179",
+        "label": "Ratio",
+        "name": "ratio",
+        "type": "select",
+        "instructions": "Bildformat",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "uncropped": "Ungecropt",
+          "square": "1 zu 1",
+          "wide": "16 zu 9",
+          "extrawide": "21 zu 10",
+          "rect": "4 zu 3"
+        },
+        "default_value": [
+          "uncropped"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588db4085d711",
+        "label": "Gr\u00f6\u00dfe",
+        "name": "size",
+        "type": "select",
+        "instructions": "Bitte nur bei einspaltigen Layouts verwenden! Hiermit kann man Bilder \u00fcber die Seitenbreite hinaus wachsen lassen.",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Default",
+          "viewportsize": "Viewportbreite",
+          "oversize": "\u00dcber Seitenbreite",
+          "undersize": "Unter Seitenbreite"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588db3de5d710",
+        "label": "H\u00f6henbeschr\u00e4nkung",
+        "name": "heightrestriction",
+        "type": "true_false",
+        "instructions": "Handelt es sich um ein Bild im Portraitformat, kann es sein das es l\u00e4nger ist als der Viewport hoch ist. Die H\u00f6henbeschr\u00e4nkung beschr\u00e4nkt dabei die H\u00f6he auf maximale Viewport h\u00f6he - man muss nicht mehr Scrollen um das ganze Bild zu sehen.",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "message": "",
+        "default_value": 0
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_588d14979e2a5",
+    "title": "OBJ - Mediabox",
+    "fields": [
+      {
+        "key": "field_588db4aba279b",
+        "label": "Hintergrundfarbe",
+        "name": "background",
+        "type": "select",
+        "instructions": "Hintergrundfarb der Box",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "25",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Farblos",
+          "gray": "Grau"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588db582a279c",
+        "label": "Media Breite",
+        "name": "media_width",
+        "type": "select",
+        "instructions": "Breite des Media Felds",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "25",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "quarter": "Viertel",
+          "half": "Halb",
+          "threequarter": "Dreiviertel"
+        },
+        "default_value": [
+          "quarter"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588db5cda279d",
+        "label": "Media Position",
+        "name": "media_position",
+        "type": "select",
+        "instructions": "Position des Mediafelds",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "25",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "left": "Linksb\u00fcndig",
+          "right": "Rechtsb\u00fcndig"
+        },
+        "default_value": [
+          "left"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588e5f68eb33a",
+        "label": "Ratio",
+        "name": "ratio",
+        "type": "select",
+        "instructions": "Optionales Image Cropformat",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "25",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "uncropped": "Ungecropt",
+          "square": "1 zu 1",
+          "wide": "16 zu 9",
+          "extrawide": "21 zu 10",
+          "rect": "4 zu 3"
+        },
+        "default_value": [
+          "uncropped"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588db637a279e",
+        "label": "Videobox",
+        "name": "videobox",
+        "type": "true_false",
+        "instructions": "Aktivieren wenn ein Video verwendet werden soll",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "20",
+          "class": "",
+          "id": ""
+        },
+        "message": "",
+        "default_value": 0
+      },
+      {
+        "key": "field_588db683a27a0",
+        "label": "Bild",
+        "name": "photo",
+        "type": "image",
+        "instructions": "Ein Bild wird auf jedenfall eingebunden. Falls ein Video genutzt wird, dient das Bild als Fallback.",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "30",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "array",
+        "preview_size": "thumbnail",
+        "library": "all",
+        "min_width": 50,
+        "min_height": 50,
+        "min_size": "",
+        "max_width": "",
+        "max_height": "",
+        "max_size": "",
+        "mime_types": ""
+      },
+      {
+        "key": "field_588db6f8a27a1",
+        "label": "Video",
+        "name": "video",
+        "type": "gallery",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": [
+          [
+            {
+              "field": "field_588db637a279e",
+              "operator": "==",
+              "value": "1"
+            }
+          ]
+        ],
+        "wrapper": {
+          "width": "50",
+          "class": "",
+          "id": ""
+        },
+        "min": "",
+        "max": "",
+        "insert": "append",
+        "library": "all",
+        "min_width": "",
+        "min_height": "",
+        "min_size": "",
+        "max_width": "",
+        "max_height": "",
+        "max_size": "",
+        "mime_types": "mp4, webm, ogv, m4v"
+      },
+      {
+        "key": "field_588db7c7a27a2",
+        "label": "Textcontent",
+        "name": "textcontent",
+        "type": "wysiwyg",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "full",
+        "media_upload": 0
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_588d0c8982d6a",
+    "title": "OBJ - Richtext",
+    "fields": [
+      {
+        "key": "field_588d0ca6c90b5",
+        "label": "Richtext",
+        "name": "richtext",
+        "type": "wysiwyg",
+        "instructions": "Modul f\u00fcr Flie\u00dftext",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "full",
+        "media_upload": 1
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_588d1562ba016",
+    "title": "OBJ - Slide Out Box",
+    "fields": [
+      {
+        "key": "field_588dbb906c46a",
+        "label": "Trigger",
+        "name": "trigger",
+        "type": "text",
+        "instructions": "Aktivierungszeile auf die geklickt wird",
+        "required": 1,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "60",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_588dbb5c6c469",
+        "label": "Style",
+        "name": "style",
+        "type": "select",
+        "instructions": "Es k\u00f6nnen unterschiedliche Styles pro Slideout Box festgelegt werden.",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "40",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Default",
+          "style1": "Style 1"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588dbba66c46b",
+        "label": "Inhalt",
+        "name": "body",
+        "type": "wysiwyg",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "tabs": "all",
+        "toolbar": "full",
+        "media_upload": 1
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_5888dbc878ef5",
+    "title": "OBJ - Spacer",
+    "fields": [
+      {
+        "key": "field_5888dbd1149fc",
+        "label": "Spacer",
+        "name": "spacer",
+        "type": "select",
+        "instructions": "Mit dem Spacer kann man zus\u00e4tzliche Abst\u00e4nde in das Dokument setzen. Den jeweiligen Teiler eingeben, der Abstand wird dann \u00fcber den Basiswert ausgerechnet.",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "0.25": "Viertel",
+          "0.5": "Halb",
+          "0.75": "Dreiviertel",
+          "1": "1",
+          "2": "2",
+          "3": "3",
+          "4": "4",
+          "5": "5",
+          "6": "6",
+          "7": "7",
+          "8": "8",
+          "9": "9",
+          "10": "10"
+        },
+        "default_value": [
+          "0.5"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_588f2b1962bd2",
+    "title": "OBJ - Tab",
+    "fields": [
+      {
+        "key": "field_588f2b19650e4",
+        "label": "Style",
+        "name": "style",
+        "type": "select",
+        "instructions": "Auswahl der m\u00f6glichen Styles",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Default",
+          "style1": "Style 1"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588f2b19650f4",
+        "label": "Tab",
+        "name": "tab",
+        "type": "repeater",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "collapsed": "",
+        "min": "",
+        "max": "",
+        "layout": "row",
+        "button_label": "Tab hinzuf\u00fcgen",
+        "sub_fields": [
+          {
+            "key": "field_588f340bb4d84",
+            "label": "Header",
+            "name": "header",
+            "type": "text",
+            "instructions": "Beschriftung der Schaltfl\u00e4che",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          },
+          {
+            "key": "field_588f2b1967330",
+            "label": "Body",
+            "name": "body",
+            "type": "clone",
+            "instructions": "Accordion Body f\u00fcr den Inhalt",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "clone": [
+              "group_588dbdb84a8ec"
+            ],
+            "display": "seamless",
+            "layout": "block",
+            "prefix_label": 0,
+            "prefix_name": 0
+          }
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_588d151449b86",
+    "title": "OBJ - Text Slider",
+    "fields": [
+      {
+        "key": "field_588dbbdecb659",
+        "label": "Slides",
+        "name": "slides",
+        "type": "repeater",
+        "instructions": "Ein Slider Modul f\u00fcr Textinhalte.",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "collapsed": "",
+        "min": "",
+        "max": "",
+        "layout": "table",
+        "button_label": "Eintrag hinzuf\u00fcgen",
+        "sub_fields": [
+          {
+            "key": "field_588dbc04cb65a",
+            "label": "Slide",
+            "name": "slide",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "basic",
+            "media_upload": 0
+          }
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_588d1598d02cf",
+    "title": "OBJ - Trennlinie",
+    "fields": [
+      {
+        "key": "field_588dbc3e14bbe",
+        "label": "Trennlinie",
+        "name": "horizontal_ruler",
+        "type": "select",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Default",
+          "style1": "Style 1"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_588d15e595589",
+    "title": "OBJ - Viewport Span",
+    "fields": [
+      {
+        "key": "field_588dbc91b0ec5",
+        "label": "Style",
+        "name": "style",
+        "type": "select",
+        "instructions": "Auswahl der m\u00f6glichen Styles",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "30",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Default",
+          "style1": "Style 1"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_588dbcc1b0ec6",
+        "label": "Volle H\u00f6he",
+        "name": "full_height",
+        "type": "true_false",
+        "instructions": "Soll der Span auf die voll Viewporth\u00f6he aufgespannt werden?",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "30",
+          "class": "",
+          "id": ""
+        },
+        "message": "",
+        "default_value": 0
+      },
+      {
+        "key": "field_588dbce6b0ec7",
+        "label": "Anker",
+        "name": "anchor",
+        "type": "text",
+        "instructions": "Optionaler Name des Ankers - f\u00fcr Sprungnavigationen",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "40",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_588dc126ae457",
+        "label": "Modules",
+        "name": "modules",
+        "type": "clone",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "clone": [
+          "group_588dbdb84a8ec"
+        ],
+        "display": "seamless",
+        "layout": "block",
+        "prefix_label": 0,
+        "prefix_name": 0
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  },
+  {
+    "key": "group_588d14776b814",
+    "title": "OBJ - Zitat",
+    "fields": [
+      {
+        "key": "field_588dbd7994195",
+        "label": "Zitat",
+        "name": "quote",
+        "type": "textarea",
+        "instructions": "",
+        "required": 1,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "maxlength": "",
+        "rows": 3,
+        "new_lines": "wpautop"
+      },
+      {
+        "key": "field_588dbd9794196",
+        "label": "Quelle",
+        "name": "source",
+        "type": "text",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_template",
+          "operator": "==",
+          "value": "template--acf-parklot.php"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
+  }
+]

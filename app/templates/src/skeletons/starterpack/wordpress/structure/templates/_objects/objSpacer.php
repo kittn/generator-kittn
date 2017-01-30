@@ -1,7 +1,7 @@
 <?php
 /**
   Spacer
-  ===============
+  ======
   Spacer for adding more Margin
 */
 

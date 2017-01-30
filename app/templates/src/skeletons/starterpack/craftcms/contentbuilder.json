@@ -827,17 +827,17 @@
                   "options": [
                     {
                       "label": "Viertel",
-                      "value": 25,
-                      "default": ""
+                      "value": "quarter",
+                      "default": 1
                     },
                     {
                       "label": "Halb",
-                      "value": 50,
+                      "value": "half",
                       "default": ""
                     },
                     {
                       "label": "Dreiviertel",
-                      "value": 75,
+                      "value": "threequarter",
                       "default": ""
                     }
                   ]

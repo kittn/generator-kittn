@@ -1,4 +1,8 @@
 <?php
+
+// Load Basefunction (dont remove it!)
+require_once('_functions/filerename.php');
+
 // Adding Navigation
 require_once('_functions/navigations.php');
 
@@ -46,9 +50,6 @@ require_once('_functions/disableComments.php');
 
 // Adding Macros
 require_once('_macros/macroMediaImageSet.php');
-
-// Load ACF Modules
-// require_once('_acf-modules/contenBuilderMain.php');
 
 // Custom Loader GIF CF7
 // require_once('_functions/cf7CustomLoader.php');

@@ -5,7 +5,7 @@
     <h1><?php the_title(); ?></h1>
     <?php the_content(); ?>
     <?php // Include Contentbuilder ?>
-    <?php include ( get_template_directory() . '/_contentbuilder/contentModules.php' ); ?>
+    <?php include ( get_template_directory() . '/_contentbuilder/contentBuilder.php' ); ?>
   <?php endwhile; endif; ?>
   </div>
 </main>

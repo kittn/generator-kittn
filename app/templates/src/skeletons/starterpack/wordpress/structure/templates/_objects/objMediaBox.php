@@ -1,25 +1,14 @@
 <?php
 /**
   Media Box
-  ===============
+  =========
   Contentblock with a Image or Video
 */
 
 // Default Vars
 $classname = 'o-mediabox';
-$mediaWidth = '';
 $mediaPosition = '';
 $mediaBackground = '';
-
-// Width Style
-switch (get_sub_field('media_width')) :
-  case '50' :
-    $mediaWidth = ' '.$classname.'--half';
-    break;
-  case '75' :
-    $mediaWidth = ' '.$classname.'--threequater';
-    break;
-endswitch;
 
 // Position
 if (get_sub_field('media_position') == 'right')
@@ -30,12 +19,10 @@ if (get_sub_field('background') != 'default')
   $mediaBackground = ' '.$classname.'--colored '.$classname.'--c-'.get_sub_field('background');
 
 $ratio = get_sub_field('ratio');
-
-$classes = $classname.$mediaWidth.$mediaPosition.$mediaBackground;
 ?>
 
 <?php // Building Element Block  ?>
-<div class="<?= $classes; ?>">
+<div class="<?= $classname.$mediaPosition.$mediaBackground; ?><?= ' '.$classname.'--'.get_sub_field('media_width'); ?>">
   <?php if (get_sub_field('photo') || get_sub_field('video')) : ?>
     <div class="<?= $classname; ?>__media">
       <?php if (get_sub_field('videobox')) : ?>

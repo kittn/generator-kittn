@@ -1,8 +1,8 @@
 <?php
 /**
   Image Slider
-  ===============
-  Build a Image Slider with Swipper
+  ============
+  Build a Image Slider with Swipper.js
 */
 
 // Default Vars

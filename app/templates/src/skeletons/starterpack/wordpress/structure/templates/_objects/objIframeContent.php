@@ -2,7 +2,7 @@
 /**
   Iframe Content
   ==============
-  For adding iFrame Content thats need to be responsive
+  For adding responsive iFrame Content
 */
 
 // Default Vars

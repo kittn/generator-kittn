@@ -1,7 +1,7 @@
 <?php
 /**
   Text Slider
-  ============
+  ===========
   Build a Text Slider with Swipper
 */
 

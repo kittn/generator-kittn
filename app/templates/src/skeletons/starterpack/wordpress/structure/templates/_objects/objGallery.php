@@ -1,8 +1,8 @@
 <?php
 /**
   Gallery
-  ===============
-  A collection of real Content Modules, without Wrapper Modules like Accordion
+  =======
+  Gallery with Lightbox (Photoswipe) support and a Flexbox Layout
 
 */
 

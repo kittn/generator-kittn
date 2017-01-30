@@ -11,17 +11,8 @@
   {% set classname = 'o-mediabox' %}
 {% endif %}
 
-{% switch data.mediaWidth %}
-  {% case "50" %}
-    {% set width = ' '~classname~'--half' %}
-  {% case "75" %}
-    {% set width = ' '~classname~'--threequater' %}
-  {% default %}
-    {% set width = '' %}
-{% endswitch %}
-
 {# Build Element Block #}
-<div class="{{ classname }}{{ width }}{{ data.mediaPosition == 'right' ? ' '~classname~'--right' }}{{ data.background != 'null' ? ' '~classname~'--colored '~classname~'--c-'~data.background }}">
+<div class="{{ classname }}{{ ' '~classname~'--'~data.mediaWidth }}{{ data.mediaPosition == 'right' ? ' '~classname~'--right' }}{{ data.background != 'null' ? ' '~classname~'--colored '~classname~'--c-'~data.background }}">
 
   {% if data.video or data.photo %}
     <div class="{{ classname }}__media">
