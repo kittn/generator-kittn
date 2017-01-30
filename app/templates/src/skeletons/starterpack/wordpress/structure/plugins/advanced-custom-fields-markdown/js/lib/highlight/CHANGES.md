@@ -804,7 +804,7 @@ Other changes:
 - [MEL][] language from [Shuen-Huei Guan][drake]
 - whitespace now allowed between `<pre>` and `<code>`
 - better auto-detection of C++ and PHP
-- HTML allows embedded VBScript (`<% .. %>`)
+- HTML allows embedded VBScript (`< % .. % >`)
 
 [f]: http://softwaremaniacs.org/forum/highlightjs/
 [voldmar]: http://voldmar.ya.ru/
