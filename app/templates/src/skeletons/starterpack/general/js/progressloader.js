@@ -56,16 +56,19 @@ const stateComplete = () => {
  * Progress Loader
  */
 const progressLoader = () => {
-  // Inital State
-  stateLoading()
+  // Disable Progressloader on Craft Livepreview
+  if (!pelements.body.classList.contains('is-livepreview')) {
+    // Inital State
+    stateLoading()
 
-  // Interactive State
-  stateInteractive()
+    // Interactive State
+    stateInteractive()
 
-  // Check Statechange to complete
-  document.onreadystatechange = () => {
-    if (document.readyState === 'complete') {
-      stateComplete()
+    // Check Statechange to complete
+    document.onreadystatechange = () => {
+      if (document.readyState === 'complete') {
+        stateComplete()
+      }
     }
   }
 }

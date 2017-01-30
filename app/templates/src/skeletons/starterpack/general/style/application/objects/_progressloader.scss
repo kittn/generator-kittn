@@ -44,6 +44,11 @@
         opacity: 0;
         transition: opacity .5s ease-in-out;
       }
+
+      // Dont hide Screen with Craft Livepreview
+      .is-livepreview #{v($api,el,canvas)} {
+        opacity: 1;
+      }
     }
   }
 
