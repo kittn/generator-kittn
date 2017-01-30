@@ -15,7 +15,7 @@
   {% set tabGroup = random(5000) %}
 
   {% for key, tab in content.children %}
-    <input type="radio" name="tabs" id="tg{{ tabGroup }}-e{{ key }}" class="{{ classname }}__input" checked="checked">
+    <input type="radio" name="tabs" id="tg{{ tabGroup }}-e{{ key }}" class="{{ classname }}__input"{{ key == 0 ? ' checked="checked"' }}>
     <label class="{{ classname }}__header" for="tg{{ tabGroup }}-e{{ key }}">{{ tab.objTab }}</label>
     <div class="{{ classname }}__body">
       <div class="{{ classname }}__inner">
