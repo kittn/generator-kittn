@@ -21,19 +21,11 @@
     {% set buttonposition = '' %}
 {% endswitch %}
 
-{# Define Color Modifier #}
-{% switch data.style %}
-  {% case "style1" %}
-    {% set buttonstyle = ' '~classname~'--s-style1' %}
-  {% default %}
-    {% set buttonstyle = ' '~classname~'--s-default' %}
-{% endswitch %}
-
 {# Build Element Block #}
 <div class="{{ classname }}{{ buttonposition }}">
   <a itemprop="url"
      href="{{ data.button.url }}" {{ data.button.target ? ' target="_blank"' }}
-     class="{{ classname }}__element{{ buttonstyle }}{{ data.size ? ' '~classname~'--'~data.size }}{{ data.fullwidth ? ' '~classname~'--fullwidth' }}">
+     class="{{ classname }}__element{{ data.style ? ' '~classname~'--s-'~data.style }}{{ data.size ? ' '~classname~'--'~data.size }}{{ data.fullwidth ? ' '~classname~'--fullwidth' }}">
     {{ data.button.text }}
   </a>
 </div>
