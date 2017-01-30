@@ -552,7 +552,7 @@ var KittnGenerator = yeoman.Base.extend({
         // Copy Contentbuilder Config
         this.fs.copyTpl(
           this.templatePath('src/skeletons/starterpack/craftcms/contentbuilder.json'),
-          this.destinationPath('src/.system/contentbuilder.json'),
+          this.destinationPath('contentbuilder.json'),
           templateParams
         );
       }
@@ -596,13 +596,13 @@ var KittnGenerator = yeoman.Base.extend({
         // Copy Contentbuilder Config
         this.fs.copyTpl(
           this.templatePath('src/skeletons/starterpack/wordpress/contentbuilder.json'),
-          this.destinationPath('src/.system/contentbuilder.json'),
+          this.destinationPath('acf-contentbuilder.json'),
           templateParams
         );
         // Copy Contentbuilder Config
         this.fs.copyTpl(
           this.templatePath('src/skeletons/starterpack/wordpress/adminimize-settings.json'),
-          this.destinationPath('src/.system/adminimize-settings.json'),
+          this.destinationPath('adminimize-settings.json'),
           templateParams
         );
       }
