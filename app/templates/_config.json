@@ -181,7 +181,7 @@
   "src": {
     "style": "src/style/",
     "template": "src/template/",<% if (projectUsage === 'Integrate in Wordpress' ) { %>
-    "structure": "src/structure/template/",
+    "structure": "src/structure/templates/",
     "config": "src/structure/config/",
     "plugins": "src/structure/plugins/",<% } else { %>
     "structure": "src/structure/",<% } %>
