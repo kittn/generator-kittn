@@ -617,7 +617,7 @@
         {
           "param": "page_template",
           "operator": "==",
-          "value": "default"
+          "value": "template--contentbuilder.php"
         }
       ]
     ],
@@ -1169,7 +1169,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": "Nur f\u00fcr Interne Zwecke (Sammelpunkt f\u00fcr alle Content Builder Module ohne Wrapper wie Accordions)"
+    "description": "Nur f\u00fcr Interne Zwecke (Sammelpunkt f\u00fcr alle Content Builder Module ohne Wrapper wie Accordions)",
+    "local": "php"
   },
   {
     "key": "group_588f0c1c267a3",
@@ -1280,7 +1281,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_5888dd837949f",
@@ -1341,7 +1343,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_5888b3535d81a",
@@ -1562,7 +1565,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d14e3b726a",
@@ -1741,7 +1745,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d1243beba5",
@@ -1845,7 +1850,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d1538e04f0",
@@ -1971,7 +1977,8 @@
     "instruction_placement": "field",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d14ff0cfac",
@@ -2069,7 +2076,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_5888dfa3c61cf",
@@ -2223,7 +2231,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d14386ff5e",
@@ -2342,7 +2351,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d14ba80c4f",
@@ -2483,7 +2493,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d14979e2a5",
@@ -2709,7 +2720,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d0c8982d6a",
@@ -2750,7 +2762,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d1562ba016",
@@ -2837,7 +2850,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_5888dbc878ef5",
@@ -2898,7 +2912,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588f2b1962bd2",
@@ -3009,7 +3024,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d151449b86",
@@ -3071,7 +3087,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d1598d02cf",
@@ -3121,7 +3138,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d15e595589",
@@ -3227,7 +3245,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d14776b814",
@@ -3288,6 +3307,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   }
 ]

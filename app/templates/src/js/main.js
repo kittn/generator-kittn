@@ -45,7 +45,7 @@ lazySizesConfig.expFactor = 1.3
 lazySizes.init()
 
 // Init Container Queries
-cq({ postcss: true })<% if (projectcraftbp === true) { %>
+cq({ postcss: true })<% if (projectcraftbp === true || projectwordpressbp === true) { %>
 
 // Init Photoswipe
 initPhotoSwipeFromDOM('.is-photoswipped')
