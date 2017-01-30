@@ -591,6 +591,20 @@ var KittnGenerator = yeoman.Base.extend({
         this.directory('src/skeletons/starterpack/general/js/', 'src/js/partial/');
         // Copy Sass Files
         this.directory('src/skeletons/starterpack/general/style/', 'src/style/');
+        // Copy Plugins and Templates
+        this.directory('src/skeletons/starterpack/wordpress/structure/', 'src/structure/');
+        // Copy Contentbuilder Config
+        this.fs.copyTpl(
+          this.templatePath('src/skeletons/starterpack/wordpress/contentbuilder.json'),
+          this.destinationPath('src/.system/contentbuilder.json'),
+          templateParams
+        );
+        // Copy Contentbuilder Config
+        this.fs.copyTpl(
+          this.templatePath('src/skeletons/starterpack/wordpress/adminimize-settings.json'),
+          this.destinationPath('src/.system/adminimize-settings.json'),
+          templateParams
+        );
       }
 
     } else {
