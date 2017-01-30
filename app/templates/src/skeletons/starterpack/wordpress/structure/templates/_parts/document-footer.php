@@ -6,6 +6,6 @@
 */
 ?>
 <?php wp_footer(); ?>
-<script src="<?php bloginfo('template_url'); ?>/assets/js/modernizr.js"></script>
-<script src="<?php bloginfo('template_url'); ?>/assets/js/conditionizr.js"></script>
-<script src="<?php bloginfo('template_url'); ?>/assets/js/main.js"></script>
+<script src="<?= get_template_directory_uri(); ?>/assets/js/modernizr.js"></script>
+<script src="<?= get_template_directory_uri(); ?>/assets/js/conditionizr.js"></script>
+<script src="<?= get_template_directory_uri(); ?>/assets/js/main.js"></script>

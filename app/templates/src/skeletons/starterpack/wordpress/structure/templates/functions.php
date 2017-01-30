@@ -19,7 +19,7 @@ require_once('_functions/imagesSizes.php');
 require_once('_functions/thumbnailSupport.php');
 
 // Remove jQuery Migrate and add jQuery Core
-// require_once('_functions/removeAddjQuery.php');
+ require_once('_functions/removeAddjQuery.php');
 
 // Disable Admin File Editor
 require_once('_functions/disableAdminEditor.php');
@@ -29,9 +29,6 @@ require_once('_functions/disableAdminEditor.php');
 
 // Remove WP Generator
 require_once('_functions/removeWPGenerator.php');
-
-// Add Title Tag Support
-require_once('_functions/titleTagSupport.php');
 
 // Remove Emoji Support
 require_once('_functions/removeEmoji.php');
