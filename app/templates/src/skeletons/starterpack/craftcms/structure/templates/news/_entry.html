@@ -1,0 +1,15 @@
+{#
+ # News Entry Template
+ # -------------------
+ #}
+
+{% extends '_layout/main-layout.html' %}
+
+{% block content %}
+  <div class="o-layout__container">
+    <p>{{ entry.postDate.format('d.F Y') }}</p>
+    <h1>{{ entry.title }}</h1>
+    {{ entry.body }}
+    {% include '_builder/content-builder.html' %}
+  </div>
+{% endblock %}
