@@ -47,6 +47,7 @@ require_once('_functions/disableComments.php');
 
 // Adding Macros
 require_once('_macros/macroMediaImageSet.php');
+require_once('_macros/macroSocialShare.php');
 
 // Custom Loader GIF CF7
 // require_once('_functions/cf7CustomLoader.php');
