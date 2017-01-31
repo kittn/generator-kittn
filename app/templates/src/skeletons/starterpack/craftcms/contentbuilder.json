@@ -1,10 +1,23 @@
 {
   "groups": [
     "Objects",
-    "Globals",
-    "Default"
+    "Meta",
+    "Default",
+    "Globals"
   ],
   "sections": [
+    {
+      "name": "News",
+      "handle": "news",
+      "type": "channel",
+      "enableVersioning": 1,
+      "typesettings": {
+        "hasUrls": 1,
+        "template": "news\/_entry",
+        "urlFormat": "news\/{postDate.year}\/{slug}",
+        "nestedUrlFormat": null
+      }
+    },
     {
       "name": "Seiten",
       "handle": "pages",
@@ -122,6 +135,61 @@
             }
           }
         }
+      }
+    },
+    {
+      "group": "Meta",
+      "name": "Artikel Bild",
+      "handle": "articleImage",
+      "instructions": "Artikelbild das f\u00fcr Archiv und m\u00f6gliche Header verwendet werden kann.",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": null,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Bild",
+                "handle": "photo",
+                "instructions": "",
+                "required": 0,
+                "type": "Assets",
+                "width": "",
+                "typesettings": {
+                  "useSingleFolder": "",
+                  "sources": "*",
+                  "defaultUploadLocationSource": "images",
+                  "defaultUploadLocationSubpath": "",
+                  "singleUploadLocationSource": "images",
+                  "singleUploadLocationSubpath": "",
+                  "restrictFiles": 1,
+                  "allowedKinds": [
+                    "image"
+                  ],
+                  "limit": 1,
+                  "viewMode": "large",
+                  "selectionLabel": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Body",
+      "handle": "body",
+      "instructions": null,
+      "required": false,
+      "type": "RichText",
+      "typesettings": {
+        "configFile": "Standard.json",
+        "columnType": "text"
       }
     },
     {
@@ -279,7 +347,7 @@
       }
     },
     {
-      "group": "Default",
+      "group": "Globals",
       "name": "Fokuspunkt",
       "handle": "focalpoint",
       "instructions": "",
@@ -1133,7 +1201,7 @@
       }
     },
     {
-      "group": "Default",
+      "group": "Meta",
       "name": "SEO",
       "handle": "seo",
       "instructions": "",
@@ -1142,6 +1210,7 @@
       "typesettings": {
         "assetSources": "*",
         "seoMainEntityCategory": "CreativeWork",
+        "seoMainEntityOfPage": "WebPage",
         "seoTitleSource": "field",
         "seoTitleSourceField": "title",
         "seoTitle": "",
@@ -1236,6 +1305,91 @@
                   "cleanupHtml": "",
                   "purifyHtml": 1,
                   "columnType": "text"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Social Links",
+      "handle": "socialLinks",
+      "instructions": "Links zu den Sozialen Netzwerken",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": null,
+        "selectionLabel": "Netzwerk hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Icon",
+                "handle": "socialIcon",
+                "instructions": "Name des Icons",
+                "required": 0,
+                "type": "Dropdown",
+                "width": 20,
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Facebook",
+                      "value": "facebook",
+                      "default": ""
+                    },
+                    {
+                      "label": "Twitter",
+                      "value": "twitter",
+                      "default": ""
+                    },
+                    {
+                      "label": "Googleplus",
+                      "value": "googleplus",
+                      "default": ""
+                    },
+                    {
+                      "label": "Pinterest",
+                      "value": "pinterest",
+                      "default": ""
+                    },
+                    {
+                      "label": "Instagram",
+                      "value": "instagram",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Link",
+                "handle": "socialLink",
+                "instructions": "",
+                "required": 0,
+                "type": "PlainText",
+                "width": 50,
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new3": {
+                "name": "Titel",
+                "handle": "socialTitle",
+                "instructions": "Beschriftung des Popovers",
+                "required": 0,
+                "type": "PlainText",
+                "width": 30,
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
                 }
               }
             }
@@ -1507,6 +1661,17 @@
             }
           }
         }
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Tags",
+      "handle": "tags",
+      "instructions": null,
+      "required": false,
+      "type": "Tags",
+      "typesettings": {
+        "source": "default"
       }
     },
     {
@@ -2027,6 +2192,23 @@
   ],
   "entryTypes": [
     {
+      "sectionHandle": "news",
+      "hasTitleField": 1,
+      "titleLabel": "Titel",
+      "name": "News",
+      "handle": "news",
+      "fieldLayout": {
+        "Content": [
+          "body",
+          "tags"
+        ],
+        "Meta": [
+          "articleImage",
+          "seo"
+        ]
+      }
+    },
+    {
       "sectionHandle": "pages",
       "hasTitleField": 1,
       "titleLabel": "Titel",
@@ -2037,6 +2219,7 @@
           "contentBuilder"
         ],
         "Meta": [
+          "articleImage",
           "seo"
         ]
       }
@@ -2066,6 +2249,15 @@
       "fieldLayout": {
         "Inhalt": [
           "copyright"
+        ]
+      }
+    },
+    {
+      "name": "Main",
+      "handle": "main",
+      "fieldLayout": {
+        "Inhalt": [
+          "socialLinks"
         ]
       }
     }
