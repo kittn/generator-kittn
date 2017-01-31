@@ -59,12 +59,12 @@ let bundle = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: path.join( ROOT_PATH, 'src/js' ),
+        include: SOURCE_PATH,
         exclude: /node_modules/
       }<% if ( projectJSFramework === 'Vue.js' ) { %>,
       {
         test: /\.vue$/,
-        include: path.join( ROOT_PATH, 'src/js'),
+        include: SOURCE_PATH,
         exclude: /node_modules/,
         loader: 'vue-loader'
       },<% } %>
