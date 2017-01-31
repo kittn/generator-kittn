@@ -7,6 +7,6 @@
 */
 
 // Rename Object Name to Filename
-function camelize($input, $separator = '_') {
+function camelize($input) {
   return lcfirst(str_replace(' ', '', ucwords(str_replace(array('-', '_'), ' ', $input))));
 }
