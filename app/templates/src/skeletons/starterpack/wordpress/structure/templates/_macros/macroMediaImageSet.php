@@ -2,59 +2,58 @@
 /**
   Media Image Set
   ===============
-  Generate a Media Image Set for Lazyload in different formats
-*/
-
-function macro_mediaImageSet($image,$classname,$format) {
+  Generate a Media Image Set for Lazyload in different formats.
+ * @param $image           = Image
+ * @param $classname       = Classname from the Element
+ * @param $format          = Imageformat [uncropped, wide, extrawide, square, rect]
+ * @param bool $background = Background Option
+ */
+function macro_mediaImageSet($image,$classname,$format,$background = false) {
   $imageset = '';
   $imagepre = '';
+  $imageformats = ['uncropped', 'wide', 'extrawide', 'square', 'rect'];
+
+  // Crop Size Array
+  $cropsizes = [
+    'large'  => ' 1200w, ',
+    'medium' => ' 800w, ',
+    'small'  => ' 400w, ',
+    'mini'   => ' 100w, '
+  ];
+
+  // Uncropped Images Sizes
+  $imagesizes = [
+    'wide'    => ' 1200w, ',
+    'desktop' => ' 960w, ',
+    'tablet'  => ' 768w, ',
+    'medium'  => ' 480w, ',
+    'small'   => ' 320w, ',
+    'micro'   => ' 150w '
+  ];
 
   if ($image) {
-    // Generate Image Set
-    switch ($format) :
-      // Imageset Cropfactor: 16:9
-      case 'wide' :
-        $imageset  =  $image['sizes']['wide_large'] . ' 1200w, ';
-        $imageset .=  $image['sizes']['wide_medium'] . ' 800w, ';
-        $imageset .=  $image['sizes']['wide_small'] . ' 400w, ';
-        $imageset .=  $image['sizes']['wide_mini'] . ' 100w ';
-        $imagepre  =  $image['sizes']['wide_mini'];
-        break;
-      // Imageset Cropfactor: 21:10
-      case 'extrawide' :
-        $imageset  =  $image['sizes']['extrawide_large'] . ' 1200w, ';
-        $imageset .=  $image['sizes']['extrawide_medium'] . ' 800w, ';
-        $imageset .=  $image['sizes']['extrawide_small'] . ' 400w, ';
-        $imageset .=  $image['sizes']['extrawide_mini'] . ' 100w ';
-        $imagepre  =  $image['sizes']['extrawide_mini'];
-        break;
-      // Imageset Cropfactor: 1:1
-      case 'square' :
-        $imageset  =  $image['sizes']['square_large'] . ' 1200w, ';
-        $imageset .=  $image['sizes']['square_medium'] . ' 800w, ';
-        $imageset .=  $image['sizes']['square_small'] . ' 400w, ';
-        $imageset .=  $image['sizes']['square_mini'] . ' 100w ';
-        $imagepre  =  $image['sizes']['square_mini'];
-        break;
-      // Imageset Cropfactor: 4:3
-      case 'rect' :
-        $imageset  =  $image['sizes']['rect_large'] . ' 1200w, ';
-        $imageset .=  $image['sizes']['rect_medium'] . ' 800w, ';
-        $imageset .=  $image['sizes']['rect_small'] . ' 400w, ';
-        $imageset .=  $image['sizes']['rect_mini'] . ' 100w ';
-        $imagepre  =  $image['sizes']['rect_mini'];
-        break;
-      case 'uncropped' :
-        $imageset  =  $image['sizes']['rw_wide'] . ' 1200w, ';
-        $imageset .=  $image['sizes']['rw_desktop'] . ' 960w, ';
-        $imageset .=  $image['sizes']['rw_tablet'] . ' 768w, ';
-        $imageset .=  $image['sizes']['rw_medium'] . ' 480w, ';
-        $imageset .=  $image['sizes']['rw_small'] . ' 320w, ';
-        $imageset .=  $image['sizes']['rw_micro'] . ' 150w ';
-        $imagepre  =  $image['sizes']['rw_small'];
-        break;
-    endswitch;
-  }
+    // Check Imageformat
+    if (in_array($format, $imageformats)) {
+      // Generate Image Set
+      foreach (($format != 'uncropped' ? $cropsizes : $imagesizes) as $key => $value) {
+        $imageset .= $image['sizes'][$format.'_'.$key] . $value;
+      }
 
-  echo '<img data-sizes="auto" src="'.$imagepre.'" data-srcset="'.$imageset.'" class="'.$classname.' lazyload" role="img" alt="'.$image["alt"].'" itemprop="thumbnail">';
+      // Define Preload Image
+      if ($format != 'uncropped') {
+        $imagepre  =  $image['sizes'][$format.'_mini'];
+      } else {
+        $imagepre  =  $image['sizes']['rw_small'];
+      }
+
+      // Output as <img> or Background
+      if ($background) {
+        echo '<figure class="'.$classname.' lazyload" style="background-image: url('.$imagepre.')" data-sizes="auto" data-bgset="'.$imageset.'"></figure>';
+      } else {
+        echo '<img data-sizes="auto" src="'.$imagepre.'" data-srcset="'.$imageset.'" class="'.$classname.' lazyload" role="img" alt="'.$image["alt"].'" itemprop="thumbnail">';
+      }
+    } else {
+      echo '<p style="color:red">Wrong Image Format!<br> Use the Following: uncropped, wide, extrawide, square or rect </p>';
+    }
+  }
 }
