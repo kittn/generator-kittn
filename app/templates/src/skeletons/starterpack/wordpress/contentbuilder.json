@@ -631,7 +631,8 @@
       "custom_fields"
     ],
     "active": 1,
-    "description": "Main Content Builder um Inhalte zu erstellen."
+    "description": "Main Content Builder um Inhalte zu erstellen.",
+    "local": "php"
   },
   {
     "key": "group_588dbdb84a8ec",
@@ -1171,6 +1172,130 @@
     "active": 1,
     "description": "Nur f\u00fcr Interne Zwecke (Sammelpunkt f\u00fcr alle Content Builder Module ohne Wrapper wie Accordions)",
     "local": "php"
+  },
+  {
+    "key": "group_5892064d58ebc",
+    "title": "GLOB - Social Links",
+    "fields": [
+      {
+        "key": "field_58920659c6b26",
+        "label": "Social Link",
+        "name": "",
+        "type": "message",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "message": "Stellen hier die jeweilgen Verk\u00fcpfungen zu den Fanpages der jeweiligen Social Networks ein.",
+        "new_lines": "wpautop",
+        "esc_html": 0
+      },
+      {
+        "key": "field_5892069fc6b27",
+        "label": "Social Links",
+        "name": "social_links",
+        "type": "repeater",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "collapsed": "",
+        "min": "",
+        "max": "",
+        "layout": "table",
+        "button_label": "Netzwerk hinzuf\u00fcgen",
+        "sub_fields": [
+          {
+            "key": "field_589206b2c6b28",
+            "label": "Netzwerk",
+            "name": "network",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "20",
+              "class": "",
+              "id": ""
+            },
+            "choices": {
+              "facebook": "Facebook",
+              "twitter": "Twitter",
+              "googleplus": "Google Plus",
+              "pinterest: Pinterest": "pinterest: Pinterest",
+              "instagram": "Instagram"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+          },
+          {
+            "key": "field_589207ebc6b29",
+            "label": "Link",
+            "name": "link",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "50",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+          },
+          {
+            "key": "field_589207fec6b2a",
+            "label": "Title",
+            "name": "title",
+            "type": "text",
+            "instructions": "Beschriftung des Popovers",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+              "width": "",
+              "class": "",
+              "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+          }
+        ]
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "options_page",
+          "operator": "==",
+          "value": "acf-options-globals"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": ""
   },
   {
     "key": "group_588f0c1c267a3",
