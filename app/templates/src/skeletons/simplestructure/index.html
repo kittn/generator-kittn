@@ -1,34 +1,34 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>MyPage - Title</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <meta name="description" content="[Description]">
-  <meta property="og:description" content="[Description]">
-  <meta property="og:title" content="MyPage - Title">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="[URL]">
-  <meta property="og:image" content="./assets/system/facebook-og-image.jpg">
-  <meta name="twitter:description" content="[Description]">
-  <meta name="twitter:title" content="MyPage - Title">
-  <meta name="twitter:image:src" content="./assets/system/twitter-og-image.jpg">
-  <meta name="twitter:card" content="summary_large_image">
-  <!--[if lt IE 9]>
-  <script src="./assets/html5shiv.js"></script>
-  <![endif]-->
-</head>
-<body>
-  <h1>Hello World</h1>
-  <div id="app"></div>
-  <% if ( projectiecompatible == true ) { %>
-  <!--[if lte IE 9]>
-  <script src="./assets/js/selectivizr.js"></script>
-  <![endif]--><% } %>
-  <script src="./assets/js/modernizr.js"></script>
-  <script src="./assets/js/conditionizr.js"></script>
-  <script src="./assets/js/main.js"></script>
-</body>
+<html lang="de">
+  <head>
+    <meta charset="utf-8">
+    <title><%= projectname %></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <link rel="stylesheet" href="./assets/css/<%= projectcssfilename %>.css">
+    <meta name="description" content="[Description]">
+    <meta property="og:description" content="[Description]">
+    <meta property="og:title" content="<%= projectname %>">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="[URL]">
+    <meta property="og:image" content="./assets/system/facebook-og-image.jpg">
+    <meta name="twitter:description" content="[Description]">
+    <meta name="twitter:title" content="<%= projectname %>">
+    <meta name="twitter:image:src" content="./assets/system/twitter-og-image.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <!--[if lt IE 9]>
+    <script src="./assets/html5shiv.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <h1>Hello World</h1>
+    <div id="app"></div>
+    <% if ( projectiecompatible == true ) { %>
+    <!--[if lte IE 9]>
+    <script src="./assets/js/selectivizr.js"></script>
+    <![endif]--><% } %>
+    <script src="./assets/js/modernizr.js"></script>
+    <script src="./assets/js/conditionizr.js"></script>
+    <script src="./assets/js/main.js"></script>
+  </body>
 </html>
