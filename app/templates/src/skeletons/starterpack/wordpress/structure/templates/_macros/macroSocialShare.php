@@ -71,4 +71,5 @@ function macro_socialShare($options = []) {
     echo '</a>';
     echo ($options['icon'] == true ? '</div>' : '');
   }
+  echo '</nav>';
 }
