@@ -494,30 +494,39 @@ var KittnGenerator = yeoman.Base.extend({
 
     // Put Craft Base Files in Structure or simple Structure Files
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {
-      this.directory('src/skeletons/craftcms/', 'src/structure/');
+      this.directory('src/skeletons/craftcms/structure/', 'src/structure/');
 
-      this.directory('src/craftsync/', 'src/craftsync/')
+      this.directory('src/skeletons/craftcms/craftsync/', 'src/craftsync/')
 
-      // Add Server Credentials
+      // Copy .env Config File
+      this.directory('src/skeletons/craftcms/env/', 'src/.system/env/')
+
+      // Copy new Craft Index.php
+      this.fs.copyTpl(
+        this.templatePath('src/skeletons/craftcms/index.php'),
+        this.destinationPath('src/.system/index.php'),
+        templateParams
+      );
+
       if ( this.projectcredential ) {
         this.fs.copyTpl(
-          this.templatePath('_craft-db.php'),
-          this.destinationPath('src/structure/config/db.php'),
-          templateParams
-        );
-
-        this.fs.copyTpl(
-          this.templatePath('_craft-general.php'),
-          this.destinationPath('src/structure/config/general.php'),
-          templateParams
-        );
-
-        this.fs.copyTpl(
-          this.templatePath('.env.sh'),
+          this.templatePath('src/skeletons/craftcms/.env.sh'),
           this.destinationPath('src/craftsync/.env.sh'),
           templateParams
         );
       }
+
+      // Copy Additional Gulp Tasks
+      this.fs.copyTpl(
+        this.templatePath('_copy-craftenv.js'),
+        this.destinationPath('gulpfile/tasks/copy-craftenv.js'),
+        templateParams
+      );
+      this.fs.copyTpl(
+        this.templatePath('_copy-craftindex.js'),
+        this.destinationPath('gulpfile/tasks/copy-craftindex.js'),
+        templateParams
+      );
 
       // Install Craft Starterpack
       if (this.projectcraftbp) {

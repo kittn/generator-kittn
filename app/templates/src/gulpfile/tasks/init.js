@@ -21,7 +21,9 @@ const initTask = (cb) => {
       'rebuild:images',
       'copy:contentimages'<% if (projectUsage === 'Integrate in Wordpress' ) { %>,
       'copy:wpconfig',
-      'copy:wpplugins'<% } %>
+      'copy:wpplugins'<% } else if (projectUsage === 'Integrate in CraftCMS') { %>,
+      'copy:craftindex',
+      'copy:craftenv'<% } %>
     ],
     [
       'compiler:css',

@@ -1,5 +1,6 @@
 {
   "dist": {<% if (projectUsage == 'Building HTML Prototypes' || projectUsage == 'Integrate in KirbyCMS') { %>
+    "dist": "dist/",
     "base": "dist/",
     "markup": "dist/",
     "assets": "dist/assets/",
@@ -25,6 +26,7 @@
     "vectors": "dist/wp-content/themes/<%= projectname %>/assets/img/svgfiles/",
     "contentimage": "dist/wp-content/themes/<%= projectname %>/images/",
     "webpackjsassets": "wp-content/themes/<%= projectname %>/assets/js/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
+    "dist": "dist/",
     "base": "dist/public/",
     "markup": "dist/craft/",
     "assets": "dist/public/assets/",
