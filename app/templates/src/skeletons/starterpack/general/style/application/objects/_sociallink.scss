@@ -1,18 +1,18 @@
 /*
-  Socialshare
+  Sociallink
   ===========
-  Generates a Nav Element for Social Sharing Buttons
+  Generates a Nav Element for Links to social Networks
 
   **Elements**
 */
-.o-socialshare {
+.o-sociallink {
   // Component Config
   $api: (
-    selector: 'socialshare',
+    selector: 'sociallink',
     breakpoint: 'm',
     margin-bottom: s(1),
     box: (
-      size: 40px,
+      size: 20px,
       gutter: 5px
     )
   );
