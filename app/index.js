@@ -307,15 +307,6 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
-        when: function(props) {
-          return props.projectJSFramework === 'none';
-        },
-        type: 'confirm',
-        name: 'projecthmr',
-        message: chalk.cyan.underline.bold('Transpiler HMR') + '\n\xa0 Enable Hot-Module-Replacement?\n\xa0 You only need this with a MVC like Vuejs, React, etc.',
-        default: false
-      },
-      {
         type: 'confirm',
         name: 'projectastrum',
         message: chalk.cyan.underline.bold('Astrum Pattern Lib') + '\n\xa0 Would you like to build up your Pattern Library with Astrum?',
@@ -370,7 +361,6 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectUsage         = props.projectUsage;
       this.projectjquery        = props.projectjquery;
       this.projectJSFramework   = props.projectJSFramework;
-      this.projecthmr           = props.projectJSFramework === 'none' ? props.projecthmr : true;
       this.projectcssstructure  = props.projectcssstructure;
       this.projectvueversion    = checkAnswer(props.projectvueversion);
       this.projectwpcli         = props.projectwpcli;
@@ -411,7 +401,6 @@ var KittnGenerator = yeoman.Base.extend({
       projectUsage         : this.projectUsage,
       projectjquery        : this.projectjquery,
       projectJSFramework   : this.projectJSFramework,
-      projecthmr           : this.projecthmr,
       projectcssstructure  : this.projectcssstructure,
       projectvueversion    : this.projectvueversion,
       projectcraftcli      : this.projectcraftcli,
