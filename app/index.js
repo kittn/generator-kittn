@@ -81,7 +81,7 @@ var KittnGenerator = yeoman.Base.extend({
         name: 'projectname',
         message: chalk.cyan.underline.bold('Project Name') + '\n\xa0 Please give the project a name (without Spaces)',
         // default: 'kittn',
-        default: process.cwd().replace(/[^a-zA-Z0-9]/g, '').split('/').pop(-1).toLowerCase(),
+        default: process.cwd().split('/').pop(-1).toLowerCase().replace(/[^a-zA-Z0-9]/g, ''),
         validate: function (input) {
           // Do async stuff
           if (input.indexOf(' ') >= 0 || /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(input)) {
@@ -103,15 +103,6 @@ var KittnGenerator = yeoman.Base.extend({
         default: 'style'
       },
       {
-        type: 'confirm',
-        name: 'projecttypescript',
-        message: chalk.cyan.underline.bold('JS Transpiler') + '\n\xa0 Would you like javascript to be processed with Typescript instead of Babel?',
-        default: false
-      },
-      {
-        when: function(props) {
-          return props.projecttypescript === false;
-        },
         type: 'list',
         name: 'projectscriptlinter',
         message: chalk.cyan.underline.bold('JS EsLint-Settings') + '\n\xa0 Pick an ESLint preset',
@@ -134,7 +125,6 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
-
         type: 'list',
         name: 'projectsasssyntax',
         message: chalk.cyan.underline.bold('Sass Compiler Syntax') + '\n\xa0 Do you want to use indented syntax (sass) or Sassy CSS syntax (SCSS)?',
@@ -393,7 +383,6 @@ var KittnGenerator = yeoman.Base.extend({
       this.credentialdbpass     = props.credentialdbpass;
       this.credentialdbdatabase = props.credentialdbdatabase;
       this.projectsasssyntax    = props.projectsasssyntax;
-      this.projecttypescript    = props.projecttypescript;
       this.projectscriptlinter  = props.projectscriptlinter;
       this.projectastrum        = props.projectastrum;
       this.projectcraftbp       = props.projectcraftbp;
@@ -435,7 +424,6 @@ var KittnGenerator = yeoman.Base.extend({
       credentialdbpass     : this.credentialdbpass,
       credentialdbdatabase : this.credentialdbdatabase,
       projectsasssyntax    : this.projectsasssyntax,
-      projecttypescript    : this.projecttypescript,
       projectscriptlinter  : this.projectscriptlinter,
       projectastrum        : this.projectastrum,
       projectcraftbp       : this.projectcraftbp,
@@ -637,15 +625,6 @@ var KittnGenerator = yeoman.Base.extend({
       this.fs.copyTpl(
         this.templatePath('_astrum-config.json'),
         this.destinationPath('astrum-config.json'),
-        templateParams
-      );
-    }
-
-    // Copy Typescript Starter File
-    if (this.projecttypescript) {
-      this.fs.copyTpl(
-        this.templatePath('_main.ts'),
-        this.destinationPath('src/js/main.ts'),
         templateParams
       );
     }
