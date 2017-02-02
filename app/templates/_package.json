@@ -112,9 +112,7 @@
     "webpack-dashboard": "^0.2.0",
     "webpack-dev-middleware": "^1.9.0",
     "webpack-hot-middleware": "^2.15.0",
-    "webpack-merge": "^2.4.0",<% if (projecttypescript) { %>
-    "typescript": "^2.0.3",
-    "awesome-typescript-loader": "^2.2.4",<% } %>
+    "webpack-merge": "^2.4.0",
     "extract-text-webpack-plugin": "2.0.0-beta.5",<% if ( projectJSFramework === 'Vue.js' ) { %>
     "css-loader": "^0.25.0",
     "vue-loader": "^10.0.2",
