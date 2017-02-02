@@ -2,8 +2,7 @@ import webpack from 'webpack'
 import merge from 'webpack-merge'
 import path from 'path'
 import yargs from 'yargs'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
-<% if ( projectJSFramework === 'Vue.js' ) { %>
+import ExtractTextPlugin from 'extract-text-webpack-plugin'<% if ( projectJSFramework === 'Vue.js' ) { %>
 import vueutils from './build/vue-utils'<% } %>
 import kittnConf from './config.json'
 
@@ -11,18 +10,12 @@ const argv = yargs.argv
 const env = argv.env || 'development'
 const nodeEnv = process.env.NODE_ENV || 'production'
 
-const ROOT_PATH = path.resolve(__dirname)
-<% if (projectUsage == 'Integrate in CraftCMS') { %>
-const PUBLIC_PATH = path.join(ROOT_PATH, `${kittnConf.dist.base}/public/`)<% } else { %>
-const PUBLIC_PATH = path.join(ROOT_PATH, kittnConf.dist.base)
-<% } %>
-const SOURCE_PATH = path.join(ROOT_PATH, kittnConf.src.js)
-const ASSET_JS_PATH = kittnConf.dist.webpackjsassets
+const ROOT_PATH = path.resolve(__dirname)<% if (projectUsage == 'Integrate in CraftCMS') { %>
+const PUBLIC_PATH = path.join(ROOT_PATH, `${kittnConf.dist.dist}/public/`)<% } else { %>
+const PUBLIC_PATH = path.join(ROOT_PATH, kittnConf.dist.dist)<% } %>
+const SOURCE_PATH = './js/'
+const LOADER_PATH = path.join(ROOT_PATH, kittnConf.src.js)
 const PRIMARY_FILE_NAME = 'main.js'
-const PRIMARY_FILE_HANDLE = 'main'
-
-/// add resolve if it is vue project
-/// add vue loader for .vue files
 
 let bundle = {
   context: path.join( ROOT_PATH, 'src'),
@@ -59,12 +52,12 @@ let bundle = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: SOURCE_PATH,
+        include: LOADER_PATH,
         exclude: /node_modules/
       }<% if ( projectJSFramework === 'Vue.js' ) { %>,
       {
         test: /\.vue$/,
-        include: SOURCE_PATH,
+        include: LOADER_PATH,
         exclude: /node_modules/,
         loader: 'vue-loader'
       },<% } %>
@@ -104,7 +97,7 @@ let bundle = {
     })
   ]
 };
-
+<% if ( projectJSFramework === 'Vue.js' ) { %>
 // add extract plugin for vue
 if(nodeEnv === 'production') {
   bundle = merge(bundle, {
@@ -112,6 +105,6 @@ if(nodeEnv === 'production') {
       new ExtractTextPlugin('css/vue-styles.css')
     ]
   })
-}
+}<% } %>
 
 export default bundle
