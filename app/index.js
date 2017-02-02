@@ -81,7 +81,7 @@ var KittnGenerator = yeoman.Base.extend({
         name: 'projectname',
         message: chalk.cyan.underline.bold('Project Name') + '\n\xa0 Please give the project a name (without Spaces)',
         // default: 'kittn',
-        default: process.cwd().split('/').pop(-1).toLowerCase(),
+        default: process.cwd().replace(/[^a-zA-Z0-9]/g, '').split('/').pop(-1).toLowerCase(),
         validate: function (input) {
           // Do async stuff
           if (input.indexOf(' ') >= 0 || /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(input)) {
