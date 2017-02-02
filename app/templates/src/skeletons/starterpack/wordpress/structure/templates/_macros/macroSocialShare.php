@@ -63,10 +63,10 @@ function macro_socialShare($options = []) {
     echo '<a href="'.$shareUrl[$key].'" target="_blank" class="'.$options['class'].'__link'.($options['icon'] == true ? '---solo' : '').'" title="Share with '.ucfirst($key).'">';
     if ($options['icon'] == true) {
       echo '<svg class="'.$options['class'].'__icon" viewBox="'.$options['viewbox'].'">';
-      echo '<use xlink:href="'.$options['iconpath'].$options['iconname'].'#'.$options['iconprefix'].$key.'"></use>';
+        echo '<use xlink:href="'.$options['iconpath'].$options['iconname'].'#'.$options['iconprefix'].$key.'"></use>';
       echo '</svg>';
     } else {
-      echo $key;
+      echo ucfirst($key);
     }
     echo '</a>';
     echo ($options['icon'] == true ? '</div>' : '');
