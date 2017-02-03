@@ -49,7 +49,9 @@ require_once('_functions/disableRest.php');
 require_once('_functions/disableComments.php');
 
 // Adding Macros
-require_once('_macros/macroMediaImageSet.php');
+// Use the other MediaImageSet if the Referencing will not work on your Server
+require_once('_macros/macroMediaImageSetRef.php');
+
 require_once('_macros/macroSocialShare.php');
 
 // Custom Loader GIF CF7

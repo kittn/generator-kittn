@@ -2,7 +2,8 @@
 /**
  * Media Image Set
  * ===============
- * Generate a Media Image Set for Lazyload in different formats.
+ * Generate a Media Image Set for Lazyload in different formats. Use this only if the
+ * referencing MediaImageSet will not Work on your Server.
  *
  * @param {object} $image      = Image
  * @param {string} $classname  = Classname from the Element
