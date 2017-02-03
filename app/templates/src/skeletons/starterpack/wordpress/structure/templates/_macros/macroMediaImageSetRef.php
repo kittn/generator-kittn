@@ -36,7 +36,7 @@ function macro_mediaImageSet($image,$classname,$format,$background = false) {
 
       } else {
         foreach ($CROPPED_SIZES as $key => $value) {
-          $imageset .= $image['sizes'][$format.'_'.$key].' '.$value.'w'.(!next($UNCROPPED_SIZES) ? ' ' : ', ');
+          $imageset .= $image['sizes'][$format.'_'.$key].' '.$value.'w'.(!next($CROPPED_SIZES) ? ' ' : ', ');
         }
         // Define Preload Image
         $imagepre = $image['sizes'][$format.'_'.key(array_slice($CROPPED_SIZES, -1, true))];
