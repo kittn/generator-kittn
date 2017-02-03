@@ -511,7 +511,7 @@ var KittnGenerator = yeoman.Base.extend({
       if ( this.projectcredential ) {
         this.fs.copyTpl(
           this.templatePath('src/skeletons/craftcms/.env.sh'),
-          this.destinationPath('src/craftsync/.env.sh'),
+          this.destinationPath('.env.sh'),
           templateParams
         );
       }
