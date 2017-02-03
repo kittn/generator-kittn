@@ -24,6 +24,9 @@ require_once('_functions/thumbnailSupport.php');
 // Disable Admin File Editor
 require_once('_functions/disableAdminEditor.php');
 
+// Allow SVG Uploads
+require_once('_functions/allowSVG.php');
+
 // Remove Admin Bar - Enable if you want to use Debug Bar
 // require_once('_functions/removeAdminBar.php');
 
