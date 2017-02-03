@@ -1,12 +1,13 @@
 <?php
 /**
-  Media Image Set
-  ===============
-  Generate a Media Image Set for Lazyload in different formats.
- * @param $image           = Image
- * @param $classname       = Classname from the Element
- * @param $format          = Imageformat [uncropped, wide, extrawide, square, rect]
- * @param bool $background = Background Option
+ * Media Image Set
+ * ===============
+ * Generate a Media Image Set for Lazyload in different formats.
+ *
+ * @param {object} $image      = Image
+ * @param {string} $classname  = Classname from the Element
+ * @param {string} $format     = Imageformat [uncropped, wide, extrawide, square, rect]
+ * @param {bool}   $background = Background Option
  */
 function macro_mediaImageSet($image,$classname,$format,$background = false) {
   $imageset = '';

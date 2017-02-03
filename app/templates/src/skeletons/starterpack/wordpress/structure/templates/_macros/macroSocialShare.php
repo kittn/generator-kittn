@@ -1,26 +1,27 @@
 <?php
 /**
- *   Social Share Macro
- *   ==================
+ * Social Share Macro
+ * ==================
+ * Build a Social Sharebar with Privacy Friendly Links
  *
- *   @param {object} options     = Config Options
- *   @param {string} options.class       = Classname
- *   @param {*}      options.request     = Request URL
- *   @param {*}      options.description = Seo Description
- *   @param {*}      options.image       = Seo Image URL
- *   @param {*}      options.title       = Seo Title
- *   @param {bool}   options.icon        = Option that activate SVG Share Icons
- *   @param {string} options.iconpath    = Path to icons
- *   @param {string} options.iconname    = Iconfile Name (Sprite)
- *   @param {string} options.iconprefix  = Prefix for icons
- *   @param {string} options.viewbox     = Viewbox Size
- *   @param {object} networks = Possible Social Networks
- *   @param {bool}   networks.networks.facebook
- *   @param {bool}   networks.networks.twitter
- *   @param {bool}   networks.networks.googleplus
- *   @param {bool}   networks.networks.pinterest
- *   @param {bool}   networks.networks.mail
- *   @param {bool}   networks.networks.whatsapp
+ * @param {object} options             = Config Options
+ * @param {string} options.class       = Classname
+ * @param {*}      options.request     = Request URL
+ * @param {*}      options.description = Seo Description
+ * @param {*}      options.image       = Seo Image URL
+ * @param {*}      options.title       = Seo Title
+ * @param {bool}   options.icon        = Option that activate SVG Share Icons
+ * @param {string} options.iconpath    = Path to icons
+ * @param {string} options.iconname    = Iconfile Name (Sprite)
+ * @param {string} options.iconprefix  = Prefix for icons
+ * @param {string} options.viewbox     = Viewbox Size
+ * @param {object} networks = Possible Social Networks
+ * @param {bool}   networks.networks.facebook
+ * @param {bool}   networks.networks.twitter
+ * @param {bool}   networks.networks.googleplus
+ * @param {bool}   networks.networks.pinterest
+ * @param {bool}   networks.networks.mail
+ * @param {bool}   networks.networks.whatsapp
  */
 function macro_socialShare($options = []) {
   $opt = [

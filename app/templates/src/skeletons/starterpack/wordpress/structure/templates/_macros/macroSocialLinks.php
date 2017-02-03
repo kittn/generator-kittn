@@ -2,17 +2,24 @@
 /**
  *  Social Links
  *  ============
- *  Build a Navblock to the social networks
+ *  Simple Links to the Social Network Fanpages
  *
- *  @param {object} options     = Config Options
+ *  @param {object} options             = Config Options
  *  @param {string} options.class       = Classname
  *  @param {bool}   options.icon        = Option that activate SVG Share Icons
  *  @param {string} options.iconpath    = Path to icons
  *  @param {string} options.iconname    = Iconfile Name (Sprite)
  *  @param {string} options.iconprefix  = Prefix for icons
  *  @param {string} options.viewbox     = Viewbox Size
+ *  @param {object} links               = Array with Social Links (default used the `social_link` fieldgroup)
  */
-function macro_socialLinks($links, $options = []) {
+function macro_socialLinks($options = [], $links = false) {
+  // Default Links - uses ACF Globalfield
+  if (get_field('social_links', 'option')) {
+    $links = $links ?: get_field('social_links', 'option');
+  }
+
+  // Default Options
   $opt = [
     'class'       => 'o-sociallink',
     'icon'        => true,
@@ -42,3 +49,6 @@ function macro_socialLinks($links, $options = []) {
   }
   echo '</nav>';
 }
+
+
+
