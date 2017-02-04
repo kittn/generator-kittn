@@ -9,8 +9,9 @@
  * @param {string} $classname  = Classname from the Element
  * @param {string} $format     = Imageformat [uncropped, wide, extrawide, square, rect]
  * @param {bool}   $background = Background Option
+ * @param {string} $tag        = Tag for Background Element (default: 'figure')
  */
-function macro_mediaImageSet($image,$classname,$format,$background = false) {
+function macro_mediaImageSet($image,$classname,$format,$background = false, $tag = 'figure') {
   $imageset = '';
   $imagepre = '';
   $imageformats = ['uncropped', 'wide', 'extrawide', 'square', 'rect'];
