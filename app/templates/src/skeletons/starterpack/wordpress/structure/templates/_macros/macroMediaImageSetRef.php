@@ -9,6 +9,7 @@
  * @param {string} $classname  = Classname from the Element
  * @param {string} $format     = Imageformat [uncropped, wide, extrawide, square, rect]
  * @param {bool}   $background = Background Option
+ * @param {string} $tag        = Tag for Background Element (default: 'figure')
  */
 function macro_mediaImageSet($image,$classname,$format,$background = false) {
   // Getting defined Sizes
@@ -44,7 +45,7 @@ function macro_mediaImageSet($image,$classname,$format,$background = false) {
 
       // Output as <img> or Background
       if ($background) {
-        echo '<figure class="'.$classname.' lazyload" style="background-image: url('.$imagepre.')" data-sizes="auto" data-bgset="'.$imageset.'"></figure>';
+        echo '<'.$tag.' class="'.$classname.' lazyload" style="background-image: url('.$imagepre.')" data-sizes="auto" data-bgset="'.$imageset.'"></'.$tag.'>';
       } else {
         echo  '<img data-sizes="auto" src="'.$imagepre.'" data-srcset="'.$imageset.'" class="'.$classname.' lazyload" role="img" alt="'.$image["alt"].'" itemprop="thumbnail">';
       }

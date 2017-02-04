@@ -51,7 +51,7 @@ function macro_mediaImageSet($image,$classname,$format,$background = false, $tag
 
       // Output as <img> or Background
       if ($background) {
-        echo '<figure class="'.$classname.' lazyload" style="background-image: url('.$imagepre.')" data-sizes="auto" data-bgset="'.$imageset.'"></figure>';
+        echo '<'.$tag.' class="'.$classname.' lazyload" style="background-image: url('.$imagepre.')" data-sizes="auto" data-bgset="'.$imageset.'"></'.$tag.'>';
       } else {
         echo '<img data-sizes="auto" src="'.$imagepre.'" data-srcset="'.$imageset.'" class="'.$classname.' lazyload" role="img" alt="'.$image["alt"].'" itemprop="thumbnail">';
       }
