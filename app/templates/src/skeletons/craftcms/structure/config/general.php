@@ -6,11 +6,14 @@
 return array(
   // Global for all Environments
   '*' => array(
-    'omitScriptNameInUrls' => true,
     'usePathInfo' => true,
     'cacheDuration' => false,
-    'useEmailAsUsername' => true,
+    'useEmailAsUsername' => false,
     'generateTransformsBeforePageLoad' => true,
+    'addTrailingSlashesToUrls' => true,
+    'defaultWeekStartDay' => 1,
+    'sendPoweredByHeader' => false,
+    'cooldownDuration' => 0,
     'siteUrl' => getenv('CRAFTENV_SITE_URL'),
     'craftEnv' => CRAFT_ENVIRONMENT,
     'environment' => CRAFT_ENVIRONMENT,
@@ -22,24 +25,20 @@ return array(
   ),
   // Productive Environment
   'productive'  => array(
-    'devMode' => false,
-    'enableTemplateCaching' => true,
-    'allowAutoUpdates' => false,
-    'cache' => true,
-    'cooldownDuration' => 0,
-    'useCompressedJs' => true
+    'allowAutoUpdates' => false
   ),
   // Stage or Test Environment
   'staging'  => array(
-    'devMode' => false,
-    'enableTemplateCaching' => true,
-    'allowAutoUpdates' => false,
+    'allowAutoUpdates' => false
   ),
   // Local Development
   'local'  => array(
     'devMode' => true,
     'enableTemplateCaching' => false,
     'allowAutoUpdates' => true,
+    'cacheElementQueries' => false,
+    'enableTemplateCaching' => false,
+    'useCompressedJs' => false
   )
 );
 

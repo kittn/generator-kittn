@@ -25,7 +25,7 @@ $craftenv_vars = array(
   // Path configs
   'SITE_URL' => (isset($_SERVER['HTTPS']) ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . '/',
   'BASE_URL' => (isset($_SERVER['HTTPS']) ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . '/',
-  'BASE_PATH' => realpath(dirname(__FILE__)) . '/public/',
+  'BASE_PATH'=> realpath(dirname(__FILE__)) . '/public/'
 );
 // Set all of the .env values, auto-prefixed with `CRAFTENV_`
 foreach ($craftenv_vars as $key => $value) {
