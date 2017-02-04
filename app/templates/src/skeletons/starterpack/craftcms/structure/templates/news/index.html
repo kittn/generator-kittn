@@ -13,7 +13,18 @@
 {% block content %}
   <div class="o-layout__container">
     <h1>{{ myentry.slug }}</h1>
-    {% for entry in craft.entries.section(myentry.slug).find() %}
+
+    {# Build Query #}
+    {% set entries = craft.entries({
+      section: myentry.slug,
+      sort: 'postDate',
+      relatedTo: (category is defined ? category : false),
+      limit: 10
+    }) %}
+    {# Initiate the Pagination #}
+    {% paginate entries as pageInfo, pageEntries %}
+    {# Loop through entries #}
+    {% for entry in pageEntries %}
       <article>
         <p>{{ entry.postDate.format('d.F Y') }}</p>
         <h2><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
@@ -21,5 +32,8 @@
         <p><a href="{{ entry.url }}">Weiterlesen</a></p>
       </article>
     {% endfor %}
+
+    {# Include Pagination #}
+    {{ myMacro.pagination(pageInfo,craft) }}
   </div>
 {% endblock %}

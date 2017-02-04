@@ -104,65 +104,81 @@
   Pagination
   ==========
   Generate navigation buttons for paginations
+  It use the Pagination Module, include before the Loop `{% paginate entries as pageInfo, pageEntries %}`
 
-  @param {object}  pages       - Pagination Object
-  @param {object}  craft       - Craft Request Object
-  @param {string}  class       - Classname (default: 'pagination')
-  @param {string}  searchquery - To pass search words from Searchfields (default: false)
+  @param {object}  pages                 - Pagination Object
+  @param {object}  craft                 - Craft Request Object
+  @param {object}  options               - Array of options
+  @param {string}  options.class         - Classname (default: 'o-pagination')
+  @param {stting}  options.searchquery   - To pass search words from Searchfields (default: false)
+  @param {number}  options.pagenuber     - How many Pagebuttons are to be displayed. At 0, the display of the page buttons is omitted
+  @param {string}  options.firstPageSign - HTML Sign for FirstPage
+  @param {string}  options.lastPageSign  - HTML Sign for LastPage
+  @param {string}  options.prevSign      - HTML Sign for Prev
+  @param {string}  options.nextSign      - HTML Sign for Next
+  @param {string}  options.firstPageText - Titletext for Firstpage
+  @param {string}  options.lastPageText  - Titletext for Lastpage
+  @param {string}  options.prevText      - Titletext for Prev
+  @param {string}  options.nextText      - Titletext for Next
+  @param {string}  options.jumpText      - Titletext for Jump
 #}
-{% macro pagination(pages,craft,class,searchquery) %}
-  {% set search = searchquery|default(false) %}
-  {% set class = classname|default('o-pagination') %}
+{% macro pagination(pages,craft,options) %}
+  {% set opt = {
+    'class': 'o-pagination',
+    'searchquery': false,
+    'pagenumber': 5,
+    'fistPageSign': '&laquo;',
+    'lastPageSign': '&raquo;',
+    'prevSign': '&lsaquo;',
+    'nextSign': '&rsaquo;',
+    'firstPageText': 'Zur ersten Seite',
+    'lastPageText': 'Zur letzten Seite',
+    'prevText': 'Zurück zur vorhergehenden Seite',
+    'nextText': 'Weiter zur nächsten Seite',
+    'jumpText': 'Sprung zur Seite'
+  } %}
+
+  {# Merge Options with Defaults #}
+  {% set options = options ? opt|merge(options) : opt %}
 
   {# Add Pagination only if the Page Number is higher than 1#}
   {% if pages.totalPages > 1 %}
 
-    <nav class="{{ classname }}" role="navigation">
+    <nav class="{{ options.class }}" role="navigation">
       {# Dont display last page when on the first Page #}
       {% if pages.currentPage > 2 and pages.prevUrl %}
-        <a class="{{ classname }}__link---text" href="{{ pages.firstUrl }}{{ search ? '?q='~search }}" title="Zur ersten Seite">
-          &laquo;
-        </a>
+        <a class="{{ options.class }}__link---text" href="{{ pages.firstUrl }}{{ options.searchquery ? '?q='~options.searchquery }}" title="{{ options.firstPageText }}">{{ options.fistPageSign|raw }}</a>
       {% endif %}
 
       {# Display the Previous Link if available #}
       {% if pages.prevUrl %}
-        <a class="{{ classname }}__link---text" href="{{ pages.prevUrl }}{{ search ? '?q='~search }}" title="Zurück zur vorhergehenden Seite">
-          &lsaquo;
-        </a>
+        <a class="{{ options.class }}__link---text" href="{{ pages.prevUrl }}{{ options.searchquery ? '?q='~options.searchquery }}" title="{{ options.prevText }}">{{ options.prevSign|raw }}</a>
       {% endif %}
 
-      {# Display prev 5 Page Links#}
-      {% for page, url in pages.getPrevUrls(5) %}
-        <a class="{{ classname }}__link---number" href="{{ url }}{{ search ? '?q='~search }}" title="Sprung zur Seite {{ page }}">
-          {{ page }}
-        </a>
-      {% endfor %}
+      {# With Pagenumber higher than zero the pagination will display pages #}
+      {% if options.pagenumber > 0 %}
+        {# Display prev 5 Page Links#}
+        {% for page, url in pages.getPrevUrls(options.pagenumber) %}
+          <a class="{{ options.class }}__link---number" href="{{ url }}{{ options.searchquery ? '?q='~options.searchquery }}" title="{{ options.jumpText }} {{ page }}">{{ page }}</a>
+        {% endfor %}
 
-      {# Diplay Current Page#}
-      <span class="{{ classname }}__link---current">
-        {{ pages.currentPage }}
-      </span>
+        {# Diplay Current Page#}
+        <span class="{{ options.class }}__link---current">{{ pages.currentPage }}</span>
 
-      {# Display next 5 Page Links #}
-      {% for page, url in pages.getNextUrls(5) %}
-        <a class="{{ classname }}__link---number" href="{{ url }}{{ search ? '?q='~search }}" title="Sprung zur Seite {{ page }}">
-          {{ page }}
-        </a>
-      {% endfor %}
+        {# Display next 5 Page Links #}
+        {% for page, url in pages.getNextUrls(options.pagenumber) %}
+          <a class="{{ options.class }}__link---number" href="{{ url }}{{ options.searchquery ? '?q='~options.searchquery }}" title="{{ options.jumpText }} {{ page }}">{{ page }}</a>
+        {% endfor %}
+      {% endif %}
 
       {# Display next Page Link if available#}
       {% if pages.nextUrl %}
-        <a class="{{ classname }}__link---text" href="{{ pages.nextUrl }}{{ search ? '?q='~search }}" title="Weiter zur nächsten Seite">
-          &rsaquo;
-        </a>
+        <a class="{{ options.class }}__link---text" href="{{ pages.nextUrl }}{{ options.searchquery ? '?q='~options.searchquery }}" title="{{ options.nextText }}">{{ options.nextSign|raw }}</a>
       {% endif %}
 
       {# Dont display when on the last page #}
       {% if (pages.totalPages - 1) > pages.currentPage and pages.totalPages > 2 %}
-        <a class="{{ classname }}__link---text" href="{{ pages.lastUrl }}{{ search ? '?q='~search }}" title="Zur letzten Seite">
-          &raquo;
-        </a>
+        <a class="{{ options.class }}__link---text" href="{{ pages.lastUrl }}{{ options.searchquery ? '?q='~options.searchquery }}" title="{{ options.lastPageText }}">{{ options.lastPageSign|raw }}</a>
       {% endif %}
     </nav>
   {% endif %}
