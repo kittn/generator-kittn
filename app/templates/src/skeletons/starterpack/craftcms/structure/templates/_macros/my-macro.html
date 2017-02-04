@@ -60,8 +60,8 @@
     quality: 82
   } %}
 
-  {# Merge our two arrays together #}
-  {% set options = opt|merge(options) %}
+  {# Merging Arrays  #}
+  {% set options = options ? opt|merge(options) : opt %}
 
   {# Check if Image is Available otherwise use a neutral Placeholder #}
   {% if photo %}
@@ -215,6 +215,17 @@
   @param {string} viewbox     = Viewbox Size
 #}
 {% macro socialShare(networks, options) %}
+  {# Array for Networks #}
+  {% set net = {
+    'facebook': true,
+    'twitter': true,
+    'googleplus': true,
+    'pinterest': true,
+    'mail': false,
+    'whatsapp': false
+  } %}
+
+  {# Option Array #}
   {% set opt = {
     'class': 'o-socialshare',
     'request': craft.request.url,
@@ -228,19 +239,9 @@
     'viewbox': '0 0 20 20'
   } %}
 
-  {# Second Default Array for Networks, because recursive mer#}
-  {% set net = {
-    'facebook': true,
-    'twitter': true,
-    'googleplus': true,
-    'pinterest': true,
-    'mail': true,
-    'whatsapp': false
-  } %}
-
   {# Merge Options with Defaults #}
-  {% set options = opt|merge(options) %}
-  {% set networks = net|merge(networks) %}
+  {% set networks = networks ? net|merge(networks) : net %}
+  {% set options = options ? opt|merge(options) : opt %}
 
   {# Build Share URLs #}
   {% set shareUrl = {
@@ -285,7 +286,7 @@
   @param {string} viewbox     = Viewbox Size
   @param {object} links       = A Array with Linkentries
 #}
-{% macro socialLink(options, links) %}
+{% macro socialLink(links, options) %}
   {# Set Links to the Default Field #}
   {% if main.socialLinks is defined %}
     {% set links = links|default(main.socialLinks) %}
@@ -301,7 +302,7 @@
   } %}
 
   {# Merge Options with Defaults #}
-  {% set options = opt|merge(options) %}
+  {% set options = options ? opt|merge(options) : opt %}
 
   {# Building Block - Modify structure if needed #}
   <nav role="navigation" class="{{ options.class }}">
@@ -335,7 +336,7 @@
   @param {string} options.iconprefix  = Prefix for icons
   @param {string} options.viewbox     = Viewbox Size
 #}
-{% macro svgicon(icon, options = {}) %}
+{% macro svgicon(icon, options) %}
   {% set opt = {
     'class': false,
     'iconpath': '/assets/img/',
@@ -345,7 +346,7 @@
   } %}
 
   {# Merge Options with Defaults #}
-  {% set options = opt|merge(options) %}
+  {% set options = options ? opt|merge(options) : opt %}
 
   {# Building Block - Modify structure if needed #}
   <svg{{ options.class ? ' class='~options.class }} viewBox="{{ options.viewbox }}">
