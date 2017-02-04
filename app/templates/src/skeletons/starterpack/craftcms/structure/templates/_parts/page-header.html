@@ -1,6 +1,6 @@
 <header class="o-layout__header" role="banner">
   <div class="o-layout__container">
-    {% include '_components/pagelogo.html' with { data: entry, name: '' } %}
+    {% include '_components/pagelogo.html' with { data: (entry is defined ? entry : myentry), name: '' } %}
     {{ myMacro.siteNavigation('c-mainnav', 'mainnav') }}
   </div>
 

@@ -13,7 +13,7 @@
 {# Include the Document Header #}
 {% include '_parts/document-header.html' %}
 
-<body class="{{ craft.request.isLivePreview ? ' is-livepreview ' }} {{ ' '~entry.slug~' ' }}">
+<body class="{{ craft.request.isLivePreview ? ' is-livepreview ' }} {{ ' '~( entry is defined ? entry.slug : myentry.slug )~' ' }}">
   <div class="o-progressloader">
     <div class="o-progressloader__loader"></div>
   </div>

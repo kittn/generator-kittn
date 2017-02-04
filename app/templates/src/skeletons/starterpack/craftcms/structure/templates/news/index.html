@@ -4,16 +4,16 @@
  #}
 
 {# Define a Entry Var - otherwise you get Errors on Channel Pages #}
-{% set entry = {
-  'slug': 'blog'
+{% set myentry = {
+'slug': 'news'
 } %}
 
 {% extends '_layout/main-layout.html' %}
 
 {% block content %}
   <div class="o-layout__container">
-    <h1>News</h1>
-    {% for entry in craft.entries.section('news').find() %}
+    <h1>{{ myentry.slug }}</h1>
+    {% for entry in craft.entries.section(myentry.slug).find() %}
       <article>
         <p>{{ entry.postDate.format('d.F Y') }}</p>
         <h2><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
