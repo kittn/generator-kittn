@@ -3,6 +3,11 @@
  # -------------------
  #}
 
+{# Define a Entry Var - otherwise you get Errors on Channel Pages #}
+{% set entry = {
+  'slug': 'blog'
+} %}
+
 {% extends '_layout/main-layout.html' %}
 
 {% block content %}
