@@ -320,3 +320,35 @@
     {% endfor %}
   </nav>
 {% endmacro %}
+
+
+{#
+  SVGIcon
+  =======
+  Insert SVG Icons in a easy way
+
+  @param {string} icon                = Iconname
+  @param {object} options             = Config Options
+  @param {string} options.class       = Optional Classname
+  @param {string} options.iconpath    = Path to icons
+  @param {string} options.iconname    = Iconfile Name (Sprite)
+  @param {string} options.iconprefix  = Prefix for icons
+  @param {string} options.viewbox     = Viewbox Size
+#}
+{% macro svgicon(icon, options = {}) %}
+  {% set opt = {
+    'class': 'blubber',
+    'iconpath': '/assets/img/',
+    'iconname': 'symbol-sprite.svg',
+    'iconprefix': 'icon-',
+    'viewbox': '0 0 20 20'
+  } %}
+
+  {# Merge Options with Defaults #}
+  {% set options = opt|merge(options) %}
+
+  {# Building Block - Modify structure if needed #}
+  <svg{{ options.class ? ' class='~options.class }} viewBox="{{ options.viewbox }}">
+    <use xlink:href="{{ options.iconpath }}{{ options.iconname }}#{{ options.iconprefix }}{{ icon }}"></use>
+  </svg>
+{% endmacro %}
