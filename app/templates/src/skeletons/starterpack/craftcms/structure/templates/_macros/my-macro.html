@@ -101,59 +101,6 @@
 {% endmacro %}
 
 {#
-  gallery Image Set
-  =================
-#}
-{% macro galleryImageSet(attributes) %}
-
-  {# Default Values - can be overwritten #}
-  {% set defaults = {
-    photo: '',
-    imageratio: '1:1',
-    class: 'o-gallery__thumbnail'
-  } %}
-
-  {# Merge our two arrays together #}
-  {% set attr = defaults|merge(attributes) %}
-
-  {# Check if image would cropped#}
-  {% if attr.imageratio != 'nocrop' %}
-
-    {# Transform Image Ratio in a Array #}
-    {% set ratio = attr.imageratio %}
-    {% set ar = ratio|split(':') %}
-
-    {# Set Focal Point #}
-    {% if photo.focalpoint is defined %}
-      {% set focusPosition = photo.focalpoint %}
-    {% else %}
-      {% set focusPosition = '50% 50%' %}
-    {% endif %}
-
-    {% set globalModifier = { jpegQuality: 82, ratio: ar|first/ar|last , mode: 'crop', position: 'center-center' } %}
-
-  {% else %}
-    {% set globalModifier = { jpegQuality: 82 } %}
-
-  {% endif %}
-
-  {# Build the Image Set #}
-  {% set photos = craft.imager.transformImage(attr.photo,
-    [
-      { width: 1900 },
-      { width: 1200 },
-      { width: 800 },
-      { width: 500 },
-      { width: 320 },
-      { width: 150 }
-    ],
-    globalModifier)
-  %}
-
-  <img data-sizes="auto" src="{{ craft.imager.base64Pixel('1:1') }}" data-srcset="{{ craft.imager.srcset( photos ) }}" class="{{ attr.class }} lazyload" role="img" {% if attr.photo.title %}alt="{{ attr.photo.title }}"{% endif %} itemprop="thumbnail">
-{% endmacro %}
-
-{#
   Pagination
   ==========
   Generate navigation buttons for paginations

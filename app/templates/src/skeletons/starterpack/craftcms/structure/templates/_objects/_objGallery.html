@@ -81,9 +81,8 @@
       {% for gallery in block.galleryEntries %}
         <figure class="{{ classname }}__figure" itemprop="associatedMedia"{{ thumbWidth }}itemscope itemtype="http://schema.org/ImageObject">
           <a class="{{ classname }}__link" href="{{ gallery.photo.first().url }}" itemprop="contentUrl" data-size="{{ gallery.photo.first().width }}x{{ gallery.photo.first().height }}">
-            {{ myMacro.galleryImageSet({
-              photo: gallery.photo.first(),
-              imageratio: crop
+            {{ myMacro.mediaImageSet(gallery.photo.first(), crop, {
+              class: classname~'__thumbnail'
             }) }}
           </a>
           {% if gallery.caption %}
