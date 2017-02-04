@@ -36,7 +36,9 @@
 
 {# Build Element Block #}
 <figure class="{{ classname }}{{ height }}{{ size }}" role="group" itemscope itemtype="http://schema.org/ImageObject">
-  {{ myMacro.mediaImageSet(data.photo.first(), data.ratio, classname~'__image') }}
+  {{ myMacro.mediaImageSet(data.photo.first(), data.ratio, {
+    class: classname~'__image'
+  }) }}
   {% if data.caption %}
     <figcaption class="{{ classname }}__caption" itemprop="caption description">
       {{ data.caption }}

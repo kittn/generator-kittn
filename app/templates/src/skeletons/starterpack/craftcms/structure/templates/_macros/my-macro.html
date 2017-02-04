@@ -42,40 +42,40 @@
   ===============
   Build a Image Element as regular `<img>` or fill a element with a background image.
 
-  @param photo            = Image
-  @param imageratio       = Optional Imageratio [nocrop, '16:6', '1:1'...]
-  @param class            = Classname from the Element
-  @param bool background  = Background Option
-  @param bool elementtype = Typedefinition from Background Image Element
+  @param {array}  photo               = Image Array
+  @param {string} imageratio          = Optional Imageratio [nocrop, '16:6', '1:1'...]
+  @param {object} options             = Array of options
+  @param {string} options.class       = Classname from the Element
+  @param {bool}   options.background  = Background Option
+  @param {string} options.elementtype = Typedefinition from Background Image Element
+  @param {number} options.elementtype = Typedefinition from Background Image Element
 #}
-{% macro mediaImageSet(photo,imageratio,class,background,elementtype) %}
-  {# Set Default Background Option #}
-  {% set background = background|default(false) %}
+{% macro mediaImageSet(photo,imageratio,options) %}
 
-  {# Set Element Type - for Background Images #}
-  {% set elementtype = elementtype|default('figure') %}
+  {# Default Values - can be overwritten #}
+  {% set opt = {
+    class: 'o-media-object__image',
+    background: false,
+    elementtype: 'figure',
+    quality: 82
+  } %}
 
-  {# Set Default Classname#}
-  {% set elementclass = class|default('o-media-object__image') %}
+  {# Merge our two arrays together #}
+  {% set options = opt|merge(options) %}
 
   {# Check if Image is Available otherwise use a neutral Placeholder #}
   {% if photo %}
     {# Check if image would cropped#}
     {% if imageratio != 'nocrop' %}
       {# Transform Image Ratio in a Array #}
-      {% set ratio = imageratio|default('35:24') %}
-      {% set ar = ratio|split(':') %}
-
+      {% set ratio = imageratio|default('35:24')|split(':') %}
       {# Set Focal Point #}
-      {% if photo.focalpoint is defined %}
-        {% set focusPosition = photo.focalpoint %}
-      {% else %}
-        {% set focusPosition = '50% 50%' %}
-      {% endif %}
-
-      {% set globalModifier = { jpegQuality: 82, ratio: ar|first/ar|last , mode: 'crop', position: focusPosition } %}
+      {% set focusPosition = photo.focalpoint is defined ? photo.focalpoint : '50% 50%' %}
+      {# Define the Modifier for Imager#}
+      {% set globalModifier = { jpegQuality: options.quality, ratio: ratio|first/ratio|last , mode: 'crop', position: focusPosition } %}
     {% else %}
-      {% set globalModifier = { jpegQuality: 82 } %}
+      {# Define the Modifier for Imager#}
+      {% set globalModifier = { jpegQuality: options.quality } %}
     {% endif %}
 
     {# Build the Image Set #}
@@ -92,14 +92,13 @@
     %}
 
     {# Output as <img> or Background #}
-    {% if (background) %}
-      <{{ elementtype }} class="{{ elementclass }} lazyload" style="background-image: url({{ photos|last.url }})" data-sizes="auto" data-bgset="{{ craft.imager.srcset( photos ) }}"></{{ elementtype }}>
+    {% if (options.background) %}
+      <{{ options.elementtype }} class="{{ options.class }} lazyload" style="background-image: url({{ photos|last.url }})" data-sizes="auto" data-bgset="{{ craft.imager.srcset( photos ) }}"></{{ options.elementtype }}>
     {% else %}
-      <img data-sizes="auto" src="{{ photos|last.url }}" data-srcset="{{ craft.imager.srcset( photos ) }}" class="{{ elementclass }} lazyload" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
+      <img class="{{ options.class }} lazyload" data-sizes="auto" src="{{ photos|last.url }}" data-srcset="{{ craft.imager.srcset( photos ) }}" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
     {% endif %}
   {% endif %}
 {% endmacro %}
-
 
 {#
   gallery Image Set

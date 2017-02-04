@@ -23,14 +23,18 @@
               <source src="{{ video.url }}" type="{{ video.getMimeType }}">
             {% endfor %}
             {% if data.photo %}
-              {{ myMacro.mediaImageSet(data.photo.first(), data.mediaRatio, ' '~classname~'__image') }}
+              {{ myMacro.mediaImageSet(data.photo.first(), data.mediaRatio, {
+                class: classname~'__image'
+              }) }}
             {% endif %}
           </video>
         {% endif %}
 
       {% else %}
         {% if data.photo %}
-          {{ myMacro.mediaImageSet(data.photo.first(), data.mediaRatio, ' '~classname~'__image') }}
+          {{ myMacro.mediaImageSet(data.photo.first(), data.mediaRatio, {
+            class: classname~'__image'
+          }) }}
         {% endif %}
       {% endif %}
     </div>
