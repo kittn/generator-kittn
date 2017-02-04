@@ -16,7 +16,9 @@
   <div class="{{ classname }}__wrapper">
     {% for photo in data.photos %}
       <div class="{{ classname }}__slide">
-        {{ myMacro.mediaImageSet(photo,data.ratio,classname~'__image') }}
+        {{ myMacro.mediaImageSet(photo, data.ratio, {
+          class: classname~'__image'
+        }) }}
       </div>
     {% endfor %}
   </div>
