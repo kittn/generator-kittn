@@ -2,12 +2,16 @@
  # 404 template
  # ------------
  #}
+{% set myentry = {
+  'slug': '404'
+} %}
 
 {% extends '_layout/main-layout.html' %}
-{% set title = '404' %}
 
 {% block content %}
-	<h1>Page not found</h1>
+  <div class="o-layout__container">
+    <h1>ERROR 404 : Page not found</h1>
 
-	<p>What’s worse, a hilarious 404 page can’t be found either.</p>
+    <p>What’s worse, a hilarious 404 page can’t be found either.</p>
+  </div>
 {% endblock %}

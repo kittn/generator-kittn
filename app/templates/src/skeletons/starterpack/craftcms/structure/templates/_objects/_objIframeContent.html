@@ -15,7 +15,7 @@
 {% set size = data.size != 'default' ? ' '~classname~'--s-'~data.size : '' %}
 
 {# Build Element Block #}
-<div class="{{ classname }}{{ size }}">
+<div class="{{ classname }}{{ size }}" role="presentation">
   <div class="{{ classname }}__inner" style="padding-bottom: {{ (ar|last)/(ar|first) * 100 }}%">
     {{ data.embed|raw }}
   </div>

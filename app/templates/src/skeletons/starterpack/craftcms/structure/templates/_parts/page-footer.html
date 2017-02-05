@@ -1,4 +1,5 @@
 <footer class="o-layout__footer" role="contentinfo">
+  {% cache %}
   <div class="o-layout__container">
     {% if footer.copyright %}
       <div class="c-copy">
@@ -8,4 +9,5 @@
 
     {{ myMacro.siteNavigation('c-footernav', 'footernav') }}
   </div>
+  {% endcache %}
 </footer>

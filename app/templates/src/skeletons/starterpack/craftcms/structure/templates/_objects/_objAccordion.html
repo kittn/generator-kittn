@@ -7,11 +7,11 @@
 {% set classname = name is defined and name != '' ? name : 'o-accordion' %}
 
 {# Build Element Block #}
-<div class="{{ classname }}{{ data.style ? ' '~classname~'--s-'~data.style : ' '~classname~'--s-default' }}">
+<div class="{{ classname }}{{ data.style ? ' '~classname~'--s-'~data.style : ' '~classname~'--s-default' }}" role="tablist">
   {% for accordion in content.children %}
-    <div class="{{ classname }}__box">
+    <div class="{{ classname }}__box" role="tab">
       <div class="{{ classname }}__trigger">{{ accordion.objAccordion }}</div>
-      <div class="{{ classname }}__body">
+      <div class="{{ classname }}__body" role="tabpanel">
         <div class="{{ classname }}__inner">
           {% for child in accordion.children %}
             {% include '_builder/_cb-objects' with { data: child } %}

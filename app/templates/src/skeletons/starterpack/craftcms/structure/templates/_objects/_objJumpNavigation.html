@@ -13,7 +13,7 @@
     {% set navstyle = block.layout != 'default' ?  ' '~classname~'--l-'~block.layout : '' %}
 
     {# Build Element Block #}
-    <nav class="{{ classname }}{{ block.style != 'default' ? ' '~classname~'--s-'~block.style }}{{ navstyle }}">
+    <nav class="{{ classname }}{{ block.style != 'default' ? ' '~classname~'--s-'~block.style }}{{ navstyle }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
       {% for link in block.anchorlinks %}
         <a href="#{{ link.anchor|lower }}" class="{{ classname }}__link js-smooth-scroll">{{ link.linkname }}</a>
       {% endfor %}

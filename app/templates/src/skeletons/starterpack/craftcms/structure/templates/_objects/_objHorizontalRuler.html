@@ -8,4 +8,4 @@
 {% set classname = name is defined and name != '' ? name : 'o-horizontalruler' %}
 
 {# Build Element Block #}
-<hr class="{{ classname }}{{ data != 'default' ? '---'~data }}">
+<hr class="{{ classname }}{{ data != 'default' ? '---'~data }}" role="separator">

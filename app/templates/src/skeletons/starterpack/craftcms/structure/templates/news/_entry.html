@@ -7,9 +7,13 @@
 
 {% block content %}
   <div class="o-layout__container">
-    <p>{{ entry.postDate.format('d.F Y') }}</p>
-    <h1>{{ entry.title }}</h1>
-    {{ entry.body }}
-    {% include '_builder/content-builder.html' %}
+    {% cache globally using key craft.request.path %}
+    <article role="article" itemscope itemtype="http://schema.org/Article">
+      <p>{{ entry.postDate.format('d.F Y') }}</p>
+      <h1 role="heading" itemprop="name">{{ entry.title }}</h1>
+      {{ entry.body }}
+      {% include '_builder/content-builder.html' %}
+    </article>
+    {% endcache %}
   </div>
 {% endblock %}

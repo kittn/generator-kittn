@@ -10,6 +10,7 @@
 {# Build Element Block #}
 <div class="{{ classname }}{{ data.position != 'default' ? ' '~classname~'--'~data.position : '' }}">
   <a itemprop="url"
+     role="button"
      href="{{ data.button.url }}" {{ data.button.target ? ' target="_blank"' }}
      class="{{ classname }}__element{{ data.style ? ' '~classname~'--s-'~data.style }}{{ data.size ? ' '~classname~'--'~data.size }}{{ data.fullwidth ? ' '~classname~'--fullwidth' }}">
     {{ data.button.text }}

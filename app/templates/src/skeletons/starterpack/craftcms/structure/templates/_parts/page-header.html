@@ -1,7 +1,8 @@
 <header class="o-layout__header" role="banner">
+  {% cache %}
   <div class="o-layout__container">
     {% include '_components/pagelogo.html' with { data: (entry is defined ? entry : myentry), name: '' } %}
     {{ myMacro.siteNavigation('c-mainnav', 'mainnav') }}
   </div>
-
+  {% endcache %}
 </header>

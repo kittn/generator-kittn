@@ -7,7 +7,9 @@
 
 {% block content %}
   <div class="o-layout__container">
+    {% cache globally using key craft.request.path %}
     <h1>{{ entry.title }}</h1>
     {% include '_builder/content-builder.html' %}
+    {% endcache %}
   </div>
 {% endblock %}

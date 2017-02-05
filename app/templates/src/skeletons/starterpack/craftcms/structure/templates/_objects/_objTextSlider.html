@@ -7,7 +7,7 @@
 {% set classname = name is defined and name != '' ? name : 'o-textslider' %}
 
 {# Build Element Block #}
-<div class="{{ classname }}">
+<div class="{{ classname }}" role="presentation">
   <div class="{{ classname }}__wrapper">
     {% for slide in data.slide %}
       <div class="{{ classname }}__slide">

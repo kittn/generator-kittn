@@ -7,6 +7,17 @@
   ],
   "sections": [
     {
+      "name": 404,
+      "handle": "error404",
+      "type": "single",
+      "enableVersioning": 1,
+      "typesettings": {
+        "template": 404,
+        "urlFormat": 404,
+        "nestedUrlFormat": null
+      }
+    },
+    {
       "name": "News",
       "handle": "news",
       "type": "channel",
@@ -2191,6 +2202,15 @@
     }
   ],
   "entryTypes": [
+    {
+      "sectionHandle": "error404",
+      "hasTitleField": 0,
+      "titleLabel": null,
+      "titleFormat": "{section.name|raw}",
+      "name": 404,
+      "handle": "error404",
+      "fieldLayout": []
+    },
     {
       "sectionHandle": "news",
       "hasTitleField": 1,

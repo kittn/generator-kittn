@@ -23,16 +23,18 @@
     }) %}
     {# Initiate the Pagination #}
     {% paginate entries as pageInfo, pageEntries %}
-    {# Loop through entries #}
-    {% for entry in pageEntries %}
-      <article>
-        <p>{{ entry.postDate.format('d.F Y') }}</p>
-        <h2><a href="{{ entry.url }}">{{ entry.title }}</a></h2>
-        {{ entry.body.getPage(1) }}
-        <p><a href="{{ entry.url }}">Weiterlesen</a></p>
-      </article>
-    {% endfor %}
-
+    {# Cache Entry #}
+    {% cache globally using key myentry.slug~'archives' %}
+      {# Loop through entries #}
+      {% for entry in pageEntries %}
+        <article role="article" itemscope itemtype="http://schema.org/Article">
+          <p>{{ entry.postDate.format('d.F Y') }}</p>
+          <h2 role="heading" itemprop="name"><a href="{{ entry.url }}" role="link" itemprop="contentUrl">{{ entry.title }}</a></h2>
+          {{ entry.body.getPage(1) }}
+          <p><a href="{{ entry.url }}" role="link">Weiterlesen</a></p>
+        </article>
+      {% endfor %}
+    {% endcache %}
     {# Include Pagination #}
     {{ myMacro.pagination(pageInfo,craft) }}
   </div>

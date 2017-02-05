@@ -11,10 +11,10 @@
 <div class="{{ classname }}{{ ' '~classname~'--'~data.mediaWidth }}{{ data.mediaPosition == 'right' ? ' '~classname~'--right' }}{{ data.background != 'null' ? ' '~classname~'--colored '~classname~'--c-'~data.background }}">
 
   {% if data.video or data.photo %}
-    <div class="{{ classname }}__media">
+    <div class="{{ classname }}__media" role="group" itemscope itemtype="http://schema.org/MediaObject">
       {% if data.videobox %}
         {% if data.video %}
-          <video muted preload="none" autoplay="autoplay" class="{{ classname }}__video" loop>
+          <video muted preload="none" autoplay="autoplay" class="{{ classname }}__video" loop role="application">
             {% for video in data.video %}
               <source src="{{ video.url }}" type="{{ video.getMimeType }}">
             {% endfor %}
