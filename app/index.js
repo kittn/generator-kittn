@@ -9,6 +9,8 @@ var shelljs       = require('shelljs/global');
 var commandExists = require('command-exists');
 var clear         = require('clear-terminal');
 var random        = require('randomstring');
+var mysql         = require('mysql');
+
 
 // Function for Generate Salt Keys
 var saltKeys = [];
@@ -261,6 +263,15 @@ var KittnGenerator = yeoman.Base.extend({
         default: function(props) { return props.projectname }
       },
       {
+        when: function(props) {
+          return props.projectcredential === true;
+        },
+        type: 'confirm',
+        name: 'credentialdbopen',
+        message: chalk.cyan.underline.bold('DB Name') + chalk.styles.red.close + '\n\xa0 Do you want to automatically add a database to your MySQL database?',
+        default: true
+      },
+      {
         type: 'list',
         name: 'projectscriptlinter',
         message: chalk.cyan.underline.bold('JS EsLint-Settings') + '\n\xa0 Pick an ESLint preset',
@@ -384,6 +395,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectastrum        = props.projectastrum;
       this.projectcraftbp       = props.projectcraftbp;
       this.projectwordpressbp   = props.projectwordpressbp;
+      this.credentialdbopen     = props.credentialdbopen;
       this.saltKeys             = saltKeys;
 
       done();
@@ -424,6 +436,7 @@ var KittnGenerator = yeoman.Base.extend({
       projectastrum        : this.projectastrum,
       projectcraftbp       : this.projectcraftbp,
       projectwordpressbp   : this.projectwordpressbp,
+      credentialdbopen     : this.credentialdbopen,
       saltKeys             : this.saltKeys,
       pkg: this.pkg
     };
@@ -597,6 +610,28 @@ var KittnGenerator = yeoman.Base.extend({
 
     } else {
       this.directory('src/skeletons/simplestructure', 'src/structure/')
+    }
+
+    // Adding Database
+    if ( this.projectcredential && this.credentialdbopen ) {
+      const connection = mysql.createConnection({
+        host     : this.credentialdbserver,
+        user     : this.credentialdbuser,
+        password : this.credentialdbpass
+      })
+
+      connection.connect(function(err) {
+        if (err) {
+          console.error('error connecting: ' + err.stack);
+          return;
+        }
+      })
+
+      connection.query('CREATE DATABASE IF NOT EXISTS '+this.credentialdbdatabase+';', function (error, results, fields) {
+        if (error) throw error;
+        console.log('Added Database ['+this.credentialdbdatabase+'] to your MySQL DB');
+      })
+      connection.end()
     }
 
     // Include the Twig Working Dir
