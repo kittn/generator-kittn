@@ -62,7 +62,8 @@
   @param {string} options.class       = Classname from the Element
   @param {bool}   options.background  = Background Option
   @param {string} options.elementtype = Typedefinition from Background Image Element
-  @param {number} options.quality     = JPEG Compression
+  @param {number} options.quality     = JPEG Compression,
+  @param {array}  options.sizes       = Array with Imagesizes
 #}
 {% macro mediaImageSet(photo,imageratio,options) %}
 
@@ -71,7 +72,15 @@
     class: 'o-media-object__image',
     background: false,
     elementtype: 'figure',
-    quality: 82
+    quality: 82,
+    sizes: [
+      { width: 1900 },
+      { width: 1200 },
+      { width: 800 },
+      { width: 500 },
+      { width: 320 },
+      { width: 150 },
+      { width: 30 } ]
   } %}
 
   {# Merging Arrays  #}
@@ -81,29 +90,16 @@
   {% if photo %}
     {# Check if image would cropped#}
     {% if imageratio != 'nocrop' %}
-      {# Transform Image Ratio in a Array #}
       {% set ratio = imageratio|default('35:24')|split(':') %}
-      {# Set Focal Point #}
       {% set focusPosition = photo.focalpoint is defined ? photo.focalpoint : '50% 50%' %}
-      {# Define the Modifier for Imager#}
       {% set globalModifier = { jpegQuality: options.quality, ratio: ratio|first/ratio|last , mode: 'crop', position: focusPosition } %}
+
     {% else %}
-      {# Define the Modifier for Imager#}
       {% set globalModifier = { jpegQuality: options.quality } %}
     {% endif %}
 
     {# Build the Image Set #}
-    {% set photos = craft.imager.transformImage(photo,
-      [
-        { width: 1900 },
-        { width: 1200 },
-        { width: 800 },
-        { width: 500 },
-        { width: 320 },
-        { width: 150 },
-        { width: 30, effects: { blur: 3 } }
-      ], globalModifier)
-    %}
+    {% set photos = craft.imager.transformImage(photo, options.sizes, globalModifier) %}
 
     {# Output as <img> or Background #}
     {% if (options.background) %}
