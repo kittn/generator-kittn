@@ -14,7 +14,7 @@ $mediaMaxHeight = '';
 // Define Size Modifier
 switch (get_sub_field('size')) :
   case 'viewportsize' :
-    $mediaSize = ' '.$classname.'--s-viewport';
+    $mediaSize = ' '.$classname.'--s-viewportsize';
     break;
   case 'oversize' :
     $mediaSize = ' '.$classname.'--s-oversize';

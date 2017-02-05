@@ -5,33 +5,14 @@
 #}
 
 {# Class Overwrite #}
-{% if name is defined and name != '' %}
-  {% set classname = name %}
-{% else %}
-  {% set classname = 'o-mediaimage' %}
-{% endif %}
+{% set classname = name is defined and name != '' ? name : 'o-mediaimage' %}
 
 {# Define Size Modifier #}
-{% switch data.size %}
-  {% case "viewportsize" %}
-    {% set size = ' '~classname~'--s-viewport' %}
-  {% case "oversize" %}
-    {% set size = ' '~classname~'--s-oversize' %}
-  {% case "undersize" %}
-    {% set size = ' '~classname~'--s-undersize' %}
-  {% default %}
-    {% set size = '' %}
-{% endswitch %}
+{% set size = data.size != 'default' ? ' '~classname~'--s-'~data.size : '' %}
 
 {# Set Heightrestriction Modifier #}
 {% if not data.ratio|length %}
-  {% if data.heightrestriction %}
-    {% set height = ' '~classname~'--maxheight' %}
-  {% else %}
-    {% set height = '' %}
-  {% endif %}
-{% else %}
-  {% set height = '' %}
+  {% set height = data.heightrestriction ? ' '~classname~'--maxheight' : '' %}
 {% endif %}
 
 {# Build Element Block #}

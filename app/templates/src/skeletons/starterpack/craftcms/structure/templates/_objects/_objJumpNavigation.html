@@ -5,24 +5,12 @@
 #}
 
 {# Class Overwrite #}
-{% if name is defined and name != '' %}
-  {% set classname = name %}
-{% else %}
-  {% set classname = 'o-jumpnavigation' %}
-{% endif %}
+{% set classname = name is defined and name != '' ? name : 'o-jumpnavigation' %}
 
 {% for block in data %}
   {% if block.type == 'navigation' %}
-
     {# Set Layoutype Modifer #}
-    {% switch block.layout %}
-      {% case 'fullwidth' %}
-        {% set navstyle = ' '~classname~'--l-fullwidth' %}
-      {% case 'list' %}
-        {% set navstyle = ' '~classname~'--l-list' %}
-      {% default %}
-        {% set navstyle = '' %}
-    {% endswitch %}
+    {% set navstyle = block.layout != 'default' ?  ' '~classname~'--l-'~block.layout : '' %}
 
     {# Build Element Block #}
     <nav class="{{ classname }}{{ block.style != 'default' ? ' '~classname~'--s-'~block.style }}{{ navstyle }}">

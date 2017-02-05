@@ -43,7 +43,15 @@
         <figure class="{{ classname }}__figure" itemprop="associatedMedia"{{ thumbWidth }}itemscope itemtype="http://schema.org/ImageObject">
           <a class="{{ classname }}__link" href="{{ gallery.photo.first().url }}" itemprop="contentUrl" data-size="{{ gallery.photo.first().width }}x{{ gallery.photo.first().height }}">
             {{ myMacro.mediaImageSet(gallery.photo.first(), crop, {
-              class: classname~'__thumbnail'
+              class: classname~'__thumbnail',
+              sizes: [
+                { width: 1200 },
+                { width: 800 },
+                { width: 500 },
+                { width: 320 },
+                { width: 150 },
+                { width: 30 }
+              ]
             }) }}
           </a>
           {% if gallery.caption %}

@@ -4,12 +4,9 @@
 #}
 
 {# Class Overwrite #}
-{% if name is defined and name != '' %}
-  {% set classname = name %}
-{% else %}
-  {% set classname = 'o-accordion' %}
-{% endif %}
+{% set classname = name is defined and name != '' ? name : 'o-accordion' %}
 
+{# Build Element Block #}
 <div class="{{ classname }}{{ data.style ? ' '~classname~'--s-'~data.style : ' '~classname~'--s-default' }}">
   {% for accordion in content.children %}
     <div class="{{ classname }}__box">

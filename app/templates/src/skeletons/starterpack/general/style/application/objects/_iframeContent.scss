@@ -28,7 +28,7 @@
   // Tags ----------------------------------
 
   // Base Modifier -------------------------
-  &#{$root}--s-viewport {
+  &#{$root}--s-viewportsize {
     @include break(v($api,breakpoint)) {
       width: 100vw;
       left: 50%;

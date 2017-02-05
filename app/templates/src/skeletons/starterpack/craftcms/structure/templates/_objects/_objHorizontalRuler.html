@@ -5,10 +5,7 @@
 #}
 
 {# Class Overwrite #}
-{% if name is defined and name != '' %}
-  {% set classname = name %}
-{% else %}
-  {% set classname = 'o-horizontalruler' %}
-{% endif %}
+{% set classname = name is defined and name != '' ? name : 'o-horizontalruler' %}
 
+{# Build Element Block #}
 <hr class="{{ classname }}{{ data != 'default' ? '---'~data }}">

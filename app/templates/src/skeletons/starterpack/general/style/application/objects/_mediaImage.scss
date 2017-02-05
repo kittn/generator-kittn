@@ -31,7 +31,7 @@
     height: 100vh;
   }
 
-  &#{$root}--s-viewport {
+  &#{$root}--s-viewportsize {
     @include break(v($api,breakpoint)) {
       width: 100vw;
       left: 50%;

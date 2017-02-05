@@ -4,12 +4,9 @@
 #}
 
 {# Class Overwrite #}
-{% if name is defined and name != '' %}
-  {% set classname = name %}
-{% else %}
-  {% set classname = 'o-tab' %}
-{% endif %}
+{% set classname = name is defined and name != '' ? name : 'o-tab' %}
 
+{# Build Element Block #}
 <div class="{{ classname }}{{ data.style ? ' '~classname~'--s-'~data.style : ' '~classname~'--s-default' }}">
   {# Random Number for identify tabgroup#}
   {% set tabGroup = random(5000) %}

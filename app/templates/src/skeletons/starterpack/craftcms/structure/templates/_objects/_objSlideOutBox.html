@@ -4,19 +4,10 @@
 #}
 
 {# Class Overwrite #}
-{% if name is defined and name != '' %}
-  {% set classname = name %}
-{% else %}
-  {% set classname = 'o-slideoutbox' %}
-{% endif %}
+{% set classname = name is defined and name != '' ? name : 'o-slideoutbox' %}
 
-{# Get Style #}
-{% switch data.style %}
-  {% case 'style1' %}
-    {% set style = ' '~classname~'--style1' %}
-  {% default %}
-    {% set style = '' %}
-{% endswitch %}
+{# Set Style #}
+{% set style = data.style != 'default' ? ' '~classname~'--'~data.style : '' %}
 
 {# Build Element Block #}
 <div class="{{ classname }}{{ style }}">

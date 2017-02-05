@@ -4,11 +4,7 @@
 #}
 
 {# Class Overwrite #}
-{% if name is defined and name != '' %}
-  {% set classname = name %}
-{% else %}
-  {% set classname = 'o-list' %}
-{% endif %}
+{% set classname = name is defined and name != '' ? name : 'o-list' %}
 
 {# Define the Listtype with Bulletstyle #}
 {% if data.listtype == 'ul' %}

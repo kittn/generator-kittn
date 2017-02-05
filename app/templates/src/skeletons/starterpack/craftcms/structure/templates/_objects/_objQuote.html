@@ -5,11 +5,7 @@
 #}
 
 {# Class Overwrite #}
-{% if name is defined and name != '' %}
-  {% set classname = name %}
-{% else %}
-  {% set classname = 'o-quote' %}
-{% endif %}
+{% set classname = name is defined and name != '' ? name : 'o-quote' %}
 
 {# Build Element Block #}
 <blockquote class="{{ classname }}">

@@ -5,27 +5,14 @@
 #}
 
 {# Class Overwrite #}
-{% if name is defined and name != '' %}
-  {% set classname = name %}
-{% else %}
-  {% set classname = 'o-iframecontent' %}
-{% endif %}
+{% set classname = name is defined and name != '' ? name : 'o-iframecontent' %}
 
 {# Split Aspect Ratio Value #}
 {% set r = data.ratio|default('16:9') %}
 {% set ar = r|split(':') %}
 
 {# Define Size Modifiers #}
-{% switch data.size %}
-  {% case "viewportsize" %}
-    {% set size = ' '~classname~'--s-viewport' %}
-  {% case "oversize" %}
-    {% set size = ' '~classname~'--s-oversize' %}
-  {% case "undersize" %}
-    {% set size = ' '~classname~'--s-undersize' %}
-  {% default %}
-    {% set size = '' %}
-{% endswitch %}
+{% set size = data.size != 'default' ? ' '~classname~'--s-'~data.size : '' %}
 
 {# Build Element Block #}
 <div class="{{ classname }}{{ size }}">

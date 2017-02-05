@@ -4,12 +4,7 @@
 #}
 
 {# Class Overwrite #}
-{% if name is defined and name != '' %}
-  {% set classname = name %}
-{% else %}
-  {% set classname = 'o-spacer' %}
-{% endif %}
+{% set classname = name is defined and name != '' ? name : 'o-spacer' %}
 
-{% set step = ' o-spacer--'~data.steps %}
-
-<div class="{{ classname }}{{ step }}"></div>
+{# Build Element Block #}
+<div class="{{ classname }}{{ ' '~classname~'--'~data.steps }}"></div>

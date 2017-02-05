@@ -4,12 +4,9 @@
 #}
 
 {# Class Overwrite #}
-{% if name is defined and name != '' %}
-  {% set classname = name %}
-{% else %}
-  {% set classname = 'o-viewportspan' %}
-{% endif %}
+{% set classname = name is defined and name != '' ? name : 'o-viewportspan' %}
 
+{# Build Element Block #}
 <div class="{{ classname }}{{ data.style ? ' '~classname~'--s-'~data.style }}{{ data.fullHeight ? ' '~classname~'--fullheight' }}"{{ data.anchor ? ' id='~data.anchor|lower }}>
   <div class="{{ classname }}__inner">
     {% for child in content.children %}

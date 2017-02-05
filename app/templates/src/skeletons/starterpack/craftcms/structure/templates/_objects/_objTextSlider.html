@@ -4,12 +4,9 @@
 #}
 
 {# Class Overwrite #}
-{% if name is defined and name != '' %}
-  {% set classname = name %}
-{% else %}
-  {% set classname = 'o-textslider' %}
-{% endif %}
+{% set classname = name is defined and name != '' ? name : 'o-textslider' %}
 
+{# Build Element Block #}
 <div class="{{ classname }}">
   <div class="{{ classname }}__wrapper">
     {% for slide in data.slide %}

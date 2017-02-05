@@ -5,11 +5,7 @@
 #}
 
 {# Class Overwrite #}
-{% if name is defined and name != '' %}
-  {% set classname = name %}
-{% else %}
-  {% set classname = 'o-mediabox' %}
-{% endif %}
+{% set classname = name is defined and name != '' ? name : 'o-mediabox' %}
 
 {# Build Element Block #}
 <div class="{{ classname }}{{ ' '~classname~'--'~data.mediaWidth }}{{ data.mediaPosition == 'right' ? ' '~classname~'--right' }}{{ data.background != 'null' ? ' '~classname~'--colored '~classname~'--c-'~data.background }}">

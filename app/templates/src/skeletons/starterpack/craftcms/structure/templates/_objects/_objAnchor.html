@@ -5,10 +5,7 @@
 #}
 
 {# Class Overwrite #}
-{% if name is defined and name != '' %}
-  {% set classname = name %}
-{% else %}
-  {% set classname = 'o-anchor' %}
-{% endif %}
+{% set classname = name is defined and name != '' ? name : 'o-anchor' %}
 
+{# Build Element Block #}
 <div class="{{ classname }}" id="{{ data.anchorname|default('anchor')|lower }}"{{ data.positionfix != '' ? 'style=position:relative;top:'~data.positionfix }}></div>

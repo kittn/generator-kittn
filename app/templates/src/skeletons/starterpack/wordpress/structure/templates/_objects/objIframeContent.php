@@ -12,7 +12,7 @@ $framesize = '';
 // Define Size
 switch (get_sub_field('size')) :
   case 'viewportsize' :
-    $framesize = ' '.$classname.'--s-viewport';
+    $framesize = ' '.$classname.'--s-viewportsize';
     break;
   case 'oversize' :
     $framesize = ' '.$classname.'--s-oversize';
