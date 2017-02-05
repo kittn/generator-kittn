@@ -1,9 +1,9 @@
 <?php
 /**
-  Anchor
-  ======
-  Use Auto Scroll Lib
-*/
+ * Anchor
+ * ======
+ * Use Auto Scroll Lib
+ */
 
 // Default Vars
 $classname = 'o-anchor';

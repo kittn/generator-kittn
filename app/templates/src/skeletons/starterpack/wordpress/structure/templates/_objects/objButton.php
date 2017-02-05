@@ -1,46 +1,23 @@
 <?php
 /**
-  Button Module
-  =============
-  Build a simple Button Element with an outer position Wrapper
-*/
+ * Button Module
+ * =============
+ * Build a simple Button Element with an outer position Wrapper
+ */
 
 // Default Vars
 $classname = 'o-button';
-$buttonposition = '';
-$buttonstyle = '';
-$buttonsize = '';
-$buttonfullwidth = '';
 $buttonlink = '';
 
 // Positon Modifiers
-switch (get_sub_field('position')) :
-  case 'right' :
-    $buttonposition = ' '.$classname.'--right';
-    break;
-  case 'center' :
-    $buttonposition = ' '.$classname.'--center';
-    break;
-endswitch;
-
+$buttonposition = (get_sub_field('position') != 'default' ? ' '.$classname.'--'.get_sub_field('position') : '');
 // Style Modifiers
-switch (get_sub_field('style')) :
-  case 'style1' :
-    $buttonstyle = ' '.$classname.'--s-style1';
-    break;
-  case 'default' :
-    $buttonstyle = ' '.$classname.'--s-default';
-    break;
-endswitch;
-
+$buttonstyle = (get_sub_field('style') ? ' '.$classname.'--s-'.get_sub_field('style') : '');
 // Size Modifier
-if (get_sub_field('size'))
-  $buttonsize = ' '.$classname.'--'.get_sub_field('size');
-
+$buttonsize = (get_sub_field('size') ? ' '.$classname.'--'.get_sub_field('size') : '');
 // Fullwidth Modifier
-if (get_sub_field('fullwidth'))
-  $buttonfullwidth = ' '.$classname.'--fullwidth';
-
+$buttonfullwidth = (get_sub_field('fullwidth') ? ' '.$classname.'--fullwidth' : '');
+// Button Target
 if (get_sub_field('backbutton')) {
   $buttonlink = ' href="history.back();" ';
 } else {
@@ -54,7 +31,7 @@ if (get_sub_field('backbutton')) {
 
 <?php // Build Element Block ?>
 <div class="<?= $classname; ?><?= $buttonposition; ?>">
-  <a itemprop="url"<?= $buttonlink; ?>
+  <a itemprop="url" role="button" <?= $buttonlink; ?>
      class="<?= $classname; ?>__element<?= $buttonstyle.$buttonsize.$buttonfullwidth; ?>">
     <?= get_sub_field('label'); ?>
   </a>

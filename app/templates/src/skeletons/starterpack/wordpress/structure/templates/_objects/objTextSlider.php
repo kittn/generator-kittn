@@ -1,16 +1,16 @@
 <?php
 /**
-  Text Slider
-  ===========
-  Build a Text Slider with Swipper
-*/
+ * Text Slider
+ * ===========
+ * Build a Text Slider with Swipper
+ */
 
 // Default Vars
 $classname = 'o-textslider';
 ?>
 
 <? // Build Element Block ?>
-<figure class="<?= $classname; ?>">
+<figure class="<?= $classname; ?>" role="presentation">
   <div class="<?= $classname; ?>__wrapper">
     <?php while( have_rows('slides') ) : the_row(); ?>
       <div class="<?= $classname; ?>__slide">

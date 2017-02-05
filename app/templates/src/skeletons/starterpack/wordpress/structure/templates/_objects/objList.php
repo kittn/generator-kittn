@@ -1,9 +1,9 @@
 <?php
 /**
-  List Module
-  ===========
-  Generate a List
-*/
+ * List Module
+ * ===========
+ * Generate a List
+ */
 
 // Default Vars
 $classname = 'o-list';
@@ -35,7 +35,7 @@ if (get_sub_field('listtype') == 'ul') {
 
 <?php // Building Element Block  ?>
 <?php if (have_rows('list')) : ?>
-<<?= $listtype; ?> class="<?= $classname; ?><?= $liststyle; ?>">
+<<?= $listtype; ?> class="<?= $classname; ?><?= $liststyle; ?>" role="list">
   <?php while( have_rows('list') ) : the_row(); ?>
     <li class="<?= $classname; ?>__entry"><?= get_sub_field('entry'); ?></li>
   <?php endwhile; ?>

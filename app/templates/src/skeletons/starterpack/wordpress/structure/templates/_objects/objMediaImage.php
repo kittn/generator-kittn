@@ -1,41 +1,22 @@
 <?php
 /**
-  Media Image
-  ===========
-  Image Container Element, can overlap Pageborder
-
-*/
+ * Media Image
+ * ===========
+ * Image Container Element, can overlap Pageborder
+ */
 
 // Default Vars
 $classname = 'o-mediaimage';
-$mediaSize = '';
-$mediaMaxHeight = '';
 
 // Define Size Modifier
-switch (get_sub_field('size')) :
-  case 'viewportsize' :
-    $mediaSize = ' '.$classname.'--s-viewportsize';
-    break;
-  case 'oversize' :
-    $mediaSize = ' '.$classname.'--s-oversize';
-    break;
-  case 'undersize' :
-    $mediaSize = ' '.$classname.'--s-undersize';
-    break;
-endswitch;
-
+$mediaSize = (get_sub_field('size') != 'default' ? ' '.$classname.'--s-'.get_sub_field('size') : '');
 // Set Hightrestiction
-if (get_sub_field('heightrestriction'))
-  $mediaMaxHeight = ' '.$classname.'--maxheight';
-
-$ratio = get_sub_field('ratio');
-
-$classes = $classname.$mediaSize.$mediaMaxHeight;
+$mediaMaxHeight = (get_sub_field('heightrestriction') ? ' '.$classname.'--maxheight' : '');
 ?>
 
 <?php // Building Element Block  ?>
-<figure class="<?= $classes; ?>" role="group" itemscope itemtype="http://schema.org/ImageObject">
-  <?php macro_mediaImageSet(get_sub_field('photo'), $classname.'__image', $ratio); ?>
+<figure class="<?= $classname.$mediaSize.$mediaMaxHeight; ?>" role="group" itemscope itemtype="http://schema.org/ImageObject">
+  <?php macro_mediaImageSet(get_sub_field('photo'), $classname.'__image', get_sub_field('ratio')); ?>
   <?php if (get_sub_field('caption')) : ?>
     <figcaption class="<?= $classname; ?>__caption" itemprop="caption description">
       <?= get_sub_field('caption'); ?>

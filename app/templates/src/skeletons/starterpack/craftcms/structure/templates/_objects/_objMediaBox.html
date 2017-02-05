@@ -8,10 +8,10 @@
 {% set classname = name is defined and name != '' ? name : 'o-mediabox' %}
 
 {# Build Element Block #}
-<div class="{{ classname }}{{ ' '~classname~'--'~data.mediaWidth }}{{ data.mediaPosition == 'right' ? ' '~classname~'--right' }}{{ data.background != 'null' ? ' '~classname~'--colored '~classname~'--c-'~data.background }}">
+<div class="{{ classname }}{{ ' '~classname~'--'~data.mediaWidth }}{{ data.mediaPosition == 'right' ? ' '~classname~'--right' }}{{ data.background != 'null' ? ' '~classname~'--colored '~classname~'--c-'~data.background }}" role="group" itemscope itemtype="http://schema.org/MediaObject">
 
   {% if data.video or data.photo %}
-    <div class="{{ classname }}__media" role="group" itemscope itemtype="http://schema.org/MediaObject">
+    <div class="{{ classname }}__media">
       {% if data.videobox %}
         {% if data.video %}
           <video muted preload="none" autoplay="autoplay" class="{{ classname }}__video" loop role="application">

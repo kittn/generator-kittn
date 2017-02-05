@@ -1,24 +1,20 @@
 <?php
 /**
-  Image Slider
-  ============
-  Build a Image Slider with Swipper.js
-*/
+ * Image Slider
+ * ============
+ * Build a Image Slider with Swipper.js
+ */
 
 // Default Vars
 $classname = 'o-imageslider';
-
-// Get general Image Ratio
-$ratio = get_sub_field('ratio');
-
 ?>
 
 <? // Build Element Block ?>
-<figure class="<?= $classname; ?>">
+<figure class="<?= $classname; ?>" itemscope itemtype="http://schema.org/ImageGallery" role="presentation">
   <div class="<?= $classname; ?>__wrapper">
     <?php while( have_rows('photos') ) : the_row(); ?>
-      <div class="<?= $classname; ?>__slide">
-        <?php macro_mediaImageSet(get_sub_field('photo'), $classname.'__image', $ratio); ?>
+      <div class="<?= $classname; ?>__slide" itemscope itemtype="http://schema.org/ImageObject">
+        <?php macro_mediaImageSet(get_sub_field('photo'), $classname.'__image', get_sub_field('ratio')); ?>
       </div>
     <?php endwhile; ?>
   </div>

@@ -1,8 +1,10 @@
 <?php
 /**
-  Viewport Span
-  ==============
-  Container that overlaps the page border - buggy on windows systems
+ * Viewport Span
+ * ==============
+ * Container that overlaps the page border
+ * Buggy on Windows Systems because the UI
+ * will Calculate the Scrollbars in the Viewport Calculation
 */
 
 // Default Vars

@@ -1,19 +1,20 @@
 <?php
 /**
-  Accordion Wrapper
-  =================
-  Container that overlaps the page border - buggy on windows systems
-*/
+ * Accordion Wrapper
+ * =================
+ * Container that overlaps the page border - buggy on windows systems
+ */
 
 // Default Vars
 $classname = 'o-accordion';
 ?>
 
-<div class="<?= $classname; ?><?= get_sub_field('style') ? ' '.$classname.'--s-'.get_sub_field('style') : ''; ?>">
+<?php // Build Element Block ?>
+<div class="<?= $classname; ?><?= get_sub_field('style') ? ' '.$classname.'--s-'.get_sub_field('style') : ''; ?>" role="tablist">
   <?php while( have_rows('accordion') ) : the_row(); ?>
-    <div class="<?= $classname; ?>__box">
+    <div class="<?= $classname; ?>__box" role="tab">
       <div class="<?= $classname; ?>__trigger"><?= get_sub_field('header') ?></div>
-      <div class="<?= $classname; ?>__body">
+      <div class="<?= $classname; ?>__body" role="tabpanel">
         <div class="<?= $classname; ?>__inner">
           <?php include ( get_template_directory() . '/_contentbuilder/contentModules.php' ); ?>
         </div>

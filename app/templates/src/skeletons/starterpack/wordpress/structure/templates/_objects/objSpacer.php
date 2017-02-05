@@ -1,9 +1,9 @@
 <?php
 /**
-  Spacer
-  ======
-  Spacer for adding more Margin
-*/
+ * Spacer
+ * ======
+ * Spacer for adding more Margin
+ */
 
 // Default Vars
 $classname = 'o-spacer';

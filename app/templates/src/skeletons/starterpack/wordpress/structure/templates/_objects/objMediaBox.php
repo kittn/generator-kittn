@@ -1,12 +1,14 @@
 <?php
 /**
-  Media Box
-  =========
-  Contentblock with a Image or Video
-*/
+ * Media Box
+ * =========
+ * Contentblock with a Image or Video
+ */
 
 // Default Vars
 $classname = 'o-mediabox';
+
+// Base Bars
 $mediaPosition = '';
 $mediaBackground = '';
 
@@ -17,29 +19,27 @@ if (get_sub_field('media_position') == 'right')
 // Background
 if (get_sub_field('background') != 'default')
   $mediaBackground = ' '.$classname.'--colored '.$classname.'--c-'.get_sub_field('background');
-
-$ratio = get_sub_field('ratio');
 ?>
 
 <?php // Building Element Block  ?>
-<div class="<?= $classname.$mediaPosition.$mediaBackground; ?><?= ' '.$classname.'--'.get_sub_field('media_width'); ?>">
+<div class="<?= $classname.$mediaPosition.$mediaBackground; ?><?= ' '.$classname.'--'.get_sub_field('media_width'); ?>" role="group" itemscope itemtype="http://schema.org/MediaObject">
   <?php if (get_sub_field('photo') || get_sub_field('video')) : ?>
     <div class="<?= $classname; ?>__media">
       <?php if (get_sub_field('videobox')) : ?>
         <?php if (get_sub_field('video')) : ?>
-          <video muted preload="none" autoplay="autoplay" class="<?= $classname; ?>__video" loop>
+          <video muted preload="none" autoplay="autoplay" class="<?= $classname; ?>__video" loop role="application">
             <?php foreach (get_sub_field('video') as $video) : ?>
               <source src="<?= $video['url']; ?>" type="<?= $video['mime_type'];?>">
             <?php endforeach; ?>
             <?php if (get_sub_field('photo')) : ?>
-              <?php macro_mediaImageSet(get_sub_field('photo'), $classname.'__image', $ratio); ?>
+              <?php macro_mediaImageSet(get_sub_field('photo'), $classname.'__image', get_sub_field('ratio')); ?>
             <?php endif; // if photo ?>
           </video>
         <?php endif; // if video ?>
 
       <?php else : ?>
         <?php if (get_sub_field('photo')) : ?>
-          <?php macro_mediaImageSet(get_sub_field('photo'), $classname.'__image', $ratio); ?>
+          <?php macro_mediaImageSet(get_sub_field('photo'), $classname.'__image', get_sub_field('ratio')); ?>
         <?php endif; // if photo ?>
       <?php endif; // if Videobox ?>
     </div>
