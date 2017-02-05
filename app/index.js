@@ -181,8 +181,8 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'confirm',
         name: 'projectwpcli',
-        message: chalk.cyan.underline.bold('WP-CLI') + '\n\xa0 Do you want to install Wordpress?',
-        default: false
+        message: chalk.cyan.underline.bold('WP-CLI') + '\n\xa0 Should the generator install WordPress for you?',
+        default: true
       },
       {
         when: function(props) {
@@ -193,7 +193,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'confirm',
         name: 'projectcraftcli',
-        message: chalk.cyan.underline.bold('Craft Install') + '\n\xa0 Do you want to install Craft?',
+        message: chalk.cyan.underline.bold('Craft Install') + '\n\xa0 Should the generator install CraftCMS for you?',
         default: true
       },
       {
