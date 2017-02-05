@@ -32,6 +32,20 @@
   <a href="{{ node.url }}" role="link" {% if nodeClasses|length %} class="{{ nodeClasses|join(' ') }}"{% endif %} title="{{ node.name }}"{% if node.blank %}  target="_blank"{% endif %}>{{ node.name }}</a>
 {% endmacro %}
 
+{#
+  AmNav Sitenav Warning
+  =============
+  Needed for SiteNavigation with Am Nav
+
+  @private
+#}
+{% macro siteNavWarn(nav) %}
+  {% if craft.amNav.getNavName(nav) %}
+    {% set nav = craft.amNav.getNavRaw(nav) %}
+  {% else %}
+    <div style="color:red"><b style="color:red">A&M Nav</b> Please add `{{ nav }}` Navigation</div>
+  {% endif %}
+{% endmacro %}
 
 {# ===================================================== #}
 {# ----------------- Regular Macros -------------------- #}
@@ -194,14 +208,16 @@
   <nav class="{{ classname }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
     {% switch sectionPart %}
       {% case 'footernav' %}
-        {% set nav = craft.amNav.getNavRaw('footerNavigation') %}
+        {{ _self.siteNavWarn('footerNavigation') }}
       {% case 'mainnav' %}
-        {% set nav = craft.amNav.getNavRaw('mainNavigation') %}
+        {{ _self.siteNavWarn('mainNavigation') }}
     {% endswitch %}
 
-    {% for node in nav %}
-      {{ _self.addNodeToNavigation(node, loop.index) }}
-    {% endfor %}
+    {% if nav is defined %}
+      {% for node in nav %}
+        {{ _self.addNodeToNavigation(node, loop.index) }}
+      {% endfor %}
+    {% endif %}
   </nav>
 {% endmacro %}
 
