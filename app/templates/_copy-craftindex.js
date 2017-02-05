@@ -1,6 +1,6 @@
 /**
  * Copy Craft Env
- * @description Copy all Craft Env Files
+ * @description Copy Craft Public Folder
  */
 
 import kc from '../../config.json'
@@ -8,7 +8,7 @@ import gulp from 'gulp'
 
 const copyCraftIndex = () => {
   gulp
-    .src(kc.src.system + 'index.php')
+    .src([kc.src.system + 'public/**/*', kc.src.system + 'public/**/.*'])
     .pipe(gulp.dest(kc.dist.base))
 }
 

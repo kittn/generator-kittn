@@ -27,7 +27,7 @@ var KittnGenerator = yeoman.Base.extend({
   askFor: function () {
     var done      = this.async();
     var wp_cli    = false;
-    var craft_cli = false;
+    var craft_wget = false;
 
     // Custom Greeting
     var welcome =
@@ -60,12 +60,12 @@ var KittnGenerator = yeoman.Base.extend({
       wp_cli = false;
     });
 
-    commandExists('craft')
-      .then(function(command){
-        craft_cli = true
-      }).catch(function(){
-        craft_cli = false;
-    });
+    commandExists('wget --help')
+      .then(function(command) {
+        craft_wget = true
+      }).catch(function() {
+      craft_wget = false
+    })
 
     // check git info
     var gitInfo = {
@@ -91,38 +91,18 @@ var KittnGenerator = yeoman.Base.extend({
           }
           return true;
         }
-      },{
+      },
+      {
         type: 'input',
         name: 'projectdescription',
         message: chalk.cyan.underline.bold('Project Description') + '\n\xa0 Description of the project',
         default: 'undefinied'
-      },{
+      },
+      {
         type: 'input',
         name: 'projectcssfilename',
         message: chalk.cyan.underline.bold('CSS Filename') +  '\n\xa0 (only the name without .css or .scss)',
         default: 'style'
-      },
-      {
-        type: 'list',
-        name: 'projectscriptlinter',
-        message: chalk.cyan.underline.bold('JS EsLint-Settings') + '\n\xa0 Pick an ESLint preset',
-        choices: [
-          {
-            'name': 'Standard (https://github.com/feross/standard)',
-            'value': 'standard',
-            'short': 'Standard'
-          },
-          {
-            'name': 'AirBNB (https://github.com/airbnb/javascript)',
-            'value': 'airbnb',
-            'short': 'AirBNB'
-          },
-          {
-            'name': 'none (configure it yourself)',
-            'value': 'none',
-            'short': 'none'
-          }
-        ]
       },
       {
         type: 'list',
@@ -143,6 +123,12 @@ var KittnGenerator = yeoman.Base.extend({
           'ITCSS',
           'OOCSS'
         ]
+      },
+      {
+        type: 'confirm',
+        name: 'projectiecompatible',
+        message: chalk.cyan.underline.bold('Oldie IE?') + chalk.styles.red.close + '\n\xa0 IE8 compatibility needed?',
+        default: false
       },
       {
         type: 'list',
@@ -198,15 +184,15 @@ var KittnGenerator = yeoman.Base.extend({
       },
       {
         when: function(props) {
-          if(props.projectUsage === 'Integrate in CraftCMS' && craft_cli) {
+          if(props.projectUsage === 'Integrate in CraftCMS' && craft_wget) {
             return true
           }
           return false;
         },
         type: 'confirm',
         name: 'projectcraftcli',
-        message: chalk.cyan.underline.bold('Craft-CLI') + '\n\xa0 Do you want to install Craft?',
-        default: false
+        message: chalk.cyan.underline.bold('Craft Install') + '\n\xa0 Do you want to install Craft?',
+        default: true
       },
       {
         when: function(props) {
@@ -215,7 +201,7 @@ var KittnGenerator = yeoman.Base.extend({
         type: 'confirm',
         name: 'projectcredential',
         message: chalk.cyan.underline.bold('Local Environment Credentials') +  '\n\xa0 Want to enter your URL and Database Credentials for your local Environment?',
-        default: false
+        default: true
       },
       {
         when: function(props) {
@@ -275,17 +261,34 @@ var KittnGenerator = yeoman.Base.extend({
         default: function(props) { return props.projectname }
       },
       {
-        type: 'confirm',
-        name: 'projectiecompatible',
-        message: chalk.cyan.underline.bold('Oldie IE?') + chalk.styles.red.close + '\n\xa0 IE8 compatibility needed?',
-        default: false
+        type: 'list',
+        name: 'projectscriptlinter',
+        message: chalk.cyan.underline.bold('JS EsLint-Settings') + '\n\xa0 Pick an ESLint preset',
+        choices: [
+          {
+            'name': 'Standard (https://github.com/feross/standard)',
+            'value': 'standard',
+            'short': 'Standard'
+          },
+          {
+            'name': 'AirBNB (https://github.com/airbnb/javascript)',
+            'value': 'airbnb',
+            'short': 'AirBNB'
+          },
+          {
+            'name': 'none (configure it yourself)',
+            'value': 'none',
+            'short': 'none'
+          }
+        ]
       },
       {
         type: 'confirm',
         name: 'projectjquery',
         message: chalk.cyan.underline.bold('jQuery') + '\n\xa0 Want to use jQuery?',
         default: false
-      },{
+      },
+      {
         type: 'list',
         name: 'projectJSFramework',
         message: chalk.cyan.underline.bold('JS Frameworks')  + '\n\xa0 Would you like to integrate a JS framework (Vue, React...)?',
@@ -317,22 +320,26 @@ var KittnGenerator = yeoman.Base.extend({
         name: 'projectversion',
         message: chalk.cyan.underline.bold('Project Version') + '\n\xa0 The Version Number',
         default: '0.0.1'
-      },{
+      },
+      {
         type: 'input',
         name: 'projectauthor',
         message: chalk.cyan.underline.bold('Project Author') + '\n\xa0 Project Author Name or Company',
         default: gitInfo.name
-      },{
+      },
+      {
         type: 'input',
         name: 'projectmail',
         message: chalk.cyan.underline.bold('Project Mail') + '\n\xa0 Mailadress from the Author',
         default: gitInfo.email
-      },{
+      },
+      {
         type: 'input',
         name: 'projecturl',
         message: chalk.cyan.underline.bold('Project URL') + '\n\xa0 Author URL',
         default: 'http://........'
-      },{
+      },
+      {
         type: 'input',
         name: 'projectrepo',
         message: chalk.cyan.underline.bold('Project Repo-URL') + '\n\xa0 URL to the Git-Repo',
@@ -423,41 +430,41 @@ var KittnGenerator = yeoman.Base.extend({
 
     // Move the SRC Folder
     mkdirp.sync('dist/');
-    this.directory('src/js/', 'src/js/');
-    this.directory('src/fonts/', 'src/fonts/');
-    this.directory('src/images/', 'src/images/');
-    this.directory('src/scripts/', 'src/scripts/');
-    this.directory('src/.system/', 'src/.system/');
-    this.directory('src/gulpfile/', 'gulpfile/');
+    this.directory('src/js/', 'src/js/')
+    this.directory('src/fonts/', 'src/fonts/')
+    this.directory('src/images/', 'src/images/')
+    this.directory('src/scripts/', 'src/scripts/')
+    this.directory('src/.system/', 'src/.system/')
+    this.directory('src/gulpfile/', 'gulpfile/')
 
     // Define Sass File Type
     if ( this.projectsasssyntax === 'SCSS') {
-      var sassFileEnding = '.scss';
+      var sassFileEnding = '.scss'
     } else {
-      var sassFileEnding = '.sass';
+      var sassFileEnding = '.sass'
     }
 
     // Copy the CSS Structure
     switch(this.projectcssstructure) {
       case 'Atomic Design':
-        this.directory('src/skeletons/css/atomic', 'src/style/application/');
-        this.template('src/skeletons/css/_application_atomic.scss', 'src/style/application/_application'+sassFileEnding, templateParams);
-        break;
+        this.directory('src/skeletons/css/atomic', 'src/style/application/')
+        this.template('src/skeletons/css/_application_atomic.scss', 'src/style/application/_application'+sassFileEnding, templateParams)
+        break
 
       case 'ITCSS':
         this.directory('src/skeletons/css/itcss', 'src/style/application/')
-        this.template('src/skeletons/css/_application_itcss.scss', 'src/style/application/_application'+sassFileEnding, templateParams);
-        break;
+        this.template('src/skeletons/css/_application_itcss.scss', 'src/style/application/_application'+sassFileEnding, templateParams)
+        break
 
       case 'OOCSS':
         this.directory('src/skeletons/css/oocss', 'src/style/application/')
-        this.template('src/skeletons/css/_application_oocss.scss', 'src/style/application/_application'+sassFileEnding, templateParams);
-        break;
+        this.template('src/skeletons/css/_application_oocss.scss', 'src/style/application/_application'+sassFileEnding, templateParams)
+        break
 
       default:
         this.directory('src/skeletons/css/own', 'src/style/application/')
-        this.template('src/skeletons/css/_application_own.scss', 'src/style/application/_application'+sassFileEnding, templateParams);
-        break;
+        this.template('src/skeletons/css/_application_own.scss', 'src/style/application/_application'+sassFileEnding, templateParams)
+        break
     }
 
     this.directory('src/framework/', 'src/framework/');
@@ -494,19 +501,13 @@ var KittnGenerator = yeoman.Base.extend({
 
     // Put Craft Base Files in Structure or simple Structure Files
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {
-      this.directory('src/skeletons/craftcms/structure/', 'src/structure/');
+      this.directory('src/skeletons/craftcms/structure/', 'src/structure/')
 
       this.directory('src/skeletons/craftcms/craftsync/', 'src/craftsync/')
 
       // Copy .env Config File
       this.directory('src/skeletons/craftcms/env/', 'src/.system/env/')
-
-      // Copy new Craft Index.php
-      this.fs.copyTpl(
-        this.templatePath('src/skeletons/craftcms/index.php'),
-        this.destinationPath('src/.system/index.php'),
-        templateParams
-      );
+      this.directory('src/skeletons/craftcms/public/', 'src/.system/public/')
 
       if ( this.projectcredential ) {
         this.fs.copyTpl(
@@ -531,11 +532,11 @@ var KittnGenerator = yeoman.Base.extend({
       // Install Craft Starterpack
       if (this.projectcraftbp) {
         // Copy Plugins and Templates
-        this.directory('src/skeletons/starterpack/craftcms/structure/', 'src/structure/');
+        this.directory('src/skeletons/starterpack/craftcms/structure/', 'src/structure/')
         // Copy JS Script Files
-        this.directory('src/skeletons/starterpack/general/js/', 'src/js/partial/');
+        this.directory('src/skeletons/starterpack/general/js/', 'src/js/partial/')
         // Copy Sass Files
-        this.directory('src/skeletons/starterpack/general/style/', 'src/style/');
+        this.directory('src/skeletons/starterpack/general/style/', 'src/style/')
         // Copy Contentbuilder Config
         this.fs.copyTpl(
           this.templatePath('src/skeletons/starterpack/craftcms/contentbuilder.json'),
@@ -575,11 +576,11 @@ var KittnGenerator = yeoman.Base.extend({
       // Install Wordpress Starterpack
       if (this.projectwordpressbp) {
         // Copy JS Script Files
-        this.directory('src/skeletons/starterpack/general/js/', 'src/js/partial/');
+        this.directory('src/skeletons/starterpack/general/js/', 'src/js/partial/')
         // Copy Sass Files
-        this.directory('src/skeletons/starterpack/general/style/', 'src/style/');
+        this.directory('src/skeletons/starterpack/general/style/', 'src/style/')
         // Copy Plugins and Templates
-        this.directory('src/skeletons/starterpack/wordpress/structure/', 'src/structure/');
+        this.directory('src/skeletons/starterpack/wordpress/structure/', 'src/structure/')
         // Copy Contentbuilder Config
         this.fs.copyTpl(
           this.templatePath('src/skeletons/starterpack/wordpress/contentbuilder.json'),
@@ -595,7 +596,7 @@ var KittnGenerator = yeoman.Base.extend({
       }
 
     } else {
-      this.directory('src/skeletons/simplestructure', 'src/structure/');
+      this.directory('src/skeletons/simplestructure', 'src/structure/')
     }
 
     // Include the Twig Working Dir
@@ -604,11 +605,11 @@ var KittnGenerator = yeoman.Base.extend({
     }
 
     if ( this.projectJSFramework === 'Vue.js' ) {
-      this.directory('src/skeletons/vue/components/', 'src/js/components/');
-      this.directory('src/skeletons/vue/store/', 'src/js/store/');
-      this.directory('src/skeletons/vue/router/', 'src/js/router/');
-      this.directory('src/skeletons/vue/shared/', 'src/js/shared/');
-      this.directory('src/build/', 'build/');
+      this.directory('src/skeletons/vue/components/', 'src/js/components/')
+      this.directory('src/skeletons/vue/store/', 'src/js/store/')
+      this.directory('src/skeletons/vue/router/', 'src/js/router/')
+      this.directory('src/skeletons/vue/shared/', 'src/js/shared/')
+      this.directory('src/build/', 'build/')
 
       this.fs.copyTpl(
         this.templatePath('_app.vue'),
@@ -618,7 +619,7 @@ var KittnGenerator = yeoman.Base.extend({
     }
 
     if (this.projectastrum) {
-      this.directory('src/pattern-library/', 'doc/pattern-library/');
+      this.directory('src/pattern-library/', 'doc/pattern-library/')
 
       this.fs.copyTpl(
         this.templatePath('_astrum-config.json'),
@@ -632,133 +633,160 @@ var KittnGenerator = yeoman.Base.extend({
       this.templatePath('_package.json'),
       this.destinationPath('package.json'),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('_config.json'),
       this.destinationPath('config.json'),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('_bower.json'),
       this.destinationPath('bower.json'),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('_gulpfile.babel.js'),
       this.destinationPath('gulpfile.babel.js'),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('_readme.md'),
       this.destinationPath('readme.md'),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('_gitignore'),
       this.destinationPath('.gitignore'),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('bowerrc'),
       this.destinationPath('.bowerrc'),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('editorconfig'),
       this.destinationPath('.editorconfig'),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('nvmrc'),
       this.destinationPath('.nvmrc'),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('sass-lint'),
       this.destinationPath('.sass-lint.yml'),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('babelrc'),
       this.destinationPath('.babelrc'),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('eslintrc'),
       this.destinationPath('.eslintrc'),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('_webpack.config.babel.js'),
       this.destinationPath('webpack.config.babel.js'),
       templateParams
-    );
+    )
+
     this.fs.copyTpl(
       this.templatePath('_webpack.dev.config.babel.js'),
       this.destinationPath('webpack.dev.config.babel.js'),
       templateParams
-    );
+    )
+
   },
 
-  install: function () {
-    var _self = this;
+  installCraft() {
+    // Put Craft Base Files in Structure or simple Structure Files
+    if (this.projectUsage === 'Integrate in CraftCMS') {
+      if (this.projectcraftcli) {
+        const done = this.async()
+        const self = this
+
+        this.spawnCommand('wget', ['http://buildwithcraft.com/latest.tar.gz\?accept_license\=yes']).on('close', () => {
+          self.spawnCommand('mkdir', ['dist']).on('close', () => {
+            self.spawnCommand('tar', ['-zxvf', 'latest.tar.gz\?accept_license=yes', 'craft/']).on('close', () => {
+              self.spawnCommand('mv', ['craft', 'dist/']).on('close', () => {
+                self.spawnCommand('rm', ['-rf', 'latest.tar.gz\?accept_license=yes']).on('close', done)
+              })
+            })
+          })
+        })
+
+        // For the Future CRAFT3.0 Composer Power
+        // const done = this.async()
+        // this.spawnCommand('composer', ['create-project', 'craftcms/craft', 'dist', '-s', 'beta']).on('close', done)
+
+      } else {
+        console.log('Before you run `npm run init`, you must manually install Craft in the `dist/` directory.')
+      }
+    }
+  },
+
+  installWP() {
+
+    if (this.projectUsage === 'Integrate in Wordpress') {
+      if (this.projectwpcli) {
+        const done = this.async()
+        this.spawnCommand('wp', ['core', 'download', '--path=dist', '--locale=de_DE']).on('close', done)
+      } else {
+        console.log('Before you run `npm run init`, you must manually install Wordpress in the `dist/` directory.')
+      }
+    }
+  },
+
+  install() {
+    const _self = this
 
     // check if yarn is available and use it instead of npm
-    commandExists('yarn', function(err, commandExists) {
-      if(commandExists) {
-        var done = _self.async();
+    commandExists('yarn', function (err, commandExists) {
+      if (commandExists) {
+        const done = _self.async()
         _self.spawnCommand('yarn').on('close', done);
       } else {
         this.installDependencies({
           bower: false,
-          npm: true
-        });
+          npm  : true
+        })
       }
-    });
+    })
 
-    // Put Craft Base Files in Structure or simple Structure Files
-    if ( this.projectUsage === 'Integrate in CraftCMS' ) {
-      if ( this.projectcraftcli ) {
-        var done = this.async();
-        this.spawnCommand('craft', ['install', './dist/']).on('close', done);
-      }
-    } else if ( this.projectUsage === 'Integrate in Wordpress' ) {
-      if ( this.projectwpcli ) {
-        var done = this.async();
-        this.spawnCommand('wp', ['core', 'download', '--path=dist', '--locale=de_DE']).on('close', done);
-
-      }
-    }
-
-    // Finish Task
+    // Goodbye
     this.on('end', function () {
-      var goodbye =
-            '\n ' + chalk.styles.yellow.open +
-            '\n                    __    .__  __    __ ' +
-            '\n                    |  | _|__|/  |__/  |_  ____ ' +
-            '\n                    |  |/ /  \\   __\\   __\\/    \\ ' +
-            '\n                    |    <|  ||  |  |  | |   |  \\ ' +
-            '\n                    |__|_ \\__||__|  |__| |___|  / ' +
-            '\n                    \\/                   \\/  ' +
-            '\n  ' + chalk.styles.yellow.close  + chalk.styles.green.open +
-            '\n   Now we are finished. Make your last settings and start `npm run init`.' +
-            '\n      When you are finished activate `npm run dev` and happy Coding.' +
-            '\n ' + chalk.styles.green.close;
-      console.log(goodbye);
-    });
+      const goodbye =
+              '\n ' + chalk.styles.yellow.open +
+              '\n                    __    .__  __    __ ' +
+              '\n                    |  | _|__|/  |__/  |_  ____ ' +
+              '\n                    |  |/ /  \\   __\\   __\\/    \\ ' +
+              '\n                    |    <|  ||  |  |  | |   |  \\ ' +
+              '\n                    |__|_ \\__||__|  |__| |___|  / ' +
+              '\n                    \\/                   \\/  ' +
+              '\n  ' + chalk.styles.yellow.close  + chalk.styles.green.open +
+              '\n   Now we are finished. Make your last settings and start `npm run init`.' +
+              '\n      When you are finished activate `npm run dev` and happy Coding.' +
+              '\n ' + chalk.styles.green.close
+      console.log(goodbye)
+    })
   }
-});
+})
 
-module.exports = KittnGenerator;
+module.exports = KittnGenerator
