@@ -1,0 +1,13 @@
+{#
+  Embed Module
+  =============
+  Display Embeded Code, like Gist, embeded Tweets and so on
+#}
+
+{# Class Overwrite #}
+{% set classname = name is defined and name != '' ? name : 'o-embed' %}
+
+{# Build Element Block #}
+<div class="{{ classname }}{{ data.align != 'default' ? ' '~classname~'--'~data.align }}">
+  {{ data.body|raw }}
+</div>

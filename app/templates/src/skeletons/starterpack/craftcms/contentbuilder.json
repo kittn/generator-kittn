@@ -358,6 +358,64 @@
       }
     },
     {
+      "group": "Objects",
+      "name": "Embed",
+      "handle": "objEmbed",
+      "instructions": "Feld zum einbetten von HTML Code, um Embed Inhalte darzustellen",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "row",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Ausrichtung",
+                "handle": "align",
+                "instructions": "Ausrichtung des Inhalts",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Linksb\u00fcndig",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Zentriert",
+                      "value": "center",
+                      "default": ""
+                    },
+                    {
+                      "label": "Rechtsb\u00fcndig",
+                      "value": "right",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Code",
+                "handle": "body",
+                "instructions": "",
+                "required": 0,
+                "type": "SimpleText",
+                "width": "",
+                "typesettings": {
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
       "group": "Globals",
       "name": "Fokuspunkt",
       "handle": "focalpoint",
@@ -1830,7 +1888,7 @@
             1,
             8,
             14,
-            17
+            18
           ]
         },
         "blockTypes": {
@@ -2017,7 +2075,21 @@
             }
           },
           "new13": {
-            "sortOrder": 18,
+            "sortOrder": 17,
+            "name": "Embed",
+            "handle": "objEmbed",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Tab 1": [
+                "objEmbed"
+              ]
+            }
+          },
+          "new14": {
+            "sortOrder": 19,
             "name": "Trennlinie",
             "handle": "objHorizontalRuler",
             "maxBlocks": null,
@@ -2030,8 +2102,8 @@
               ]
             }
           },
-          "new14": {
-            "sortOrder": 19,
+          "new15": {
+            "sortOrder": 20,
             "name": "Spacer",
             "handle": "objSpacer",
             "maxBlocks": null,
@@ -2044,8 +2116,8 @@
               ]
             }
           },
-          "new15": {
-            "sortOrder": 20,
+          "new16": {
+            "sortOrder": 21,
             "name": "Accordion Wrapper",
             "handle": "objAccordionWrapper",
             "maxBlocks": null,
@@ -2060,8 +2132,8 @@
               ]
             }
           },
-          "new16": {
-            "sortOrder": 21,
+          "new17": {
+            "sortOrder": 22,
             "name": "Accordion",
             "handle": "objAccordion",
             "maxBlocks": null,
@@ -2079,9 +2151,11 @@
               "objIframeContent",
               "objButton",
               "objSlideOutBox",
+              "objEmbed",
               "objHorizontalRuler",
               "objSpacer",
-              "objAnchor"
+              "objAnchor",
+              "objJumpNavigation"
             ],
             "maxChildBlocks": null,
             "topLevel": 1,
@@ -2091,8 +2165,8 @@
               ]
             }
           },
-          "new17": {
-            "sortOrder": 22,
+          "new18": {
+            "sortOrder": 23,
             "name": "Viewport Span",
             "handle": "objViewportSpan",
             "maxBlocks": null,
@@ -2110,9 +2184,11 @@
               "objIframeContent",
               "objButton",
               "objSlideOutBox",
+              "objEmbed",
               "objHorizontalRuler",
               "objSpacer",
-              "objAnchor"
+              "objAnchor",
+              "objJumpNavigation"
             ],
             "maxChildBlocks": null,
             "topLevel": 1,
@@ -2122,8 +2198,8 @@
               ]
             }
           },
-          "new18": {
-            "sortOrder": 23,
+          "new19": {
+            "sortOrder": 24,
             "name": "Tab Wrapper",
             "handle": "objTabWrapper",
             "maxBlocks": null,
@@ -2138,8 +2214,8 @@
               ]
             }
           },
-          "new19": {
-            "sortOrder": 24,
+          "new20": {
+            "sortOrder": 25,
             "name": "Tab",
             "handle": "objTab",
             "maxBlocks": null,
@@ -2157,9 +2233,11 @@
               "objIframeContent",
               "objButton",
               "objSlideOutBox",
+              "objEmbed",
               "objHorizontalRuler",
               "objSpacer",
-              "objAnchor"
+              "objAnchor",
+              "objJumpNavigation"
             ],
             "maxChildBlocks": null,
             "topLevel": 1,
@@ -2169,8 +2247,8 @@
               ]
             }
           },
-          "new20": {
-            "sortOrder": 25,
+          "new21": {
+            "sortOrder": 26,
             "name": "Anker",
             "handle": "objAnchor",
             "maxBlocks": null,
@@ -2183,8 +2261,8 @@
               ]
             }
           },
-          "new21": {
-            "sortOrder": 26,
+          "new22": {
+            "sortOrder": 27,
             "name": "Sprungnavigation",
             "handle": "objJumpNavigation",
             "maxBlocks": 1,
@@ -2220,7 +2298,8 @@
       "fieldLayout": {
         "Content": [
           "body",
-          "tags"
+          "tags",
+          "contentBuilder"
         ],
         "Meta": [
           "articleImage",

@@ -1,0 +1,40 @@
+/*
+  Embed
+  ======
+  Display Embeded Code, like Gist, embeded Tweets and so on
+
+  **Elements**
+*/
+.o-embed {
+  // Component Config
+  $api: (
+    selector: 'embed',
+    breakpoint: 'm',
+    margin-bottom: s(1)
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+  margin-bottom: s(1);
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+  // [root]--center
+  &--center {
+    text-align: center;
+  }
+
+  // [root]--right
+  &--right {
+    text-align: right;
+  }
+  // Childs --------------------------------
+
+}

@@ -85,4 +85,8 @@
   {% case 'objJumpNavigation' %}
     {% include '_objects/_objJumpNavigation' with { data: data.objJumpNavigation, name: '' } %}
 
+  {# Embed #}
+  {% case 'objEmbed' %}
+    {% include '_objects/_objEmbed' with { data: data.objEmbed, name: '' } %}
+
 {% endswitch %}
