@@ -9,6 +9,7 @@ return array(
     'usePathInfo' => true,
     'cacheDuration' => false,
     'useEmailAsUsername' => false,
+    'limitAutoSlugsToAscii' => true,
     'generateTransformsBeforePageLoad' => true,
     'addTrailingSlashesToUrls' => true,
     'defaultWeekStartDay' => 1,

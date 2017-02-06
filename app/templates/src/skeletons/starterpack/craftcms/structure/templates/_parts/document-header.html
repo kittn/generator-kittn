@@ -1,16 +1,18 @@
 <head>
   <meta charset="utf-8">
+  <link rel="home" href="{{ siteUrl }}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
-  <link rel="home" href="{{ siteUrl }}" />
   <link rel="stylesheet" href="{{ siteUrl~'assets/css/style.css' }}">
-  {% if craft.config.environment != 'productive' %}
-  <meta name="robots" content="noindex,nofollow"/>
+  {% if seomaticSiteMeta is defined %}
+    {% hook 'seomaticRender' %}
+  {% else %}
+    <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+    {% if craft.config.environment != 'productive' %}
+      <meta name="robots" content="noindex,nofollow">
+    {% endif %}
   {% endif %}
-  {% hook 'seomaticRender' %}
   {% include '_parts/favicon' %}
-  <meta name="google-site-verification" content="{{ seomaticHelper.ownerGoogleSiteVerification }}">
   <!--[if lt IE 9]>
     <script src="{{ siteUrl~'assets/js/html5shiv.js' }}"></script>
   <![endif]-->
