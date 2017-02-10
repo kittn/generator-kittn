@@ -10,7 +10,7 @@ import runSequence from 'run-sequence'
 const deployTask = (cb) => {
 
   // Overwrite the Changed Check
-  global.changedOverride = true
+  global.changedOverride = false
 
   runSequence(
     [
