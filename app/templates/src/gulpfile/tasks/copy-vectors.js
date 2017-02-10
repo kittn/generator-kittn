@@ -14,7 +14,7 @@ const $ = gulpLoadPlugins()
 const copyVectorsTask = () => {
   gulp
     .src(kc.src.images.vectors + '**/*.svg')
-    .pipe(global.changedOverride === false ? $.changed(kc.src.images.vectors) : gutil.noop())
+    .pipe(global.checkChanged === true ? $.changed(kc.src.images.vectors) : gutil.noop())
     .pipe($.imagemin({
       svgoPlugins: kc.minify.images.svgoPlugins
     }))

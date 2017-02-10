@@ -14,7 +14,7 @@ const copyFontsTask = () => {
   kc.files.fonts.forEach(function(item) {
     gulp
       .src(item)
-      .pipe(global.changedOverride === false ? $.changed(kc.dist.fonts) : gutil.noop())
+      .pipe(global.checkChanged === true ? $.changed(kc.dist.fonts) : gutil.noop())
       .pipe(gulp.dest(kc.dist.fonts))
   })
 }

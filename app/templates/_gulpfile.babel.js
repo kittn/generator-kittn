@@ -11,7 +11,7 @@
 import requireDir from 'require-dir'
 
 // Define Global Vars
-global.changedOverride = false
+global.checkChanged = true
 
 // Require all tasks in gulpfile/tasks, including subfolders
 requireDir('./gulpfile/tasks', {recurse: true} )
