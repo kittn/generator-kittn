@@ -18,6 +18,29 @@
       }
     },
     {
+      "name": "Blog",
+      "handle": "blog",
+      "type": "channel",
+      "enableVersioning": 1,
+      "typesettings": {
+        "hasUrls": 1,
+        "template": "section_blog\/_entry",
+        "urlFormat": "blog\/{slug}",
+        "nestedUrlFormat": null
+      }
+    },
+    {
+      "name": "Homepage",
+      "handle": "homepage",
+      "type": "single",
+      "enableVersioning": 1,
+      "typesettings": {
+        "template": "index",
+        "urlFormat": "__home__",
+        "nestedUrlFormat": null
+      }
+    },
+    {
       "name": "News",
       "handle": "news",
       "type": "channel",
@@ -36,7 +59,7 @@
       "enableVersioning": 1,
       "typesettings": {
         "hasUrls": 1,
-        "template": "pages",
+        "template": "section_pages\/page",
         "maxLevels": 2,
         "urlFormat": "{slug}",
         "nestedUrlFormat": "{parent.uri}\/{slug}"
@@ -189,6 +212,19 @@
             }
           }
         }
+      }
+    },
+    {
+      "group": "Meta",
+      "name": "Blog Kategorien",
+      "handle": "blogCategories",
+      "instructions": "",
+      "required": false,
+      "type": "Categories",
+      "typesettings": {
+        "source": "blog",
+        "limit": 1,
+        "selectionLabel": ""
       }
     },
     {
@@ -2290,6 +2326,36 @@
       "fieldLayout": []
     },
     {
+      "sectionHandle": "blog",
+      "hasTitleField": 1,
+      "titleLabel": "Title",
+      "name": "Blog",
+      "handle": "blog",
+      "fieldLayout": {
+        "Content": [
+          "body",
+          "contentBuilder"
+        ],
+        "Meta": [
+          "blogCategories",
+          "articleImage",
+          "seo"
+        ]
+      }
+    },
+    {
+      "sectionHandle": "homepage",
+      "hasTitleField": 1,
+      "titleLabel": "Title",
+      "name": "Homepage",
+      "handle": "homepage",
+      "fieldLayout": {
+        "Content": [
+          "body"
+        ]
+      }
+    },
+    {
       "sectionHandle": "news",
       "hasTitleField": 1,
       "titleLabel": "Titel",
@@ -2357,6 +2423,29 @@
       "fieldLayout": {
         "Inhalt": [
           "socialLinks"
+        ]
+      }
+    }
+  ],
+  "categories": [
+    {
+      "name": "Blog",
+      "handle": "blog",
+      "hasUrls": 1,
+      "template": "section_blog\/_category",
+      "maxLevels": 1,
+      "locales": {
+        "en_us": {
+          "urlFormat": "blog\/kategorie\/{slug}",
+          "nestedUrlFormat": null
+        }
+      },
+      "fieldLayout": {
+        "Content": [
+          "body"
+        ],
+        "Meta": [
+          "seo"
         ]
       }
     }

@@ -1,22 +1,26 @@
 {#
- # Layout template
+ # Main Layout
  # ---------------
- # When you want make your own or more
+ # If you are not happy with - modify it :)
  #}
 
 {# Include Macros for your #}
 {% import '_macros/my-macro.html' as myMacro %}
 
 <!DOCTYPE html>
-<html lang="de-DE">
+<html lang="{{ craft.i18n.getCurrentLocale() }}">
 
 {# Include the Document Header #}
 {% include '_parts/document-header.html' %}
 
-<body class="{{ craft.request.isLivePreview ? ' is-livepreview ' }} {{ ' '~( entry is defined ? entry.slug : myentry.slug )~' ' }}">
-  <div class="o-progressloader">
-    <div class="o-progressloader__loader"></div>
-  </div>
+<body class="{{ craft.request.isLivePreview ? ' is-livepreview ' }}{{ templateBriefing is defined ? ' '~templateBriefing.bodyclass~' ' }}">
+  {# Deactivate Progress Load on Livepreview #}
+  {% if craft.request.isLivePreview != true %}
+    <div class="o-progressloader">
+      <div class="o-progressloader__loader"></div>
+    </div>
+  {% endif %}
+
   <div class="o-layout__wrapper">
     {% include '_parts/page-header.html' %}
 

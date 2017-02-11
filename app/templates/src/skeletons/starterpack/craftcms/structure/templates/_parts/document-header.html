@@ -16,5 +16,8 @@
   <!--[if lt IE 9]>
     <script src="{{ siteUrl~'assets/js/html5shiv.js' }}"></script>
   <![endif]-->
-  <script>document.getElementsByTagName('html')[0].classList.add('plj')</script>
+  {# Deactivate Progress Load on Livepreview #}
+  {% if craft.request.isLivePreview != true %}
+    <script>document.getElementsByTagName('html')[0].classList.add('plj')</script>
+  {% endif %}
 </head>

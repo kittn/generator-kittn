@@ -1,13 +1,13 @@
 {#
- # News Archive Template
+ # Blog Category Tempalte
  # -------------------
  #}
 
 {# Subtemplate Setup #}
 {% set templateBriefing = {
-  bodyclass: 'news',
-  section: 'news',
-  name: 'News',
+  bodyclass: 'blog-category blog-cat--'~category,
+  section: 'blog',
+  name: 'Blog',
   limit: 10
 } %}
 
@@ -24,21 +24,24 @@
       relatedTo: (category is defined ? category : false),
       limit: templateBriefing.limit
     }) %}
+
     {# Initiate the Pagination #}
     {% paginate entries as pageInfo, pageEntries %}
+
     {# Cache Entry #}
-    {% cache globally using key templateBriefing.section~'-archives' ~ craft.request.path %}
-      {# Loop through entries #}
-      {% for entry in pageEntries %}
-        <article role="article" itemscope itemtype="http://schema.org/Article">
-          <p>{{ entry.postDate | date('d.F Y') }}</p>
-          <h2 role="heading" itemprop="name"><a href="{{ entry.url }}" role="link" itemprop="contentUrl">{{ entry.title }}</a></h2>
-          {{ entry.body.getPage(1) }}
-          <p><a href="{{ entry.url }}" role="link">Weiterlesen</a></p>
-        </article>
-      {% endfor %}
+    {% cache globally using key templateBriefing.section~'-category' ~ craft.request.path %}
+    {# Loop through entries #}
+    {% for entry in pageEntries %}
+      <article role="article" itemscope itemtype="http://schema.org/Article">
+        <p>{{ entry.postDate | date('d.F Y') }}</p>
+        <h2 role="heading" itemprop="name"><a href="{{ entry.url }}" role="link" itemprop="contentUrl">{{ entry.title }}</a></h2>
+        {{ entry.body.getPage(1) }}
+        <p><a href="{{ entry.url }}" role="link">Weiterlesen</a></p>
+      </article>
+    {% endfor %}
     {% endcache %}
     {# Include Pagination #}
     {{ myMacro.pagination(pageInfo,craft) }}
   </div>
 {% endblock %}
+

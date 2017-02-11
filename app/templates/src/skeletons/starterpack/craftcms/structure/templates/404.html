@@ -2,8 +2,11 @@
  # 404 template
  # ------------
  #}
-{% set myentry = {
-  'slug': '404'
+
+{# Subtemplate Setup #}
+{% set templateBriefing = {
+  bodyclass: 'error-404',
+  slug: ''
 } %}
 
 {% extends '_layout/main-layout.html' %}
