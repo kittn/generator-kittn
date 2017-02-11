@@ -30,17 +30,6 @@
       }
     },
     {
-      "name": "Homepage",
-      "handle": "homepage",
-      "type": "single",
-      "enableVersioning": 1,
-      "typesettings": {
-        "template": "index",
-        "urlFormat": "__home__",
-        "nestedUrlFormat": null
-      }
-    },
-    {
       "name": "News",
       "handle": "news",
       "type": "channel",
@@ -222,7 +211,7 @@
       "required": false,
       "type": "Categories",
       "typesettings": {
-        "source": "blog",
+        "source": "blogCategories",
         "limit": 1,
         "selectionLabel": ""
       }
@@ -2344,18 +2333,6 @@
       }
     },
     {
-      "sectionHandle": "homepage",
-      "hasTitleField": 1,
-      "titleLabel": "Title",
-      "name": "Homepage",
-      "handle": "homepage",
-      "fieldLayout": {
-        "Content": [
-          "body"
-        ]
-      }
-    },
-    {
       "sectionHandle": "news",
       "hasTitleField": 1,
       "titleLabel": "Titel",
@@ -2429,14 +2406,14 @@
   ],
   "categories": [
     {
-      "name": "Blog",
-      "handle": "blog",
+      "name": "Blog Kategorien",
+      "handle": "blogCategories",
       "hasUrls": 1,
       "template": "section_blog\/_category",
       "maxLevels": 1,
       "locales": {
-        "en_us": {
-          "urlFormat": "blog\/kategorie\/{slug}",
+        "de_de": {
+          "urlFormat": "blog\/kategorien\/{slug}",
           "nestedUrlFormat": null
         }
       },
