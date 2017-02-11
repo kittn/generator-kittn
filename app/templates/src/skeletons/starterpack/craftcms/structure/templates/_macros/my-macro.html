@@ -42,6 +42,12 @@
 {% macro siteNavWarn(nav) %}
   {% if craft.amNav.getNavName(nav) %}
     {% set nav = craft.amNav.getNavRaw(nav) %}
+    {% if nav is defined %}
+      {% for node in nav %}
+        {{ _self.addNodeToNavigation(node, loop.index) }}
+      {% endfor %}
+    {% endif %}
+
   {% else %}
     <div style="color:red"><b style="color:red">A&M Nav</b> Please add `{{ nav }}` Navigation</div>
   {% endif %}
@@ -209,11 +215,7 @@
         {{ _self.siteNavWarn('mainNavigation') }}
     {% endswitch %}
 
-    {% if nav is defined %}
-      {% for node in nav %}
-        {{ _self.addNodeToNavigation(node, loop.index) }}
-      {% endfor %}
-    {% endif %}
+
   </nav>
 {% endmacro %}
 
