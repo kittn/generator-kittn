@@ -516,7 +516,7 @@ var KittnGenerator = yeoman.Base.extend({
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {
       this.directory('src/skeletons/craftcms/structure/', 'src/structure/')
 
-      this.directory('src/skeletons/craftcms/craftsync/', 'src/craftsync/')
+      this.directory('src/skeletons/craftcms/craftscripts/', 'craftscripts/')
 
       // Copy .env Config File
       this.directory('src/skeletons/craftcms/env/', 'src/.system/env/')
@@ -525,7 +525,7 @@ var KittnGenerator = yeoman.Base.extend({
       if ( this.projectcredential ) {
         this.fs.copyTpl(
           this.templatePath('src/skeletons/craftcms/.env.sh'),
-          this.destinationPath('.env.sh'),
+          this.destinationPath('craftscripts/.env.sh'),
           templateParams
         );
       }

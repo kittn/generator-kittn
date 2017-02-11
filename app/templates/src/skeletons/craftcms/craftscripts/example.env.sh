@@ -15,7 +15,7 @@
 
 # Local path constants; paths should always have a trailing /
 LOCAL_ROOT_PATH="REPLACE_ME"
-LOCAL_ASSETS_PATH=$LOCAL_ROOT_PATH"public/uploads/"
+LOCAL_ASSETS_PATH=$LOCAL_ROOT_PATH"REPLACE_ME"
 
 # Local user & group that should own the Craft CMS install
 LOCAL_CHOWN_USER="admin"
@@ -24,21 +24,18 @@ LOCAL_CHOWN_GROUP="apache"
 # Local directories relative to LOCAL_ROOT_PATH that should be writeable by the $CHOWN_GROUP
 LOCAL_WRITEABLE_DIRS=(
                 "craft/storage"
-                "craft/config"
-                "craft/app"
-                "public/uploads"
+                "public/assets"
                 )
 
 # Local asset directories relative to LOCAL_ASSETS_PATH that should be synched with remote assets
 LOCAL_ASSETS_DIRS=(
-                "images"
-                "imager"
+                ""
                 )
 
 # Local database constants
-LOCAL_DB_NAME="<%= credentialdbdatabase %>"
-LOCAL_DB_PASSWORD="<%= credentialdbpass %>"
-LOCAL_DB_USER="<%= credentialdbuser %>"
+LOCAL_DB_NAME="REPLACE_ME"
+LOCAL_DB_PASSWORD="REPLACE_ME"
+LOCAL_DB_USER="REPLACE_ME"
 
 # These are here for MAMP, which requires a full path to the `mysql` executable inside the application package
 LOCAL_MYSQL_CMD="mysql"
