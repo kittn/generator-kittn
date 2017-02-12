@@ -1,16 +1,6 @@
 <?php
 /**
  * Craft-Multi-Environment (CMS)
- * @author    nystudio107
- * @copyright Copyright (c) 2017 nystudio107
- * @link      https://nystudio107.com/
- * @package   craft-multi-environment
- * @since     1.0.4
- * @license   MIT
- *
- * This file should be renamed to '.env.php' and it should reside in your root
- * project directory.  Add '/.env.php' to your .gitignore.  See below for production
- * usage notes.
  */
 
 $craftenv_vars = array(

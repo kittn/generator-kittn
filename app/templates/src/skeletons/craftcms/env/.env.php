@@ -1,13 +1,6 @@
 <?php
 /**
  * Craft-Multi-Environment (CMS)
- * @author    nystudio107
- * @copyright Copyright (c) 2017 nystudio107
- * @link      https://nystudio107.com/
- * @package   craft-multi-environment
- * @since     1.0.4
- * @license   MIT
- *
  */
 
 $craftenv_vars = array(

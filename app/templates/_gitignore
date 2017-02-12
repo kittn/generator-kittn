@@ -9,5 +9,5 @@ npm-debug.log
 /dist
 /doc<% if (projectUsage == 'Integrate in CraftCMS' ) { %>
 /src/env/.env.php
-.env.sh
+/craftscripts/.env.sh
 /src/structure/config/license.key<% } %>
