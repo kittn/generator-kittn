@@ -16,7 +16,7 @@
 {% block content %}
   <div class="o-layout__container">
     {# Cache Entry #}
-    {% cache globally using key templateBriefing.section~'-archive-' ~ craft.request.path ~ '/p' ~ craft.request.getPageNum %}
+    {% cache globally using key templateBriefing.section~'-archive-' ~ craft.request.path ~ (craft.request.getPageNum ? '/p' ~ craft.request.getPageNum : '') %}
     <h1>{{ templateBriefing.name }}</h1>
 
     {# Build Query #}
