@@ -1,7 +1,16 @@
 {#
   JumpNavigation
-  =============
+  ==============
   Used for Jumping to Anchors
+
+  @param {string} name                              = Classname
+  @param {object} data                              = Dataobject (Matrix Field)
+  @param {object} data.block                        = Matrix Object
+  @param {string} data.block.type                   = Matrix Type (must be `navigation`)
+  @param {string} data.block.layout                 = Optional Classname for Style
+  @param {object} data.block.anchorlink             = Array of anchorlinks
+  @param {string} data.block.anchorlink.anchor      = Anchor Link (without `#`)
+  @param {string} data.block.anchorlink.linkname    = Name of the Anchorlink
 #}
 
 {# Class Overwrite #}

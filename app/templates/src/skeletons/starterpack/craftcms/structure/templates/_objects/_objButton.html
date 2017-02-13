@@ -1,7 +1,18 @@
 {#
-  Button Module
-  =============
-  Build a simple Button Element with an outer position Wrapper
+  Button
+  ======
+  Generates a button module, with an outer position container
+
+  @param {string} name               = Classname
+  @param {object} data               = Dataobject
+  @param {string} data.position      = Positionparameter [default, left, right]
+  @param {string} data.style         = Styleoption
+  @param {string} data.size          = Buttonsize
+  @param {bool}   data.fullwidth     = If the button should occupy the full container width
+  @param {object} data.button        = Dataobject
+  @param {string} data.button.url    = Url
+  @param {bool}   data.button.target = Open the link in a new tab
+  @param {string} data.button.text   = Button inscription
 #}
 
 {# Class Overwrite #}

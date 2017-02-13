@@ -1,7 +1,18 @@
 {#
   Gallery
-  =============
+  =======
   Gallery with Lightbox (Photoswipe) support and a Flexbox Layout
+
+  @param {string} name                              = Classname
+  @param {object} data                              = Dataobject (Matrix Field)
+  @param {object} data.block                        = Matrix Object
+  @param {string} data.block.type                   = Matrix Type (must be `gallery`)
+  @param {string} data.block.layoutType             = Arrangement of the gallery [smart, simple]
+  @param {string} data.block.ratio                  = Optional adjustable ratio (for `simple` Gallery)
+  @param {string} data.block.width                  = Optional Width (for `simple` Gallery)
+  @param {object} data.block.galleryEntries         = Galleryentries
+  @param {object} data.block.galleryEntries.photo   = Image
+  @param {string} data.block.galleryEntries.caption = Optional Caption
 #}
 
 {# Class Overwrite #}

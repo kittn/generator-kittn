@@ -2,6 +2,14 @@
   Media Image
   ===========
   Image Container Element, can overlap Pageborder
+
+  @param {string} name                   = Classname
+  @param {object} data                   = Dataobject
+  @param {object} data.photo             = Image Object (only one Image)
+  @param {string} data.caption           = Optional Image Caption
+  @param {string} data.ratio             = Optional Imageratio (format: `16:9`)
+  @param {bool}   data.heightrestriction = Restrict the max Imageheight to 100vh
+  @param {string} data.size              = For overlapping Pageborders [default, viewportsize, oversize, undersize]
 #}
 
 {# Class Overwrite #}
