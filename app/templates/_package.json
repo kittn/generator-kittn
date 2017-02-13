@@ -79,7 +79,7 @@
     "sassdoc": "^2.1.20",
     "postcss-assets": "^4.1.0",
     "postcss-flexbugs-fixes": "^2.1.0",
-    "postcss-short-size": "^2.0.1",
+    "postcss-short-size": "^1.1.0",
     "lost": "^8.0.0",
     "cssnano": "^3.10.0",
     "run-sequence": "^1.2.2",
