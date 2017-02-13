@@ -15,6 +15,8 @@
 
 {% block content %}
   <div class="o-layout__container">
+    {# Cache Entry #}
+    {% cache globally using key templateBriefing.section~'-archive-' ~ craft.request.path ~ '/p' ~ craft.request.getPageNum %}
     <h1>{{ templateBriefing.name }}</h1>
 
     {# Build Query #}
@@ -26,8 +28,7 @@
     }) %}
     {# Initiate the Pagination #}
     {% paginate entries as pageInfo, pageEntries %}
-    {# Cache Entry #}
-    {% cache globally using key templateBriefing.section~'-archives' ~ craft.request.path %}
+
       {# Loop through entries #}
       {% for entry in pageEntries %}
         <article role="article" itemscope itemtype="http://schema.org/Article">
@@ -37,8 +38,10 @@
           <p><a href="{{ entry.url }}" role="link">Weiterlesen</a></p>
         </article>
       {% endfor %}
-    {% endcache %}
+
     {# Include Pagination #}
     {{ myMacro.pagination(pageInfo,craft) }}
+
+    {% endcache %}
   </div>
 {% endblock %}
