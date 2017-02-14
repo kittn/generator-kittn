@@ -1,6 +1,8 @@
 rules:
   class-name-format:
     - 0
+  indentation:
+    - 0
   property-sort-order:
     - 1
     -
@@ -15,6 +17,8 @@ rules:
         - clear
         -
         - display
+        - flex
+        - flex-direction
         - flex-wrap
         - align-items
         - justify-content
@@ -41,20 +45,20 @@ rules:
         - border-bottom
         - border-left
         - border-width
-        - border-left-width
+        - border-top-width
         - border-right-width
+        - border-bottom-width
         - border-left-width
-        - border-right-width
         - border-style
-        - border-left-style
+        - border-top-style
         - border-right-style
+        - border-bottom-style
         - border-left-style
-        - border-right-style
         - border-color
-        - border-left-color
+        - border-top-color
         - border-right-color
+        - border-bottom-color
         - border-left-color
-        - border-right-color
         - border-radius
         - border-top-left-radius
         - border-top-right-radius
@@ -79,6 +83,7 @@ rules:
         -
         - font-family
         - font-size
+        - font-weight
         - line-height
         - text-align
         - text-decoration
