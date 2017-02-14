@@ -1,8 +1,14 @@
+options:
+  formatter: stylish
+  merge-default-rules: false
 rules:
   class-name-format:
     - 0
   indentation:
     - 0
+  empty-line-between-blocks:
+    - 1
+    - ignore-single-line-rulesets: true
   property-sort-order:
     - 1
     -
@@ -70,6 +76,9 @@ rules:
         - margin-bottom
         - margin-left
         -
+        - transform
+        - transform-origin
+        -
         - background
         - background-image
         - background-color
@@ -77,10 +86,10 @@ rules:
         - background-repeat
         - background-size
         - background-attachment
-        - color
         - opacity
         - box-shadow
         -
+        - color
         - font-family
         - font-size
         - font-weight
@@ -89,9 +98,9 @@ rules:
         - text-decoration
         - text-shadow
         - list-style-type
-        - # Other
+        -
         - cursor
         - transition
         - transition-property
+        - transition-timing-function
         - animation
-      separate_groups: true
