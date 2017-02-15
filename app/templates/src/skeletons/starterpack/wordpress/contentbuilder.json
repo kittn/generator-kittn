@@ -3279,7 +3279,7 @@
         "required": 0,
         "conditional_logic": 0,
         "wrapper": {
-          "width": "30",
+          "width": "20",
           "class": "",
           "id": ""
         },
@@ -3306,7 +3306,23 @@
         "required": 0,
         "conditional_logic": 0,
         "wrapper": {
-          "width": "30",
+          "width": "20",
+          "class": "",
+          "id": ""
+        },
+        "message": "",
+        "default_value": 0
+      },
+      {
+        "key": "field_58a494cc6a1ac",
+        "label": "Container",
+        "name": "container",
+        "type": "true_false",
+        "instructions": "Alternativ kann der Span aus als regul\u00e4rer Container verwendet werden.",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "20",
           "class": "",
           "id": ""
         },

@@ -654,6 +654,16 @@
                       "default": ""
                     },
                     {
+                      "label": "H1",
+                      "value": "h1",
+                      "default": ""
+                    },
+                    {
+                      "label": "H2",
+                      "value": "h2",
+                      "default": ""
+                    },
+                    {
                       "label": "H3",
                       "value": "h3",
                       "default": ""
@@ -1864,6 +1874,17 @@
                 }
               },
               "new2": {
+                "name": "Container",
+                "handle": "container",
+                "instructions": "Alternativ kann der Container auch wie ein regul\u00e4rer Container verwendet werden, der nicht den Rand der Seite \u00fcberlappt.",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new3": {
                 "name": "Volle H\u00f6he",
                 "handle": "fullHeight",
                 "instructions": "Soll der Span auf die voll Viewporth\u00f6he aufgespannt werden",
@@ -1874,7 +1895,7 @@
                   "default": ""
                 }
               },
-              "new3": {
+              "new4": {
                 "name": "Anker",
                 "handle": "anchor",
                 "instructions": "Falls die Box mit einem Anker f\u00fcr eine Sprungnavigation versehen werden soll, den Namen eintragen.",
