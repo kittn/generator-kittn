@@ -1,7 +1,7 @@
 /*
-  spacer
-
-  description
+  Spacer
+  ======
+  Generates distances based on globalspacing
 
   **Elements**
 */
@@ -9,87 +9,26 @@
   // Component Config
   $api: (
     selector: 'spacer',
-    breakpoint: 'm'
+    subspacer: .25 .5 .75,
+    uptospacer: 1 2 3 4 5 6 7 8 9 10
   );
 
   // Build root selector
   $root: '.o-#{v($api,selector)}';
 
-  // Temp Style Storage  -------------------
-  // Store  : @include store(storagename) {}
-  // Unload : @include yield(storagename);
-
   // Base Style ----------------------------
-  // [root]--025
-  &--025 {
-    padding-bottom: s(.25);
+
+  // Build Small Spacer
+  @each $i in v($api,subspacer) {
+    &--0#{$i*100} {
+      content: s($i)
+    }
   }
 
-  // [root]--050
-  &--050 {
-    padding-bottom: s(.5);
+  // Build Big Spacer
+  @each $i in v($api,uptospacer) {
+    &--#{$i} {
+      padding-bottom: s($i)
+    }
   }
-
-  // [root]--075
-  &--075 {
-    padding-bottom: s(.75);
-  }
-
-  // [root]--1
-  &--1 {
-    padding-bottom: s(1);
-  }
-
-  // [root]--2
-  &--2 {
-    padding-bottom: s(2);
-  }
-
-  // [root]--3
-  &--3 {
-    padding-bottom: s(3);
-  }
-
-  // [root]--4
-  &--4 {
-    padding-bottom: s(4);
-  }
-
-  // [root]--5
-  &--5 {
-    padding-bottom: s(5);
-  }
-
-  // [root]--6
-  &--6 {
-    padding-bottom: s(6);
-  }
-
-  // [root]--7
-  &--7 {
-    padding-bottom: s(7);
-  }
-
-  // [root]--8
-  &--8 {
-    padding-bottom: s(8);
-  }
-
-  // [root]--9
-  &--9 {
-    padding-bottom: s(9);
-  }
-
-  // [root]--10
-  &--10 {
-    padding-bottom: s(10);
-  }
-
-
-  // Tags ----------------------------------
-
-  // Base Modifier -------------------------
-
-  // Childs --------------------------------
-
 }
