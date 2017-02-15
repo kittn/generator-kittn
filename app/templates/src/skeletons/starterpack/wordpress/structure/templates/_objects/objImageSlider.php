@@ -7,6 +7,7 @@
 
 // Default Vars
 $classname = 'o-imageslider';
+$ratio = get_sub_field('ratio');
 ?>
 
 <? // Build Element Block ?>
@@ -14,7 +15,7 @@ $classname = 'o-imageslider';
   <div class="<?= $classname; ?>__wrapper">
     <?php while( have_rows('photos') ) : the_row(); ?>
       <div class="<?= $classname; ?>__slide" itemscope itemtype="http://schema.org/ImageObject">
-        <?php macro_mediaImageSet(get_sub_field('photo'), $classname.'__image', get_sub_field('ratio')); ?>
+        <?php macro_mediaImageSet(get_sub_field('photo'), $classname.'__image', $ratio); ?>
       </div>
     <?php endwhile; ?>
   </div>
