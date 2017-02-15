@@ -50,4 +50,9 @@ cq({ postcss: true })<% if (projectcraftbp === true || projectwordpressbp === tr
 initPhotoSwipeFromDOM('.is-photoswipped')
 
 // Activate Progressloader
-progressLoader()<% } %>
+progressLoader()
+
+// Detect Windows - needed for Viewport Span
+if (navigator.platform.match(/(Win)/i)) {
+  document.getElementsByTagName('html')[0].className += ' windows '
+}<% } %>
