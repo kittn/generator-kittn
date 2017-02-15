@@ -1,8 +1,8 @@
 <?php
 /**
- * Button Module
- * =============
- * Build a simple Button Element with an outer position Wrapper
+ * Button
+ * ======
+ * Creates a button with different styles. In addition, size, width and position can be adjusted.
  */
 
 // Default Vars

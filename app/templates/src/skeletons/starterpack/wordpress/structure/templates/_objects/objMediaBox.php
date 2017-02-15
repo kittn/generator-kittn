@@ -2,7 +2,7 @@
 /**
  * Media Box
  * =========
- * Contentblock with a Image or Video
+ * A Mediabox with image / video and text content
  */
 
 // Default Vars

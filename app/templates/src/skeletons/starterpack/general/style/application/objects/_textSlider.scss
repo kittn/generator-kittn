@@ -1,9 +1,7 @@
 /*
-  textslider
-
-  description
-
-  **Elements**
+  Textslider
+  ==========
+  Creates an text slider, using the Swiper.js library.
 */
 .o-textslider {
   // Component Config
@@ -50,6 +48,7 @@
       padding-right: 20px;
     }
   }
+
   // [root]__pagination
   &__pagination {
     @extend .swiper-pagination;

@@ -1,8 +1,7 @@
 {#
   Viewport Span
   =============
-  Container that overlaps the page border. The Container contains a ContentBuilder.
-  incorrectly on Windows systems because the scrollbars are offset against the viewport.
+  The Viewportspan, the regular PageBorder can overlap the viewport margin. This is somewhat flawed on window systems (the scrollbar is placed on the window system in the viewport). Alternatively, the viewportspan can be used as a regular container.
 
   @param {string} name            = Classname
   @param {object} data            = Dataobject
@@ -15,7 +14,7 @@
 {% set classname = name is defined and name != '' ? name : 'o-viewportspan' %}
 
 {# Build Element Block #}
-<div class="{{ classname }}{{ data.style ? ' '~classname~'--s-'~data.style }}{{ data.fullHeight ? ' '~classname~'--fullheight' }}"{{ data.anchor ? ' id='~data.anchor|lower }}>
+<div class="{{ classname }}{{ data.container ? ' '~classname~'--ascontainer' : ' '~classname~'--asspan' }}{{ data.style ? ' '~classname~'--s-'~data.style }}{{ data.fullHeight ? ' '~classname~'--fullheight' }}"{{ data.anchor ? ' id='~data.anchor|lower }}>
   <div class="{{ classname }}__inner">
     {% for child in content.children %}
       {% include '_builder/_cb-objects' with { data: child } %}

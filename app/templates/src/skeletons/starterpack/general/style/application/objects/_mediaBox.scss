@@ -1,12 +1,7 @@
 /*
   Mediabox
   ========
-  Box for Holding Text and Media (Video or Images)
-
-  **Elements**
-  .o-mediabox__media : Media Container for Images and Videos
-  .o-mediabox__body : Container for Textcontent
-  .o-mediabox__
+  A Mediabox with image / video and text content
 */
 .o-mediabox {
   // Component Config
@@ -70,17 +65,17 @@
     }
 
     #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--quarter & {
-      max-width: 25%;
+      min-width: 25%;
       width: 25%;
     }
 
     #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--half & {
-      max-width: 50%;
+      min-width: 50%;
       width: 50%;
     }
 
     #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--threequarter & {
-      max-width: 75%;
+      min-width: 75%;
       width: 50%;
     }
   }

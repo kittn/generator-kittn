@@ -1,8 +1,8 @@
 <?php
 /**
- * Accordion Wrapper
- * =================
- * Container that overlaps the page border - buggy on windows systems
+ * Accordion
+ * =========
+ * A classic Accordion. Any Accrodion contains a ContentBuilder.
  */
 
 // Default Vars

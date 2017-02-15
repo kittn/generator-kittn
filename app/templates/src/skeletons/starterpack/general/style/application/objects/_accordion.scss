@@ -1,9 +1,7 @@
 /*
   Accordion
-
-  description
-
-  **Elements**
+  =========
+  A classic Accordion. Any Accrodion contains a ContentBuilder.
 */
 .o-accordion {
   // Component Config
@@ -16,32 +14,25 @@
   // Build root selector
   $root: '.o-#{v($api,selector)}';
 
-  // Temp Style Storage  -------------------
-  // Store  : @include store(storagename) {}
-  // Unload : @include yield(storagename);
-
   // Base Style ----------------------------
   margin-bottom: v($api,margin-bottom);
-  // Tags ----------------------------------
-
-  // Base Modifier -------------------------
 
   // Childs --------------------------------
+
   // [root]__box
-  &__box {
-
-
-  }
+  &__box {}
 
   // [root]__trigger
   &__trigger {
+    @include fontsize(20);
     cursor: pointer;
     font-weight: bold;
-    @include fontsize(20);
     line-height: 1;
     padding-top: 5px;
     padding-bottom: 5px;
 
+
+    // Different Styles for Trigger
     .o-accordion--s-default & {
       color: c('primary');
 
@@ -51,10 +42,10 @@
     }
 
     .o-accordion--s-style1 & {
+      @include padding(10 10);
       background-color: lighten(c('primary'),20);
       color: darken(c('primary'),20);
       margin-bottom: 1px;
-      @include padding(10 10);
       transition: all 400ms ease-in;
 
       &.is-open {
@@ -80,6 +71,7 @@
       margin-bottom: 0;
     }
 
+    // Different Styles for Body
     .o-accordion--s-default & {
       padding-top: 0px;
       border-bottom: 1px solid lighten(c('gray'),40);

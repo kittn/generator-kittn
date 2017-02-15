@@ -1,9 +1,7 @@
 /*
   Mediaimage
   ==========
-  With Ratio, Size and Heightrestriction
-
-  **Elements**
+  Image Container Element, can overlap Pageborder
 */
 .o-mediaimage {
   // Component Config
@@ -38,6 +36,13 @@
       right: 50%;
       margin-left: -50vw;
       margin-right: -50vw;
+
+      // Fallback for Windows Systems
+      .windows & {
+        width: 99vw;
+        margin-left: -49.5vw;
+        margin-right: -49.5vw;
+      }
     }
   }
 
@@ -57,8 +62,7 @@
 
   // Childs --------------------------------
   // [root]__image
-  &__image {
-  }
+  &__image {}
 
   // [root]__caption
   &__caption {

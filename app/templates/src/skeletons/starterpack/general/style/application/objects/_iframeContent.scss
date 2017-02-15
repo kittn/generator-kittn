@@ -2,8 +2,6 @@
   Iframe Content
   ==============
   For embedding responsive iframe content
-
-  **Elements**
 */
 .o-iframecontent {
   // Component Config
@@ -35,6 +33,13 @@
       right: 50%;
       margin-left: -50vw;
       margin-right: -50vw;
+
+      // Fallback for Windows Systems
+      .windows & {
+        width: 99vw;
+        margin-left: -49.5vw;
+        margin-right: -49.5vw;
+      }
     }
   }
 

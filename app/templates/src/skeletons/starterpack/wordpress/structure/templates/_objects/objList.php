@@ -1,8 +1,8 @@
 <?php
 /**
- * List Module
- * ===========
- * Generate a List
+ * List
+ * ====
+ * Creates a list of freely selectable bullets and individual styling
  */
 
 // Default Vars

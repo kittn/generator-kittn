@@ -1,9 +1,7 @@
 /*
   Viewport Span
   =============
-  Helper Modul for build a Element that Spans over the Viewport, with different Styles
-
-  **Elements**
+  The Viewportspan, the regular PageBorder can overlap the viewport margin. This is somewhat flawed on window systems (the scrollbar is placed on the window system in the viewport). Alternatively, the viewportspan can be used as a regular container.
 */
 .o-viewportspan {
   // Component Config
@@ -20,11 +18,29 @@
   margin-bottom: v($api,margin-bottom);
   position: relative;
   overflow: hidden;
-  width: 100vw;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
+
+  // Container Layout
+  &--ascontainer {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  // Overlapping Container Layout
+  &--asspan {
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+
+    // Fallback for Windows Systems
+    .windows & {
+      width: 99vw;
+      margin-left: -49.5vw;
+      margin-right: -49.5vw;
+    }
+  }
 
   // Base Modifier -------------------------
   // [root]--fullheight
