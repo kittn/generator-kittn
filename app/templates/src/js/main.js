@@ -15,7 +15,6 @@ import './partial/init-swiper'<% } %>
 import lazySizes from 'lazysizes'
 import lazybgset from '../../node_modules/lazysizes/plugins/bgset/ls.bgset'
 import './partial/kittnad' // Small Advertising for Kittn :)
-import modernizrLoad from './partial/modernizer-loader' // eslint-disable-line
 import conditionizrInit from './partial/conditionizr-init' // eslint-disable-line <% if ( projectJSFramework === 'Vue.js') { %>
 import App from './app.vue'
 
