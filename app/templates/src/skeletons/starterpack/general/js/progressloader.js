@@ -57,7 +57,7 @@ const stateComplete = () => {
  */
 const progressLoader = () => {
   // Disable Progressloader on Craft Livepreview
-  if (!pelements.body.classList.contains('is-livepreview')) {
+  if (!pelements.body.classList.contains('is-livepreview') && document.getElementsByTagName('html')[0].classList.contains('plj')) {
     // Inital State
     stateLoading()
 

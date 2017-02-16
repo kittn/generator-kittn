@@ -16,7 +16,7 @@ import './partial/init-swiper'<% } %>
 import lazySizes from 'lazysizes'
 import lazybgset from '../../node_modules/lazysizes/plugins/bgset/ls.bgset'
 import './partial/kittnad' // Small Advertising for Kittn :)
-import conditionizrInit from './partial/conditionizr-init' // eslint-disable-line <% if ( projectJSFramework === 'Vue.js') { %>
+import './partial/conditionizr-init'<% if ( projectJSFramework === 'Vue.js') { %>
 import App from './app.vue'
 
 require('es6-promise').polyfill()

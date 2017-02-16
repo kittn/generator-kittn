@@ -21,11 +21,16 @@
   $root: '.o-#{v($api,selector)}';
 
   // Base Style ----------------------------
-  margin-bottom: v($api,margin-bottom);
+  margin-bottom: v($api,margin-bottom);<% if (projectbreakpoints === 'EQCSS') { %>
 
+  @include eq((min-width: #{v($api,breakpoint)})) {
+    eq_this {
+      display: flex;
+    }
+  }<% } else { %>
   &#{cq('width >= #{v($api,breakpoint)}')} {
-    display: flex;
-  }
+   display: flex;
+  }<% } %>
 
   // Tags ----------------------------------
 
@@ -47,16 +52,42 @@
 
   // [root]__media
   &__media {
-    flex: 1 1 25%;
-    min-width: 25%;
     overflow: hidden;
 
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')} & {
+    #{$root}--right & {
+      order: 2;
+    }<% if (projectbreakpoints === 'EQCSS') { %>
+
+    @include eqr($root, (min-width: #{v($api,breakpoint)})) {
       margin-right: 20px;
     }
 
     #{$root}--right & {
-      order: 2;
+      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+        margin-right: 0;
+        margin-left: 20px;
+      }
+    }
+
+    #{$root}--quarter & {
+      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+        flex: 0 0 25%;
+      }
+    }
+
+    #{$root}--half & {
+      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+        flex: 0 0 50%;
+      }
+    }
+
+    #{$root}--threequarter & {
+      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+        flex: 0 0 75%;
+      }
+    }<% } else { %>
+    #{$root}#{cq('width >= #{v($api,breakpoint)}')} & {
+      margin-right: 20px;
     }
 
     #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--right & {
@@ -65,25 +96,23 @@
     }
 
     #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--quarter & {
-      min-width: 25%;
-      width: 25%;
+      flex: 0 0 25%;
     }
 
     #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--half & {
-      min-width: 50%;
-      width: 50%;
+      flex: 0 0 50%;
     }
 
     #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--threequarter & {
-      min-width: 75%;
-      width: 50%;
-    }
+      flex: 0 0 75%;
+    }<% } %>
   }
 
   // [root]__body
   &__body {
     padding-top: 10px;
     padding-bottom: 10px;
+    flex: 1 1 auto;
 
     #{$root}--colored & {
       padding-top: 20px;
@@ -99,8 +128,24 @@
 
     *:last-child {
       margin-bottom: 0;
+    }<% if (projectbreakpoints === 'EQCSS') { %>
+
+    @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+      align-self: center;
     }
 
+    #{$root}--colored & {
+      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+        padding-left: 0;
+      }
+    }
+
+    #{$root}--colored#{$root}--right & {
+      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+        padding-left: 20px;
+        padding-right: 0;
+      }
+    }<% } else { %>
     #{$root}#{cq('width >= #{v($api,breakpoint)}')} & {
       align-self: center;
     }
@@ -112,7 +157,7 @@
     #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--colored#{$root}--right & {
       padding-left: 20px;
       padding-right: 0;
-    }
+    }<% } %>
   }
 
   // [root]__video
