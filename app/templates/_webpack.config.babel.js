@@ -23,8 +23,8 @@ let bundle = {
     main: `${SOURCE_PATH}${PRIMARY_FILE_NAME}`
   },
   output: {<% if (projectUsage == 'Integrate in Wordpress') { %>
-    path: path.join(PUBLIC_PATH, '/wp-content/themes/<%= projectname %>/assets/'),
-    publicPath: 'wp-content/themes/<%= projectname %>/assets/',<% } else { %>
+    path: path.join(PUBLIC_PATH, 'wp-content/themes/<%= projectname %>/assets/'),
+    publicPath: '/wp-content/themes/<%= projectname %>/assets/',<% } else { %>
     path: path.join(PUBLIC_PATH, 'assets/'),
     publicPath: '/assets/',<% } %>
     filename: 'js/[name].js'
