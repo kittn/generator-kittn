@@ -15,7 +15,7 @@
 {% extends '_layout/main-layout.html' %}
 
 {% block content %}
-  <div class="o-layout__container">
+  <div class="o-area__container">
     {# Cache Entry #}
     {% cache globally using key templateBriefing.section~'-archives-' ~ craft.request.path ~ (craft.request.getPageNum ? '/p' ~ craft.request.getPageNum : '') %}
 

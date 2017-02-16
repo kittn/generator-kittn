@@ -1,12 +1,12 @@
 /*
-  Layout
+  Area
   ======
-  Raw Page Layout Elements
+  Page Layout Areas
 */
-.o-layout {
+.o-area {
   // Component Config
   $api: (
-    selector: 'layout',
+    selector: 'area',
     breakpoint: 'm'
   );
 
@@ -18,8 +18,6 @@
   // Unload : @include yield(storagename);
 
   // Base Style ----------------------------
-
-
 
   // Tags ----------------------------------
 

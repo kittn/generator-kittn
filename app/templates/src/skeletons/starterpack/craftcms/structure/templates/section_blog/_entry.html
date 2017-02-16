@@ -11,7 +11,7 @@
 {% extends '_layout/main-layout.html' %}
 
 {% block content %}
-  <div class="o-layout__container">
+  <div class="o-area__container">
     {% cache globally using key craft.request.path %}
     <article role="article" itemscope itemtype="http://schema.org/Article">
       <p>{{ entry.postDate | date('d.F Y') }}</p>

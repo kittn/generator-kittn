@@ -8,6 +8,6 @@
     <div class="o-progressloader__loader"></div>
   </div>
   <?php endif; ?>
-  <div class="o-layout__wrapper">
+  <div class="o-area__wrapper">
     <?php // Include Pageheader ?>
     <?php include ( get_template_directory() . '/_parts/page-header.php' ); ?>
