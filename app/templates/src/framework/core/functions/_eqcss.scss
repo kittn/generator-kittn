@@ -1,44 +1,16 @@
-/// Helper for EQCSS Element Queries `@element`
+// ===================================================
+// Elementqueries
+// Info: http://elementqueries.com/
+// ===================================================
+
+/// Generate Elementquery
 ///
-/// @author Jason Featheringham
-/// @link https://gist.github.com/thejase/d2107285b6e10315dd6bc055115647fe Code source
-/// @link http://elementqueries.com/ Plugin to parse EQCSS
-/// @link https://gist.github.com/tomhodgins/6237039fa07c2e4b7acd1c8b0f9549a9 EQCSS syntax
+/// @param  {arglist}  $conditions - 1+ of Maps of EQCSS conditions
 ///
-/// @param {String} $scope (&) - Optional scope.  Defaults to current context
-/// @param {List} $conditions (()) - 1+ of Maps of EQCSS conditions
-/// @content rules to enclose in element query
-///
-/// @output rules wrapped by `@element` query
-///
-/// @example replicate multiple scoped query example from http://elementqueries.com/#scoped-queries-and-multiple-conditions
-///   .scoped-multiple {
-///     @include el((min-width: 350px), (max-width: 450px)) {
-///       eq_this { // current context
-///         background: gold;
-///
-///         > b {
-///           color: red;
-///         }
-///
-///         &:hover {
-///           background: orange;
-///         }
-///       }
-///     }
-///   }
-///   // => @element ".scoped-multiple" and (min-width: 350px) and (max-width: 450px) {
-///   //      eq_this {
-///   //        background: gold;
-///   //      }
-///   //      eq_this > b {
-///   //        color: red
-///   //      }
-///   //      eq_this:hover {
-///   //        background: orange;
-///   //      }
-///   //    }
-@mixin el($conditions...) {
+/// @return {string}  Element Query
+/// @access private
+/// @group fluidtype
+@function _eq($conditions...) {
   $selector: &;
   $joined-conditions: ();
 
@@ -65,13 +37,73 @@
     @else { @error 'element query conditions must be a map'; }
   }
 
-  $element-query: unquote("'#{$selector}' and #{$joined-conditions}");
+  @return $joined-conditions;
+}
+
+
+/// EQCSS
+///
+/// @group core-eqcss
+///
+/// @param  {arglist}  $conditions - 1+ of Maps of EQCSS conditions
+///
+/// @example scss - scss
+///    .parent {
+///      @include eq((min-width: 500px)) {
+///        eq_this {
+///          display: flex;
+///        }
+///      }
+///    }
+///
+/// @example css - css
+///    @element '.parent' and (min-width: 500px) {
+///      eq_this {
+///        display: flex; } }
+@mixin eq($conditions...) {
+  $selector: &;
+  $joined-conditions: ();
+
+  $element-query: unquote("'#{$selector}' and #{_eq($conditions...)}");
 
   // Needs to be placed outside of current context to work
   @at-root {
     // @element syntax doesn't parse with sass, so send as raw string
     @element #{inspect($element-query)} {
       @content;
+    }
+  }
+}
+
+/// EQCSS with Root Reference
+///
+/// @group core-eqcss
+///
+/// @param  {string}   $root - Root Selector
+/// @param  {arglist}  $conditions - 1+ of Maps of EQCSS conditions
+///
+/// @example scss - scss
+///    .child {
+///      @include eqr('.root', (min-width: 500px)) {
+///        flex: 1;
+///      }
+///    }
+///
+/// @example css - css
+///    @element '.root' and (min-width: 500px) {
+///      .child {
+///        flex: 1 1 0%; } }
+@mixin eqr($root, $conditions...) {
+  $selector: &;
+  $joined-conditions: ();
+
+  $element-query: unquote("'#{$root}' and #{_eq($conditions...)}");
+
+  @at-root {
+    @element #{inspect($element-query)} {
+      #{$selector} {
+        @content;
+      }
     }
   }
 }
