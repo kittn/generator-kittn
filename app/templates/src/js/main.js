@@ -1,6 +1,7 @@
 // Main JS File<% if (projectjquery === true) { %>
-import $ from 'jquery'<% } %>
-import cq from 'cq-prolyfill'<% if ( projectJSFramework === 'Vue.js' ) { %>
+import $ from 'jquery'<% } if (projectbreakpoints === 'EQCSS') { %>
+import eq from 'eqcss'<% } else { %>
+import cq from 'cq-prolyfill'<% } if ( projectJSFramework === 'Vue.js' ) { %>
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
 import axios from 'axios'
@@ -41,10 +42,10 @@ window.lazySizesConfig.expand = 130
 lazySizesConfig.expFactor = 1.3
 
 // Lazy Sizes Init
-lazySizes.init()
+lazySizes.init()<% if (projectbreakpoints === 'CQ') { %>
 
 // Init Container Queries
-cq({ postcss: true })<% if (projectcraftbp === true || projectwordpressbp === true) { %>
+cq({ postcss: true })<% } if (projectcraftbp === true || projectwordpressbp === true) { %>
 
 // Init Photoswipe
 initPhotoSwipeFromDOM('.is-photoswipped')

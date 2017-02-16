@@ -1,0 +1,77 @@
+/// Helper for EQCSS Element Queries `@element`
+///
+/// @author Jason Featheringham
+/// @link https://gist.github.com/thejase/d2107285b6e10315dd6bc055115647fe Code source
+/// @link http://elementqueries.com/ Plugin to parse EQCSS
+/// @link https://gist.github.com/tomhodgins/6237039fa07c2e4b7acd1c8b0f9549a9 EQCSS syntax
+///
+/// @param {String} $scope (&) - Optional scope.  Defaults to current context
+/// @param {List} $conditions (()) - 1+ of Maps of EQCSS conditions
+/// @content rules to enclose in element query
+///
+/// @output rules wrapped by `@element` query
+///
+/// @example replicate multiple scoped query example from http://elementqueries.com/#scoped-queries-and-multiple-conditions
+///   .scoped-multiple {
+///     @include el((min-width: 350px), (max-width: 450px)) {
+///       eq_this { // current context
+///         background: gold;
+///
+///         > b {
+///           color: red;
+///         }
+///
+///         &:hover {
+///           background: orange;
+///         }
+///       }
+///     }
+///   }
+///   // => @element ".scoped-multiple" and (min-width: 350px) and (max-width: 450px) {
+///   //      eq_this {
+///   //        background: gold;
+///   //      }
+///   //      eq_this > b {
+///   //        color: red
+///   //      }
+///   //      eq_this:hover {
+///   //        background: orange;
+///   //      }
+///   //    }
+@mixin el($conditions...) {
+  $selector: &;
+  $joined-conditions: ();
+
+  // at least one EQCSS condition is required
+  @if length($conditions) < 1 or type-of(nth($conditions, length($conditions))) != map {
+    @error 'element query must include at least one condition';
+  }
+
+  // flatten and join conditions into single string
+  @for $i from 1 through length($conditions) {
+    $condition: nth($conditions, $i);
+    // if a selector (string) wasn't specified at the beginning of the arguments, this will be the current context
+    @if $i == 1 and type-of($condition) == string {
+      $selector: $condition;
+    }
+    @else if type-of($condition) == map {
+      // join each with ' and '
+      @each $key, $value in $condition {
+        $joined-conditions: $joined-conditions + if(length($joined-conditions) > 0, ' and ', '');
+
+        $joined-conditions: $joined-conditions + '(#{$key}: #{$value})';
+      }
+    }
+    @else { @error 'element query conditions must be a map'; }
+  }
+
+  $element-query: unquote("'#{$selector}' and #{$joined-conditions}");
+
+  // Needs to be placed outside of current context to work
+  @at-root {
+    // @element syntax doesn't parse with sass, so send as raw string
+    @element #{inspect($element-query)} {
+      @content;
+    }
+  }
+}
