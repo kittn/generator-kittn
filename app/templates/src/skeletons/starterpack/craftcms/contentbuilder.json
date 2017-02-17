@@ -60,7 +60,7 @@
       "group": "Objects",
       "name": "Accordion",
       "handle": "objAccordion",
-      "instructions": "Das jeweilige Accordion, bitte noch ein Titel mit angeben",
+      "instructions": "Accordion Block - bitte noch einen Titel angeben",
       "required": false,
       "type": "PlainText",
       "typesettings": {
