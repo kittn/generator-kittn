@@ -14,7 +14,7 @@
 # -- LOCAL settings --
 
 # Local path constants; paths should always have a trailing /
-LOCAL_ROOT_PATH="REPLACE_ME"
+LOCAL_ROOT_PATH="<%= projectpath %>/dist/"
 LOCAL_ASSETS_PATH=$LOCAL_ROOT_PATH"public/uploads/"
 
 # Local user & group that should own the Craft CMS install
