@@ -3,12 +3,11 @@
   ========
   With Semantic Override
 
-  @param {string} name               = Classname
-  @param {object} data               = Dataobject
-  @param {string} data.semantic      = Tag
-  @param {string} data.override      = Semantic Override with Class (e.g. `.h4`)
-  @param {string} data.headline      = Headline Text
+  @param {string} main               = Headline Text
+  @param {object} options            = Setupobject
+  @param {string} options.semantic   = Tag
+  @param {string} options.override   = Semantic Override with Class (e.g. `.h4`)
 #}
 
 {# Build Element Block #}
-<{{ data.semantic }}{{ data.override != 'default' ? ' class='~data.override }} role="heading" itemprop="name">{{ data.headline }}</{{ data.semantic }}>
+<{{ options.semantic }}{{ options.override != 'default' ? ' class='~options.override }} role="heading" itemprop="name">{{ main }}</{{ options.semantic }}>

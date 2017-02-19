@@ -1,14 +1,13 @@
 /*
-  Embed
-  ======
-  Display Embeded Code, like Gist, embeded Tweets and so on
+  Richtext
+  ========
+  description
 */
-.o-embed {
+.o-richtext {
   // Component Config
   $api: (
-    selector: 'embed',
-    breakpoint: 'm',
-    margin-bottom: s(1)
+    selector: 'richtext',
+    breakpoint: 'm'
   );
 
   // Build root selector
@@ -19,20 +18,13 @@
   // Unload : @include yield(storagename);
 
   // Base Style ----------------------------
-  margin-bottom: s(1);
 
   // Tags ----------------------------------
 
   // Base Modifier -------------------------
-  // [root]--center
-  &--center {
-    text-align: center;
+  // [root]--s-style1
+  &--s-style1 {
+    font-size: 120%;
+    color: c('gray')
   }
-
-  // [root]--right
-  &--right {
-    text-align: right;
-  }
-  // Childs --------------------------------
-
 }

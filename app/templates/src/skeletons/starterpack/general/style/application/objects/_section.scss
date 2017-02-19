@@ -1,0 +1,321 @@
+/*
+  Section
+  =======
+  Subsegment of a content module, when the page wrapper is removed the section can run over the full browser width.
+*/
+.o-section {
+  // Component Config
+  $api: (
+    selector: 'section',
+    breakpoint: 'm',
+    gutter: (
+      default: 10px,
+      style1: 20px,
+      style2: 1px,
+      style3: 0
+    )
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Base Modifier -------------------------
+
+  // Fullheight
+  &--fullheight {
+    #{$root}__row {
+      min-height: 100vh;
+    }
+  }
+
+  // Global Style Modifier
+  &--s-default {
+    // Setup Gutter
+    #{$root}__row {
+      margin-left: 0 - v($api,gutter,default);
+      margin-right: 0 - v($api,gutter,default);
+    }
+    #{$root}__column {
+      margin-right: v($api,gutter,default);
+      margin-left: v($api,gutter,default);
+    }
+  }
+
+  &--s-style1 {
+    // Setup Gutter
+    #{$root}__row {
+      margin-left: 0 - v($api,gutter,style1);
+      margin-right: 0 - v($api,gutter,style1);
+    }
+    #{$root}__column {
+      margin-left: v($api,gutter,style1);
+      margin-right: v($api,gutter,style1);
+    }
+  }
+
+  &--s-style2 {
+    // Setup Gutter
+    #{$root}__row {
+      margin-left: 0 - v($api,gutter,style2);
+      margin-right: 0 - v($api,gutter,style2);
+    }
+    #{$root}__column {
+      margin-left: v($api,gutter,style2);
+      margin-right: v($api,gutter,style2);
+    }
+  }
+
+  &--s-style3 {
+    // Setup Gutter
+    #{$root}__row {
+      margin-left: 0 - v($api,gutter,style3);
+      margin-right: 0 - v($api,gutter,style3);
+    }
+    #{$root}__column {
+      margin-left: v($api,gutter,style3);
+      margin-right: v($api,gutter,style3);
+    }
+  }
+  // Childs --------------------------------
+
+  // [root]__container
+  &__container {
+    @extend .o-container;
+
+    // Container in Container, remove inner Gutter
+    .o-area__container & {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    // Container Layouttypes
+    // [root]--full
+    &--full {
+      width: 100%;
+      max-width: inherit;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    // [root]--full
+    &--bigger-45 {
+      max-width: v($kittn-page-size,maxsize) * 1.45;
+    }
+    // [root]--full
+    &--bigger-25 {
+      max-width: v($kittn-page-size,maxsize) * 1.25;
+    }
+  }
+
+  // [root]__row
+  &__row {
+    justify-content: space-between;
+    align-items: stretch;
+    // General Layout Modifier based on the Number of Childs
+
+    // One Colums is always flex
+    &--child-1 {
+      display: flex;
+    }
+
+    // Two Colums need min 400px
+    &--child-2 {
+      @include eq((min-width: 400px)) {
+        eq_this {
+          display: flex;
+        }
+      }
+    }
+
+    // Three Colums need min 600px
+    &--child-3 {
+      @include eq((min-width: 600px)) {
+        eq_this {
+          display: flex;
+        }
+      }
+    }
+
+    // Four Colums need min 800px
+    &--child-4 {
+      @include eq((min-width: 800px)) {
+        eq_this {
+          display: flex;
+        }
+      }
+    }
+
+    // Two Colum Layout: 2 / 1
+    &--cl-2-1 {
+      #{$root}__column {
+        &:nth-of-type(1) {
+          flex: 1 1 66.66%;
+        }
+        &:nth-of-type(2) {
+          flex: 1 1 33.33%;
+        }
+      }
+    }
+
+    // Two Colum Layout: 1 / 2
+    &--cl-1-2 {
+      #{$root}__column {
+        &:nth-of-type(1) {
+          flex: 1 1 33.33%;
+        }
+        &:nth-of-type(2) {
+          flex: 1 1 66.66%;
+        }
+      }
+    }
+
+    // Two Colum Layout: 3 / 1
+    &--cl-3-1 {
+      #{$root}__column {
+        &:nth-of-type(1) {
+          flex: 1 1 75%;
+        }
+        &:nth-of-type(2) {
+          flex: 1 1 25%;
+        }
+      }
+    }
+
+    // Two Colum Layout: 1 / 3
+    &--cl-3-1 {
+      #{$root}__column {
+        &:nth-of-type(1) {
+          flex: 1 1 25%;
+        }
+        &:nth-of-type(2) {
+          flex: 1 1 75%;
+        }
+      }
+    }
+
+    // Three Colum Layout: 2 / 6 / 2
+    &--cl-2-6-2 {
+      #{$root}__column {
+        &:nth-of-type(1) {
+          flex: 1 1 20%;
+        }
+        &:nth-of-type(2) {
+          flex: 1 1 60%;
+        }
+        &:nth-of-type(3) {
+          flex: 1 1 20%;
+        }
+      }
+    }
+
+    // Three Colum Layout: 3 / 5 / 2
+    &--cl-3-5-2 {
+      #{$root}__column {
+        &:nth-of-type(1) {
+          flex: 1 1 30%;
+        }
+        &:nth-of-type(2) {
+          flex: 1 1 50%;
+        }
+        &:nth-of-type(3) {
+          flex: 1 1 20%;
+        }
+      }
+    }
+
+    // Three Colum Layout: 2 / 5 / 3
+    &--cl-2-5-3 {
+      #{$root}__column {
+        &:nth-of-type(1) {
+          flex: 1 1 20%;
+        }
+        &:nth-of-type(2) {
+          flex: 1 1 50%;
+        }
+        &:nth-of-type(3) {
+          flex: 1 1 30%;
+        }
+      }
+    }
+
+    // Four Colum Layout: 2 / 3 / 4 / 1
+    &--cl-2-3-4-1 {
+      #{$root}__column {
+        &:nth-of-type(1) {
+          flex: 1 1 20%;
+        }
+        &:nth-of-type(2) {
+          flex: 1 1 30%;
+        }
+        &:nth-of-type(3) {
+          flex: 1 1 40%;
+        }
+        &:nth-of-type(4) {
+          flex: 1 1 10%;
+        }
+      }
+    }
+
+    // Four Colum Layout: 2 / 3 / 3 / 2
+    &--cl-2-3-3-2 {
+      #{$root}__column {
+        &:nth-of-type(1) {
+          flex: 1 1 20%;
+        }
+        &:nth-of-type(2) {
+          flex: 1 1 30%;
+        }
+        &:nth-of-type(3) {
+          flex: 1 1 30%;
+        }
+        &:nth-of-type(4) {
+          flex: 1 1 20%;
+        }
+      }
+    }
+  }
+
+  // [root]__column
+  &__column {
+    flex: 1 1 auto;
+    display: flex;
+    margin-bottom: 10px;
+
+    *:last-child {
+      margin-bottom: 0;
+    }
+
+    // Style Modifier
+    &--style1 {
+      padding: 10px;
+      background: c('primary');
+    }
+  }
+
+  &__inner {
+    flex: 1 1 auto;
+    position: relative;
+
+    // Column inner Align
+    &--align-left {
+      text-align: left;
+    }
+    &--align-center {
+      text-align: center;
+    }
+    &--align-right {
+      text-align: right;
+    }
+
+    // Column inner VerticalAlign
+    &--valign-top {
+      align-self: flex-start;
+    }
+    &--valign-middle {
+      align-self: center;
+    }
+    &--valign-bottom {
+      align-self: flex-end;
+    }
+  }
+}

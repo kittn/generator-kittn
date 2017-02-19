@@ -26,35 +26,9 @@
   // Tags ----------------------------------
 
   // Base Modifier -------------------------
-  &#{$root}--s-viewportsize {
-    @include break(v($api,breakpoint)) {
-      width: 100vw;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
 
-      // Fallback for Windows Systems
-      .windows & {
-        width: 99vw;
-        margin-left: -49.5vw;
-        margin-right: -49.5vw;
-      }
-    }
-  }
-
-  &#{$root}--s-oversize {
-    @include break(v($api,breakpoint)) {
-      max-width: 100vw;
-      width: 120%;
-      margin-left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-
-  &#{$root}--s-undersize {
-    max-width: 80%;
-  }
+  // Style Modifier
+  &#{$root}--s-style1 {}
 
   // Childs --------------------------------
   // [root]__inner
@@ -69,6 +43,21 @@
       width: 100%;
       height: 100%;
     }
+  }
+
+  // [root]__align-left
+  &__align-left {
+    text-align: left;
+  }
+
+  // [root]__align-center
+  &__align-center {
+    text-align: center;
+  }
+
+  // [root]__align-right
+  &__align-right {
+    text-align: right;
   }
 
   // [root]__caption

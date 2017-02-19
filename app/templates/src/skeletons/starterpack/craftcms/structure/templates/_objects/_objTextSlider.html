@@ -3,19 +3,19 @@
   ===========
   A slider for text elements only
 
-  @param {string} name               = Classname
-  @param {object} data               = Dataobject
-  @param {object} data.slide         = Array of Slides
-  @param {object} data.slide.slide   = Slide Content
+  @param {string} name                   = Classname
+  @param {object} main                   = Slides
+  @param {object} options                = Optionsobject
+  @param {string} options.style          = Optional Styleclass
 #}
 
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-textslider' %}
 
 {# Build Element Block #}
-<div class="{{ classname }}" role="presentation">
+<div class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}" role="presentation">
   <div class="{{ classname }}__wrapper">
-    {% for slide in data.slide %}
+    {% for slide in main %}
       <div class="{{ classname }}__slide">
         <div class="{{ classname }}__slide__inner">{{ slide.slide }}</div>
       </div>

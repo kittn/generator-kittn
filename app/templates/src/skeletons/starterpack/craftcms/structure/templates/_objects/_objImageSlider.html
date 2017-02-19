@@ -3,20 +3,22 @@
   ============
   Creates an image slider, using the Swiper.js library
 
-  @param {string} name               = Classname
-  @param {object} data               = Dataobject
-  @param {object} data.photos        = Array of Images
+  @param {string} name                   = Classname
+  @param {object} main                   = Images
+  @param {object} options                = Optionsobject
+  @param {string} options.style          = Optional Styleclass
+  @param {string} options.ratio          = Image Ratio
 #}
 
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-imageslider' %}
 
 {# Build Element Block #}
-<figure class="{{ classname }}" itemscope itemtype="http://schema.org/ImageGallery" role="presentation">
+<figure class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}" itemscope itemtype="http://schema.org/ImageGallery" role="presentation">
   <div class="{{ classname }}__wrapper">
-    {% for photo in data.photos %}
+    {% for photo in main %}
       <div class="{{ classname }}__slide" itemscope itemtype="http://schema.org/ImageObject">
-        {{ myMacro.mediaImageSet(photo, data.ratio, {
+        {{ myMacro.mediaImageSet(photo, options.ratio, {
           class: classname~'__image'
         }) }}
       </div>

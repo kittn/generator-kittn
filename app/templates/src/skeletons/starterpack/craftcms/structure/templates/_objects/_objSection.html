@@ -1,0 +1,50 @@
+{#
+  Section
+  =======
+  Subsegment of a content module, when the page wrapper is removed the section can run over the full browser width.
+
+  @param {string} name                   = Classname
+  @param {object} main                   = Dataobject
+  @param {object} options                = Optionsobject
+  @param {string} options.style          = Optional Styleclass
+  @param {bool}   options.fullheight     = Should the container be stretched to the full viewport height?
+  @param {string} options.innerContainer = Layout inner Container
+  @param {string} options.anchor         = Optional Anchorname
+  @param {object} layout                 = Column Layout Object
+  @param {object} layout.twoColumns      = Column Layout Object
+  @param {object} layout.threeColumns    = Column Layout Object
+  @param {object} layout.fourColumns     = Column Layout Object
+#}
+
+{# Class Overwrite #}
+{% set classname = name is defined and name != '' ? name : 'o-section' %}
+
+{# Set Coloum Layout Class#}
+{% switch content.children|length %}
+  {% case "2" %}
+    {% set columLayout = ' '~classname~'__row--cl-'~layout.twoColumns %}
+  {% case "3" %}
+    {% set columLayout = ' '~classname~'__row--cl-'~layout.threeColumns %}
+  {% case "4" %}
+    {% set columLayout = ' '~classname~'__row--cl-'~layout.fourColumns %}
+  {% default %}
+    {% set columLayout = '' %}
+{% endswitch %}
+
+{# Build Element Block #}
+<section class="{{ classname }}{{ options.fullheight ? ' '~classname~'--fullheight' }}{{ options.style ? ' '~classname~'--s-'~options.style }}"{{ options.anchor != '' ? 'id='~options.anchor|lower }}>
+  <div class="{{ classname }}__container{{ options.innerContainer != 'default' ? ' '~classname~'__container--'~options.innerContainer }}">
+    <div class="{{ classname }}__row {{ classname~'__row--child-'~content.children|length }}{{ columLayout }}">
+      {% for key, column in content.children %}
+        <div class="{{ classname }}__column{{ column.setSectionColumn.style != 'default' ? ' '~classname~'__column--'~column.setSectionColumn.style }}">
+          <div class="{{ classname }}__inner{{ column.setSectionColumn.align ? ' '~classname~'__inner--align-'~column.setSectionColumn.align }}{{ column.setSectionColumn.verticalAlign ? ' '~classname~'__inner--valign-'~column.setSectionColumn.verticalAlign }}">
+            {% for child in column.children %}
+              {% include '_builder/_cb-objects' with { data: child } %}
+            {% endfor %}
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

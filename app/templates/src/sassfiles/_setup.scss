@@ -50,6 +50,12 @@ $kittn-breakpoint-map: (
   )
 );
 
+// Define Pagesize
+$kittn-page-size: (
+  minsize: 320px,
+  maxsize: 1200px
+);
+
 // Load and integrate all FontFaces.
 // - 'fontname' {*}
 //   - 'filename' {Bool|*} - Filename, when 'false' the Fontname will be used

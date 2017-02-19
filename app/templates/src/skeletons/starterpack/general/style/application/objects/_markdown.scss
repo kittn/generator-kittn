@@ -1,0 +1,23 @@
+/*
+  Markdown
+  ========
+  Basic Styles for Markdown Element
+*/
+.o-markdown {
+  // Component Config
+  $api: (
+    selector: 'markdown',
+    breakpoint: 'm'
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Base Modifier -------------------------
+
+  // [root]--s-style1
+  &--s-style1 {
+    font-size: 110%;
+    color: c('gray')
+  }
+}

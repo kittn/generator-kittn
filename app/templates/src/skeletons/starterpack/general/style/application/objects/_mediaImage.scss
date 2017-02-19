@@ -20,45 +20,19 @@
   // Base Style ----------------------------
   margin: 0 auto s(1) auto;
   position: relative;
-  overflow: hidden;
+
   // Tags ----------------------------------
 
   // Base Modifier -------------------------
-
   &#{$root}--maxheight {
     height: 100vh;
+    overflow: hidden;
   }
 
-  &#{$root}--s-viewportsize {
-    @include break(v($api,breakpoint)) {
-      width: 100vw;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-
-      // Fallback for Windows Systems
-      .windows & {
-        width: 99vw;
-        margin-left: -49.5vw;
-        margin-right: -49.5vw;
-      }
-    }
+  // Style Modifier
+  &#{$root}--s-style1 {
+    #{$root}__image {}
   }
-
-  &#{$root}--s-oversize {
-    @include break(v($api,breakpoint)) {
-      max-width: 100vw;
-      width: 120%;
-      margin-left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-
-  &#{$root}--s-undersize {
-    max-width: 80%;
-  }
-
 
   // Childs --------------------------------
   // [root]__image

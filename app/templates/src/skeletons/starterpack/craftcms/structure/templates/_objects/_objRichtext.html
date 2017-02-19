@@ -3,8 +3,15 @@
   ========
   Simple Richttext Module
 
-  @param {string} data                   = Richttext
+  @param {string} main                   = Richttext
+  @param {object} options                = Optionsobject
+  @param {string} options.style          = Optional Styleclass
 #}
 
+{# Class Overwrite #}
+{% set classname = name is defined and name != '' ? name : 'o-richtext' %}
+
 {# Build Element Block #}
-{{ data }}
+<div class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}">
+  {{ main }}
+</div>

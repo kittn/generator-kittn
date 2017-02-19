@@ -4,20 +4,20 @@
   Creates a list of freely selectable bullets and individual styling
 
   @param {string} name                   = Classname
-  @param {object} data                   = Dataobject
-  @param {string} data.listtype          = Type of list [ul, ol]
-  @param {string} data.bullet            = Type of Bullet, for `ul` [circle, square, custom]
-  @param {object} data.list              = Object of Listentries
-  @param {string} data.list.entry        = Listentry
+  @param {object} main                   = Listobject
+  @param {string} main.entry             = Listentries
+  @param {object} options                = Optionsobject
+  @param {string} options.listtype       = Type of list [ul, ol]
+  @param {string} options.bullet         = Type of Bullet, for `ul` [circle, square, custom]
 #}
 
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-list' %}
 
 {# Define the Listtype with Bulletstyle #}
-{% if data.listtype == 'ul' %}
+{% if options.listtype == 'ul' %}
   {% set list = 'ul' %}
-  {% switch data.bullet %}
+  {% switch options.bullet %}
     {% case "circle" %}
       {% set style = ' '~classname~'--circle' %}
     {% case "square" %}
@@ -34,7 +34,7 @@
 
 {# Build Element Block #}
 <{{ list }} class="{{ classname }}{{ style }}" role="list">
-  {% for entry in data.list %}
+  {% for entry in main %}
     <li class="{{ classname }}__entry">{{ entry.entry|raw }}</li>
   {% endfor %}
 </{{ list }}>

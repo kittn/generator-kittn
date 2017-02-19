@@ -18,5 +18,5 @@
   // Unload : @include yield(storagename);
 
   // Base Style ----------------------------
-  @include container($width: 320 1024,$spacing: 20);
+  @include container($width: v($kittn-page-size,minsize) v($kittn-page-size,maxsize), $spacing: 20);
 }

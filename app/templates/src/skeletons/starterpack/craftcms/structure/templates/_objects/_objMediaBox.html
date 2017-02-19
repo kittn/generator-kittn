@@ -4,33 +4,34 @@
   A Mediabox with image / video and text content
 
   @param {string} name                   = Classname
-  @param {object} data                   = Dataobject
-  @param {string} data.background        = Background Color of the Box
-  @param {string} data.mediaWidth        = Width of the media field [defautt:quater, half, threequater]
-  @param {string} data.mediaPosition     = Position of the Mediabox [default:left, right]
-  @param {bool}   data.videobox          = Activate if a video is to be used instead of an image
-  @param {string} data.mediaRatio        = Aspect Ratio of the Mediaobject
-  @param {object} data.photo             = Imageobject
-  @param {object} data.video             = Videoobject
-  @param {string} data.textcontent       = Richttext Content
+  @param {object} main                   = mainobject
+  @param {object} main.photo             = Imageobject
+  @param {object} main.video             = Videoobject
+  @param {string} main.textcontent       = Richttext Content
+  @param {object} options                = Optionsobject
+  @param {string} options.background     = Background Color of the Box
+  @param {string} options.mediaWidth     = Width of the media field [defautt:quater, half, threequater]
+  @param {string} options.mediaPosition  = Position of the Mediabox [default:left, right]
+  @param {bool}   options.videobox       = Activate if a video is to be used instead of an image
+  @param {string} options.mediaRatio     = Aspect Ratio of the Mediaobject
 #}
 
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-mediabox' %}
 
 {# Build Element Block #}
-<div class="{{ classname }}{{ ' '~classname~'--'~data.mediaWidth }}{{ data.mediaPosition == 'right' ? ' '~classname~'--right' }}{{ data.background != 'null' ? ' '~classname~'--colored '~classname~'--c-'~data.background }}" role="group" itemscope itemtype="http://schema.org/MediaObject">
+<div class="{{ classname }}{{ ' '~classname~'--'~options.mediaWidth }}{{ options.mediaPosition == 'right' ? ' '~classname~'--right' }}{{ options.background != 'null' ? ' '~classname~'--colored '~classname~'--c-'~options.background }}" role="group" itemscope itemtype="http://schema.org/MediaObject">
 
-  {% if data.video or data.photo %}
+  {% if main.video or main.photo %}
     <div class="{{ classname }}__media">
-      {% if data.videobox %}
-        {% if data.video %}
+      {% if options.videobox %}
+        {% if main.video %}
           <video muted preload="none" autoplay="autoplay" class="{{ classname }}__video" loop role="application">
-            {% for video in data.video %}
+            {% for video in main.video %}
               <source src="{{ video.url }}" type="{{ video.getMimeType }}">
             {% endfor %}
-            {% if data.photo %}
-              {{ myMacro.mediaImageSet(data.photo.first(), data.mediaRatio, {
+            {% if main.photo %}
+              {{ myMacro.mediaImageSet(main.photo.first(), options.mediaRatio, {
                 class: classname~'__image'
               }) }}
             {% endif %}
@@ -38,8 +39,8 @@
         {% endif %}
 
       {% else %}
-        {% if data.photo %}
-          {{ myMacro.mediaImageSet(data.photo.first(), data.mediaRatio, {
+        {% if main.photo %}
+          {{ myMacro.mediaImageSet(main.photo.first(), options.mediaRatio, {
             class: classname~'__image'
           }) }}
         {% endif %}
@@ -48,6 +49,6 @@
   {% endif %}
 
   <div class="{{ classname }}__body">
-    {{ data.textcontent }}
+    {{ main.textcontent }}
   </div>
 </div>

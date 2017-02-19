@@ -4,12 +4,11 @@
   Generates distances based on globalspacing
 
   @param {string} name          = Classname
-  @param {object} data          = Dataobject
-  @param {number} data.steps    = Floatingnumber for Multiplier
+  @param {object} data          = Spacer
 #}
 
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-spacer' %}
 
 {# Build Element Block #}
-<div class="{{ classname }}{{ ' '~classname~'--'~data.steps }}"></div>
+<div class="{{ classname }}{{ ' '~classname~'--'~data }}"></div>

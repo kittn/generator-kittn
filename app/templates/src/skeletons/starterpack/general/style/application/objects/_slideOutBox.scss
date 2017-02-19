@@ -48,7 +48,8 @@
         margin-bottom: 0;
       }
 
-      #{$root}--style1 & {
+      // Style Modifier
+      #{$root}--s-style1 & {
         font-size: 95%;
         padding-top: 5px;
         color: c('gray');

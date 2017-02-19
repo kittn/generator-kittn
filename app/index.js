@@ -137,8 +137,8 @@ var KittnGenerator = yeoman.Base.extend({
         name: 'projectbreakpoints',
         message: chalk.cyan.underline.bold('CSS Breakpoints') + chalk.styles.red.close + '\n\xa0 In addition to regular MediaQueries, special Element Queries are also used. \n\xa0 Container queries CQ (https://github.com/ausi/cq-prolyfill) and Elementqueries EQCSS (http://elementqueries.com/) are available for selection.',
         choices: [
-          'CQ',
-          'EQCSS'
+          'EQCSS',
+          'CQ'
         ]
       },
       {

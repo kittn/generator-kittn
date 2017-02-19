@@ -3,27 +3,27 @@
   ======
   Creates a button with different styles. In addition, size, width and position can be adjusted.
 
-  @param {string} name               = Classname
-  @param {object} data               = Dataobject
-  @param {string} data.position      = Positionparameter [default, left, right]
-  @param {string} data.style         = Styleoption
-  @param {string} data.size          = Buttonsize
-  @param {bool}   data.fullwidth     = If the button should occupy the full container width
-  @param {object} data.button        = Dataobject
-  @param {string} data.button.url    = Url
-  @param {bool}   data.button.target = Open the link in a new tab
-  @param {string} data.button.text   = Button inscription
+  @param {string} name                   = Classname
+  @param {object} main                   = Linkobject
+  @param {string} main.url               = Url
+  @param {bool}   main.target            = Open the link in a new tab
+  @param {string} main.text              = Button inscription
+  @param {object} options                = Optionsobject
+  @param {string} options.style          = Styleoption
+  @param {string} options.position       = Positionparameter [default, left, right]
+  @param {string} options.size           = Buttonsize
+  @param {bool}   options.fullwidth      = If the button should occupy the full container width
 #}
 
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-button' %}
 
 {# Build Element Block #}
-<div class="{{ classname }}{{ data.position != 'default' ? ' '~classname~'--'~data.position : '' }}">
+<div class="{{ classname }}{{ options.position != 'default' ? ' '~classname~'--'~options.position : '' }}">
   <a itemprop="url"
      role="button"
-     href="{{ data.button.url }}" {{ data.button.target ? ' target="_blank"' }}
-     class="{{ classname }}__element{{ data.style ? ' '~classname~'--s-'~data.style }}{{ data.size ? ' '~classname~'--'~data.size }}{{ data.fullwidth ? ' '~classname~'--fullwidth' }}">
-    {{ data.button.text }}
+     href="{{ main.url }}" {{ main.target ? ' target="_blank"' }}
+     class="{{ classname }}__element{{ options.style ? ' '~classname~'--s-'~options.style }}{{ options.size ? ' '~classname~'--'~options.size }}{{ options.fullwidth ? ' '~classname~'--fullwidth' }}">
+    {{ main.text }}
   </a>
 </div>

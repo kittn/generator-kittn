@@ -7,51 +7,51 @@
 {% switch data.type %}
   {# Headline Module #}
   {% case 'objHeadline' %}
-    {% include '_objects/_objHeadline' with { data: data.objHeadline } %}
+    {% include '_objects/_objHeadline' with { main: data.objHeadline, options: data.setHeadline } %}
 
   {# Richtext Module #}
   {% case 'objRichtext' %}
-    {% include '_objects/_objRichtext' with { data: data.objRichtext } %}
+    {% include '_objects/_objRichtext' with { main: data.objRichtext, options: data.setRichtext } %}
 
   {# Markdown Module #}
   {% case 'objMarkdown' %}
-    {% include '_objects/_objMarkdown' with { data: data.objMarkdown } %}
+    {% include '_objects/_objMarkdown' with { main: data.objMarkdown, options: data.setMarkdown } %}
 
   {# List Module #}
   {% case 'objList' %}
-    {% include '_objects/_objList' with { data: data.objList, name: '' } %}
+    {% include '_objects/_objList' with { main: data.objList, options: data.setList, name: '' } %}
 
   {# Quote Module #}
   {% case 'objQuote' %}
-    {% include '_objects/_objQuote' with { data: data.objQuote, name: '' } %}
+    {% include '_objects/_objQuote' with { main: data.objQuote, options: data.setQuote, name: '' } %}
 
   {# Iframe Module #}
   {% case 'objIframeContent' %}
-    {% include '_objects/_objIframeContent' with { data: data.objIframeContent, name: '' } %}
+    {% include '_objects/_objIframeContent' with { main: data.objIframeContent, options: data.setIframeContent, name: '' } %}
 
   {# Gallery #}
   {% case 'objGallery' %}
-    {% include '_objects/_objGallery' with { data: data.objGallery, name: '' } %}
+    {% include '_objects/_objGallery' with { main: data.objGallery, options: data.setGallery, name: '' } %}
 
   {# Media Image Module #}
   {% case 'objMediaImage' %}
-    {% include '_objects/_objMediaImage' with { data: data.objMediaImage, name: '' } %}
+    {% include '_objects/_objMediaImage' with { main: data.objMediaImage, options: data.setMediaImage, name: '' } %}
 
   {# Image Slider Module #}
   {% case 'objImageSlider' %}
-    {% include '_objects/_objImageSlider' with { data: data.objImageSlider, name: '' } %}
+    {% include '_objects/_objImageSlider' with { main: data.objImageSlider, options: data.setImageSlider, name: '' } %}
 
   {# Text Slider Module #}
   {% case 'objTextSlider' %}
-    {% include '_objects/_objTextSlider' with { data: data.objTextSlider, name: '' } %}
+    {% include '_objects/_objTextSlider' with { main: data.objTextSlider, options: data.setTextSlider, name: '' } %}
 
   {# Mediabox Module #}
   {% case 'objMediaBox' %}
-    {% include '_objects/_objMediaBox' with { data: data.objMediaBox, name: '' } %}
+    {% include '_objects/_objMediaBox' with { main: data.objMediaBox, options: data.setMediaBox, name: '' } %}
 
   {# Button Module #}
   {% case 'objButton' %}
-    {% include '_objects/_objButton' with { data: data.objButton, name: '' } %}
+    {% include '_objects/_objButton' with { main: data.objButton, options: data.setButton, name: '' } %}
 
   {# Horizontal Ruler #}
   {% case 'objHorizontalRuler' %}
@@ -63,15 +63,11 @@
 
   {# Anchor #}
   {% case 'objAnchor' %}
-    {% include '_objects/_objAnchor' with { data: data.objAnchor, name: '' } %}
+    {% include '_objects/_objAnchor' with { main: data.objAnchor, options: data.setAnchor, name: '' } %}
 
   {# SlideOut Box #}
   {% case 'objSlideOutBox' %}
-    {% include '_objects/_objSlideOutBox' with { data: data.objSlideOutBox, name: '' } %}
-
-  {# Viewportspan #}
-  {% case 'objViewportSpan' %}
-    {% include '_objects/_objViewportSpan' with { data: data.objViewportSpan, name: '' } %}
+    {% include '_objects/_objSlideOutBox' with { main: data.objSlideOutBox, options: data.setSlideOutBox, name: '' } %}
 
   {# Accordions #}
   {% case 'objAccordionWrapper' %}
@@ -83,10 +79,10 @@
 
   {# JumpNavigation #}
   {% case 'objJumpNavigation' %}
-    {% include '_objects/_objJumpNavigation' with { data: data.objJumpNavigation, name: '' } %}
+    {% include '_objects/_objJumpNavigation' with { main: data.objJumpNavigation, options: data.setJumpNavigation, name: '' } %}
 
-  {# Embed #}
-  {% case 'objEmbed' %}
-    {% include '_objects/_objEmbed' with { data: data.objEmbed, name: '' } %}
+  {# Section #}
+  {% case 'objSection' %}
+    {% include '_objects/_objSection' with { main: data.objSection, options: data.setSection, layout: data.setSectionLayout, name: '' } %}
 
 {% endswitch %}

@@ -4,24 +4,25 @@
   A simple box with hidden content to open
 
   @param {string} name                   = Classname
-  @param {object} data                   = Dataobject
-  @param {string} data.style             = Optional Styleclassname
-  @param {string} data.trigger           = Label the click area
-  @param {string} data.body              = Hidden Content
+  @param {object} main                   = Dataobject
+  @param {string} main.trigger           = Label the click area
+  @param {string} main.body              = Hidden Content
+  @param {object} options                = Optionsobject
+  @param {string} options.style          = Optional Styleclassname
 #}
 
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-slideoutbox' %}
 
 {# Set Style #}
-{% set style = data.style != 'default' ? ' '~classname~'--'~data.style : '' %}
+{% set style = options.style != 'default' ? ' '~classname~'--s-'~options.style : '' %}
 
 {# Build Element Block #}
 <div class="{{ classname }}{{ style }}" role="tablist">
   <div class="{{ classname }}__head" role="tab">
-    <div class="{{ classname }}__trigger">{{ data.trigger }}</div>
+    <div class="{{ classname }}__trigger">{{ main.trigger }}</div>
   </div>
   <div class="{{ classname }}__body" role="tabpanel">
-    <div class="{{ classname }}__body__inner">{{ data.body }}</div>
+    <div class="{{ classname }}__body__inner">{{ main.body }}</div>
   </div>
 </div>
