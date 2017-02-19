@@ -32,18 +32,6 @@
       }
     },
     {
-      "name": "News",
-      "handle": "news",
-      "type": "channel",
-      "enableVersioning": 1,
-      "typesettings": {
-        "hasUrls": 1,
-        "template": "news\/_entry",
-        "urlFormat": "news\/{postDate.year}\/{slug}",
-        "nestedUrlFormat": null
-      }
-    },
-    {
       "name": "Seiten",
       "handle": "pages",
       "type": "structure",
@@ -1494,7 +1482,7 @@
       "group": "Objects",
       "name": "Section",
       "handle": "objSection",
-      "instructions": "Teilsegment eines Inhaltsmoduls, kann wenn der Page Wrapper entfernt wird die Sektion \u00fcber die volle Browserbreite laufen.",
+      "instructions": "Teilsegment eines Inhaltsmoduls, kann wenn der Page Wrapper entfernt wird die Section \u00fcber die volle Browserbreite laufen.",
       "required": false,
       "type": "SuperTable_Label",
       "typesettings": {
@@ -1505,7 +1493,7 @@
       "group": "Objects",
       "name": "Section Column",
       "handle": "objSectionColumn",
-      "instructions": "Spalte in einer Sektion",
+      "instructions": "Spalte in einer Section",
       "required": false,
       "type": "SuperTable_Label",
       "typesettings": {
@@ -1516,7 +1504,7 @@
       "group": "ObjectsOptions",
       "name": "Section Column Options",
       "handle": "setSectionColumn",
-      "instructions": "Spalte in einer Sektion",
+      "instructions": "Spalte in einer Section",
       "required": false,
       "type": "SuperTable",
       "typesettings": {
@@ -1769,7 +1757,7 @@
               "new2": {
                 "name": "Volle H\u00f6he",
                 "handle": "fullheight",
-                "instructions": "Soll die Sektion auf die volle H\u00f6he aufgespannt werden?",
+                "instructions": "Soll die Section auf die volle H\u00f6he aufgespannt werden?",
                 "required": 0,
                 "type": "Lightswitch",
                 "width": 10,
@@ -2296,17 +2284,6 @@
       }
     },
     {
-      "group": "Default",
-      "name": "Tags",
-      "handle": "tags",
-      "instructions": null,
-      "required": false,
-      "type": "Tags",
-      "typesettings": {
-        "source": "default"
-      }
-    },
-    {
       "group": "Objects",
       "name": "Text Slider",
       "handle": "objTextSlider",
@@ -2717,13 +2694,13 @@
           },
           "new17": {
             "sortOrder": 23,
-            "name": "Sektion",
+            "name": "Section",
             "handle": "objSection",
             "maxBlocks": null,
             "childBlocks": [
               "objSectionColumn"
             ],
-            "maxChildBlocks": null,
+            "maxChildBlocks": 4,
             "topLevel": 1,
             "fieldLayout": {
               "Main": [
@@ -2737,9 +2714,9 @@
           },
           "new18": {
             "sortOrder": 24,
-            "name": "Sektion Spalte",
+            "name": "Section Column",
             "handle": "objSectionColumn",
-            "maxBlocks": 4,
+            "maxBlocks": null,
             "childBlocks": [
               "objHeadline",
               "objRichtext",
@@ -2893,24 +2870,6 @@
         ],
         "Meta": [
           "blogCategories",
-          "articleImage",
-          "seo"
-        ]
-      }
-    },
-    {
-      "sectionHandle": "news",
-      "hasTitleField": 1,
-      "titleLabel": "Titel",
-      "name": "News",
-      "handle": "news",
-      "fieldLayout": {
-        "Content": [
-          "body",
-          "tags",
-          "contentBuilder"
-        ],
-        "Meta": [
           "articleImage",
           "seo"
         ]
