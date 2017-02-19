@@ -7,7 +7,11 @@
   @param {object} options            = Setupobject
   @param {string} options.semantic   = Tag
   @param {string} options.override   = Semantic Override with Class (e.g. `.h4`)
+  @param {string} options.style      = Optional Styleclass
 #}
 
+{# Class Overwrite #}
+{% set classname = name is defined and name != '' ? name : 'o-headline' %}
+
 {# Build Element Block #}
-<{{ options.semantic }}{{ options.override != 'default' ? ' class='~options.override }} role="heading" itemprop="name">{{ main }}</{{ options.semantic }}>
+<{{ options.semantic }} class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}{{ options.override != 'default' ? ' '~options.override }}" role="heading" itemprop="name">{{ main }}</{{ options.semantic }}>

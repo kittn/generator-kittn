@@ -537,6 +537,28 @@
           "new": {
             "fields": {
               "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
                 "name": "Semantische Gr\u00f6\u00dfe",
                 "handle": "semantic",
                 "instructions": "",
@@ -573,7 +595,7 @@
                   ]
                 }
               },
-              "new2": {
+              "new3": {
                 "name": "Override",
                 "handle": "override",
                 "instructions": "",
@@ -2714,7 +2736,7 @@
           },
           "new18": {
             "sortOrder": 24,
-            "name": "Section Column",
+            "name": "Section Spalte",
             "handle": "objSectionColumn",
             "maxBlocks": null,
             "childBlocks": [
