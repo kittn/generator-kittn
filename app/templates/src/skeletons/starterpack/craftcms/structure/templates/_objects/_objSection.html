@@ -22,11 +22,11 @@
 {# Set Coloum Layout Class#}
 {% switch content.children|length %}
   {% case "2" %}
-    {% set columLayout = ' '~classname~'__row--cl-'~layout.twoColumns %}
+    {% set columLayout = layout.twoColumns != 'default' ? ' '~classname~'__row--cl-'~layout.twoColumns : '' %}
   {% case "3" %}
-    {% set columLayout = ' '~classname~'__row--cl-'~layout.threeColumns %}
+    {% set columLayout = layout.threeColumns != 'default' ? ' '~classname~'__row--cl-'~layout.threeColumns : '' %}
   {% case "4" %}
-    {% set columLayout = ' '~classname~'__row--cl-'~layout.fourColumns %}
+    {% set columLayout = layout.fourColumns != 'default' ? ' '~classname~'__row--cl-'~layout.fourColumns : '' %}
   {% default %}
     {% set columLayout = '' %}
 {% endswitch %}
@@ -37,7 +37,7 @@
     <div class="{{ classname }}__row {{ classname~'__row--child-'~content.children|length }}{{ columLayout }}">
       {% for key, column in content.children %}
         <div class="{{ classname }}__column{{ column.setSectionColumn.style != 'default' ? ' '~classname~'__column--'~column.setSectionColumn.style }}">
-          <div class="{{ classname }}__inner{{ column.setSectionColumn.align ? ' '~classname~'__inner--align-'~column.setSectionColumn.align }}{{ column.setSectionColumn.verticalAlign ? ' '~classname~'__inner--valign-'~column.setSectionColumn.verticalAlign }}">
+          <div class="{{ classname }}__inner{{ column.setSectionColumn.align != 'default' ? ' '~classname~'__inner--align-'~column.setSectionColumn.align }}{{ column.setSectionColumn.verticalAlign != 'default' ? ' '~classname~'__inner--valign-'~column.setSectionColumn.verticalAlign }}">
             {% for child in column.children %}
               {% include '_builder/_cb-objects' with { data: child } %}
             {% endfor %}

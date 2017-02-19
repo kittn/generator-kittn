@@ -1549,7 +1549,7 @@
                     {
                       "label": "Default",
                       "value": "default",
-                      "default": ""
+                      "default": 1
                     },
                     {
                       "label": "Style 1",
@@ -1568,6 +1568,11 @@
                 "width": "",
                 "typesettings": {
                   "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": 1
+                    },
                     {
                       "label": "Linksb\u00fcndig",
                       "value": "left",
@@ -1595,6 +1600,11 @@
                 "width": "",
                 "typesettings": {
                   "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": 1
+                    },
                     {
                       "label": "Oben",
                       "value": "top",
@@ -1645,7 +1655,7 @@
                     {
                       "label": "Default",
                       "value": "default",
-                      "default": ""
+                      "default": 1
                     },
                     {
                       "label": "2-1",
@@ -1682,7 +1692,7 @@
                     {
                       "label": "Default",
                       "value": "default",
-                      "default": ""
+                      "default": 1
                     },
                     {
                       "label": "2-6-2",
@@ -1714,7 +1724,7 @@
                     {
                       "label": "Default",
                       "value": "default",
-                      "default": ""
+                      "default": 1
                     },
                     {
                       "label": "2-3-3-2",
@@ -1799,7 +1809,7 @@
                     {
                       "label": "Default",
                       "value": "default",
-                      "default": ""
+                      "default": 1
                     },
                     {
                       "label": "Full Viewport",

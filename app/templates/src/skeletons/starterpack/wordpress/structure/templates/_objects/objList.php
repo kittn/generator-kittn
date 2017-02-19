@@ -15,17 +15,7 @@ if (get_sub_field('listtype') == 'ul') {
   $listtype = 'ul';
 
   // Add Liststyles
-  switch (get_sub_field('style')) :
-    case 'circle' :
-      $liststyle = ' '.$classname.'--circle';
-      break;
-    case 'square' :
-      $liststyle = ' '.$classname.'--square';
-      break;
-    case 'custom' :
-      $liststyle = ' '.$classname.'--custom';
-      break;
-  endswitch;
+  $liststyle = ' '.$classname.'--'.get_sub_field('style');
 
 } else {
   $listtype = 'ol';

@@ -17,16 +17,8 @@
 {# Define the Listtype with Bulletstyle #}
 {% if options.listtype == 'ul' %}
   {% set list = 'ul' %}
-  {% switch options.bullet %}
-    {% case "circle" %}
-      {% set style = ' '~classname~'--circle' %}
-    {% case "square" %}
-      {% set style = ' '~classname~'--square' %}
-    {% case "custom" %}
-      {% set style = ' '~classname~'--custom' %}
-    {% default %}
-      {% set style = '' %}
-  {% endswitch %}
+  {% set style = ' '~classname~'--'~options.bullet %}
+
 {% else %}
   {% set list = 'ol' %}
   {% set style = ' '~classname~'--ordered' %}
