@@ -3,7 +3,6 @@
     "Objects",
     "ObjectsOptions",
     "Meta",
-    "Default",
     "Builder",
     "Globals"
   ],
@@ -345,6 +344,232 @@
                       "default": ""
                     }
                   ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Card",
+      "handle": "objCard",
+      "instructions": "Text Box mit Media Assets (Image oder Video)",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "row",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Bild",
+                "handle": "photo",
+                "instructions": "Ein Bild wird auf jedenfall eingebunden. Falls ein Video genutzt wird, dient das Bild als Fallback.",
+                "required": 0,
+                "type": "Assets",
+                "width": "",
+                "typesettings": {
+                  "useSingleFolder": "",
+                  "sources": "*",
+                  "defaultUploadLocationSource": "images",
+                  "defaultUploadLocationSubpath": "",
+                  "singleUploadLocationSource": "images",
+                  "singleUploadLocationSubpath": "",
+                  "restrictFiles": 1,
+                  "allowedKinds": [
+                    "image"
+                  ],
+                  "limit": 1,
+                  "viewMode": "list",
+                  "selectionLabel": ""
+                }
+              },
+              "new2": {
+                "name": "Video",
+                "handle": "video",
+                "instructions": "",
+                "required": 0,
+                "type": "Assets",
+                "width": "",
+                "typesettings": {
+                  "useSingleFolder": "",
+                  "sources": "*",
+                  "defaultUploadLocationSource": "images",
+                  "defaultUploadLocationSubpath": "",
+                  "singleUploadLocationSource": "images",
+                  "singleUploadLocationSubpath": "",
+                  "restrictFiles": 1,
+                  "allowedKinds": [
+                    "video"
+                  ],
+                  "limit": 3,
+                  "viewMode": "large",
+                  "selectionLabel": ""
+                }
+              },
+              "new3": {
+                "name": "Headline",
+                "handle": "headline",
+                "instructions": "Optionale Headline",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new4": {
+                "name": "Subline",
+                "handle": "subline",
+                "instructions": "Optionale Subline",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new5": {
+                "name": "Meta",
+                "handle": "meta",
+                "instructions": "Optionales Meta Feld",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new6": {
+                "name": "Body",
+                "handle": "body",
+                "instructions": "",
+                "required": 0,
+                "type": "RichText",
+                "width": "",
+                "typesettings": {
+                  "configFile": "Simple.json",
+                  "availableAssetSources": "*",
+                  "availableTransforms": "*",
+                  "cleanupHtml": 1,
+                  "purifyHtml": 1,
+                  "columnType": "text"
+                }
+              },
+              "new7": {
+                "name": "Link",
+                "handle": "cardlink",
+                "instructions": "Optionale Verlinkung der Card",
+                "required": 0,
+                "type": "FruitLinkIt",
+                "width": "",
+                "typesettings": {
+                  "types": [
+                    "custom",
+                    "entry",
+                    "category",
+                    "asset"
+                  ],
+                  "defaultText": "",
+                  "allowCustomText": "",
+                  "allowTarget": "",
+                  "entrySources": [],
+                  "entrySelectionLabel": "Select an entry",
+                  "assetSources": "*",
+                  "assetSelectionLabel": "Select an asset",
+                  "categorySources": "*",
+                  "categorySelectionLabel": "Select a category"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Card Options",
+      "handle": "setCard",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 2",
+                      "value": "style2",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 3",
+                      "value": "style3",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Videobox",
+                "handle": "videobox",
+                "instructions": "Aktivieren wenn ein Video verwendet werden soll",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new3": {
+                "name": "Media Ratio",
+                "handle": "mediaRatio",
+                "instructions": "Aspect Ratio des Bildes oder Videos",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "16:9",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
                 }
               }
             }
@@ -1502,20 +1727,9 @@
     },
     {
       "group": "Objects",
-      "name": "Section",
-      "handle": "objSection",
-      "instructions": "Teilsegment eines Inhaltsmoduls, kann wenn der Page Wrapper entfernt wird die Section \u00fcber die volle Browserbreite laufen.",
-      "required": false,
-      "type": "SuperTable_Label",
-      "typesettings": {
-        "value": ""
-      }
-    },
-    {
-      "group": "Objects",
       "name": "Section Column",
       "handle": "objSectionColumn",
-      "instructions": "Spalte in einer Section",
+      "instructions": "Spalte in einer Sektion",
       "required": false,
       "type": "SuperTable_Label",
       "typesettings": {
@@ -1526,7 +1740,7 @@
       "group": "ObjectsOptions",
       "name": "Section Column Options",
       "handle": "setSectionColumn",
-      "instructions": "Spalte in einer Section",
+      "instructions": "Spalte in einer Sektion",
       "required": false,
       "type": "SuperTable",
       "typesettings": {
@@ -1549,7 +1763,7 @@
                     {
                       "label": "Default",
                       "value": "default",
-                      "default": 1
+                      "default": ""
                     },
                     {
                       "label": "Style 1",
@@ -1571,7 +1785,7 @@
                     {
                       "label": "Default",
                       "value": "default",
-                      "default": 1
+                      "default": ""
                     },
                     {
                       "label": "Linksb\u00fcndig",
@@ -1603,7 +1817,7 @@
                     {
                       "label": "Default",
                       "value": "default",
-                      "default": 1
+                      "default": ""
                     },
                     {
                       "label": "Oben",
@@ -1655,7 +1869,7 @@
                     {
                       "label": "Default",
                       "value": "default",
-                      "default": 1
+                      "default": ""
                     },
                     {
                       "label": "2-1",
@@ -1692,7 +1906,7 @@
                     {
                       "label": "Default",
                       "value": "default",
-                      "default": 1
+                      "default": ""
                     },
                     {
                       "label": "2-6-2",
@@ -1724,7 +1938,7 @@
                     {
                       "label": "Default",
                       "value": "default",
-                      "default": 1
+                      "default": ""
                     },
                     {
                       "label": "2-3-3-2",
@@ -1789,7 +2003,7 @@
               "new2": {
                 "name": "Volle H\u00f6he",
                 "handle": "fullheight",
-                "instructions": "Soll die Section auf die volle H\u00f6he aufgespannt werden?",
+                "instructions": "Soll die Sektion auf die volle H\u00f6he aufgespannt werden?",
                 "required": 0,
                 "type": "Lightswitch",
                 "width": 10,
@@ -1809,7 +2023,7 @@
                     {
                       "label": "Default",
                       "value": "default",
-                      "default": 1
+                      "default": ""
                     },
                     {
                       "label": "Full Viewport",
@@ -1846,6 +2060,17 @@
             }
           }
         }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Section Wrapper",
+      "handle": "objSection",
+      "instructions": "Teilsegment eines Inhaltsmoduls, kann wenn der Page Wrapper entfernt wird die Sektion \u00fcber die volle Browserbreite laufen.",
+      "required": false,
+      "type": "SuperTable_Label",
+      "typesettings": {
+        "value": ""
       }
     },
     {
@@ -1973,6 +2198,345 @@
                       "default": ""
                     }
                   ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Slider Responsive",
+      "handle": "setSliderResponsive",
+      "instructions": "Breakpoints f\u00fcr den Slider - relevant wenn SlidesPerView aktiv ist",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Responsive",
+                "handle": "responsive",
+                "instructions": "",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new2": {
+                "name": "Size 1",
+                "handle": "size1",
+                "instructions": "Breakpoint : slidesPerView : spaceBetween",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "1024:4:20",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new3": {
+                "name": "Size 2",
+                "handle": "size2",
+                "instructions": "Breakpoint : slidesPerView : spaceBetween",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "768:3:30",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new4": {
+                "name": "Size 3",
+                "handle": "size3",
+                "instructions": "Breakpoint : slidesPerView : spaceBetween",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "540:2:20",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new5": {
+                "name": "Size 4",
+                "handle": "size4",
+                "instructions": "Breakpoint : slidesPerView : spaceBetween",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "320:1:10",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Slider Setup",
+      "handle": "setSliderSetup",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Autoplay",
+                "handle": "autoplay",
+                "instructions": "Geschwindigkeit des Autoplay Modus",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Deaktiviert",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Slow",
+                      "value": "slow",
+                      "default": ""
+                    },
+                    {
+                      "label": "Medium",
+                      "value": "medium",
+                      "default": ""
+                    },
+                    {
+                      "label": "Fast",
+                      "value": "fast",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Animation Speed",
+                "handle": "speed",
+                "instructions": "Einstellung der Animationsgeschwindigkeit",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Slow",
+                      "value": "slow",
+                      "default": ""
+                    },
+                    {
+                      "label": "Medium",
+                      "value": "medium",
+                      "default": ""
+                    },
+                    {
+                      "label": "Fast",
+                      "value": "fast",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new3": {
+                "name": "Hide Navigation",
+                "handle": "navigation",
+                "instructions": "Soll eine Navigation versteckt werden?",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new4": {
+                "name": "Hide Pagination",
+                "handle": "pagination",
+                "instructions": "Soll eine Pagination versteckt werden?",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new5": {
+                "name": "Autoheight",
+                "handle": "autoHeight",
+                "instructions": "Mit Autoheight ist die H\u00f6he der einzelnen Slides Dynamisch",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Slider Setup General",
+      "handle": "setSliderSetupGeneral",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Slides per View",
+                "handle": "slidesPerView",
+                "instructions": "Anzahl der sichtbaren Slides",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Auto",
+                      "value": "auto",
+                      "default": ""
+                    },
+                    {
+                      "label": 1,
+                      "value": 1,
+                      "default": ""
+                    },
+                    {
+                      "label": 2,
+                      "value": 2,
+                      "default": ""
+                    },
+                    {
+                      "label": 3,
+                      "value": 3,
+                      "default": ""
+                    },
+                    {
+                      "label": 4,
+                      "value": 4,
+                      "default": ""
+                    },
+                    {
+                      "label": 5,
+                      "value": 5,
+                      "default": ""
+                    },
+                    {
+                      "label": 6,
+                      "value": 6,
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Centered Slides",
+                "handle": "centeredSlides",
+                "instructions": "Sind die Slides Zentriert?",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": 1
+                }
+              },
+              "new3": {
+                "name": "Space Between",
+                "handle": "spaceBetween",
+                "instructions": "Abst\u00e4nde zwischen den Slides (Nur Ganzzahlen ohne Einheit)",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new4": {
+                "name": "Effect",
+                "handle": "effect",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Slide",
+                      "value": "slide",
+                      "default": ""
+                    },
+                    {
+                      "label": "Fade",
+                      "value": "fade",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new5": {
+                "name": "Loop",
+                "handle": "loop",
+                "instructions": "Sind die Slides endlos geloopt?",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": 1
                 }
               }
             }
@@ -2321,34 +2885,9 @@
       "handle": "objTextSlider",
       "instructions": "Ein Slider Modul f\u00fcr Textinhalte.",
       "required": false,
-      "type": "SuperTable",
+      "type": "SuperTable_Label",
       "typesettings": {
-        "fieldLayout": "table",
-        "staticField": null,
-        "selectionLabel": "Slide hinzuf\u00fcgen",
-        "maxRows": 10,
-        "blockTypes": {
-          "new": {
-            "fields": {
-              "new1": {
-                "name": "Slide",
-                "handle": "slide",
-                "instructions": "",
-                "required": 0,
-                "type": "RichText",
-                "width": "",
-                "typesettings": {
-                  "configFile": "",
-                  "availableAssetSources": "*",
-                  "availableTransforms": "*",
-                  "cleanupHtml": 1,
-                  "purifyHtml": 1,
-                  "columnType": "text"
-                }
-              }
-            }
-          }
-        }
+        "value": ""
       }
     },
     {
@@ -2435,9 +2974,9 @@
           "sortOrder": [
             1,
             7,
-            14,
-            18,
-            22
+            15,
+            19,
+            23
           ]
         },
         "blockTypes": {
@@ -2545,6 +3084,23 @@
           },
           "new6": {
             "sortOrder": 9,
+            "name": "Card",
+            "handle": "objCard",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objCard"
+              ],
+              "Options": [
+                "setCard"
+              ]
+            }
+          },
+          "new7": {
+            "sortOrder": 10,
             "name": "Media Image",
             "handle": "objMediaImage",
             "maxBlocks": null,
@@ -2560,8 +3116,8 @@
               ]
             }
           },
-          "new7": {
-            "sortOrder": 10,
+          "new8": {
+            "sortOrder": 11,
             "name": "Galerie",
             "handle": "objGallery",
             "maxBlocks": null,
@@ -2577,8 +3133,8 @@
               ]
             }
           },
-          "new8": {
-            "sortOrder": 11,
+          "new9": {
+            "sortOrder": 12,
             "name": "Image Slider",
             "handle": "objImageSlider",
             "maxBlocks": null,
@@ -2590,16 +3146,21 @@
                 "objImageSlider"
               ],
               "Options": [
-                "setImageSlider"
+                "setImageSlider",
+                "setSliderSetupGeneral",
+                "setSliderSetup",
+                "setSliderResponsive"
               ]
             }
           },
-          "new9": {
-            "sortOrder": 12,
+          "new10": {
+            "sortOrder": 13,
             "name": "Text Slider",
             "handle": "objTextSlider",
             "maxBlocks": null,
-            "childBlocks": "",
+            "childBlocks": [
+              "objCard"
+            ],
             "maxChildBlocks": null,
             "topLevel": 1,
             "fieldLayout": {
@@ -2607,12 +3168,15 @@
                 "objTextSlider"
               ],
               "Options": [
-                "setTextSlider"
+                "setTextSlider",
+                "setSliderSetupGeneral",
+                "setSliderSetup",
+                "setSliderResponsive"
               ]
             }
           },
-          "new10": {
-            "sortOrder": 13,
+          "new11": {
+            "sortOrder": 14,
             "name": "Iframe Content",
             "handle": "objIframeContent",
             "maxBlocks": null,
@@ -2628,8 +3192,8 @@
               ]
             }
           },
-          "new11": {
-            "sortOrder": 15,
+          "new12": {
+            "sortOrder": 16,
             "name": "Button",
             "handle": "objButton",
             "maxBlocks": null,
@@ -2645,8 +3209,8 @@
               ]
             }
           },
-          "new12": {
-            "sortOrder": 16,
+          "new13": {
+            "sortOrder": 17,
             "name": "Slide Out Box",
             "handle": "objSlideOutBox",
             "maxBlocks": null,
@@ -2662,8 +3226,8 @@
               ]
             }
           },
-          "new13": {
-            "sortOrder": 17,
+          "new14": {
+            "sortOrder": 18,
             "name": "Sprungnavigation",
             "handle": "objJumpNavigation",
             "maxBlocks": null,
@@ -2679,8 +3243,8 @@
               ]
             }
           },
-          "new14": {
-            "sortOrder": 19,
+          "new15": {
+            "sortOrder": 20,
             "name": "Anker",
             "handle": "objAnchor",
             "maxBlocks": null,
@@ -2696,8 +3260,8 @@
               ]
             }
           },
-          "new15": {
-            "sortOrder": 20,
+          "new16": {
+            "sortOrder": 21,
             "name": "Trennlinie",
             "handle": "objHorizontalRuler",
             "maxBlocks": null,
@@ -2710,8 +3274,8 @@
               ]
             }
           },
-          "new16": {
-            "sortOrder": 21,
+          "new17": {
+            "sortOrder": 22,
             "name": "Spacer",
             "handle": "objSpacer",
             "maxBlocks": null,
@@ -2724,9 +3288,9 @@
               ]
             }
           },
-          "new17": {
-            "sortOrder": 23,
-            "name": "Section",
+          "new18": {
+            "sortOrder": 24,
+            "name": "Sektion",
             "handle": "objSection",
             "maxBlocks": null,
             "childBlocks": [
@@ -2744,9 +3308,9 @@
               ]
             }
           },
-          "new18": {
-            "sortOrder": 24,
-            "name": "Section Spalte",
+          "new19": {
+            "sortOrder": 25,
+            "name": "Sektion Spalte",
             "handle": "objSectionColumn",
             "maxBlocks": null,
             "childBlocks": [
@@ -2756,6 +3320,7 @@
               "objList",
               "objQuote",
               "objMediaBox",
+              "objCard",
               "objMediaImage",
               "objGallery",
               "objImageSlider",
@@ -2766,10 +3331,12 @@
               "objJumpNavigation",
               "objAnchor",
               "objHorizontalRuler",
-              "objSpacer"
+              "objSpacer",
+              "objAccordionWrapper",
+              "objTabWrapper"
             ],
             "maxChildBlocks": null,
-            "topLevel": 1,
+            "topLevel": 0,
             "fieldLayout": {
               "Main": [
                 "objSectionColumn"
@@ -2779,8 +3346,8 @@
               ]
             }
           },
-          "new19": {
-            "sortOrder": 25,
+          "new20": {
+            "sortOrder": 26,
             "name": "Accordion Wrapper",
             "handle": "objAccordionWrapper",
             "maxBlocks": null,
@@ -2795,8 +3362,8 @@
               ]
             }
           },
-          "new20": {
-            "sortOrder": 26,
+          "new21": {
+            "sortOrder": 27,
             "name": "Accordion",
             "handle": "objAccordion",
             "maxBlocks": null,
@@ -2820,15 +3387,15 @@
               "objSpacer"
             ],
             "maxChildBlocks": null,
-            "topLevel": 1,
+            "topLevel": 0,
             "fieldLayout": {
               "Tab 1": [
                 "objAccordion"
               ]
             }
           },
-          "new21": {
-            "sortOrder": 27,
+          "new22": {
+            "sortOrder": 28,
             "name": "Tab Wrapper",
             "handle": "objTabWrapper",
             "maxBlocks": null,
@@ -2843,8 +3410,8 @@
               ]
             }
           },
-          "new22": {
-            "sortOrder": 28,
+          "new23": {
+            "sortOrder": 29,
             "name": "Tab",
             "handle": "objTab",
             "maxBlocks": null,
@@ -2868,7 +3435,7 @@
               "objSpacer"
             ],
             "maxChildBlocks": null,
-            "topLevel": 1,
+            "topLevel": 0,
             "fieldLayout": {
               "Tab 1": [
                 "objTab"

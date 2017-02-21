@@ -13,6 +13,35 @@
       style1: 20px,
       style2: 1px,
       style3: 0
+    ),
+    columns: (
+      twoColumns: (
+        breaksize: 600px,
+        layout: (
+          'default': 50% 50%,
+          'cl-1-2': 33.33% 66.66%,
+          'cl-2-1': 66.66% 33.33%,
+          'cl-3-1': 75% 25%,
+          'cl-1-3': 25% 75%
+        )
+      ),
+      threeColumns: (
+        breaksize: 800px,
+        layout: (
+          'default': 33.33% 33.33% 33.33%,
+          'cl-2-6-2': 20% 60% 20%,
+          'cl-3-5-2': 30% 50% 20%,
+          'cl-2-5-3': 20% 50% 30%
+        )
+      ),
+      fourColumns: (
+        breaksize: 1000px,
+        layout: (
+          'default': 20% 20% 20% 20%,
+          'cl-2-3-4-1': 20% 30% 40% 10%,
+          'cl-2-3-3-2': 20% 30% 30% 20%
+        )
+      )
     )
   );
 
@@ -109,167 +138,58 @@
 
   // [root]__row
   &__row {
-    justify-content: space-between;
-    align-items: stretch;
-    // General Layout Modifier based on the Number of Childs
+    justify-content: stretch;
+    display: flex;
 
-    // One Colums is always flex
+    // Generate Layouts
+    @each $columnStyleName, $setup in v($api,columns) {
+      @each $key, $column in v($setup,layout) {
+        &--#{$key} {
+          #{$root}__column {
+            @for $i from 1 through length($column) {
+              &:nth-of-type(#{$i}) {
+                width: nth($column,$i);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Reset Columns
     &--child-1 {
-      display: flex;
+      display: block;
     }
-
-    // Two Colums need min 400px
+    // Break down to 100%
     &--child-2 {
-      @include eq((min-width: 400px)) {
+      @include eq((max-width: #{v($api,columns,twoColumns,breaksize)})) {
         eq_this {
-          display: flex;
+          display: block;
+        }
+        #{$root}__column {
+          width: auto !important;
         }
       }
     }
-
-    // Three Colums need min 600px
+    // Break down to 100%
     &--child-3 {
-      @include eq((min-width: 600px)) {
+      @include eq((max-width: #{v($api,columns,threeColumns,breaksize)})) {
         eq_this {
-          display: flex;
+          display: block;
+        }
+        #{$root}__column {
+          width: auto !important;
         }
       }
     }
-
-    // Four Colums need min 800px
-    &--child-4 {
-      @include eq((min-width: 800px)) {
+    // Break down to 100%
+    &--child- {
+      @include eq((max-width: #{v($api,columns,fourColumns,breaksize)})) {
         eq_this {
-          display: flex;
+          display: block;
         }
-      }
-    }
-
-    // Two Colum Layout: 2 / 1
-    &--cl-2-1 {
-      #{$root}__column {
-        &:nth-of-type(1) {
-          flex: 1 1 66.66%;
-        }
-        &:nth-of-type(2) {
-          flex: 1 1 33.33%;
-        }
-      }
-    }
-
-    // Two Colum Layout: 1 / 2
-    &--cl-1-2 {
-      #{$root}__column {
-        &:nth-of-type(1) {
-          flex: 1 1 33.33%;
-        }
-        &:nth-of-type(2) {
-          flex: 1 1 66.66%;
-        }
-      }
-    }
-
-    // Two Colum Layout: 3 / 1
-    &--cl-3-1 {
-      #{$root}__column {
-        &:nth-of-type(1) {
-          flex: 1 1 75%;
-        }
-        &:nth-of-type(2) {
-          flex: 1 1 25%;
-        }
-      }
-    }
-
-    // Two Colum Layout: 1 / 3
-    &--cl-3-1 {
-      #{$root}__column {
-        &:nth-of-type(1) {
-          flex: 1 1 25%;
-        }
-        &:nth-of-type(2) {
-          flex: 1 1 75%;
-        }
-      }
-    }
-
-    // Three Colum Layout: 2 / 6 / 2
-    &--cl-2-6-2 {
-      #{$root}__column {
-        &:nth-of-type(1) {
-          flex: 1 1 20%;
-        }
-        &:nth-of-type(2) {
-          flex: 1 1 60%;
-        }
-        &:nth-of-type(3) {
-          flex: 1 1 20%;
-        }
-      }
-    }
-
-    // Three Colum Layout: 3 / 5 / 2
-    &--cl-3-5-2 {
-      #{$root}__column {
-        &:nth-of-type(1) {
-          flex: 1 1 30%;
-        }
-        &:nth-of-type(2) {
-          flex: 1 1 50%;
-        }
-        &:nth-of-type(3) {
-          flex: 1 1 20%;
-        }
-      }
-    }
-
-    // Three Colum Layout: 2 / 5 / 3
-    &--cl-2-5-3 {
-      #{$root}__column {
-        &:nth-of-type(1) {
-          flex: 1 1 20%;
-        }
-        &:nth-of-type(2) {
-          flex: 1 1 50%;
-        }
-        &:nth-of-type(3) {
-          flex: 1 1 30%;
-        }
-      }
-    }
-
-    // Four Colum Layout: 2 / 3 / 4 / 1
-    &--cl-2-3-4-1 {
-      #{$root}__column {
-        &:nth-of-type(1) {
-          flex: 1 1 20%;
-        }
-        &:nth-of-type(2) {
-          flex: 1 1 30%;
-        }
-        &:nth-of-type(3) {
-          flex: 1 1 40%;
-        }
-        &:nth-of-type(4) {
-          flex: 1 1 10%;
-        }
-      }
-    }
-
-    // Four Colum Layout: 2 / 3 / 3 / 2
-    &--cl-2-3-3-2 {
-      #{$root}__column {
-        &:nth-of-type(1) {
-          flex: 1 1 20%;
-        }
-        &:nth-of-type(2) {
-          flex: 1 1 30%;
-        }
-        &:nth-of-type(3) {
-          flex: 1 1 30%;
-        }
-        &:nth-of-type(4) {
-          flex: 1 1 20%;
+        #{$root}__column {
+          width: auto !important;
         }
       }
     }
@@ -277,9 +197,22 @@
 
   // [root]__column
   &__column {
-    flex: 1 1 auto;
-    display: flex;
+    width: 100%;
     margin-bottom: 10px;
+
+    @each $columnStyleName, $setup in v($api,columns) {
+      @each $key, $column in v($setup,layout) {
+        &--#{$key} {
+          #{$root}__column {
+            @for $i from 1 through length($column) {
+              &:nth-of-type(#{$i}) {
+                width: nth($column,$i);
+              }
+            }
+          }
+        }
+      }
+    }
 
     *:last-child {
       margin-bottom: 0;

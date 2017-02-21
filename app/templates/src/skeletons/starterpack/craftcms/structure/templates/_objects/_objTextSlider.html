@@ -7,21 +7,142 @@
   @param {object} main                   = Slides
   @param {object} options                = Optionsobject
   @param {string} options.style          = Optional Styleclass
+  @param {object} general                = General Slider Setupobject
+  @param {object} general.slidesPerView  = Number of visible Slides (1 - 10 / auto)
+  @param {object} general.centeredSlides = Should the Slides Centerd
+  @param {object} general.spaceBetween   = Space between slides
+  @param {object} general.effect         = Slides Effect (fade / slide)
+  @param {object} general.loop           = Loopable Slider
+  @param {object} setup                  = Slider Setupobject
+  @param {bool}   setup.autoheight       = Dynamic Height for all Slides
+  @param {string} setup.autoplay         = Autoplaytime (or disable)
+  @param {number} setup.speed            = Animation Timing
+  @param {bool}   setup.pagination       = Disable Pagination
+  @param {bool}   setup.navigation       = Disable Navigation
 #}
 
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-textslider' %}
 
+{# Slider Setup #}
+{% set autoHeight     = setup.autoHeight ? '"autoHeight": true,' : '"autoHeight": false,' %}
+{% set slidesPerView  = general.slidesPerView != 'default' ? '"slidesPerView": "'~general.slidesPerView~'",' : '' %}
+{% set centeredSlides = general.centeredSlides ? '"centeredSlides": true,' : '"centeredSlides": false,' %}
+{% set spaceBetween   = general.spaceBetween ? '"spaceBetween": '~general.spaceBetween~',' : '' %}
+{% set effect         = general.effect != 'default' ? '"effect": "'~general.effect~'",' : '' %}
+{% set loop           = general.loop ? '"loop": true,' : '"loop": false,' %}
+{% set pagination     = setup.pagination != true ? '"paginationHide": true,' : '' %}
+
+{% if responsive.responsive %}
+  {% set br1 = responsive.size1 ? responsive.size1|split(':') : '1024:4:40'|split(':') %}
+  {% set br2 = responsive.size2 ? responsive.size2|split(':') : '800:3:30'|split(':') %}
+  {% set br3 = responsive.size3 ? responsive.size3|split(':') : '500:2:20'|split(':') %}
+  {% set br4 = responsive.size4 ? responsive.size4|split(':') : '300:1:10'|split(':') %}
+  {% set breakpointsStart = '"breakpoints": {' %}
+  {% set breaksize1 = '"'~br1[0]~'"' ~ ': { "slidesPerView": '~br1[1]~', "spaceBetween": '~br1[2]~'},' %}
+  {% set breaksize2 = '"'~br2[0]~'"' ~ ': { "slidesPerView": '~br2[1]~', "spaceBetween": '~br2[2]~'},' %}
+  {% set breaksize3 = '"'~br3[0]~'"' ~ ': { "slidesPerView": '~br3[1]~', "spaceBetween": '~br3[2]~'},' %}
+  {% set breaksize4 = '"'~br4[0]~'"' ~ ': { "slidesPerView": '~br4[1]~', "spaceBetween": '~br4[2]~'}' %}
+  {% set breakpointsEnd = ' },' %}
+{% else %}
+  {% set breakpointsStart = '' %}
+  {% set breaksize1 = '' %}
+  {% set breaksize2 = '' %}
+  {% set breaksize3 = '' %}
+  {% set breaksize4 = '' %}
+  {% set breakpointsEnd = '' %}
+{% endif %}
+
+{# Set Autoplay Speed #}
+{% switch setup.autoplay %}
+  {% case "slow" %}
+    {% set autoplay = 10000 ~ ',' %}
+  {% case "medium" %}
+    {% set autoplay = 5000 ~ ',' %}
+  {% case "fast" %}
+    {% set autoplay = 2500 ~ ',' %}
+  {% default %}
+    {% set autoplay = false %}
+{% endswitch %}
+
+{# Set Animation Speed #}
+{% switch setup.speed %}
+  {% case "slow" %}
+    {% set speed = 1000 %}
+  {% case "medium" %}
+    {% set speed = 500 %}
+  {% case "fast" %}
+    {% set speed = 250 %}
+  {% default %}
+    {% set speed = 500 %}
+{% endswitch %}
+
+{# Count Nested Child #}
+{% set nestedChild = 0 %}
+{% for child in content.children %}
+  {% if child.hasDescendants() %}
+    {% for child in child.children %}
+      {% if child.hasDescendants() %}
+        {% for child in child.children %}
+          {% if child.hasDescendants() %}
+            {% for child in child.children %}
+              {% set nestedChild = 3 %}
+            {% endfor %}
+          {% else %}
+            {% set nestedChild = 2 %}
+          {% endif %}
+        {% endfor %}
+      {% else %}{% set nestedChild = 1 %}{% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
 {# Build Element Block #}
-<div class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}" role="presentation">
+<div class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}" role="presentation" data-textslider='{
+  {{ autoHeight }}
+  {{ slidesPerView }}
+  {{ centeredSlides }}
+  {{ spaceBetween }}
+  {{ effect }}
+  {{ loop }}
+  {{ breakpointsStart }}
+  {{ breaksize1 }}
+  {{ breaksize2 }}
+  {{ breaksize3 }}
+  {{ breaksize4 }}
+  {{ breakpointsEnd }}
+  {{ autoplay ? '"autoplay": ' ~ autoplay }}
+  {{ speed ? '"speed": ' ~ speed }}
+}'>
   <div class="{{ classname }}__wrapper">
-    {% for slide in main %}
+    {% switch nestedChild %}
+    {% case 0 %}
+    {% for child in content.children %}
       <div class="{{ classname }}__slide">
-        <div class="{{ classname }}__slide__inner">{{ slide.slide }}</div>
+        <div class="{{ classname }}__slide__inner">
+          {% include '_builder/_cb-objects' with { data: child } %}
+        </div>
       </div>
     {% endfor %}
+    {% case 2 %}
+    {% for child in content.children %}
+      {% for child in child.children %}
+        {% for child in child.children %}
+          <div class="{{ classname }}__slide">
+            <div class="{{ classname }}__slide__inner">
+              {% include '_builder/_cb-objects' with { data: child } %}
+            </div>
+          </div>
+        {% endfor %}
+      {% endfor %}
+    {% endfor %}
+    {% endswitch %}
   </div>
-  <div class="{{ classname }}__pagination"></div>
-  <div class="{{ classname }}__button-next"></div>
-  <div class="{{ classname }}__button-prev"></div>
+  {% if setup.pagination != true %}
+    <div class="{{ classname }}__pagination"></div>
+  {% endif %}
+  {% if setup.navigation != true %}
+    <div class="{{ classname }}__button-next"></div>
+    <div class="{{ classname }}__button-prev"></div>
+  {% endif %}
 </div>

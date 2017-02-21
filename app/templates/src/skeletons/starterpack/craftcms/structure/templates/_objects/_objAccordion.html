@@ -8,21 +8,50 @@
   @param {string} data.style      = Optional Styleclass Name
 #}
 
+{# Accordion Block as Macro #}
+{% macro accordionBlock(classname,child) %}
+  <div class="{{ classname }}__box" role="tab">
+    <div class="{{ classname }}__trigger">{{ child.objAccordion }}</div>
+    <div class="{{ classname }}__body" role="tabpanel">
+      <div class="{{ classname }}__inner">
+        {% for child in child.children %}
+          {% include '_builder/_cb-objects' with { data: child } %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-accordion' %}
 
+{# Count Nested Child #}
+{% set nestedChild = 0 %}
+{% for child in content.children %}
+  {% if child.hasDescendants() %}
+    {% for child in child.children %}
+      {% if child.hasDescendants() %}
+        {% for child in child.children %}{% if child.hasDescendants() %}{% set nestedChild = 2 %}{% endif %}{% endfor %}
+      {% else %}{% set nestedChild = 1 %}{% endif %}
+    {% endfor %}
+  {% endif %}
+{% endfor %}
+
 {# Build Element Block #}
 <div class="{{ classname }}{{ data.style ? ' '~classname~'--s-'~data.style : ' '~classname~'--s-default' }}" role="tablist">
-  {% for accordion in content.children %}
-    <div class="{{ classname }}__box" role="tab">
-      <div class="{{ classname }}__trigger">{{ accordion.objAccordion }}</div>
-      <div class="{{ classname }}__body" role="tabpanel">
-        <div class="{{ classname }}__inner">
-          {% for child in accordion.children %}
-            {% include '_builder/_cb-objects' with { data: child } %}
-          {% endfor %}
-        </div>
-      </div>
-    </div>
+  {# Loop through #}
+  {% switch nestedChild %}
+  {% case 1 %}
+  {% for child in content.children %}
+    {{ _self.accordionBlock(classname, child)}}
   {% endfor %}
+  {% case 2 %}
+  {% for child in content.children %}
+    {% for child in child.children %}
+      {% for child in child.children %}
+        {{ _self.accordionBlock(classname, child)}}
+      {% endfor %}
+    {% endfor %}
+  {% endfor %}
+  {% endswitch %}
 </div>

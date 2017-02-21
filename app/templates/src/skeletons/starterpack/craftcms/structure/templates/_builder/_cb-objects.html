@@ -39,11 +39,12 @@
 
   {# Image Slider Module #}
   {% case 'objImageSlider' %}
-    {% include '_objects/_objImageSlider' with { main: data.objImageSlider, options: data.setImageSlider, name: '' } %}
+    {% include '_objects/_objImageSlider' with { main: data.objImageSlider, options: data.setImageSlider, setup: data.setSliderSetup, general: data.setSliderSetupGeneral, responsive: data.setSliderResponsive, name: '' } %}
 
   {# Text Slider Module #}
   {% case 'objTextSlider' %}
-    {% include '_objects/_objTextSlider' with { main: data.objTextSlider, options: data.setTextSlider, name: '' } %}
+    {% include '_objects/_objTextSlider' with { main: data.objTextSlider, options: data.setTextSlider, setup: data.setSliderSetup, general: data.setSliderSetupGeneral, responsive: data.setSliderResponsive, name: '' } %}
+
 
   {# Mediabox Module #}
   {% case 'objMediaBox' %}
@@ -76,6 +77,10 @@
   {# Tabs #}
   {% case 'objTabWrapper' %}
     {% include '_objects/_objTab' with { data: data.objTabWrapper, name: '' } %}
+
+  {# Card #}
+  {% case 'objCard' %}
+    {% include '_objects/_objCard' with { main: data.objCard, options: data.setCard, name: '' } %}
 
   {# JumpNavigation #}
   {% case 'objJumpNavigation' %}

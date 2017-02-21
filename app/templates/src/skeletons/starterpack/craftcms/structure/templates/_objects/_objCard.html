@@ -1,0 +1,59 @@
+{#
+  Card
+  ====
+  Media and text content as card module
+
+  @param {string} name          = Classname
+  @param {object} data          = Dataobject
+  @param {string} data.style    = Optional Styleclass Name
+#}
+
+{# Class Overwrite #}
+{% set classname = name is defined and name != '' ? name : 'o-card' %}
+{% set cardurl = main.cardlink.url is defined ? main.cardlink.url : '' %}
+
+{# Build Element Block #}
+<div class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}" role="group" itemscope itemtype="http://schema.org/MediaObject">
+
+  <div class="{{ classname }}__inner">
+    {% if main.video|length or main.photo|length  %}
+      {% if cardurl is defined and cardurl != '' %}<a href="{{ cardurl }}"{{ main.cardlink.type == 'custom' ? ' target="_blank"' }}>{% endif %}
+      <div class="{{ classname }}__media">
+        {% if options.videobox %}
+          {% if main.video %}
+            <video muted preload="none" autoplay="autoplay" class="{{ classname }}__video" loop role="application">
+              {% for video in main.video %}
+                <source src="{{ video.url }}" type="{{ video.getMimeType }}">
+              {% endfor %}
+              {% if main.photo %}
+                {{ myMacro.mediaImageSet(main.photo.first(), options.mediaRatio, {
+                  class: classname~'__image'
+                }) }}
+              {% endif %}
+            </video>
+          {% endif %}
+
+        {% else %}
+          {% if main.photo %}
+            {{ myMacro.mediaImageSet(main.photo.first(), options.mediaRatio, {
+              class: classname~'__image'
+            }) }}
+          {% endif %}
+        {% endif %}
+      </div>
+      {% if cardurl is defined and cardurl != '' %}</a>{% endif %}
+    {% endif %}
+    {% if main.headline != '' or main.subline != '' or main.meta != '' or main.body != '' %}
+      <div class="{{ classname }}__copy">
+        {% if main.headline != '' or main.subline != '' or main.meta != '' %}
+          <header class="{{ classname }}__header">
+            {% if main.meta != '' %}<span class="{{ classname }}__meta">{{ main.meta }}</span>{% endif %}
+            {% if main.headline != '' %}<h3 class="{{ classname }}__headline">{{ main.headline }}</h3>{% endif %}
+            {% if main.subline != '' %}<h6 class="{{ classname }}__subline">{{ main.subline }}</h3>{% endif %}
+          </header>
+        {% endif %}
+        {% if main.body != '' %}<div class="{{ classname }}__body">{{ main.body }}</div>{% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>
