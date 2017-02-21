@@ -13,11 +13,11 @@ import toast from 'pyrsmk-toast' // eslint-disable-line
 const host = `//${window.location.hostname}`
 
 if (typeof Modernizr !== 'undefined') {
-  // Test for Picture - Example
-  // Modernizr.on('picture', (result) => {
-  //   if (!result) {
-  //     toast(`${host}/assets/js/ls.respimg.js`)
-  //   }
-  // })
+  // Polyfill for Picture Element (Ie10 and IE11) needed for Lazysizes
+  Modernizr.on('picture', (result) => {
+    if (!result) {
+      toast(`${host}/assets/js/ls.respimg.js`)
+    }
+  })
 }
 

@@ -22,7 +22,7 @@
 {# Build Element Block #}
 <div class="{{ classname }}{{ ' '~classname~'--'~options.mediaWidth }}{{ options.mediaPosition == 'right' ? ' '~classname~'--right' }}{{ options.background != 'null' ? ' '~classname~'--colored '~classname~'--c-'~options.background }}" role="group" itemscope itemtype="http://schema.org/MediaObject">
 
-  {% if main.video or main.photo %}
+  {% if main.video|length or main.photo|length %}
     <div class="{{ classname }}__media">
       {% if options.videobox %}
         {% if main.video %}

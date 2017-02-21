@@ -16,6 +16,7 @@ import './partial/init-swiper'<% } %>
 import lazySizes from 'lazysizes'
 import lazybgset from '../../node_modules/lazysizes/plugins/bgset/ls.bgset'
 import './partial/kittnad' // Small Advertising for Kittn :)
+import './partial/modernizer-loader'
 import './partial/conditionizr-init'<% if ( projectJSFramework === 'Vue.js') { %>
 import App from './app.vue'
 

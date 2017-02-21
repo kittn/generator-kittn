@@ -16,6 +16,7 @@
     ),
     columns: (
       twoColumns: (
+        groupname: 'child-2',
         breaksize: 600px,
         layout: (
           'default': 50% 50%,
@@ -27,6 +28,7 @@
       ),
       threeColumns: (
         breaksize: 800px,
+        groupname: 'child-3',
         layout: (
           'default': 33.33% 33.33% 33.33%,
           'cl-2-6-2': 20% 60% 20%,
@@ -36,6 +38,7 @@
       ),
       fourColumns: (
         breaksize: 1000px,
+        groupname: 'child-4',
         layout: (
           'default': 20% 20% 20% 20%,
           'cl-2-3-4-1': 20% 30% 40% 10%,
@@ -57,54 +60,20 @@
     }
   }
 
-  // Global Style Modifier
-  &--s-default {
-    // Setup Gutter
-    #{$root}__row {
-      margin-left: 0 - v($api,gutter,default);
-      margin-right: 0 - v($api,gutter,default);
-    }
-    #{$root}__column {
-      margin-right: v($api,gutter,default);
-      margin-left: v($api,gutter,default);
-    }
-  }
-
-  &--s-style1 {
-    // Setup Gutter
-    #{$root}__row {
-      margin-left: 0 - v($api,gutter,style1);
-      margin-right: 0 - v($api,gutter,style1);
-    }
-    #{$root}__column {
-      margin-left: v($api,gutter,style1);
-      margin-right: v($api,gutter,style1);
+  // Global Style Gutter
+  @each $key, $gutter in v($api,gutter) {
+    &--s-#{$key} {
+      #{$root}__row {
+        margin-left: 0 - $gutter;
+        margin-right: 0 - $gutter;
+      }
+      #{$root}__column {
+        padding-left: $gutter;
+        padding-right: $gutter;
+      }
     }
   }
 
-  &--s-style2 {
-    // Setup Gutter
-    #{$root}__row {
-      margin-left: 0 - v($api,gutter,style2);
-      margin-right: 0 - v($api,gutter,style2);
-    }
-    #{$root}__column {
-      margin-left: v($api,gutter,style2);
-      margin-right: v($api,gutter,style2);
-    }
-  }
-
-  &--s-style3 {
-    // Setup Gutter
-    #{$root}__row {
-      margin-left: 0 - v($api,gutter,style3);
-      margin-right: 0 - v($api,gutter,style3);
-    }
-    #{$root}__column {
-      margin-left: v($api,gutter,style3);
-      margin-right: v($api,gutter,style3);
-    }
-  }
   // Childs --------------------------------
 
   // [root]__container
@@ -141,7 +110,7 @@
     justify-content: stretch;
     display: flex;
 
-    // Generate Layouts
+    // Generate Column Layouts
     @each $columnStyleName, $setup in v($api,columns) {
       @each $key, $column in v($setup,layout) {
         &--#{$key} {
@@ -151,6 +120,18 @@
                 width: nth($column,$i);
               }
             }
+          }
+        }
+      }
+
+      // Reset Columns
+      &--#{v($setup, groupname)} {
+        @include eq((max-width: #{v($setup, breaksize)})) {
+          eq_this {
+            display: block;
+          }
+          #{$root}__column {
+            width: auto !important;
           }
         }
       }
@@ -160,39 +141,6 @@
     &--child-1 {
       display: block;
     }
-    // Break down to 100%
-    &--child-2 {
-      @include eq((max-width: #{v($api,columns,twoColumns,breaksize)})) {
-        eq_this {
-          display: block;
-        }
-        #{$root}__column {
-          width: auto !important;
-        }
-      }
-    }
-    // Break down to 100%
-    &--child-3 {
-      @include eq((max-width: #{v($api,columns,threeColumns,breaksize)})) {
-        eq_this {
-          display: block;
-        }
-        #{$root}__column {
-          width: auto !important;
-        }
-      }
-    }
-    // Break down to 100%
-    &--child- {
-      @include eq((max-width: #{v($api,columns,fourColumns,breaksize)})) {
-        eq_this {
-          display: block;
-        }
-        #{$root}__column {
-          width: auto !important;
-        }
-      }
-    }
   }
 
   // [root]__column
@@ -200,6 +148,11 @@
     width: 100%;
     margin-bottom: 10px;
 
+    *:last-child {
+      margin-bottom: 0;
+    }
+
+    // Column Sizes
     @each $columnStyleName, $setup in v($api,columns) {
       @each $key, $column in v($setup,layout) {
         &--#{$key} {
@@ -214,41 +167,26 @@
       }
     }
 
-    *:last-child {
-      margin-bottom: 0;
-    }
-
-    // Style Modifier
+    // Column Style Modifier
     &--style1 {
       padding: 10px;
       background: c('primary');
     }
   }
 
+  // Inner Column
   &__inner {
     flex: 1 1 auto;
     position: relative;
 
     // Column inner Align
-    &--align-left {
-      text-align: left;
-    }
-    &--align-center {
-      text-align: center;
-    }
-    &--align-right {
-      text-align: right;
-    }
+    &--align-left { text-align: left; }
+    &--align-center { text-align: center; }
+    &--align-right { text-align: right; }
 
     // Column inner VerticalAlign
-    &--valign-top {
-      align-self: flex-start;
-    }
-    &--valign-middle {
-      align-self: center;
-    }
-    &--valign-bottom {
-      align-self: flex-end;
-    }
+    &--valign-top { align-self: flex-start; }
+    &--valign-middle { align-self: center; }
+    &--valign-bottom { align-self: flex-end; }
   }
 }
