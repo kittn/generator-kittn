@@ -25,7 +25,7 @@
 
   &, a {
     @include fontsize(50);
-    color: c('white');
+    color: c('primary');
     line-height: 1;
     font-weight: bold;
   }
