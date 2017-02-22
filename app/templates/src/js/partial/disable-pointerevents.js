@@ -2,7 +2,8 @@
  * Disable Pointer Events when the Page Scroll
  * @type {HTMLElement}
  */
-let body = document.body, timer
+const body = document.body
+let timer = ''
 
 window.addEventListener('scroll', () => {
   clearTimeout(timer)
