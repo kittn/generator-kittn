@@ -27,7 +27,7 @@ if (get_sub_field('listtype') == 'ul') {
 <?php if (have_rows('list')) : ?>
 <<?= $listtype; ?> class="<?= $classname; ?><?= $liststyle; ?>" role="list">
   <?php while( have_rows('list') ) : the_row(); ?>
-    <li class="<?= $classname; ?>__entry"><?= get_sub_field('entry'); ?></li>
+    <li class="<?= $classname.'__entry'; ?>"><?= get_sub_field('entry'); ?></li>
   <?php endwhile; ?>
 </<?= $listtype; ?>>
 <?php endif; ?>

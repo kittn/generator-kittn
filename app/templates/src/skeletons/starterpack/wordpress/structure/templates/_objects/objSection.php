@@ -28,21 +28,17 @@ endswitch;
 ?>
 
 <?php // Build Element Block ?>
-
-
-
-
 <section class="<?= $classnameSection; ?><?= $fullheight; ?><?= $style != 'default' ? ' '.$classnameSection.'--s-'.$style : '' ?>"<?= $anchor;?>>
-  <div class="<?= $classnameSection; ?>__container<?= $innerContainer; ?>">
-    <div class="<?= $classnameSection; ?>__row <?= $classnameSection.'__row--child-'.$count; ?><?= $columnLayout; ?>">
+  <div class="<?= $classnameSection.'__container'; ?><?= $innerContainer; ?>">
+    <div class="<?= $classnameSection.'__row'; ?> <?= $classnameSection.'__row--child-'.$count; ?><?= $columnLayout; ?>">
       <?php while( have_rows('column') ) : the_row(); ?>
         <?php
         $clStyle = get_sub_field('style') != 'default' ? ' '.$classnameSection.'__column--'.get_sub_field('style') : '';
         $clAlign = get_sub_field('align') != 'default' ? ' '.$classnameSection.'__inner--align-'.get_sub_field('align') : '';
         $clVerticalAlign = get_sub_field('verticalAlign') != 'default' ? ' '.$classnameSection.'__inner--valign-'.get_sub_field('verticalAlign') : '';
         ?>
-        <div class="<?= $classnameSection; ?>__column<?= $clStyle; ?>">
-          <div class="<?= $classnameSection; ?>__inner<?= $clAlign; ?><?= $clVerticalAlign; ?>">
+        <div class="<?= $classnameSection.'__column'; ?><?= $clStyle; ?>">
+          <div class="<?= $classnameSection.'__inner'; ?><?= $clAlign; ?><?= $clVerticalAlign; ?>">
             <?php include ( get_template_directory() . '/_contentbuilder/contentModules.php' ); ?>
           </div>
         </div>

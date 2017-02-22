@@ -3,19 +3,14 @@
   =========
   Container Element
 */
-.o-container {
+%e-container {
   // Component Config
   $api: (
     selector: 'container',
-    breakpoint: 'm'
   );
 
   // Build root selector
-  $root: '.o-#{v($api,selector)}';
-
-  // Temp Style Storage  -------------------
-  // Store  : @include store(storagename) {}
-  // Unload : @include yield(storagename);
+  $root: '%e-#{v($api,selector)}';
 
   // Base Style ----------------------------
   @include container($width: v($kittn-page-size,minsize) v($kittn-page-size,maxsize), $spacing: 20);

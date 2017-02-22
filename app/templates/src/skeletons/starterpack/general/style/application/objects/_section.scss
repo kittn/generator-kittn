@@ -7,7 +7,6 @@
   // Component Config
   $api: (
     selector: 'section',
-    breakpoint: 'm',
     gutter: (
       default: 10px,
       style1: 20px,
@@ -78,7 +77,7 @@
 
   // [root]__container
   &__container {
-    @extend .o-container;
+    @extend %e-container;
 
     // Container in Container, remove inner Gutter
     .o-area__container & {

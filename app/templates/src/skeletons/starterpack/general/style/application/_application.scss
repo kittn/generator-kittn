@@ -11,13 +11,13 @@
 
 
 // 4. Elements
+@import "elements/container";
 
 
 // 5. Objects
 @import "objects/richtext";
 @import "objects/markdown";
 @import "objects/progressloader";
-@import "objects/container";
 @import "objects/grid";
 @import "objects/area";
 @import "objects/button";

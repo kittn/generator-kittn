@@ -14,10 +14,6 @@
   // Build root selector
   $root: '.o-#{v($api,selector)}';
 
-  // Temp Style Storage  -------------------
-  // Store  : @include store(storagename) {}
-  // Unload : @include yield(storagename);
-
   // Base Style ----------------------------
   margin: 0 auto v($api,margin-bottom) auto;
   position: relative;
@@ -45,20 +41,14 @@
     }
   }
 
-  // [root]__align-left
-  &__align-left {
-    text-align: left;
-  }
+  // [root]--align-left
+  &--align-left { text-align: left; }
 
-  // [root]__align-center
-  &__align-center {
-    text-align: center;
-  }
+  // [root]--align-center
+  &--align-center { text-align: center; }
 
-  // [root]__align-right
-  &__align-right {
-    text-align: right;
-  }
+  // [root]--align-right
+  &--align-right { text-align: right; }
 
   // [root]__caption
   &__caption {

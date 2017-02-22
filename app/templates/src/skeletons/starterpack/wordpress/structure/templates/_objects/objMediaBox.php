@@ -24,10 +24,10 @@ if (get_sub_field('background') != 'default')
 <?php // Building Element Block  ?>
 <div class="<?= $classname.$mediaPosition.$mediaBackground; ?><?= ' '.$classname.'--'.get_sub_field('media_width'); ?>" role="group" itemscope itemtype="http://schema.org/MediaObject">
   <?php if (get_sub_field('photo') || get_sub_field('video')) : ?>
-    <div class="<?= $classname; ?>__media">
+    <div class="<?= $classname.'__media'; ?>">
       <?php if (get_sub_field('videobox')) : ?>
         <?php if (get_sub_field('video')) : ?>
-          <video muted preload="none" autoplay="autoplay" class="<?= $classname; ?>__video" loop role="application">
+          <video muted preload="none" autoplay="autoplay" class="<?= $classname.'__video'; ?>" loop role="application">
             <?php foreach (get_sub_field('video') as $video) : ?>
               <source src="<?= $video['url']; ?>" type="<?= $video['mime_type'];?>">
             <?php endforeach; ?>
@@ -45,7 +45,7 @@ if (get_sub_field('background') != 'default')
     </div>
   <?php endif; ?>
 
-  <div class="<?= $classname; ?>__body">
+  <div class="<?= $classname.'__body'; ?>">
     <?= get_sub_field('textcontent'); ?>
   </div>
 </div>

@@ -17,7 +17,7 @@
 
   <div class="{{ classname }}__inner">
     {% if main.video|length or main.photo|length  %}
-      <div class="{{ classname }}__media">
+      <figure class="{{ classname }}__media">
         {% if options.videobox %}
           {% if main.video %}
             <video muted preload="none" autoplay="autoplay" class="{{ classname }}__video" loop role="application">
@@ -39,7 +39,7 @@
             }) }}
           {% endif %}
         {% endif %}
-      </div>
+      </figure>
     {% endif %}
     {% if main.headline != '' or main.subline != '' or main.meta != '' or main.body != '' %}
       <div class="{{ classname }}__copy">

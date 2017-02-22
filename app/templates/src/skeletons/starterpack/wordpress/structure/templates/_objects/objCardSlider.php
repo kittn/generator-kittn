@@ -1,12 +1,12 @@
 <?php
 /**
- * Image Slider
- * ============
- * Build a Image Slider with Flickity
+ * Card Slider
+ * ===========
+ * Build a Card Slider with flickity
  */
 
 // Default Vars
-$classname = 'o-slider';
+$classnameCardSlider = 'o-slider';
 $ratio = get_sub_field('ratio');
 $style = get_sub_field('style');
 
@@ -15,25 +15,25 @@ $spaceBetween = get_sub_field('spaceBetween') ? 'padding-left: '.get_sub_field('
 
 switch (get_sub_field('slidesPerView')) :
   case 'auto':
-    $slideWidth = ' '.$classname.'__slide'.$responsive.'--auto';
+    $slideWidth = ' '.$classnameCardSlider.'__slide'.$responsive.'--auto';
     break;
   case 'two':
-    $slideWidth = ' '.$classname.'__slide'.$responsive.'--2';
+    $slideWidth = ' '.$classnameCardSlider.'__slide'.$responsive.'--2';
     break;
   case 'three':
-    $slideWidth = ' '.$classname.'__slide'.$responsive.'--3';
+    $slideWidth = ' '.$classnameCardSlider.'__slide'.$responsive.'--3';
     break;
   case 'four':
-    $slideWidth = ' '.$classname.'__slide'.$responsive.'--4';
+    $slideWidth = ' '.$classnameCardSlider.'__slide'.$responsive.'--4';
     break;
   case 'five':
-    $slideWidth = ' '.$classname.'__slide'.$responsive.'--5';
+    $slideWidth = ' '.$classnameCardSlider.'__slide'.$responsive.'--5';
     break;
   case 'six':
-    $slideWidth = ' '.$classname.'__slide'.$responsive.'--6';
+    $slideWidth = ' '.$classnameCardSlider.'__slide'.$responsive.'--6';
     break;
   default:
-    $slideWidth = ' '.$classname.'__slide'.$responsive.'--1';
+    $slideWidth = ' '.$classnameCardSlider.'__slide'.$responsive.'--1';
     break;
 endswitch;
 
@@ -74,10 +74,10 @@ switch (get_sub_field('speed')) :
 endswitch;
 ?>
 
-<? // Build Element Block ?>
-<figure class="<?= $classname; ?> <?= $classname.'--image'; ?><?= $style != 'default' ? ' '.$classname.'--s-'.$style : '' ?>"
+<?php // Build Element Block ?>
+<figure class="<?= $classnameCardSlider; ?> <?= $classnameCardSlider.'--card'; ?><?= $style != 'default' ? ' '.$classnameCardSlider.'--s-'.$style : '' ?>"
         role="presentation"
-        itemscope itemtype="http://schema.org/ImageGallery"
+        itemscope itemtype="http://schema.org/MediaObject"
         data-flickity='{
     "accessibility": false,
     "contain": true,
@@ -96,9 +96,9 @@ endswitch;
     "wrapAround": <?= get_sub_field('loop') ? 'true' : 'false'; ?>
   }'
 >
-  <?php while( have_rows('photos') ) : the_row(); ?>
-    <div class="<?= $classname; ?>__slide<?= $slideWidth; ?>" style="<?= $spaceBetween ?>" itemscope itemtype="http://schema.org/ImageObject">
-      <?php macro_mediaImageSet(get_sub_field('photo'), $classname.'__image', $ratio); ?>
+  <?php while( have_rows('slides') ) : the_row(); ?>
+    <div class="<?= $classnameCardSlider.'__slide'; ?><?= $slideWidth; ?>" style="<?= $spaceBetween ?>" itemscope itemtype="http://schema.org/ImageObject">
+      <?php include ( get_template_directory() . '/_objects/objCard.php' ); ?>
     </div>
   <?php endwhile; ?>
 </figure>

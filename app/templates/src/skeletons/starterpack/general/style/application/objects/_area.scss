@@ -7,17 +7,21 @@
   // Component Config
   $api: (
     selector: 'area',
-    breakpoint: 'm'
+    breakpoint: 'm',
+    header: (
+      background: #ececec,
+      margin: s(1),
+      vertpadding: 1
+    ),
+    main: (),
+    footer: (
+      background: #252525,
+      vertpadding: .5
+    )
   );
 
   // Build root selector
   $root: '.o-#{v($api,selector)}';
-
-  // Temp Style Storage  -------------------
-  // Store  : @include store(storagename) {}
-  // Unload : @include yield(storagename);
-
-  // Base Style ----------------------------
 
   // Tags ----------------------------------
 
@@ -35,19 +39,19 @@
 
   // [root]__container
   &__container {
-    @extend .o-container;
+    @extend %e-container;
     position: relative;
   }
+
   // [root]__header
   &__header {
-    background-color: #2bc5f5;
-    margin-bottom: s(1);
-    @include padding(gap(1) 0);
+    @include padding(gap(v($api,header,vertpadding)) 0);
+    background-color: v($api,header,background);
+    margin-bottom: v($api,header,margin);
 
     *, & {
-      color: c('white');
+      color: c('main');
     }
-
   }
 
   // [root]__main
@@ -58,12 +62,11 @@
 
   // [root]__footer
   &__footer {
-    background-color: #124c61;
-    @include padding(gap(.5) 0);
+    background-color: v($api,footer,background);
+    @include padding(gap(v($api,footer,vertpadding)) 0);
+
     *, & {
       color: c('white');
     }
   }
-
-
 }

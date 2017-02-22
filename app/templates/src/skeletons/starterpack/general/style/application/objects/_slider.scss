@@ -19,8 +19,8 @@
     flickity: (
       nav: (
         background: rgba(0,0,0,0),
-        color: rgba(c('primary'),0.5),
-        hover: rgba(c('primary'),0.9)
+        color: rgba(c('white'),0.5),
+        hover: rgba(c('white'),0.9)
       )
     )
   );
@@ -46,6 +46,9 @@
         fill: v($api,flickity,nav,hover);
       }
     }
+  }
+  .flickity-page-dots {
+    bottom: 5px;
   }
 
   // Childs --------------------------------
