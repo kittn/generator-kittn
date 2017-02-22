@@ -84,7 +84,7 @@
       bottom: 0;
       width: 100%;
       padding: 20px;
-      background-color: rgba(0,0,0,0.5);
+      background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);
     }
 
     // [root]__header
@@ -94,7 +94,7 @@
 
     // [root]__headline
     #{$root}__headline {
-      color: c('primary');
+      color: c('white');
     }
 
     // [root]__subline
@@ -127,7 +127,11 @@
 
     // [root]__copy
     #{$root}__copy {
-      padding: 40px;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
       text-align: center;
       display: flex;
       justify-content: center;

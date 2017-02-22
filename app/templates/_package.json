@@ -140,12 +140,12 @@
     "html5shiv": "^3.7.3",
     "conditionizr": "^4.5.0",
     "svgxuse": "^1.2.1",
-    "lazysizes": "^2.0.0",<% if (projectbreakpoints === 'EQCSS') { %>
-    "eqcss": "^1.5.0",<% } else { %>
-    "cq-prolyfill": "^0.3.2",<% } if (projectcraftbp === true || projectwordpressbp === true) { %>
+    "lazysizes": "^2.0.0",
+    "eqcss": "^1.5.0",<% if (projectcraftbp === true || projectwordpressbp === true) { %>
     "anchor-scroll": "^2.0.0",
     "photoswipe": "^4.1.1",
-    "swiper": "^3.4.1",
+    "flickity": "^2.0.5",
+    "flickity-imagesloaded": "^2.0.0",
     "transition-to-from-auto": "^0.5.2",<% } %>
     "pyrsmk-toast": "^2.1.1"
   },

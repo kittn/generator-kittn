@@ -1,7 +1,6 @@
 // Main JS File<% if (projectjquery === true) { %>
-import $ from 'jquery'<% } if (projectbreakpoints === 'EQCSS') { %>
-import eq from 'eqcss'<% } else { %>
-import cq from 'cq-prolyfill'<% } if ( projectJSFramework === 'Vue.js' ) { %>
+import $ from 'jquery'<% } %>
+import eq from 'eqcss'<% if ( projectJSFramework === 'Vue.js' ) { %>
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
 import axios from 'axios'
@@ -12,12 +11,14 @@ import progressLoader from './partial/progressloader'
 import initPhotoSwipeFromDOM from './partial/init-photoswipe' // eslint-disable-line
 import './partial/init-heighttransition'
 import './partial/init-autoscroll'
-import './partial/init-swiper'<% } %>
+import 'flickity'
+import 'flickity-imagesloaded'<% } %>
 import lazySizes from 'lazysizes'
 import lazybgset from '../../node_modules/lazysizes/plugins/bgset/ls.bgset'
 import './partial/kittnad' // Small Advertising for Kittn :)
 import './partial/modernizer-loader'
-import './partial/conditionizr-init'<% if ( projectJSFramework === 'Vue.js') { %>
+import './partial/conditionizr-init'
+import './partial/disable-pointerevents'<% if ( projectJSFramework === 'Vue.js') { %>
 import App from './app.vue'
 
 require('es6-promise').polyfill()
@@ -43,10 +44,7 @@ window.lazySizesConfig.expand = 130
 lazySizesConfig.expFactor = 1.3
 
 // Lazy Sizes Init
-lazySizes.init()<% if (projectbreakpoints === 'CQ') { %>
-
-// Init Container Queries
-cq({ postcss: true })<% } if (projectcraftbp === true || projectwordpressbp === true) { %>
+lazySizes.init()<% if (projectcraftbp === true || projectwordpressbp === true) { %>
 
 // Init Photoswipe
 initPhotoSwipeFromDOM('.is-photoswipped')

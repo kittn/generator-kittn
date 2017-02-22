@@ -21,16 +21,13 @@
   $root: '.o-#{v($api,selector)}';
 
   // Base Style ----------------------------
-  margin-bottom: v($api,margin-bottom);<% if (projectbreakpoints === 'EQCSS') { %>
+  margin-bottom: v($api,margin-bottom);
 
   @include eq((min-width: #{v($api,breakpoint)})) {
     eq_this {
       display: flex;
     }
-  }<% } else { %>
-  &#{cq('width >= #{v($api,breakpoint)}')} {
-   display: flex;
-  }<% } %>
+  }
 
   // Tags ----------------------------------
 
@@ -56,7 +53,7 @@
 
     #{$root}--right & {
       order: 2;
-    }<% if (projectbreakpoints === 'EQCSS') { %>
+    }
 
     @include eqr($root, (min-width: #{v($api,breakpoint)})) {
       margin-right: 20px;
@@ -85,27 +82,7 @@
       @include eqr($root, (min-width: #{v($api,breakpoint)})) {
         flex: 0 0 75%;
       }
-    }<% } else { %>
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')} & {
-      margin-right: 20px;
     }
-
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--right & {
-      margin-right: 0;
-      margin-left: 20px;
-    }
-
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--quarter & {
-      flex: 0 0 25%;
-    }
-
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--half & {
-      flex: 0 0 50%;
-    }
-
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--threequarter & {
-      flex: 0 0 75%;
-    }<% } %>
   }
 
   // [root]__body
@@ -128,7 +105,7 @@
 
     *:last-child {
       margin-bottom: 0;
-    }<% if (projectbreakpoints === 'EQCSS') { %>
+    }
 
     @include eqr($root, (min-width: #{v($api,breakpoint)})) {
       align-self: center;
@@ -145,19 +122,7 @@
         padding-left: 20px;
         padding-right: 0;
       }
-    }<% } else { %>
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')} & {
-      align-self: center;
     }
-
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--colored & {
-      padding-left: 0
-    }
-
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--colored#{$root}--right & {
-      padding-left: 20px;
-      padding-right: 0;
-    }<% } %>
   }
 
   // [root]__video

@@ -134,15 +134,6 @@ var KittnGenerator = yeoman.Base.extend({
       },
       {
         type: 'list',
-        name: 'projectbreakpoints',
-        message: chalk.cyan.underline.bold('CSS Breakpoints') + chalk.styles.red.close + '\n\xa0 In addition to regular MediaQueries, special Element Queries are also used. \n\xa0 Container queries CQ (https://github.com/ausi/cq-prolyfill) and Elementqueries EQCSS (http://elementqueries.com/) are available for selection.',
-        choices: [
-          'EQCSS',
-          'CQ'
-        ]
-      },
-      {
-        type: 'list',
         name: 'projectUsage',
         message: chalk.cyan.underline.bold('Project Usage') + '\n\xa0 For what do you want to use Kittn. The generator can then prepare the project accordingly.',
         choices: [
@@ -405,7 +396,6 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectcraftbp       = props.projectcraftbp;
       this.projectwordpressbp   = props.projectwordpressbp;
       this.credentialdbopen     = props.credentialdbopen;
-      this.projectbreakpoints   = props.projectbreakpoints;
       this.saltKeys             = saltKeys;
 
       done();
@@ -447,7 +437,6 @@ var KittnGenerator = yeoman.Base.extend({
       projectcraftbp       : this.projectcraftbp,
       projectwordpressbp   : this.projectwordpressbp,
       credentialdbopen     : this.credentialdbopen,
-      projectbreakpoints   : this.projectbreakpoints,
       saltKeys             : this.saltKeys,
       projectpath          : process.cwd(),
       pkg: this.pkg

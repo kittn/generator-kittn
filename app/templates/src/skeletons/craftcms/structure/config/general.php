@@ -15,6 +15,7 @@ return array(
     'defaultWeekStartDay' => 1,
     'sendPoweredByHeader' => false,
     'cooldownDuration' => 0,
+    'rotateImagesOnUploadByExifData' => false,
     'siteUrl' => getenv('CRAFTENV_SITE_URL'),
     'craftEnv' => CRAFT_ENVIRONMENT,
     'environment' => CRAFT_ENVIRONMENT,

@@ -1,5 +1,4 @@
-Creates an image slider, using the Swiper.js library. 
+Creates an image slider, using the flickity.js library. 
 
 **Dependencies**
-- `scr/style/application/objects/_imageSlider.scss`
-- `scr/js/partial/init-swiper.js`
+- `scr/style/application/objects/_slider.scss`

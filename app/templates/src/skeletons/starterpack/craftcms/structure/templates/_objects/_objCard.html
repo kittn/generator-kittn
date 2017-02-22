@@ -17,7 +17,6 @@
 
   <div class="{{ classname }}__inner">
     {% if main.video|length or main.photo|length  %}
-      {% if cardurl is defined and cardurl != '' %}<a href="{{ cardurl }}"{{ main.cardlink.type == 'custom' ? ' target="_blank"' }}>{% endif %}
       <div class="{{ classname }}__media">
         {% if options.videobox %}
           {% if main.video %}
@@ -41,15 +40,18 @@
           {% endif %}
         {% endif %}
       </div>
-      {% if cardurl is defined and cardurl != '' %}</a>{% endif %}
     {% endif %}
     {% if main.headline != '' or main.subline != '' or main.meta != '' or main.body != '' %}
       <div class="{{ classname }}__copy">
         {% if main.headline != '' or main.subline != '' or main.meta != '' %}
           <header class="{{ classname }}__header">
             {% if main.meta != '' %}<span class="{{ classname }}__meta">{{ main.meta }}</span>{% endif %}
-            {% if main.headline != '' %}<h3 class="{{ classname }}__headline">{{ main.headline }}</h3>{% endif %}
-            {% if main.subline != '' %}<h6 class="{{ classname }}__subline">{{ main.subline }}</h6>{% endif %}
+            {% if main.headline != '' %}<h3 class="{{ classname }}__headline">
+              {% if cardurl is defined and cardurl != '' %}<a href="{{ cardurl }}"{{ main.cardlink.type == 'custom' ? ' target="_blank"' }}>{% endif %}
+                {{ main.headline }}
+                {% if cardurl is defined and cardurl != '' %}</a>{% endif %}
+              </h3>{% endif %}
+            {% if main.subline != '' %}<h6 class="{{ classname }}__subline">{{ main.subline }}</h3>{% endif %}
           </header>
         {% endif %}
         {% if main.body != '' %}<div class="{{ classname }}__body">{{ main.body }}</div>{% endif %}

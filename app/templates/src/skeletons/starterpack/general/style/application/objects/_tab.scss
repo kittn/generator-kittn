@@ -40,7 +40,7 @@
     padding-top: 10px;
     padding-bottom: 10px;
     transition: all 300ms ease-in-out;
-    line-height: 1;<% if (projectbreakpoints === 'EQCSS') { %>
+    line-height: 1;
 
     @include eqr($root, (min-width: #{v($api,breakpoint)})) {
       margin-right: 0.2rem;
@@ -48,14 +48,7 @@
       width: auto;
       -webkit-box-ordinal-group: 2;
       order: 1;
-    }<% } else { %>
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')} & {
-      margin-right: 0.2rem;
-      margin-top: 0;
-      width: auto;
-      -webkit-box-ordinal-group: 2;
-      order: 1;
-    }<% } %>
+    }
 
     #{$root}--s-default & {
       color: lighten(c('primary'),0);
@@ -73,16 +66,12 @@
   &__body {
     flex-grow: 1;
     width: 100%;
-    display: none;<% if (projectbreakpoints === 'EQCSS') { %>
+    display: none;
 
     @include eqr($root, (min-width: #{v($api,breakpoint)})) {
       -webkit-box-ordinal-group: 100;
       order: 99;
-    }<% } else { %>
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')} & {
-      -webkit-box-ordinal-group: 100;
-      order: 99;
-    }<% } %>
+    }
 
     *:last-child {
       margin-bottom: 0;

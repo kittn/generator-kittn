@@ -578,6 +578,59 @@
       }
     },
     {
+      "group": "Objects",
+      "name": "Card Slider",
+      "handle": "objCardSlider",
+      "instructions": "Ein Slider Modul f\u00fcr Individuelle Cards",
+      "required": false,
+      "type": "SuperTable_Label",
+      "typesettings": {
+        "value": ""
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Card Slider Options",
+      "handle": "setCardSlider",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
       "group": "Globals",
       "name": "Copyright",
       "handle": "copyright",
@@ -2207,93 +2260,6 @@
     },
     {
       "group": "ObjectsOptions",
-      "name": "Slider Responsive",
-      "handle": "setSliderResponsive",
-      "instructions": "Breakpoints f\u00fcr den Slider - relevant wenn SlidesPerView aktiv ist",
-      "required": false,
-      "type": "SuperTable",
-      "typesettings": {
-        "fieldLayout": "table",
-        "staticField": 1,
-        "selectionLabel": "Zeile hinzuf\u00fcgen",
-        "maxRows": null,
-        "blockTypes": {
-          "new": {
-            "fields": {
-              "new1": {
-                "name": "Responsive",
-                "handle": "responsive",
-                "instructions": "",
-                "required": 0,
-                "type": "Lightswitch",
-                "width": "",
-                "typesettings": {
-                  "default": ""
-                }
-              },
-              "new2": {
-                "name": "Size 1",
-                "handle": "size1",
-                "instructions": "Breakpoint : slidesPerView : spaceBetween",
-                "required": 0,
-                "type": "PlainText",
-                "width": "",
-                "typesettings": {
-                  "placeholder": "1024:4:20",
-                  "maxLength": "",
-                  "multiline": "",
-                  "initialRows": 4
-                }
-              },
-              "new3": {
-                "name": "Size 2",
-                "handle": "size2",
-                "instructions": "Breakpoint : slidesPerView : spaceBetween",
-                "required": 0,
-                "type": "PlainText",
-                "width": "",
-                "typesettings": {
-                  "placeholder": "768:3:30",
-                  "maxLength": "",
-                  "multiline": "",
-                  "initialRows": 4
-                }
-              },
-              "new4": {
-                "name": "Size 3",
-                "handle": "size3",
-                "instructions": "Breakpoint : slidesPerView : spaceBetween",
-                "required": 0,
-                "type": "PlainText",
-                "width": "",
-                "typesettings": {
-                  "placeholder": "540:2:20",
-                  "maxLength": "",
-                  "multiline": "",
-                  "initialRows": 4
-                }
-              },
-              "new5": {
-                "name": "Size 4",
-                "handle": "size4",
-                "instructions": "Breakpoint : slidesPerView : spaceBetween",
-                "required": 0,
-                "type": "PlainText",
-                "width": "",
-                "typesettings": {
-                  "placeholder": "320:1:10",
-                  "maxLength": "",
-                  "multiline": "",
-                  "initialRows": 4
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    {
-      "group": "ObjectsOptions",
       "name": "Slider Setup",
       "handle": "setSliderSetup",
       "instructions": "",
@@ -2372,6 +2338,17 @@
                 }
               },
               "new3": {
+                "name": "Loop",
+                "handle": "loop",
+                "instructions": "Soll der Slider endlos laufen?",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new4": {
                 "name": "Hide Navigation",
                 "handle": "navigation",
                 "instructions": "Soll eine Navigation versteckt werden?",
@@ -2382,7 +2359,7 @@
                   "default": ""
                 }
               },
-              "new4": {
+              "new5": {
                 "name": "Hide Pagination",
                 "handle": "pagination",
                 "instructions": "Soll eine Pagination versteckt werden?",
@@ -2393,7 +2370,7 @@
                   "default": ""
                 }
               },
-              "new5": {
+              "new6": {
                 "name": "Autoheight",
                 "handle": "autoHeight",
                 "instructions": "Mit Autoheight ist die H\u00f6he der einzelnen Slides Dynamisch",
@@ -2425,6 +2402,33 @@
           "new": {
             "fields": {
               "new1": {
+                "name": "Slide Position",
+                "handle": "position",
+                "instructions": "Position der Slides",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Center",
+                      "value": "center",
+                      "default": 1
+                    },
+                    {
+                      "label": "Left",
+                      "value": "left",
+                      "default": ""
+                    },
+                    {
+                      "label": "Right",
+                      "value": "right",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
                 "name": "Slides per View",
                 "handle": "slidesPerView",
                 "instructions": "Anzahl der sichtbaren Slides",
@@ -2444,9 +2448,55 @@
                       "default": ""
                     },
                     {
-                      "label": 1,
-                      "value": 1,
+                      "label": 2,
+                      "value": "two",
                       "default": ""
+                    },
+                    {
+                      "label": 3,
+                      "value": "three",
+                      "default": ""
+                    },
+                    {
+                      "label": 4,
+                      "value": "four",
+                      "default": ""
+                    },
+                    {
+                      "label": 5,
+                      "value": "five",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new3": {
+                "name": "Space Between",
+                "handle": "spaceBetween",
+                "instructions": "Abst\u00e4nde zwischen den Slides (Nur Ganzzahlen ohne Einheit)",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new4": {
+                "name": "Group Cell",
+                "handle": "groupCell",
+                "instructions": "Damit k\u00f6nnen Slides gruppiert werden.",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Nicht gruppiert",
+                      "value": "disable",
+                      "default": 1
                     },
                     {
                       "label": 2,
@@ -2476,67 +2526,26 @@
                   ]
                 }
               },
-              "new2": {
-                "name": "Centered Slides",
-                "handle": "centeredSlides",
-                "instructions": "Sind die Slides Zentriert?",
-                "required": 0,
-                "type": "Lightswitch",
-                "width": "",
-                "typesettings": {
-                  "default": 1
-                }
-              },
-              "new3": {
-                "name": "Space Between",
-                "handle": "spaceBetween",
-                "instructions": "Abst\u00e4nde zwischen den Slides (Nur Ganzzahlen ohne Einheit)",
-                "required": 0,
-                "type": "PlainText",
-                "width": "",
-                "typesettings": {
-                  "placeholder": "",
-                  "maxLength": "",
-                  "multiline": "",
-                  "initialRows": 4
-                }
-              },
-              "new4": {
-                "name": "Effect",
-                "handle": "effect",
-                "instructions": "",
-                "required": 0,
-                "type": "Dropdown",
-                "width": "",
-                "typesettings": {
-                  "options": [
-                    {
-                      "label": "Default",
-                      "value": "default",
-                      "default": ""
-                    },
-                    {
-                      "label": "Slide",
-                      "value": "slide",
-                      "default": ""
-                    },
-                    {
-                      "label": "Fade",
-                      "value": "fade",
-                      "default": ""
-                    }
-                  ]
-                }
-              },
               "new5": {
-                "name": "Loop",
-                "handle": "loop",
-                "instructions": "Sind die Slides endlos geloopt?",
+                "name": "Freescroll",
+                "handle": "freescroll",
+                "instructions": "Mit Freescroll kann der Slider frei beweg werden",
                 "required": 0,
                 "type": "Lightswitch",
                 "width": "",
                 "typesettings": {
-                  "default": 1
+                  "default": ""
+                }
+              },
+              "new6": {
+                "name": "Responsive",
+                "handle": "responsive",
+                "instructions": "Falls mehrere Slides gleichzeitig dargestellt werden, kann man mittels Responsive die Spaltenanzahl reduzieren bei kleinerem Viewport.",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
                 }
               }
             }
@@ -2881,59 +2890,6 @@
     },
     {
       "group": "Objects",
-      "name": "Text Slider",
-      "handle": "objTextSlider",
-      "instructions": "Ein Slider Modul f\u00fcr Textinhalte.",
-      "required": false,
-      "type": "SuperTable_Label",
-      "typesettings": {
-        "value": ""
-      }
-    },
-    {
-      "group": "ObjectsOptions",
-      "name": "Text Slider Options",
-      "handle": "setTextSlider",
-      "instructions": "",
-      "required": false,
-      "type": "SuperTable",
-      "typesettings": {
-        "fieldLayout": "table",
-        "staticField": 1,
-        "selectionLabel": "Zeile hinzuf\u00fcgen",
-        "maxRows": null,
-        "blockTypes": {
-          "new": {
-            "fields": {
-              "new1": {
-                "name": "Style",
-                "handle": "style",
-                "instructions": "",
-                "required": 0,
-                "type": "Dropdown",
-                "width": "",
-                "typesettings": {
-                  "options": [
-                    {
-                      "label": "Default",
-                      "value": "default",
-                      "default": 1
-                    },
-                    {
-                      "label": "Style 1",
-                      "value": "style1",
-                      "default": ""
-                    }
-                  ]
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    {
-      "group": "Objects",
       "name": "Trennline",
       "handle": "objHorizontalRuler",
       "instructions": "",
@@ -3148,15 +3104,14 @@
               "Options": [
                 "setImageSlider",
                 "setSliderSetupGeneral",
-                "setSliderSetup",
-                "setSliderResponsive"
+                "setSliderSetup"
               ]
             }
           },
           "new10": {
             "sortOrder": 13,
-            "name": "Text Slider",
-            "handle": "objTextSlider",
+            "name": "Card Slider",
+            "handle": "objCardSlider",
             "maxBlocks": null,
             "childBlocks": [
               "objCard"
@@ -3165,13 +3120,12 @@
             "topLevel": 1,
             "fieldLayout": {
               "Main": [
-                "objTextSlider"
+                "objCardSlider"
               ],
               "Options": [
-                "setTextSlider",
+                "setCardSlider",
                 "setSliderSetupGeneral",
-                "setSliderSetup",
-                "setSliderResponsive"
+                "setSliderSetup"
               ]
             }
           },
@@ -3324,7 +3278,7 @@
               "objMediaImage",
               "objGallery",
               "objImageSlider",
-              "objTextSlider",
+              "objCardSlider",
               "objIframeContent",
               "objButton",
               "objSlideOutBox",
@@ -3377,7 +3331,7 @@
               "objMediaImage",
               "objGallery",
               "objImageSlider",
-              "objTextSlider",
+              "objCardSlider",
               "objIframeContent",
               "objButton",
               "objSlideOutBox",
@@ -3425,7 +3379,7 @@
               "objMediaImage",
               "objGallery",
               "objImageSlider",
-              "objTextSlider",
+              "objCardSlider",
               "objIframeContent",
               "objButton",
               "objSlideOutBox",
@@ -3549,6 +3503,32 @@
           "seo"
         ]
       }
+    }
+  ],
+  "routes": [
+    {
+      "locale": null,
+      "urlParts": [
+        "rss"
+      ],
+      "template": "rss\/blog.rss",
+      "sortOrder": 1
+    },
+    {
+      "locale": null,
+      "urlParts": [
+        "feed"
+      ],
+      "template": "rss\/blog.rss",
+      "sortOrder": 2
+    },
+    {
+      "locale": null,
+      "urlParts": [
+        "rss\/blog.rss"
+      ],
+      "template": "rss\/blog.rss",
+      "sortOrder": 3
     }
   ]
 }

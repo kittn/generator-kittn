@@ -39,11 +39,11 @@
 
   {# Image Slider Module #}
   {% case 'objImageSlider' %}
-    {% include '_objects/_objImageSlider' with { main: data.objImageSlider, options: data.setImageSlider, setup: data.setSliderSetup, general: data.setSliderSetupGeneral, responsive: data.setSliderResponsive, name: '' } %}
+    {% include '_objects/_objImageSlider' with { main: data.objImageSlider, options: data.setImageSlider, setup: data.setSliderSetup, general: data.setSliderSetupGeneral, name: '' } %}
 
   {# Text Slider Module #}
-  {% case 'objTextSlider' %}
-    {% include '_objects/_objTextSlider' with { main: data.objTextSlider, options: data.setTextSlider, setup: data.setSliderSetup, general: data.setSliderSetupGeneral, responsive: data.setSliderResponsive, name: '' } %}
+  {% case 'objCardSlider' %}
+    {% include '_objects/_objCardSlider' with { main: data.objCardSlider, options: data.setCardSlider, setup: data.setSliderSetup, general: data.setSliderSetupGeneral, name: '' } %}
 
 
   {# Mediabox Module #}
