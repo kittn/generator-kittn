@@ -2092,6 +2092,16 @@
                       "label": "Bigger 45%",
                       "value": "bigger-45",
                       "default": ""
+                    },
+                    {
+                      "label": "Smaller 25%",
+                      "value": "smaller-25",
+                      "default": ""
+                    },
+                    {
+                      "label": "Smaller 50%",
+                      "value": "smaller-50",
+                      "default": ""
                     }
                   ]
                 }
@@ -2495,7 +2505,7 @@
                   "options": [
                     {
                       "label": "Nicht gruppiert",
-                      "value": "disable",
+                      "value": "default",
                       "default": 1
                     },
                     {

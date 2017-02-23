@@ -94,13 +94,21 @@
       padding-right: 0;
     }
 
-    // [root]--full
+    // [root]--bigger-45
     &--bigger-45 {
       max-width: v($kittn-page-size,maxsize) * 1.45;
     }
-    // [root]--full
+    // [root]--bigger-25
     &--bigger-25 {
       max-width: v($kittn-page-size,maxsize) * 1.25;
+    }
+    // [root]--smaller-25
+    &--smaller-25 {
+      max-width: v($kittn-page-size,maxsize) * .75;
+    }
+    // [root]--smaller-50
+    &--smaller-50 {
+      max-width: v($kittn-page-size,maxsize) * .50;
     }
   }
 
