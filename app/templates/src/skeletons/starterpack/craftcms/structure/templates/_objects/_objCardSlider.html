@@ -25,97 +25,121 @@
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-slider' %}
 
+{# Get Slider Settings #}
+{% set general = options.setup.first() != '' ? options.setup.first() : '' %}
+
 {# Slider Setup #}
-{% set spaceBetween  = general.spaceBetween ? 'padding-left: '~general.spaceBetween~';padding-right: '~general.spaceBetween~';' : '' %}
+{% if general != '' %}
+  {% set spaceBetween  = general.setSliderSetupGeneral.spaceBetween ? 'padding-left: '~general.setSliderSetupGeneral.spaceBetween~';padding-right: '~general.setSliderSetupGeneral.spaceBetween~';' : '' %}
+  {% set responsive = general.setSliderSetupGeneral.responsive ? '-r' : '' %}
+  {% set adaptiveHeight = general.setSliderSetup.autoHeight ? 'true' : 'false' %}
+  {% set groupCells = general.setSliderSetupGeneral.groupCell != 'default' ? general.setSliderSetupGeneral.groupCell : 0 %}
+  {% set freeScroll = general.setSliderSetupGeneral.freescroll ? 'true' : 'false' %}
+  {% set cellAlign = general.setSliderSetupGeneral.position ? general.setSliderSetupGeneral.position : 'center' %}
+  {% set prevNextButtons = general.setSliderSetup.navigation != true ? 'true' : 'false' %}
+  {% set pageDots = general.setSliderSetup.pagination != true ? 'true' : 'false' %}
+  {% set wrapAround = general.setSliderSetup.loop ? 'true' : 'false' %}
 
-{% set responsive = general.responsive ? '-r' : '' %}
-
-{% switch general.slidesPerView %}
+  {% switch general.setSliderSetupGeneral.slidesPerView %}
   {% case 'auto' %}
-    {% set slideWidth = ' '~classname~'__slide'~responsive~'--auto' %}
+  {% set slideWidth = ' '~classname~'__slide'~responsive~'--auto' %}
   {% case 'two' %}
-    {% set slideWidth = ' '~classname~'__slide'~responsive~'--2' %}
+  {% set slideWidth = ' '~classname~'__slide'~responsive~'--2' %}
   {% case 'three' %}
-    {% set slideWidth = ' '~classname~'__slide'~responsive~'--3' %}
+  {% set slideWidth = ' '~classname~'__slide'~responsive~'--3' %}
   {% case 'four' %}
-    {% set slideWidth = ' '~classname~'__slide'~responsive~'--4' %}
+  {% set slideWidth = ' '~classname~'__slide'~responsive~'--4' %}
   {% case 'five' %}
-    {% set slideWidth = ' '~classname~'__slide'~responsive~'--5' %}
+  {% set slideWidth = ' '~classname~'__slide'~responsive~'--5' %}
   {% case 'six' %}
-    {% set slideWidth = ' '~classname~'__slide'~responsive~'--6' %}
+  {% set slideWidth = ' '~classname~'__slide'~responsive~'--6' %}
   {% default %}
-    {% set slideWidth = ' '~classname~'__slide'~responsive~'--1' %}
-{% endswitch %}
+  {% set slideWidth = ' '~classname~'__slide'~responsive~'--1' %}
+  {% endswitch %}
 
-{# Set Autoplay Speed #}
-{% switch setup.autoplay %}
+  {# Set Autoplay Speed #}
+  {% switch setup.setSliderSetup.autoplay|default('default') %}
   {% case "slow" %}
-    {% set autoplay = 10000  %}
+  {% set autoplay = 10000  %}
   {% case "medium" %}
-    {% set autoplay = 5000 %}
+  {% set autoplay = 5000 %}
   {% case "fast" %}
-    {% set autoplay = 2500  %}
+  {% set autoplay = 2500  %}
   {% default %}
-    {% set autoplay = 'false' %}
-{% endswitch %}
+  {% set autoplay = 'false' %}
+  {% endswitch %}
 
-{# Set Animation Speed #}
-{% switch setup.speed %}
+  {# Set Animation Speed #}
+  {% switch setup.setSliderSetup.speed|default('default') %}
   {% case "slow" %}
-    {% set selectedAttraction = 0.01 %}
-    {% set friction = 0.15 %}
+  {% set selectedAttraction = 0.01 %}
+  {% set friction = 0.15 %}
   {% case "medium" %}
-    {% set selectedAttraction = 0.1 %}
-    {% set friction = 0.35 %}
+  {% set selectedAttraction = 0.1 %}
+  {% set friction = 0.35 %}
   {% case "fast" %}
-    {% set selectedAttraction = 0.2 %}
-    {% set friction = 1 %}
+  {% set selectedAttraction = 0.2 %}
+  {% set friction = 1 %}
   {% default %}
-    {% set selectedAttraction = 0.025 %}
-    {% set friction = 0.28 %}
-{% endswitch %}
+  {% set selectedAttraction = 0.025 %}
+  {% set friction = 0.28 %}
+  {% endswitch %}
+
+{% else %}
+  {% set spaceBetween  = 0 %}
+  {% set slideWidth = ' '~classname~'__slide--1' %}
+  {% set autoplay = 'false' %}
+  {% set selectedAttraction = 0.025 %}
+  {% set friction = 0.28 %}
+  {% set adaptiveHeight = 'false' %}
+  {% set groupCells = 0 %}
+  {% set freeScroll = 'false' %}
+  {% set cellAlign = 'center' %}
+  {% set prevNextButtons = 'true' %}
+  {% set pageDots = 'true' %}
+  {% set wrapAround = 'false' %}
+{% endif %}
 
 {# Build Element Block #}
 <figure class="{{ classname }} {{ classname ~ '--card' }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}"
         itemscope itemtype="http://schema.org/ImageGallery" role="presentation"
         data-flickity='{
-    "accessibility": false,
-    "contain": true,
-    "imagesLoaded": true,
-    "lazyLoad": false,
-    "adaptiveHeight": {{ setup.autoHeight ? 'true' : 'false' }},
-    "groupCells": {{ general.groupCell != 'default' ? general.groupCell : 0 }},
-    "autoPlay": {{ autoplay }},
-    "friction": {{ friction }},
-    "selectedAttraction": {{ selectedAttraction }},
-    "freeScroll": {{ general.freescroll ? 'true' : 'false' }},
-    "freeScrollFriction": 0.03,
-    "cellAlign": "{{ general.position ? general.position : 'center' }}",
-    "prevNextButtons": {{ setup.navigation != true ? 'true' : 'false' }},
-    "pageDots": {{ setup.pagination != true ? 'true' : 'false' }},
-    "wrapAround": {{ setup.loop ? 'true' : 'false' }}
+          "accessibility": false,
+          "contain": true,
+          "imagesLoaded": true,
+          "lazyLoad": false,
+          "adaptiveHeight": {{ adaptiveHeight }},
+          "groupCells": {{ groupCells }},
+          "autoPlay": {{ autoplay }},
+          "friction": {{ friction }},
+          "selectedAttraction": {{ selectedAttraction }},
+          "freeScroll": {{freeScroll }},
+          "freeScrollFriction": 0.03,
+          "cellAlign": "{{ cellAlign }}",
+          "prevNextButtons": {{ prevNextButtons }},
+          "pageDots": {{ pageDots }},
+          "wrapAround": {{ wrapAround }}
   }'>
-
   {% switch content.type.handle %}
-    {% case 'objSection' %}
-      {% for child in content.children %}
-        {% for child in child.children %}
-          {% for child in child.children %}
-            <div class="{{ classname }}__slide"{{ slideWidth }}" style="{{ spaceBetween }}" itemscope itemtype="http://schema.org/MediaObject">
-              <div class="{{ classname }}__slide__inner">
-                {% include '_builder/_cb-objects' with { data: child } %}
-              </div>
-            </div>
-          {% endfor %}
-        {% endfor %}
-      {% endfor %}
-    {% default %}
-      {% for child in content.children %}
+  {% case 'objSection' %}
+  {% for child in content.children %}
+    {% for child in child.children %}
+      {% for child in child.children %}
         <div class="{{ classname }}__slide"{{ slideWidth }}" style="{{ spaceBetween }}" itemscope itemtype="http://schema.org/MediaObject">
-          <div class="{{ classname }}__slide__inner">
-            {% include '_builder/_cb-objects' with { data: child } %}
-          </div>
+        <div class="{{ classname }}__slide__inner">
+          {% include '_builder/_cb-objects' with { data: child } %}
+        </div>
         </div>
       {% endfor %}
+    {% endfor %}
+  {% endfor %}
+  {% default %}
+  {% for child in content.children %}
+    <div class="{{ classname }}__slide"{{ slideWidth }}" style="{{ spaceBetween }}" itemscope itemtype="http://schema.org/MediaObject">
+    <div class="{{ classname }}__slide__inner">
+      {% include '_builder/_cb-objects' with { data: child } %}
+    </div>
+    </div>
+  {% endfor %}
   {% endswitch %}
 </figure>

@@ -77,7 +77,6 @@ Generate Favicons and the HTML Snippet (generated Files you will find in `src/.s
 ## Authors
 - Sascha Fuchs @gisugosu
 - Lars Eichler @lars.e
-- David Hellmann @davidhellmann
 - Martin Herweg @martinherweg
 
 ## Licence

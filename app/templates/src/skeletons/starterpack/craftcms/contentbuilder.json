@@ -624,6 +624,19 @@
                     }
                   ]
                 }
+              },
+              "new2": {
+                "name": "Setup",
+                "handle": "setup",
+                "instructions": "Optional. W\u00e4hle eines der bestehenden Setups aus oder definiere ein neues unter `Kategorien > Settings : Image Slider`",
+                "required": 0,
+                "type": "Categories",
+                "width": "",
+                "typesettings": {
+                  "source": "settingsImageSlider",
+                  "limit": 1,
+                  "selectionLabel": "Setup ausw\u00e4hlen"
+                }
               }
             }
           }
@@ -1137,6 +1150,19 @@
                   "maxLength": "",
                   "multiline": "",
                   "initialRows": 4
+                }
+              },
+              "new3": {
+                "name": "Setup",
+                "handle": "setup",
+                "instructions": "Optional. W\u00e4hle eines der bestehenden Setups aus oder definiere ein neues unter `Kategorien > Settings : Image Slider`",
+                "required": 0,
+                "type": "Categories",
+                "width": "",
+                "typesettings": {
+                  "source": "settingsImageSlider",
+                  "limit": 1,
+                  "selectionLabel": "Setup ausw\u00e4hlen"
                 }
               }
             }
@@ -2032,7 +2058,7 @@
                 "instructions": "Allgemeiner Farb und Typostil",
                 "required": 0,
                 "type": "Dropdown",
-                "width": 20,
+                "width": "",
                 "typesettings": {
                   "options": [
                     {
@@ -2059,7 +2085,7 @@
                 "instructions": "Soll die Sektion auf die volle H\u00f6he aufgespannt werden?",
                 "required": 0,
                 "type": "Lightswitch",
-                "width": 10,
+                "width": "",
                 "typesettings": {
                   "default": ""
                 }
@@ -2070,7 +2096,7 @@
                 "instructions": "Layout des inneren Containers",
                 "required": 0,
                 "type": "Dropdown",
-                "width": 20,
+                "width": "",
                 "typesettings": {
                   "options": [
                     {
@@ -2112,7 +2138,7 @@
                 "instructions": "Optionaler Anker f\u00fcr Sprungnavigationn",
                 "required": 0,
                 "type": "PlainText",
-                "width": 20,
+                "width": "",
                 "typesettings": {
                   "placeholder": "",
                   "maxLength": "",
@@ -2483,7 +2509,7 @@
               "new3": {
                 "name": "Space Between",
                 "handle": "spaceBetween",
-                "instructions": "Abst\u00e4nde zwischen den Slides (Nur Ganzzahlen ohne Einheit)",
+                "instructions": "Abst\u00e4nde zwischen den Slides",
                 "required": 0,
                 "type": "PlainText",
                 "width": "",
@@ -3112,9 +3138,7 @@
                 "objImageSlider"
               ],
               "Options": [
-                "setImageSlider",
-                "setSliderSetupGeneral",
-                "setSliderSetup"
+                "setImageSlider"
               ]
             }
           },
@@ -3133,9 +3157,7 @@
                 "objCardSlider"
               ],
               "Options": [
-                "setCardSlider",
-                "setSliderSetupGeneral",
-                "setSliderSetup"
+                "setCardSlider"
               ]
             }
           },
@@ -3254,7 +3276,7 @@
           },
           "new18": {
             "sortOrder": 24,
-            "name": "Sektion",
+            "name": "Section Wrapper",
             "handle": "objSection",
             "maxBlocks": null,
             "childBlocks": [
@@ -3274,7 +3296,7 @@
           },
           "new19": {
             "sortOrder": 25,
-            "name": "Sektion Spalte",
+            "name": "Section Column",
             "handle": "objSectionColumn",
             "maxBlocks": null,
             "childBlocks": [
@@ -3511,6 +3533,25 @@
         ],
         "Meta": [
           "seo"
+        ]
+      }
+    },
+    {
+      "name": "Settings: Image Slider",
+      "handle": "settingsImageSlider",
+      "hasUrls": 0,
+      "template": null,
+      "maxLevels": 1,
+      "locales": {
+        "de_de": {
+          "urlFormat": null,
+          "nestedUrlFormat": null
+        }
+      },
+      "fieldLayout": {
+        "Tab 1": [
+          "setSliderSetupGeneral",
+          "setSliderSetup"
         ]
       }
     }
