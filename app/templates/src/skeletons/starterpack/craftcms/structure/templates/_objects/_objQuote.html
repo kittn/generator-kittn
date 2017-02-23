@@ -4,9 +4,9 @@
   Simple Quote module with Cite for displaying the source
 
   @param {string} name                   = Classname
-  @param {object} main                   = Dataobject
-  @param {string} main.copy              = Quotetext
-  @param {string} main.source            = Citetext
+  @param {object} data                   = Dataobject
+  @param {string} data.copy              = Quotetext
+  @param {string} data.source            = Citetext
   @param {object} options                = Optionsobject
   @param {string} options.style          = Optional Styleclass
 #}
@@ -16,6 +16,6 @@
 
 {# Build Element Block #}
 <blockquote class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}">
-  {{ main.copy|md }}
-  {% if main.source %}<cite class="{{ classname }}__cite">{{ main.source|raw }}</cite>{% endif %}
+  {{ data.copy|md }}
+  {% if data.source %}<cite class="{{ classname }}__cite">{{ data.source|raw }}</cite>{% endif %}
 </blockquote>

@@ -10,22 +10,22 @@
 
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-card' %}
-{% set cardurl = main.cardlink.url is defined ? main.cardlink.url : '' %}
+{% set cardurl = data.cardlink.url is defined ? data.cardlink.url : '' %}
 
 {# Build Element Block #}
 <div class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}" role="group" itemscope itemtype="http://schema.org/MediaObject">
 
   <div class="{{ classname }}__inner">
-    {% if main.video|length or main.photo|length  %}
+    {% if data.video|length or data.photo|length  %}
       <figure class="{{ classname }}__media">
         {% if options.videobox %}
-          {% if main.video %}
+          {% if data.video %}
             <video muted preload="none" autoplay="autoplay" class="{{ classname }}__video" loop role="application">
-              {% for video in main.video %}
+              {% for video in data.video %}
                 <source src="{{ video.url }}" type="{{ video.getMimeType }}">
               {% endfor %}
-              {% if main.photo %}
-                {{ myMacro.mediaImageSet(main.photo.first(), options.mediaRatio, {
+              {% if data.photo %}
+                {{ myMacro.mediaImageSet(data.photo.first(), options.mediaRatio, {
                   class: classname~'__image'
                 }) }}
               {% endif %}
@@ -33,28 +33,28 @@
           {% endif %}
 
         {% else %}
-          {% if main.photo %}
-            {{ myMacro.mediaImageSet(main.photo.first(), options.mediaRatio, {
+          {% if data.photo %}
+            {{ myMacro.mediaImageSet(data.photo.first(), options.mediaRatio, {
               class: classname~'__image'
             }) }}
           {% endif %}
         {% endif %}
       </figure>
     {% endif %}
-    {% if main.headline != '' or main.subline != '' or main.meta != '' or main.body != '' %}
+    {% if data.headline != '' or data.subline != '' or data.meta != '' or data.body != '' %}
       <div class="{{ classname }}__copy">
-        {% if main.headline != '' or main.subline != '' or main.meta != '' %}
+        {% if data.headline != '' or data.subline != '' or data.meta != '' %}
           <header class="{{ classname }}__header">
-            {% if main.meta != '' %}<span class="{{ classname }}__meta">{{ main.meta }}</span>{% endif %}
-            {% if main.headline != '' %}<h3 class="{{ classname }}__headline">
-              {% if cardurl is defined and cardurl != '' %}<a href="{{ cardurl }}"{{ main.cardlink.type == 'custom' ? ' target="_blank"' }}>{% endif %}
-                {{ main.headline }}
+            {% if data.meta != '' %}<span class="{{ classname }}__meta">{{ data.meta }}</span>{% endif %}
+            {% if data.headline != '' %}<h3 class="{{ classname }}__headline">
+              {% if cardurl is defined and cardurl != '' %}<a href="{{ cardurl }}"{{ data.cardlink.type == 'custom' ? ' target="_blank"' }}>{% endif %}
+                {{ data.headline }}
                 {% if cardurl is defined and cardurl != '' %}</a>{% endif %}
               </h3>{% endif %}
-            {% if main.subline != '' %}<h6 class="{{ classname }}__subline">{{ main.subline }}</h3>{% endif %}
+            {% if data.subline != '' %}<h6 class="{{ classname }}__subline">{{ data.subline }}</h3>{% endif %}
           </header>
         {% endif %}
-        {% if main.body != '' %}<div class="{{ classname }}__body">{{ main.body }}</div>{% endif %}
+        {% if data.body != '' %}<div class="{{ classname }}__body">{{ data.body }}</div>{% endif %}
       </div>
     {% endif %}
   </div>

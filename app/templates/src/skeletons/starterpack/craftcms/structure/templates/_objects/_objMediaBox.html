@@ -4,10 +4,10 @@
   A Mediabox with image / video and text content
 
   @param {string} name                   = Classname
-  @param {object} main                   = mainobject
-  @param {object} main.photo             = Imageobject
-  @param {object} main.video             = Videoobject
-  @param {string} main.textcontent       = Richttext Content
+  @param {object} data                   = dataobject
+  @param {object} data.photo             = Imageobject
+  @param {object} data.video             = Videoobject
+  @param {string} data.textcontent       = Richttext Content
   @param {object} options                = Optionsobject
   @param {string} options.background     = Background Color of the Box
   @param {string} options.mediaWidth     = Width of the media field [defautt:quater, half, threequater]
@@ -22,16 +22,16 @@
 {# Build Element Block #}
 <div class="{{ classname }}{{ ' '~classname~'--'~options.mediaWidth }}{{ options.mediaPosition == 'right' ? ' '~classname~'--right' }}{{ options.background != 'null' ? ' '~classname~'--colored '~classname~'--c-'~options.background }}" role="group" itemscope itemtype="http://schema.org/MediaObject">
 
-  {% if main.video|length or main.photo|length %}
+  {% if data.video|length or data.photo|length %}
     <div class="{{ classname }}__media">
       {% if options.videobox %}
-        {% if main.video %}
+        {% if data.video %}
           <video muted preload="none" autoplay="autoplay" class="{{ classname }}__video" loop role="application">
-            {% for video in main.video %}
+            {% for video in data.video %}
               <source src="{{ video.url }}" type="{{ video.getMimeType }}">
             {% endfor %}
-            {% if main.photo %}
-              {{ myMacro.mediaImageSet(main.photo.first(), options.mediaRatio, {
+            {% if data.photo %}
+              {{ myMacro.mediaImageSet(data.photo.first(), options.mediaRatio, {
                 class: classname~'__image'
               }) }}
             {% endif %}
@@ -39,8 +39,8 @@
         {% endif %}
 
       {% else %}
-        {% if main.photo %}
-          {{ myMacro.mediaImageSet(main.photo.first(), options.mediaRatio, {
+        {% if data.photo %}
+          {{ myMacro.mediaImageSet(data.photo.first(), options.mediaRatio, {
             class: classname~'__image'
           }) }}
         {% endif %}
@@ -49,6 +49,6 @@
   {% endif %}
 
   <div class="{{ classname }}__body">
-    {{ main.textcontent }}
+    {{ data.textcontent }}
   </div>
 </div>

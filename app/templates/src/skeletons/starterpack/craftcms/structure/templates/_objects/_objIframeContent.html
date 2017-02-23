@@ -4,9 +4,9 @@
   For embedding responsive iframe content
 
   @param {string} name                   = Classname
-  @param {object} main                   = Dataobject
-  @param {string} main.embed             = Embeded Code
-  @param {string} main.caption           = Optional Caption
+  @param {object} data                   = Dataobject
+  @param {string} data.embed             = Embeded Code
+  @param {string} data.caption           = Optional Caption
   @param {object} options                = Optionsobject
   @param {string} options.style          = Optional Styleclass
   @param {bool}   options.responsive     = If the container should be responsive
@@ -25,14 +25,14 @@
 <div class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}" role="presentation">
   {% if options.responsive %}
     <div class="{{ classname }}__inner" style="padding-bottom: {{ (ar|last)/(ar|first) * 100 }}%">
-    {{ main.embed|raw }}
+    {{ data.embed|raw }}
   </div>
   {% else %}
   <div class="{{ ' '~classname~'--align-'~options.align }}">
-    {{ main.embed|raw }}
+    {{ data.embed|raw }}
   </div>
   {% endif %}
-  {% if main.caption %}
-    <div class="{{ classname }}__caption">{{ main.caption }}</div>
+  {% if data.caption %}
+    <div class="{{ classname }}__caption">{{ data.caption }}</div>
   {% endif %}
 </div>

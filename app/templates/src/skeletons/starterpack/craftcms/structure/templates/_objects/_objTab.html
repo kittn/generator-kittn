@@ -5,9 +5,10 @@
   the functionality must be expanded with JS. The Container tab contains a ContentBuilder.
 
   @param {string} name          = Classname
-  @param {object} data          = Dataobject
+  @param {object} data          = dataobject
   @param {string} data.style    = Optional Styleclass Name
 #}
+{% import '_macros/my-macro.html' as myMacro %}
 
 {% macro tabBlock(classname, child, key) %}
   {# Random Number for identify tabgroup#}
@@ -27,33 +28,21 @@
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-tab' %}
 
-{# Count Nested Child #}
-{% set nestedChild = 0 %}
-{% for child in content.children %}
-  {% if child.hasDescendants() %}
-    {% for child in child.children %}
-      {% if child.hasDescendants() %}
-        {% for child in child.children %}{% if child.hasDescendants() %}{% set nestedChild = 2 %}{% endif %}{% endfor %}
-      {% else %}{% set nestedChild = 1 %}{% endif %}
-    {% endfor %}
-  {% endif %}
-{% endfor %}
-
 {# Build Element Block #}
 <div class="{{ classname }}{{ data.style ? ' '~classname~'--s-'~data.style : ' '~classname~'--s-default' }}" role="tablist">
   {# Loop through #}
-  {% switch nestedChild %}
-  {% case 1 %}
-  {% for key, child in content.children %}
-    {{ _self.tabBlock(classname, child, key)}}
-  {% endfor %}
-  {% case 2 %}
-  {% for key, child in content.children %}
-    {% for key, child in child.children %}
-      {% for key, child in child.children %}
-        {{ _self.tabBlock(classname, child, key)}}
+  {% switch content.type.handle %}
+    {% case 'objSection' %}
+      {% for child in content.children %}
+        {% for child in child.children %}
+          {% for child in child.children %}
+            {{ _self.tabBlock(classname, child)}}
+          {% endfor %}
+        {% endfor %}
       {% endfor %}
-    {% endfor %}
-  {% endfor %}
+    {% default %}
+      {% for child in content.children %}
+        {{ _self.tabBlock(classname, child)}}
+      {% endfor %}
   {% endswitch %}
 </div>

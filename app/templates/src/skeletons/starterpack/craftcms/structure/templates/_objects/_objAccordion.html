@@ -25,33 +25,21 @@
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-accordion' %}
 
-{# Count Nested Child #}
-{% set nestedChild = 0 %}
-{% for child in content.children %}
-  {% if child.hasDescendants() %}
-    {% for child in child.children %}
-      {% if child.hasDescendants() %}
-        {% for child in child.children %}{% if child.hasDescendants() %}{% set nestedChild = 2 %}{% endif %}{% endfor %}
-      {% else %}{% set nestedChild = 1 %}{% endif %}
-    {% endfor %}
-  {% endif %}
-{% endfor %}
-
 {# Build Element Block #}
 <div class="{{ classname }}{{ data.style ? ' '~classname~'--s-'~data.style : ' '~classname~'--s-default' }}" role="tablist">
   {# Loop through #}
-  {% switch nestedChild %}
-  {% case 1 %}
-  {% for child in content.children %}
-    {{ _self.accordionBlock(classname, child)}}
-  {% endfor %}
-  {% case 2 %}
-  {% for child in content.children %}
-    {% for child in child.children %}
-      {% for child in child.children %}
+  {% switch content.type.handle %}
+    {% case 'objSection' %}
+      {% for child in content.children %}
+        {% for child in child.children %}
+          {% for child in child.children %}
+            {{ _self.accordionBlock(classname, child)}}
+          {% endfor %}
+        {% endfor %}
+      {% endfor %}
+    {% default %}
+      {% for child in content.children %}
         {{ _self.accordionBlock(classname, child)}}
       {% endfor %}
-    {% endfor %}
-  {% endfor %}
   {% endswitch %}
 </div>

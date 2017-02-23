@@ -4,9 +4,9 @@
   Creates a gallery object in two different layouts. The simple layout lays the images together, the smart layout tries to arrange the images in the photogrid. Pictures can be enlarged on click. You can also use the gallery for individual images.
 
   @param {string} name                   = Classname
-  @param {object} main                   = Galleryentries
-  @param {object} main.photo             = Image
-  @param {string} main.caption           = Optional Caption
+  @param {object} data                   = Galleryentries
+  @param {object} data.photo             = Image
+  @param {string} data.caption           = Optional Caption
   @param {object} options                = Optionsobject
   @param {string} options.layoutType     = Arrangement of the gallery [smart, simple]
   @param {string} options.ratio          = Optional adjustable ratio (for `simple` Gallery)
@@ -21,7 +21,7 @@
 {% set layout = ' '~classname~'--l-'~options.layoutType %}
 
 {# Get Gallery Count #}
-{% set galleryCount = main.total() %}
+{% set galleryCount = data.total() %}
 {% set galCountMode = galleryCount > 1 ? ' '~classname~'--moreimages' : '' %}
 
 {# Setup for the Simple Layout #}
@@ -47,7 +47,7 @@
 
 {# Build Element Block #}
 <div class="is-photoswipped {{ classname }}{{ galCountNr }}{{ galCountMode }}{{ layout }}{{ flexOverwrite }}" itemscope itemtype="http://schema.org/ImageGallery">
-  {% for gallery in main %}
+  {% for gallery in data %}
     <figure class="{{ classname }}__figure" itemprop="associatedMedia"{{ thumbWidth }}itemscope itemtype="http://schema.org/ImageObject">
       <a class="{{ classname }}__link" href="{{ gallery.photo.first().url }}" itemprop="contentUrl" data-size="{{ gallery.photo.first().width }}x{{ gallery.photo.first().height }}">
         {{ myMacro.mediaImageSet(gallery.photo.first(), crop, {

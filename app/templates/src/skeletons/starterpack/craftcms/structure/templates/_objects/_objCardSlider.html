@@ -4,7 +4,7 @@
   Creates an card slider, using the Flickity library
 
   @param {string} name                   = Classname
-  @param {object} main                   = Images
+  @param {object} data                   = Images
   @param {object} options                = Optionsobject
   @param {string} options.style          = Optional Styleclass
   @param {string} options.ratio          = Image Ratio
@@ -75,26 +75,6 @@
     {% set friction = 0.28 %}
 {% endswitch %}
 
-{# Count Nested Child #}
-{% set nestedChild = 0 %}
-{% for child in content.children %}
-  {% if child.hasDescendants() %}
-    {% for child in child.children %}
-      {% if child.hasDescendants() %}
-        {% for child in child.children %}
-          {% if child.hasDescendants() %}
-            {% for child in child.children %}
-              {% set nestedChild = 3 %}
-            {% endfor %}
-          {% else %}
-            {% set nestedChild = 2 %}
-          {% endif %}
-        {% endfor %}
-      {% else %}{% set nestedChild = 1 %}{% endif %}
-    {% endfor %}
-  {% endif %}
-{% endfor %}
-
 {# Build Element Block #}
 <figure class="{{ classname }} {{ classname ~ '--card' }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}"
         itemscope itemtype="http://schema.org/ImageGallery" role="presentation"
@@ -116,26 +96,26 @@
     "wrapAround": {{ setup.loop ? 'true' : 'false' }}
   }'>
 
-  {% switch nestedChild %}
-  {% case 0 %}
-  {% for child in content.children %}
-    <div class="{{ classname }}__slide{{ slideWidth }}" style="{{ spaceBetween }}" itemscope itemtype="http://schema.org/MediaObject">
-      <div class="{{ classname }}__slide__inner">
-        {% include '_builder/_cb-objects' with { data: child } %}
-      </div>
-    </div>
-  {% endfor %}
-  {% case 2 %}
-  {% for child in content.children %}
-    {% for child in child.children %}
-      {% for child in child.children %}
+  {% switch content.type.handle %}
+    {% case 'objSection' %}
+      {% for child in content.children %}
+        {% for child in child.children %}
+          {% for child in child.children %}
+            <div class="{{ classname }}__slide"{{ slideWidth }}" style="{{ spaceBetween }}" itemscope itemtype="http://schema.org/MediaObject">
+              <div class="{{ classname }}__slide__inner">
+                {% include '_builder/_cb-objects' with { data: child } %}
+              </div>
+            </div>
+          {% endfor %}
+        {% endfor %}
+      {% endfor %}
+    {% default %}
+      {% for child in content.children %}
         <div class="{{ classname }}__slide"{{ slideWidth }}" style="{{ spaceBetween }}" itemscope itemtype="http://schema.org/MediaObject">
-        <div class="{{ classname }}__slide__inner">
-          {% include '_builder/_cb-objects' with { data: child } %}
-        </div>
+          <div class="{{ classname }}__slide__inner">
+            {% include '_builder/_cb-objects' with { data: child } %}
+          </div>
         </div>
       {% endfor %}
-    {% endfor %}
-  {% endfor %}
   {% endswitch %}
 </figure>

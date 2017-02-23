@@ -4,8 +4,8 @@
   Creates a list of freely selectable bullets and individual styling
 
   @param {string} name                   = Classname
-  @param {object} main                   = Listobject
-  @param {string} main.entry             = Listentries
+  @param {object} data                   = Listobject
+  @param {string} data.entry             = Listentries
   @param {object} options                = Optionsobject
   @param {string} options.listtype       = Type of list [ul, ol]
   @param {string} options.bullet         = Type of Bullet, for `ul` [circle, square, custom]
@@ -26,7 +26,7 @@
 
 {# Build Element Block #}
 <{{ list }} class="{{ classname }}{{ style }}" role="list">
-  {% for entry in main %}
+  {% for entry in data %}
     <li class="{{ classname }}__entry">{{ entry.entry|raw }}</li>
   {% endfor %}
 </{{ list }}>

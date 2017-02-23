@@ -4,7 +4,7 @@
   Creates an image slider, using the Flickity library
 
   @param {string} name                   = Classname
-  @param {object} main                   = Images
+  @param {object} data                   = Images
   @param {object} options                = Optionsobject
   @param {string} options.style          = Optional Styleclass
   @param {string} options.ratio          = Image Ratio
@@ -95,7 +95,7 @@
     "pageDots": {{ setup.pagination != true ? 'true' : 'false' }},
     "wrapAround": {{ setup.loop ? 'true' : 'false' }}
   }'>
-  {% for photo in main %}
+  {% for photo in data %}
     <div class="{{ classname }}__slide{{ slideWidth }}" style="{{ spaceBetween }}" itemscope itemtype="http://schema.org/ImageObject">
       {{ myMacro.mediaImageSet(photo, options.ratio, {
         class: classname~'__image'
