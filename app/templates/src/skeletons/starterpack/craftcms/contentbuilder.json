@@ -2685,67 +2685,67 @@
         "options": [
           {
             "label": "0.25 Spacer",
-            "value": 25,
+            "value": "'25'",
             "default": ""
           },
           {
             "label": "0.50 Spacer",
-            "value": 50,
+            "value": "'50'",
             "default": 1
           },
           {
             "label": "0.75 Spacer",
-            "value": 75,
+            "value": "'75'",
             "default": ""
           },
           {
             "label": "1 Spacer",
-            "value": 1,
+            "value": "'1'",
             "default": ""
           },
           {
             "label": "2 Spacer",
-            "value": 2,
+            "value": "'2'",
             "default": ""
           },
           {
             "label": "3 Spacer",
-            "value": 3,
+            "value": "'3'",
             "default": ""
           },
           {
             "label": "4 Spacer",
-            "value": 4,
+            "value": "'4'",
             "default": ""
           },
           {
             "label": "5 Spacer",
-            "value": 5,
+            "value": "'5'",
             "default": ""
           },
           {
             "label": "6 Spacer",
-            "value": 6,
+            "value": "'6'",
             "default": ""
           },
           {
             "label": "7 Spacer",
-            "value": 7,
+            "value": "'7'",
             "default": ""
           },
           {
             "label": "8 Spacer",
-            "value": 8,
+            "value": "'8'",
             "default": ""
           },
           {
             "label": "9 Spacer",
-            "value": 9,
+            "value": "'9'",
             "default": ""
           },
           {
             "label": "10 Spacer",
-            "value": 10,
+            "value": "'10'",
             "default": ""
           }
         ]
