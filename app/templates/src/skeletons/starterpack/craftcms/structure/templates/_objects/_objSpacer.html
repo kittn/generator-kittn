@@ -11,4 +11,4 @@
 {% set classname = name is defined and name != '' ? name : 'o-spacer' %}
 
 {# Build Element Block #}
-<div class="{{ classname }}{{ ' '~classname~'--'~data }}"></div>
+<div class="{{ classname }}{{ ' '~classname~data }}"></div>

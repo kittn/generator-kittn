@@ -19,14 +19,14 @@
   // Build Small Spacer
   @each $i in v($api,subspacer) {
     &--0#{$i*100} {
-      content: s($i)
+      height: s($i)
     }
   }
 
   // Build Big Spacer
   @each $i in v($api,uptospacer) {
     &--#{$i} {
-      padding-bottom: s($i)
+      height: s($i)
     }
   }
 }
