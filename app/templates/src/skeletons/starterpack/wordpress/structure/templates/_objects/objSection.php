@@ -27,6 +27,15 @@ switch ($count) :
 endswitch;
 ?>
 
+<?php // Get Templatetype for build condition to close and open outer wrappers ?>
+<?php $templateType = get_page_template_slug( $post->ID ); ?>
+<?php // Closing outer Area first ?>
+<?php if ($templateType == 'template--contentbuilder.php') : ?>
+  </div>
+<?php else : ?>
+  </div></div>
+<?php endif; ?>
+
 <?php // Build Element Block ?>
 <section class="<?= $classnameSection; ?><?= $fullheight; ?><?= $style != 'default' ? ' '.$classnameSection.'--s-'.$style : '' ?>"<?= $anchor;?>>
   <div class="<?= $classnameSection.'__container'; ?><?= $innerContainer; ?>">
@@ -46,3 +55,10 @@ endswitch;
     </div>
   </div>
 </section>
+
+<?php // Opening outer Area again ?>
+<?php if ($templateType == 'template--contentbuilder.php') : ?>
+<div class="o-area__container">
+<?php else : ?>
+  <div class="o-area__container"><div class="o-area__content">
+<?php endif; ?>

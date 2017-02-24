@@ -2702,6 +2702,7 @@
           "id": ""
         },
         "choices": {
+          "h1": "H1",
           "h2": "H2",
           "h3": "H3",
           "h4": "H4",
@@ -4256,7 +4257,9 @@
           "default": "Default",
           "full": "Full Viewport",
           "bigger-25": "Bigger 25%",
-          "bigger-45": "Bigger 45%"
+          "bigger-45": "Bigger 45%",
+          "smaller-25": "Smaller 25%",
+          "smaller-50": "Smaller 50%"
         },
         "default_value": [
           "default"

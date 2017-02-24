@@ -859,9 +859,14 @@
                 "typesettings": {
                   "options": [
                     {
+                      "label": "H1",
+                      "value": "h1",
+                      "default": ""
+                    },
+                    {
                       "label": "H2",
                       "value": "h2",
-                      "default": ""
+                      "default": 1
                     },
                     {
                       "label": "H3",
