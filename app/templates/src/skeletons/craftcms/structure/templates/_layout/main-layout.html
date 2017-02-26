@@ -8,7 +8,7 @@
 {% import '_macros/my-macro.html' as myMacro %}
 
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<html lang="{{ craft.config.currentLanguage[craft.locale] }}">
 
 {# Include the Document Header #}
 {% include '_parts/document-header.html' %}
@@ -36,7 +36,7 @@
 			Copyright {{ now.year }} {{ craft.request.serverName | ucfirst }}. All rights reserved  •  Built with <a href="http://craftcms.com">Craft</a>
 		</footer>
 	</div>
-	
+
 	{# Adding the Document Footer #}
 	{% include '_parts/document-footer.html' %}
 </body>
