@@ -157,7 +157,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'confirm',
         name: 'projectwordpressbp',
-        message: chalk.cyan.underline.bold('Craft Bonus Round') + '\n\xa0 Do you want that the Generator implement a Wordpress Starterpack? \n\xa0 Adding a Contentbuilder, the Stylefiles (in ITCSS) and some JS Files for Lightboxes, and some Craft Plugins. You will need ACF 5 Pro',
+        message: chalk.cyan.underline.bold('Wordpress Bonus Round') + '\n\xa0 Do you want that the Generator implement a Wordpress Starterpack? \n\xa0 Adding a Contentbuilder, the Stylefiles (in ITCSS) and some JS Files for Lightboxes, and some WP Plugins. You will need ACF 5 Pro',
         default: true
       },
       {
