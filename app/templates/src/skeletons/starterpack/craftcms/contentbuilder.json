@@ -151,49 +151,6 @@
     },
     {
       "group": "Meta",
-      "name": "Artikel Bild",
-      "handle": "articleImage",
-      "instructions": "Artikelbild das f\u00fcr Archiv und m\u00f6gliche Header verwendet werden kann.",
-      "required": false,
-      "type": "SuperTable",
-      "typesettings": {
-        "fieldLayout": "table",
-        "staticField": null,
-        "selectionLabel": "Zeile hinzuf\u00fcgen",
-        "maxRows": null,
-        "blockTypes": {
-          "new": {
-            "fields": {
-              "new1": {
-                "name": "Bild",
-                "handle": "photo",
-                "instructions": "",
-                "required": 0,
-                "type": "Assets",
-                "width": "",
-                "typesettings": {
-                  "useSingleFolder": "",
-                  "sources": "*",
-                  "defaultUploadLocationSource": "images",
-                  "defaultUploadLocationSubpath": "",
-                  "singleUploadLocationSource": "images",
-                  "singleUploadLocationSubpath": "",
-                  "restrictFiles": 1,
-                  "allowedKinds": [
-                    "image"
-                  ],
-                  "limit": 1,
-                  "viewMode": "large",
-                  "selectionLabel": ""
-                }
-              }
-            }
-          }
-        }
-      }
-    },
-    {
-      "group": "Meta",
       "name": "Blog Kategorien",
       "handle": "blogCategories",
       "instructions": "",
@@ -462,7 +419,7 @@
                 "type": "RichText",
                 "width": "",
                 "typesettings": {
-                  "configFile": "Simple.json",
+                  "configFile": "Reduced.json",
                   "availableAssetSources": "*",
                   "availableTransforms": "*",
                   "cleanupHtml": 1,
@@ -657,6 +614,29 @@
         "cleanupHtml": 1,
         "purifyHtml": 1,
         "columnType": "text"
+      }
+    },
+    {
+      "group": "Meta",
+      "name": "Featured Image",
+      "handle": "featuredImage",
+      "instructions": "Image des jeweiligen Posts - wird verwendet f\u00fcr \u00dcbersichten, Header, SEO und OG Tags",
+      "required": false,
+      "type": "Assets",
+      "typesettings": {
+        "useSingleFolder": "",
+        "sources": "*",
+        "defaultUploadLocationSource": "images",
+        "defaultUploadLocationSubpath": "",
+        "singleUploadLocationSource": "images",
+        "singleUploadLocationSubpath": "",
+        "restrictFiles": 1,
+        "allowedKinds": [
+          "image"
+        ],
+        "limit": 1,
+        "viewMode": "large",
+        "selectionLabel": "Featured Image hinzuf\u00fcgen"
       }
     },
     {
@@ -903,7 +883,7 @@
                     {
                       "label": "Default",
                       "value": "default",
-                      "default": ""
+                      "default": 1
                     },
                     {
                       "label": "H1",
@@ -1372,7 +1352,6 @@
                   "allowedKinds": [
                     "image"
                   ],
-                  "targetLocale": "",
                   "limit": 1,
                   "viewMode": "list",
                   "selectionLabel": ""
@@ -1396,7 +1375,6 @@
                   "allowedKinds": [
                     "video"
                   ],
-                  "targetLocale": "",
                   "limit": 3,
                   "viewMode": "large",
                   "selectionLabel": ""
@@ -1410,7 +1388,7 @@
                 "type": "RichText",
                 "width": "",
                 "typesettings": {
-                  "configFile": "",
+                  "configFile": "Simple.json",
                   "availableAssetSources": "*",
                   "availableTransforms": "*",
                   "cleanupHtml": 1,
@@ -2105,9 +2083,9 @@
                 "typesettings": {
                   "options": [
                     {
-                      "label": "Default",
+                      "label": "Default Page Width",
                       "value": "default",
-                      "default": ""
+                      "default": 1
                     },
                     {
                       "label": "Full Viewport",
@@ -2177,33 +2155,36 @@
       "typesettings": {
         "assetSources": "*",
         "seoMainEntityCategory": "CreativeWork",
-        "seoMainEntityOfPage": "WebPage",
+        "seoMainEntityOfPage": "Article",
         "seoTitleSource": "field",
         "seoTitleSourceField": "title",
         "seoTitle": "",
         "seoTitleSourceChangeable": 1,
-        "seoDescriptionSource": "custom",
-        "seoDescriptionSourceField": "title",
+        "seoDescriptionSource": "field",
+        "seoDescriptionSourceField": "body",
         "seoDescription": "",
         "seoDescriptionSourceChangeable": 1,
         "seoKeywordsSource": "custom",
         "seoKeywordsSourceField": "title",
         "seoKeywords": "",
         "seoKeywordsSourceChangeable": 1,
-        "seoImageIdSource": "custom",
+        "seoImageIdSource": "field",
+        "seoImageIdSourceField": "featuredImage",
         "seoImageIdSourceChangeable": 1,
         "seoImageTransform": "",
-        "twitterCardType": "",
+        "twitterCardType": "summary_large_image",
         "twitterCardTypeChangeable": 1,
-        "seoTwitterImageIdSource": "custom",
+        "seoTwitterImageIdSource": "field",
+        "seoTwitterImageIdSourceField": "featuredImage",
         "seoTwitterImageIdSourceChangeable": 1,
         "seoTwitterImageTransform": "",
-        "openGraphType": "",
+        "openGraphType": "article",
         "openGraphTypeChangeable": 1,
-        "seoFacebookImageIdSource": "custom",
+        "seoFacebookImageIdSource": "field",
+        "seoFacebookImageIdSourceField": "featuredImage",
         "seoFacebookImageIdSourceChangeable": 1,
         "seoFacebookImageTransform": "",
-        "robots": "",
+        "robots": "all",
         "robotsChangeable": 1
       }
     },
@@ -3460,7 +3441,7 @@
         ],
         "Meta": [
           "blogCategories",
-          "articleImage",
+          "featuredImage",
           "seo"
         ]
       }
@@ -3476,7 +3457,7 @@
           "contentBuilder"
         ],
         "Meta": [
-          "articleImage",
+          "featuredImage",
           "seo"
         ]
       }
