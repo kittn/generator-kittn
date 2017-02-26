@@ -1,0 +1,42 @@
+/*
+  Grid
+  ====
+  Grid Columns
+*/
+.o-grid {
+  // Component Config
+  $api: (
+    selector: 'grid',
+    breakpoint: 'm'
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  // Childs --------------------------------
+  // [root]__row
+  //&__row {
+  //  @include break(v($api,breakpoint)) {
+  //    display: flex;
+  //  }
+  //}
+  //
+  //// [root]__grid-half
+  //&__halfcolumn {
+  //  @include break(v($api,breakpoint))  {
+  //    flex: 1;
+  //  }
+  //}
+
+}

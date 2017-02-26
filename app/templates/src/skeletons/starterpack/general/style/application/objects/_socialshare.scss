@@ -1,0 +1,58 @@
+/*
+  Socialshare
+  ===========
+  Generates a Nav Element for Social Sharing Buttons
+*/
+.o-socialshare {
+  // Component Config
+  $api: (
+    selector: 'socialshare',
+    breakpoint: 'm',
+    margin-bottom: s(1),
+    box: (
+      size: 40px,
+      gutter: 5px
+    )
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+  display: flex;
+  margin-bottom: v($api,margin-bottom);
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  // Childs --------------------------------
+  // [root]__box
+  &__box {
+    @include size(v($api,box,size));
+
+    &:not(:first-of-type) {
+      margin-left: v($api,box,gutter);
+    }
+    &:not(:last-of-type) {
+      margin-right: v($api,box,gutter);
+    }
+  }
+
+  // [root]__link
+  &__link {
+    cursor: pointer;
+    display: block;
+
+    // [root]---solo
+    @include instance(solo) {
+      &:not(:last-child) {
+        margin-right: v($api,box,gutter) * 2;
+      }
+    }
+  }
+}

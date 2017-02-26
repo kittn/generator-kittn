@@ -4,11 +4,11 @@
 
 // Add Pseudo Classes as Sprite Holder
 %svgsprite {
-  background: url('#{map-get($kittn-directorys, images)}#{map-get($kittn-spritefiles,vector-sprite)}') no-repeat;
+  background: url('#{map-get($kittn-directories, images)}#{map-get($kittn-spritefiles,vector-sprite)}') no-repeat;
 }
 
 %bitmapsprite {
-  background: url('#{map-get($kittn-directorys, images)}#{map-get($kittn-spritefiles,bitmap-sprite)}') no-repeat;
+  background: url('#{map-get($kittn-directories, images)}#{map-get($kittn-spritefiles,bitmap-sprite)}') no-repeat;
 }
 
 /// Mixin for include Images
@@ -220,10 +220,10 @@
   ), $o);
 
   // Set the Background Image
-  background-image: url('#{map-get($kittn-directorys, bitmaps)}#{$name}.#{map-get($o,filetype)}');
+  background-image: url('#{map-get($kittn-directories, bitmaps)}#{$name}.#{map-get($o,filetype)}');
 
   // Call the Image Mixin
-  @include _images($name: $name, $filetype: map-get($o,filetype), $dir: #{map-get($kittn-directorys, bitmap)}, $repeat: map-get($o,repeat), $offset: map-get($o, offset), $scale: map-get($o, scale), $dimensions: map-get($o,dimensions) );
+  @include _images($name: $name, $filetype: map-get($o,filetype), $dir: #{map-get($kittn-directories, bitmap)}, $repeat: map-get($o,repeat), $offset: map-get($o, offset), $scale: map-get($o, scale), $dimensions: map-get($o,dimensions) );
 }
 
 /// Include Vector Images
@@ -273,10 +273,10 @@
   ), $o);
 
   // Set the Background Image
-  background-image: url('#{map-get($kittn-directorys, svgonly)}#{$name}.svg');
+  background-image: url('#{map-get($kittn-directories, svgonly)}#{$name}.svg');
 
   // Call the Image Mixin
-  @include _images($name: $name, $filetype: 'svg', $dir: #{map-get($kittn-directorys, vector)}, $repeat: map-get($o,repeat), $offset: map-get($o, offset), $scale: map-get($o, scale), $dimensions: map-get($o,dimensions) );
+  @include _images($name: $name, $filetype: 'svg', $dir: #{map-get($kittn-directories, vector)}, $repeat: map-get($o,repeat), $offset: map-get($o, offset), $scale: map-get($o, scale), $dimensions: map-get($o,dimensions) );
 }
 
 /// Include a Vector Sprite
@@ -351,7 +351,7 @@
 ///
 /// @group methods-images
 ///
-/// @param  {string} $name                - Name from the Sprite SVG in the Map
+/// @param  {string} $name                - Name from the Bitmap Sprite in the Map
 /// @param  {map}    $o                   - Setup args
 /// @param  {string} $o.dimensions [both] - Use Sprite Dimensions (both, bool, width, height)
 /// @param  {number} $o.scale [false]     - Scale Factor

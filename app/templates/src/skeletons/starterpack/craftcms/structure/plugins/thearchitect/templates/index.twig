@@ -1,0 +1,99 @@
+{% extends "_layouts/cp" %}
+{% set title = "The Architect"|t %}
+
+{% import "_includes/forms" as forms %}
+
+{% set tabs = {
+    tab1: { label: "Raw Input"|t, url: url('thearchitect') },
+    tab2: { label: "Available Files"|t, url: url('thearchitect/files') },
+    tab3: { label: "Export"|t, url: url('thearchitect/blueprint') },
+    tab4: { label: "Migrations"|t, url: url('thearchitect/migrations') },
+    tab5: { label: "Matrix to Neo Export"|t, url: url('thearchitect/convert') },
+} %}
+
+{% set docsUrl = 'https://github.com/Pennebaker/craftcms-thearchitect/wiki' %}
+
+{% set content %}
+<div class="the-architect">
+
+
+    {# Output of Submitted Data #}
+    {% if result is defined %}
+        <table class="shadow-box editable">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Name</th>
+                    <th>Results</th>
+                    <th>Errors</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in result %}
+                {% if item.result %}
+                    <tr class="success">
+                {% elseif item.type == 'Group' %}
+                    <tr class="warning">
+                {% else %}
+                    <tr class="error">
+                {% endif %}
+                        <td>{{ item.type }}</td>
+                        <td>{{ item.name }}</td>
+                    {% if item.result %}
+                        <td class="action">{{ "Success"|t }}</td>
+                    {% elseif item.type == 'Group' %}
+                        <td class="action">{{ "Warning"|t }}</td>
+                    {% else %}
+                        <td class="action">{{ "Error"|t }}</td>
+                    {% endif %}
+                        <td>
+                        {% if not item.result and item.type == 'Group' %}
+                            <h6>Name</h6>
+                            <ul>
+                                <li>{{ "Group"|t ~ " \"" ~ item.name ~ "\" " ~ "has already been taken."|t }}</li>
+                            </ul>
+                        {% endif %}
+                        {% if item.errors %}
+                            {% for errType, errs in item.errors %}
+                                <h6>{{ errType }}</h6>
+                                <ul>
+                                {% for err in errs %}
+                                    <li>{{ err }}</li>
+                                {% endfor %}
+                                </ul>
+                            {% endfor %}
+                        {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    {% if filename is defined %}
+        <h2><span class="light">{{ "Loaded"|t }}: </span>{{ filename }}</h2>
+    {% endif %}
+
+    {# The Architect Input Form #}
+
+    <form class="field" action="" method="post" accept-charset="UTF-8">
+        <input type="hidden" name="action" value="theArchitect/construct">
+        {{ getCsrfInput() }}
+
+        {# Text Area for Input Data #}
+        {{ forms.textarea({
+            name: 'json',
+            class: 'nicetext code',
+            value: (json is defined ? json : null),
+            first: true,
+            autofocus: true,
+            rows: 24
+        }) }}
+        <hr>
+        <div class="buttons clearafter">
+            <input type="submit" class="btn submit" value="Construct">
+        </div>
+    </form>
+
+</div>
+{% endset %}

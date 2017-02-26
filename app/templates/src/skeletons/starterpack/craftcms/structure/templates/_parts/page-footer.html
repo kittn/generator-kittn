@@ -1,0 +1,14 @@
+<footer class="o-area__footer" role="contentinfo">
+  {% cache %}
+  <div class="o-area__container">
+    {# Adding Copyright Information #}
+    {% if footer.copyright %}
+      <div class="c-copy">
+        {{ footer.copyright }}
+      </div>
+    {% endif %}
+    {# Adding Footernavigation #}
+    {{ myMacro.siteNavigation('c-footernav', 'footernav') }}
+  </div>
+  {% endcache %}
+</footer>

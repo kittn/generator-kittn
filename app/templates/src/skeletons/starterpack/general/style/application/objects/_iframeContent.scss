@@ -1,0 +1,60 @@
+/*
+  Iframe Content
+  ==============
+  For embedding responsive iframe content
+*/
+.o-iframecontent {
+  // Component Config
+  $api: (
+    selector: 'iframecontent',
+    breakpoint: 'm',
+    margin-bottom: s(1)
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Base Style ----------------------------
+  margin: 0 auto v($api,margin-bottom) auto;
+  position: relative;
+  overflow: hidden;
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  // Style Modifier
+  &#{$root}--s-style1 {}
+
+  // Childs --------------------------------
+  // [root]__inner
+  &__inner {
+    position: relative;
+    height: 0;
+
+    > * {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  // [root]--align-left
+  &--align-left { text-align: left; }
+
+  // [root]--align-center
+  &--align-center { text-align: center; }
+
+  // [root]--align-right
+  &--align-right { text-align: right; }
+
+  // [root]__caption
+  &__caption {
+    padding-top: 5px;
+    font-size: 90%;
+    color: c('gray');
+    text-align: center;
+  }
+}

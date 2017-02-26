@@ -1,0 +1,3590 @@
+{
+  "groups": [
+    "Objects",
+    "ObjectsOptions",
+    "Meta",
+    "Builder",
+    "Globals"
+  ],
+  "sections": [
+    {
+      "name": 404,
+      "handle": "error404",
+      "type": "single",
+      "enableVersioning": 1,
+      "typesettings": {
+        "template": 404,
+        "urlFormat": 404,
+        "nestedUrlFormat": null
+      }
+    },
+    {
+      "name": "Blog",
+      "handle": "blog",
+      "type": "channel",
+      "enableVersioning": 1,
+      "typesettings": {
+        "hasUrls": 1,
+        "template": "section_blog\/_entry",
+        "urlFormat": "blog\/{slug}",
+        "nestedUrlFormat": null
+      }
+    },
+    {
+      "name": "Seiten",
+      "handle": "pages",
+      "type": "structure",
+      "enableVersioning": 1,
+      "typesettings": {
+        "hasUrls": 1,
+        "template": "section_pages\/page",
+        "maxLevels": 2,
+        "urlFormat": "{slug}",
+        "nestedUrlFormat": "{parent.uri}\/{slug}"
+      }
+    }
+  ],
+  "fields": [
+    {
+      "group": "Objects",
+      "name": "Accordion",
+      "handle": "objAccordion",
+      "instructions": "Accordion Block - bitte noch einen Titel angeben",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Accordion Wrapper",
+      "handle": "objAccordionWrapper",
+      "instructions": "Wrapper der eine Gruppe von Accordions b\u00fcndelt.",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Anker",
+      "handle": "objAnchor",
+      "instructions": "Anker Name - keine Sonderzeichen und darf nicht mit einer Nummer anfangen",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Anker Options",
+      "handle": "setAnchor",
+      "instructions": "Anker Element f\u00fcr Sprungnavigationen - muss an die entsprechende Stelle platziert werden. Keine Sonderzeichen und darf nicht mit einer Nummer anfangen",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Positionsfix",
+                "handle": "positionfix",
+                "instructions": "Falls der Anker zu hoch oder zu niedrig sitzt, kann man den Positionswert nach justieren (also h\u00f6her oder tiefer).",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "-10px",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Meta",
+      "name": "Artikel Bild",
+      "handle": "articleImage",
+      "instructions": "Artikelbild das f\u00fcr Archiv und m\u00f6gliche Header verwendet werden kann.",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": null,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Bild",
+                "handle": "photo",
+                "instructions": "",
+                "required": 0,
+                "type": "Assets",
+                "width": "",
+                "typesettings": {
+                  "useSingleFolder": "",
+                  "sources": "*",
+                  "defaultUploadLocationSource": "images",
+                  "defaultUploadLocationSubpath": "",
+                  "singleUploadLocationSource": "images",
+                  "singleUploadLocationSubpath": "",
+                  "restrictFiles": 1,
+                  "allowedKinds": [
+                    "image"
+                  ],
+                  "limit": 1,
+                  "viewMode": "large",
+                  "selectionLabel": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Meta",
+      "name": "Blog Kategorien",
+      "handle": "blogCategories",
+      "instructions": "",
+      "required": false,
+      "type": "Categories",
+      "typesettings": {
+        "source": "blogCategories",
+        "targetLocale": "",
+        "limit": 1,
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "Default",
+      "name": "Body",
+      "handle": "body",
+      "instructions": null,
+      "required": false,
+      "type": "RichText",
+      "typesettings": {
+        "configFile": "Standard.json",
+        "columnType": "text"
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Button",
+      "handle": "objButton",
+      "instructions": "Schaltfl\u00e4che zum verlinken von internen und externen Inhalten",
+      "required": false,
+      "type": "FruitLinkIt",
+      "typesettings": {
+        "types": [
+          "email",
+          "custom",
+          "entry",
+          "category",
+          "asset"
+        ],
+        "defaultText": "Link",
+        "allowCustomText": 1,
+        "allowTarget": 1,
+        "entrySources": [],
+        "entrySelectionLabel": "Select an entry",
+        "assetSources": "*",
+        "assetSelectionLabel": "Select an asset",
+        "categorySources": "*",
+        "categorySelectionLabel": "Select a category"
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Button Options",
+      "handle": "setButton",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "Style des Buttons",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Gr\u00f6\u00dfe",
+                "handle": "size",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Gro\u00df",
+                      "value": "big",
+                      "default": ""
+                    },
+                    {
+                      "label": "Klein",
+                      "value": "small",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new3": {
+                "name": "Volle Breite",
+                "handle": "fullwidth",
+                "instructions": "Wenn der Button Zentriert angelegt wurde, kann man ihm auch die volle Breite geben",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new4": {
+                "name": "Position",
+                "handle": "position",
+                "instructions": "Regul\u00e4r sind die Buttons linksb\u00fcndig angeordnet, k\u00f6nnen hiermit \u00fcberschrieben werden.",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Linksb\u00fcndig",
+                      "value": "left",
+                      "default": 1
+                    },
+                    {
+                      "label": "Zentriert",
+                      "value": "center",
+                      "default": ""
+                    },
+                    {
+                      "label": "Rechtsb\u00fcndig",
+                      "value": "right",
+                      "default": ""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Card",
+      "handle": "objCard",
+      "instructions": "Text Box mit Media Assets (Image oder Video)",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "row",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Bild",
+                "handle": "photo",
+                "instructions": "Ein Bild wird auf jedenfall eingebunden. Falls ein Video genutzt wird, dient das Bild als Fallback.",
+                "required": 0,
+                "type": "Assets",
+                "width": "",
+                "typesettings": {
+                  "useSingleFolder": "",
+                  "sources": "*",
+                  "defaultUploadLocationSource": "images",
+                  "defaultUploadLocationSubpath": "",
+                  "singleUploadLocationSource": "images",
+                  "singleUploadLocationSubpath": "",
+                  "restrictFiles": 1,
+                  "allowedKinds": [
+                    "image"
+                  ],
+                  "limit": 1,
+                  "viewMode": "list",
+                  "selectionLabel": ""
+                }
+              },
+              "new2": {
+                "name": "Video",
+                "handle": "video",
+                "instructions": "",
+                "required": 0,
+                "type": "Assets",
+                "width": "",
+                "typesettings": {
+                  "useSingleFolder": "",
+                  "sources": "*",
+                  "defaultUploadLocationSource": "images",
+                  "defaultUploadLocationSubpath": "",
+                  "singleUploadLocationSource": "images",
+                  "singleUploadLocationSubpath": "",
+                  "restrictFiles": 1,
+                  "allowedKinds": [
+                    "video"
+                  ],
+                  "limit": 3,
+                  "viewMode": "large",
+                  "selectionLabel": ""
+                }
+              },
+              "new3": {
+                "name": "Headline",
+                "handle": "headline",
+                "instructions": "Optionale Headline",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new4": {
+                "name": "Subline",
+                "handle": "subline",
+                "instructions": "Optionale Subline",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new5": {
+                "name": "Meta",
+                "handle": "meta",
+                "instructions": "Optionales Meta Feld",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new6": {
+                "name": "Body",
+                "handle": "body",
+                "instructions": "",
+                "required": 0,
+                "type": "RichText",
+                "width": "",
+                "typesettings": {
+                  "configFile": "Simple.json",
+                  "availableAssetSources": "*",
+                  "availableTransforms": "*",
+                  "cleanupHtml": 1,
+                  "purifyHtml": 1,
+                  "columnType": "text"
+                }
+              },
+              "new7": {
+                "name": "Link",
+                "handle": "cardlink",
+                "instructions": "Optionale Verlinkung der Card",
+                "required": 0,
+                "type": "FruitLinkIt",
+                "width": "",
+                "typesettings": {
+                  "types": [
+                    "custom",
+                    "entry",
+                    "category",
+                    "asset"
+                  ],
+                  "defaultText": "",
+                  "allowCustomText": "",
+                  "allowTarget": "",
+                  "entrySources": [],
+                  "entrySelectionLabel": "Select an entry",
+                  "assetSources": "*",
+                  "assetSelectionLabel": "Select an asset",
+                  "categorySources": "*",
+                  "categorySelectionLabel": "Select a category"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Card Options",
+      "handle": "setCard",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 2",
+                      "value": "style2",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 3",
+                      "value": "style3",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Videobox",
+                "handle": "videobox",
+                "instructions": "Aktivieren wenn ein Video verwendet werden soll",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new3": {
+                "name": "Media Ratio",
+                "handle": "mediaRatio",
+                "instructions": "Aspect Ratio des Bildes oder Videos",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "16:9",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Card Slider",
+      "handle": "objCardSlider",
+      "instructions": "Ein Slider Modul f\u00fcr Individuelle Cards",
+      "required": false,
+      "type": "SuperTable_Label",
+      "typesettings": {
+        "value": ""
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Card Slider Options",
+      "handle": "setCardSlider",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Setup",
+                "handle": "setup",
+                "instructions": "Optional. W\u00e4hle eines der bestehenden Setups aus oder definiere ein neues unter `Kategorien > Settings : Image Slider`",
+                "required": 0,
+                "type": "Categories",
+                "width": "",
+                "typesettings": {
+                  "source": "settingsImageSlider",
+                  "limit": 1,
+                  "selectionLabel": "Setup ausw\u00e4hlen"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Copyright",
+      "handle": "copyright",
+      "instructions": "Copyright Hinweis",
+      "required": false,
+      "type": "RichText",
+      "typesettings": {
+        "configFile": "",
+        "availableAssetSources": "*",
+        "availableTransforms": "*",
+        "cleanupHtml": 1,
+        "purifyHtml": 1,
+        "columnType": "text"
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Fokuspunkt",
+      "handle": "focalpoint",
+      "instructions": "",
+      "required": false,
+      "type": "FocalPointField_FocalPoint",
+      "typesettings": {
+        "defaultFocalPoint": "50% 50%"
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Galerie",
+      "handle": "objGallery",
+      "instructions": "Galerie Modul mit Lightbox Support und zwei Layouttypen",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": null,
+        "selectionLabel": "Bild hinzuf\u00fcgen",
+        "maxRows": 30,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Bild",
+                "handle": "photo",
+                "instructions": "",
+                "required": 1,
+                "type": "Assets",
+                "width": 30,
+                "typesettings": {
+                  "useSingleFolder": "",
+                  "sources": "*",
+                  "defaultUploadLocationSource": "images",
+                  "defaultUploadLocationSubpath": "",
+                  "singleUploadLocationSource": "images",
+                  "singleUploadLocationSubpath": "",
+                  "restrictFiles": 1,
+                  "allowedKinds": [
+                    "image"
+                  ],
+                  "targetLocale": "",
+                  "limit": 1,
+                  "viewMode": "list",
+                  "selectionLabel": ""
+                }
+              },
+              "new2": {
+                "name": "Bildunterschift",
+                "handle": "caption",
+                "instructions": "Optionale Bildunterschrift, wird erst in der Lightbox sichtbar.",
+                "required": 0,
+                "type": "PlainText",
+                "width": 70,
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Galerie Options",
+      "handle": "setGallery",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Typ",
+                "handle": "layoutType",
+                "instructions": "Smart f\u00fcr eine Thumbnailanordnung im Tumbler Styles (Photogrid), Simple f\u00fcr eine einfache Aneinanderreihung der Thumbnails",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Simple",
+                      "value": "simple",
+                      "default": ""
+                    },
+                    {
+                      "label": "Smart",
+                      "value": "smart",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Ratio",
+                "handle": "ratio",
+                "instructions": "Bildratio der Thumbnails f\u00fcr den Simplen Layoutmodus. Format '1:1'",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "1:1",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new3": {
+                "name": "Breite",
+                "handle": "width",
+                "instructions": "Thumbnailbreite f\u00fcr das Simple Layout. Regul\u00e4r ist die Breite der Thumbnails abh\u00e4ngig von der Anzahl der Bilder pro Reihe. Falls das zu Gro\u00df oder zu klein ist, kann man die Breite selbst festlegen.",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Headline",
+      "handle": "objHeadline",
+      "instructions": "",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Headline Option",
+      "handle": "setHeadline",
+      "instructions": "Gr\u00f6\u00dfe der Headline, die regul\u00e4re Headline hat eine Semantische Gr\u00f6\u00dfe einer H2. \u00dcber den Override Regler kann man die gr\u00f6\u00dfe unabh\u00e4ngig ihrer Semantik nachjustieren.",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": 1,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Semantische Gr\u00f6\u00dfe",
+                "handle": "semantic",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "H1",
+                      "value": "h1",
+                      "default": ""
+                    },
+                    {
+                      "label": "H2",
+                      "value": "h2",
+                      "default": 1
+                    },
+                    {
+                      "label": "H3",
+                      "value": "h3",
+                      "default": ""
+                    },
+                    {
+                      "label": "H4",
+                      "value": "h4",
+                      "default": ""
+                    },
+                    {
+                      "label": "H5",
+                      "value": "h5",
+                      "default": ""
+                    },
+                    {
+                      "label": "H6",
+                      "value": "h6",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new3": {
+                "name": "Override",
+                "handle": "override",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "H1",
+                      "value": "h1",
+                      "default": ""
+                    },
+                    {
+                      "label": "H2",
+                      "value": "h2",
+                      "default": ""
+                    },
+                    {
+                      "label": "H3",
+                      "value": "h3",
+                      "default": ""
+                    },
+                    {
+                      "label": "H4",
+                      "value": "h4",
+                      "default": ""
+                    },
+                    {
+                      "label": "H5",
+                      "value": "h5",
+                      "default": ""
+                    },
+                    {
+                      "label": "H6",
+                      "value": "h6",
+                      "default": ""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Iframe Content",
+      "handle": "objIframeContent",
+      "instructions": "Zum Einbinden von Inhalten die per Iframe eingebunden werden (z.B. Youtube oder Vimeo Videos, Google Maps oder anderen iFrame inhalt). Unter Embed kommt der iFrame Code (copy&paste). ",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "row",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": 1,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Embed",
+                "handle": "embed",
+                "instructions": "",
+                "required": 0,
+                "type": "SimpleText",
+                "width": "",
+                "typesettings": {
+                  "initialRows": 2
+                }
+              },
+              "new2": {
+                "name": "Caption",
+                "handle": "caption",
+                "instructions": "Optionale Asset Caption",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Iframe Content Options",
+      "handle": "setIframeContent",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Responsive",
+                "handle": "responsive",
+                "instructions": "Soll der Inhalt responsive dargestellt werden?",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new3": {
+                "name": "Ratio",
+                "handle": "ratio",
+                "instructions": "Ratio des iFrames",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new4": {
+                "name": "Align",
+                "handle": "align",
+                "instructions": "Ausrichtung f\u00fcr Inhalte die kleiner sind als die Seite",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Zentriert",
+                      "value": "center",
+                      "default": 1
+                    },
+                    {
+                      "label": "Linksb\u00fcndig",
+                      "value": "left",
+                      "default": ""
+                    },
+                    {
+                      "label": "Rechtsb\u00fcndig",
+                      "value": "right",
+                      "default": ""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Image Slider",
+      "handle": "objImageSlider",
+      "instructions": "Slider Modul. F\u00fcge bis zu 10 Bilder hinzu. ",
+      "required": false,
+      "type": "Assets",
+      "typesettings": {
+        "useSingleFolder": "",
+        "sources": "*",
+        "defaultUploadLocationSource": "images",
+        "defaultUploadLocationSubpath": "",
+        "singleUploadLocationSource": "images",
+        "singleUploadLocationSubpath": "",
+        "restrictFiles": 1,
+        "allowedKinds": [
+          "image"
+        ],
+        "targetLocale": "",
+        "limit": 10,
+        "viewMode": "large",
+        "selectionLabel": ""
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Image Slider Options",
+      "handle": "setImageSlider",
+      "instructions": "Die Ratio gilt dabei f\u00fcr alle Bilder, Craft wird die Bilder entsprechend Croppen damit diese ins Format passen (Default ist 16:10). Die Caption ist optional und gilt f\u00fcr den gesamten Slider.",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Ratio",
+                "handle": "ratio",
+                "instructions": "Bild Ratio f\u00fcr alle Slides",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "16:10",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new3": {
+                "name": "Setup",
+                "handle": "setup",
+                "instructions": "Optional. W\u00e4hle eines der bestehenden Setups aus oder definiere ein neues unter `Kategorien > Settings : Image Slider`",
+                "required": 0,
+                "type": "Categories",
+                "width": "",
+                "typesettings": {
+                  "source": "settingsImageSlider",
+                  "limit": 1,
+                  "selectionLabel": "Setup ausw\u00e4hlen"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Liste",
+      "handle": "objList",
+      "instructions": "",
+      "required": false,
+      "type": "Table",
+      "typesettings": {
+        "columns": {
+          "col1": {
+            "heading": "Eintrag",
+            "handle": "entry",
+            "width": "",
+            "type": "singleline"
+          }
+        },
+        "defaults": {
+          "row1": {
+            "col1": ""
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Liste Options",
+      "handle": "setList",
+      "instructions": "Die Einstellungen zum Bulletstyle",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Typ",
+                "handle": "listtype",
+                "instructions": "Beschreibung der List, ob Unsortiert, Sortiert",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Unsortiert",
+                      "value": "ul",
+                      "default": 1
+                    },
+                    {
+                      "label": "Sortiert",
+                      "value": "ol",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Bullet",
+                "handle": "bullet",
+                "instructions": "Style der Bullets bei Unsortierten Listen",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Circle",
+                      "value": "circle",
+                      "default": ""
+                    },
+                    {
+                      "label": "Square",
+                      "value": "square",
+                      "default": ""
+                    },
+                    {
+                      "label": "Custom",
+                      "value": "custom",
+                      "default": ""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Markdown",
+      "handle": "objMarkdown",
+      "instructions": "F\u00fcr inhalte im Markdown Format (http:\/\/markdown.de\/)",
+      "required": false,
+      "type": "Doxter",
+      "typesettings": {
+        "enableSoftTabs": 1,
+        "tabSize": 2,
+        "rows": 4,
+        "toolbarPlacement": "bottom"
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Markdown Options",
+      "handle": "setMarkdown",
+      "instructions": "Markdown Optionen",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Add Anchor",
+                "handle": "addAnchor",
+                "instructions": "Sollen die \u00dcberschriften h1 - h3 mit einem Anker versehen werden?",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Media Box",
+      "handle": "objMediaBox",
+      "instructions": "Text Box mit Media Assets (Image oder Video)",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "row",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Bild",
+                "handle": "photo",
+                "instructions": "Ein Bild wird auf jedenfall eingebunden. Falls ein Video genutzt wird, dient das Bild als Fallback.",
+                "required": 0,
+                "type": "Assets",
+                "width": "",
+                "typesettings": {
+                  "useSingleFolder": "",
+                  "sources": "*",
+                  "defaultUploadLocationSource": "images",
+                  "defaultUploadLocationSubpath": "",
+                  "singleUploadLocationSource": "images",
+                  "singleUploadLocationSubpath": "",
+                  "restrictFiles": 1,
+                  "allowedKinds": [
+                    "image"
+                  ],
+                  "targetLocale": "",
+                  "limit": 1,
+                  "viewMode": "list",
+                  "selectionLabel": ""
+                }
+              },
+              "new2": {
+                "name": "Video",
+                "handle": "video",
+                "instructions": "",
+                "required": 0,
+                "type": "Assets",
+                "width": "",
+                "typesettings": {
+                  "useSingleFolder": "",
+                  "sources": "*",
+                  "defaultUploadLocationSource": "images",
+                  "defaultUploadLocationSubpath": "",
+                  "singleUploadLocationSource": "images",
+                  "singleUploadLocationSubpath": "",
+                  "restrictFiles": 1,
+                  "allowedKinds": [
+                    "video"
+                  ],
+                  "targetLocale": "",
+                  "limit": 3,
+                  "viewMode": "large",
+                  "selectionLabel": ""
+                }
+              },
+              "new3": {
+                "name": "Textcontent",
+                "handle": "textcontent",
+                "instructions": "",
+                "required": 0,
+                "type": "RichText",
+                "width": "",
+                "typesettings": {
+                  "configFile": "",
+                  "availableAssetSources": "*",
+                  "availableTransforms": "*",
+                  "cleanupHtml": 1,
+                  "purifyHtml": 1,
+                  "columnType": "text"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Media Box Options",
+      "handle": "setMediaBox",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Hintergrundfarbe",
+                "handle": "background",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Farblos",
+                      "value": "null",
+                      "default": 1
+                    },
+                    {
+                      "label": "Grau",
+                      "value": "gray",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Media Breite",
+                "handle": "mediaWidth",
+                "instructions": "Breite des Media Felds",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Viertel",
+                      "value": "quarter",
+                      "default": 1
+                    },
+                    {
+                      "label": "Halb",
+                      "value": "half",
+                      "default": ""
+                    },
+                    {
+                      "label": "Dreiviertel",
+                      "value": "threequarter",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new3": {
+                "name": "Media Position",
+                "handle": "mediaPosition",
+                "instructions": "Position des Mediafelds",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Links",
+                      "value": "left",
+                      "default": 1
+                    },
+                    {
+                      "label": "Rechts",
+                      "value": "right",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new4": {
+                "name": "Videobox",
+                "handle": "videobox",
+                "instructions": "Aktivieren wenn ein Video verwendet werden soll",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new5": {
+                "name": "Media Ratio",
+                "handle": "mediaRatio",
+                "instructions": "Aspect Ratio des Bildes oder Videos",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "16:9",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Media Image",
+      "handle": "objMediaImage",
+      "instructions": "Dieses Bild nimmt die volle Contentbreite ein und kann mit einer Bildunterschrift versehen werden.",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Bild",
+                "handle": "photo",
+                "instructions": "",
+                "required": 0,
+                "type": "Assets",
+                "width": 30,
+                "typesettings": {
+                  "useSingleFolder": "",
+                  "sources": "*",
+                  "defaultUploadLocationSource": "images",
+                  "defaultUploadLocationSubpath": "",
+                  "singleUploadLocationSource": "images",
+                  "singleUploadLocationSubpath": "",
+                  "restrictFiles": 1,
+                  "allowedKinds": [
+                    "image"
+                  ],
+                  "targetLocale": "",
+                  "limit": 1,
+                  "viewMode": "large",
+                  "selectionLabel": ""
+                }
+              },
+              "new2": {
+                "name": "Bildunterschrift",
+                "handle": "caption",
+                "instructions": "",
+                "required": 0,
+                "type": "PlainText",
+                "width": 70,
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Media Image Options",
+      "handle": "setMediaImage",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Ratio",
+                "handle": "ratio",
+                "instructions": "Gr\u00f6\u00dfenverh\u00e4ltnis des Bilds um gr\u00f6\u00dfentechnisch anzupassen",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "Im Format: 16:9",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new3": {
+                "name": "H\u00f6henbeschr\u00e4nkung",
+                "handle": "heightrestriction",
+                "instructions": "Handelt es sich um ein Bild im Portraitformat, kann es sein das es l\u00e4nger ist als der Viewport hoch ist. Die H\u00f6henbeschr\u00e4nkung beschr\u00e4nkt dabei die H\u00f6he auf maximale Viewport h\u00f6he - man muss nicht mehr Scrollen um das ganze Bild zu sehen.",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Quote",
+      "handle": "objQuote",
+      "instructions": "F\u00fcr Zitatbl\u00f6cke mit Author",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "row",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": 1,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Zitat",
+                "handle": "copy",
+                "instructions": "",
+                "required": 0,
+                "type": "SimpleText",
+                "width": "",
+                "typesettings": {
+                  "initialRows": 2
+                }
+              },
+              "new2": {
+                "name": "Quelle",
+                "handle": "source",
+                "instructions": "",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Quote Options",
+      "handle": "setQuote",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Richtext",
+      "handle": "objRichtext",
+      "instructions": "",
+      "required": false,
+      "type": "RichText",
+      "typesettings": {
+        "configFile": "Standard.json",
+        "availableAssetSources": "*",
+        "availableTransforms": "*",
+        "cleanupHtml": 1,
+        "purifyHtml": 1,
+        "columnType": "text"
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Richtext Options",
+      "handle": "setRichtext",
+      "instructions": "Auswahl an Unterschiedlichen Styles",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Section Column",
+      "handle": "objSectionColumn",
+      "instructions": "Spalte in einer Sektion",
+      "required": false,
+      "type": "SuperTable_Label",
+      "typesettings": {
+        "value": ""
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Section Column Options",
+      "handle": "setSectionColumn",
+      "instructions": "Spalte in einer Sektion",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Align",
+                "handle": "align",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Linksb\u00fcndig",
+                      "value": "left",
+                      "default": ""
+                    },
+                    {
+                      "label": "Zentriert",
+                      "value": "center",
+                      "default": ""
+                    },
+                    {
+                      "label": "Rechtsb\u00fcndig",
+                      "value": "right",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new3": {
+                "name": "Vertical Align",
+                "handle": "verticalAlign",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Oben",
+                      "value": "top",
+                      "default": ""
+                    },
+                    {
+                      "label": "Mitte",
+                      "value": "middle",
+                      "default": ""
+                    },
+                    {
+                      "label": "Unten",
+                      "value": "bottom",
+                      "default": ""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Section Layout",
+      "handle": "setSectionLayout",
+      "instructions": "Gewichtung der einzelnen Spalten. ",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Zwei Spaltig",
+                "handle": "twoColumns",
+                "instructions": "Layoutvarianten f\u00fcr zwei Spalten",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "2-1",
+                      "value": "2-1",
+                      "default": ""
+                    },
+                    {
+                      "label": "1-2",
+                      "value": "1-2",
+                      "default": ""
+                    },
+                    {
+                      "label": "3-1",
+                      "value": "3-1",
+                      "default": ""
+                    },
+                    {
+                      "label": "1-3",
+                      "value": "1-3",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Drei Spaltig",
+                "handle": "threeColumns",
+                "instructions": "Layoutvarianten f\u00fcr drei Spalten",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "2-6-2",
+                      "value": "2-6-2",
+                      "default": ""
+                    },
+                    {
+                      "label": "3-5-2",
+                      "value": "3-5-2",
+                      "default": ""
+                    },
+                    {
+                      "label": "2-5-3",
+                      "value": "2-5-3",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new3": {
+                "name": "Vier Spaltig",
+                "handle": "fourColumns",
+                "instructions": "Layoutvarianten f\u00fcr vier Spalten",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "2-3-3-2",
+                      "value": "2-3-3-2",
+                      "default": ""
+                    },
+                    {
+                      "label": "2-3-4-1",
+                      "value": "2-3-4-1",
+                      "default": ""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Section Options",
+      "handle": "setSection",
+      "instructions": "Styling des Containers",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "Allgemeiner Farb und Typostil",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 2",
+                      "value": "style2",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Volle H\u00f6he",
+                "handle": "fullheight",
+                "instructions": "Soll die Sektion auf die volle H\u00f6he aufgespannt werden?",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new3": {
+                "name": "Inner Container",
+                "handle": "innerContainer",
+                "instructions": "Layout des inneren Containers",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Full Viewport",
+                      "value": "full",
+                      "default": ""
+                    },
+                    {
+                      "label": "Bigger 25%",
+                      "value": "bigger-25",
+                      "default": ""
+                    },
+                    {
+                      "label": "Bigger 45%",
+                      "value": "bigger-45",
+                      "default": ""
+                    },
+                    {
+                      "label": "Smaller 25%",
+                      "value": "smaller-25",
+                      "default": ""
+                    },
+                    {
+                      "label": "Smaller 50%",
+                      "value": "smaller-50",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new4": {
+                "name": "Anker",
+                "handle": "anchor",
+                "instructions": "Optionaler Anker f\u00fcr Sprungnavigationn",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Section Wrapper",
+      "handle": "objSection",
+      "instructions": "Teilsegment eines Inhaltsmoduls, kann wenn der Page Wrapper entfernt wird die Sektion \u00fcber die volle Browserbreite laufen.",
+      "required": false,
+      "type": "SuperTable_Label",
+      "typesettings": {
+        "value": ""
+      }
+    },
+    {
+      "group": "Meta",
+      "name": "SEO",
+      "handle": "seo",
+      "instructions": "",
+      "required": false,
+      "type": "Seomatic_Meta",
+      "typesettings": {
+        "assetSources": "*",
+        "seoMainEntityCategory": "CreativeWork",
+        "seoMainEntityOfPage": "WebPage",
+        "seoTitleSource": "field",
+        "seoTitleSourceField": "title",
+        "seoTitle": "",
+        "seoTitleSourceChangeable": 1,
+        "seoDescriptionSource": "custom",
+        "seoDescriptionSourceField": "title",
+        "seoDescription": "",
+        "seoDescriptionSourceChangeable": 1,
+        "seoKeywordsSource": "custom",
+        "seoKeywordsSourceField": "title",
+        "seoKeywords": "",
+        "seoKeywordsSourceChangeable": 1,
+        "seoImageIdSource": "custom",
+        "seoImageIdSourceChangeable": 1,
+        "seoImageTransform": "",
+        "twitterCardType": "",
+        "twitterCardTypeChangeable": 1,
+        "seoTwitterImageIdSource": "custom",
+        "seoTwitterImageIdSourceChangeable": 1,
+        "seoTwitterImageTransform": "",
+        "openGraphType": "",
+        "openGraphTypeChangeable": 1,
+        "seoFacebookImageIdSource": "custom",
+        "seoFacebookImageIdSourceChangeable": 1,
+        "seoFacebookImageTransform": "",
+        "robots": "",
+        "robotsChangeable": 1
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Slideout Box",
+      "handle": "objSlideOutBox",
+      "instructions": "Eine Content Box die per Click expandiert - gedacht um den Nutzer eher irrelevante Inhalte zu verstecken.",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "row",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Trigger",
+                "handle": "trigger",
+                "instructions": "Aktivierungszeile auf die geklickt wird",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new2": {
+                "name": "Content",
+                "handle": "body",
+                "instructions": "",
+                "required": 0,
+                "type": "RichText",
+                "width": "",
+                "typesettings": {
+                  "configFile": "",
+                  "availableAssetSources": "*",
+                  "availableTransforms": "*",
+                  "cleanupHtml": "",
+                  "purifyHtml": 1,
+                  "columnType": "text"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Slideout Box Options",
+      "handle": "setSlideOutBox",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Slider Setup",
+      "handle": "setSliderSetup",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Autoplay",
+                "handle": "autoplay",
+                "instructions": "Geschwindigkeit des Autoplay Modus",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Deaktiviert",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Slow",
+                      "value": "slow",
+                      "default": ""
+                    },
+                    {
+                      "label": "Medium",
+                      "value": "medium",
+                      "default": ""
+                    },
+                    {
+                      "label": "Fast",
+                      "value": "fast",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Animation Speed",
+                "handle": "speed",
+                "instructions": "Einstellung der Animationsgeschwindigkeit",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Slow",
+                      "value": "slow",
+                      "default": ""
+                    },
+                    {
+                      "label": "Medium",
+                      "value": "medium",
+                      "default": ""
+                    },
+                    {
+                      "label": "Fast",
+                      "value": "fast",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new3": {
+                "name": "Loop",
+                "handle": "loop",
+                "instructions": "Soll der Slider endlos laufen?",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new4": {
+                "name": "Hide Navigation",
+                "handle": "navigation",
+                "instructions": "Soll eine Navigation versteckt werden?",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new5": {
+                "name": "Hide Pagination",
+                "handle": "pagination",
+                "instructions": "Soll eine Pagination versteckt werden?",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new6": {
+                "name": "Autoheight",
+                "handle": "autoHeight",
+                "instructions": "Mit Autoheight ist die H\u00f6he der einzelnen Slides Dynamisch",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Slider Setup General",
+      "handle": "setSliderSetupGeneral",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Slide Position",
+                "handle": "position",
+                "instructions": "Position der Slides",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Center",
+                      "value": "center",
+                      "default": 1
+                    },
+                    {
+                      "label": "Left",
+                      "value": "left",
+                      "default": ""
+                    },
+                    {
+                      "label": "Right",
+                      "value": "right",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Slides per View",
+                "handle": "slidesPerView",
+                "instructions": "Anzahl der sichtbaren Slides",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Auto",
+                      "value": "auto",
+                      "default": ""
+                    },
+                    {
+                      "label": 2,
+                      "value": "two",
+                      "default": ""
+                    },
+                    {
+                      "label": 3,
+                      "value": "three",
+                      "default": ""
+                    },
+                    {
+                      "label": 4,
+                      "value": "four",
+                      "default": ""
+                    },
+                    {
+                      "label": 5,
+                      "value": "five",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new3": {
+                "name": "Space Between",
+                "handle": "spaceBetween",
+                "instructions": "Abst\u00e4nde zwischen den Slides",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new4": {
+                "name": "Group Cell",
+                "handle": "groupCell",
+                "instructions": "Damit k\u00f6nnen Slides gruppiert werden.",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Nicht gruppiert",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": 2,
+                      "value": 2,
+                      "default": ""
+                    },
+                    {
+                      "label": 3,
+                      "value": 3,
+                      "default": ""
+                    },
+                    {
+                      "label": 4,
+                      "value": 4,
+                      "default": ""
+                    },
+                    {
+                      "label": 5,
+                      "value": 5,
+                      "default": ""
+                    },
+                    {
+                      "label": 6,
+                      "value": 6,
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new5": {
+                "name": "Freescroll",
+                "handle": "freescroll",
+                "instructions": "Mit Freescroll kann der Slider frei beweg werden",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new6": {
+                "name": "Responsive",
+                "handle": "responsive",
+                "instructions": "Falls mehrere Slides gleichzeitig dargestellt werden, kann man mittels Responsive die Spaltenanzahl reduzieren bei kleinerem Viewport.",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Globals",
+      "name": "Social Links",
+      "handle": "socialLinks",
+      "instructions": "Links zu den Sozialen Netzwerken",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": null,
+        "selectionLabel": "Netzwerk hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Icon",
+                "handle": "socialIcon",
+                "instructions": "Name des Icons",
+                "required": 0,
+                "type": "Dropdown",
+                "width": 20,
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Facebook",
+                      "value": "facebook",
+                      "default": ""
+                    },
+                    {
+                      "label": "Twitter",
+                      "value": "twitter",
+                      "default": ""
+                    },
+                    {
+                      "label": "Googleplus",
+                      "value": "googleplus",
+                      "default": ""
+                    },
+                    {
+                      "label": "Pinterest",
+                      "value": "pinterest",
+                      "default": ""
+                    },
+                    {
+                      "label": "Instagram",
+                      "value": "instagram",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Link",
+                "handle": "socialLink",
+                "instructions": "",
+                "required": 0,
+                "type": "PlainText",
+                "width": 50,
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new3": {
+                "name": "Titel",
+                "handle": "socialTitle",
+                "instructions": "Beschriftung des Popovers",
+                "required": 0,
+                "type": "PlainText",
+                "width": 30,
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Spacer",
+      "handle": "objSpacer",
+      "instructions": "Element um den Abstand zu erweitern. Ein Spacer entspricht 20px",
+      "required": false,
+      "type": "Dropdown",
+      "typesettings": {
+        "options": [
+          {
+            "label": "0.25 Spacer",
+            "value": "--025",
+            "default": ""
+          },
+          {
+            "label": "0.50 Spacer",
+            "value": "--050",
+            "default": 1
+          },
+          {
+            "label": "0.75 Spacer",
+            "value": "--075",
+            "default": ""
+          },
+          {
+            "label": "1 Spacer",
+            "value": "--1",
+            "default": ""
+          },
+          {
+            "label": "2 Spacer",
+            "value": "--2",
+            "default": ""
+          },
+          {
+            "label": "3 Spacer",
+            "value": "--3",
+            "default": ""
+          },
+          {
+            "label": "4 Spacer",
+            "value": "--4",
+            "default": ""
+          },
+          {
+            "label": "5 Spacer",
+            "value": "--5",
+            "default": ""
+          },
+          {
+            "label": "6 Spacer",
+            "value": "--6",
+            "default": ""
+          },
+          {
+            "label": "7 Spacer",
+            "value": "--7",
+            "default": ""
+          },
+          {
+            "label": "8 Spacer",
+            "value": "--8",
+            "default": ""
+          },
+          {
+            "label": "9 Spacer",
+            "value": "--9",
+            "default": ""
+          },
+          {
+            "label": "10 Spacer",
+            "value": "--10",
+            "default": ""
+          }
+        ]
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Sprungnavigation",
+      "handle": "objJumpNavigation",
+      "instructions": "Schaltfl\u00e4chen f\u00fcr Sprungnavigationen",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": null,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Linkname",
+                "handle": "linkname",
+                "instructions": "Name des Links",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new2": {
+                "name": "Anker",
+                "handle": "anchor",
+                "instructions": "Name des Ankers ohne # (kein Sonderzeichen)",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "ObjectsOptions",
+      "name": "Sprungnavigation Options",
+      "handle": "setJumpNavigation",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new2": {
+                "name": "Layout",
+                "handle": "layout",
+                "instructions": "Das Defaultlayout ist eine einfache linksb\u00fcndige Aneinanderreihung der Links, bei voller Breite werden die Buttons so angeordnet das sie auf der vollen Breite Platz haben (brechen bei zu kleiner gr\u00f6\u00dfe aber um das die Buttons untereinander sind). Untereinander da sind die Buttons wie eine Liste angeordnet.",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Volle Breite",
+                      "value": "fullwidth",
+                      "default": ""
+                    },
+                    {
+                      "label": "Liste",
+                      "value": "list",
+                      "default": ""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Tab",
+      "handle": "objTab",
+      "instructions": "Das einzelne Tab, bitte den Titel des Tab eingeben",
+      "required": false,
+      "type": "PlainText",
+      "typesettings": {
+        "placeholder": "",
+        "maxLength": "",
+        "multiline": "",
+        "initialRows": 4
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Tab Wrapper",
+      "handle": "objTabWrapper",
+      "instructions": "Wrapper der die Tab Gruppe b\u00fcndelt",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Style",
+                "handle": "style",
+                "instructions": "",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Style 1",
+                      "value": "style1",
+                      "default": ""
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "group": "Objects",
+      "name": "Trennline",
+      "handle": "objHorizontalRuler",
+      "instructions": "",
+      "required": false,
+      "type": "Dropdown",
+      "typesettings": {
+        "options": [
+          {
+            "label": "Default",
+            "value": "default",
+            "default": 1
+          },
+          {
+            "label": "Style 1",
+            "value": "style1",
+            "default": ""
+          }
+        ]
+      }
+    },
+    {
+      "group": "Builder",
+      "name": "Content Builder",
+      "handle": "contentBuilder",
+      "instructions": "",
+      "required": false,
+      "type": "Neo",
+      "typesettings": {
+        "maxBlocks": null,
+        "groups": {
+          "name": [
+            "Textmodule",
+            "Mediamodule",
+            "Interaktiv",
+            "Layout",
+            "Wrapper"
+          ],
+          "sortOrder": [
+            1,
+            7,
+            15,
+            19,
+            23
+          ]
+        },
+        "blockTypes": {
+          "new0": {
+            "sortOrder": 2,
+            "name": "Headline",
+            "handle": "objHeadline",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objHeadline"
+              ],
+              "Options": [
+                "setHeadline"
+              ]
+            }
+          },
+          "new1": {
+            "sortOrder": 3,
+            "name": "Richtext",
+            "handle": "objRichtext",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objRichtext"
+              ],
+              "Options": [
+                "setRichtext"
+              ]
+            }
+          },
+          "new2": {
+            "sortOrder": 4,
+            "name": "Markdown",
+            "handle": "objMarkdown",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objMarkdown"
+              ],
+              "Options": [
+                "setMarkdown"
+              ]
+            }
+          },
+          "new3": {
+            "sortOrder": 5,
+            "name": "Liste",
+            "handle": "objList",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objList"
+              ],
+              "Options": [
+                "setList"
+              ]
+            }
+          },
+          "new4": {
+            "sortOrder": 6,
+            "name": "Zitat",
+            "handle": "objQuote",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objQuote"
+              ],
+              "Options": [
+                "setQuote"
+              ]
+            }
+          },
+          "new5": {
+            "sortOrder": 8,
+            "name": "Media Box",
+            "handle": "objMediaBox",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objMediaBox"
+              ],
+              "Options": [
+                "setMediaBox"
+              ]
+            }
+          },
+          "new6": {
+            "sortOrder": 9,
+            "name": "Card",
+            "handle": "objCard",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objCard"
+              ],
+              "Options": [
+                "setCard"
+              ]
+            }
+          },
+          "new7": {
+            "sortOrder": 10,
+            "name": "Media Image",
+            "handle": "objMediaImage",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objMediaImage"
+              ],
+              "Options": [
+                "setMediaImage"
+              ]
+            }
+          },
+          "new8": {
+            "sortOrder": 11,
+            "name": "Galerie",
+            "handle": "objGallery",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objGallery"
+              ],
+              "Options": [
+                "setGallery"
+              ]
+            }
+          },
+          "new9": {
+            "sortOrder": 12,
+            "name": "Image Slider",
+            "handle": "objImageSlider",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objImageSlider"
+              ],
+              "Options": [
+                "setImageSlider"
+              ]
+            }
+          },
+          "new10": {
+            "sortOrder": 13,
+            "name": "Card Slider",
+            "handle": "objCardSlider",
+            "maxBlocks": null,
+            "childBlocks": [
+              "objCard"
+            ],
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objCardSlider"
+              ],
+              "Options": [
+                "setCardSlider"
+              ]
+            }
+          },
+          "new11": {
+            "sortOrder": 14,
+            "name": "Iframe Content",
+            "handle": "objIframeContent",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objIframeContent"
+              ],
+              "Options": [
+                "setIframeContent"
+              ]
+            }
+          },
+          "new12": {
+            "sortOrder": 16,
+            "name": "Button",
+            "handle": "objButton",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objButton"
+              ],
+              "Options": [
+                "setButton"
+              ]
+            }
+          },
+          "new13": {
+            "sortOrder": 17,
+            "name": "Slide Out Box",
+            "handle": "objSlideOutBox",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objSlideOutBox"
+              ],
+              "Options": [
+                "setSlideOutBox"
+              ]
+            }
+          },
+          "new14": {
+            "sortOrder": 18,
+            "name": "Sprungnavigation",
+            "handle": "objJumpNavigation",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objJumpNavigation"
+              ],
+              "Options": [
+                "setJumpNavigation"
+              ]
+            }
+          },
+          "new15": {
+            "sortOrder": 20,
+            "name": "Anker",
+            "handle": "objAnchor",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objAnchor"
+              ],
+              "Options": [
+                "setAnchor"
+              ]
+            }
+          },
+          "new16": {
+            "sortOrder": 21,
+            "name": "Trennlinie",
+            "handle": "objHorizontalRuler",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Tab 1": [
+                "objHorizontalRuler"
+              ]
+            }
+          },
+          "new17": {
+            "sortOrder": 22,
+            "name": "Spacer",
+            "handle": "objSpacer",
+            "maxBlocks": null,
+            "childBlocks": "",
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Tab 1": [
+                "objSpacer"
+              ]
+            }
+          },
+          "new18": {
+            "sortOrder": 24,
+            "name": "Section Wrapper",
+            "handle": "objSection",
+            "maxBlocks": null,
+            "childBlocks": [
+              "objSectionColumn"
+            ],
+            "maxChildBlocks": 4,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Main": [
+                "objSection"
+              ],
+              "Layout": [
+                "setSection",
+                "setSectionLayout"
+              ]
+            }
+          },
+          "new19": {
+            "sortOrder": 25,
+            "name": "Section Column",
+            "handle": "objSectionColumn",
+            "maxBlocks": null,
+            "childBlocks": [
+              "objHeadline",
+              "objRichtext",
+              "objMarkdown",
+              "objList",
+              "objQuote",
+              "objMediaBox",
+              "objCard",
+              "objMediaImage",
+              "objGallery",
+              "objImageSlider",
+              "objCardSlider",
+              "objIframeContent",
+              "objButton",
+              "objSlideOutBox",
+              "objJumpNavigation",
+              "objAnchor",
+              "objHorizontalRuler",
+              "objSpacer",
+              "objAccordionWrapper",
+              "objTabWrapper"
+            ],
+            "maxChildBlocks": null,
+            "topLevel": 0,
+            "fieldLayout": {
+              "Main": [
+                "objSectionColumn"
+              ],
+              "Options": [
+                "setSectionColumn"
+              ]
+            }
+          },
+          "new20": {
+            "sortOrder": 26,
+            "name": "Accordion Wrapper",
+            "handle": "objAccordionWrapper",
+            "maxBlocks": null,
+            "childBlocks": [
+              "objAccordion"
+            ],
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Tab 1": [
+                "objAccordionWrapper"
+              ]
+            }
+          },
+          "new21": {
+            "sortOrder": 27,
+            "name": "Accordion",
+            "handle": "objAccordion",
+            "maxBlocks": null,
+            "childBlocks": [
+              "objHeadline",
+              "objRichtext",
+              "objMarkdown",
+              "objList",
+              "objQuote",
+              "objMediaBox",
+              "objMediaImage",
+              "objGallery",
+              "objImageSlider",
+              "objCardSlider",
+              "objIframeContent",
+              "objButton",
+              "objSlideOutBox",
+              "objJumpNavigation",
+              "objAnchor",
+              "objHorizontalRuler",
+              "objSpacer"
+            ],
+            "maxChildBlocks": null,
+            "topLevel": 0,
+            "fieldLayout": {
+              "Tab 1": [
+                "objAccordion"
+              ]
+            }
+          },
+          "new22": {
+            "sortOrder": 28,
+            "name": "Tab Wrapper",
+            "handle": "objTabWrapper",
+            "maxBlocks": null,
+            "childBlocks": [
+              "objTab"
+            ],
+            "maxChildBlocks": null,
+            "topLevel": 1,
+            "fieldLayout": {
+              "Tab 1": [
+                "objTabWrapper"
+              ]
+            }
+          },
+          "new23": {
+            "sortOrder": 29,
+            "name": "Tab",
+            "handle": "objTab",
+            "maxBlocks": null,
+            "childBlocks": [
+              "objHeadline",
+              "objRichtext",
+              "objMarkdown",
+              "objList",
+              "objQuote",
+              "objMediaBox",
+              "objMediaImage",
+              "objGallery",
+              "objImageSlider",
+              "objCardSlider",
+              "objIframeContent",
+              "objButton",
+              "objSlideOutBox",
+              "objJumpNavigation",
+              "objAnchor",
+              "objHorizontalRuler",
+              "objSpacer"
+            ],
+            "maxChildBlocks": null,
+            "topLevel": 0,
+            "fieldLayout": {
+              "Tab 1": [
+                "objTab"
+              ]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "entryTypes": [
+    {
+      "sectionHandle": "error404",
+      "hasTitleField": 0,
+      "titleLabel": null,
+      "titleFormat": "{section.name|raw}",
+      "name": 404,
+      "handle": "error404",
+      "fieldLayout": []
+    },
+    {
+      "sectionHandle": "blog",
+      "hasTitleField": 1,
+      "titleLabel": "Title",
+      "name": "Blog",
+      "handle": "blog",
+      "fieldLayout": {
+        "Content": [
+          "body",
+          "contentBuilder"
+        ],
+        "Meta": [
+          "blogCategories",
+          "articleImage",
+          "seo"
+        ]
+      }
+    },
+    {
+      "sectionHandle": "pages",
+      "hasTitleField": 1,
+      "titleLabel": "Titel",
+      "name": "Seiten",
+      "handle": "pages",
+      "fieldLayout": {
+        "Content": [
+          "contentBuilder"
+        ],
+        "Meta": [
+          "articleImage",
+          "seo"
+        ]
+      }
+    }
+  ],
+  "sources": [
+    {
+      "name": "Bilder",
+      "handle": "images",
+      "type": "Local",
+      "settings": {
+        "path": "{basePath}uploads\/images\/",
+        "publicURLs": 1,
+        "url": "{baseUrl}uploads\/images\/"
+      },
+      "fieldLayout": {
+        "Inhalt": [
+          "focalpoint"
+        ]
+      }
+    }
+  ],
+  "globals": [
+    {
+      "name": "Footer",
+      "handle": "footer",
+      "fieldLayout": {
+        "Inhalt": [
+          "copyright"
+        ]
+      }
+    },
+    {
+      "name": "Main",
+      "handle": "main",
+      "fieldLayout": {
+        "Inhalt": [
+          "socialLinks"
+        ]
+      }
+    }
+  ],
+  "categories": [
+    {
+      "name": "Blog Kategorien",
+      "handle": "blogCategories",
+      "hasUrls": 1,
+      "template": "section_blog\/_category",
+      "maxLevels": 1,
+      "locales": {
+        "de_de": {
+          "urlFormat": "blog\/kategorien\/{slug}",
+          "nestedUrlFormat": null
+        }
+      },
+      "fieldLayout": {
+        "Content": [
+          "body"
+        ],
+        "Meta": [
+          "seo"
+        ]
+      }
+    },
+    {
+      "name": "Settings: Image Slider",
+      "handle": "settingsImageSlider",
+      "hasUrls": 0,
+      "template": null,
+      "maxLevels": 1,
+      "locales": {
+        "de_de": {
+          "urlFormat": null,
+          "nestedUrlFormat": null
+        }
+      },
+      "fieldLayout": {
+        "Tab 1": [
+          "setSliderSetupGeneral",
+          "setSliderSetup"
+        ]
+      }
+    }
+  ],
+  "routes": [
+    {
+      "locale": null,
+      "urlParts": [
+        "rss"
+      ],
+      "template": "rss\/blog.rss",
+      "sortOrder": 1
+    },
+    {
+      "locale": null,
+      "urlParts": [
+        "feed"
+      ],
+      "template": "rss\/blog.rss",
+      "sortOrder": 2
+    },
+    {
+      "locale": null,
+      "urlParts": [
+        "rss\/blog.rss"
+      ],
+      "template": "rss\/blog.rss",
+      "sortOrder": 3
+    }
+  ]
+}

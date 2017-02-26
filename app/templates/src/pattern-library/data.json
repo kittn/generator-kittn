@@ -1,0 +1,211 @@
+{
+  "project_logo": null,
+  "project_favicon": "favicon.png",
+  "project_name": "<%= projectname %>",
+  "project_url": "<%= projecturl %>",
+  "copyright_start_year": null,
+  "client_name": null,
+  "client_url": null,
+  "creators": [
+    {
+      "name": "<%= projectauthor %>",
+      "url": null
+    }
+  ],
+  "theme": {
+    "border_color": "#E0E6ED",
+    "highlight_color": "#F9FAFC",
+    "brand_color": "#00585C",
+    "background_color": "#FFFFFF",
+    "code_highlight_theme": "github",
+    "override_code_highlight_bg": "#F9FAFC",
+    "sample_dark_background": "#333333",
+    "show_project_name": true,
+    "show_version": true,
+    "max_width": null,
+    "titles": {
+      "library_title": false,
+      "pages_title": "Overview",
+      "components_title": "Components"
+    }
+  },
+  "assets": {
+    "css": [
+      "assets/css/<%= projectcssfilename %>.css"
+    ],
+    "js": [
+      "assets/js/main.js"
+    ]
+  },
+  "font_libraries": {
+    "typekit_code": null,
+    "typography_web_fonts": null,
+    "google_web_fonts": null
+  },
+  "content": {
+    "show_first_page_on_load": true,
+    "title": "Overview",
+    "pages": [
+      {
+        "name": "introduction",
+        "title": "Introduction",
+        "file": "./pages/intro.md"
+      }
+    ]
+  },
+  "groups": [
+    {
+      "name": "branding",
+      "title": "Branding",
+      "components": [
+        {
+          "group": "branding",
+          "name": "color-palette",
+          "title": "Colors",
+          "type": "colors",
+          "colors": [
+            "#f29300",
+            "#3c3c3c",
+            "#636363",
+            "#eeeeee",
+            "#ffffff",
+            "#f8f8f8",
+            "#ef462a",
+            "#38cc3b",
+            "#f5a11c",
+            "#f8e64b"
+          ]
+        },
+        {
+          "group": "branding",
+          "name": "logo",
+          "title": "Logo",
+          "width": "half",
+          "options": {
+            "sample_dark_background": false
+          }
+        },
+        {
+          "group": "branding",
+          "name": "logo-dark",
+          "title": "Logo Dark",
+          "width": "half",
+          "options": {
+            "sample_dark_background": true
+          }
+        },
+        {
+          "group": "branding",
+          "name": "typo",
+          "title": "Typo",
+          "options": {
+            "disable_code_sample": true
+          }
+        }
+      ]
+    },
+    {
+      "name": "objects",
+      "title": "Objects",
+      "components": [
+        {
+          "group": "objects",
+          "name": "button",
+          "title": "Button"
+        },
+        {
+          "group": "objects",
+          "name": "anchor",
+          "title": "Anchor",
+          "options": {
+            "sample_dark_background": false
+          }
+        },
+        {
+          "group": "objects",
+          "name": "galley",
+          "title": "Gallery"
+        },
+        {
+          "group": "objects",
+          "name": "headline",
+          "title": "Headline"
+        },
+        {
+          "group": "objects",
+          "name": "horizontalruler",
+          "title": "Horizontal Ruler"
+        },
+        {
+          "group": "objects",
+          "name": "iframecontent",
+          "title": "Iframe Content"
+        },
+        {
+          "group": "objects",
+          "name": "imageslider",
+          "title": "Image Slider"
+        },
+        {
+          "group": "objects",
+          "name": "jumpnavigation",
+          "title": "Jump Navigation"
+        },
+        {
+          "group": "objects",
+          "name": "list",
+          "title": "List"
+        },
+        {
+          "group": "objects",
+          "name": "mediabox",
+          "title": "Media Box",
+          "options": {
+            "sample_dark_background": false
+          }
+        },
+        {
+          "group": "objects",
+          "name": "mediaimage",
+          "title": "Media Image"
+        },
+        {
+          "group": "objects",
+          "name": "quote",
+          "title": "Quote"
+        },
+        {
+          "group": "objects",
+          "name": "slideoutbox",
+          "title": "Slide Out Box"
+        },
+        {
+          "group": "objects",
+          "name": "spacer",
+          "title": "Spacer"
+        },
+        {
+          "group": "objects",
+          "name": "textslider",
+          "title": "Text Slider"
+        },
+        {
+          "group": "objects",
+          "name": "accordion",
+          "title": "Accordion"
+        },
+        {
+          "group": "objects",
+          "name": "tab",
+          "title": "Tab"
+        },
+        {
+          "group": "objects",
+          "name": "viewportspan",
+          "title": "Viewport Span"
+        }
+      ]
+    }
+  ],
+  "version": "1.9.3"
+}

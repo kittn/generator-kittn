@@ -1,0 +1,106 @@
+/*
+  Button
+  ======
+  Creates a button with different styles. In addition, size, width and position can be adjusted.
+*/
+
+.o-button {
+  // Component Config
+  $api: (
+    selector: 'button',
+    breakpoint: 'm',
+    margin-bottom: s(1),
+    size: (
+      small: (
+        fontsize: 13,
+        padding: 5px 10px
+      ),
+      regular: (
+        fontsize: 16,
+        padding: 10px 15px
+      ),
+      big: (
+        fontsize: 22,
+        padding: 15px 30px
+      )
+    ),
+    color: (
+      default: (
+        regular: (
+          text: c('white'),
+          background: c('primary'),
+          border: c('primary')
+        ),
+        hover: (
+          text: c('primary'),
+          background: transparent,
+          border: c('primary')
+        )
+      )
+    )
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Base Modifier -------------------------
+  // [root]--big
+  &--big {
+    @include fontsize(v($api,size,big,fontsize));
+    padding: v($api,size,big,padding);
+  }
+
+  // [root]--small
+  &--small {
+    @include fontsize(v($api,size,small,fontsize));
+    padding: v($api,size,small,padding);
+  }
+
+  // [root]--fullwidth
+  &--fullwidth#{$root}--fullwidth {
+    display: block;
+  }
+
+  // [root]--center
+  &--center {
+    text-align: center;
+  }
+
+  // [root]--right
+  &--right {
+    text-align: right;
+  }
+
+  // Childs --------------------------------
+
+  // [root]__element
+  &__element {
+    margin-bottom: v($api,margin-bottom);
+    font-weight: 700;
+    display: inline-block;
+    line-height: 1;
+    text-align: center;
+    padding: v($api,size,regular,padding);
+    transition: all 300ms ease-in-out;
+    transition-property: color, background-color;
+
+    &:hover {}
+
+    // Default Style
+    &#{$root}--s-default {
+      color: v($api,color,default,regular,text);
+      border: 2px solid v($api,color,default,regular,border);
+      background-color: v($api,color,default,regular,background);
+
+      &:hover {
+        background-color: v($api,color,default,hover,background);
+        color: v($api,color,default,hover,text);
+      }
+    }
+
+    // Overwrite for secondary Color Style
+    &#{$root}--s-style1 {
+      &:hover {}
+    }
+  }
+}

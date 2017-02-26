@@ -1,9 +1,11 @@
 {
   "dist": {<% if (projectUsage == 'Building HTML Prototypes' || projectUsage == 'Integrate in KirbyCMS') { %>
+    "dist": "dist/",
     "base": "dist/",
     "markup": "dist/",
+    "assets": "dist/assets/",
     "browserSyncDir": "dist/",
-    "css": "dist/",
+    "css": "dist/assets/css/",
     "js": "dist/assets/js/",
     "fonts": "dist/assets/fonts/",
     "cssimg": "dist/assets/img/",
@@ -11,10 +13,12 @@
     "vectors": "dist/assets/img/svgfiles/",
     "contentimage": "dist/images/",
     "webpackjsassets": "assets/js/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
+    "dist": "dist/",
     "base": "dist/wp-content/themes/<%= projectname %>/",
     "markup": "dist/wp-content/themes/<%= projectname %>/",
+    "assets": "dist/wp-content/themes/<%= projectname %>/assets/",
     "browserSyncDir": "dist/wp-content/themes/<%= projectname %>/",
-    "css": "dist/wp-content/themes/<%= projectname %>/",
+    "css": "dist/wp-content/themes/<%= projectname %>/assets/css/",
     "js": "dist/wp-content/themes/<%= projectname %>/assets/js/",
     "fonts": "dist/wp-content/themes/<%= projectname %>/assets/fonts/",
     "cssimg": "dist/wp-content/themes/<%= projectname %>/assets/img/",
@@ -22,10 +26,12 @@
     "vectors": "dist/wp-content/themes/<%= projectname %>/assets/img/svgfiles/",
     "contentimage": "dist/wp-content/themes/<%= projectname %>/images/",
     "webpackjsassets": "wp-content/themes/<%= projectname %>/assets/js/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
+    "dist": "dist/",
     "base": "dist/public/",
     "markup": "dist/craft/",
+    "assets": "dist/public/assets/",
     "browserSyncDir": "dist/public/",
-    "css": "dist/public/",
+    "css": "dist/public/assets/css/",
     "js": "dist/public/assets/js/",
     "fonts": "dist/public/assets/fonts/",
     "cssimg": "dist/public/assets/img/",
@@ -37,15 +43,15 @@
   },
   "templatePath": {
     "root": "./",
-    "css": "./",
+    "css": "assets/css/",
     "js": "assets/js/",
     "fonts": "assets/fonts/",
     "cssimage": "assets/img/",
     "contentimage": "images/"
   },
-  "css": {<% if (projectstylecompiler === 'Sass with PostCSS') { %>
+  "css": {
     "spacer": "20px",
-    "baseFontSize": "16px",<% } %>
+    "baseFontSize": "16px",
     "filename": "<%= projectcssfilename %>",
     "prefix": [
       "last 2 version",<% if (projectiecompatible == true ) { %>
@@ -64,7 +70,7 @@
     ]
   },
   "template": {
-    "globalTitle": "myPage",
+    "globalTitle": "<%= projectname %>",
     "compiler": <% if ( projectstructure == 'Twig Template' && projectUsage == 'Building HTML Prototypes') { %>true<% } else { %>false<% } %>
   },
   "browsersync": {
@@ -85,7 +91,9 @@
       "files": [],
       "filename": "scripts.js"
     },
-    "fonts": [],
+    "fonts": [
+      "src/fonts/**"
+    ],
     "launch": [
       {"src": "favicons/**", "dest": "assets/img/system/"},<% if (projectUsage == 'Building HTML Prototypes') { %>
       {"src": "facebook-og-image.jpg", "dest": "assets/img/system/"},
@@ -175,7 +183,9 @@
   "src": {
     "style": "src/style/",
     "template": "src/template/",<% if (projectUsage === 'Integrate in Wordpress' ) { %>
-    "structure": "src/structure/template/",<% } else { %>
+    "structure": "src/structure/templates/",
+    "config": "src/structure/config/",
+    "plugins": "src/structure/plugins/",<% } else { %>
     "structure": "src/structure/",<% } %>
     "js": "src/js/",
     "bower": "src/bower/",

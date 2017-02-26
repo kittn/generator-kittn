@@ -8,18 +8,22 @@ import runSequence from 'run-sequence'
 const initTask = (cb) => {
 
   // Overwrite the Changed Check
-  global.changedOverride = true
+  global.checkChanged = false
 
-  runSequence(<% if ( projectstylecompiler === 'Sass with PostCSS' ) { %>
+  runSequence(
     [
       'sassdoc:generate'
-    ],<% } %>
+    ],
     [
       'copy:launch',
       'copy:fonts',
       'rebuild:js',
       'rebuild:images',
-      'copy:contentimages'
+      'copy:contentimages'<% if (projectUsage === 'Integrate in Wordpress' ) { %>,
+      'copy:wpconfig',
+      'copy:wpplugins'<% } else if (projectUsage === 'Integrate in CraftCMS') { %>,
+      'copy:craftindex',
+      'copy:craftenv'<% } %>
     ],
     [
       'compiler:css',

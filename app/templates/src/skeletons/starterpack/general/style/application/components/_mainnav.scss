@@ -1,0 +1,46 @@
+/*
+  Mainnavigation
+  ==============
+  description
+
+  **Elements**
+*/
+.c-mainnav {
+  // Component Config
+  $api: (
+    selector: 'mainnav',
+    breakpoint: 'm'
+  );
+
+  // Build root selector
+  $root: '.c-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+
+
+  // Tags ----------------------------------
+  a {
+    text-decoration: underline;
+    transition: all 300ms ease-in;
+    font-size: 18px;
+    display: inline-block;
+
+    &:hover {
+      text-decoration: none;
+      color: c('white');
+    }
+
+    &.is-active {
+      font-weight: bold;
+      color: c('white');
+    }
+  }
+  // Base Modifier -------------------------
+
+  // Childs --------------------------------
+
+}

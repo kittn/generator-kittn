@@ -1,0 +1,17 @@
+/*
+  Container
+  =========
+  Container Element
+*/
+%e-container {
+  // Component Config
+  $api: (
+    selector: 'container',
+  );
+
+  // Build root selector
+  $root: '%e-#{v($api,selector)}';
+
+  // Base Style ----------------------------
+  @include container($width: v($kittn-page-size,minsize) v($kittn-page-size,maxsize), $spacing: 20);
+}

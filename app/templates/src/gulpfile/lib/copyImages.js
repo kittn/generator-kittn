@@ -15,7 +15,7 @@ const $ = gulpLoadPlugins()
 const copyImages = (srcfiles, distfiles) => {
   return gulp
     .src(srcfiles + '**/*.{png,jpeg,jpg,gif,webp,svg}')
-    .pipe(global.changedOverride === false ? $.changed(kc.dist.bitmaps) : gutil.noop())
+    .pipe(global.checkChanged === true ? $.changed(kc.dist.bitmaps) : gutil.noop())
     .pipe(gulp.dest(distfiles))
 }
 

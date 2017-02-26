@@ -1,0 +1,42 @@
+/*
+  Footernavigation
+  ================
+  description
+
+  **Elements**
+*/
+.c-footernav {
+  // Component Config
+  $api: (
+    selector: 'footernav',
+    breakpoint: 'm'
+  );
+
+  // Build root selector
+  $root: '.c-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+  a {
+    transition: all 300ms ease-in;
+
+    &:hover {
+      text-decoration: underline;
+      color: c('white');
+    }
+
+    &.is-active {
+      font-weight: bold;
+    }
+  }
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  // Childs --------------------------------
+
+}

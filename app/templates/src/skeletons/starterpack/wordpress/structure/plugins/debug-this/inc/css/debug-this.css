@@ -1,0 +1,112 @@
+/**
+ * Debug This
+ */
+
+/* The WordPress admin style */
+body {
+	background: #f1f1f1;
+	color: #444;
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+	font-size: 14px;
+	line-height: 1.4em;
+}
+
+.debug-this {
+	padding: 20px;
+}
+
+/* The Kint "Called from" footer is useless since it only shows [Debug This] files. */
+.debug > .kint > footer {
+	display: none;
+}
+
+h3 {
+	font-size: 16px;
+	line-height: 36px;
+	margin: 10px 0;
+	padding: 0;
+	font-family: inherit;
+	font-weight: normal;
+}
+
+ul, ol {
+	padding: 0;
+	margin: 0 0 10px 20px;
+}
+
+a {
+	color: #08c;
+	text-decoration: none;
+}
+
+pre {
+	background-color: #FFF;
+	border: 1px solid #CCC;
+	color: #333;
+	display: block;
+	font-family: Consolas, Monaco, monospace;
+	font-size: 13px;
+	line-height: 20px;
+	margin: 0 0 20px;
+	padding: 10px;
+	white-space: pre-wrap;
+	word-break: break-all;
+	word-wrap: break-word;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 3px;
+}
+
+.current {
+	background: yellow;
+}
+
+.error {
+	color: red;
+}
+
+.okay {
+	color: green;
+}
+
+.emphasize {
+	background: #2467AC;
+	color: #FFF;
+	padding-left: 10px;
+}
+
+.underline {
+	text-decoration: underline;
+}
+
+.escape {
+	position: absolute;
+	right: 25px;
+	text-align: center;
+}
+
+.escape:hover {
+	color: #CD0000;
+	text-decoration: none;
+}
+
+.header-links {
+	margin-left: 0;
+}
+
+.header-links li {
+	list-style: none;
+	display: inline-block;
+	margin-right: 10px;
+	border-right: 1px solid #777;
+	padding-right: 10px;
+}
+
+.header-links li:last-child {
+	border: none;
+}
+
+/* TwentyFifteen theme */
+body:before {
+	display: none;
+}

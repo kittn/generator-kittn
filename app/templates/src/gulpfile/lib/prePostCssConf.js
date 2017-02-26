@@ -4,13 +4,16 @@ const preCssConf = () => {
   return [
     function(css) { // Spacer Function
       css.walkDecls(function (decl) {
+        const SPACER = parseInt(kc.css.spacer, 10)
+        const BASE = parseInt(kc.css.baseFontSize, 10)
         if (decl.value.match(/spacer/)) {
-          const SPACER = parseInt(kc.css.spacer, 10)
           decl.value = SPACER * parseFloat(decl.value) + 'px'
         }
         if (decl.value.match(/pxrem/)) {
-          const BASE = parseInt(kc.css.baseFontSize, 10)
           decl.value = parseFloat(decl.value) / BASE + 'rem'
+        }
+        if (decl.value.match(/rspace/)) {
+          decl.value = SPACER * parseFloat(decl.value) / BASE  + 'rem'
         }
       })
     },

@@ -1,0 +1,21 @@
+/*
+  Headline
+  ========
+  Simple Headline Module
+*/
+.o-headline {
+  // Component Config
+  $api: (
+    selector: 'headline',
+    breakpoint: 'm'
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // [root]--s-style1
+  &--s-style1 {
+    font-style: italic;
+    color: c('primary')
+  }
+}

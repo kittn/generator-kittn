@@ -8,7 +8,7 @@ import runSequence from 'run-sequence'
 const defaultTask = (cb) => {
 
   // Overwrite Changed Checks
-  global.changedOverride = false
+  global.checkChanged = true
 
   runSequence(
     [

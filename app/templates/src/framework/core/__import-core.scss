@@ -14,9 +14,9 @@
 @import "functions/unitcheck";
 @import "functions/argcheck";
 @import "functions/quantify-queries";
-@import "functions/container-queries";
 @import "functions/family";
 @import "functions/fluidtype";
+@import "functions/eqcss";
 
 // Mixins
 @import "mixins/jacket";
@@ -26,6 +26,7 @@
 @import "mixins/constructor";
 @import "mixins/fontface";
 @import "mixins/pos";
+@import "mixins/fluidtype";
 
 // Placeholder
 @import "placeholder/antialias";

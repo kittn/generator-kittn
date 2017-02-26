@@ -1,0 +1,81 @@
+/*
+  Jumpnavigation
+  ==============
+  Creates a jump navigation that jumps to set anchors.
+*/
+.o-jumpnavigation {
+  // Component Config
+  $api: (
+    selector: 'jumpnavigation',
+    breakpoint: 'm',
+    breaksize: 500px,
+    margin-bottom: s(1),
+    gutter: 2px
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Temp Style Storage  -------------------
+  // Store  : @include store(storagename) {}
+  // Unload : @include yield(storagename);
+
+  // Base Style ----------------------------
+  margin-bottom: v($api,margin-bottom);
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+  // [root]--l-fullwidth
+  &#{$root}--l-fullwidth  {
+    @include eq((min-width: 500px)) {
+      eq_this {
+        display: flex;
+        justify-content: space-between;
+        margin-left: 0 - v($api,gutter);
+        margin-right: 0 - v($api,gutter);
+      }
+    }
+  }
+
+  // Childs --------------------------------
+
+  // [root]__link
+  &__link {
+    display: inline-block;
+
+    #{$root}--l-fullwidth & {
+      display: block;
+      text-align: center;
+      margin-bottom: v($api,gutter);
+
+      @include eqr($root, (min-width: #{v($api,breaksize)})) {
+        flex: 1;
+        margin-bottom: 0;
+        margin-left: v($api,gutter);
+        margin-right: v($api,gutter);
+      }
+    }
+
+    #{$root}--l-list & {
+      display: block;
+      text-align: center;
+      margin-bottom: v($api,gutter);
+    }
+
+    // Style Modifier
+    #{$root}--s-style1 & {
+      background-color: lighten(c('primary'),20);
+      color: darken(c('primary'),20);
+      @include padding(10 10);
+      transition: all 400ms ease-in;
+      font-weight: bold;
+
+      &:hover {
+        background-color: darken(c('primary'),10);
+        color: c('white')
+      }
+    }
+  }
+}
+

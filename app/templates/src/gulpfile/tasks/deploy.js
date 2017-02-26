@@ -10,7 +10,7 @@ import runSequence from 'run-sequence'
 const deployTask = (cb) => {
 
   // Overwrite the Changed Check
-  global.changedOverride = true
+  global.checkChanged = true
 
   runSequence(
     [
@@ -21,7 +21,9 @@ const deployTask = (cb) => {
       'copy:fonts',
       'rebuild:js',
       'rebuild:images',
-      'copy:contentimages'
+      'copy:contentimages'<% if (projectUsage === 'Integrate in Wordpress' ) { %>,
+      'copy:wpconfig',
+      'copy:wpplugins'<% } %>
     ],
     [
       'compiler:css',

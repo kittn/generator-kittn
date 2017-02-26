@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "3.83.4",
+  "version": "4.0.0-beta.10",
   "description": "Kittn Scaffolding and Frontend Toolchain",
   "license": "MIT",
   "main": "app/index.js",
@@ -10,10 +10,6 @@
     {
       "name": "Lars Eichler",
       "email": "larseichler.le@gmail.com"
-    },
-    {
-      "name": "David Hellmann",
-      "email": "davidhellmann.com@gmail.com"
     },
     {
       "name": "Martin Herweg",
@@ -34,7 +30,6 @@
     "postcss",
     "libsass",
     "svgsprite",
-    "ruby-sass",
     "yeoman",
     "webpack",
     "typescript",
@@ -47,8 +42,14 @@
   "dependencies": {
     "chalk": "^1.1.3",
     "clear-terminal": "0.0.2",
+    "command-exists": "github:mathisonian/command-exists#pull/6/head",
+    "mkdirp": "^0.5.1",
+    "mysql": "^2.13.0",
+    "randomstring": "^1.1.5",
     "yeoman-generator": "^0.24.1",
     "yosay": "^1.2.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "shelljs": "^0.7.5"
+  }
 }

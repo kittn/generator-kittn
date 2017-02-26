@@ -1,0 +1,199 @@
+/*
+  Section
+  =======
+  Subsegment of a content module, when the page wrapper is removed the section can run over the full browser width.
+*/
+.o-section {
+  // Component Config
+  $api: (
+    selector: 'section',
+    gutter: (
+      default: 10px,
+      style1: 20px,
+      style2: 1px,
+      style3: 0
+    ),
+    columns: (
+      twoColumns: (
+        groupname: 'child-2',
+        breaksize: 600px,
+        layout: (
+          'default': 50% 50%,
+          'cl-1-2': 33.33% 66.66%,
+          'cl-2-1': 66.66% 33.33%,
+          'cl-3-1': 75% 25%,
+          'cl-1-3': 25% 75%
+        )
+      ),
+      threeColumns: (
+        breaksize: 800px,
+        groupname: 'child-3',
+        layout: (
+          'default': 33.33% 33.33% 33.33%,
+          'cl-2-6-2': 20% 60% 20%,
+          'cl-3-5-2': 30% 50% 20%,
+          'cl-2-5-3': 20% 50% 30%
+        )
+      ),
+      fourColumns: (
+        breaksize: 1000px,
+        groupname: 'child-4',
+        layout: (
+          'default': 20% 20% 20% 20%,
+          'cl-2-3-4-1': 20% 30% 40% 10%,
+          'cl-2-3-3-2': 20% 30% 30% 20%
+        )
+      )
+    )
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Base Modifier -------------------------
+
+  // Fullheight
+  &--fullheight {
+    #{$root}__row {
+      min-height: 100vh;
+    }
+  }
+
+  // Global Style Gutter
+  @each $key, $gutter in v($api,gutter) {
+    &--s-#{$key} {
+      #{$root}__row {
+        margin-left: 0 - $gutter;
+        margin-right: 0 - $gutter;
+      }
+      #{$root}__column {
+        padding-left: $gutter;
+        padding-right: $gutter;
+      }
+    }
+  }
+
+  // Childs --------------------------------
+
+  // [root]__container
+  &__container {
+    @extend %e-container;
+
+    // Container in Container, remove inner Gutter
+    .o-area__container & {
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    // Container Layouttypes
+    // [root]--full
+    &--full {
+      width: 100%;
+      max-width: inherit;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    // [root]--bigger-45
+    &--bigger-45 {
+      max-width: v($kittn-page-size,maxsize) * 1.45;
+    }
+    // [root]--bigger-25
+    &--bigger-25 {
+      max-width: v($kittn-page-size,maxsize) * 1.25;
+    }
+    // [root]--smaller-25
+    &--smaller-25 {
+      max-width: v($kittn-page-size,maxsize) * .75;
+    }
+    // [root]--smaller-50
+    &--smaller-50 {
+      max-width: v($kittn-page-size,maxsize) * .50;
+    }
+  }
+
+  // [root]__row
+  &__row {
+    justify-content: stretch;
+    display: flex;
+
+    // Generate Column Layouts
+    @each $columnStyleName, $setup in v($api,columns) {
+      @each $key, $column in v($setup,layout) {
+        &--#{$key} {
+          #{$root}__column {
+            @for $i from 1 through length($column) {
+              &:nth-of-type(#{$i}) {
+                width: nth($column,$i);
+              }
+            }
+          }
+        }
+      }
+
+      // Reset Columns
+      &--#{v($setup, groupname)} {
+        @include eq((max-width: #{v($setup, breaksize)})) {
+          eq_this {
+            display: block;
+          }
+          #{$root}__column {
+            width: auto !important;
+          }
+        }
+      }
+    }
+
+    // Reset Columns
+    &--child-1 {
+      display: block;
+    }
+  }
+
+  // [root]__column
+  &__column {
+    width: 100%;
+    margin-bottom: 10px;
+
+    *:last-child {
+      margin-bottom: 0;
+    }
+
+    // Column Sizes
+    @each $columnStyleName, $setup in v($api,columns) {
+      @each $key, $column in v($setup,layout) {
+        &--#{$key} {
+          #{$root}__column {
+            @for $i from 1 through length($column) {
+              &:nth-of-type(#{$i}) {
+                width: nth($column,$i);
+              }
+            }
+          }
+        }
+      }
+    }
+
+    // Column Style Modifier
+    &--style1 {
+      padding: 10px;
+      background: c('primary');
+    }
+  }
+
+  // Inner Column
+  &__inner {
+    flex: 1 1 auto;
+    position: relative;
+
+    // Column inner Align
+    &--align-left { text-align: left; }
+    &--align-center { text-align: center; }
+    &--align-right { text-align: right; }
+
+    // Column inner VerticalAlign
+    &--valign-top { align-self: flex-start; }
+    &--valign-middle { align-self: center; }
+    &--valign-bottom { align-self: flex-end; }
+  }
+}
