@@ -70,17 +70,18 @@ const browserSyncTask = () => {
       },
 
       server: bsServer,
+      https: kc.browsersync.https,
       open: kc.browsersync.openbrowser,
       files: [
         kc.dist.js + '**/*.js',
         kc.dist.css + '**/*.css',<% if (projectUsage == 'Integrate in CraftCMS' ) { %>
-    kc.dist.markup + 'templates/**/*.{php,html,twig}',<% } else if (projectUsage == 'Integrate in Wordpress') { %>
-    kc.dist.markup + '**/*.{php,html,png,txt,md}',<% } else { %>
-    kc.dist.base + '**/*.{php,html}',<% } %>
-  kc.dist.cssimg + '**/*.{jpg,gif,png,svg}'
-
-]
-    });
+        kc.dist.markup + 'templates/**/*.{php,html,twig}',<% } else if (projectUsage == 'Integrate in Wordpress') { %>
+        kc.dist.markup + '**/*.{php,html,png,txt,md}',<% } else { %>
+        kc.dist.base + '**/*.{php,html}',<% } %>
+        kc.dist.cssimg + '**/*.{jpg,gif,png,svg}'
+      ]
+    }
+  );
 };
 
 gulp.task('browser-sync', browserSyncTask)

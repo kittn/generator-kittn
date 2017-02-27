@@ -75,7 +75,8 @@
   },
   "browsersync": {
     "openbrowser": true,
-    "proxy": <% if (projectcredential) { %>"<%= credentialdomain %>"<% } else { %>false<% } %>
+    "https": <% if credentialprotocol == 'https' { %>true,<% } else { %>false<% } %>
+    "proxy": <% if (projectcredential) { %>"<% if credentialprotocol == 'https' { %>https://<% } %><%= credentialdomain %>"<% } else { %>false<% } %>
   },
   "files": {
     "jsApp": {
