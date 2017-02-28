@@ -75,8 +75,8 @@
   },
   "browsersync": {
     "openbrowser": true,
-    "https": <% if credentialprotocol == 'https' { %>true,<% } else { %>false<% } %>
-    "proxy": <% if (projectcredential) { %>"<% if credentialprotocol == 'https' { %>https://<% } %><%= credentialdomain %>"<% } else { %>false<% } %>
+    "https": <% if (credentialprotocol == 'https') { %>true<% } else { %>false<% } %>,
+    "proxy": <% if (projectcredential) { %>"<% if (credentialprotocol == 'https') { %>https://<% } %><%= credentialdomain %>"<% } else { %>false<% } %>
   },
   "files": {
     "jsApp": {
@@ -101,7 +101,7 @@
       {"src": "twitter-og-image.jpg", "dest": "assets/img/system/"},
       {"src": ".htaccess", "dest": ""},
       {"src": "404.html", "dest": ""},
-      {"src": "robots.txt", "dest": ""}<% } if (projectUsage == 'Integrate in Wordpress' || projectUsage == 'Integrate in KirbyCMS' || projectUsage == 'Integrate in CraftCMS') { %>
+      {"src": "robots.txt", "dest": ""}<% } if (projectUsage == 'Integrate in Wordpress' || projectUsage == 'Integrate in KirbyCMS' || projectUsage == 'Integrate in CraftCMS') { %>,
       {"src": "facebook-og-image.jpg", "dest": "assets/img/system/"},
       {"src": "twitter-og-image.jpg", "dest": "assets/img/system/"}<% } %>
     ]
@@ -183,7 +183,7 @@
   },
   "src": {
     "style": "src/style/",
-    "template": "src/template/",<% if (projectUsage === 'Integrate in Wordpress' ) { %>
+    "template": "src/template/",<% if (projectUsage == 'Integrate in Wordpress' ) { %>
     "structure": "src/structure/templates/",
     "config": "src/structure/config/",
     "plugins": "src/structure/plugins/",<% } else { %>
