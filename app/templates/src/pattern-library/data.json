@@ -2,7 +2,7 @@
   "project_logo": null,
   "project_favicon": "favicon.png",
   "project_name": "<%= projectname %>",
-  "project_url": "<%= projecturl %>",
+  "project_url": "",
   "copyright_start_year": null,
   "client_name": null,
   "client_url": null,
