@@ -70,7 +70,7 @@ var KittnGenerator = yeoman.Base.extend({
     })
 
     // check git info
-    commandExists('wp')
+    commandExists('git')
       .then(function(command) {
         var gitInfo = {
           name: exec('git config user.name', {silent: true}).replace(/\n/g, ''),
