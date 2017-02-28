@@ -1,8 +1,16 @@
 <?php
 /**
-  Richtext Module
-  ===============
-  Output Richtext Content
+*  Richtext Module
+*  ===============
+*  Output Richtext Content
 */
 
-the_sub_field('richtext');
+// Default Vars
+$classname = 'o-richtext';
+$style = get_sub_field('style');
+?>
+
+<?php // Build Element Block ?>
+<div class="<?= $classname; ?><?= $style != 'default' ? ' '.$classname.'--s-'.$style : '' ?>">
+  <?= get_sub_field('richtext'); ?>
+</div>

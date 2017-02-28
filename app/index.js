@@ -149,7 +149,7 @@ var KittnGenerator = yeoman.Base.extend({
         type: 'confirm',
         name: 'projectcraftbp',
         message: chalk.cyan.underline.bold('Craft Bonus Round') + '\n\xa0 Do you want that the Generator implement a Craft Starterpack? \n\xa0 Adding a Contentbuilder, the Stylefiles (in ITCSS) and some JS Files for Lightboxes, and some Craft Plugins',
-        default: false
+        default: true
       },
       {
         when: function(props) {
@@ -157,8 +157,8 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'confirm',
         name: 'projectwordpressbp',
-        message: chalk.cyan.underline.bold('Craft Bonus Round') + '\n\xa0 Do you want that the Generator implement a Wordpress Starterpack? \n\xa0 Adding a Contentbuilder, the Stylefiles (in ITCSS) and some JS Files for Lightboxes, and some Craft Plugins. You will need ACF 5 Pro',
-        default: false
+        message: chalk.cyan.underline.bold('Wordpress Bonus Round') + '\n\xa0 Do you want that the Generator implement a Wordpress Starterpack? \n\xa0 Adding a Contentbuilder, the Stylefiles (in ITCSS) and some JS Files for Lightboxes, and some WP Plugins. You will need ACF 5 Pro',
+        default: true
       },
       {
         when: function(props) {
@@ -324,7 +324,7 @@ var KittnGenerator = yeoman.Base.extend({
         type: 'confirm',
         name: 'projectastrum',
         message: chalk.cyan.underline.bold('Astrum Pattern Lib') + '\n\xa0 Would you like to build up your Pattern Library with Astrum?',
-        default: false
+        default: true
       },
       {
         type: 'input',
@@ -438,6 +438,7 @@ var KittnGenerator = yeoman.Base.extend({
       projectwordpressbp   : this.projectwordpressbp,
       credentialdbopen     : this.credentialdbopen,
       saltKeys             : this.saltKeys,
+      projectpath          : process.cwd(),
       pkg: this.pkg
     };
 

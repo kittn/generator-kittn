@@ -5,16 +5,17 @@
 
   @param {string} name                   = Classname
   @param {object} data                   = Dataobject
-  @param {string} data.style             = Optional Styleclassname
   @param {string} data.trigger           = Label the click area
   @param {string} data.body              = Hidden Content
+  @param {object} options                = Optionsobject
+  @param {string} options.style          = Optional Styleclassname
 #}
 
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-slideoutbox' %}
 
 {# Set Style #}
-{% set style = data.style != 'default' ? ' '~classname~'--'~data.style : '' %}
+{% set style = options.style != 'default' ? ' '~classname~'--s-'~options.style : '' %}
 
 {# Build Element Block #}
 <div class="{{ classname }}{{ style }}" role="tablist">

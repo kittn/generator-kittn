@@ -1,8 +1,8 @@
 <?php
 /**
- * List Module
- * ===========
- * Generate a List
+ * List
+ * ====
+ * Creates a list of freely selectable bullets and individual styling
  */
 
 // Default Vars
@@ -15,17 +15,7 @@ if (get_sub_field('listtype') == 'ul') {
   $listtype = 'ul';
 
   // Add Liststyles
-  switch (get_sub_field('style')) :
-    case 'circle' :
-      $liststyle = ' '.$classname.'--circle';
-      break;
-    case 'square' :
-      $liststyle = ' '.$classname.'--square';
-      break;
-    case 'custom' :
-      $liststyle = ' '.$classname.'--custom';
-      break;
-  endswitch;
+  $liststyle = ' '.$classname.'--'.get_sub_field('style');
 
 } else {
   $listtype = 'ol';
@@ -37,7 +27,7 @@ if (get_sub_field('listtype') == 'ul') {
 <?php if (have_rows('list')) : ?>
 <<?= $listtype; ?> class="<?= $classname; ?><?= $liststyle; ?>" role="list">
   <?php while( have_rows('list') ) : the_row(); ?>
-    <li class="<?= $classname; ?>__entry"><?= get_sub_field('entry'); ?></li>
+    <li class="<?= $classname.'__entry'; ?>"><?= get_sub_field('entry'); ?></li>
   <?php endwhile; ?>
 </<?= $listtype; ?>>
 <?php endif; ?>

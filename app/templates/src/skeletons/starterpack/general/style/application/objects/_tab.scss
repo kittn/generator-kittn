@@ -1,9 +1,8 @@
 /*
-  tab
-
-  description
-
-  **Elements**
+  Tab
+  ===
+  Tabs only with CSS, therefore only one tab container per page. If this is not enough,
+  the functionality must be expanded with JS. The Container tab contains a ContentBuilder.
 */
 .o-tab {
   // Component Config
@@ -25,14 +24,61 @@
   flex-wrap: wrap;
   margin-bottom: v($api,margin-bottom);
 
-
   // Tags ----------------------------------
 
   // Base Modifier -------------------------
 
+  &--s-default {
+    #{$root}__header {
+      color: lighten(c('primary'),0);
+      margin-right: 20px;
+    }
+
+    #{$root}__body {
+
+      padding-bottom: 10px;
+
+      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+        border-top: 1px solid lighten(c('gray'),45);
+        padding-top: 10px;
+      }
+    }
+
+    #{$root}__input:checked + #{$root}__header {
+      color: lighten(c('main'),20);
+      // border-bottom: 1px solid lighten(c('primary'),20);
+      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+        border-bottom: 1px solid lighten(c('primary'),20);
+      }
+    }
+  }
+
+  &--s-style1 {
+    #{$root}__header {
+      @include padding(10);
+      background-color: darken(c('white'),0);
+      box-shadow: inset 0 -20px 50px rgba(0,0,0,.07);
+      border: 1px solid lighten(c('gray'),50);
+      border-bottom: 0;
+      color: lighten(c('main'),30);
+    }
+
+    #{$root}__body {
+      background-color: c('white');
+      border: 1px solid lighten(c('gray'),50);
+      @include padding(20px);
+    }
+
+    #{$root}__input:checked + #{$root}__header {
+      background-color: lighten(c('primary'),35);
+      color: lighten(c('main'),10);
+    }
+  }
+
   // Childs --------------------------------
   // [root]__header
   &__header {
+    @include fontsize(18);
     cursor: pointer;
     width: 100%;
     margin-top: 2px;
@@ -41,26 +87,14 @@
     padding-top: 10px;
     padding-bottom: 10px;
     transition: all 300ms ease-in-out;
-    @include fontsize(18);
     line-height: 1;
 
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')} & {
+    @include eqr($root, (min-width: #{v($api,breakpoint)})) {
       margin-right: 0.2rem;
       margin-top: 0;
       width: auto;
       -webkit-box-ordinal-group: 2;
       order: 1;
-    }
-
-    #{$root}--s-default & {
-      color: lighten(c('primary'),0);
-      padding-right: 10px;
-    }
-
-    // Style Modifier
-    #{$root}--s-style1 & {
-      @include padding(10);
-      background-color: lighten(c('gray'),45);
     }
   }
 
@@ -70,26 +104,13 @@
     width: 100%;
     display: none;
 
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')} & {
+    @include eqr($root, (min-width: #{v($api,breakpoint)})) {
       -webkit-box-ordinal-group: 100;
       order: 99;
     }
 
     *:last-child {
       margin-bottom: 0;
-    }
-
-    #{$root}--s-default & {
-      padding-top: 0px;
-      padding-bottom: 10px;
-      border-bottom: 1px solid lighten(c('gray'),40);
-    }
-
-      // Style Modifier
-    #{$root}--s-style1 & {
-      background-color: lighten(c('gray'),56);
-      border: 1px solid lighten(c('gray'),50);
-      @include padding(20px);
     }
   }
 
@@ -99,20 +120,7 @@
     opacity: 0;
 
     &:checked {
-      & + #{$root}__header {
-
-        #{$root}--s-default & {
-          color: lighten(c('main'),20);
-        }
-
-        #{$root}--s-style1 & {
-          background-color: lighten(c('primary'),10);
-          color: c('white');
-        }
-      }
-
       & + #{$root}__header + #{$root}__body { display: block; }
     }
-
   }
 }

@@ -15,7 +15,13 @@ return array(
     'defaultWeekStartDay' => 1,
     'sendPoweredByHeader' => false,
     'cooldownDuration' => 0,
+    'omitScriptNameInUrls' => true,
+    'rootUrl' => getenv('CRAFTENV_SITE_URL'),
     'siteUrl' => getenv('CRAFTENV_SITE_URL'),
+//    'siteUrl' => array( // Mulilanguage Config
+//      'de' => getenv('CRAFTENV_SITE_URL'),
+//      'en' => getenv('CRAFTENV_SITE_URL').'en/'
+//    ),
     'craftEnv' => CRAFT_ENVIRONMENT,
     'environment' => CRAFT_ENVIRONMENT,
     // Set the environmental variables
@@ -23,6 +29,12 @@ return array(
       'baseUrl'  => getenv('CRAFTENV_BASE_URL'),
       'basePath' => getenv('CRAFTENV_BASE_PATH'),
     ),
+    'currentLanguage' => array(
+      'de_de' => 'de',
+      'de' => 'de',
+      'en_us' => 'en',
+      'en' => 'en'
+    )
   ),
   // Productive Environment
   'productive'  => array(

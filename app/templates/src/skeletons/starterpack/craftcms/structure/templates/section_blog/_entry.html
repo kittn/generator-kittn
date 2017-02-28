@@ -4,14 +4,16 @@
  #}
 
 {# Subtemplate Setup #}
+{# `classToInner` Is an array in which all classes are listed from the outer container to the container of the content builder. Used for the section element. #}
 {% set templateBriefing = {
-  bodyclass: 'blog-entry'
+  bodyclass: 'blog-entry',
+  classToInner: ['o-area__container']
 } %}
 
 {% extends '_layout/main-layout.html' %}
 
 {% block content %}
-  <div class="o-layout__container">
+  <div class="o-area__container">
     {% cache globally using key craft.request.path %}
     <article role="article" itemscope itemtype="http://schema.org/Article">
       <p>{{ entry.postDate | date('d.F Y') }}</p>

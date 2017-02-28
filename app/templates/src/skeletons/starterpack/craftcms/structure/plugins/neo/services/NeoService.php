@@ -80,6 +80,7 @@ class NeoService extends BaseApplicationComponent
 		$owner = $fieldType->element;
 		$field = $fieldType->model;
 		$blocks = $owner->getContent()->getAttribute($field->handle);
+		$locale = $this->_getFieldLocale($fieldType);
 
 		if($blocks === null)
 		{
@@ -98,43 +99,21 @@ class NeoService extends BaseApplicationComponent
 		try
 		{
 			// Make sure that the blocks for this field/owner respect the field's translation setting
-			$this->_applyFieldTranslationSetting($owner, $field, $blocks);
+			$this->_applyFieldTranslationSetting($fieldType, $blocks);
 
 			$this->saveStructure($structure, $fieldType);
-
-			// Build the block structure by mapping block sort orders and levels to parent/child relationships
-			$blockIds = [];
-			$parentStack = [];
 
 			foreach($blocks as $block)
 			{
 				$block->ownerId = $owner->id;
-				$block->ownerLocale = $this->_getFieldLocale($fieldType);
+				$block->ownerLocale = $locale;
+			}
 
-				// Remove parent blocks until either empty or a parent block is only one level below this one (meaning
-				// it'll be the parent of this block)
-				while(!empty($parentStack) && $block->level <= $parentStack[count($parentStack) - 1]->level)
-				{
-					array_pop($parentStack);
-				}
+			$this->saveBlocks($blocks, $structure);
 
-				$this->saveBlock($block, false);
-
-				// If there are no blocks in our stack, it must be a root level block
-				if(empty($parentStack))
-				{
-					craft()->structures->appendToRoot($structure->id, $block);
-				}
-				// Otherwise, the block at the top of the stack will be the parent
-				else
-				{
-					$parentBlock = $parentStack[count($parentStack) - 1];
-					craft()->structures->append($structure->id, $block, $parentBlock);
-				}
-
-				// The current block may potentially be a parent block as well, so save it to the stack
-				array_push($parentStack, $block);
-
+			$blockIds = [];
+			foreach($blocks as $block)
+			{
 				$blockIds[] = $block->id;
 			}
 
@@ -684,6 +663,44 @@ class NeoService extends BaseApplicationComponent
 	}
 
 	/**
+	 * Generates the search keywords from a block.
+	 *
+	 * @param Neo_BlockModel $block
+	 * @return string
+	 * @throws Exception
+	 */
+	public function getBlockKeywords(Neo_BlockModel $block)
+	{
+		$keywords = [];
+
+		$contentTable = craft()->content->contentTable;
+		$fieldColumnPrefix = craft()->content->fieldColumnPrefix;
+		$fieldContext = craft()->content->fieldContext;
+
+		craft()->content->contentTable = $block->getContentTable();
+		craft()->content->fieldColumnPrefix = $block->getFieldColumnPrefix();
+		craft()->content->fieldContext = $block->getFieldContext();
+
+		foreach(craft()->fields->getAllFields() as $field)
+		{
+			$fieldType = $field->getFieldType();
+
+			if($fieldType)
+			{
+				$fieldType->element = $block;
+				$handle = $field->handle;
+				$keywords[] = $fieldType->getSearchKeywords($block->getFieldValue($handle));
+			}
+		}
+
+		craft()->content->contentTable = $contentTable;
+		craft()->content->fieldColumnPrefix = $fieldColumnPrefix;
+		craft()->content->fieldContext = $fieldContext;
+
+		return StringHelper::arrayToString($keywords, ' ');
+	}
+
+	/**
 	 * Runs validation on a block, and saves any errors to the block.
 	 *
 	 * @param Neo_BlockModel $block
@@ -713,6 +730,61 @@ class NeoService extends BaseApplicationComponent
 	}
 
 	/**
+	 * Saves a list of blocks to the database, and saves them to the structure.
+	 *
+	 * @param array $blocks
+	 * @param StructureModel $structure
+	 * @return bool
+	 * @throws \Exception
+	 */
+	public function saveBlocks(array $blocks, StructureModel $structure)
+	{
+		$transaction = $this->beginTransaction();
+		try
+		{
+			// Build the block structure by mapping block sort orders and levels to parent/child relationships
+			$parentStack = [];
+
+			foreach($blocks as $block)
+			{
+				// Remove parent blocks until either empty or a parent block is only one level below this one (meaning
+				// it'll be the parent of this block)
+				while(!empty($parentStack) && $block->level <= $parentStack[count($parentStack) - 1]->level)
+				{
+					array_pop($parentStack);
+				}
+
+				$this->saveBlock($block, false);
+
+				// If there are no blocks in our stack, it must be a root level block
+				if(empty($parentStack))
+				{
+					craft()->structures->appendToRoot($structure->id, $block);
+				}
+				// Otherwise, the block at the top of the stack will be the parent
+				else
+				{
+					$parentBlock = $parentStack[count($parentStack) - 1];
+					craft()->structures->append($structure->id, $block, $parentBlock);
+				}
+
+				// The current block may potentially be a parent block as well, so save it to the stack
+				array_push($parentStack, $block);
+
+				$blockIds[] = $block->id;
+			}
+		}
+		catch(\Exception $e)
+		{
+			$this->rollbackTransaction($transaction);
+
+			throw $e;
+		}
+
+		return true;
+	}
+
+	/**
 	 * Saves a block to the database.
 	 *
 	 * @param Neo_BlockModel $block
@@ -723,7 +795,10 @@ class NeoService extends BaseApplicationComponent
 	 */
 	public function saveBlock(Neo_BlockModel $block, $validate = true)
 	{
-		if($block->modified && (!$validate || $this->validateBlock($block)))
+		$isModified = (craft()->config->get('saveModifiedBlocksOnly', 'neo') ? $block->modified : true);
+		$isValid = ($validate ? $this->validateBlock($block) : true);
+
+		if($isModified && $isValid)
 		{
 			$blockRecord = $this->_getBlockRecord($block);
 			$isNewBlock = $blockRecord->isNewRecord();
@@ -915,13 +990,18 @@ class NeoService extends BaseApplicationComponent
 	 * Returns the structure for a field.
 	 *
 	 * @param NeoFieldType $fieldType
+	 * @param $locale
 	 * @return StructureModel|bool
 	 */
-	public function getStructure(NeoFieldType $fieldType)
+	public function getStructure(NeoFieldType $fieldType, $locale = false)
 	{
 		$owner = $fieldType->element;
 		$field = $fieldType->model;
-		$locale = $this->_getFieldLocale($fieldType);
+
+		if($locale === false)
+		{
+			$locale = $this->_getFieldLocale($fieldType);
+		}
 
 		$result = craft()->db->createCommand()
 			->select('structureId')
@@ -953,14 +1033,19 @@ class NeoService extends BaseApplicationComponent
 	 *
 	 * @param StructureModel $structure
 	 * @param NeoFieldType $fieldType
+	 * @param $locale
 	 * @return bool
 	 * @throws \Exception
 	 */
-	public function saveStructure(StructureModel $structure, NeoFieldType $fieldType)
+	public function saveStructure(StructureModel $structure, NeoFieldType $fieldType, $locale = false)
 	{
 		$owner = $fieldType->element;
 		$field = $fieldType->model;
-		$locale = $this->_getFieldLocale($fieldType);
+
+		if($locale === false)
+		{
+			$locale = $this->_getFieldLocale($fieldType);
+		}
 
 		$blockStructure = new Neo_BlockStructureRecord();
 
@@ -993,19 +1078,24 @@ class NeoService extends BaseApplicationComponent
 	 * Deletes the structure for a field from the database.
 	 *
 	 * @param NeoFieldType $fieldType
+	 * @param $locale
 	 * @return bool
 	 * @throws \Exception
 	 */
-	public function deleteStructure(NeoFieldType $fieldType)
+	public function deleteStructure(NeoFieldType $fieldType, $locale = false)
 	{
 		$owner = $fieldType->element;
 		$field = $fieldType->model;
-		$locale = $this->_getFieldLocale($fieldType);
+
+		if($locale === false)
+		{
+			$locale = $this->_getFieldLocale($fieldType);
+		}
 
 		$transaction = $this->beginTransaction();
 		try
 		{
-			$blockStructure = $this->getStructure($fieldType);
+			$blockStructure = $this->getStructure($fieldType, $locale);
 
 			if($blockStructure)
 			{
@@ -1075,6 +1165,7 @@ class NeoService extends BaseApplicationComponent
 	public function convertFieldToMatrix(FieldModel $neoField)
 	{
 		$neoFieldType = $neoField->getFieldType();
+		$globalFields = craft()->fields->getAllFields('id');
 
 		if($neoFieldType instanceof NeoFieldType)
 		{
@@ -1097,8 +1188,11 @@ class NeoService extends BaseApplicationComponent
 
 				$neoBlocks = [];
 				$matrixBlocks = [];
+				$matrixBlockTypeIdsByBlockId = [];
 				$neoToMatrixBlockTypeIds = [];
 				$neoToMatrixBlockIds = [];
+				$matrixBlockTypeFieldIds = [];
+				$newRelations = [];
 
 				foreach(craft()->i18n->getSiteLocales() as $locale)
 				{
@@ -1140,6 +1234,20 @@ class NeoService extends BaseApplicationComponent
 				{
 					$neoBlockTypeId = $neoBlockTypeIds[$matrixBlockType->handle];
 					$neoToMatrixBlockTypeIds[$neoBlockTypeId] = $matrixBlockType->id;
+
+					// Create mapping from newly saved block type field handles to their ID's
+					// This is so that relations can be updated later on with the new field ID
+					$matrixFieldLayout = $matrixBlockType->getFieldLayout();
+					$matrixFields = $matrixFieldLayout->getFields();
+
+					$fieldIds = [];
+					foreach($matrixFields as $matrixFieldLayoutField)
+					{
+						$matrixField = $matrixFieldLayoutField->getField();
+						$fieldIds[$matrixField->handle] = $matrixField->id;
+					}
+
+					$matrixBlockTypeFieldIds[$matrixBlockType->id] = $fieldIds;
 				}
 
 				foreach($matrixBlocks as $matrixBlock)
@@ -1183,7 +1291,46 @@ class NeoService extends BaseApplicationComponent
 
 					// Save the new Matrix block ID in case it has different content locales to save
 					$neoToMatrixBlockIds[$neoBlockId] = $matrixBlock->id;
+					$matrixBlockTypeIdsByBlockId[$matrixBlock->id] = $matrixBlock->typeId;
 				}
+
+				// Update the relations with the new Matrix block ID's (sourceId) and Matrix field ID's
+				$relations = craft()->db->createCommand()
+					->select('fieldId, sourceId, sourceLocale, targetId, sortOrder')
+					->from('relations')
+					->where(['in', 'sourceId', array_keys($neoToMatrixBlockIds)])
+					->queryAll();
+
+				if($relations)
+				{
+					foreach($relations as $relation)
+					{
+						$neoBlockId = $relation['sourceId'];
+						$matrixBlockId = $neoToMatrixBlockIds[$neoBlockId];
+						$matrixBlockTypeId = $matrixBlockTypeIdsByBlockId[$matrixBlockId];
+
+						$globalFieldId = $relation['fieldId'];
+						$globalField = $globalFields[$globalFieldId];
+						$matrixFieldIds = $matrixBlockTypeFieldIds[$matrixBlockTypeId];
+						$matrixFieldId = $matrixFieldIds[$globalField->handle];
+
+						$newRelations[] = [
+							$matrixFieldId,
+							$matrixBlockId,
+							$relation['sourceLocale'],
+							$relation['targetId'],
+							$relation['sortOrder'],
+						];
+					}
+				}
+
+				craft()->db->createCommand()->insertAll('relations', [
+					'fieldId',
+					'sourceId',
+					'sourceLocale',
+					'targetId',
+					'sortOrder',
+				], $newRelations);
 
 				$this->commitTransaction($transaction);
 
@@ -1330,7 +1477,7 @@ class NeoService extends BaseApplicationComponent
 		return $matrixBlock;
 	}
 
-	
+
 	// Protected methods
 
 	/**
@@ -1368,13 +1515,13 @@ class NeoService extends BaseApplicationComponent
 			$transaction->rollback();
 		}
 	}
-	
+
 
 	// Private methods
 
 	/**
 	 * Changes how an array is indexed based on it's containing objects properties.
-	 * 
+	 *
 	 * @param $list
 	 * @param $property
 	 * @return array
@@ -1496,13 +1643,15 @@ class NeoService extends BaseApplicationComponent
 	 * Manages migrating a field's values to/from a locale if required. Looks through all blocks associated with the
 	 * field, and modifies their locale status appropriately.
 	 *
-	 * @param $owner
-	 * @param $field
+	 * @param $fieldType
 	 * @param $blocks
 	 * @throws \Exception
 	 */
-	private function _applyFieldTranslationSetting($owner, $field, $blocks)
+	private function _applyFieldTranslationSetting(NeoFieldType $fieldType, $blocks)
 	{
+		$owner = $fieldType->element;
+		$field = $fieldType->model;
+
 		// Does it look like any work is needed here?
 		$applyNewTranslationSetting = false;
 
@@ -1520,6 +1669,14 @@ class NeoService extends BaseApplicationComponent
 
 		if($applyNewTranslationSetting)
 		{
+			// Clear the existing structure so it can be regenerated with correct locale settings
+			$this->deleteStructure($fieldType, $field->translatable ? null : $owner->locale);
+
+			foreach($blocks as $block)
+			{
+				$block->modified = true;
+			}
+
 			// Get all of the blocks for this field/owner that use the other locales, whose ownerLocale attribute is set
 			// incorrectly
 			$blocksInOtherLocales = [];
@@ -1567,6 +1724,11 @@ class NeoService extends BaseApplicationComponent
 					// Duplicate the other-locale blocks so each locale has their own unique set of blocks
 					foreach($blocksInOtherLocales as $localeId => $blocksInOtherLocale)
 					{
+						$newBlocks = [];
+						$newStructure = new StructureModel();
+
+						$this->saveStructure($newStructure, $fieldType, $localeId);
+
 						foreach($blocksInOtherLocale as $blockInOtherLocale)
 						{
 							$originalBlockId = $blockInOtherLocale->id;
@@ -1575,10 +1737,12 @@ class NeoService extends BaseApplicationComponent
 							$blockInOtherLocale->modified = true;
 							$blockInOtherLocale->getContent()->id = null;
 							$blockInOtherLocale->ownerLocale = $localeId;
-							$this->saveBlock($blockInOtherLocale, false);
 
-							$newBlockIds[$originalBlockId][$localeId] = $blockInOtherLocale->id;
+							$newBlocks[] = $blockInOtherLocale;
+							$newBlockIds[$originalBlockId][$localeId] = $blockInOtherLocale;
 						}
+
+						$this->saveBlocks($newBlocks, $newStructure);
 					}
 
 					// Duplicate the relations, too.  First by getting all of the existing relations for the original
@@ -1601,14 +1765,27 @@ class NeoService extends BaseApplicationComponent
 							// Just to be safe...
 							if(isset($newBlockIds[$originalBlockId]))
 							{
-								foreach($newBlockIds[$originalBlockId] as $localeId => $newBlockId)
+								foreach($newBlockIds[$originalBlockId] as $localeId => $newBlock)
 								{
-									$rows[] = [$relation['fieldId'], $newBlockId, $relation['sourceLocale'], $relation['targetId'], $relation['sortOrder']];
+									$newBlockId = $newBlock->id;
+									$rows[] = [
+										$relation['fieldId'],
+										$newBlockId,
+										$relation['sourceLocale'],
+										$relation['targetId'],
+										$relation['sortOrder'],
+									];
 								}
 							}
 						}
 
-						craft()->db->createCommand()->insertAll('relations', ['fieldId', 'sourceId', 'sourceLocale', 'targetId', 'sortOrder'], $rows);
+						craft()->db->createCommand()->insertAll('relations', [
+							'fieldId',
+							'sourceId',
+							'sourceLocale',
+							'targetId',
+							'sortOrder',
+						], $rows);
 					}
 				}
 				else
@@ -1622,6 +1799,8 @@ class NeoService extends BaseApplicationComponent
 						{
 							$blockIdsToDelete[] = $blockInOtherLocale->id;
 						}
+
+						$this->deleteStructure($fieldType, $localeId);
 					}
 
 					$this->deleteBlockById($blockIdsToDelete);

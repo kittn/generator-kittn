@@ -1,0 +1,52 @@
+{% if not craft.users or craft.users.can('accessPlugin-gitplugin') %}
+
+	{% import "_includes/forms" as forms %}
+
+	<style>
+		.gitPlugins-widget {
+			display: flex;
+		}
+
+		.gitPlugins-widget__input {
+			flex: 1 1 70%;
+		}
+
+		.gitPlugins-widget__row {
+			flex: 1 1 30%;
+		}
+
+		.gitPlugins-widget__input__txt {
+			border-top-right-radius: 0 !important;
+			border-bottom-right-radius: 0 !important;
+		}
+
+		.gitPlugins-widget__action__btn {
+			border-top-left-radius: 0 !important;
+			border-bottom-left-radius: 0 !important;
+			border-left: 0 !important;
+			margin-left: -1px;
+		}
+	</style>
+
+	<form method="post">
+		<!-- Csrf -->
+		{{ getCsrfInput() }}
+
+		<!-- Hidden action input -->
+		<input type="hidden" name="action" value="gitPlugins/get/getPlugin">
+
+		<!-- Widget -->
+		<div class="gitPlugins-widget">
+			<div class="gitPlugins-widget__input">
+				<input type="url" name="url" value="" placeholder="Github Url" id="url" class="text fullwidth gitPlugins-widget__input__txt">
+			</div>
+			<div class="gitPlugins-widget__action">
+				<button class="btn center gitPlugins-widget__action__btn" type="submit" data-icon="download">
+					Get
+				</button>
+			</div>
+		</div>
+	</form>
+{% else %}
+	You don't have permission to access this plugin.
+{% endif %}

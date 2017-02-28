@@ -18,5 +18,7 @@
   <!--[if lt IE 9]>
   <script src="<?= get_template_directory_uri(); ?>/assets/js/html5shiv.js"></script>
   <![endif]-->
-  <script>document.getElementsByTagName('html')[0].classList.add('plj')</script>
+  <?php if (WP_ENV != 'local') : ?>
+    <script>document.getElementsByTagName('html')[0].classList.add('plj')</script>
+  <?php endif; ?>
 </head>

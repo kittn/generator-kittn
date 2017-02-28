@@ -1,80 +1,75 @@
 {#
   Gallery
   =======
-  Gallery with Lightbox (Photoswipe) support and a Flexbox Layout
+  Creates a gallery object in two different layouts. The simple layout lays the images together, the smart layout tries to arrange the images in the photogrid. Pictures can be enlarged on click. You can also use the gallery for individual images.
 
-  @param {string} name                              = Classname
-  @param {object} data                              = Dataobject (Matrix Field)
-  @param {object} data.block                        = Matrix Object
-  @param {string} data.block.type                   = Matrix Type (must be `gallery`)
-  @param {string} data.block.layoutType             = Arrangement of the gallery [smart, simple]
-  @param {string} data.block.ratio                  = Optional adjustable ratio (for `simple` Gallery)
-  @param {string} data.block.width                  = Optional Width (for `simple` Gallery)
-  @param {object} data.block.galleryEntries         = Galleryentries
-  @param {object} data.block.galleryEntries.photo   = Image
-  @param {string} data.block.galleryEntries.caption = Optional Caption
+  @param {string} name                   = Classname
+  @param {object} data                   = Galleryentries
+  @param {object} data.photo             = Image
+  @param {string} data.caption           = Optional Caption
+  @param {object} options                = Optionsobject
+  @param {string} options.layoutType     = Arrangement of the gallery [smart, simple]
+  @param {string} options.ratio          = Optional adjustable ratio (for `simple` Gallery)
+  @param {string} options.width          = Optional Width (for `simple` Gallery)
 #}
 
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-gallery' %}
 
-{% for block in data %}
-  {% if block.type == 'gallery' %}
-    {% set thumbWidth = ' ' %}
-    {% set flexOverwrite = '' %}
-    {% set layout = ' '~classname~'--l-'~block.layoutType %}
-    {# Get Gallery Count #}
-    {% set galleryCount = block.galleryEntries.total() %}
-    {% set galCountMode = galleryCount > 1 ? ' '~classname~'--moreimages' : '' %}
+{% set thumbWidth = ' ' %}
+{% set flexOverwrite = '' %}
+{% set layout = ' '~classname~'--l-'~options.layoutType %}
 
-    {# Setup for the Simple Layout #}
-    {% if block.layoutType == 'simple' %}
-      {% set galCountNr = '' %}
-      {# Setup the Width #}
-      {% set thumbWidth = block.width ? ' style=width:' ~block.width~' ' %}
-      {% set flexOverwrite = block.width ? ' '~classname~'--noFlex' %}
-      {# Define Crop #}
-      {% if block.ratio %}
-        {% set crop = block.ratio %}
-      {% else %}
-        {% set crop = galleryCount > 1 ? '1:1' : 'nocrop' %}
-      {% endif %}
+{# Get Gallery Count #}
+{% set galleryCount = data.total() %}
+{% set galCountMode = galleryCount > 1 ? ' '~classname~'--moreimages' : '' %}
 
-      {# Setup for the Smartlayout #}
-    {% elseif block.layoutType == 'smart' %}
-      {# Gallery Count Mode #}
-      {% set galCountNr = galleryCount < 10 ? ' '~classname~'--'~galleryCount : ' '~classname~'--unlimited' %}
-      {# Define Crop #}
-      {% set crop = galleryCount > 1 ? '1:1' : 'nocrop' %}
-    {% endif %}
-
-    {# Build Element Block #}
-    <div class="is-photoswipped {{ classname }}{{ galCountNr }}{{ galCountMode }}{{ layout }}{{ flexOverwrite }}" itemscope itemtype="http://schema.org/ImageGallery">
-      {% for gallery in block.galleryEntries %}
-        <figure class="{{ classname }}__figure" itemprop="associatedMedia"{{ thumbWidth }}itemscope itemtype="http://schema.org/ImageObject">
-          <a class="{{ classname }}__link" href="{{ gallery.photo.first().url }}" itemprop="contentUrl" data-size="{{ gallery.photo.first().width }}x{{ gallery.photo.first().height }}">
-            {{ myMacro.mediaImageSet(gallery.photo.first(), crop, {
-              class: classname~'__thumbnail',
-              sizes: [
-                { width: 1200 },
-                { width: 800 },
-                { width: 500 },
-                { width: 320 },
-                { width: 150 },
-                { width: 30 }
-              ]
-            }) }}
-          </a>
-          {% if gallery.caption %}
-            <figcaption class="{{ classname }}__caption{{ galleryCount > 1 ? '---hidden' }}" itemprop="caption description">
-              {{ gallery.caption }}
-            </figcaption>
-          {% endif %}
-        </figure>
-      {% endfor %}
-    </div>
+{# Setup for the Simple Layout #}
+{% if options.layoutType == 'simple' %}
+  {% set galCountNr = '' %}
+  {# Setup the Width #}
+  {% set thumbWidth = options.width ? ' style=width:' ~options.width~' ' %}
+  {% set flexOverwrite = options.width ? ' '~classname~'--noFlex' %}
+  {# Define Crop #}
+  {% if options.ratio %}
+    {% set crop = options.ratio %}
+  {% else %}
+    {% set crop = galleryCount > 1 ? '1:1' : 'nocrop' %}
   {% endif %}
-{% endfor %}
+
+  {# Setup for the Smartlayout #}
+{% elseif options.layoutType == 'smart' %}
+  {# Gallery Count Mode #}
+  {% set galCountNr = galleryCount < 10 ? ' '~classname~'--'~galleryCount : ' '~classname~'--unlimited' %}
+  {# Define Crop #}
+  {% set crop = galleryCount > 1 ? '1:1' : 'nocrop' %}
+{% endif %}
+
+{# Build Element Block #}
+<div class="is-photoswipped {{ classname }}{{ galCountNr }}{{ galCountMode }}{{ layout }}{{ flexOverwrite }}" itemscope itemtype="http://schema.org/ImageGallery">
+  {% for gallery in data %}
+    <figure class="{{ classname }}__figure" itemprop="associatedMedia"{{ thumbWidth }}itemscope itemtype="http://schema.org/ImageObject">
+      <a class="{{ classname }}__link" href="{{ gallery.photo.first().url }}" itemprop="contentUrl" data-size="{{ gallery.photo.first().width }}x{{ gallery.photo.first().height }}">
+        {{ myMacro.mediaImageSet(gallery.photo.first(), crop, {
+          class: classname~'__thumbnail',
+          sizes: [
+            { width: 1200 },
+            { width: 800 },
+            { width: 500 },
+            { width: 320 },
+            { width: 150 },
+            { width: 30 }
+          ]
+        }) }}
+      </a>
+      {% if gallery.caption %}
+        <figcaption class="{{ classname }}__caption{{ galleryCount > 1 ? '---hidden' }}" itemprop="caption description">
+          {{ gallery.caption }}
+        </figcaption>
+      {% endif %}
+    </figure>
+  {% endfor %}
+</div>
 
 {# Root element of PhotoSwipe. Must have class pswp. #}
 <div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">

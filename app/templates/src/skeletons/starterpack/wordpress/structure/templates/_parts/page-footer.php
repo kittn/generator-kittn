@@ -5,8 +5,8 @@
   Wrapper for Copy and Footernavi
 */
 ?>
-<footer class="o-layout__footer" role="contentinfo">
-  <div class="o-layout__container">
+<footer class="o-area__footer" role="contentinfo">
+  <div class="o-area__container">
     <div class="c-copy">
       &copy; 2017 by Kittn
     </div>

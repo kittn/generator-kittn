@@ -4,6 +4,25 @@
 #}
 {% if entry.contentBuilder.level(1)|length %}
   {% for content in entry.contentBuilder.level(1) %}
-    {% include '_builder/_cb-objects' with { data: content } %}
+    {% if content.type != 'objSection' %}
+      {% include '_builder/_cb-objects' with { data: content } %}
+
+    {% else %}
+      {# Closing the outer Container that the Section can use the full width #}
+      {% set innerLayout = templateBriefing.classToInner is defined and templateBriefing.classToInner != '' ? templateBriefing.classToInner : [''] %}
+
+      {# Closing outer Container based on the templateBriefing In #}
+      {% for closeTag in innerLayout %}
+        </div>
+      {% endfor %}
+
+        {# Insert ContentBuilder Modules that are non Sections #}
+        {% include '_builder/_cb-objects' with { data: content } %}
+
+      {# Reopen Containers #}
+      {% for openTag in innerLayout %}
+        <div class="{{ openTag }}">
+      {% endfor %}
+    {% endif %}
   {% endfor %}
 {% endif %}

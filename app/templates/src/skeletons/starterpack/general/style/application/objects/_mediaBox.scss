@@ -1,12 +1,7 @@
 /*
   Mediabox
   ========
-  Box for Holding Text and Media (Video or Images)
-
-  **Elements**
-  .o-mediabox__media : Media Container for Images and Videos
-  .o-mediabox__body : Container for Textcontent
-  .o-mediabox__
+  A Mediabox with image / video and text content
 */
 .o-mediabox {
   // Component Config
@@ -28,8 +23,10 @@
   // Base Style ----------------------------
   margin-bottom: v($api,margin-bottom);
 
-  &#{cq('width >= #{v($api,breakpoint)}')} {
-    display: flex;
+  @include eq((min-width: #{v($api,breakpoint)})) {
+    eq_this {
+      display: flex;
+    }
   }
 
   // Tags ----------------------------------
@@ -52,36 +49,39 @@
 
   // [root]__media
   &__media {
-    flex: 1 1 25%;
-    min-width: 25%;
     overflow: hidden;
-
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')} & {
-      margin-right: 20px;
-    }
 
     #{$root}--right & {
       order: 2;
     }
 
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--right & {
-      margin-right: 0;
-      margin-left: 20px;
+    @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+      margin-right: 20px;
     }
 
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--quarter & {
-      max-width: 25%;
-      width: 25%;
+    #{$root}--right & {
+      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+        margin-right: 0;
+        margin-left: 20px;
+      }
     }
 
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--half & {
-      max-width: 50%;
-      width: 50%;
+    #{$root}--quarter & {
+      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+        flex: 0 0 25%;
+      }
     }
 
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--threequarter & {
-      max-width: 75%;
-      width: 50%;
+    #{$root}--half & {
+      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+        flex: 0 0 50%;
+      }
+    }
+
+    #{$root}--threequarter & {
+      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+        flex: 0 0 75%;
+      }
     }
   }
 
@@ -89,6 +89,7 @@
   &__body {
     padding-top: 10px;
     padding-bottom: 10px;
+    flex: 1 1 auto;
 
     #{$root}--colored & {
       padding-top: 20px;
@@ -106,17 +107,21 @@
       margin-bottom: 0;
     }
 
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')} & {
+    @include eqr($root, (min-width: #{v($api,breakpoint)})) {
       align-self: center;
     }
 
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--colored & {
-      padding-left: 0
+    #{$root}--colored & {
+      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+        padding-left: 0;
+      }
     }
 
-    #{$root}#{cq('width >= #{v($api,breakpoint)}')}#{$root}--colored#{$root}--right & {
-      padding-left: 20px;
-      padding-right: 0;
+    #{$root}--colored#{$root}--right & {
+      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+        padding-left: 20px;
+        padding-right: 0;
+      }
     }
   }
 

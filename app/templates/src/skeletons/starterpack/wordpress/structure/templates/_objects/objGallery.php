@@ -2,7 +2,10 @@
 /**
  * Gallery
  * =======
- * Gallery with Lightbox (Photoswipe) support and a Flexbox Layout
+ * Creates a gallery object in two different layouts.
+ * The simple layout lays the images together, the smart layout
+ * tries to arrange the images in the photogrid. Pictures can be
+ * enlarged on click. You can also use the gallery for individual images.
  */
 
 // Default Vars
@@ -38,8 +41,8 @@ if (get_sub_field('layout_type') == 'simple') {
 <?php // Build Element Block ?>
 <div class="is-photoswipped <?= $classname.$galCountNr.$galCountMode.$layout.$flexOverwrite; ?>" itemscope itemtype="http://schema.org/ImageGallery">
   <?php while( have_rows('gallery_entries') ) : the_row(); ?>
-    <figure class="<?= $classname; ?>__figure" itemprop="associatedMedia"<?= $thumbWidth; ?>itemscope itemtype="http://schema.org/ImageObject">
-      <a class="<?= $classname; ?>__link" href="<?= get_sub_field('photo')['url']; ?>" itemprop="contentUrl" data-size="<?= get_sub_field('photo')['width']; ?>x<?= get_sub_field('photo')['height']; ?>">
+    <figure class="<?= $classname.'__figure'; ?>" itemprop="associatedMedia"<?= $thumbWidth; ?>itemscope itemtype="http://schema.org/ImageObject">
+      <a class="<?= $classname.'__link'; ?>" href="<?= get_sub_field('photo')['url']; ?>" itemprop="contentUrl" data-size="<?= get_sub_field('photo')['width']; ?>x<?= get_sub_field('photo')['height']; ?>">
         <?php macro_mediaImageSet(get_sub_field('photo'), $classname.'__image', $thumbnailFormat); ?>
       </a>
       <?php if (get_sub_field('caption')) : ?>

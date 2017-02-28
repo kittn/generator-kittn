@@ -50,6 +50,12 @@ $kittn-breakpoint-map: (
   )
 );
 
+// Define Pagesize
+$kittn-page-size: (
+  minsize: 320px,
+  maxsize: 1200px
+);
+
 // Load and integrate all FontFaces.
 // - 'fontname' {*}
 //   - 'filename' {Bool|*} - Filename, when 'false' the Fontname will be used
@@ -245,12 +251,12 @@ $kittn-generate-typostyles: true;
 // @type Map
 $kittn-color-map: (
   'primary': (
-    color: #f29300,
+    color: #29b8f2,
     opacity: false,
     type: false
   ),
   'main': (
-    color: #3c3c3c,
+    color: #242424,
     opacity: false,
     type: false
   ),

@@ -1,17 +1,14 @@
 /*
   Jumpnavigation
   ==============
-  Used for Jumping to Anchors
-
-  description
-
-  **Elements**
+  Creates a jump navigation that jumps to set anchors.
 */
 .o-jumpnavigation {
   // Component Config
   $api: (
     selector: 'jumpnavigation',
     breakpoint: 'm',
+    breaksize: 500px,
     margin-bottom: s(1),
     gutter: 2px
   );
@@ -30,11 +27,15 @@
 
   // Base Modifier -------------------------
   // [root]--l-fullwidth
-  &#{$root}#{cq('width >= 500px')}#{$root}--l-fullwidth  {
-    display: flex;
-    justify-content: space-between;
-    margin-left: 0 - v($api,gutter);
-    margin-right: 0 - v($api,gutter);
+  &#{$root}--l-fullwidth  {
+    @include eq((min-width: 500px)) {
+      eq_this {
+        display: flex;
+        justify-content: space-between;
+        margin-left: 0 - v($api,gutter);
+        margin-right: 0 - v($api,gutter);
+      }
+    }
   }
 
   // Childs --------------------------------
@@ -47,13 +48,13 @@
       display: block;
       text-align: center;
       margin-bottom: v($api,gutter);
-    }
 
-    #{$root}#{cq('width >= 500px')}#{$root}--l-fullwidth & {
-      flex: 1;
-      margin-bottom: 0;
-      margin-left: v($api,gutter);
-      margin-right: v($api,gutter);
+      @include eqr($root, (min-width: #{v($api,breaksize)})) {
+        flex: 1;
+        margin-bottom: 0;
+        margin-left: v($api,gutter);
+        margin-right: v($api,gutter);
+      }
     }
 
     #{$root}--l-list & {

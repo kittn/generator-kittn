@@ -1,0 +1,22 @@
+/*
+  Richtext
+  ========
+  description
+*/
+.o-richtext {
+  // Component Config
+  $api: (
+    selector: 'richtext',
+    breakpoint: 'm'
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Base Modifier -------------------------
+  // [root]--s-style1
+  &--s-style1 {
+    font-size: 120%;
+    color: c('gray')
+  }
+}

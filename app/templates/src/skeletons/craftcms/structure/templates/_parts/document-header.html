@@ -8,12 +8,12 @@
   {% endif %}
   <link rel="home" href="{{ siteUrl }}" /><% if ( projectiecompatible == true ) { %>
   <!--[if lte IE 8]>
-  <link rel="stylesheet" href="{{ siteUrl~'assets/css/<%= projectcssfilename %>-ie8.css' }}">
+  <link rel="stylesheet" href="{{ craft.config.rootUrl~'assets/css/<%= projectcssfilename %>-ie8.css' }}">
   <![endif]-->
   <!--[if gt IE 8]><!-->
-  <link rel="stylesheet" href="{{ siteUrl~'assets/css/<%= projectcssfilename %>.css' }}">
+  <link rel="stylesheet" href="{{ craft.config.rootUrl~'assets/css/<%= projectcssfilename %>.css' }}">
   <!--<![endif]--><% } else { %>
-  <link rel="stylesheet" href="{{ siteUrl~'assets/css/<%= projectcssfilename %>.css' }}"><% } %>
+  <link rel="stylesheet" href="{{ craft.config.rootUrl~'assets/css/<%= projectcssfilename %>.css' }}"><% } %>
   <style type="text/css">
     body { margin: 50px; font-family: sans-serif; background: #fff; }
     #container { margin: 0 auto; width: 700px;
@@ -43,6 +43,6 @@
     #footer { border-radius: 0 0 7px 7px; padding: 15px; font-size: 12px; text-align: center; }
   </style>
   <!--[if lt IE 9]>
-    <script src="{{ siteUrl~'assets/js/html5shiv.js' }}"></script>
+    <script src="{{ craft.config.rootUrl~'assets/js/html5shiv.js' }}"></script>
   <![endif]-->
 </head>

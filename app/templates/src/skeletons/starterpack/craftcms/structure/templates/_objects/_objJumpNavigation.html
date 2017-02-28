@@ -3,31 +3,25 @@
   ==============
   Used for Jumping to Anchors
 
-  @param {string} name                              = Classname
-  @param {object} data                              = Dataobject (Matrix Field)
-  @param {object} data.block                        = Matrix Object
-  @param {string} data.block.type                   = Matrix Type (must be `navigation`)
-  @param {string} data.block.layout                 = Optional Classname for Style
-  @param {object} data.block.anchorlink             = Array of anchorlinks
-  @param {string} data.block.anchorlink.anchor      = Anchor Link (without `#`)
-  @param {string} data.block.anchorlink.linkname    = Name of the Anchorlink
+  @param {string} name                   = Classname
+  @param {object} data                   = Navigationobject
+  @param {string} data.anchor            = Anchor Link (without `#`)
+  @param {string} data.linkname          = Name of the Anchorlink
+  @param {object} options                = Optionsobject
+  @param {string} options.layout         = Optional Classname for Style
+  @param {string} options.style          = Optionsobject
 #}
 
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-jumpnavigation' %}
 
-{% for block in data %}
-  {% if block.type == 'navigation' %}
-    {# Set Layoutype Modifer #}
-    {% set navstyle = block.layout != 'default' ?  ' '~classname~'--l-'~block.layout : '' %}
+{# Set Layoutype Modifer #}
+{% set navstyle = options.layout != 'default' ?  ' '~classname~'--l-'~options.layout : '' %}
 
-    {# Build Element Block #}
-    <nav class="{{ classname }}{{ block.style != 'default' ? ' '~classname~'--s-'~block.style }}{{ navstyle }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
-      {% for link in block.anchorlinks %}
-        <a itemprop="url" role="button" href="#{{ link.anchor|lower }}" class="{{ classname }}__link js-smooth-scroll">{{ link.linkname }}</a>
-      {% endfor %}
-    </nav>
-
-  {% endif %}
-{% endfor %}
+{# Build Element Block #}
+<nav class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}{{ navstyle }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+  {% for link in data %}
+    <a itemprop="url" role="button" href="#{{ link.anchor|lower }}" class="{{ classname }}__link js-smooth-scroll">{{ link.linkname }}</a>
+  {% endfor %}
+</nav>
 

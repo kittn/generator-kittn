@@ -3,29 +3,33 @@
   ===========
   Image Container Element, can overlap Pageborder
 
-  @param {string} name                   = Classname
-  @param {object} data                   = Dataobject
-  @param {object} data.photo             = Image Object (only one Image)
-  @param {string} data.caption           = Optional Image Caption
-  @param {string} data.ratio             = Optional Imageratio (format: `16:9`)
-  @param {bool}   data.heightrestriction = Restrict the max Imageheight to 100vh
-  @param {string} data.size              = For overlapping Pageborders [default, viewportsize, oversize, undersize]
+  @param {string} name                      = Classname
+  @param {object} data                      = dataobject
+  @param {object} data.photo                = Image Object (only one Image)
+  @param {string} data.caption              = Optional Image Caption
+  @param {object} options                   = Optionsobject
+  @param {object} options.style             = Optional Styleclass
+  @param {string} options.ratio             = Optional Imageratio (format: `16:9`)
+  @param {bool}   options.heightrestriction = Restrict the max Imageheight to 100vh
 #}
+
+{# Load Macro if not available #}
+{% if myMacro is not defined %}
+  {% import '_macros/my-macro.html' as myMacro %}
+{% endif %}
 
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-mediaimage' %}
 
-{# Define Size Modifier #}
-{% set size = data.size != 'default' ? ' '~classname~'--s-'~data.size : '' %}
-
+{% set height = '' %}
 {# Set Heightrestriction Modifier #}
-{% if not data.ratio|length %}
-  {% set height = data.heightrestriction ? ' '~classname~'--maxheight' : '' %}
+{% if not options.ratio|length %}
+  {% set height = options.heightrestriction ? ' '~classname~'--maxheight' %}
 {% endif %}
 
 {# Build Element Block #}
-<figure class="{{ classname }}{{ height }}{{ size }}" role="group" itemscope itemtype="http://schema.org/ImageObject">
-  {{ myMacro.mediaImageSet(data.photo.first(), data.ratio, {
+<figure class="{{ classname }}{{ height }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}" role="group" itemscope itemtype="http://schema.org/ImageObject">
+  {{ myMacro.mediaImageSet(data.photo.first(), options.ratio, {
     class: classname~'__image'
   }) }}
   {% if data.caption %}

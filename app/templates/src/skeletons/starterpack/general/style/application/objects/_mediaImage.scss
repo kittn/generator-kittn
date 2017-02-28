@@ -1,9 +1,7 @@
 /*
   Mediaimage
   ==========
-  With Ratio, Size and Heightrestriction
-
-  **Elements**
+  Image Container Element, can overlap Pageborder
 */
 .o-mediaimage {
   // Component Config
@@ -22,43 +20,23 @@
   // Base Style ----------------------------
   margin: 0 auto s(1) auto;
   position: relative;
-  overflow: hidden;
+
   // Tags ----------------------------------
 
   // Base Modifier -------------------------
-
   &#{$root}--maxheight {
     height: 100vh;
+    overflow: hidden;
   }
 
-  &#{$root}--s-viewportsize {
-    @include break(v($api,breakpoint)) {
-      width: 100vw;
-      left: 50%;
-      right: 50%;
-      margin-left: -50vw;
-      margin-right: -50vw;
-    }
+  // Style Modifier
+  &#{$root}--s-style1 {
+    #{$root}__image {}
   }
-
-  &#{$root}--s-oversize {
-    @include break(v($api,breakpoint)) {
-      max-width: 100vw;
-      width: 120%;
-      margin-left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-
-  &#{$root}--s-undersize {
-    max-width: 80%;
-  }
-
 
   // Childs --------------------------------
   // [root]__image
-  &__image {
-  }
+  &__image {}
 
   // [root]__caption
   &__caption {

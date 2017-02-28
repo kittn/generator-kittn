@@ -7,13 +7,15 @@
   @param {object} data                   = Dataobject
   @param {string} data.copy              = Quotetext
   @param {string} data.source            = Citetext
+  @param {object} options                = Optionsobject
+  @param {string} options.style          = Optional Styleclass
 #}
 
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-quote' %}
 
 {# Build Element Block #}
-<blockquote class="{{ classname }}">
+<blockquote class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}">
   {{ data.copy|md }}
   {% if data.source %}<cite class="{{ classname }}__cite">{{ data.source|raw }}</cite>{% endif %}
 </blockquote>

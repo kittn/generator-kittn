@@ -6,8 +6,8 @@
 */
 ?>
 
-<header class="o-layout__header" role="banner">
-  <div class="o-layout__container">
+<header class="o-area__header" role="banner">
+  <div class="o-area__container">
     <?php // Adding Page Logo ?>
     <?php include ( get_template_directory() . '/_components/pagelogo.php' ); ?>
 

@@ -1,0 +1,72 @@
+/*
+  Area
+  ======
+  Page Layout Areas
+*/
+.o-area {
+  // Component Config
+  $api: (
+    selector: 'area',
+    breakpoint: 'm',
+    header: (
+      background: #ececec,
+      margin: s(1),
+      vertpadding: 1
+    ),
+    main: (),
+    footer: (
+      background: #252525,
+      vertpadding: .5
+    )
+  );
+
+  // Build root selector
+  $root: '.o-#{v($api,selector)}';
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  // Childs --------------------------------
+
+  // [root]__page
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  // [root]__container
+  &__container {
+    @extend %e-container;
+    position: relative;
+  }
+
+  // [root]__header
+  &__header {
+    @include padding(gap(v($api,header,vertpadding)) 0);
+    background-color: v($api,header,background);
+    margin-bottom: v($api,header,margin);
+
+    *, & {
+      color: c('main');
+    }
+  }
+
+  // [root]__main
+  &__main {
+    flex: 1 1 auto;
+    margin-bottom: s(2);
+  }
+
+  // [root]__footer
+  &__footer {
+    background-color: v($api,footer,background);
+    @include padding(gap(v($api,footer,vertpadding)) 0);
+
+    *, & {
+      color: c('white');
+    }
+  }
+}
