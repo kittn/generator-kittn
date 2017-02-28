@@ -343,18 +343,6 @@ var KittnGenerator = yeoman.Base.extend({
         name: 'projectmail',
         message: chalk.cyan.underline.bold('Project Mail') + '\n\xa0 Mailadress from the Author',
         default: gitInfo.email
-      },
-      {
-        type: 'input',
-        name: 'projecturl',
-        message: chalk.cyan.underline.bold('Project URL') + '\n\xa0 Author URL',
-        default: 'http://........'
-      },
-      {
-        type: 'input',
-        name: 'projectrepo',
-        message: chalk.cyan.underline.bold('Project Repo-URL') + '\n\xa0 URL to the Git-Repo',
-        default: gitInfo.github
       }
     ]).then(function (props) {
       function checkAnswer(prop) {
@@ -370,9 +358,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectversion       = props.projectversion;
       this.projectauthor        = props.projectauthor;
       this.projectmail          = props.projectmail;
-      this.projecturl           = props.projecturl;
       this.projectissues        = props.projectissues;
-      this.projectrepo          = props.projectrepo;
       this.projectcssfilename   = props.projectcssfilename;
       this.projectiecompatible  = props.projectiecompatible;
       this.projectstructure     = checkAnswer(props.projectstructure);
@@ -411,9 +397,7 @@ var KittnGenerator = yeoman.Base.extend({
       projectversion       : this.projectversion,
       projectauthor        : this.projectauthor,
       projectmail          : this.projectmail,
-      projecturl           : this.projecturl,
       projectissues        : this.projectissues,
-      projectrepo          : this.projectrepo,
       projectcssfilename   : this.projectcssfilename,
       projectiecompatible  : this.projectiecompatible,
       projectstructure     : this.projectstructure,
