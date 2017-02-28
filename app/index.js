@@ -74,14 +74,12 @@ var KittnGenerator = yeoman.Base.extend({
       .then(function(command) {
         var gitInfo = {
           name: exec('git config user.name', {silent: true}).replace(/\n/g, ''),
-          email: exec('git config user.email', {silent: true}).replace(/\n/g, ''),
-          github: exec('git config github.user', {silent: true}).replace(/\n/g, '')
+          email: exec('git config user.email', {silent: true}).replace(/\n/g, '')
         }
       }).catch(function() {
         var gitInfo = {
           name: '',
-          email: '',
-          github: ''
+          email: ''
         }
     })
 
