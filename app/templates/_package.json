@@ -4,11 +4,11 @@
   "description": "<%= projectdescription %>",
   "version": "<%= projectversion %>",
   "license": "MIT",
-  "repository": "<%= projectrepo %>",
+  "repository": "",
   "author": {
     "name": "<%= projectauthor %>",
     "email": "<%= projectmail %>",
-    "url": "<%= projecturl %>"
+    "url": ""
   },
   "engines": {
     "node": ">=6.0.0"
