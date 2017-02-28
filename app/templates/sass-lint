@@ -96,6 +96,7 @@ rules:
         - line-height
         - text-align
         - text-decoration
+        - text-transform
         - text-shadow
         - list-style-type
         -
