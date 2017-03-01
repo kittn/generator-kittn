@@ -11,7 +11,7 @@
  * @param {bool}   $background = Background Option
  * @param {string} $tag        = Tag for Background Element (default: 'figure')
  */
-function macro_mediaImageSet($image,$classname,$format,$background = false) {
+function macro_mediaImageSet($image,$classname,$format,$background = false, $tag = 'figure') {
   // Getting defined Sizes
   global $CROPPED_FORMAT,$CROPPED_SIZES,$UNCROPPED_SIZES;
 
