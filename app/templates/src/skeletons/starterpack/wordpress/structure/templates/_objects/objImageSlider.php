@@ -9,6 +9,7 @@
 $classname = 'o-slider';
 $ratio = get_sub_field('ratio');
 $style = get_sub_field('style');
+$slideCount = count( get_field('photos') );
 
 $responsive = get_sub_field('responsive') ? '-r' : '';
 $spaceBetween = get_sub_field('spaceBetween') ? 'padding-left: '.get_sub_field('spaceBetween').';padding-right: '.get_sub_field('spaceBetween').';' : '';
@@ -85,15 +86,16 @@ endswitch;
     "lazyLoad": false,
     "adaptiveHeight": <?= get_sub_field('autoheight') ? 'true' : 'false'; ?>,
     "groupCells": <?= get_sub_field('groupCell') != 'disable' ? get_sub_field('groupCell') : 0; ?>,
-    "autoPlay": <?= $autoplay ?>,
+    "autoPlay": <?= $slideCount > 1 ? $autoplay : 'false' ?>,
+    "draggable": <?= $slideCount > 1 ? 'true' : 'false' ?>,
     "friction": <?= $friction ?>,
     "selectedAttraction": <?= $selectedAttraction ?>,
     "freeScroll": <?= get_sub_field('freescroll') ? 'true' : 'false'; ?>,
     "freeScrollFriction": 0.03,
     "cellAlign": "<?= get_sub_field('slidePosition'); ?>",
-    "prevNextButtons": <?= get_sub_field('navigation') != true ? 'true' : 'false'; ?>,
-    "pageDots": <?= get_sub_field('pagination') != true ? 'true' : 'false'; ?>,
-    "wrapAround": <?= get_sub_field('loop') ? 'true' : 'false'; ?>
+    "prevNextButtons": <?= $slideCount > 1 && get_sub_field('navigation') != true ? 'true' : 'false'; ?>,
+    "pageDots": <?= $slideCount > 1 && get_sub_field('pagination') != true ? 'true' : 'false'; ?>,
+    "wrapAround": <?= $slideCount > 1 && get_sub_field('loop') ? 'true' : 'false'; ?>
   }'
 >
   <?php while( have_rows('photos') ) : the_row(); ?>

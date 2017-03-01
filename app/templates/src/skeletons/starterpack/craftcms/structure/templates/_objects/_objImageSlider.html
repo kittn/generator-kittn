@@ -25,6 +25,9 @@
 {# Class Overwrite #}
 {% set classname = name is defined and name != '' ? name : 'o-slider' %}
 
+{# Count Slides #}
+{% set slideCount = data|length %}
+
 {# Get Slider Settings #}
 {% set general = options.setup.first() != '' ? options.setup.first() : '' %}
 
@@ -41,48 +44,48 @@
   {% set wrapAround = general.setSliderSetup.loop ? 'true' : 'false' %}
 
   {% switch general.setSliderSetupGeneral.slidesPerView %}
-  {% case 'auto' %}
-  {% set slideWidth = ' '~classname~'__slide'~responsive~'--auto' %}
-  {% case 'two' %}
-  {% set slideWidth = ' '~classname~'__slide'~responsive~'--2' %}
-  {% case 'three' %}
-  {% set slideWidth = ' '~classname~'__slide'~responsive~'--3' %}
-  {% case 'four' %}
-  {% set slideWidth = ' '~classname~'__slide'~responsive~'--4' %}
-  {% case 'five' %}
-  {% set slideWidth = ' '~classname~'__slide'~responsive~'--5' %}
-  {% case 'six' %}
-  {% set slideWidth = ' '~classname~'__slide'~responsive~'--6' %}
-  {% default %}
-  {% set slideWidth = ' '~classname~'__slide'~responsive~'--1' %}
+    {% case 'auto' %}
+      {% set slideWidth = ' '~classname~'__slide'~responsive~'--auto' %}
+    {% case 'two' %}
+      {% set slideWidth = ' '~classname~'__slide'~responsive~'--2' %}
+    {% case 'three' %}
+      {% set slideWidth = ' '~classname~'__slide'~responsive~'--3' %}
+    {% case 'four' %}
+      {% set slideWidth = ' '~classname~'__slide'~responsive~'--4' %}
+    {% case 'five' %}
+      {% set slideWidth = ' '~classname~'__slide'~responsive~'--5' %}
+    {% case 'six' %}
+      {% set slideWidth = ' '~classname~'__slide'~responsive~'--6' %}
+    {% default %}
+      {% set slideWidth = ' '~classname~'__slide'~responsive~'--1' %}
   {% endswitch %}
 
   {# Set Autoplay Speed #}
   {% switch setup.setSliderSetup.autoplay|default('default') %}
-  {% case "slow" %}
-  {% set autoplay = 10000  %}
-  {% case "medium" %}
-  {% set autoplay = 5000 %}
-  {% case "fast" %}
-  {% set autoplay = 2500  %}
-  {% default %}
-  {% set autoplay = 'false' %}
+    {% case "slow" %}
+      {% set autoplay = 10000  %}
+    {% case "medium" %}
+      {% set autoplay = 5000 %}
+    {% case "fast" %}
+      {% set autoplay = 2500  %}
+    {% default %}
+      {% set autoplay = 'false' %}
   {% endswitch %}
 
   {# Set Animation Speed #}
   {% switch setup.setSliderSetup.speed|default('default') %}
-  {% case "slow" %}
-  {% set selectedAttraction = 0.01 %}
-  {% set friction = 0.15 %}
-  {% case "medium" %}
-  {% set selectedAttraction = 0.1 %}
-  {% set friction = 0.35 %}
-  {% case "fast" %}
-  {% set selectedAttraction = 0.2 %}
-  {% set friction = 1 %}
-  {% default %}
-  {% set selectedAttraction = 0.025 %}
-  {% set friction = 0.28 %}
+    {% case "slow" %}
+      {% set selectedAttraction = 0.01 %}
+      {% set friction = 0.15 %}
+    {% case "medium" %}
+      {% set selectedAttraction = 0.1 %}
+      {% set friction = 0.35 %}
+    {% case "fast" %}
+      {% set selectedAttraction = 0.2 %}
+      {% set friction = 1 %}
+    {% default %}
+      {% set selectedAttraction = 0.025 %}
+      {% set friction = 0.28 %}
   {% endswitch %}
 
 {% else %}
@@ -110,15 +113,16 @@
           "lazyLoad": false,
           "adaptiveHeight": {{ adaptiveHeight }},
           "groupCells": {{ groupCells }},
-          "autoPlay": {{ autoplay }},
+          "autoPlay": {{ slideCount > 1 ? autoplay : 'false' }},
+          "draggable": {{ slideCount > 1 ? 'true' : 'false' }},
           "friction": {{ friction }},
           "selectedAttraction": {{ selectedAttraction }},
-          "freeScroll": {{freeScroll }},
+          "freeScroll": {{ slideCount > 1 ? freeScroll : 'false' }},
           "freeScrollFriction": 0.03,
           "cellAlign": "{{ cellAlign }}",
-          "prevNextButtons": {{ prevNextButtons }},
-          "pageDots": {{ pageDots }},
-          "wrapAround": {{ wrapAround }}
+          "prevNextButtons": {{ slideCount > 1 ? prevNextButtons : 'false' }},
+          "pageDots": {{ slideCount > 1 ? pageDots : 'false' }},
+          "wrapAround": {{ slideCount > 1 ? wrapAround : 'false' }}
   }'>
   {% for photo in data %}
     <div class="{{ classname }}__slide{{ slideWidth }}" style="{{ spaceBetween }}" itemscope itemtype="http://schema.org/ImageObject">
