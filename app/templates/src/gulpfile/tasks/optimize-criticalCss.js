@@ -21,7 +21,7 @@ const criticalCss = () => {
         inline: kc.cssabove.inline,
         base: kc.dist.markup,
         src: item,
-        dest: kc.dist.markup + item,
+        dest: item,
         minify: kc.cssabove.minify,
         width: kc.cssabove.width,
         height: kc.cssabove.height
