@@ -114,18 +114,9 @@
       "fnBind"
     ],
     "tests": [
-      "cssanimations",
-      "csstransforms",
-      "csstransitions",
-      "backgroundblendmode",
-      "bgsizecover",
       "flexbox",
       "touch",
-      "svg",
       "inlinesvg",
-      "respond",
-      "hsla",
-      "rgba",
       "webgl",
       "picture"
     ]
@@ -142,14 +133,6 @@
       "node_modules/conditionizr/detects/ie9.js"<% if (projectiecompatible == true ) { %>,
       "node_modules/conditionizr/detects/ie8.js"<% } %>
     ]
-  },
-  "styleguide": {
-    "rootPath": "styleguide/",
-    "appRoot": "http://localhost:3000",
-    "overviewPath": "readme.md",
-    "disableEncapsulation": false,
-    "disableHtml5Mode": false,
-    "extraHead": []
   },
   "minify": {
     "images": {
