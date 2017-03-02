@@ -63,7 +63,7 @@ body,
 @if map-get($kittn-activate, viewport-fix) { @-ms-viewport { width: device-width; }}
 
 @if map-get($kittn-activate, hyphens) == true {
-  abbr, acronym, blockquote, code, dir, kbd,
+  abbr, acronym, code, dir, kbd,
   listing, plaintext, q, samp, tt, var, xmp {
     hyphens: none;
   }

@@ -54,7 +54,7 @@ $kittn-activate: (
   box-sizing: true,
   baseline: false,
   antialias: true,
-  hyphens: false,
+  hyphens: true,
   viewport-fix: false,
   mobile-first: true,<% if (projectiecompatible == true) { %>
   ie8-fallbacks: true<% } else { %>
