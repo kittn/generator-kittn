@@ -30,22 +30,28 @@ function macro_mediaImageSet($image,$classname,$format,$background = false, $tag
       // Generate Image Set
       if ($format == 'uncropped') {
         foreach ($UNCROPPED_SIZES as $key => $value) {
-          $imageset .= $image['sizes']['rw_'.$key].' '.$value.'w'.(!next($UNCROPPED_SIZES) ? ' ' : ', ');
+          $imageset[] = $image['sizes']['rw_'.$key].' '.$value.'w';
         }
         // Define Preload Image
         $imagepre = $image['sizes']['rw_'.key(array_slice($UNCROPPED_SIZES, -1, true))];
-
       } else {
         foreach ($CROPPED_SIZES as $key => $value) {
-          $imageset .= $image['sizes'][$format.'_'.$key].' '.$value.'w'.(!next($CROPPED_SIZES) ? ' ' : ', ');
+          $imageset[] = $image['sizes'][$format.'_'.$key].' '.$value.'w';
         }
         // Define Preload Image
         $imagepre = $image['sizes'][$format.'_'.key(array_slice($CROPPED_SIZES, -1, true))];
       }
 
+      $imageset = implode(', ',$imageset);
+
       // Output as <img> or Background
       if ($background) {
-        echo '<'.$tag.' class="'.$classname.' lazyload" style="background-image: url('.$imagepre.')" data-sizes="auto" data-bgset="'.$imageset.'"></'.$tag.'>';
+        // Check if Tag is used otherwise return a string
+        if ($tag != false) {
+          echo '<'.$tag.' class="'.$classname.' lazyload" style="background-image: url('.$imagepre.')" data-sizes="auto" data-bgset="'.$imageset.'"></'.$tag.'>';
+        } else {
+          echo 'class="'.$classname.' lazyload" style="background-image: url('.$imagepre.')" data-sizes="auto" data-bgset="'.$imageset.'"';
+        }
       } else {
         echo  '<img data-sizes="auto" src="'.$imagepre.'" data-srcset="'.$imageset.'" class="'.$classname.' lazyload" role="img" alt="'.$image["alt"].'" itemprop="thumbnail">';
       }
