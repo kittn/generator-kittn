@@ -69,15 +69,17 @@ var KittnGenerator = yeoman.Base.extend({
       craft_wget = false
     })
 
+    let gitInfo = {}
+
     // check git info
     commandExists('git')
       .then(function(command) {
-        var gitInfo = {
+        gitInfo = {
           name: exec('git config user.name', {silent: true}).replace(/\n/g, ''),
           email: exec('git config user.email', {silent: true}).replace(/\n/g, '')
         }
       }).catch(function() {
-        var gitInfo = {
+        gitInfo = {
           name: '',
           email: ''
         }
@@ -782,18 +784,25 @@ var KittnGenerator = yeoman.Base.extend({
   },
 
   install() {
-    const _self = this
+    let _self = this
 
     // check if yarn is available and use it instead of npm
     commandExists('yarn', function (err, commandExists) {
       if (commandExists) {
+        console.log('commandExists')
         const done = _self.async()
         _self.spawnCommand('yarn').on('close', done);
       } else {
-        this.installDependencies({
-          bower: false,
-          npm  : true
-        })
+        const done = _self.async()
+        _self.npmInstall()
+        _self.spawnCommand('npm', ['install']).on('close', done);
+        // _self.installDependencies({
+        //   bower: false,
+        //   npm: true,
+        //   callback: function () {
+        //     console.log('Everything is ready!');
+        //   }
+        // })
       }
     })
 
