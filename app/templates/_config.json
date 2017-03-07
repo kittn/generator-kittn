@@ -96,7 +96,7 @@
       "src/fonts/**"
     ],
     "launch": [
-      {"src": "favicons/**", "dest": "assets/img/system/"},<% if (projectUsage == 'Building HTML Prototypes') { %>
+      {"src": "favicons/**", "dest": "assets/img/system/"}<% if (projectUsage == 'Building HTML Prototypes') { %>,
       {"src": "facebook-og-image.jpg", "dest": "assets/img/system/"},
       {"src": "twitter-og-image.jpg", "dest": "assets/img/system/"},
       {"src": ".htaccess", "dest": ""},
