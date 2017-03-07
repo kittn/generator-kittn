@@ -7,6 +7,7 @@
 
 // Uncopped Image Sizes
 $UNCROPPED_SIZES = [
+  'xlarge'  => '1900',
   'large'   => '1400',
   'wide'    => '1200',
   'desktop' => '960',
@@ -18,6 +19,7 @@ $UNCROPPED_SIZES = [
 
 // Cropped Image Sizes
 $CROPPED_SIZES = [
+  'xlarge' => '1900',
   'large'  => '1200',
   'medium' => '800',
   'small'  => '400',
