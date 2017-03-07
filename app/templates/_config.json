@@ -12,7 +12,7 @@
     "bitmaps": "dist/assets/img/bitmaps/",
     "vectors": "dist/assets/img/svgfiles/",
     "contentimage": "dist/images/",
-    "webpackjsassets": "assets/js/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
+    "webpackjsassets": "assets/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
     "dist": "dist/",
     "base": "dist/wp-content/themes/<%= projectname %>/",
     "markup": "dist/wp-content/themes/<%= projectname %>/",
@@ -25,7 +25,7 @@
     "bitmaps": "dist/wp-content/themes/<%= projectname %>/assets/img/bitmaps/",
     "vectors": "dist/wp-content/themes/<%= projectname %>/assets/img/svgfiles/",
     "contentimage": "dist/wp-content/themes/<%= projectname %>/images/",
-    "webpackjsassets": "wp-content/themes/<%= projectname %>/assets/js/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
+    "webpackjsassets": "wp-content/themes/<%= projectname %>/assets/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
     "dist": "dist/",
     "base": "dist/public/",
     "markup": "dist/craft/",
@@ -38,7 +38,7 @@
     "bitmaps": "dist/public/assets/img/bitmaps/",
     "vectors": "dist/public/assets/img/svgfiles/",
     "contentimage": "dist/public/images/",
-    "webpackjsassets": "public/assets/js/",<% } %>
+    "webpackjsassets": "public/assets/",<% } %>
     "cssimgRoot": "/assets/img/"
   },
   "templatePath": {

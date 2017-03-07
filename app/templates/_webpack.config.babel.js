@@ -13,7 +13,7 @@ const nodeEnv = process.env.NODE_ENV || 'production'
 const ROOT_PATH = path.resolve(__dirname)<% if (projectUsage == 'Integrate in CraftCMS') { %>
 const PUBLIC_PATH = path.join(ROOT_PATH, `${kittnConf.dist.dist}/public/`)<% } else { %>
 const PUBLIC_PATH = path.join(ROOT_PATH, kittnConf.dist.dist)<% } %>
-const ASSETS_PATH = path.join(ROOT_PATH, kittnConf.dist.assets)
+const ASSETS_PATH = kittnConf.dist.webpackjsassets
 const SOURCE_PATH = './js/'
 const LOADER_PATH = path.join(ROOT_PATH, kittnConf.src.js)
 const PRIMARY_FILE_NAME = 'main.js'
@@ -23,11 +23,9 @@ let bundle = {
   entry: {
     main: `${SOURCE_PATH}${PRIMARY_FILE_NAME}`
   },
-  output: {<% if (projectUsage == 'Integrate in Wordpress') { %>
-    path: ASSETS_PATH,
-    publicPath: ASSETS_PATH,<% } else { %>
-    path: path.join(PUBLIC_PATH, 'assets/'),
-    publicPath: '/assets/',<% } %>
+  output: {
+    path: path.join(PUBLIC_PATH, ASSETS_PATH),
+    publicPath: '/' + ASSETS_PATH,
     filename: 'js/[name].js'
   },
   externals: {
