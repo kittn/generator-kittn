@@ -11,6 +11,7 @@ $style = get_sub_field('style');
 $fullheight = get_sub_field('fullheight') ? ' '.$classnameSection.'--fullheight' : '';
 $anchor = get_sub_field('anchor') ? ' id="'.get_sub_field('anchor').'"' : '';
 $innerContainer = get_sub_field('innerContainer') != 'default' ? ' '.$classnameSection.'__container--'.get_sub_field('innerContainer') : '';
+$backgroundContainer = get_sub_field('innerContainer') ? ' '.$classnameSection.'__bg--size-'.get_sub_field('innerContainer') : '';
 
 $count = count(get_sub_field('column'));
 $columnLayout = '';
@@ -38,6 +39,17 @@ endswitch;
 
 <?php // Build Element Block ?>
 <section class="<?= $classnameSection; ?><?= $fullheight; ?><?= $style != 'default' ? ' '.$classnameSection.'--s-'.$style : '' ?>"<?= $anchor;?>>
+
+  <?php if (get_sub_field('backgroundImage')) : ?>
+    <div class="<?= $classnameSection; ?>__bg<?= get_sub_field('behavior') != 'default' ? ' '.$classnameSection.'__bg--'.get_sub_field('behavior') :  '' ?> <?= $classnameSection; ?>--p-<?= get_sub_field('align') ?><?= get_sub_field('adaptContainer') ? $backgroundContainer : '' ?>">
+      <div class="<?= $classnameSection; ?>__bg__container <?= $classnameSection ?>__bg__container--size-<?= get_sub_field('width')?>">
+        <div
+          <?= macro_mediaImageSet(get_sub_field('backgroundImage'),$classnameSection.'__bg__background',get_sub_field('ratio'),true, false,get_sub_field('position')); ?>
+        ></div>
+      </div>
+    </div>
+  <?php endif; ?>
+
   <div class="<?= $classnameSection.'__container'; ?><?= $innerContainer; ?>">
     <div class="<?= $classnameSection.'__row'; ?> <?= $classnameSection.'__row--child-'.$count; ?><?= $columnLayout; ?>">
       <?php while( have_rows('column') ) : the_row(); ?>
@@ -58,7 +70,7 @@ endswitch;
 
 <?php // Opening outer Area again ?>
 <?php if ($templateType == 'template--contentbuilder.php') : ?>
-<div class="o-area__container">
+  <div class="o-area__container">
 <?php else : ?>
   <div class="o-area__container"><div class="o-area__content">
 <?php endif; ?>

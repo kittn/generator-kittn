@@ -704,7 +704,8 @@
       "custom_fields"
     ],
     "active": 1,
-    "description": "Main Content Builder um Inhalte zu erstellen."
+    "description": "Main Content Builder um Inhalte zu erstellen.",
+    "local": "php"
   },
   {
     "key": "group_588dbdb84a8ec",
@@ -1315,7 +1316,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": "Nur f\u00fcr Interne Zwecke (Sammelpunkt f\u00fcr alle Content Builder Module ohne Wrapper wie Accordions)"
+    "description": "Nur f\u00fcr Interne Zwecke (Sammelpunkt f\u00fcr alle Content Builder Module ohne Wrapper wie Accordions)",
+    "local": "php"
   },
   {
     "key": "group_5892064d58ebc",
@@ -2268,7 +2270,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d151449b86",
@@ -2392,7 +2395,8 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   },
   {
     "key": "group_588d14e3b726a",
@@ -4392,6 +4396,192 @@
         "ajax": 0,
         "return_format": "value",
         "placeholder": ""
+      },
+      {
+        "key": "field_58c2ba4297cc4",
+        "label": "Background",
+        "name": "",
+        "type": "tab",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "",
+          "class": "",
+          "id": ""
+        },
+        "placement": "top",
+        "endpoint": 0
+      },
+      {
+        "key": "field_58c2ba7c97cc5",
+        "label": "Backgroundimage",
+        "name": "backgroundImage",
+        "type": "image",
+        "instructions": "",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "30",
+          "class": "",
+          "id": ""
+        },
+        "return_format": "array",
+        "preview_size": "thumbnail",
+        "library": "all",
+        "min_width": "",
+        "min_height": "",
+        "min_size": "",
+        "max_width": "",
+        "max_height": "",
+        "max_size": "",
+        "mime_types": "jpg, jpeg, png, gif"
+      },
+      {
+        "key": "field_58c2bab997cc6",
+        "label": "Adapt Container",
+        "name": "adaptContainer",
+        "type": "true_false",
+        "instructions": "Soll der Background Container maximal so breit sein wie der Inhaltscontainer?",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "20",
+          "class": "",
+          "id": ""
+        },
+        "message": "",
+        "default_value": 0
+      },
+      {
+        "key": "field_58c2bad797cc7",
+        "label": "Width",
+        "name": "width",
+        "type": "select",
+        "instructions": "Breite des Hintergrund Bilds - default immer volle Breite",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "20",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Default",
+          "half": "Halb"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_58c2bb1b97cc8",
+        "label": "Align",
+        "name": "align",
+        "type": "select",
+        "instructions": "Ausrichtung des Hintergrunds - entf\u00e4llt bei Vollfl\u00e4chig",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "20",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Linksb\u00fcndig",
+          "right": "Rechtsb\u00fcndig"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_58c2bb861d560",
+        "label": "Behavior",
+        "name": "behavior",
+        "type": "select",
+        "instructions": "Zus\u00e4tzliche Layoutregeln per Class",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "default": "Default",
+          "behavior1": "Behavior 1"
+        },
+        "default_value": [
+          "default"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
+      },
+      {
+        "key": "field_58c2bbc61d561",
+        "label": "Position",
+        "name": "position",
+        "type": "text",
+        "instructions": "Hintergrund Position des Bildes, Angaben in CSS Syntax: \"center center\" oder \"10% 50%\"",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "default_value": "",
+        "placeholder": "center center",
+        "prepend": "",
+        "append": "",
+        "maxlength": ""
+      },
+      {
+        "key": "field_58c2bbe11d562",
+        "label": "Ratio",
+        "name": "ratio",
+        "type": "select",
+        "instructions": "Ratio des Hintergrundbilds",
+        "required": 0,
+        "conditional_logic": 0,
+        "wrapper": {
+          "width": "33",
+          "class": "",
+          "id": ""
+        },
+        "choices": {
+          "uncropped": "Ungecropt",
+          "square": "1 zu 1",
+          "wide": "16 zu 9",
+          "extrawide": "21 zu 10",
+          "rect": "4 zu 3"
+        },
+        "default_value": [
+          "uncropped"
+        ],
+        "allow_null": 0,
+        "multiple": 0,
+        "ui": 0,
+        "ajax": 0,
+        "return_format": "value",
+        "placeholder": ""
       }
     ],
     "location": [
@@ -4410,8 +4600,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": "",
-    "local": "php"
+    "description": ""
   },
   {
     "key": "group_588d1562ba016",
@@ -5196,6 +5385,7 @@
     "instruction_placement": "label",
     "hide_on_screen": "",
     "active": 1,
-    "description": ""
+    "description": "",
+    "local": "php"
   }
 ]

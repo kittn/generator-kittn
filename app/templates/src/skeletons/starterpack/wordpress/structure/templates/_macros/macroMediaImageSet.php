@@ -10,11 +10,18 @@
  * @param {string} $format     = Imageformat [uncropped, wide, extrawide, square, rect]
  * @param {bool}   $background = Background Option
  * @param {string} $tag        = Tag for Background Element (default: 'figure')
+ * @param {string} $position   = Optional background position for background images
  */
-function macro_mediaImageSet($image,$classname,$format,$background = false, $tag = 'figure') {
+function macro_mediaImageSet($image,$classname,$format,$background = false, $tag = 'figure', $position = false) {
   $imageset = '';
   $imagepre = '';
+  $backgroundPosition = '';
   $imageformats = ['uncropped', 'wide', 'extrawide', 'square', 'rect'];
+
+  // Generate Background Positon
+  if ($position) {
+    $backgroundPosition = 'background-position: '.$position;
+  }
 
   // Crop Size Array
   $cropsizes = [
@@ -53,9 +60,9 @@ function macro_mediaImageSet($image,$classname,$format,$background = false, $tag
       if ($background) {
         // Check if Tag is used otherwise return a string
         if ($tag != false) {
-          echo '<'.$tag.' class="'.$classname.' lazyload" style="background-image: url('.$imagepre.')" data-sizes="auto" data-bgset="'.$imageset.'"></'.$tag.'>';
+          echo '<'.$tag.' class="'.$classname.' lazyload" style="background-image: url('.$imagepre.');'.$backgroundPosition.'" data-sizes="auto" data-bgset="'.$imageset.'"></'.$tag.'>';
         } else {
-          echo 'class="'.$classname.' lazyload" style="background-image: url('.$imagepre.')" data-sizes="auto" data-bgset="'.$imageset.'"';
+          echo 'class="'.$classname.' lazyload" style="background-image: url('.$imagepre.');'.$backgroundPosition.'" data-sizes="auto" data-bgset="'.$imageset.'"';
         }
       } else {
         echo '<img data-sizes="auto" src="'.$imagepre.'" data-srcset="'.$imageset.'" class="'.$classname.' lazyload" role="img" alt="'.$image["alt"].'" itemprop="thumbnail">';
