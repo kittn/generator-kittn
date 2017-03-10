@@ -51,6 +51,7 @@
   $root: '.o-#{v($api,selector)}';
 
   // Base Modifier -------------------------
+  position: relative;
 
   // Fullheight
   &--fullheight {
@@ -154,6 +155,7 @@
   &__column {
     width: 100%;
     margin-bottom: 10px;
+    flex: 1 1 auto;
 
     *:last-child {
       margin-bottom: 0;
@@ -195,5 +197,64 @@
     &--valign-top { align-self: flex-start; }
     &--valign-middle { align-self: center; }
     &--valign-bottom { align-self: flex-end; }
+  }
+
+  // [root]__bg
+  &__bg {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    min-width: v($kittn-page-size,minsize);
+    transform: translate(-50%);
+
+    // Default Adapt size
+    &--size-default { max-width: v($kittn-page-size,maxsize); }
+
+    // [root]--bigger-45
+    &--size-bigger-45 { max-width: v($kittn-page-size,maxsize) * 1.45; }
+
+    // [root]--bigger-25
+    &--size-bigger-25 { max-width: v($kittn-page-size,maxsize) * 1.25; }
+
+    // [root]--smaller-25
+    &--size-smaller-25 { max-width: v($kittn-page-size,maxsize) * .75; }
+
+    // [root]--smaller-50
+    &--size-smaller-50 { max-width: v($kittn-page-size,maxsize) * .50; }
+
+    // [root]--behavior1
+    &--behavior1 {
+      display: none;
+
+      @include eqr($root, (min-width: 600px)) {
+        display: block;
+      }
+    }
+
+    // [root]__bg__container
+    &__container {
+      size: 100%;
+
+      // [root]__bg__container--size
+      &--size-default { width: 100%; }
+
+      // [root]__bg__container--size
+      &--size-half {
+        width: 50%;
+
+        #{$root}--p-right & {
+          margin-left: 50%;
+        }
+      }
+    }
+
+    // [root]__bg__background
+    &__background {
+      height: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
   }
 }

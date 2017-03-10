@@ -1788,6 +1788,154 @@
       }
     },
     {
+      "group": "ObjectsOptions",
+      "name": "Section Background",
+      "handle": "setSectionBackground",
+      "instructions": "",
+      "required": false,
+      "type": "SuperTable",
+      "typesettings": {
+        "fieldLayout": "table",
+        "staticField": 1,
+        "selectionLabel": "Zeile hinzuf\u00fcgen",
+        "maxRows": null,
+        "blockTypes": {
+          "new": {
+            "fields": {
+              "new1": {
+                "name": "Image ",
+                "handle": "backgroundImage",
+                "instructions": "",
+                "required": 0,
+                "type": "Assets",
+                "width": "",
+                "typesettings": {
+                  "useSingleFolder": "",
+                  "sources": "*",
+                  "defaultUploadLocationSource": "images",
+                  "defaultUploadLocationSubpath": "",
+                  "singleUploadLocationSource": "images",
+                  "singleUploadLocationSubpath": "",
+                  "restrictFiles": 1,
+                  "allowedKinds": [
+                    "image"
+                  ],
+                  "limit": 1,
+                  "viewMode": "large",
+                  "selectionLabel": ""
+                }
+              },
+              "new2": {
+                "name": "Adapt Container",
+                "handle": "adaptContainer",
+                "instructions": "Soll der Background Container maximal so breit sein wie der Inhaltscontainer?",
+                "required": 0,
+                "type": "Lightswitch",
+                "width": "",
+                "typesettings": {
+                  "default": ""
+                }
+              },
+              "new3": {
+                "name": "Width",
+                "handle": "width",
+                "instructions": "Breite des Hintergrund Bilds - default immer volle Breite",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Halb",
+                      "value": "half",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new4": {
+                "name": "Align",
+                "handle": "align",
+                "instructions": "Ausrichtung des Hintergrunds - entf\u00e4llt bei Vollfl\u00e4chig",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Linksb\u00fcndig",
+                      "value": "default",
+                      "default": 1
+                    },
+                    {
+                      "label": "Rechtsb\u00fcndig",
+                      "value": "right",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new5": {
+                "name": "Behavior",
+                "handle": "behavior",
+                "instructions": "Zus\u00e4tzliche Layoutregeln per Class",
+                "required": 0,
+                "type": "Dropdown",
+                "width": "",
+                "typesettings": {
+                  "options": [
+                    {
+                      "label": "Default",
+                      "value": "default",
+                      "default": ""
+                    },
+                    {
+                      "label": "Behavior 1",
+                      "value": "behavior1",
+                      "default": ""
+                    }
+                  ]
+                }
+              },
+              "new6": {
+                "name": "Position",
+                "handle": "position",
+                "instructions": "Hintergrund Position des Bildes, Angaben in CSS Syntax: \"center center\" oder \"10% 50%\"",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "center center",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new7": {
+                "name": "Ratio",
+                "handle": "ratio",
+                "instructions": "Ratio des Hintergrundbilds",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "16:9",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
       "group": "Objects",
       "name": "Section Column",
       "handle": "objSectionColumn",
@@ -3276,7 +3424,8 @@
               ],
               "Layout": [
                 "setSection",
-                "setSectionLayout"
+                "setSectionLayout",
+                "setSectionBackground"
               ]
             }
           },

@@ -3,17 +3,24 @@
   =======
   Subsegment of a content module, when the page wrapper is removed the section can run over the full browser width.
 
-  @param {string} name                   = Classname
-  @param {object} data                   = Dataobject
-  @param {object} options                = Optionsobject
-  @param {string} options.style          = Optional Styleclass
-  @param {bool}   options.fullheight     = Should the container be stretched to the full viewport height?
-  @param {string} options.innerContainer = Layout inner Container
-  @param {string} options.anchor         = Optional Anchorname
-  @param {object} layout                 = Column Layout Object
-  @param {object} layout.twoColumns      = Column Layout Object
-  @param {object} layout.threeColumns    = Column Layout Object
-  @param {object} layout.fourColumns     = Column Layout Object
+  @param {string} name                      = Classname
+  @param {object} data                      = Dataobject
+  @param {object} options                   = Optionsobject
+  @param {string} options.style             = Optional Styleclass
+  @param {bool}   options.fullheight        = Should the container be stretched to the full viewport height?
+  @param {string} options.innerContainer    = Layout inner Container
+  @param {string} options.anchor            = Optional Anchorname
+  @param {object} layout                    = Column Layout Object
+  @param {object} layout.twoColumns         = Column Layout 2 Columns
+  @param {object} layout.threeColumns       = Column Layout 3 Columns
+  @param {object} layout.fourColumns        = Column Layout 4 Columns
+  @param {object} background                = Column Layout Object
+  @param {string} background.backgoundImage = Background Image
+  @param {string} background.behavior       = Background Behavior Class
+  @param {string} background.width          = Background Width (half or full)
+  @param {string} background.ratio          = Image Ratio
+  @param {string} background.position       = Background Position
+  @param {string} background.align          = Alignment of the Background Container
 #}
 
 {# Class Overwrite #}
@@ -33,6 +40,20 @@
 
 {# Build Element Block #}
 <section class="{{ classname }}{{ options.fullheight ? ' '~classname~'--fullheight' }}{{ options.style ? ' '~classname~'--s-'~options.style }}"{{ options.anchor != '' ? 'id='~options.anchor|lower }}>
+  {% if background.backgroundImage|length %}
+    <div class="{{ classname~'__bg' }}{{ background.behavior != 'default' ? ' '~classname~'__bg--'~background.behavior }}{{ ' '~classname~'--p-'~background.align }}{{ background.adaptContainer ? ' '~classname~'__bg--size-'~options.innerContainer }}">
+      <div class="{{ classname~'__bg__container'}} {{ classname~'__bg__container--size-'~background.width }}">
+        <div
+          {{ myMacro.mediaImageSet(background.backgroundImage.first(), background.ratio, {
+            class: classname~'__bg__background',
+            elementtype: false,
+            background: true,
+            position: background.position ? background.position : false
+          }) }}
+        ></div>
+      </div>
+    </div>
+  {% endif %}
   <div class="{{ classname }}__container{{ options.innerContainer != 'default' ? ' '~classname~'__container--'~options.innerContainer }}">
     <div class="{{ classname }}__row {{ classname~'__row--child-'~content.children|length }}{{ columLayout }}">
       {% for key, column in content.children %}
@@ -42,7 +63,6 @@
               {% include '_builder/_cb-objects' with { data: child } %}
             {% endfor %}
           </div>
-
         </div>
       {% endfor %}
     </div>
