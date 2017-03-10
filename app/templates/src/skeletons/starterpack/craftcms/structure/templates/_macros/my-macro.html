@@ -69,6 +69,8 @@
   @param {string} options.elementtype = Typedefinition from Background Image Element
   @param {number} options.quality     = JPEG Compression,
   @param {array}  options.sizes       = Array with Imagesizes
+  @param {string} options.position    = Position for Background
+
 #}
 {% macro mediaImageSet(photo,imageratio,options) %}
 
@@ -78,6 +80,7 @@
     background: false,
     elementtype: 'figure',
     quality: 82,
+    position: false,
     sizes: [
       { width: 1900 },
       { width: 1200 },
@@ -85,7 +88,8 @@
       { width: 500 },
       { width: 320 },
       { width: 150 },
-      { width: 30 } ]
+      { width: 30 }
+    ]
   } %}
 
   {# Merging Arrays  #}
@@ -108,7 +112,11 @@
 
     {# Output as <img> or Background #}
     {% if (options.background) %}
-      <{{ options.elementtype }} class="{{ options.class }} lazyload" style="background-image: url({{ photos|last.url }})" data-sizes="auto" data-bgset="{{ craft.imager.srcset( photos ) }}"></{{ options.elementtype }}>
+      {% if options.elementtype != false %}
+        <{{ options.elementtype }} class="{{ options.class }} lazyload" style="background-image: url({{ photos|last.url }});{{ options.position ? 'background-position:'~options.position }}" data-sizes="auto" data-bgset="{{ craft.imager.srcset( photos ) }}"></{{ options.elementtype }}>
+      {% else %}
+        class="{{ options.class~' lazyload' }}" style="background-image: url({{ photos|last.url }});{{ options.position ? 'background-position:'~options.position }}" data-sizes="auto" data-bgset="{{ craft.imager.srcset( photos ) }}"
+      {% endif %}
     {% else %}
       <img class="{{ options.class }} lazyload" data-sizes="auto" src="{{ photos|last.url }}" data-srcset="{{ craft.imager.srcset( photos ) }}" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
     {% endif %}
