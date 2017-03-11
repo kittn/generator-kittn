@@ -238,8 +238,6 @@ $kittn-generate-typostyles: true;
 //
 // - 'Colorname' {*} - Name for the Colorstyle, quoted
 //    - 'color' {Color} - Color
-//    - 'opacity' {Bool|Number} - Opacity Value
-//    - 'type' {*} - 'bc': background & textcolor, 'c': textcolor, 'b': background-color
 //
 // @type Map
 $kittn-color-map: (
