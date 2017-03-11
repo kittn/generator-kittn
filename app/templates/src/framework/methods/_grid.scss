@@ -164,7 +164,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 ///     margin-left: auto;
 ///     margin-right: auto;
 ///   }
-@mixin container($width: map-deep-get($kittn-page-size,minsize) map-deep-get($kittn-page-size,maxsize), $spacing: 10, $o: ()) {
+@mixin container($width: map-get-deep($kittn-page-size,minsize) map-get-deep($kittn-page-size,maxsize), $spacing: 10, $o: ()) {
 
   // Mixin Default Vars
   $o: map-merge((
