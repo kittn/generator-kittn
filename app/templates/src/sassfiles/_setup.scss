@@ -6,7 +6,6 @@
 //
 // - 'Name' {string} - Breakpoint Name
 //   - 'size' {Number} - The width that activate the Trigger
-//   - 'visibility' {Bool} - Set it on true to activate the visibility classes
 //   - 'step' {Bool} - Set the threshold for the grid-stepper mixin
 //   - 'fontsize' {bool|number} - Rewrite the Basefontsize for this breakpoint
 //
@@ -14,37 +13,31 @@
 $kittn-breakpoint-map: (
   'xs': (
     size: 320px,
-    visibility: false,
     step: true,
     fontsize: false
   ),
   's': (
     size: 480px,
-    visibility: false,
     step: false,
     fontsize: false
   ),
   'sm': (
     size: 560px,
-    visibility: false,
     step: true,
     fontsize: false
   ),
   'm': (
     size: 768px,
-    visibility: false,
     step: true,
     fontsize: 85
   ),
   'ml': (
     size: 960px,
-    visibility: false,
     step: true,
     fontsize: 90
   ),
   'l': (
     size: 1180px,
-    visibility: false,
     step: true,
     fontsize: 100
   )
