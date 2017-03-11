@@ -122,6 +122,7 @@
 /// @group core-colorFunctions
 ///
 /// @param  {string} $target - Desired color
+/// @param  {string} $key    - Optional Key (default: `color`)
 /// @param  {map}    $map    - Color Map [$kittn-color-map]
 ///
 /// @return {color}
@@ -131,9 +132,9 @@
 ///     color: c('white');
 ///     background-color: c('primary');
 ///   }
-@function c($target, $map: $kittn-color-map) {
+@function c($target, $key: color, $map: $kittn-color-map) {
   @if map-has-key($map, $target) {
-    @return map-get(map-get($map, $target), color);
+    @return map-get(map-get($map, $target), $key);
 
   } @else {
     @if map-filled($map) {

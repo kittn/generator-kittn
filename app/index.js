@@ -136,12 +136,6 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
-        type: 'confirm',
-        name: 'projectiecompatible',
-        message: chalk.cyan.underline.bold('Oldie IE?') + chalk.styles.red.close + '\n\xa0 IE8 compatibility needed?',
-        default: false
-      },
-      {
         type: 'list',
         name: 'projectUsage',
         message: chalk.cyan.underline.bold('Project Usage') + '\n\xa0 For what do you want to use Kittn. The generator can then prepare the project accordingly.',
@@ -369,7 +363,6 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectmail          = props.projectmail;
       this.projectissues        = props.projectissues;
       this.projectcssfilename   = props.projectcssfilename;
-      this.projectiecompatible  = props.projectiecompatible;
       this.projectstructure     = checkAnswer(props.projectstructure);
       this.projectUsage         = props.projectUsage;
       this.projectjquery        = props.projectjquery;
@@ -408,7 +401,6 @@ var KittnGenerator = yeoman.Base.extend({
       projectmail          : this.projectmail,
       projectissues        : this.projectissues,
       projectcssfilename   : this.projectcssfilename,
-      projectiecompatible  : this.projectiecompatible,
       projectstructure     : this.projectstructure,
       projectUsage         : this.projectUsage,
       projectjquery        : this.projectjquery,
@@ -496,15 +488,6 @@ var KittnGenerator = yeoman.Base.extend({
       this.destinationPath('src/style/_loader'+sassFileEnding),
       templateParams
     );
-
-    // IE8 get his own CSS File for Fallbacks
-    if (this.projectiecompatible === true ) {
-      this.fs.copyTpl(
-        this.templatePath('_style-ie8.sassfile'),
-        this.destinationPath('src/style/'+this.projectcssfilename+'-ie8'+sassFileEnding),
-        templateParams
-      );
-    }
 
     // Put Craft Base Files in Structure or simple Structure Files
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {

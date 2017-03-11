@@ -4,16 +4,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
   {% if craft.config.environment != 'productive' %}
-  <meta name="robots" content="noindex,nofollow"/>
+  <meta name="robots" content="noindex,nofollow">
   {% endif %}
-  <link rel="home" href="{{ siteUrl }}" /><% if ( projectiecompatible == true ) { %>
-  <!--[if lte IE 8]>
-  <link rel="stylesheet" href="{{ craft.config.rootUrl~'assets/css/<%= projectcssfilename %>-ie8.css' }}">
-  <![endif]-->
-  <!--[if gt IE 8]><!-->
+  <link rel="home" href="{{ siteUrl }}">
   <link rel="stylesheet" href="{{ craft.config.rootUrl~'assets/css/<%= projectcssfilename %>.css' }}">
-  <!--<![endif]--><% } else { %>
-  <link rel="stylesheet" href="{{ craft.config.rootUrl~'assets/css/<%= projectcssfilename %>.css' }}"><% } %>
   <style type="text/css">
     body { margin: 50px; font-family: sans-serif; background: #fff; }
     #container { margin: 0 auto; width: 700px;

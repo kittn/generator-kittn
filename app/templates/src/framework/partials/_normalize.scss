@@ -16,9 +16,7 @@ html {
 
   @if map-get($kittn-typo, unit) == rem {
     @if $kittn-active-responsive-fonts != false {
-      @include jacket(modern) { @include responsive-fontsize($kittn-active-responsive-fonts); }
-
-      @include jacket(old) { font-size: map-get($kittn-typo, base-scale) + 0%; }
+      @include responsive-fontsize($kittn-active-responsive-fonts);
 
     } @else {
       font-size: map-get($kittn-typo, base-scale) + 0%;

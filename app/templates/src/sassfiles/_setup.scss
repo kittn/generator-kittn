@@ -233,11 +233,10 @@ $kittn-typostyles-map: (
 // @type Bool
 $kittn-generate-typostyles: true;
 
-// Color Definition Map. This is a collection from all used Colors. Use only use HEX Colors,
-// when you enter a Opacity Value (between 0 to 1), Sass convert it to RGBA with a Fallback for old Browsers.
+// Color Definition Map. This is a collection from all used Colors. On any Color Position you can additional Variants
 //
 // - 'Colorname' {*} - Name for the Colorstyle, quoted
-//    - 'color' {Color} - Color
+//    - 'color' {Color} - Color (Main Color)
 //
 // @type Map
 $kittn-color-map: (

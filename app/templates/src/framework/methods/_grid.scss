@@ -138,7 +138,6 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 /// @param  {Map}    $o                   - Setup Args
 /// @param  {string} $o.position [center] - Container position (center, left, right)
 /// @param  {number} $o.gutter [0]        - Side Spacing - only relevant on Container Position left or right
-/// @param  {bool}   $o.static-ie [false] - When is set on 'true' IE8 get a static Container
 ///
 /// @example scss - scss
 ///   .container {
@@ -169,14 +168,12 @@ $mobile-first: map-get($kittn-activate, mobile-first);
   // Mixin Default Vars
   $o: map-merge((
     position: center,
-    gutter: 0,
-    static-ie: false
+    gutter: 0
   ),$o);
 
   // Variable Routing
   $position  : map-get($o, position);
   $gutter    : map-get($o, gutter);
-  $static-ie : map-get($o, static-ie);
   $width-val-1: null;
   $width-val-2: null;
 
@@ -232,29 +229,6 @@ $mobile-first: map-get($kittn-activate, mobile-first);
     } @else {
       // With only one width Value, the outer container is static for all Browsers
       width: unit-check($width);
-    }
-  }
-
-  // Make the Container non-fluid for IE when activated
-  @if $static-ie != false {
-    .ie8 & {
-      // When the Base the base width are two values, overwrite this with ie8
-      @if length($width) > 1 {
-        width: 100%;
-
-        @if $static-ie > 0 {
-          min-width: unit-check($static-ie);
-          max-width: unit-check($static-ie);
-
-        } @else {
-          // When the Size is to low (zero), Sass use the biggest width for establish the Static width
-          min-width: if($width-val-1 < $width-val-2, $width-val-2, $width-val-1);
-          max-width: if($width-val-1 < $width-val-2, $width-val-2, $width-val-1);
-        }
-
-      } @else {
-        width: unit-check($static-ie);
-      }
     }
   }
 

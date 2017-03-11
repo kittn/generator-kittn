@@ -24,16 +24,7 @@
   }
 
   @if map-get($kittn-typo, unit) == rem {
-    @if map-get($kittn-activate, ie8-fallbacks) == true {
-      @include jacket(modern) {
-        #{$arg}: rem($lines * map-get($kittn-typo, line-height));
-      }
-      @include jacket(old) {
-        #{$arg}: $lines * map-get($kittn-typo, line-height) + 0px;
-      }
-    } @else {
-      #{$arg}: rem($lines * map-get($kittn-typo, line-height));
-    }
+    #{$arg}: rem($lines * map-get($kittn-typo, line-height));
   }
 }
 
@@ -60,17 +51,7 @@
     }
 
     @if map-get($kittn-typo, unit) == rem {
-      @if map-get($kittn-activate, ie8-fallbacks) == true {
-        @include jacket(modern) {
-          #{$arg}: rem($size);
-        }
-        @include jacket(old) {
-          #{$arg}: $size + 0px;
-        }
-
-      } @else {
-        #{$arg}: rem($size);
-      }
+      #{$arg}: rem($size);
     }
   } @else {
     #{$arg}: $size;

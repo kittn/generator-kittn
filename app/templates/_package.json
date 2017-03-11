@@ -126,10 +126,8 @@
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0"
   },
-  "dependencies": {<% if ( projectiecompatible === true ) { if (projectjquery === true) { %>
-    "jquery": "1.11.3",<% } %>
-    "selectivizr": "^1.0.3",<% } else { if (projectjquery === true) { %>
-    "jquery": "^3.1.1",<% } } if ( projectJSFramework === 'Vue.js' ) { %>
+  "dependencies": {<% if (projectjquery === true) { %>
+    "jquery": "^3.1.1",<% } if ( projectJSFramework === 'Vue.js' ) { %>
     "axios": "^0.15.3",
     "es6-promise": "^4.0.5",
     "vue": "^2.1.10",

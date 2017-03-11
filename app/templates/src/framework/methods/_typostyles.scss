@@ -43,15 +43,3 @@
 @mixin get-fontsize($entry) {
   @include fontsize(tw($entry,font-size));
 }
-
-/// Connect a Element with a established Typostyle
-///
-/// @param  {*}      $entry - Key
-///
-/// @example scss - scss
-///   .typo {
-///     @include ext-typo(h1);
-///   }
-@mixin ext-typo($entry) {
-  @extend .#{$entry};
-}

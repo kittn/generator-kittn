@@ -46,7 +46,6 @@ $kittn-spritefiles: (
 // - 'hyphens' {Bool} - All Words would be breaked with Hyphens
 // - 'viewport-fix' {Bool} - Activate Viewport-Fixes for Windows Mobile 8
 // - 'mobile-first' {Bool} - Grid and Breakpoints oriented from Smallest to Biggest Size
-// - 'ie8-fallback' {Bool} - Integrate some IE8 Fallbacks
 //
 // @type Map
 $kittn-activate: (
@@ -56,7 +55,5 @@ $kittn-activate: (
   antialias: true,
   hyphens: true,
   viewport-fix: false,
-  mobile-first: true,<% if (projectiecompatible == true) { %>
-  ie8-fallbacks: true<% } else { %>
-  ie8-fallbacks: false<% } %>
+  mobile-first: true
 );
