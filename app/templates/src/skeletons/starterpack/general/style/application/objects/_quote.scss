@@ -6,7 +6,6 @@
 .o-quote {
   // Component Config
   $api: (
-    selector: 'quote',
     breakpoint: 'm',
     style1: (
       border: (
@@ -16,8 +15,19 @@
     )
   );
 
-  // Build root selector
-  $root: '.o-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
+
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Tags ----------------------------------
   p {
@@ -34,7 +44,7 @@
 
   // [root]--s-style1
   &--s-style1 {
-    border-left: v($api,style1,border,width) solid v($api,style1,border,color);
+    border-left: api(style1,border,width) solid api(style1,border,color);
     padding-left: s(1);
   }
 }

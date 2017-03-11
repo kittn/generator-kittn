@@ -7,7 +7,6 @@
 .o-button {
   // Component Config
   $api: (
-    selector: 'button',
     breakpoint: 'm',
     margin-bottom: s(1),
     size: (
@@ -40,20 +39,31 @@
     )
   );
 
-  // Build root selector
-  $root: '.o-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
+
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Base Modifier -------------------------
   // [root]--big
   &--big {
-    @include fontsize(v($api,size,big,fontsize));
-    padding: v($api,size,big,padding);
+    @include fontsize(api(size,big,fontsize));
+    padding: api(size,big,padding);
   }
 
   // [root]--small
   &--small {
-    @include fontsize(v($api,size,small,fontsize));
-    padding: v($api,size,small,padding);
+    @include fontsize(api(size,small,fontsize));
+    padding: api(size,small,padding);
   }
 
   // [root]--fullwidth
@@ -75,12 +85,12 @@
 
   // [root]__element
   &__element {
-    margin-bottom: v($api,margin-bottom);
+    margin-bottom: api(margin-bottom);
     font-weight: 700;
     display: inline-block;
     line-height: 1;
     text-align: center;
-    padding: v($api,size,regular,padding);
+    padding: api(size,regular,padding);
     transition: all 300ms ease-in-out;
     transition-property: color, background-color;
 
@@ -88,13 +98,13 @@
 
     // Default Style
     &#{$root}--s-default {
-      color: v($api,color,default,regular,text);
-      border: 2px solid v($api,color,default,regular,border);
-      background-color: v($api,color,default,regular,background);
+      color: api(color,default,regular,text);
+      border: 2px solid api(color,default,regular,border);
+      background-color: api(color,default,regular,background);
 
       &:hover {
-        background-color: v($api,color,default,hover,background);
-        color: v($api,color,default,hover,text);
+        background-color: api(color,default,hover,background);
+        color: api(color,default,hover,text);
       }
     }
 

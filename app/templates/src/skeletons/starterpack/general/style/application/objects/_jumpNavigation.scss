@@ -6,22 +6,28 @@
 .o-jumpnavigation {
   // Component Config
   $api: (
-    selector: 'jumpnavigation',
     breakpoint: 'm',
     breaksize: 500px,
     margin-bottom: s(1),
     gutter: 2px
   );
 
-  // Build root selector
-  $root: '.o-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
 
-  // Temp Style Storage  -------------------
-  // Store  : @include store(storagename) {}
-  // Unload : @include yield(storagename);
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Base Style ----------------------------
-  margin-bottom: v($api,margin-bottom);
+  margin-bottom: api(margin-bottom);
 
   // Tags ----------------------------------
 
@@ -32,8 +38,8 @@
       eq_this {
         display: flex;
         justify-content: space-between;
-        margin-left: 0 - v($api,gutter);
-        margin-right: 0 - v($api,gutter);
+        margin-left: 0 - api(gutter);
+        margin-right: 0 - api(gutter);
       }
     }
   }
@@ -47,20 +53,20 @@
     #{$root}--l-fullwidth & {
       display: block;
       text-align: center;
-      margin-bottom: v($api,gutter);
+      margin-bottom: api(gutter);
 
-      @include eqr($root, (min-width: #{v($api,breaksize)})) {
+      @include eqr($root, (min-width: #{api(breaksize)})) {
         flex: 1;
         margin-bottom: 0;
-        margin-left: v($api,gutter);
-        margin-right: v($api,gutter);
+        margin-left: api(gutter);
+        margin-right: api(gutter);
       }
     }
 
     #{$root}--l-list & {
       display: block;
       text-align: center;
-      margin-bottom: v($api,gutter);
+      margin-bottom: api(gutter);
     }
 
     // Style Modifier

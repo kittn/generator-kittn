@@ -6,19 +6,24 @@
 .o-card {
   // Component Config
   $api: (
-    selector: 'card',
     breakpoint: 'm'
   );
 
-  // Build root selector
-  $root: '.o-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
 
-  // Temp Style Storage  -------------------
-  // Store  : @include store(storagename) {}
-  // Unload : @include yield(storagename);
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Base Style ----------------------------
-
 
   // Tags ----------------------------------
 
@@ -61,9 +66,7 @@
     }
 
     // [root]__body
-    #{$root}__body {
-
-    }
+    #{$root}__body {}
   }
 
   // [root]--s-style1
@@ -156,15 +159,12 @@
     }
 
     // [root]__body
-    #{$root}__body {
-    }
+    #{$root}__body {}
   }
   // Childs --------------------------------
 
   // [root]__inner
-  &__inner {
-
-  }
+  &__inner {}
 
   // [root]__media
   &__media {
@@ -182,9 +182,7 @@
   }
 
   // [root]__header
-  &__header {
-
-  }
+  &__header {}
 
   // [root]__headline
   &__headline {
@@ -197,12 +195,8 @@
   }
 
   // [root]__meta
-  &__meta {
-
-  }
+  &__meta {}
 
   // [root]__body
-  &__body {
-
-  }
+  &__body {}
 }

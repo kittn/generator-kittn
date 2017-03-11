@@ -6,19 +6,24 @@
 .o-grid {
   // Component Config
   $api: (
-    selector: 'grid',
     breakpoint: 'm'
   );
 
-  // Build root selector
-  $root: '.o-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
 
-  // Temp Style Storage  -------------------
-  // Store  : @include store(storagename) {}
-  // Unload : @include yield(storagename);
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Base Style ----------------------------
-
 
   // Tags ----------------------------------
 
@@ -27,16 +32,15 @@
   // Childs --------------------------------
   // [root]__row
   //&__row {
-  //  @include break(v($api,breakpoint)) {
+  //  @include break(api(breakpoint)) {
   //    display: flex;
   //  }
   //}
   //
   //// [root]__grid-half
   //&__halfcolumn {
-  //  @include break(v($api,breakpoint))  {
+  //  @include break(api(breakpoint))  {
   //    flex: 1;
   //  }
   //}
-
 }

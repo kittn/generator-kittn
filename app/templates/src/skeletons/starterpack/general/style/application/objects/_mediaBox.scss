@@ -6,7 +6,6 @@
 .o-mediabox {
   // Component Config
   $api: (
-    selector: 'mediabox',
     breakpoint: 600px,
     margin-bottom: s(1),
     color: (
@@ -17,13 +16,24 @@
     )
   );
 
-  // Build root selector
-  $root: '.o-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
+
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Base Style ----------------------------
-  margin-bottom: v($api,margin-bottom);
+  margin-bottom: api(margin-bottom);
 
-  @include eq((min-width: #{v($api,breakpoint)})) {
+  @include eq((min-width: #{api(breakpoint)})) {
     eq_this {
       display: flex;
     }
@@ -34,13 +44,13 @@
   // Base Modifier -------------------------
 
   // Build Color Modifier
-  @each $colorkey,$color in v($api,color) {
+  @each $colorkey,$color in api(color) {
     &--c-#{$colorkey} {
-      @if(v($color,background) != false) {
-        background-color: v($color,background);
+      @if(map-get($color,background) != false) {
+        background-color: map-get($color,background);
       }
-      @if(v($color,text) != false) {
-        color: v($color,text);
+      @if(map-get($color,text) != false) {
+        color: map-get($color,text);
       }
     }
   }
@@ -55,31 +65,31 @@
       order: 2;
     }
 
-    @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+    @include eqr($root, (min-width: #{api(breakpoint)})) {
       margin-right: 20px;
     }
 
     #{$root}--right & {
-      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+      @include eqr($root, (min-width: #{api(breakpoint)})) {
         margin-right: 0;
         margin-left: 20px;
       }
     }
 
     #{$root}--quarter & {
-      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+      @include eqr($root, (min-width: #{api(breakpoint)})) {
         flex: 0 0 25%;
       }
     }
 
     #{$root}--half & {
-      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+      @include eqr($root, (min-width: #{api(breakpoint)})) {
         flex: 0 0 50%;
       }
     }
 
     #{$root}--threequarter & {
-      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+      @include eqr($root, (min-width: #{api(breakpoint)})) {
         flex: 0 0 75%;
       }
     }
@@ -107,18 +117,18 @@
       margin-bottom: 0;
     }
 
-    @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+    @include eqr($root, (min-width: #{api(breakpoint)})) {
       align-self: center;
     }
 
     #{$root}--colored & {
-      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+      @include eqr($root, (min-width: #{api(breakpoint)})) {
         padding-left: 0;
       }
     }
 
     #{$root}--colored#{$root}--right & {
-      @include eqr($root, (min-width: #{v($api,breakpoint)})) {
+      @include eqr($root, (min-width: #{api(breakpoint)})) {
         padding-left: 20px;
         padding-right: 0;
       }

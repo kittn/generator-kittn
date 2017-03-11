@@ -6,12 +6,23 @@
 %e-container {
   // Component Config
   $api: (
-    selector: 'container',
+    breakpoint: 'm'
   );
 
-  // Build root selector
-  $root: '%e-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
+
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Base Style ----------------------------
-  @include container($width: v($kittn-page-size,minsize) v($kittn-page-size,maxsize), $spacing: 20);
+  @include container($width: map-deep-get($kittn-page-size,minsize) map-deep-get($kittn-page-size,maxsize), $spacing: 20);
 }

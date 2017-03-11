@@ -6,7 +6,6 @@
 .o-area {
   // Component Config
   $api: (
-    selector: 'area',
     breakpoint: 'm',
     header: (
       background: #ececec,
@@ -20,8 +19,19 @@
     )
   );
 
-  // Build root selector
-  $root: '.o-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
+
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Tags ----------------------------------
 
@@ -45,9 +55,9 @@
 
   // [root]__header
   &__header {
-    @include padding(gap(v($api,header,vertpadding)) 0);
-    background-color: v($api,header,background);
-    margin-bottom: v($api,header,margin);
+    @include padding(gap(api(header,vertpadding)) 0);
+    background-color: api(header,background);
+    margin-bottom: api(header,margin);
 
     *, & {
       color: c('main');
@@ -62,8 +72,8 @@
 
   // [root]__footer
   &__footer {
-    background-color: v($api,footer,background);
-    @include padding(gap(v($api,footer,vertpadding)) 0);
+    background-color: api(footer,background);
+    @include padding(gap(api(footer,vertpadding)) 0);
 
     *, & {
       color: c('white');

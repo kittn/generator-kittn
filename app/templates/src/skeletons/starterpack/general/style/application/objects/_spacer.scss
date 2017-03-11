@@ -6,25 +6,35 @@
 .o-spacer {
   // Component Config
   $api: (
-    selector: 'spacer',
     subspacer: .25 .5 .75,
     uptospacer: 1 2 3 4 5 6 7 8 9 10
   );
 
-  // Build root selector
-  $root: '.o-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
+
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Base Style ----------------------------
 
   // Build Small Spacer
-  @each $i in v($api,subspacer) {
+  @each $i in api(subspacer) {
     &--0#{$i*100} {
       height: s($i)
     }
   }
 
   // Build Big Spacer
-  @each $i in v($api,uptospacer) {
+  @each $i in api(uptospacer) {
     &--#{$i} {
       height: s($i)
     }

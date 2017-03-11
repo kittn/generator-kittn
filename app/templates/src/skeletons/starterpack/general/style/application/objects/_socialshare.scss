@@ -6,7 +6,6 @@
 .o-socialshare {
   // Component Config
   $api: (
-    selector: 'socialshare',
     breakpoint: 'm',
     margin-bottom: s(1),
     box: (
@@ -15,16 +14,23 @@
     )
   );
 
-  // Build root selector
-  $root: '.o-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
 
-  // Temp Style Storage  -------------------
-  // Store  : @include store(storagename) {}
-  // Unload : @include yield(storagename);
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Base Style ----------------------------
   display: flex;
-  margin-bottom: v($api,margin-bottom);
+  margin-bottom: api(margin-bottom);
 
   // Tags ----------------------------------
 
@@ -33,13 +39,13 @@
   // Childs --------------------------------
   // [root]__box
   &__box {
-    @include size(v($api,box,size));
+    @include size(api(box,size));
 
     &:not(:first-of-type) {
-      margin-left: v($api,box,gutter);
+      margin-left: api(box,gutter);
     }
     &:not(:last-of-type) {
-      margin-right: v($api,box,gutter);
+      margin-right: api(box,gutter);
     }
   }
 
@@ -51,7 +57,7 @@
     // [root]---solo
     @include instance(solo) {
       &:not(:last-child) {
-        margin-right: v($api,box,gutter) * 2;
+        margin-right: api(box,gutter) * 2;
       }
     }
   }

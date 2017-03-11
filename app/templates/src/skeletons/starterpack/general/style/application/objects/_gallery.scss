@@ -6,23 +6,33 @@
 .o-gallery {
   // Component Config
   $api: (
-    selector: 'gallery',
     breakpoint: 'sm',
     margin-bottom: s(1),
     gutter: 2px
   );
 
-  // Build root selector
-  $root: '.o-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
+
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Base Style --------------------
-  margin-bottom: v($api,margin-bottom);
+  margin-bottom: api(margin-bottom);
   overflow: hidden;
 
   // Base Modifier -----------------
   &#{$root}--moreimages {
-    margin-left: 0 - v($api,gutter);
-    margin-right: 0 - v($api,gutter);
+    margin-left: 0 - api(gutter);
+    margin-right: 0 - api(gutter);
   }
 
   // Layoutmod for Simplelayout
@@ -33,7 +43,7 @@
       justify-content: center;
 
       &#{$root}--moreimages {
-        @include break(v($api,breakpoint)) {
+        @include break(api(breakpoint)) {
           flex-wrap: nowrap;
         }
       }
@@ -56,11 +66,11 @@
 
   // [root]__figure
   &__figure {
-    margin-bottom: v($api,gutter) * 2;
+    margin-bottom: api(gutter) * 2;
 
     #{$root}--moreimages & {
-      padding-left: v($api,gutter);
-      padding-right: v($api,gutter);
+      padding-left: api(gutter);
+      padding-right: api(gutter);
     }
 
     // For Simple Layout
@@ -68,14 +78,14 @@
       flex-grow: 1;
       flex-shrink: 1;
       flex-basis: auto;
-      max-width: calc(50% - #{2 * v($api,gutter)});
+      max-width: calc(50% - #{2 * api(gutter)});
     }
 
     // Simple Layout without Flexbox
     #{$root}--l-simple#{$root}--noFlex & {
       float: left;
 
-      @include break(v($api,breakpoint)) {
+      @include break(api(breakpoint)) {
         max-width: auto;
       }
     }

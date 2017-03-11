@@ -1,26 +1,29 @@
 /*
   Mainnavigation
   ==============
-  description
-
-  **Elements**
+  Main Navigation Module
 */
 .c-mainnav {
   // Component Config
   $api: (
-    selector: 'mainnav',
     breakpoint: 'm'
   );
 
-  // Build root selector
-  $root: '.c-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
 
-  // Temp Style Storage  -------------------
-  // Store  : @include store(storagename) {}
-  // Unload : @include yield(storagename);
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Base Style ----------------------------
-
 
   // Tags ----------------------------------
   a {
@@ -42,5 +45,4 @@
   // Base Modifier -------------------------
 
   // Childs --------------------------------
-
 }

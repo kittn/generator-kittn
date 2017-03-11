@@ -6,16 +6,26 @@
 .o-accordion {
   // Component Config
   $api: (
-    selector: 'accordion',
     breakpoint: 'm',
     margin-bottom: s(1)
   );
 
-  // Build root selector
-  $root: '.o-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
+
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Base Style ----------------------------
-  margin-bottom: v($api,margin-bottom);
+  margin-bottom: api(margin-bottom);
 
   // Default Style Modifier
   &--s-default {
@@ -60,7 +70,6 @@
       border-bottom: 0;
       border-top: 0;
       margin-bottom: 1px;
-      // box-shadow: inset 1px 0 10px rgba(0,0,0,.15);
     }
   }
 

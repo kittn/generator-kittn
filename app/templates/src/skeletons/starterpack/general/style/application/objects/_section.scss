@@ -6,7 +6,6 @@
 .o-section {
   // Component Config
   $api: (
-    selector: 'section',
     gutter: (
       default: 10px,
       style1: 20px,
@@ -47,8 +46,19 @@
     )
   );
 
-  // Build root selector
-  $root: '.o-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
+
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Base Modifier -------------------------
   position: relative;
@@ -61,7 +71,7 @@
   }
 
   // Global Style Gutter
-  @each $key, $gutter in v($api,gutter) {
+  @each $key, $gutter in api(gutter) {
     &--s-#{$key} {
       #{$root}__row {
         margin-left: 0 - $gutter;
@@ -97,19 +107,19 @@
 
     // [root]--bigger-45
     &--bigger-45 {
-      max-width: v($kittn-page-size,maxsize) * 1.45;
+      max-width: map-deep-get($kittn-page-size,maxsize) * 1.45;
     }
     // [root]--bigger-25
     &--bigger-25 {
-      max-width: v($kittn-page-size,maxsize) * 1.25;
+      max-width: map-deep-get($kittn-page-size,maxsize) * 1.25;
     }
     // [root]--smaller-25
     &--smaller-25 {
-      max-width: v($kittn-page-size,maxsize) * .75;
+      max-width: map-deep-get($kittn-page-size,maxsize) * .75;
     }
     // [root]--smaller-50
     &--smaller-50 {
-      max-width: v($kittn-page-size,maxsize) * .50;
+      max-width: map-deep-get($kittn-page-size,maxsize) * .50;
     }
   }
 
@@ -119,8 +129,8 @@
     display: flex;
 
     // Generate Column Layouts
-    @each $columnStyleName, $setup in v($api,columns) {
-      @each $key, $column in v($setup,layout) {
+    @each $columnStyleName, $setup in api(columns) {
+      @each $key, $column in map-deep-get($setup,layout) {
         &--#{$key} {
           #{$root}__column {
             @for $i from 1 through length($column) {
@@ -133,8 +143,8 @@
       }
 
       // Reset Columns
-      &--#{v($setup, groupname)} {
-        @include eq((max-width: #{v($setup, breaksize)})) {
+      &--#{map-deep-get($setup, groupname)} {
+        @include eq((max-width: #{map-deep-get($setup, breaksize)})) {
           eq_this {
             display: block;
           }
@@ -162,8 +172,8 @@
     }
 
     // Column Sizes
-    @each $columnStyleName, $setup in v($api,columns) {
-      @each $key, $column in v($setup,layout) {
+    @each $columnStyleName, $setup in api(columns) {
+      @each $key, $column in map-deep-get($setup,layout) {
         &--#{$key} {
           #{$root}__column {
             @for $i from 1 through length($column) {
@@ -206,23 +216,23 @@
     width: 100%;
     height: 100%;
     left: 50%;
-    min-width: v($kittn-page-size,minsize);
+    min-width: map-deep-get($kittn-page-size,minsize);
     transform: translate(-50%);
 
     // Default Adapt size
-    &--size-default { max-width: v($kittn-page-size,maxsize); }
+    &--size-default { max-width: map-deep-get($kittn-page-size,maxsize); }
 
     // [root]--bigger-45
-    &--size-bigger-45 { max-width: v($kittn-page-size,maxsize) * 1.45; }
+    &--size-bigger-45 { max-width: map-deep-get($kittn-page-size,maxsize) * 1.45; }
 
     // [root]--bigger-25
-    &--size-bigger-25 { max-width: v($kittn-page-size,maxsize) * 1.25; }
+    &--size-bigger-25 { max-width: map-deep-get($kittn-page-size,maxsize) * 1.25; }
 
     // [root]--smaller-25
-    &--size-smaller-25 { max-width: v($kittn-page-size,maxsize) * .75; }
+    &--size-smaller-25 { max-width: map-deep-get($kittn-page-size,maxsize) * .75; }
 
     // [root]--smaller-50
-    &--size-smaller-50 { max-width: v($kittn-page-size,maxsize) * .50; }
+    &--size-smaller-50 { max-width: map-deep-get($kittn-page-size,maxsize) * .50; }
 
     // [root]--behavior1
     &--behavior1 {

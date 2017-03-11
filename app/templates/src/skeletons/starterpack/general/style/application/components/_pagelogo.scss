@@ -1,27 +1,31 @@
 /*
   Pagelogo
   ========
-  description
-
-  **Elements**
+  Simple Page Logo
 */
 .c-pagelogo {
   // Component Config
   $api: (
-    selector: 'pagelogo',
     breakpoint: 'm',
     margin-bottom: s(.5)
   );
 
-  // Build root selector
-  $root: '.c-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
 
-  // Temp Style Storage  -------------------
-  // Store  : @include store(storagename) {}
-  // Unload : @include yield(storagename);
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Base Style ----------------------------
-  margin-bottom: v($api,margin-bottom);
+  margin-bottom: api(margin-bottom);
 
   &, a {
     @include fontsize(50);

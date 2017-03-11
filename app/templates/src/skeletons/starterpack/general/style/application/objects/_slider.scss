@@ -6,7 +6,6 @@
 .o-slider {
   // Component Config
   $api: (
-    selector: 'slider',
     margin-bottom: s(2),
     breakpoints: (
       one: false,
@@ -25,25 +24,36 @@
     )
   );
 
-  // Build root selector
-  $root: '.o-#{v($api,selector)}';
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
+
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
 
   // Base Style ----------------------------
-  margin-bottom: v($api,margin-bottom);
+  margin-bottom: api(margin-bottom);
   height: 100%;
 
   // Overwrites ----------------------------
   // Style Modification Flickity
   .flickity-prev-next-button,
   .flickity-prev-prev-button {
-    background: v($api,flickity,nav,background);
+    background: api(flickity,nav,background);
     svg path {
-      fill: v($api,flickity,nav,color);
+      fill: api(flickity,nav,color);
     }
 
     &:hover {
       svg path {
-        fill: v($api,flickity,nav,hover);
+        fill: api(flickity,nav,hover);
       }
     }
   }
@@ -61,10 +71,10 @@
     }
 
     // Building Columns
-    $list-length: length(v($api,breakpoints));
+    $list-length: length(api(breakpoints));
 
     @for $i from 1 through $list-length {
-      $iterator: nth(v($api,breakpoints),$i);
+      $iterator: nth(api(breakpoints),$i);
       $key: nth($iterator,1);
       $value: nth($iterator,2);
 
