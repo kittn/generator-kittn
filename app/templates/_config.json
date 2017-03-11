@@ -54,9 +54,8 @@
     "baseFontSize": "16px",
     "filename": "<%= projectcssfilename %>",
     "prefix": [
-      "last 2 version",<% if (projectiecompatible == true ) { %>
-      "ie 8",<% } else { %>
-      "ie 9",<% } %>
+      "last 2 version",
+      "ie 9",
       "> 5%"
     ]
   },
@@ -83,8 +82,7 @@
       "srcName": "app.js",
       "distName": "app.js"
     },
-    "jsCopy": [<% if (projectiecompatible == true ) { %>
-      "node_modules/selectivizr/selectivizr.js",<% } %>
+    "jsCopy": [
       "node_modules/lazysizes/plugins/respimg/ls.respimg.js",
       "node_modules/html5shiv/dist/html5shiv.js"
     ],
@@ -130,8 +128,7 @@
       "node_modules/conditionizr/detects/firefox.js",
       "node_modules/conditionizr/detects/ie11.js",
       "node_modules/conditionizr/detects/ie10.js",
-      "node_modules/conditionizr/detects/ie9.js"<% if (projectiecompatible == true ) { %>,
-      "node_modules/conditionizr/detects/ie8.js"<% } %>
+      "node_modules/conditionizr/detects/ie9.js"
     ]
   },
   "minify": {
