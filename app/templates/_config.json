@@ -58,16 +58,17 @@
       "ie 9",
       "> 5%"
     ]
-  },
-  "cssabove": {
-    "width": "320",
-    "height": "480",
-    "minify": true,
-    "inline": true,
-    "sources": [
-      "index.html"
-    ]
-  },
+  }<% if (projectcritical == true) { %>,
+    "cssabove": {
+      "width": "1024",
+      "height": "768",
+      "minify": true,
+      "inline": <% if (projectcriticalinline === 'Inline') {%>true<%} else { %>false<% } %>,
+      "sources": [
+        "index.html"
+      ]<% if (projectcriticalinline != 'Inline') {%>,
+      "destFilename": "critical.css"<% } %>
+  }<% } %>,
   "template": {
     "globalTitle": "<%= projectname %>",
     "compiler": <% if ( projectstructure == 'Twig Template' && projectUsage == 'Building HTML Prototypes') { %>true<% } else { %>false<% } %>

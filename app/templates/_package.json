@@ -15,12 +15,10 @@
   },
   "scripts": {
     "subtask:bundlewebpack": "webpack --config webpack.config.babel.js -p --colors --env.bundle=production --env=production",
-    "subtask:deploygulp": "gulp deploy --env=production",
-    "subtask:buildgulp": "gulp build --env=production --critical",
+    "subtask:buildgulp": "gulp build --env=production<% if (projectcritical === true) { %> --critical<% } %>",
     "init": "gulp init --env=init && npm run subtask:bundlewebpack",
     "dev": "NODE_ENV=development gulp",
-    "devdashboard": "webpack-dashboard -p 3002 -- gulp",
-    "deploy": "npm run subtask:bundlewebpack && npm run subtask:deploygulp",
+    "deploy": "npm run subtask:bundlewebpack && npm run subtask:buildgulp",
     "build": "npm run subtask:bundlewebpack && NODE_ENV=production npm run subtask:buildgulp",
     "scripts": "gulp rebuild:js --env=init",
     "uiimages": "gulp rebuild:images --env=init",
@@ -31,8 +29,8 @@
   },
   "devDependencies": {
     "browser-sync": "^2.18.7",
-    "css-parse": "^2.0.0",
-    "critical": "^0.8.1",
+    "css-parse": "^2.0.0",<% if (projectcritical === true) { %>
+    "critical": "^0.8.1",<% } %>
     "gulp": "^3.9.1",
     "gulp-bump": "^2.6.1",
     "gulp-changed": "^1.3.2",
@@ -110,7 +108,6 @@
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.9.0",
     "webpack": "^2.2.1",
-    "webpack-dashboard": "^0.3.0",
     "webpack-dev-middleware": "^1.10.0",
     "webpack-hot-middleware": "^2.16.1",
     "webpack-merge": "^2.6.1",

@@ -34,10 +34,10 @@ const buildTask = (cb) => {
       'minify:contentimages',
       'minify:inlineimages',
       'minify:css'
-    ],
+    ]<% if (projectcritical === true) { %>,
     [
       'optimize:criticalCss'
-    ],
+    ]<% } %>,
     cb)
 }
 
