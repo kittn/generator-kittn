@@ -80,14 +80,14 @@ Further steps in the documentation.
 - Bower 1.4.0
 
 ## Special Thanks to
-
+- David Hellmann (@davidhellmann) - for his Fluidtype Mixin
 - Hugo Giraudel (@HugoGiraudel) - for his awesome Sass Scripts
 - Team Sass - Jacket
 - LukyVj (@LukyVj) - for Family.scss
 
 ## Authors
 - Sascha Fuchs @gisugosu
-- Lars Eichler @lars.e
+- Lars Eichler @cinkon
 - Martin Herweg @martinherweg
 
 ## Licence
