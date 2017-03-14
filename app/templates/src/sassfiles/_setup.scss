@@ -2,14 +2,14 @@
 //          Base Setup
 // ------------------------------------------------------------
 
-// Map off all Breakpoints and Behaviors
+// Map with all breakpoints and related behavior
 //
-// - 'Name' {string} - Breakpoint Name
-//   - 'size' {Number} - The width that activate the Trigger
-//   - 'step' {Bool} - Set the threshold for the grid-stepper mixin
-//   - 'fontsize' {bool|number} - Rewrite the Basefontsize for this breakpoint
+// @type map
 //
-// @type Map
+// @prop {string} base.key                  - Breakpoint Name
+// @prop {number} base.key.size             - The width that activate the Trigger
+// @prop {bool}   base.key.step             - Set the threshold for the grid-stepper mixin
+// @prop {number} base.key.fontsize         - Rewrite the Basefontsize for this breakpoint
 $kittn-breakpoint-map: (
   'xs': (
     size: 320px,
@@ -49,14 +49,16 @@ $kittn-page-size: (
   maxsize: 1200px
 );
 
-// Load and integrate all FontFaces.
-// - 'fontname' {*}
-//   - 'filename' {Bool|*} - Filename, when 'false' the Fontname will be used
-//   - 'weight' {*} - The associated Fontweight
-//   - 'style' {*} - The associated Font Style
-//   - 'short' {Bool} - Use the Short Syntax for Fontfaces (Use not when Support => IE8 or Android => 4.3)
+// Define the different fontfaces that are loaded locally
 //
-// @type Map
+// @type map
+//
+// @prop {map}    base.fontname                  - CSS Fontname
+// @prop {map}    base.fontname.variant          - Used for different font fonts
+// @prop {bool}   base.fontname.variant.filename - Filename, when 'false' the Fontname will be used
+// @prop {string} base.fontname.variant.weight   - Associated Fontweight
+// @prop {string} base.fontname.variant.style    - Associated Fontstyle
+// @prop {bool}   base.fontname.variant.short    - Use the Short Syntax for Fontfaces (Use not when Support => IE8 or Android => 4.3)
 $kittn-fontface-map: (
   // EXAMPLE
   // fontname: (
@@ -77,10 +79,8 @@ $kittn-fontface-map: (
 
 // Iconfont Configuration
 //
-// - 'name' {*|Bool} - Iconfont Name
-// - 'prefix' {*} - Icon Prefix
-//
-// @type Map
+// @prop {string} base.name                 - Iconfont Name
+// @prop {string} base.prefix               - Icon Prefix
 $kittn-iconfont: (
   name: false,
   prefix: 'f-icon'
@@ -88,12 +88,12 @@ $kittn-iconfont: (
 
 // Base Typo Setup
 //
-// - 'unit' {*} - 'px' or 'rem'
-// - 'base-scale' {Number} - Fontsize on &lt;html&gt;
-// - 'base-size' {Number} - Base Fontsize in Px
-// - 'line-height' {Number} - Base Line-Height
+// @type map
 //
-// @type Map
+// @prop {string} base.unit                 - Typo Unit 'px' or 'rem'
+// @prop {number} base.base-scale           - Fontsize on `<html>`
+// @prop {number} base.base-size            - Base Fontsize in `px`
+// @prop {number} base.line-height          - Base Line-Height
 $kittn-typo: (
   unit: rem,
   base-scale: 85,
@@ -108,10 +108,10 @@ $kittn-active-responsive-fonts: 80;
 
 // Default Margin for Typographic Elements (set on '0' when not needed)
 //
-// - 'top' {Number} - Top Margin Size
-// - 'botton' {Number} - Bottom Margin Size
-//
 // @type Map
+//
+// @prop {number} base.top                 - Top Margin Size
+// @prop {number} base.bottom              - Bottom Margin Size
 $kittn-typo-margin: (
   top: gap(1.25),
   bottom: gap(1)
@@ -120,46 +120,72 @@ $kittn-typo-margin: (
 // Base Typo and Font Styling
 //
 // @type Map
+//
+// @prop {string}      base.base-font             - Basis text font
+// @prop {string|bool} base.base-weight           - Basis font weight
+// @prop {string|bool} base.heading-font          - Heading font
+// @prop {string|bool} base.bold-font             - Font for bold type
+// @prop {string|bool} base.bold-weight           - Font weight for bold typo
+// @prop {string|bool} base.italic-font           - Font for italic style
+// @prop {string|bool} base.italic-style          - Font style for italic typo
+// @prop {bool}        base.link-decoration       - Textlink Decoration for `normal` state
+// @prop {bool}        base.link-decoration-hover - Textlink Decoration for `hover` state
+// @prop {string|bool} base.quote-font            - Font for quotes
+// @prop {string|bool} base.quote-weight          - Quote font weight
+// @prop {string|bool} base.quote-style           - Quote font style
+// @prop {string|bool} base.code-font             - Font for Code
+// @prop {string|bool} base.code-weight           - Font weight for Code typo
 $kittn-typo-style: (
-  base-font: ff('helvetica'), // Base Font
-  base-weight: false, // {Bool}
-  heading-font: false, // {Bool|*} Headlinefont, 'false' will use the Basefont
-  bold-font: false, // {Bool|*} 'false' will use the Basefont
-  bold-weight: bold, // {*}
-  italic-font: false, // {Bool|*} 'false' will use the Basefont
-  italic-style: italic, // {*}
-  link-decoration: false, // Textlink Decoration for 'normal' state
-  link-decoration-hover: false, // Textlink Decoration for 'hover' state
-  quote-font: false, // {Bool|*} 'false' will use the Basefont
-  quote-weight: false, // {*}
-  quote-style: italic, // {*}
-  code-font: ff('monospace'), // {Bool|*} 'false' will use the Basefont
-  code-weight: normal // {*}
+  base-font: ff('helvetica'),
+  base-weight: false,
+  heading-font: false,
+  bold-font: false,
+  bold-weight: bold,
+  italic-font: false,
+  italic-style: italic,
+  link-decoration: false,
+  link-decoration-hover: false,
+  quote-font: false,
+  quote-weight: false,
+  quote-style: italic,
+  code-font: ff('monospace'),
+  code-weight: normal
 );
 
-// Base Typo Sizes
+// Individual typo settings for separate HTML elements
 //
 // @type Map
+//
+// @prop {number|bool} base.list-fontsize     - Fontsize for list elements
+// @prop {number|bool} base.list-lineheight   - Lineheight for list elements
+// @prop {number|bool} base.list-margin       - Listelement margin on the left side
+// @prop {number|bool} base.list-style        - Base liststyle ('disc', 'square', 'circle')
+// @prop {number|bool} base.quote-fontsize    - Fontsize for Quotes
+// @prop {number|bool} base.quote-lineheight  - Lineheight for Quotes
+// @prop {number|bool} base.cite-fontsize     - Fontsize for Cite
+// @prop {number|bool} base.cite-lineheight   - Lineheight for Cite
+// @prop {number|bool} base.code-fontsize     - Fontsize for Code Typo
+// @prop {number|bool} base.code-lineheight   - Lineheight for Code Typo
 $kittn-typo-sizes: (
-  list-fontsize: false, // {value/boolean} Can be 'false' or Fontsize
-  list-lineheight: false, // {value/boolean} Can be 'false' or Fontsize
-  list-margin: gap(1), // {Number} Margin Left
-  list-style: disc, // {*} Possible Values : 'disc', 'square', 'circle'
-  quote-fontsize: map-get($kittn-typo, base-size) + 2, // {Bool|Number}
-  quote-lineheight: map-get($kittn-typo, line-height) + 6, // {Bool|Number}
-  cite-fontsize: map-get($kittn-typo, base-size) - 1, // {Bool|Number}
-  cite-lineheight: map-get($kittn-typo, line-height) + 0, // {Bool|Number}
-  code-fontsize: false, // {Bool|Number}
-  code-lineheight: false // {Bool|Number}
+  list-fontsize: false,
+  list-lineheight: false,
+  list-margin: gap(1),
+  list-style: disc,
+  quote-fontsize: map-get($kittn-typo, base-size) + 2,
+  quote-lineheight: map-get($kittn-typo, line-height) + 6,
+  cite-fontsize: map-get($kittn-typo, base-size) - 1,
+  cite-lineheight: map-get($kittn-typo, line-height) + 0,
+  code-fontsize: false,
+  code-lineheight: false
 );
 
 // Global Heading Stylings
 //
-// - 'lineheight' {Bool|*} - 'false' or 'd' (for line-height:1) or a unitless number
-// - 'marginbottom' {Bool|Number} - 'false' or 'number'
-// - 'fontweight' {Bool|*} - 'false' or 'number'
-//
 // @type Map
+//
+// @prop {string|bool} base.lineheight     - false' or 'd' (for line-height:1) or a unitless number
+// @prop {number|bool} base.marginbottom   - Bottom Margin
+// @prop {number|bool} base.fontweight     - Heading Fontweight
 $kittn-global-heading: (
   lineheight: false,
   marginbottom: 0,
@@ -168,15 +194,15 @@ $kittn-global-heading: (
 
 // All possible Typostyles in a Map.
 //
-// - 'Stylename' {*} - Fontstyle Name
-//  - 'font-size' {Number}
-//  - 'line-height' {*|bool| Number} - `d`: line-height = 1, `c`: sass calculated, `number`
-//  - 'margin-bottom' {*|Number} - 'number'
-//  - 'font-weight' {*|Number} - 'number'
-//  - 'tag' {Bool} - On `true` it generates also tags, with 'false' only classes
-//  - 'extend' {*} - When you want to Extend the Style you can enter here the Extend Classname like `%myclass`
-//
 // @type Map
+//
+// @prop {map}         base.type               - Name of Typodefinition
+// @prop {number}      base.type.font-size     - Fontsize
+// @prop {string|bool} base.type.line-height   - Individual lineheight (`d`: line-height = 1, `c`: sass calculated, `number`)
+// @prop {number}      base.type.margin-bottom - Bottom Margin
+// @prop {number|bool} base.type.font-weight   - Fontweight
+// @prop {bool}        base.type.tag           - If it is activated, it generates a class from Key
+// @prop {string|bool} base.type.extend        - The definition can be linked to a global definition
 $kittn-typostyles-map: (
   h1: (
     font-size: 36,
@@ -233,12 +259,13 @@ $kittn-typostyles-map: (
 // @type Bool
 $kittn-generate-typostyles: true;
 
-// Color Definition Map. This is a collection from all used Colors. On any Color Position you can additional Variants
-//
-// - 'Colorname' {*} - Name for the Colorstyle, quoted
-//    - 'color' {Color} - Color (Main Color)
+// Definition of colors in the frontend. Additional variants can be added to the respective color group.
 //
 // @type Map
+//
+// @prop {map}         base.type               - Colorgroup
+// @prop {map}         base.type.color         - Main Color Value
+
 $kittn-color-map: (
   'primary': (
     color: #29b8f2
@@ -275,28 +302,38 @@ $kittn-color-map: (
   )
 );
 
-// Route the Colors to the Elements
+// Color definitions of HTML elements
 //
 // @type Map
+//
+// @prop {color}       base.body               - Body background color
+// @prop {color}       base.text               - Text color
+// @prop {color|bool}  base.headline           - Headline text color
+// @prop {color|bool}  base.blockquote         - Quote text color
+// @prop {color|bool}  base.highlight-bg       - Hightlight background color
+// @prop {color|bool}  base.highlight-text     - Hightlight text color
+// @prop {color|bool}  base.link               - Link color
+// @prop {color|bool}  base.link-hover         - Link hover color
+// @prop {color|bool}  base.link-active        - Link active color
 $kittn-color-route: (
-  body: c('body'), // Body Background
-  text: c('main'), // Base Text Color
-  headline: c('gray'), // {Color|Bool}
-  blockquote: c('main'), // {Color|Bool}
-  highlight-bg: lighten(c('primary'),25), // {Color|Bool}
-  highlight-text: darken(c('primary'),10), // {Color|Bool}
-  link: c('primary'), // {Color|Bool}
-  link-hover: darken(c('primary'),15), // {Color|Bool}
-  link-active: darken(c('primary'),25), // {Color|Bool}
+  body: c('body'),
+  text: c('main'),
+  headline: c('gray'),
+  blockquote: c('main'),
+  highlight-bg: lighten(c('primary'),25),
+  highlight-text: darken(c('primary'),10),
+  link: c('primary'),
+  link-hover: darken(c('primary'),15),
+  link-active: darken(c('primary'),25)
 );
 
 // Hairline Styling
 //
-// - 'height' {Number}
-// - 'style' {*} - Line Styles
-// - 'color' {Color}
-//
 // @type Map
+//
+// @prop {color}       base.height             - Hairline height
+// @prop {color}       base.style              - Line style
+// @prop {color}       base.color              - Body background color
 $kittn-hairline: (
   height: 1,
   style: dashed,
@@ -306,12 +343,20 @@ $kittn-hairline: (
 // Table Styling
 //
 // @type Map
+//
+// @prop {color}       base.background         - Table background color
+// @prop {color}       base.background-zebra   - Alternated background color
+// @prop {color}       base.background-hover   - Hover background color
+// @prop {color}       base.border-color       - Border color
+// @prop {number}      base.margin             - Table margin
+// @prop {number}      base.padding            - Tablecell padding
+// @prop {number}      base.trigger            - Trigger Size for responsive Tables
 $kittn-tables: (
-  background: transparent, // {Color}
-  background-zebra: tint(c(primary),20), // {Color}
-  background-hover: lighten(c(primary),20), // {Color}
-  border-color: c('gray'), // {Color}
-  margin: 20px, // {Number}
-  padding: 8px, // {Number}
-  trigger: 400px, // {Number} Trigger Size for responsive Tables
+  background: transparent,
+  background-zebra: tint(c(primary),20),
+  background-hover: lighten(c(primary),20),
+  border-color: c('gray'),
+  margin: 20px,
+  padding: 8px,
+  trigger: 400px,
 );

@@ -4,7 +4,7 @@
 
 /// Calculate the Luma Value from a Color
 ///
-/// @group core-colorFunctions
+/// @group core - colors
 ///
 /// @param  {color}   $color - Color Value
 ///
@@ -20,7 +20,7 @@
 
 /// Check if Color1 is greater than Color2.
 ///
-/// @group core-colorFunctions
+/// @group core - colors
 ///
 /// @require {function} luma
 ///
@@ -42,7 +42,7 @@
 
 /// Check if Color1 is smaller than Color2.
 ///
-/// @group core-colorFunctions
+/// @group core - colors
 ///
 /// @require {function} luma
 ///
@@ -64,7 +64,7 @@
 
 /// Calculate the Luma Difference between Color1 and Color2
 ///
-/// @group core-colorFunctions
+/// @group core - colors
 ///
 /// @require {function} luma
 ///
@@ -83,7 +83,7 @@
 
 /// Tint up the Color - normally mix with white
 ///
-/// @group core-colorFunctions
+/// @group core - colors
 ///
 /// @param  {color}  $color             - Color value
 /// @param  {number} $amount            - Mix Value
@@ -101,7 +101,7 @@
 
 /// Shade down the Color - normally mix with black
 ///
-/// @group core-colorFunctions
+/// @group core - colors
 ///
 /// @param  {color}  $color              - Color value
 /// @param  {number} $amount             - Mix Value
@@ -119,7 +119,7 @@
 
 /// Pick the Color Values from the Color Map
 ///
-/// @group core-colorFunctions
+/// @group core - colors
 ///
 /// @param  {string} $target - Desired color
 /// @param  {string} $key    - Optional Key (default: `color`)
@@ -147,7 +147,7 @@
 
 /// Build a Color list with eval steps
 ///
-/// @group core-colorFunctions
+/// @group core - colors
 ///
 /// @param {list}   $color           - Color Values
 /// @param {number} $steps [2]       - Number off steps to reach the other color
@@ -217,7 +217,7 @@
 
 /// Build an individual Color Stack
 ///
-/// @group core-colorFunctions
+/// @group core - colors
 ///
 /// @param {list}   $color  - Color Values
 /// @param {list}   $stacks - Individual steps between the color mix

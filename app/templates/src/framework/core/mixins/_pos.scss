@@ -8,6 +8,8 @@
 /// - Two values = top left
 /// - Four values = top right bottom left
 ///
+/// @group core - pos
+///
 /// @param  {list}   $position - Position Values.
 @mixin pos($position) {
 

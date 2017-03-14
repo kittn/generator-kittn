@@ -4,6 +4,8 @@
 
 /// Check if the keys are available in the map
 ///
+/// @group core - inspect
+///
 /// @param  {map}    $map  - Agumentlist map
 /// @param  {string} $list - List with Arguments
 /// @param  {string} $key  - Argument
@@ -18,6 +20,8 @@
 }
 
 /// Add a warning to the Console when the wrong Keyword is used
+///
+/// @group core - inspect
 ///
 /// @require {function} check-args
 ///

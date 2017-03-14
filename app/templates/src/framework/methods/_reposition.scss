@@ -4,7 +4,7 @@
 
 /// Transform named Positions to number
 ///
-/// @group methods-reposition
+/// @group methods - reposition
 ///
 /// @access private
 ///
@@ -34,7 +34,7 @@
 
 /// Move the Pivot Point from a Element, based on 2D CSS Transform
 ///
-/// @group methods-reposition
+/// @group methods - reposition
 ///
 /// @param  {string} $vert [middle] - Vertical Position from the Pivot Point. (middle, top, bottom, number, bool)
 /// @param  {string} $horz [false] - Horizontal Position from the Pivot Point. (false, left, center, right, number, bool)
@@ -85,7 +85,7 @@
 /// @param {Number} $horz [false] - Horizontal Position
 /// @param {string} $type [absolute] - Position Type (absolute, fixed)
 ///
-/// @group methods-reposition
+/// @group methods - reposition
 ///
 /// @example scss - scss
 ///   .box {
@@ -110,7 +110,7 @@
 
 /// Center a absolute positioned Element in the middle
 ///
-/// @group methods-reposition
+/// @group methods - reposition
 ///
 /// @require {mixin} slide
 /// @require {mixin} pivot
@@ -136,7 +136,7 @@
 
 /// Middle Elements with Pivot
 ///
-/// @group methods-reposition
+/// @group methods - reposition
 ///
 /// @require {mixin} slide
 /// @require {mixin} pivot
@@ -161,7 +161,7 @@
 
 /// Moving an absolute position element in the Center - optional in the Middle (with Height)
 ///
-/// @group methods-reposition
+/// @group methods - reposition
 ///
 /// @param  {list}   $dimension - Dimensions from the Element (Width and the Height)
 ///

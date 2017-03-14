@@ -10,7 +10,7 @@
 
 /// Tests whether `$list` has at least 2 values.
 ///
-/// @group core-sasslists
+/// @group core - sassylist
 ///
 /// @param {list}   $list - list to run test against
 ///
@@ -21,7 +21,7 @@
 
 /// Compares `$a` and `$b` based on `$order`.
 ///
-/// @group core-sasslists
+/// @group core - sassylist
 ///
 /// @access private
 ///
@@ -51,7 +51,7 @@
 
 /// Casts `$value` into a list.
 ///
-/// @group core-sasslists
+/// @group core - sassylist
 ///
 /// @param  {*}      $value     - value to cast to list
 /// @param  {string} $separator - separator to use
@@ -61,15 +61,18 @@
   @return join((), $value, $separator);
 }
 
-// @require {function} sl-to-list
-// @alias sl-to-list
+/// @require {function} sl-to-list
+///
+/// @group core - sassylist
+///
+/// @alias sl-to-list
 @function sl-listify($value) {
   @return sl-to-list($value);
 }
 
 /// Reverses the order of `$list`.
 ///
-/// @group core-sasslists
+/// @group core - sassylist
 ///
 /// @requires {function} sl-to-list
 ///
@@ -95,15 +98,18 @@
   @return sl-to-list($list);
 }
 
-// @require {function} sl-reverse
-// @alias sl-reverse
+/// @require {function} sl-reverse
+///
+/// @group core - sassylist
+///
+/// @alias sl-reverse
 @function sl-mirror($list) {
   @return sl-reverse($list);
 }
 
 /// Removes duplicate values from `$list`.
 ///
-/// @group core-sasslists
+/// @group core - sassylist
 ///
 /// @param  {list}   $list - list to remove duplicates from
 ///
@@ -131,7 +137,7 @@
 
 /// Sorts values of `$list` using quick-sort algorithm using `$order`.
 ///
-/// @group core-sasslists
+/// @group core - sassylist
 ///
 /// @param  {list}   $list  - list to sort
 /// @param  {list}   $order - order to respect
@@ -168,8 +174,11 @@
 }
 
 
-// @requires sl-sort
-// @alias sl-sort
+/// @requires sl-sort
+///
+/// @group core - sassylist
+///
+/// @alias sl-sort
 @function sl-order($list) {
   @return sl-sort($list);
 }

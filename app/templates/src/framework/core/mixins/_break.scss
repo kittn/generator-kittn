@@ -4,9 +4,13 @@
 
 /// Generate the Between Block
 ///
+/// @group core - breakpoints
+///
 /// @param  {number} $size       - Size
 /// @param  {string} $mode       - Direction Mode
 /// @param  {string} $dimension  - Dimension [default: width]
+///
+/// @content [Style declatation inside the Media Bubble]
 ///
 /// @access private
 @mixin _breakmode($size, $mode, $dimension) {
@@ -25,9 +29,13 @@
 
 /// Generate the Between Block
 ///
+/// @group core - breakpoints
+///
 /// @param  {number} $size-1       - First Size
 /// @param  {number} $size-2       - Second Size
 /// @param  {string} $dimension    - Dimension [default: width]
+///
+/// @content [Style declatation inside the Media Bubble]
 ///
 /// @access private
 @mixin _breakbetween($size-1, $size-2, $dimension) {
@@ -48,12 +56,14 @@
 
 /// Get a breakpoint from the Map and build the Media Query
 ///
+/// @group core - breakpoints
+///
 /// @param  {*}      $target                       - Required Breakpoint (from map)
 /// @param  {string} $mode [auto]                  - Media Query Mode. (max, min, auto)
 /// @param  {map}    $list [$kittn-breakpoint-map] - Connection to the Breakpoint Map
 /// @param  {string} $dimension                    - Dimension [default: width]
 ///
-/// @content
+/// @content [Style declatation inside the Media Bubble]
 ///
 /// @example scss - scss
 ///   .box {

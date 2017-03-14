@@ -4,7 +4,7 @@
 
 /// Recalculate the px values to rem, with lines option
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param   {*}      $arg  - Attribute
 /// @param   {number} $size - Value
@@ -30,7 +30,7 @@
 
 /// Recalculate the px values to rem
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param   {*}      $arg  - Attribute
 /// @param   {number} $size - Value
@@ -60,7 +60,7 @@
 
 /// Calculate the Rem Sizes, with Baseline Option
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {*}      $arg      - Attribute
 /// @param  {number} $size     - Size
@@ -90,7 +90,7 @@
 
 /// Calculate the Lineheight from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {number} $size     - Size
 /// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule
@@ -110,7 +110,7 @@
 
 /// Caluclate the Font Size in PX to REM with Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number} $size - Font Size
 ///
@@ -129,7 +129,7 @@
 
 /// Calculate Fontsize and Lineheight
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {number} $fontsize     - Font Size
 /// @param  {number} $lineheight [false] - Lineheight for the Font - can be false than used the factor
@@ -157,7 +157,7 @@
 
 /// Calculate the Margin Bottom from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -177,7 +177,7 @@
 
 /// Calculate the Margin Top from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -197,7 +197,7 @@
 
 /// Calculate the Margin Left from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -217,7 +217,7 @@
 
 /// Calculate the Margin Right from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -237,7 +237,7 @@
 
 /// Calculate the Padding Top from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -257,7 +257,7 @@
 
 /// Calculate the Padding Bottom from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -277,7 +277,7 @@
 
 /// Calculate the Padding Left from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -297,7 +297,7 @@
 
 /// Calculate the Padding Right from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -317,7 +317,7 @@
 
 /// Calculate the Height from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule

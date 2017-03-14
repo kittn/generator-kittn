@@ -3,11 +3,13 @@
 // ===================================================
 
 /// Mixin for Fluidtype
+///
+/// @group core - fluidtype
+///
 /// @param   {list}  $fontsize - Min and Max Fontsize in px
 /// @param   {list}  $screensize - [default:false] Min and Max Screensize
 ///                                on false it uses the biggest and the smallest size
 ///                                from the breakpoint Map
-/// @group fluidtype
 ///
 /// @require {function} ft - Fluidtype Function
 ///

@@ -13,7 +13,7 @@
 
 /// Mixin for include Images
 ///
-/// @group methods-images
+/// @group methods - images
 ///
 /// @access private
 ///
@@ -70,7 +70,7 @@
 
 /// Include Sprite Dimensions
 ///
-/// @group methods-images
+/// @group methods - images
 ///
 /// @access private
 ///
@@ -98,7 +98,7 @@
 
 /// Sprite Mixin. Get the Data from the Map File
 ///
-/// @group methods-images
+/// @group methods - images
 ///
 /// @access private
 ///
@@ -160,7 +160,7 @@
 
 /// Including Bitmap images
 ///
-/// @group methods-images
+/// @group methods - images
 ///
 /// @require {mixin} _images
 ///
@@ -228,7 +228,7 @@
 
 /// Include Vector Images
 ///
-/// @group methods-images
+/// @group methods - images
 ///
 /// @param  {string} $name                - Name of the Image
 /// @param  {map}    $o                   - Setup Args
@@ -281,7 +281,7 @@
 
 /// Include a Vector Sprite
 ///
-/// @group methods-images
+/// @group methods - images
 ///
 /// @param  {string} $name                - Name from the Sprite SVG in the Map
 /// @param  {*}      $o                   - Setup args
@@ -349,7 +349,7 @@
 
 /// Include a Bitmap Sprite
 ///
-/// @group methods-images
+/// @group methods - images
 ///
 /// @param  {string} $name                - Name from the Bitmap Sprite in the Map
 /// @param  {map}    $o                   - Setup args

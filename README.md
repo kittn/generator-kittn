@@ -58,18 +58,29 @@ Copy all or Generate the Template Files.
 **`npm run favicon`**<br>
 Generate Favicons and the HTML Snippet (generated Files you will find in `src/.system/`)
 
+## Starterpacks
+To make it easier for you to work with Craft or Wordpress, we have also integrated Starterpacks. With the Starterpack you get a Contentbuilder (in the case of Wordpress you still need ACF 5 Pro) and the necessary templates, plugins (free), SCSS and JS files you need.
+
+There is a rudimentary styling, not pretty but functional, as you will usually begin to adapt the existing elements to your project.
+
+In order to activate the Starterpack, you have to decide for a `Wordpress` or `Craft` project and decide on the CSS methodology for `ITCSS`. Then you can install the Starterpack.
+
+Further steps in the documentation.
+
 ## Dependencies
 
 - Node >= 6.x
 - Gulp 3.9.1
 - Yeoman 1.4.8
+- Git CLI
+- Wget 
+- WP CLI
 
 ## Optional Dependencies
 - Bower 1.4.0
 
 ## Special Thanks to
 
-- David Hellmann (@davidhellmann) - for his Wordpress Boilerplate
 - Hugo Giraudel (@HugoGiraudel) - for his awesome Sass Scripts
 - Team Sass - Jacket
 - LukyVj (@LukyVj) - for Family.scss

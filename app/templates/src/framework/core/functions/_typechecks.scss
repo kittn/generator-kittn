@@ -4,7 +4,7 @@
 
 /// Checks if a Value is included
 ///
-/// @group core-typechecks
+/// @group core - inspect
 ///
 /// @param  {*}     $value - Included value to check
 ///
@@ -15,7 +15,7 @@
 
 /// Checks if Value is a map
 ///
-/// @group core-typechecks
+/// @group core - inspect
 ///
 /// @param  {*}      $value - Included value to check
 ///
@@ -26,7 +26,7 @@
 
 /// Checks if Value is a list
 ///
-/// @group core-typechecks
+/// @group core - inspect
 ///
 /// @param  {*}      $value - Included value to check
 ///
@@ -37,7 +37,7 @@
 
 /// Checks if Value is a number
 ///
-/// @group core-typechecks
+/// @group core - inspect
 ///
 /// @param  {*}      $value - Included value to check
 ///
@@ -48,7 +48,7 @@
 
 /// Checks if Value is a string
 ///
-/// @group core-typechecks
+/// @group core - inspect
 ///
 /// @param  {*}      $value - Included value to check
 ///
@@ -59,7 +59,7 @@
 
 /// Checks if Value is not a string
 ///
-/// @group core-typechecks
+/// @group core - inspect
 ///
 /// @param  {*}      $value - Included value to check
 ///
@@ -70,7 +70,7 @@
 
 /// Check if the Selector is nested
 ///
-/// @group core-typechecks
+/// @group core - inspect
 ///
 /// @return {bool}
 @function is-nested() {
@@ -91,7 +91,7 @@
 
 /// Check if a map has entries
 ///
-/// @group core-typechecks
+/// @group core - inspect
 ///
 /// @param  {map}    $map - Map
 ///

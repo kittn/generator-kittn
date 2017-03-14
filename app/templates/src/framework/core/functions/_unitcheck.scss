@@ -4,7 +4,7 @@
 
 /// Strip Units from Values
 ///
-/// @group core-unitcheck
+/// @group core - inspect
 ///
 /// @param  {number} $number - Value
 ///
@@ -40,7 +40,7 @@
 
 /// Add the Default Unit on unitless Values
 ///
-/// @group core-unitcheck
+/// @group core - inspect
 ///
 /// @param  {number} $value - Value
 ///
@@ -75,7 +75,7 @@
 /// Clamp a Number between a min and max values,
 /// Perfect for percentage
 ///
-/// @group core-unitcheck
+/// @group core - inspect
 ///
 /// @param  {number} $value - The Value that need to be clamped
 /// @param  {number} $min   - The possible minimal value

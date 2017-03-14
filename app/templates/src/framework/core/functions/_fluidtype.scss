@@ -4,13 +4,15 @@
 
 /// Generate the Sizes liste
 ///
+/// @group core - fluidtype
+///
 /// @param   {list}  $screensize - [default:false] Min and Max Screensize
 ///                                on false it uses the biggest and the smallest size
 ///                                from the breakpoint Map
 ///
 /// @return {list}  possible Screensizes
+///
 /// @access private
-/// @group fluidtype
 @function ftScreensize($screensize) {
   $sMin: null;
   $sMax: null;
@@ -30,14 +32,14 @@
 
 /// Make a Font Fluid
 ///
+/// @group core - fluidtype
+///
 /// @param   {list}  $fontsize - Min and Max Fontsize in px
 /// @param   {list}  $screensize - [default:false] Min and Max Screensize
 ///                                on false it uses the biggest and the smallest size
 ///                                from the breakpoint Map
 ///
 /// @return {string}  a String for Calc
-///
-/// @group fluidtype
 ///
 /// @require {function} ftScreensize
 @function ft($fontsize, $screensize: false) {

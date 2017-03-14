@@ -8,7 +8,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 /// Calculate the width from a column in percent
 ///
-/// @group methods-grid
+/// @group methods - grid
 ///
 /// @param  {number} $columns         - Columns
 /// @param  {number} $maxcolumns [12] - Max Columns
@@ -40,7 +40,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 /// Build a formula so CSS can Calculate the relative width with CSSCalc.
 /// Is also useful to include margins, the CSSCalc can compensate this.
 ///
-/// @group methods-grid
+/// @group methods - grid
 ///
 /// @require {function} span
 ///
@@ -76,7 +76,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 /// Setup the Grid Size in Steps based on the Breakpoints
 ///
-/// @group methods-grid
+/// @group methods - grid
 ///
 /// @param {map}    $map - Connection to the Breakpoint Map
 ///
@@ -131,7 +131,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 /// Generate the Page Container, Size and Float Direction
 ///
-/// @group methods-grid
+/// @group methods - grid
 ///
 /// @param  {list}   $width [320 1180]    - Container Size. The Max and Min Width of the container. One Value only the Container is static
 /// @param  {number} $spacing [10]        - Side Padding of the Container
@@ -241,7 +241,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 /// Build the outer Container that hold the Grid-Columns
 ///
-/// @group methods-grid
+/// @group methods - grid
 ///
 /// @param  {number} $spacing [10]      - To reset the margin off a nested rows. Size from the Gutter.
 /// @param  {string} $layout [block]    - The type from the Layout (block, inline, table, fixedtable, flex)
@@ -395,7 +395,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 /// Build the Base Style for all Columns. Include the Mixin in your Column Class
 ///
-/// @group methods-grid
+/// @group methods - grid
 ///
 /// @param  {number} $spacing          - Column Side-Spacing
 /// @param  {string} $layout [block]   - The type from the Layout, values: (block, inline, table, flex)
@@ -554,7 +554,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 /// Generate a Grid Column Size
 ///
-/// @group methods-grid
+/// @group methods - grid
 ///
 /// @param  {Number} $column  [1]      - Number of Columns
 /// @param  {Map}    $o                - Setup Args
@@ -638,7 +638,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 /// Generate a Pixel Based Grid Columns
 ///
-/// @group methods-grid
+/// @group methods - grid
 ///
 /// @param  {Number} $column [1]     - Number of Columns
 /// @param  {Map}    $o              - Setup Args
@@ -697,7 +697,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 /// Generate Column Sizes, it can be also preselected
 ///
-/// @group methods-grid
+/// @group methods - grid
 ///
 /// @param  {number} $columns [12]     - Number of generated columns
 /// @param  {map}    $o                - Setup Vars
@@ -858,7 +858,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 /// Generate the Offset Width for a Column
 ///
-/// @group methods-grid
+/// @group methods - grid
 ///
 /// @param  {Number} $column [1]         - The desired Offset-Size based on the Columnsizes
 /// @param  {map}    $o                  - Setup Vars
@@ -910,7 +910,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 /// Generate a set of Offset Sizes
 ///
-/// @group methods-grid
+/// @group methods - grid
 ///
 /// @param  {number} $columns        - Number of generated offset columns
 /// @param  {map}    $o              - Setup Args
@@ -1007,7 +1007,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 /// Move a Column with Position:Relative to left or right -
 /// Elements can move out off the container or it change the order
 ///
-/// @group methods-grid
+/// @group methods - grid
 ///
 /// @param  {Number} $column [1]         - Width of Push & Pull Class, based on Columnsizes
 /// @param  {map}    $o                  - Setup args
@@ -1079,7 +1079,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 /// Generate the Push&Pull Classes
 ///
-/// @group methods-grid
+/// @group methods - grid
 ///
 /// @param  {number} $columns          - Number of generated offset columns
 /// @param  {map}    $o                - Setup args
@@ -1188,7 +1188,7 @@ $mobile-first: map-get($kittn-activate, mobile-first);
 
 /// Reset Grid Objects. Works only when you not silent the Grid Classes
 ///
-/// @group methods-grid
+/// @group methods - grid
 ///
 /// @param  {map}    $o                    - Setup Vars
 /// @param  {string} $o.name [false]       - Desired Name off the Selector that need to modified

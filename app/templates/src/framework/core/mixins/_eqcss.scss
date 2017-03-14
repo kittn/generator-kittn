@@ -5,11 +5,13 @@
 
 /// Generate Elementquery
 ///
+/// @group core - eqcss
+///
 /// @param  {arglist}  $conditions - 1+ of Maps of EQCSS conditions
 ///
 /// @return {string}  Element Query
+///
 /// @access private
-/// @group fluidtype
 @function _eq($conditions...) {
   $selector: &;
   $joined-conditions: ();
@@ -43,9 +45,11 @@
 
 /// EQCSS
 ///
-/// @group core-eqcss
+/// @group core - eqcss
 ///
 /// @param  {arglist}  $conditions - 1+ of Maps of EQCSS conditions
+///
+/// @content [Style declatation inside the EQCSS Bubble]
 ///
 /// @example scss - scss
 ///    .parent {
@@ -77,10 +81,12 @@
 
 /// EQCSS with Root Reference
 ///
-/// @group core-eqcss
+/// @group core - eqcss
 ///
 /// @param  {string}   $root - Root Selector
 /// @param  {arglist}  $conditions - 1+ of Maps of EQCSS conditions
+///
+/// @content [Style declatation inside the EQCSS Bubble]
 ///
 /// @example scss - scss
 ///    .child {

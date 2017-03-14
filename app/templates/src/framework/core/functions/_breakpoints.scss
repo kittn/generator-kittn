@@ -4,7 +4,9 @@
 
 /// Pick the Values from the Breakpoint Map
 ///
-/// @param  {*}      $target  - Selected Breakpoint
+/// @group core - breakpoints
+///
+/// @param  {string} $target  - Selected Breakpoint
 /// @param  {map}    $entries - Connection to the Breakpoint Map
 ///
 /// @returns {number}         - Return the breakpoint width
