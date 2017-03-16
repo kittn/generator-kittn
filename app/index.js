@@ -123,6 +123,12 @@ var KittnGenerator = yeoman.Base.extend({
       },
       {
         type: 'input',
+        name: 'projectthemecolor',
+        message: chalk.cyan.underline.bold('Project Theme Color') + '\n\xa0 Main Theme-Color of the project',
+        default: '#29b8f2'
+      },
+      {
+        type: 'input',
         name: 'projectcssfilename',
         message: chalk.cyan.underline.bold('CSS Filename') +  '\n\xa0 (only the name without .css or .scss)',
         default: 'style'
@@ -388,6 +394,7 @@ var KittnGenerator = yeoman.Base.extend({
 
       this.projectname            = props.projectname;
       this.projectdescription     = props.projectdescription;
+      this.projectthemecolor      = props.projectthemecolor;
       this.projectversion         = props.projectversion;
       this.projectauthor          = props.projectauthor;
       this.projectmail            = props.projectmail;
@@ -428,6 +435,7 @@ var KittnGenerator = yeoman.Base.extend({
     var templateParams = {
       projectname           : this.projectname,
       projectdescription    : this.projectdescription,
+      projectthemecolor     : this.projectthemecolor,
       projectversion        : this.projectversion,
       projectauthor         : this.projectauthor,
       projectmail           : this.projectmail,
@@ -508,6 +516,12 @@ var KittnGenerator = yeoman.Base.extend({
     this.fs.copyTpl(
       this.templatePath('_style.scss'),
       this.destinationPath('src/style/'+this.projectcssfilename+sassFileEnding),
+      templateParams
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('_setup.scss'),
+      this.destinationPath('src/style/_setup.scss'),
       templateParams
     );
 
