@@ -1,0 +1,27 @@
+th [type="checkbox"] + label {
+    margin-right: 6px;
+}
+
+#similarFields .highlight {
+    background: #ffe38f;
+    color: #705400;
+}
+
+form.quick-action {
+    display: inline-block;
+}
+
+td > svg {
+    vertical-align: middle;
+}
+
+svg[data-clipboard-text] {
+    cursor: pointer;
+}
+
+code.location {
+    color: #8f98a3;
+    background-color: #EBEDEF;
+    border-radius: 3px;
+    padding: 2px 4px;
+}

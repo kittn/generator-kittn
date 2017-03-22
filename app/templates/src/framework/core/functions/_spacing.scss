@@ -4,6 +4,8 @@
 
 /// Multiply the Spacing Value to generate Spacings, integrate the Unit
 ///
+/// @group core - spacing
+///
 /// @param  {number} $lines                        - Multiplier for spacing
 /// @param  {bool}   $hard [false]                 - Include an !important
 /// @param  {number} $size [$kittn-global-spacing] - Connection to the Base Spacing
@@ -30,6 +32,8 @@
 
 /// Multiply the Spacing Value to generate Spacings
 /// The Unit is variable
+///
+/// @group core - spacing
 ///
 /// @param  {number} $lines                        - Multiplier for Spacing
 /// @param  {bool}   $imp [false]                  - For including an !important

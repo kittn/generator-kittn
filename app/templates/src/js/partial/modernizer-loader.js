@@ -7,15 +7,17 @@
 
 // JS Loader
 // https://github.com/pyrsmk/toast
-import toast from 'pyrsmk-toast'
-import Modernizr from 'Modernizr' // eslint-disable-line
+import toast from 'pyrsmk-toast' // eslint-disable-line
 
 // Get Hostname
 const host = `//${window.location.hostname}`
 
-// Test for Pictur
-Modernizr.on('picture', (result) => {
-  if (!result) {
-    toast(`${host}/assets/js/ls.respimg.js`)
-  }
-})
+if (typeof Modernizr !== 'undefined') {
+  // Polyfill for Picture Element (Ie10 and IE11) needed for Lazysizes
+  Modernizr.on('picture', (result) => {
+    if (!result) {
+      toast(`${host}/assets/js/ls.respimg.js`)
+    }
+  })
+}
+

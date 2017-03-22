@@ -4,7 +4,7 @@
 
 /// Easier way to get values from a nested map
 ///
-/// @group core-map
+/// @group core - maps
 ///
 /// @param  {map}    $map  - Map that
 /// @param  {args}   $keys - Keys to fetch
@@ -32,7 +32,7 @@
 ///
 /// @author Hugo Giraudel
 ///
-/// @group core-map
+/// @group core - maps
 ///
 /// @param  {map}    $map   - Map to update
 /// @param  {args}   $keys  - Keys to access to value to update
@@ -78,7 +78,7 @@
 ///
 /// @author Hugo Giraudel
 ///
-/// @group core-map
+/// @group core - maps
 ///
 /// @param  {map}     $map  - Map
 /// @param  {args}    $keys - Keys to test
@@ -113,7 +113,7 @@
 ///
 /// @author Hugo Giraudel
 ///
-/// @group core-map
+/// @group core - maps
 ///
 /// @param  {map}    $map  - Map
 /// @param  {args}   $keys - Keys to test
@@ -148,7 +148,7 @@
 /// An equivalent of `zip` function but for maps.
 /// Takes two lists, the first for keys, second for values.
 ///
-/// @group core-map
+/// @group core - maps
 ///
 /// @param  {list}   $keys   - Keys for map
 /// @param  {list}   $values - Values for map
@@ -187,13 +187,15 @@
   @return $map;
 }
 
-// Merge Maps recursive
-//
-// @param  {map}    $map  - first map
-// @param  {args}   $maps - other maps
-// @param  {bool}   $deep - recursive mode
-//
-// @return {map}
+/// Merge Maps recursive
+///
+/// @group core - maps
+///
+/// @param  {map}    $map  - first map
+/// @param  {args}   $maps - other maps
+/// @param  {bool}   $deep - recursive mode
+///
+/// @return {map}
 @function map-extend($map, $maps.../*, $deep */) {
   $last: nth($maps, -1);
   $deep: $last == true;
@@ -227,6 +229,8 @@
 
 /// Map get length (non recursive)
 ///
+/// @group core - maps
+///
 /// @param   {$map}  $map - Main Map
 ///
 /// @return {number}  Length from the Map
@@ -240,6 +244,8 @@
 
 /// Map Get First Index
 ///
+/// @group core - maps
+///
 /// @param   {$map}  $map - Main Map
 ///
 /// @return {number}  First Key Index
@@ -250,6 +256,8 @@
 }
 
 /// Map Get Last Index
+///
+/// @group core - maps
 ///
 /// @param   {$map}  $map - Main Map
 ///

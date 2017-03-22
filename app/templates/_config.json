@@ -1,83 +1,89 @@
 {
   "dist": {<% if (projectUsage == 'Building HTML Prototypes' || projectUsage == 'Integrate in KirbyCMS') { %>
+    "dist": "dist/",
     "base": "dist/",
     "markup": "dist/",
+    "assets": "dist/assets/",
     "browserSyncDir": "dist/",
-    "css": "dist/",
+    "css": "dist/assets/css/",
     "js": "dist/assets/js/",
     "fonts": "dist/assets/fonts/",
     "cssimg": "dist/assets/img/",
     "bitmaps": "dist/assets/img/bitmaps/",
     "vectors": "dist/assets/img/svgfiles/",
     "contentimage": "dist/images/",
-    "webpackjsassets": "assets/js/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
+    "webpackjsassets": "assets/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
+    "dist": "dist/",
     "base": "dist/wp-content/themes/<%= projectname %>/",
     "markup": "dist/wp-content/themes/<%= projectname %>/",
+    "assets": "dist/wp-content/themes/<%= projectname %>/assets/",
     "browserSyncDir": "dist/wp-content/themes/<%= projectname %>/",
-    "css": "dist/wp-content/themes/<%= projectname %>/",
+    "css": "dist/wp-content/themes/<%= projectname %>/assets/css/",
     "js": "dist/wp-content/themes/<%= projectname %>/assets/js/",
     "fonts": "dist/wp-content/themes/<%= projectname %>/assets/fonts/",
     "cssimg": "dist/wp-content/themes/<%= projectname %>/assets/img/",
     "bitmaps": "dist/wp-content/themes/<%= projectname %>/assets/img/bitmaps/",
     "vectors": "dist/wp-content/themes/<%= projectname %>/assets/img/svgfiles/",
     "contentimage": "dist/wp-content/themes/<%= projectname %>/images/",
-    "webpackjsassets": "wp-content/themes/<%= projectname %>/assets/js/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
+    "webpackjsassets": "wp-content/themes/<%= projectname %>/assets/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
+    "dist": "dist/",
     "base": "dist/public/",
     "markup": "dist/craft/",
+    "assets": "dist/public/assets/",
     "browserSyncDir": "dist/public/",
-    "css": "dist/public/",
+    "css": "dist/public/assets/css/",
     "js": "dist/public/assets/js/",
     "fonts": "dist/public/assets/fonts/",
     "cssimg": "dist/public/assets/img/",
     "bitmaps": "dist/public/assets/img/bitmaps/",
     "vectors": "dist/public/assets/img/svgfiles/",
     "contentimage": "dist/public/images/",
-    "webpackjsassets": "public/assets/js/",<% } %>
+    "webpackjsassets": "assets/",<% } %>
     "cssimgRoot": "/assets/img/"
   },
   "templatePath": {
     "root": "./",
-    "css": "./",
+    "css": "assets/css/",
     "js": "assets/js/",
     "fonts": "assets/fonts/",
     "cssimage": "assets/img/",
     "contentimage": "images/"
   },
-  "css": {<% if (projectstylecompiler === 'Sass with PostCSS') { %>
+  "css": {
     "spacer": "20px",
-    "baseFontSize": "16px",<% } %>
+    "baseFontSize": "16px",
     "filename": "<%= projectcssfilename %>",
     "prefix": [
-      "last 2 version",<% if (projectiecompatible == true ) { %>
-      "ie 8",<% } else { %>
-      "ie 9",<% } %>
+      "last 2 version",
+      "ie 9",
       "> 5%"
     ]
-  },
-  "cssabove": {
-    "width": "320",
-    "height": "480",
-    "minify": true,
-    "inline": true,
-    "sources": [
-      "index.html"
-    ]
-  },
+  }<% if (projectcritical == true) { %>,
+    "cssabove": {
+      "width": "1024",
+      "height": "768",
+      "minify": true,
+      "inline": <% if (projectcriticalinline === 'Inline') {%>true<%} else { %>false<% } %>,
+      "sources": [
+        "index.html"
+      ]<% if (projectcriticalinline != 'Inline') {%>,
+      "destFilename": "critical.css"<% } %>
+  }<% } %>,
   "template": {
-    "globalTitle": "myPage",
+    "globalTitle": "<%= projectname %>",
     "compiler": <% if ( projectstructure == 'Twig Template' && projectUsage == 'Building HTML Prototypes') { %>true<% } else { %>false<% } %>
   },
   "browsersync": {
     "openbrowser": true,
-    "proxy": <% if (projectcredential) { %>"<%= credentialdomain %>"<% } else { %>false<% } %>
+    "https": <% if (credentialprotocol == 'https') { %>true<% } else { %>false<% } %>,
+    "proxy": <% if (projectcredential) { %>"<% if (credentialprotocol == 'https') { %>https://<% } %><%= credentialdomain %>"<% } else { %>false<% } %>
   },
   "files": {
     "jsApp": {
       "srcName": "app.js",
       "distName": "app.js"
     },
-    "jsCopy": [<% if (projectiecompatible == true ) { %>
-      "node_modules/selectivizr/selectivizr.js",<% } %>
+    "jsCopy": [
       "node_modules/lazysizes/plugins/respimg/ls.respimg.js",
       "node_modules/html5shiv/dist/html5shiv.js"
     ],
@@ -85,14 +91,16 @@
       "files": [],
       "filename": "scripts.js"
     },
-    "fonts": [],
+    "fonts": [
+      "src/fonts/**"
+    ],
     "launch": [
-      {"src": "favicons/**", "dest": "assets/img/system/"},<% if (projectUsage == 'Building HTML Prototypes') { %>
+      {"src": "favicons/**", "dest": "assets/img/system/"}<% if (projectUsage == 'Building HTML Prototypes') { %>,
       {"src": "facebook-og-image.jpg", "dest": "assets/img/system/"},
       {"src": "twitter-og-image.jpg", "dest": "assets/img/system/"},
       {"src": ".htaccess", "dest": ""},
       {"src": "404.html", "dest": ""},
-      {"src": "robots.txt", "dest": ""}<% } if (projectUsage == 'Integrate in Wordpress' || projectUsage == 'Integrate in KirbyCMS' || projectUsage == 'Integrate in CraftCMS') { %>
+      {"src": "robots.txt", "dest": ""}<% } if (projectUsage == 'Integrate in Wordpress' || projectUsage == 'Integrate in KirbyCMS' || projectUsage == 'Integrate in CraftCMS') { %>,
       {"src": "facebook-og-image.jpg", "dest": "assets/img/system/"},
       {"src": "twitter-og-image.jpg", "dest": "assets/img/system/"}<% } %>
     ]
@@ -105,18 +113,9 @@
       "fnBind"
     ],
     "tests": [
-      "cssanimations",
-      "csstransforms",
-      "csstransitions",
-      "backgroundblendmode",
-      "bgsizecover",
       "flexbox",
       "touch",
-      "svg",
       "inlinesvg",
-      "respond",
-      "hsla",
-      "rgba",
       "webgl",
       "picture"
     ]
@@ -130,17 +129,8 @@
       "node_modules/conditionizr/detects/firefox.js",
       "node_modules/conditionizr/detects/ie11.js",
       "node_modules/conditionizr/detects/ie10.js",
-      "node_modules/conditionizr/detects/ie9.js"<% if (projectiecompatible == true ) { %>,
-      "node_modules/conditionizr/detects/ie8.js"<% } %>
+      "node_modules/conditionizr/detects/ie9.js"
     ]
-  },
-  "styleguide": {
-    "rootPath": "styleguide/",
-    "appRoot": "http://localhost:3000",
-    "overviewPath": "readme.md",
-    "disableEncapsulation": false,
-    "disableHtml5Mode": false,
-    "extraHead": []
   },
   "minify": {
     "images": {
@@ -174,8 +164,10 @@
   },
   "src": {
     "style": "src/style/",
-    "template": "src/template/",<% if (projectUsage === 'Integrate in Wordpress' ) { %>
-    "structure": "src/structure/template/",<% } else { %>
+    "template": "src/template/",<% if (projectUsage == 'Integrate in Wordpress' ) { %>
+    "structure": "src/structure/templates/",
+    "config": "src/structure/config/",
+    "plugins": "src/structure/plugins/",<% } else { %>
     "structure": "src/structure/",<% } %>
     "js": "src/js/",
     "bower": "src/bower/",

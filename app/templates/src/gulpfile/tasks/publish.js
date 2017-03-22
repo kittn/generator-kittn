@@ -9,7 +9,7 @@ import gulp from 'gulp'
 import runSequence from 'run-sequence'
 
 // Overwrite the Changed Check
-global.changedOverride = true
+global.checkChanged = true
 
 const publishTask = (cb) => {
 

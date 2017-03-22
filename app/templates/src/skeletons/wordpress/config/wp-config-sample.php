@@ -42,6 +42,9 @@ if (file_exists( __DIR__ . 'wp-config-sample.php/' . $wp_db_config)) {
 define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 
+// WordPress Database Table prefix.
+$table_prefix  = 'wp_';
+
 /**#@+
  * Authentication Unique Keys and Salts.
  *
@@ -62,14 +65,9 @@ define('NONCE_SALT',       'put your unique phrase here');
 
 /**#@-*/
 
-/**
- * WordPress Database Table prefix.
- */
-$table_prefix  = 'wp_';
-
-/** Absolute path to the WordPress directory. */
+// Absolute path to the WordPress directory
 if ( !defined('ABSPATH') )
   define('ABSPATH', dirname(__FILE__) . '/');
 
-/** Sets up WordPress vars and included files. */
+// Sets up WordPress vars and included files
 require_once(ABSPATH . 'wp-settings.php');

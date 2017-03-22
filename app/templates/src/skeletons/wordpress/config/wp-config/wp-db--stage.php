@@ -10,3 +10,5 @@ define('DB_HOST',     '');
 define('WP_DEBUG',    true);
 define('WP_HOME',     'http://domain');
 define('WP_SITEURL',  'http://domain');
+
+define('WP_ENV',      'stage');

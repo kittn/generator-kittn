@@ -4,6 +4,8 @@
 
 /// Calculate a Fontsize to REM
 ///
+/// @group core - rem
+///
 /// @access private
 @function rembase() {
   @if map-get($kittn-typo, unit) == rem {
@@ -14,6 +16,8 @@
 }
 
 /// Calculate px in rem
+///
+/// @group core - rem
 ///
 /// @require {function} rembase
 ///

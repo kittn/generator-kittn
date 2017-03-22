@@ -1,0 +1,64 @@
+/*
+  Sociallink
+  ===========
+  Generates a Nav Element for Links to social Networks
+*/
+.o-sociallink {
+  // Component Config
+  $api: (
+    breakpoint: 'm',
+    margin-bottom: s(1),
+    box: (
+      size: 20px,
+      gutter: 5px
+    )
+  );
+
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
+
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
+
+  // Base Style ----------------------------
+  display: flex;
+  margin-bottom: api(margin-bottom);
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  // Childs --------------------------------
+  // [root]__box
+  &__box {
+    @include size(api(box,size));
+
+    &:not(:first-of-type) {
+      margin-left: api(box,gutter);
+    }
+    &:not(:last-of-type) {
+      margin-right: api(box,gutter);
+    }
+  }
+
+  // [root]__link
+  &__link {
+    cursor: pointer;
+    display: block;
+
+    // [root]---solo
+    @include instance(solo) {
+      &:not(:last-child) {
+        margin-right: api(box,gutter) * 2;
+      }
+    }
+  }
+}

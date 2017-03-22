@@ -8,5 +8,6 @@ npm-debug.log
 /.idea
 /dist
 /doc<% if (projectUsage == 'Integrate in CraftCMS' ) { %>
-/src/structure/config/db.php
+/src/env/.env.php
+/craftscripts/.env.sh
 /src/structure/config/license.key<% } %>

@@ -4,6 +4,8 @@
 
 /// Generate the Font-Face
 ///
+/// @group core - fluidtype
+///
 /// @param  {string} $fontname          - Fontname
 /// @param  {map}    $o                 - Setup args
 /// @param  {string} $o.name [false]    - Desired filename, otherwise use the Fontname
@@ -55,19 +57,19 @@
   @if map-get($o, short) {
     @font-face {
       font-family: $fontname;
-      src: url('#{map-get($kittn-directorys, fonts)}#{$filename}.woff2') format('woff2'),
-           url('#{map-get($kittn-directorys, fonts)}#{$filename}.woff') format('woff');
+      src: url('#{map-get($kittn-directories, fonts)}#{$filename}.woff2') format('woff2'),
+           url('#{map-get($kittn-directories, fonts)}#{$filename}.woff') format('woff');
       font-weight : map-get($o, weight);
       font-style  : map-get($o, style); }
 
   } @else {
     @font-face {
       font-family: $fontname;
-      src: url('#{map-get($kittn-directorys, fonts)}#{$filename}.eot');
-      src: url('#{map-get($kittn-directorys, fonts)}#{$filename}.eot?#iefix') format('eot'),
-           url('#{map-get($kittn-directorys, fonts)}#{$filename}.woff') format('woff'),
-           url('#{map-get($kittn-directorys, fonts)}#{$filename}.ttf') format('truetype'),
-           url('#{map-get($kittn-directorys, fonts)}#{$filename}.svg##{$fontname}') format('svg');
+      src: url('#{map-get($kittn-directories, fonts)}#{$filename}.eot');
+      src: url('#{map-get($kittn-directories, fonts)}#{$filename}.eot?#iefix') format('eot'),
+           url('#{map-get($kittn-directories, fonts)}#{$filename}.woff') format('woff'),
+           url('#{map-get($kittn-directories, fonts)}#{$filename}.ttf') format('truetype'),
+           url('#{map-get($kittn-directories, fonts)}#{$filename}.svg##{$fontname}') format('svg');
       font-weight : map-get($o, weight);
       font-style  : map-get($o, style); }
   }

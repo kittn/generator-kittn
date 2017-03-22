@@ -14,18 +14,17 @@
 @import "functions/unitcheck";
 @import "functions/argcheck";
 @import "functions/quantify-queries";
-@import "functions/container-queries";
-@import "functions/family";
-@import "functions/fluidtype";
 
 // Mixins
 @import "mixins/jacket";
+@import "mixins/family";
 @import "mixins/bem";
 @import "mixins/size";
 @import "mixins/break";
-@import "mixins/constructor";
+@import "mixins/eqcss";
 @import "mixins/fontface";
 @import "mixins/pos";
+@import "mixins/fluidtype";
 
 // Placeholder
 @import "placeholder/antialias";

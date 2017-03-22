@@ -9,7 +9,7 @@ import browserSync from 'browser-sync'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
-import webpackSettings from '../../webpack.config.babel'
+import webpackSettings from '../../webpack.dev.config.babel'
 
 const bundler = webpack(webpackSettings)
 
@@ -20,7 +20,10 @@ const browserSyncTask = () => {
 
   // Condition for Proxy
   if(kc.browsersync.proxy) {
-    bsProxy = kc.browsersync.proxy
+    bsProxy = {
+      target: kc.browsersync.proxy,
+      ws: true
+    }
     bsServer = false
   } else {
     bsProxy = false
@@ -28,28 +31,10 @@ const browserSyncTask = () => {
   }
 
   // Browser Sync
-  browserSync.init([<% if (projectvue == false ) { %>
-      kc.dist.js + '**/*.js',<% } %>
-      kc.dist.css + '**/*.css',<% if (projectUsage == 'Integrate in CraftCMS' ) { %>
-      kc.dist.markup + 'templates/**/*.{php,html,twig}',<% } else if (projectUsage == 'Integrate in Wordpress') { %>
-      kc.dist.markup + '**/*.{php,html,png,txt,md}',<% } else { %>
-      kc.dist.base + '**/*.{php,html}',<% } %>
-      kc.dist.cssimg + '**/*.{jpg,gif,png,svg}'
-    ],
-    { options: {
+  browserSync.init({
       debugInfo: true,
       watchTask: true,
       proxy: bsProxy,
-
-        ghostMode: {
-        clicks: true,
-        scroll: true,
-        links: true,
-        forms: true }
-      },
-
-      logLevel: 'info',
-
       middleware: [
         webpackDevMiddleware(bundler, {
           publicPath: webpackSettings.output.publicPath,
@@ -57,6 +42,15 @@ const browserSyncTask = () => {
         }),
         webpackHotMiddleware(bundler)
       ],
+
+      ghostMode: {
+        clicks: true,
+        scroll: true,
+        links: true,
+        forms: true
+      },
+
+      logLevel: 'info',
 
       notify: {
         styles: [
@@ -76,8 +70,18 @@ const browserSyncTask = () => {
       },
 
       server: bsServer,
-      open: kc.browsersync.openbrowser
-    });
+      https: kc.browsersync.https,
+      open: kc.browsersync.openbrowser,
+      files: [
+        kc.dist.js + '**/*.js',
+        kc.dist.css + '**/*.css',<% if (projectUsage == 'Integrate in CraftCMS' ) { %>
+        kc.dist.markup + 'templates/**/*.{php,html,twig}',<% } else if (projectUsage == 'Integrate in Wordpress') { %>
+        kc.dist.markup + '**/*.{php,html,png,txt,md}',<% } else { %>
+        kc.dist.base + '**/*.{php,html}',<% } %>
+        kc.dist.cssimg + '**/*.{jpg,gif,png,svg}'
+      ]
+    }
+  );
 };
 
 gulp.task('browser-sync', browserSyncTask)

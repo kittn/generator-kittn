@@ -21,7 +21,7 @@
 
   Styleguide 1.7
 */
-    // Run through the map
+    // Run through each font face
     @each $name, $entry in $map {
 
       // Move the Counter Up to count the Loop
@@ -40,17 +40,19 @@
 
   Styleguide 1.7.#{$counter}
 */
+      @each $key, $style in $entry {
 
-      // Call the Mixin
-      @include fontface(
-        $fontname: $name,
-        $o: (
-          filename: map-get($entry,filename),
-          weight: map-get($entry,weight),
-          style: map-get($entry,style),
-          short: map-get($entry,short)
-        )
-      );
+        // Call the Mixin
+        @include fontface(
+          $fontname: $name,
+          $o: (
+            filename: map-get($style,filename),
+            weight: map-get($style,weight),
+            style: map-get($style,style),
+            short: map-get($style,short)
+          )
+        );
+      }
     }
   } @else {
     @warn "Fontface mixin dosen't exists";

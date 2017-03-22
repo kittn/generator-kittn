@@ -1,0 +1,27 @@
+{#
+ # Homepage template
+ # ---------------
+ #}
+
+{# Subtemplate Setup #}
+{# `classToInner` Is an array in which all classes are listed from the outer container to the container of the content builder. Used for the section element. #}
+{% set templateBriefing = {
+  bodyclass: 'homepage',
+  slug: '',
+  classToInner: ['o-area__container']
+} %}
+
+{% extends '_layout/main-layout.html' %}
+
+{% block content %}
+  <div class="o-area__container">
+    {% cache globally using key "home" ~ craft.request.path %}
+    <h1>{{ entry.title }}</h1>
+
+    {{ entry.body }}
+
+    <h2>Fill your Homepage with Life</h2>
+    {% endcache %}
+  </div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+{#
+ # Pages template
+ # ---------------
+ #}
+
+{# Subtemplate Setup #}
+{# `classToInner` Is an array in which all classes are listed from the outer container to the container of the content builder. Used for the section element. #}
+{% set templateBriefing = {
+  bodyclass: 'pages',
+  slug: '',
+  classToInner: ['o-area__container']
+} %}
+
+{% extends '_layout/main-layout.html' %}
+
+{% block content %}
+  <div class="o-area__container">
+    {% cache globally using key "pages-structure" ~ craft.request.path %}
+
+      <h1>{{ entry.title }}</h1>
+      {% include '_builder/content-builder.html' %}
+
+      {# Add individual page parts based on the respective entry name #}
+      {% switch entry.slug %}
+        {% case 'fill-with-your-own-slug' %}
+          {% include 'section_pages/parts/...' with { data: '' } %}
+
+      {% endswitch %}
+
+    {% endcache %}
+  </div>
+{% endblock %}

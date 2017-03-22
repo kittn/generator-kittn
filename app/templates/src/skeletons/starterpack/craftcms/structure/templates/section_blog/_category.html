@@ -1,0 +1,51 @@
+{#
+ # Blog Category Tempalte
+ # -------------------
+ #}
+
+{# Subtemplate Setup #}
+{# `classToInner` Is an array in which all classes are listed from the outer container to the container of the content builder. Used for the section element. #}
+{% set templateBriefing = {
+  bodyclass: 'blog-category blog-cat--'~category,
+  section: 'blog',
+  name: 'Blog',
+  limit: 10,
+  classToInner: ['o-area__container']
+} %}
+
+{% extends '_layout/main-layout.html' %}
+
+{% block content %}
+  <div class="o-area__container">
+    {# Cache Entry #}
+    {% cache globally using key templateBriefing.section~'-category-' ~ craft.request.path ~ (craft.request.getPageNum ? '/p' ~ craft.request.getPageNum : '') %}
+    <h1>{{ templateBriefing.name }}</h1>
+
+    {# Build Query #}
+    {% set entries = craft.entries({
+      section: templateBriefing.section,
+      sort: 'postDate',
+      relatedTo: (category is defined ? category : false),
+      limit: templateBriefing.limit
+    }) %}
+
+    {# Initiate the Pagination #}
+    {% paginate entries as pageInfo, pageEntries %}
+
+    {# Loop through entries #}
+    {% for entry in pageEntries %}
+      <article role="article" itemscope itemtype="http://schema.org/Article">
+        <p>{{ entry.postDate | date('d.F Y') }}</p>
+        <h2 role="heading" itemprop="name"><a href="{{ entry.url }}" role="link" itemprop="contentUrl">{{ entry.title }}</a></h2>
+        {{ entry.body.getPage(1) }}
+        <p><a href="{{ entry.url }}" role="link">Weiterlesen</a></p>
+      </article>
+    {% endfor %}
+
+    {# Include Pagination #}
+    {{ myMacro.pagination(pageInfo,craft) }}
+
+    {% endcache %}
+  </div>
+{% endblock %}
+
