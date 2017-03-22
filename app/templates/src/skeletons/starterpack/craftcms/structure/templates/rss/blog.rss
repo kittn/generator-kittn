@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+  <channel>
+    <title>{{ siteName }}</title>
+    <link>{{ siteUrl }}</link>
+    <atom:link href="{{ craft.request.url }}" rel="self" type="application/rss+xml" />
+    <description>{{ seomaticSiteMeta.siteSeoDescription }}</description>
+    <language>{{ craft.i18n.getCurrentLocale() }}</language>
+    <pubDate>{{ now.rss }}</pubDate>
+    <lastBuildDate>{{ now.rss }}</lastBuildDate>
+
+    {% for entry in craft.entries.section('blog').find() %}
+      <item>
+        <title>{{ entry.title }}</title>
+        <link>{{ entry.url }}</link>
+        <pubDate>{{ entry.postDate.rss }}</pubDate>
+        <author>{{ entry.author }}</author>
+        <guid>{{ entry.url }}</guid>
+        <description>
+          <![CDATA[
+            {{ entry.body }}
+          ]]>
+        </description>
+      </item>
+    {% endfor %}
+  </channel>
+</rss>

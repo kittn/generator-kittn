@@ -1,0 +1,37 @@
+{#
+ # Main Layout
+ # ---------------
+ # If you are not happy with - modify it :)
+ #}
+
+{# Include Macros for your #}
+{% import '_macros/my-macro.html' as myMacro %}
+
+<!DOCTYPE html>
+<html lang="{{ craft.config.currentLanguage[craft.locale] }}">
+
+{# Include the Document Header #}
+{% include '_parts/document-header.html' %}
+
+<body class="{{ craft.request.isLivePreview ? ' is-livepreview ' }}{{ templateBriefing is defined ? ' '~templateBriefing.bodyclass~' ' }}">
+  {# Deactivate Progress Load on Livepreview #}
+  {% if craft.request.isLivePreview != true %}
+    <div class="o-progressloader">
+      <div class="o-progressloader__loader"></div>
+    </div>
+  {% endif %}
+
+  <div class="o-area__wrapper">
+    {% include '_parts/page-header.html' %}
+
+    <main class="o-area__main" role="main">
+      {{ block('content') }}
+    </main>
+
+    {% include '_parts/page-footer.html' %}
+  </div>
+
+	{# Adding the Document Footer #}
+	{% include '_parts/document-footer.html' %}
+</body>
+</html>

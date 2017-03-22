@@ -4,7 +4,7 @@
 
 /// Build a BEM Element
 ///
-/// @group core-bem
+/// @group core - bem
 ///
 /// @param  {string} $name - Element name
 ///
@@ -36,7 +36,7 @@
 /// Build a BEM Modifier. Add a Modification Class
 /// (independent form parent style)
 ///
-/// @group core-bem
+/// @group core - bem
 ///
 /// @param  {string} $name - Modifier name
 ///
@@ -68,7 +68,7 @@
 /// Build a BEM Instance. Use the parent style and combine it with
 /// the instance class.
 ///
-/// @group core-bem
+/// @group core - bem
 ///
 /// @param  {string} $name - Instance name
 ///
@@ -104,7 +104,7 @@
 
 /// Setup the Root Element for multiple chained Modifiers.
 ///
-/// @group core-bem
+/// @group core - bem
 ///
 /// @content
 ///
@@ -133,7 +133,7 @@
 
 /// Build the multiple chain modifier
 ///
-/// @group core-bem
+/// @group core - bem
 ///
 /// @param  {string} $name - Modifier names
 ///

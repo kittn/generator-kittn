@@ -1,0 +1,32 @@
+#wpadminbar #wp-admin-bar-new_draft > .ab-item::before {
+    content: "\f498\f344\f498";
+    top: 2px;
+}
+
+@media screen and (max-width: 782px){
+	#wpadminbar li#wp-admin-bar-new_draft{
+		display: block;
+	}
+	
+	#wpadminbar #wp-admin-bar-new_draft > .ab-item {
+    	text-indent: 100%;
+    	white-space: nowrap;
+    	overflow: hidden;
+    	width: 95px;
+    	padding: 0;
+    	color: #999;
+    	position: relative;
+	}
+	
+	#wpadminbar #wp-admin-bar-new_draft > .ab-item::before {
+    	display: block;
+    	text-indent: 0;
+    	font: 400 32px/1 dashicons;
+    	speak: none;
+    	top: 7px;
+    	width: 95px;
+    	text-align: center;
+    	-webkit-font-smoothing: antialiased;
+    	-moz-osx-font-smoothing: grayscale;
+	}
+}

@@ -23,7 +23,7 @@ $spacer-options: (
 
 /// Mixin for build easy margin and paddings
 ///
-/// @group methods-spacer
+/// @group methods - spacer
 ///
 /// @access private
 ///
@@ -106,7 +106,7 @@ $spacer-options: (
 
 /// Generate Paddings for all four sides off a box.
 ///
-/// @group methods-spacer
+/// @group methods - spacer
 ///
 /// @param  {list}   $value [false]     - Generate all four sides, with different length of values.
 /// @param  {bool}   $important [false] - For include a '!important'
@@ -133,7 +133,7 @@ $spacer-options: (
 
 /// Generate Margins for all four sides off a box.
 ///
-/// @group methods-spacer
+/// @group methods - spacer
 ///
 /// @param  {list}   $value [false]     - Generate all four sides, with different length of values.
 /// @param  {bool}   $important [false] - For include a '!important'
@@ -166,7 +166,7 @@ $spacer-options: (
 /// - mv = margin-vertical, mh = margin-horizontal
 /// - pv = padding-vertical, ph = padding-horizontal
 ///
-/// @group methods-spacer
+/// @group methods - spacer
 ///
 /// @param {List}   $options                      - Spacing Type (w, h, lh, pt, pb, pl, pr, mt, mb, ml, mr, mv, mh, pv, ph)
 /// @param {Number} $lines [1]                    - Spacing Multiplicator
@@ -245,7 +245,7 @@ $spacer-options: (
 /// - mv = margin-vertical, mh = margin-horizontal
 /// - pv = padding-vertical, ph = padding-horizontal
 ///
-/// @group methods-spacer
+/// @group methods - spacer
 ///
 /// @param {List}   $options           - Spacing Type (w, h, lh, pt, pb, pl, pr, mt, mb, ml, mr, mv, mh, pv, ph)
 /// @param {Bool}   $important [false] - Overwrite Values with !important

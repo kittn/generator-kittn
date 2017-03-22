@@ -1,17 +1,11 @@
 <meta charset="utf-8"/>
 <title>{{ siteTitle }}</title>
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 {% if environment == 'development' %}
-  <meta name="robots" content="noindex,nofollow"/>
-{% endif %}<% if ( projectiecompatible === true ) { %>
-<!--[if lte IE 8]>
-<link rel="stylesheet" href="{{assetsCss}}<%= projectcssfilename %>-ie8.css">
-<![endif]-->
-<!--[if gt IE 8]><!-->
+  <meta name="robots" content="noindex,nofollow">
+{% endif %}
 <link rel="stylesheet" href="{{assetsCss}}<%= projectcssfilename %>.css">
-<!--<![endif]--><% } else { %>
-<link rel="stylesheet" href="{{assetsCss}}<%= projectcssfilename %>.css"><% } %>
 <meta name="description" content="[Description]">
 <meta property="og:description" content="[Description]">
 <meta property="og:title" content="{{ siteTitle }}">
@@ -22,6 +16,10 @@
 <meta name="twitter:title" content="{{ siteTitle }}">
 <meta name="twitter:image:src" content="{{assetsCssImg}}system/twitter-og-image.jpg">
 <meta name="twitter:card" content="summary_large_image">
+<!-- Browser Tab Bar Color -->
+<meta name="theme-color" content="<%= projectthemecolor %>">
+<meta name="msapplication-navbutton-color" content="<%= projectthemecolor %>">
+<meta name="apple-mobile-web-app-status-bar-style" content="<%= projectthemecolor %>">
 <!--[if lt IE 9]>
 <script src="{{assetsJs}}html5shiv.js"></script>
 <![endif]-->

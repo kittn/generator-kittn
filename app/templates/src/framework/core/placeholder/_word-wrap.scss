@@ -6,7 +6,7 @@
 ///
 /// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
 ///
-/// @group core-placeholder
+/// @group core - placeholder
 ///
 /// @example scss - scss
 ///   .box-1 {
@@ -37,6 +37,7 @@
     @extend %word-wrap;
 
   } @else {
+    hyphens: auto;
     -ms-word-break: break-all;
     word-break: break-all;
     word-break: break-word;

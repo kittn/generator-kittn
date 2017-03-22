@@ -33,19 +33,20 @@ const compilerHtmlTask = () => {
   if(kc.template.compiler) {
     // TWIG Compiler
     return gulp.src(kc.src.template + '**/[^_]*.{html,twig,rss}')
-      .pipe(global.changedOverride === false ? $.changed(kc.dist.markup, {extension: '.{html,twig,rss}'}) : gutil.noop())
+      .pipe(global.checkChanged === true ? $.changed(kc.dist.markup, {extension: '.{html,twig,rss}'}) : gutil.noop())
       .pipe($.plumber())
       .pipe($.twig({ data: templateLocals }))
       .on('error', errorHandler)
-      .pipe($.prettify({
-        'indent_size': 2
+      .pipe($.htmlPrettify({
+        indent_char: ' ',
+        indent_size: 2
       }))
       .pipe(gulp.dest(kc.dist.markup))
 
   } else {
     // Simple Copy Files
-    gulp.src([kc.src.structure + '**/**' , kc.src.structure + '**/.*'])
-      .pipe(global.changedOverride === false ? $.changed(kc.dist.markup) : gutil.noop())
+    gulp.src([kc.src.structure + '**/**', kc.src.structure + '**/.*'])
+      .pipe(global.checkChanged === true ? $.changed(kc.dist.markup) : gutil.noop())
       .pipe(gulp.dest(kc.dist.markup))
   }
 }

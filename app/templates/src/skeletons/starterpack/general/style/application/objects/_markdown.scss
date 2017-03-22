@@ -1,0 +1,33 @@
+/*
+  Markdown
+  ========
+  Basic Styles for Markdown Element
+*/
+.o-markdown {
+  // Component Config
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // Build Root and Rootname
+  $root: #{&};
+  // Rootname only for prefixing Extends
+  $rn: str_slice($root,4);
+
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Local Style Storage  -------------------
+  // Store  : %#{$rn}--example { color: red; }
+  // Unload : @extend %#{$rn}--example;
+
+  // Base Modifier -------------------------
+
+  // [root]--s-style1
+  &--s-style1 {
+    font-size: 110%;
+    color: c('gray')
+  }
+}

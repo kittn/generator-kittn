@@ -4,6 +4,8 @@
 
 /// Scale a container with Aspect Ratio
 ///
+/// @group methods - scale
+///
 /// @param  {list}   $dimension - The actual size from the container
 /// @param  {number} $scale [1] - Scale Factor
 /// @param  {list}   $resize    - Calculate the nes size ($scale must 'false'). E.g. w 200 => new width with 200px (w, h, bool)

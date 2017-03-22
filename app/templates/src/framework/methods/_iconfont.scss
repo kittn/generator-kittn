@@ -4,7 +4,7 @@
 
 /// Get the Iconcode from the Iconmap
 ///
-/// @group methods-iconfont
+/// @group methods - iconfont
 ///
 /// @param  {string} $name - Icon Keyword
 ///
@@ -26,7 +26,7 @@
 
 /// Build the Base Attributes for all Font Icons
 ///
-/// @group methods-iconfont
+/// @group methods - iconfont
 ///
 /// @access private
 ///
@@ -63,7 +63,7 @@
 
 /// Build the Base Icon Font Behavior
 ///
-/// @group methods-iconfont
+/// @group methods - iconfont
 ///
 /// @param  {string} $iconFontName - Iconfont Name
 ///
@@ -103,7 +103,7 @@
 
 /// Insert the Icon Value as Content
 ///
-/// @group methods-iconfont
+/// @group methods - iconfont
 ///
 /// @param  {*}  $name                  - Key to the Map Entry
 /// @param  {*}  $connect ['container'] - Can be connected with the %iconfontcontainer, or a Iconfont (mixin), or false
@@ -147,7 +147,7 @@
 
 /// Extend a Class with an existing Icon Font Class
 ///
-/// @group methods-iconfont
+/// @group methods - iconfont
 ///
 /// @param  {string} $name - Name off the Icon (from the Map)
 ///

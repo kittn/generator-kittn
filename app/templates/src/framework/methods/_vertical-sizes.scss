@@ -4,7 +4,7 @@
 
 /// Recalculate the px values to rem, with lines option
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param   {*}      $arg  - Attribute
 /// @param   {number} $size - Value
@@ -24,22 +24,13 @@
   }
 
   @if map-get($kittn-typo, unit) == rem {
-    @if map-get($kittn-activate, ie8-fallbacks) == true {
-      @include jacket(modern) {
-        #{$arg}: rem($lines * map-get($kittn-typo, line-height));
-      }
-      @include jacket(old) {
-        #{$arg}: $lines * map-get($kittn-typo, line-height) + 0px;
-      }
-    } @else {
-      #{$arg}: rem($lines * map-get($kittn-typo, line-height));
-    }
+    #{$arg}: rem($lines * map-get($kittn-typo, line-height));
   }
 }
 
 /// Recalculate the px values to rem
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param   {*}      $arg  - Attribute
 /// @param   {number} $size - Value
@@ -60,17 +51,7 @@
     }
 
     @if map-get($kittn-typo, unit) == rem {
-      @if map-get($kittn-activate, ie8-fallbacks) == true {
-        @include jacket(modern) {
-          #{$arg}: rem($size);
-        }
-        @include jacket(old) {
-          #{$arg}: $size + 0px;
-        }
-
-      } @else {
-        #{$arg}: rem($size);
-      }
+      #{$arg}: rem($size);
     }
   } @else {
     #{$arg}: $size;
@@ -79,7 +60,7 @@
 
 /// Calculate the Rem Sizes, with Baseline Option
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {*}      $arg      - Attribute
 /// @param  {number} $size     - Size
@@ -109,7 +90,7 @@
 
 /// Calculate the Lineheight from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {number} $size     - Size
 /// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule
@@ -129,7 +110,7 @@
 
 /// Caluclate the Font Size in PX to REM with Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number} $size - Font Size
 ///
@@ -148,7 +129,7 @@
 
 /// Calculate Fontsize and Lineheight
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {number} $fontsize     - Font Size
 /// @param  {number} $lineheight [false] - Lineheight for the Font - can be false than used the factor
@@ -176,7 +157,7 @@
 
 /// Calculate the Margin Bottom from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -196,7 +177,7 @@
 
 /// Calculate the Margin Top from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -216,7 +197,7 @@
 
 /// Calculate the Margin Left from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -236,7 +217,7 @@
 
 /// Calculate the Margin Right from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -256,7 +237,7 @@
 
 /// Calculate the Padding Top from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -276,7 +257,7 @@
 
 /// Calculate the Padding Bottom from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -296,7 +277,7 @@
 
 /// Calculate the Padding Left from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -316,7 +297,7 @@
 
 /// Calculate the Padding Right from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
@@ -336,7 +317,7 @@
 
 /// Calculate the Height from PX to REM, provides a px Fallback
 ///
-/// @group methods-verticalsize
+/// @group methods - vertical sizes
 ///
 /// @param  {Number}  $size     - Size
 /// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
