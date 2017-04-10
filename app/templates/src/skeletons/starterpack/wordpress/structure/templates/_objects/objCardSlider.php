@@ -9,7 +9,7 @@
 $classnameCardSlider = 'o-slider';
 $ratio = get_sub_field('ratio');
 $style = get_sub_field('style');
-$slideCount = count( get_field('slides') );
+$slideCount = count( get_sub_field('slides') );
 
 $responsive = get_sub_field('responsive') ? '-r' : '';
 $spaceBetween = get_sub_field('spaceBetween') ? 'padding-left: '.get_sub_field('spaceBetween').';padding-right: '.get_sub_field('spaceBetween').';' : '';
