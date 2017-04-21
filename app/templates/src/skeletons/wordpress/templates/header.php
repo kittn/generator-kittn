@@ -11,7 +11,6 @@
   <!-- Browser Tab Bar Color -->
   <meta name="theme-color" content="<%= projectthemecolor %>">
   <meta name="msapplication-navbutton-color" content="<%= projectthemecolor %>">
-  <meta name="apple-mobile-web-app-status-bar-style" content="<%= projectthemecolor %>">
   <?php wp_head(); ?>
   <!--[if lt IE 9]>
   <script src="<?php bloginfo('template_url'); ?>/assets/js/html5shiv.js"></script>
@@ -22,6 +21,3 @@
     <div class="appHeader">
       PAGE HEADER
     </div>
-
-
-
