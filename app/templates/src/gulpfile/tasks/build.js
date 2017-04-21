@@ -28,16 +28,16 @@ const buildTask = (cb) => {
     [
       'compiler:css',
       'compiler:html'
-    ],
+    ]<% if (projectcritical === true) { %>,
+    [
+      'optimize:criticalCss'
+    ]<% } %>,
     [
       'minify:js',
       'minify:contentimages',
       'minify:inlineimages',
       'minify:css'
-    ]<% if (projectcritical === true) { %>,
-    [
-      'optimize:criticalCss'
-    ]<% } %>,
+    ],
     cb)
 }
 
