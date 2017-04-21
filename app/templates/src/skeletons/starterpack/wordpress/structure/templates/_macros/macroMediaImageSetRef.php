@@ -32,6 +32,9 @@ function macro_mediaImageSet($image,$classname,$format,$background = false, $tag
   }
 
   if ($image) {
+    // Get Mime Type
+    $imageMime = $image['mime_type'];
+
     // Check Imageformat
     if (in_array($format, $imageformats)) {
       // Generate Image Set
@@ -53,14 +56,28 @@ function macro_mediaImageSet($image,$classname,$format,$background = false, $tag
 
       // Output as <img> or Background
       if ($background) {
-        // Check if Tag is used otherwise return a string
-        if ($tag != false) {
-          echo '<'.$tag.' class="'.$classname.' lazyload" style="background-image: url('.$imagepre.');'.$backgroundPosition.'" data-sizes="auto" data-bgset="'.$imageset.'"></'.$tag.'>';
+        if ($imageMime == 'image/svg+xml') {
+          // Check if Tag is used otherwise return a string
+          if ($tag != false) {
+            echo '<'.$tag.' class="'.$classname.'" style="background-image: url('.$imagepre.');'.$backgroundPosition.'"></'.$tag.'>';
+          } else {
+            echo 'class="'.$classname.'" style="background-image: url('.$imagepre.');'.$backgroundPosition.'"';
+          }
         } else {
-          echo 'class="'.$classname.' lazyload" style="background-image: url('.$imagepre.');'.$backgroundPosition.'" data-sizes="auto" data-bgset="'.$imageset.'"';
+          // Check if Tag is used otherwise return a string
+          if ($tag != false) {
+            echo '<'.$tag.' class="'.$classname.' lazyload" style="background-image: url('.$imagepre.');'.$backgroundPosition.'" data-sizes="auto" data-bgset="'.$imageset.'"></'.$tag.'>';
+          } else {
+            echo 'class="'.$classname.' lazyload" style="background-image: url('.$imagepre.');'.$backgroundPosition.'" data-sizes="auto" data-bgset="'.$imageset.'"';
+          }
         }
+
       } else {
-        echo  '<img data-sizes="auto" src="'.$imagepre.'" data-srcset="'.$imageset.'" class="'.$classname.' lazyload" role="img" alt="'.$image["alt"].'" itemprop="thumbnail">';
+        if ($imageMime == 'image/svg+xml') {
+          echo  '<img src="'.$imagepre.'" class="'.$classname.'" role="img" alt="'.$image["alt"].'" itemprop="thumbnail">';
+        } else {
+          echo  '<img data-sizes="auto" src="'.$imagepre.'" data-srcset="'.$imageset.'" class="'.$classname.' lazyload" role="img" alt="'.$image["alt"].'" itemprop="thumbnail">';
+        }
       }
 
     } else {
