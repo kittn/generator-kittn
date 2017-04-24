@@ -96,6 +96,7 @@ $kittn-iconfont: (
 // @prop {number} base.line-height          - Base Line-Height
 $kittn-typo: (
   unit: rem,
+  mqUnit: <%= projectbreakpointunit %>,
   base-scale: 85,
   base-size: 16,
   line-height: 21

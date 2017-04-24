@@ -23,6 +23,11 @@
     #{$property}: $min-value;
   }
 
+  @if map-get($kittn-typo, mqUnit) == em {
+    $min-vw: em($min-vw);
+    $max-vw: em($max-vw);
+  }
+
   @media screen and (min-width: $min-vw) {
     @each $property in $properties {
       #{$property}: calc(#{$min-value} + #{strip-units($max-value - $min-value)} * (100vw - #{$min-vw}) / #{strip-units($max-vw - $min-vw)});
