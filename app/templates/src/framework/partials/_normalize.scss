@@ -49,7 +49,7 @@ body,
   position: relative;
   color: map-get($kittn-color-route, text);
   @include fontsize(map-get($kittn-typo, base-size));
-  @include lineheight(map-get($kittn-typo, line-height));
+  line-height: map-get($kittn-typo, line-height);
 
   @if map-get($kittn-activate, hyphens) { @include word-wrap; }
 
@@ -120,7 +120,7 @@ select, option, button, a, input[type="button"],input[type="reset"],input[type="
 
   @if map-get($kittn-global-heading,lineheight) != false {
     @if map-get($kittn-global-heading,lineheight) == d {
-      line-height: 1;
+      line-height: 1.25;
 
     } @else {
       @include lineheight(map-get($kittn-global-heading,lineheight));
@@ -403,7 +403,7 @@ li, dt, dd {
   }
 
   @if map-get($kittn-typo-sizes,list-lineheight) != false {
-    @include lineheight(map-get($kittn-typo-sizes,list-lineheight));
+    line-height: map-get($kittn-typo-sizes,list-lineheight);
   }
 }
 
@@ -470,7 +470,7 @@ code, kbd, pre, samp {
   }
 
   @if map-get($kittn-typo-sizes, code-lineheight) != false {
-    @include lineheight(map-get($kittn-typo-sizes, code-lineheight));
+    line-height: map-get($kittn-typo-sizes, code-lineheight);
   }
 
   @if map-get($kittn-typo-style, code-weight) != false {
@@ -591,7 +591,7 @@ blockquote {
     }
 
     @if map-get($kittn-typo-sizes,quote-lineheight) != false {
-      @include lineheight(map-get($kittn-typo-sizes,quote-lineheight));
+      line-height: map-get($kittn-typo-sizes,quote-lineheight);
     }
   }
 
@@ -603,7 +603,7 @@ blockquote {
     }
 
     @if map-get($kittn-typo-sizes,cite-lineheight) != false {
-      @include lineheight(map-get($kittn-typo-sizes,cite-lineheight));
+      line-height: map-get($kittn-typo-sizes,cite-lineheight);
     }
 
     &:before {

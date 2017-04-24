@@ -62,7 +62,7 @@
       // Add the Line-Height
       @if map-get($entry,line-height) {
         @if map-get($entry,line-height) == d {
-          line-height: 1;
+          line-height: 1.25;
 
         } @else if map-get($entry,line-height) == c {
           @include lineheight((map-get($entry,font-size) * 1.24 ));

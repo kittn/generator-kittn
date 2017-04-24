@@ -99,7 +99,7 @@ $kittn-typo: (
   mqUnit: <%= projectbreakpointunit %>,
   base-scale: 85,
   base-size: 16,
-  line-height: 21
+  line-height: 1.5
 );
 
 // Activates the Responsive Fontsize Generator
@@ -199,7 +199,7 @@ $kittn-global-heading: (
 //
 // @prop {map}         base.type               - Name of Typodefinition
 // @prop {number}      base.type.font-size     - Fontsize
-// @prop {string|bool} base.type.line-height   - Individual lineheight (`d`: line-height = 1, `c`: sass calculated, `number`)
+// @prop {string|bool} base.type.line-height   - Individual lineheight (`d`: line-height = 1.25, `c`: sass calculated, `number`)
 // @prop {number}      base.type.margin-bottom - Bottom Margin
 // @prop {number|bool} base.type.font-weight   - Fontweight
 // @prop {bool}        base.type.tag           - If it is activated, it generates a class from Key
@@ -215,7 +215,7 @@ $kittn-typostyles-map: (
   ),
   h2: (
     font-size: 32,
-    line-height: c,
+    line-height: d,
     margin-bottom: gap(0.5),
     font-weight: false,
     tag: true,
@@ -223,7 +223,7 @@ $kittn-typostyles-map: (
   ),
   h3: (
     font-size: 29,
-    line-height: c,
+    line-height: d,
     margin-bottom: gap(0.5),
     font-weight: false,
     tag: true,
@@ -231,7 +231,7 @@ $kittn-typostyles-map: (
   ),
   h4: (
     font-size: 25,
-    line-height: c,
+    line-height: d,
     margin-bottom: gap(0.5),
     font-weight: false,
     tag: true,
@@ -239,7 +239,7 @@ $kittn-typostyles-map: (
   ),
   h5: (
     font-size: 22,
-    line-height: c,
+    line-height: d,
     margin-bottom: gap(0.5),
     font-weight: false,
     tag: true,
@@ -247,7 +247,7 @@ $kittn-typostyles-map: (
   ),
   h6: (
     font-size: 19,
-    line-height: c,
+    line-height: d,
     margin-bottom: gap(0.5),
     font-weight: false,
     tag: true,
