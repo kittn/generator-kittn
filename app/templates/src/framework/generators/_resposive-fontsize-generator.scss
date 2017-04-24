@@ -27,8 +27,13 @@
   // Build the Stepped Width
   @for $i from 1 through length($list) {
     $l: nth($list,$i);
+    $size: nth($l,1);
 
-    @media screen and (if(map-get($kittn-activate, mobile-first),min-width,max-width): nth($l,1)) {
+    @if map-get($kittn-typo, mqUnit) == em {
+      $size: em($size);
+    }
+
+    @media screen and (if(map-get($kittn-activate, mobile-first),min-width,max-width): $size) {
       font-size: nth($l,2) + 0%;
     }
   }

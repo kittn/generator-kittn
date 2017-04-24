@@ -144,6 +144,15 @@ var KittnGenerator = yeoman.Base.extend({
       },
       {
         type: 'list',
+        name: 'projectbreakpointunit',
+        message: chalk.cyan.underline.bold('Media Query Unit') + '\n\xa0 Which Unit do you prefer for Media Queries?',
+        choices: [
+          'em',
+          'px'
+        ]
+      },
+      {
+        type: 'list',
         name: 'projectcssstructure',
         message: chalk.cyan.underline.bold('CSS Methodologies') + chalk.styles.red.close + '\n\xa0 CSS Writing Methodologies',
         choices: [
@@ -363,7 +372,7 @@ var KittnGenerator = yeoman.Base.extend({
         type: 'confirm',
         name: 'projectastrum',
         message: chalk.cyan.underline.bold('Astrum Pattern Lib') + '\n\xa0 Would you like to build up your Pattern Library with Astrum?',
-        default: true
+        default: false
       },
       {
         type: 'input',
@@ -398,7 +407,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectversion         = props.projectversion;
       this.projectauthor          = props.projectauthor;
       this.projectmail            = props.projectmail;
-      this.projectissues          = props.projectissues;
+      this.projectbreakpointunit  = props.projectbreakpointunit;
       this.projectcritical        = props.projectcritical;
       this.projectcriticalinline  = props.projectcriticalinline;
       this.projectcssfilename     = props.projectcssfilename;
@@ -439,7 +448,7 @@ var KittnGenerator = yeoman.Base.extend({
       projectversion        : this.projectversion,
       projectauthor         : this.projectauthor,
       projectmail           : this.projectmail,
-      projectissues         : this.projectissues,
+      projectbreakpointunit : this.projectbreakpointunit,
       projectcritical       : this.projectcritical,
       projectcriticalinline : this.projectcriticalinline,
       projectcssfilename    : this.projectcssfilename,

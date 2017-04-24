@@ -1,0 +1,30 @@
+// ===================================================
+// Maps Helper
+// ===================================================
+
+/// Calculate px in em
+///
+/// @group core - em
+///
+/// @param  {number} $px   - The Size in PX
+///
+/// @return {Number}  Return the size in em
+///
+/// @example scss - scss
+///   .test {
+///     font-size: em(14);
+///   }
+///
+/// @example css - css
+///   .test {
+///     font-size: 0.875em;
+///   }
+@function em($px, $base: map-get($kittn-typo, base-size)) {
+  @if unitless($px) {
+    @return #{$px / $base}em;
+
+  } @else {
+    $pxpx: strip-units($px);
+    @return #{$pxpx / $base}em;
+  }
+}

@@ -20,6 +20,10 @@
     $size: if(map-get($kittn-activate, mobile-first) == true, $size, $size + 1);
   }
 
+  @if map-get($kittn-typo, mqUnit) == em {
+    $size: em($size);
+  }
+
   // Insert the Media Query
   @media screen and (#{if($mode == max, max, min)}-#{if($dimension == width, width, height)}: $size) {
     @content;
