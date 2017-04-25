@@ -173,9 +173,9 @@ $kittn-typo-sizes: (
   list-margin: gap(1),
   list-style: disc,
   quote-fontsize: map-get($kittn-typo, base-size) + 2,
-  quote-lineheight: map-get($kittn-typo, line-height) + 6,
+  quote-lineheight: map-get($kittn-typo, line-height),
   cite-fontsize: map-get($kittn-typo, base-size) - 1,
-  cite-lineheight: map-get($kittn-typo, line-height) + 0,
+  cite-lineheight: map-get($kittn-typo, line-height),
   code-fontsize: false,
   code-lineheight: false
 );
