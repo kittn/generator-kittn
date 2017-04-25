@@ -350,10 +350,11 @@ var KittnGenerator = yeoman.Base.extend({
       {
         type: 'list',
         name: 'projectJSFramework',
-        message: chalk.cyan.underline.bold('JS Frameworks')  + '\n\xa0 Would you like to integrate a JS framework (Vue, React...)?',
+        message: chalk.cyan.underline.bold('JS Frameworks')  + '\n\xa0 Would you like to integrate a JS framework (Vue, React)?',
         choices: [
           'none',
-          'Vue.js'
+          'Vue.js',
+          'React'
         ]
       },
       {

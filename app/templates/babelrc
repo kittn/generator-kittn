@@ -9,6 +9,7 @@
       }
     ],
     "es2015",
-    "stage-0"
+    "stage-0"<% if (projectJSFramework == 'React') { %>,
+    "react"<% } %>
   ]
 }
