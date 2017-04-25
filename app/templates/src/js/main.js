@@ -17,6 +17,7 @@ import 'flickity'
 import 'flickity-imagesloaded'<% } %>
 import lazySizes from 'lazysizes'
 import lazybgset from 'lazysizes/plugins/bgset/ls.bgset'
+import 'babel-polyfill'
 import 'svgxuse' // eslint-disable-line
 import './partial/kittnad' // Small Advertising for Kittn :)
 import './partial/modernizer-loader'
