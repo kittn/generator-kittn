@@ -3,12 +3,12 @@ import $ from 'jquery'<% } %><% if ( projectJSFramework === 'React' ) { %>
 import React from 'react'
 import ReactDOM from 'react-dom'<% } %>
 import eq from 'eqcss'<% if ( projectJSFramework === 'Vue.js' ) { %>
-import Vue from 'vue'
+import Vue from 'vue'<% } %><% if ( projectvueplugins === true)  { %>
 import { sync } from 'vuex-router-sync'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router/router'
-import store from './store/store'<% } %><% if (projectcraftbp === true || projectwordpressbp === true) { %>
+import store from './store/store'<% }  if (projectcraftbp === true || projectwordpressbp === true) { %>
 import progressLoader from './partial/progressloader'
 import initPhotoSwipeFromDOM from './partial/init-photoswipe' // eslint-disable-line
 import './partial/init-heighttransition'
@@ -23,23 +23,28 @@ import './partial/kittnad' // Small Advertising for Kittn :)
 import './partial/modernizer-loader'
 import './partial/conditionizr-init'
 import './partial/disable-pointerevents'<% if ( projectJSFramework === 'Vue.js') { %>
-import App from './app.vue'
-
-require('es6-promise').polyfill()
+import App from './app.vue'<%}%><% if (projectvueplugins === true)  { %>
 
 // keep vue-router and vuex store in sync
-sync(store, router)
+    sync(store, router)
 
 // Adding Vue Plugins
-Vue.use(VueAxios, axios)
+Vue.use(VueAxios, axios)<% } %>
 
+<% if ( projectJSFramework === 'Vue.js' && projectvueplugins === false) { %>
 // Vue App
 /* eslint-disable no-new */
 new Vue({
-  el: '#app',
-  router,
-  store,
-  render: h => h(App)
+    el: '#app',
+    render: h => h(App)
+})<% } %><% if ( projectJSFramework === 'Vue.js' && projectvueplugins === true) { %>
+// Vue App
+/* eslint-disable no-new */
+new Vue({
+    el: '#app',
+    router,
+    store,
+    render: h => h(App)
 })<% } %><% if ( projectJSFramework === 'React') { %>
 ReactDOM.render(
 <h1>Hello, world! from React</h1>,
