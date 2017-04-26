@@ -1,5 +1,7 @@
 // Main JS File<% if (projectjquery === true) { %>
-import $ from 'jquery'<% } %>
+import $ from 'jquery'<% } %><% if ( projectJSFramework === 'React' ) { %>
+import React from 'react'
+import ReactDOM from 'react-dom'<% } %>
 import eq from 'eqcss'<% if ( projectJSFramework === 'Vue.js' ) { %>
 import Vue from 'vue'
 import { sync } from 'vuex-router-sync'
@@ -15,6 +17,7 @@ import 'flickity'
 import 'flickity-imagesloaded'<% } %>
 import lazySizes from 'lazysizes'
 import lazybgset from 'lazysizes/plugins/bgset/ls.bgset'
+import 'babel-polyfill'
 import 'svgxuse' // eslint-disable-line
 import './partial/kittnad' // Small Advertising for Kittn :)
 import './partial/modernizer-loader'
@@ -37,7 +40,11 @@ new Vue({
   router,
   store,
   render: h => h(App)
-})<% } %>
+})<% } %><% if ( projectJSFramework === 'React') { %>
+ReactDOM.render(
+<h1>Hello, world! from React</h1>,
+  document.getElementById('app')
+)<% } %>
 
 // Lasysizes Lazyload Config
 window.lazySizesConfig = window.lazySizesConfig || {}

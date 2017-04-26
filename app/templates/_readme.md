@@ -27,7 +27,10 @@ $ npm run dev
 $ npm run uiimages && npm run htmlassets
 
 # Build for production
-$ npm run build
+$ npm run build<% if (projectastrum === true) { %>
+
+# Copy Assets into Astrum Styleguide
+$ npm run assets<% } %>
 ```
 
 ## Licence 
