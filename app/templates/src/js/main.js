@@ -2,7 +2,7 @@
 import $ from 'jquery'<% } %><% if ( projectJSFramework === 'React' ) { %>
 import React from 'react'
 import ReactDOM from 'react-dom'<% } %>
-import eq from 'eqcss' // eslint-disable-line<% if ( projectJSFramework === 'Vue.js' ) { %>
+import cq from 'cq-prolyfill' // eslint-disable-line<% if ( projectJSFramework === 'Vue.js' ) { %>
 import Vue from 'vue'<% } %><% if ( projectvueplugins === true)  { %>
 import { sync } from 'vuex-router-sync'
 import axios from 'axios'
@@ -26,7 +26,7 @@ import './partial/disable-pointerevents'<% if ( projectJSFramework === 'Vue.js')
 import App from './app.vue'<%}%><% if (projectvueplugins === true)  { %>
 
 // keep vue-router and vuex store in sync
-    sync(store, router)
+sync(store, router)
 
 // Adding Vue Plugins
 Vue.use(VueAxios, axios)<% } %>
@@ -58,6 +58,9 @@ lazySizesConfig.expFactor = 1.3
 
 // Lazy Sizes Init
 lazySizes.init()<% if (projectcraftbp === true || projectwordpressbp === true) { %>
+
+// Activate Container Queries
+cq({postcss: true})
 
 // Init Photoswipe
 initPhotoSwipeFromDOM('.is-photoswipped')
