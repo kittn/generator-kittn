@@ -2,7 +2,7 @@
 import $ from 'jquery'<% } %><% if ( projectJSFramework === 'React' ) { %>
 import React from 'react'
 import ReactDOM from 'react-dom'<% } %>
-import eq from 'eqcss'<% if ( projectJSFramework === 'Vue.js' ) { %>
+import eq from 'eqcss' // eslint-disable-line<% if ( projectJSFramework === 'Vue.js' ) { %>
 import Vue from 'vue'<% } %><% if ( projectvueplugins === true)  { %>
 import { sync } from 'vuex-router-sync'
 import axios from 'axios'
@@ -16,7 +16,7 @@ import './partial/init-autoscroll'
 import 'flickity'
 import 'flickity-imagesloaded'<% } %>
 import lazySizes from 'lazysizes'
-import lazybgset from 'lazysizes/plugins/bgset/ls.bgset'
+import lazybgset from 'lazysizes/plugins/bgset/ls.bgset' // eslint-disable-line
 import 'babel-polyfill'
 import 'svgxuse' // eslint-disable-line
 import './partial/kittnad' // Small Advertising for Kittn :)
