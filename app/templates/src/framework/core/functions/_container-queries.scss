@@ -1,0 +1,21 @@
+@mixin cq($condition) {
+  $selector: &;
+
+  @at-root {
+    #{$selector}#{cq('#{$condition}')} {
+      @content;
+    }
+  }
+}
+
+@mixin cqr($root,$condition) {
+  $selector: &;
+
+  @at-root {
+    #{$root}#{cq('#{$condition}')} {
+      #{$selector} {
+        @content;
+      }
+    }
+  }
+}
