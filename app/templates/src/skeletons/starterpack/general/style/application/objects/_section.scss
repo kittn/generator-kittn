@@ -144,10 +144,9 @@
 
       // Reset Columns
       &--#{map-deep-get($setup, groupname)} {
-        @include eq((max-width: #{map-deep-get($setup, breaksize)})) {
-          eq_this {
-            display: block;
-          }
+        @include break(map-deep-get($setup, breaksize)) {
+          display: block;
+
           #{$root}__column {
             width: auto !important;
           }
@@ -238,7 +237,7 @@
     &--behavior1 {
       display: none;
 
-      @include eqr($root, (min-width: 600px)) {
+      @include break(600px) {
         display: block;
       }
     }

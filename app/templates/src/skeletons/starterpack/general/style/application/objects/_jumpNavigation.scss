@@ -34,13 +34,11 @@
   // Base Modifier -------------------------
   // [root]--l-fullwidth
   &#{$root}--l-fullwidth  {
-    @include eq((min-width: 500px)) {
-      eq_this {
-        display: flex;
-        justify-content: space-between;
-        margin-left: 0 - api(gutter);
-        margin-right: 0 - api(gutter);
-      }
+    &#{cq('width >= 500px')} {
+      display: flex;
+      justify-content: space-between;
+      margin-left: 0 - api(gutter);
+      margin-right: 0 - api(gutter);
     }
   }
 
@@ -54,13 +52,13 @@
       display: block;
       text-align: center;
       margin-bottom: api(gutter);
+    }
 
-      @include eqr($root, (min-width: #{api(breaksize)})) {
-        flex: 1;
-        margin-bottom: 0;
-        margin-left: api(gutter);
-        margin-right: api(gutter);
-      }
+    #{$root}--l-fullwidth#{cq('width >= #{api(breaksize)}')} & {
+      flex: 1;
+      margin-bottom: 0;
+      margin-left: api(gutter);
+      margin-right: api(gutter);
     }
 
     #{$root}--l-list & {
