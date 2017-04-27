@@ -127,11 +127,10 @@
   },
   "dependencies": {<% if (projectjquery === true) { %>
     "jquery": "^3.1.1",<% } if ( projectJSFramework === 'Vue.js' ) { %>
-    "axios": "^0.15.3",
-    "es6-promise": "^4.0.5",
-    "vue": "^2.1.10",
-    "vue-axios": "^1.2.2",
+    "vue": "^2.1.10",<% } if ( projectvueplugins === true ) { %>
     "vue-router": "^2.2.0",
+    "axios": "^0.15.3",
+    "vue-axios": "^1.2.2",
     "vuex": "^2.1.2",
     "vuex-router-sync": "^4.1.2",<% }  if ( projectJSFramework === 'React' ) { %>
     "react": "^15.5.4",
