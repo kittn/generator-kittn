@@ -85,8 +85,7 @@
 
       // If Breakpointsize is not `false`
       @if $value != false {
-        // @media screen and (min-width: #{$value}) {
-        @include eqr($root, (min-width: #{$value})) {
+        @include cqr($root, 'width >= #{$value}') {
           // Colum Size
           @at-root %col-size-#{$i} {
             width: 100 / $i + 0%;

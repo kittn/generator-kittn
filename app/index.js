@@ -361,9 +361,18 @@ var KittnGenerator = yeoman.Base.extend({
         when: function(props) {
           return props.projectJSFramework === 'Vue.js';
         },
+        type: 'confirm',
+        name: 'projectvueplugins',
+        message: chalk.cyan.underline.bold('Vue.js Plugins') + '\n\xa0Do you need basic Vue.js Plugins? (Axios, vuex...) ',
+        default: false
+      },
+      {
+        when: function(props) {
+          return props.projectJSFramework === 'Vue.js';
+        },
         type: 'list',
         name: 'projectvueversion',
-        message: chalk.cyan.underline.bold('Vuejs Runtime') + '\n\xa0 Vue Version. When you only use .vue Files Runtime is perfect,\n\xa0 if you need parsing from .html Files you need the Standalone Version.',
+        message: chalk.cyan.underline.bold('Vue.js Runtime') + '\n\xa0 Vue Version. When you only use .vue Files Runtime is perfect,\n\xa0 if you need parsing from .html Files you need the Standalone Version.',
         choices: [
           'Runtime-Only',
           'Standalone'
@@ -417,6 +426,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectjquery          = props.projectjquery;
       this.projectJSFramework     = props.projectJSFramework;
       this.projectcssstructure    = props.projectcssstructure;
+      this.projectvueplugins      = props.projectvueplugins;
       this.projectvueversion      = checkAnswer(props.projectvueversion);
       this.projectwpcli           = props.projectwpcli;
       this.projectcraftcli        = props.projectcraftcli;
@@ -458,6 +468,7 @@ var KittnGenerator = yeoman.Base.extend({
       projectjquery         : this.projectjquery,
       projectJSFramework    : this.projectJSFramework,
       projectcssstructure   : this.projectcssstructure,
+      projectvueplugins     : this.projectvueplugins,
       projectvueversion     : this.projectvueversion,
       projectcraftcli       : this.projectcraftcli,
       projectwpcli          : this.projectwpcli,
@@ -684,9 +695,11 @@ var KittnGenerator = yeoman.Base.extend({
 
     if ( this.projectJSFramework === 'Vue.js' ) {
       this.directory('src/skeletons/vue/components/', 'src/js/components/')
-      this.directory('src/skeletons/vue/store/', 'src/js/store/')
-      this.directory('src/skeletons/vue/router/', 'src/js/router/')
       this.directory('src/skeletons/vue/shared/', 'src/js/shared/')
+      if ( this.projectvueplugins === true ) {
+        this.directory('src/skeletons/vue/store/', 'src/js/store/')
+        this.directory('src/skeletons/vue/router/', 'src/js/router/')
+      }
       this.directory('src/build/', 'build/')
 
       this.fs.copyTpl(

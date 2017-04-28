@@ -4,6 +4,7 @@
 
 // Functions
 @import "functions/typechecks";
+@import "functions/container-queries";
 @import "functions/maps";
 @import "functions/em";
 @import "functions/breakpoints";
@@ -22,7 +23,6 @@
 @import "mixins/bem";
 @import "mixins/size";
 @import "mixins/break";
-@import "mixins/eqcss";
 @import "mixins/fontface";
 @import "mixins/pos";
 @import "mixins/fluidtype";

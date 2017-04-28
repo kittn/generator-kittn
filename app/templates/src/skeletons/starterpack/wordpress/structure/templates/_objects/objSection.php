@@ -6,6 +6,8 @@
  */
 
 // Default Vars
+$templateNames = array('template--contentbuilder.php');
+$templateBoxes = array('full', 'bigger-25', 'bigger-45');
 $classnameSection = 'o-section';
 $style = get_sub_field('style');
 $fullheight = get_sub_field('fullheight') ? ' '.$classnameSection.'--fullheight' : '';
@@ -29,12 +31,13 @@ endswitch;
 ?>
 
 <?php // Get Templatetype for build condition to close and open outer wrappers ?>
-<?php $templateType = get_page_template_slug( $post->ID ); ?>
-<?php // Closing outer Area first ?>
-<?php if ($templateType == 'template--contentbuilder.php') : ?>
-  </div>
-<?php else : ?>
-  </div></div>
+<?php $templateType = basename(get_page_template()); ?>
+<?php // Closing outer Area first if Fullwidth ?>
+
+<?php if (in_array($templateType, $templateNames)) : ?>
+  <?php if(in_array(get_sub_field('innerContainer'), $templateBoxes)) : ?>
+    </div>
+  <?php endif; ?>
 <?php endif; ?>
 
 <?php // Build Element Block ?>
@@ -69,8 +72,8 @@ endswitch;
 </section>
 
 <?php // Opening outer Area again ?>
-<?php if ($templateType == 'template--contentbuilder.php') : ?>
+<?php if (in_array($templateType, $templateNames)) : ?>
+  <?php if(in_array(get_sub_field('innerContainer'), $templateBoxes)) : ?>
   <div class="o-area__container">
-<?php else : ?>
-  <div class="o-area__container"><div class="o-area__content">
+  <?php endif; ?>
 <?php endif; ?>

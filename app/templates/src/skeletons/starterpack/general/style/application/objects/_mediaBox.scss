@@ -33,10 +33,8 @@
   // Base Style ----------------------------
   margin-bottom: api(margin-bottom);
 
-  @include eq((min-width: #{api(breakpoint)})) {
-    eq_this {
-      display: flex;
-    }
+  &#{cq('width >= #{api(breakpoint)}')} {
+    display: flex;
   }
 
   // Tags ----------------------------------
@@ -61,37 +59,29 @@
   &__media {
     overflow: hidden;
 
+    &#{cq('width >= #{api(breakpoint)}')} {
+      margin-right: s(1);
+    }
+
     #{$root}--right & {
       order: 2;
     }
 
-    @include eqr($root, (min-width: #{api(breakpoint)})) {
-      margin-right: 20px;
+    #{$root}--right#{cq('width >= #{api(breakpoint)}')} & {
+      margin-right: 0;
+      margin-left: 20px;
     }
 
-    #{$root}--right & {
-      @include eqr($root, (min-width: #{api(breakpoint)})) {
-        margin-right: 0;
-        margin-left: 20px;
-      }
+    #{$root}--quarter#{cq('width >= #{api(breakpoint)}')} & {
+      flex: 0 0 25%;
     }
 
-    #{$root}--quarter & {
-      @include eqr($root, (min-width: #{api(breakpoint)})) {
-        flex: 0 0 25%;
-      }
+    #{$root}--half#{cq('width >= #{api(breakpoint)}')} & {
+      flex: 0 0 50%;
     }
 
-    #{$root}--half & {
-      @include eqr($root, (min-width: #{api(breakpoint)})) {
-        flex: 0 0 50%;
-      }
-    }
-
-    #{$root}--threequarter & {
-      @include eqr($root, (min-width: #{api(breakpoint)})) {
-        flex: 0 0 75%;
-      }
+    #{$root}--threequarter#{cq('width >= #{api(breakpoint)}')} & {
+      flex: 0 0 75%;
     }
   }
 
@@ -117,21 +107,17 @@
       margin-bottom: 0;
     }
 
-    @include eqr($root, (min-width: #{api(breakpoint)})) {
+    #{$root}#{cq('width >= #{api(breakpoint)}')} & {
       align-self: center;
     }
 
-    #{$root}--colored & {
-      @include eqr($root, (min-width: #{api(breakpoint)})) {
-        padding-left: 0;
-      }
+    #{$root}--colored#{cq('width >= #{api(breakpoint)}')} & {
+      padding-left: 0;
     }
 
-    #{$root}--colored#{$root}--right & {
-      @include eqr($root, (min-width: #{api(breakpoint)})) {
-        padding-left: 20px;
-        padding-right: 0;
-      }
+    #{$root}--colored#{$root}--right#{cq('width >= #{api(breakpoint)}')} & {
+      padding-left: 20px;
+      padding-right: 0;
     }
   }
 

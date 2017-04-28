@@ -127,11 +127,10 @@
   },
   "dependencies": {<% if (projectjquery === true) { %>
     "jquery": "^3.1.1",<% } if ( projectJSFramework === 'Vue.js' ) { %>
-    "axios": "^0.15.3",
-    "es6-promise": "^4.0.5",
-    "vue": "^2.1.10",
-    "vue-axios": "^1.2.2",
+    "vue": "^2.1.10",<% } if ( projectvueplugins === true ) { %>
     "vue-router": "^2.2.0",
+    "axios": "^0.15.3",
+    "vue-axios": "^1.2.2",
     "vuex": "^2.1.2",
     "vuex-router-sync": "^4.1.2",<% }  if ( projectJSFramework === 'React' ) { %>
     "react": "^15.5.4",
@@ -140,7 +139,7 @@
     "conditionizr": "^4.5.0",
     "svgxuse": "^1.2.1",
     "lazysizes": "^3.0.0",
-    "eqcss": "^1.6.0",<% if (projectcraftbp === true || projectwordpressbp === true) { %>
+    "cq-prolyfill": "^0.3.3",<% if (projectcraftbp === true || projectwordpressbp === true) { %>
     "anchor-scroll": "^2.0.0",
     "photoswipe": "^4.1.1",
     "flickity": "^2.0.5",
