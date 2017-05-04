@@ -18,15 +18,24 @@
 ///   .test {
 ///     @include f(18px, 24px, padding-left padding-right);
 ///   }
-@mixin fluid($min-value, $max-value, $properties: font-size, $min-vw: em(map-get($kittn-page-size,minsize)), $max-vw: em(map-get($kittn-page-size,maxsize))) {
+@mixin fluid($min-value, $max-value, $properties: font-size, $min-vw: map-get($kittn-page-size,minsize), $max-vw: map-get($kittn-page-size,maxsize)) {
   // Check If Value is PX
   @if is-px($min-value) {
-    $min-value: rem($min-value)
+    $min-value: em($min-value)
   }
 
   // Check If Value is PX
   @if is-px($max-value) {
-    $max-value: rem($max-value)
+    $max-value: em($max-value)
+  }
+
+  @if is-px($min-vw) {
+    $min-vw: em($min-vw)
+  }
+
+  // Check If Value is PX
+  @if is-px($max-vw) {
+    $max-vw: em($max-vw)
   }
 
   @each $property in $properties {
