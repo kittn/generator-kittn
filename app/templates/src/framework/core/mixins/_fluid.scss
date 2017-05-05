@@ -19,45 +19,21 @@
 ///     @include f(18px, 24px, padding-left padding-right);
 ///   }
 @mixin fluid($min-value, $max-value, $properties: font-size, $min-vw: map-get($kittn-page-size,minsize), $max-vw: map-get($kittn-page-size,maxsize)) {
-  // Check If Value is PX
-  @if is-px($min-value) {
-    $min-value: em($min-value)
-  }
-
-  // Check If Value is PX
-  @if is-px($max-value) {
-    $max-value: em($max-value)
-  }
-
-  @if is-px($min-vw) {
-    $min-vw: em($min-vw)
-  }
-
-  // Check If Value is PX
-  @if is-px($max-vw) {
-    $max-vw: em($max-vw)
-  }
-
   @each $property in $properties {
     #{$property}: $min-value;
   }
 
-  @media screen and (min-width: $min-vw) {
+  @media screen and (min-width: em($min-vw)) {
     @each $property in $properties {
-      $min-vw-REM: strip-units($min-vw) + 0rem;
-      #{$property}: calc(#{$min-value} + #{strip-units($max-value) - strip-units($min-value)} * (100vw - #{$min-vw-REM}) / #{strip-units($max-vw) - strip-units($min-vw)});
+      #{$property}: calc(#{$min-value} + #{strip-units($max-value) - strip-units($min-value)} * ((100vw - #{$min-vw}) / #{strip-units($max-vw) - strip-units($min-vw)}));
     }
   }
 
-  @media screen and (min-width: $max-vw) {
+  @media screen and (min-width: em($max-vw)) {
     @each $property in $properties {
       #{$property}: $max-value;
     }
   }
-}
-
-@function is-px($value) {
-  @return is-number($value) and index('px', unit($value)) != null;
 }
 
 // Shorthand Version
