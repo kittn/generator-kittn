@@ -26,6 +26,9 @@ const compilerCssTask = () => {
     .pipe($.sass({})
       .on('error', errorHandler))
     .pipe($.postcss(preCssConf()))
+    .pipe($.size({
+        title: '>>> CSS File Size: '
+    }))
     .pipe(env == 'development' ? $.sourcemaps.write('.') : gutil.noop())
     .pipe(gulp.dest(kc.dist.css))
 };
