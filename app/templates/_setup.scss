@@ -286,6 +286,25 @@ $kittn-color-map: (
   'black': (
     color: #000
   ),
+  'black-05': (color: lighten(#000, 5)),
+  'black-10': (color: lighten(#000, 10)),
+  'black-15': (color: lighten(#000, 15)),
+  'black-20': (color: lighten(#000, 20)),
+  'black-25': (color: lighten(#000, 25)),
+  'black-30': (color: lighten(#000, 30)),
+  'black-35': (color: lighten(#000, 35)),
+  'black-40': (color: lighten(#000, 40)),
+  'black-45': (color: lighten(#000, 45)),
+  'black-50': (color: lighten(#000, 50)),
+  'black-55': (color: lighten(#000, 55)),
+  'black-60': (color: lighten(#000, 60)),
+  'black-65': (color: lighten(#000, 65)),
+  'black-70': (color: lighten(#000, 70)),
+  'black-75': (color: lighten(#000, 75)),
+  'black-80': (color: lighten(#000, 80)),
+  'black-85': (color: lighten(#000, 85)),
+  'black-90': (color: lighten(#000, 90)),
+  'black-95': (color: lighten(#000, 95)),
   'body': (
     color: #f8f8f8
   ),
