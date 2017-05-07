@@ -29,9 +29,7 @@ import App from './app.vue'<%}%><% if (projectvueplugins === true)  { %>
 sync(store, router)
 
 // Adding Vue Plugins
-Vue.use(VueAxios, axios)<% } %>
-
-<% if ( projectJSFramework === 'Vue.js' && projectvueplugins === false) { %>
+Vue.use(VueAxios, axios)<% } %><% if ( projectJSFramework === 'Vue.js' && projectvueplugins === false) { %>
 // Vue App
 /* eslint-disable no-new */
 new Vue({

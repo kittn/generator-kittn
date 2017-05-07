@@ -269,7 +269,7 @@ $kittn-generate-typostyles: true;
 
 $kittn-color-map: (
   'primary': (
-    color: <%= projectthemecolor %>
+    color: #29b8f2
   ),
   'main': (
     color: #242424
@@ -302,6 +302,30 @@ $kittn-color-map: (
     color: #f8e64b
   )
 );
+
+$kittn-color-blacks: (
+  'black-05': (color: lighten(c('black'), 5)),
+  'black-10': (color: lighten(c('black'), 10)),
+  'black-15': (color: lighten(c('black'), 15)),
+  'black-20': (color: lighten(c('black'), 20)),
+  'black-25': (color: lighten(c('black'), 25)),
+  'black-30': (color: lighten(c('black'), 30)),
+  'black-35': (color: lighten(c('black'), 35)),
+  'black-40': (color: lighten(c('black'), 40)),
+  'black-45': (color: lighten(c('black'), 45)),
+  'black-50': (color: lighten(c('black'), 50)),
+  'black-55': (color: lighten(c('black'), 55)),
+  'black-60': (color: lighten(c('black'), 60)),
+  'black-65': (color: lighten(c('black'), 65)),
+  'black-70': (color: lighten(c('black'), 70)),
+  'black-75': (color: lighten(c('black'), 75)),
+  'black-80': (color: lighten(c('black'), 80)),
+  'black-85': (color: lighten(c('black'), 85)),
+  'black-90': (color: lighten(c('black'), 90)),
+  'black-95': (color: lighten(c('black'), 95))
+);
+
+$kittn-color-map: map-merge($kittn-color-map, $kittn-color-blacks);
 
 // Color definitions of HTML elements
 //

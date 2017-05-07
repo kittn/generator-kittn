@@ -1,0 +1,42 @@
+// ===================================================
+// Fluidtype
+// ===================================================
+
+/// Mixin for Fluid attributes
+///
+/// @group core - fluid
+///
+/// @param   {list}  $min-value - Min Fontsize in px
+/// @param   {list}  $max-value - Max Fontsize in px
+/// @param   {list}  $properties - Property-List (margin, padding, font-size...)
+/// @param   {list}  $min-vw - Min Viewport Width in px
+/// @param   {list}  $max-vw - Max Viewport Width in px
+///
+/// @require {function} strip-units - Strip Units Function
+///
+/// @example scss - scss
+///   .test {
+///     @include f(18px, 24px, padding-left padding-right);
+///   }
+@mixin fluid($min-value, $max-value, $properties: font-size, $min-vw: map-get($kittn-page-size,minsize), $max-vw: map-get($kittn-page-size,maxsize)) {
+  @each $property in $properties {
+    #{$property}: $min-value;
+  }
+
+  @media screen and (min-width: em($min-vw)) {
+    @each $property in $properties {
+      #{$property}: calc(#{$min-value} + #{strip-units($max-value) - strip-units($min-value)} * ((100vw - #{$min-vw}) / #{strip-units($max-vw) - strip-units($min-vw)}));
+    }
+  }
+
+  @media screen and (min-width: em($max-vw)) {
+    @each $property in $properties {
+      #{$property}: $max-value;
+    }
+  }
+}
+
+// Shorthand Version
+@mixin f($args...) {
+  @include fluid($args...);
+}
