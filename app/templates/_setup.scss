@@ -96,7 +96,7 @@ $kittn-iconfont: (
 // @prop {number} base.line-height          - Base Line-Height
 $kittn-typo: (
   unit: rem,
-  mqUnit: <%= projectbreakpointunit %>,
+  mqunit: <%= projectbreakpointunit %>,
   base-scale: 85,
   base-size: 16,
   line-height: 1.5
@@ -278,7 +278,7 @@ $kittn-color-map: (
     color: #636363
   ),
   'darkwhite': (
-    color: #eeeeee
+    color: #eee
   ),
   'white': (
     color: #fff
@@ -345,11 +345,11 @@ $kittn-color-route: (
   text: c('main'),
   headline: c('gray'),
   blockquote: c('main'),
-  highlight-bg: lighten(c('primary'),25),
-  highlight-text: darken(c('primary'),10),
+  highlight-bg: lighten(c('primary'), 25),
+  highlight-text: darken(c('primary'), 10),
   link: c('primary'),
-  link-hover: darken(c('primary'),15),
-  link-active: darken(c('primary'),25)
+  link-hover: darken(c('primary'), 15),
+  link-active: darken(c('primary'), 25)
 );
 
 // Hairline Styling
@@ -378,8 +378,8 @@ $kittn-hairline: (
 // @prop {number}      base.trigger            - Trigger Size for responsive Tables
 $kittn-tables: (
   background: transparent,
-  background-zebra: tint(c(primary),20),
-  background-hover: lighten(c(primary),20),
+  background-zebra: tint(c(primary), 20),
+  background-hover: lighten(c(primary), 20),
   border-color: c('gray'),
   margin: 20px,
   padding: 8px,

@@ -1,15 +1,14 @@
 {
   "presets": [
-    ["env",
-      {
-        "targets": {
-          "browsers": ["> 5%", "ie >= 11"]
-        },
-        "useBuiltIns": true
-      }
-    ],
-    "es2015",
-    "stage-0"<% if (projectJSFramework == 'React') { %>,
-    "react"<% } %>
-  ]
+    ["env", {
+      "targets": {
+        "browsers": ["last 2 versions", "ie >= 10"]
+      },
+      "modules": false,
+      "useBuiltIns": true,
+      "debug": false
+    }]
+  ],
+  "plugins": ["syntax-dynamic-import"]<% if (projectJSFramework == 'React') { %>,
+  "react"<% } %>
 }
