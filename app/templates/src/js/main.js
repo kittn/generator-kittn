@@ -50,7 +50,8 @@ ReactDOM.render(
 )<% } %>
 
 // Lasysizes Lazyload Config
-window.lazySizesConfig = window.lazySizesConfig || {}
+const lazySizesConfig = window.lazySizesConfig || {}
+window.lazySizesConfig = lazySizesConfig
 window.lazySizesConfig.expand = 130
 lazySizesConfig.expFactor = 1.3
 

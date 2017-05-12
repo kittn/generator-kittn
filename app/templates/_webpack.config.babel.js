@@ -78,7 +78,7 @@ let bundle = {
         eslint: {
           failOnError  : false,
           failOnWarning: false,
-          configFile   : './.eslintrc',
+          configFile: env === 'development' ? './.eslintrc-dev' : './.eslintrc',
           formatter    : require('eslint-formatter-pretty')
         }<% if ( projectJSFramework === 'Vue.js' ) { %>,
         vue: {

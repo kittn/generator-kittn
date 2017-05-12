@@ -816,6 +816,11 @@ var KittnGenerator = yeoman.Base.extend({
       this.destinationPath('.eslintrc'),
       templateParams
     )
+    this.fs.copyTpl(
+      this.templatePath('eslintrc-dev'),
+      this.destinationPath('.eslintrc-dev'),
+      templateParams
+    )
 
     this.fs.copyTpl(
       this.templatePath('_webpack.config.babel.js'),

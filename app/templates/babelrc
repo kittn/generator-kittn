@@ -4,9 +4,8 @@
       "targets": {
         "browsers": ["last 2 versions", "ie >= 10"]
       },
-      "modules": false,
       "useBuiltIns": true,
-      "debug": true
+      "debug": false
     }]
   ],
   "plugins": ["syntax-dynamic-import"]<% if (projectJSFramework == 'React') { %>,
