@@ -143,6 +143,9 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
+        when: function(props) {
+          return props.projectsasssyntax === 'SCSS';
+        },
         type: 'confirm',
         name: 'projectstylelint',
         message: chalk.cyan.underline.bold('Activate Stylelint') + '\n\xa0 Do you want to ativate Stylelint?',
@@ -562,7 +565,7 @@ var KittnGenerator = yeoman.Base.extend({
 
     this.fs.copyTpl(
       this.templatePath('_loader.scss'),
-      this.destinationPath('src/style/_loader'+sassFileEnding),
+      this.destinationPath('src/style/_loader.scss'),
       templateParams
     );
 
@@ -894,7 +897,7 @@ var KittnGenerator = yeoman.Base.extend({
               '\n                    \\/                   \\/  ' +
               '\n  ' + chalk.styles.yellow.close  + chalk.styles.green.open +
               '\n   Now we are finished. Make your last settings and start `npm run init`.' +
-              '\n      When you are finished activate `npm run dev` and happy Coding.' +
+              '\n      When npm is finished activate `npm run dev` and happy Coding.' +
               '\n ' + chalk.styles.green.close
       console.log(goodbye)
     })
