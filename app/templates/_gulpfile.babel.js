@@ -8,10 +8,15 @@
 
 'use strict'
 
-import requireDir from 'require-dir'
-
 // Define Global Vars
 global.checkChanged = true
 
-// Require all tasks in gulpfile/tasks, including subfolders
-requireDir('./gulpfile/tasks', {recurse: true} )
+require('babel-core/register')({
+  presets: [
+    ['es2015']
+  ]
+})
+
+const requireDir = require('require-dir')
+
+requireDir('./gulpfile/tasks', { recurse: true })
