@@ -146,16 +146,16 @@ var KittnGenerator = yeoman.Base.extend({
         type: 'confirm',
         name: 'projectstylelint',
         message: chalk.cyan.underline.bold('Activate Stylelint') + '\n\xa0 Do you want to ativate Stylelint?',
-        choices: [
-          'SCSS',
-          'Sass'
-        ]
+        default: true
       },
       {
         type: 'list',
         name: 'projectbreakpointunit',
         message: chalk.cyan.underline.bold('Media Query Unit') + '\n\xa0 Which Unit do you prefer for Media Queries?',
-        default: true
+        choices: [
+          'em',
+          'px'
+        ]
       },
       {
         type: 'list',
