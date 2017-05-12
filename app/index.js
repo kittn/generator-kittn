@@ -143,13 +143,19 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
+        type: 'confirm',
+        name: 'projectstylelint',
+        message: chalk.cyan.underline.bold('Activate Stylelint') + '\n\xa0 Do you want to ativate Stylelint?',
+        choices: [
+          'SCSS',
+          'Sass'
+        ]
+      },
+      {
         type: 'list',
         name: 'projectbreakpointunit',
         message: chalk.cyan.underline.bold('Media Query Unit') + '\n\xa0 Which Unit do you prefer for Media Queries?',
-        choices: [
-          'em',
-          'px'
-        ]
+        default: true
       },
       {
         type: 'list',
@@ -438,6 +444,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.credentialdbpass       = props.credentialdbpass;
       this.credentialdbdatabase   = props.credentialdbdatabase;
       this.projectsasssyntax      = props.projectsasssyntax;
+      this.projectstylelint       = props.projectstylelint;
       this.projectscriptlinter    = props.projectscriptlinter;
       this.projectastrum          = props.projectastrum;
       this.projectcraftbp         = props.projectcraftbp;
@@ -480,6 +487,7 @@ var KittnGenerator = yeoman.Base.extend({
       credentialdbpass      : this.credentialdbpass,
       credentialdbdatabase  : this.credentialdbdatabase,
       projectsasssyntax     : this.projectsasssyntax,
+      projectstylelint      : this.projectstylelint,
       projectscriptlinter   : this.projectscriptlinter,
       projectastrum         : this.projectastrum,
       projectcraftbp        : this.projectcraftbp,
@@ -558,6 +566,14 @@ var KittnGenerator = yeoman.Base.extend({
       templateParams
     );
 
+    if ( this.projectstylelint ) {
+      this.fs.copyTpl(
+        this.templatePath('stylelintrc'),
+        this.destinationPath('.stylelintrc'),
+        templateParams
+      );
+    }
+
     if ( this.projectcritical ) {
       this.fs.copyTpl(
         this.templatePath('_copy-criticalcss.js'),
@@ -565,6 +581,12 @@ var KittnGenerator = yeoman.Base.extend({
         templateParams
       );
     }
+
+    this.fs.copyTpl(
+      this.templatePath('_compile-css.js'),
+      this.destinationPath('gulpfile/tasks/compile-css.js'),
+      templateParams
+    );
 
     // Put Craft Base Files in Structure or simple Structure Files
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {

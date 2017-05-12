@@ -20,7 +20,7 @@
     $size: if(map-get($kittn-activate, mobile-first) == true, $size, $size + 1);
   }
 
-  @if map-get($kittn-typo, mqUnit) == em {
+  @if map-get($kittn-typo, mqunit) == em {
     $size: em($size);
   }
 

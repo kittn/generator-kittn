@@ -2,45 +2,44 @@
 //  Sass Loader
 // -----------------------------------
 <% if (projectsasssyntax === 'SCSS') { %>
-@charset "UTF-8";
+@charset 'UTF-8';
 // Import Map Data
-@import "maps/map-loader";
+@import 'maps/map-loader';
 // Core
-@import "../framework/core/_import-core";
+@import '../framework/core/_import-core'; // stylelint-disable-line
 // Import Setup Data
-@import "../framework/defaults";
-@import "setup";
+@import '../framework/defaults';
+@import 'setup';
 // Methods
-@import "../framework/methods/_import-methods";
+@import '../framework/methods/_import-methods'; // stylelint-disable-line
 // Generators
-@import "../framework/generators/_import-generators";
+@import '../framework/generators/_import-generators'; // stylelint-disable-line
 // Partials
-@import "../framework/partials/normalize";
-// @import "../framework/partials/_tables";
-// @import "../framework/partials/_print";
+@import '../framework/partials/normalize';
+// @import '../framework/partials/_tables';
+// @import '../framework/partials/_print';
 // App
-@import "application/application";
+@import 'application/application';
 // Load the Template Stylesheet
-@import "workfile";<% }  else { %>
-@charset "UTF-8"
+@import 'workfile';<% }  else { %>
+@charset 'UTF-8'
 // Import Map Data
-@import "maps/map-loader"
+@import 'maps/map-loader'
 // Core
-@import "../framework/core/__import-core"
+@import '../framework/core/__import-core' // stylelint-disable-line
 // Import Setup Data
-@import "../framework/defaults"
-@import "setup"
+@import '../framework/defaults'
+@import 'setup'
 // Methods
-@import "../framework/methods/__import-methods"
+@import '../framework/methods/__import-methods' // stylelint-disable-line
 // Generators
-@import "../framework/generators/__import-generators"
+@import '../framework/generators/__import-generators' // stylelint-disable-line
 // Partials
-@import "../framework/partials/_normalize"
-// @import "../framework/partials/_tables"
-// @import "../framework/partials/_print"
+@import '../framework/partials/_normalize' // stylelint-disable-line
+// @import '../framework/partials/_tables'
+// @import '../framework/partials/_print'
 // App
-@import "application/application"
+@import 'application/application'
 // Load the Template Stylesheet
-@import "workfile"
+@import 'workfile'
 <% } %>
-

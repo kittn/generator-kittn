@@ -29,7 +29,7 @@
     $l: nth($list,$i);
     $size: nth($l,1);
 
-    @if map-get($kittn-typo, mqUnit) == em {
+    @if map-get($kittn-typo, mqunit) == em {
       $size: em($size);
     }
 
