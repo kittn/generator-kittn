@@ -2078,7 +2078,7 @@
                   "options": [
                     {
                       "label": "Default",
-                      "value": "default",
+                      "value": "1-1",
                       "default": ""
                     },
                     {
@@ -2115,7 +2115,7 @@
                   "options": [
                     {
                       "label": "Default",
-                      "value": "default",
+                      "value": "1-1-1",
                       "default": ""
                     },
                     {
@@ -2147,7 +2147,7 @@
                   "options": [
                     {
                       "label": "Default",
-                      "value": "default",
+                      "value": "1-1-1-1",
                       "default": ""
                     },
                     {
