@@ -43,15 +43,14 @@ body {
   min-height: 100%;
 }
 
-body,
-.sg-body {
+body {
   margin: 0;
   position: relative;
   color: map-get($kittn-color-route, text);
   @include fontsize(map-get($kittn-typo, base-size));
   line-height: map-get($kittn-typo, line-height);
 
-  @if map-get($kittn-activate, hyphens) { @include word-wrap; }
+  @if map-get($kittn-activate, hyphens) { @include text-hyphen; }
 
   @if map-get($kittn-color-route, body) { background-color: map-get($kittn-color-route, body); }
 

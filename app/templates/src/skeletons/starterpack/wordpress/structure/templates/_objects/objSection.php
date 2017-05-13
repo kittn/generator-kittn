@@ -17,15 +17,16 @@ $backgroundContainer = get_sub_field('innerContainer') ? ' '.$classnameSection.'
 
 $count = count(get_sub_field('column'));
 $columnLayout = '';
+$cl = '--cl-1';
 switch ($count) :
   case '2' :
-    $columnLayout = get_sub_field('twoColumns') != 'default' ?  ' '.$classnameSection.'__row--cl-'.get_sub_field('twoColumns') : '';
+    $cl = '--cl-'.get_sub_field('twoColumns');
     break;
   case '3' :
-    $columnLayout = get_sub_field('threeColumns') != 'default' ? ' '.$classnameSection.'__row--cl-'.get_sub_field('threeColumns') : '';
+    $cl = '--cl-'.get_sub_field('threeColumns');
     break;
   case '4' :
-    $columnLayout = get_sub_field('fourColumns') != 'default' ? ' '.$classnameSection.'__row--cl-'.get_sub_field('fourColumns') : '';
+    $cl = '--cl-'.get_sub_field('fourColumns');
     break;
 endswitch;
 ?>
@@ -54,14 +55,14 @@ endswitch;
   <?php endif; ?>
 
   <div class="<?= $classnameSection.'__container'; ?><?= $innerContainer; ?>">
-    <div class="<?= $classnameSection.'__row'; ?> <?= $classnameSection.'__row--child-'.$count; ?><?= $columnLayout; ?>">
+    <div class="<?= $classnameSection.'__row'; ?> <?= $classnameSection.'__row--child-'.$count; ?>">
       <?php while( have_rows('column') ) : the_row(); ?>
         <?php
         $clStyle = get_sub_field('style') != 'default' ? ' '.$classnameSection.'__column--'.get_sub_field('style') : '';
         $clAlign = get_sub_field('align') != 'default' ? ' '.$classnameSection.'__inner--align-'.get_sub_field('align') : '';
         $clVerticalAlign = get_sub_field('verticalAlign') != 'default' ? ' '.$classnameSection.'__inner--valign-'.get_sub_field('verticalAlign') : '';
         ?>
-        <div class="<?= $classnameSection.'__column'; ?><?= $clStyle; ?>">
+        <div class="<?= $classnameSection.'__column'; ?> <?= $classnameSection.'__column'.$cl; ?><?= $clStyle; ?>">
           <div class="<?= $classnameSection.'__inner'; ?><?= $clAlign; ?><?= $clVerticalAlign; ?>">
             <?php include ( get_template_directory() . '/_contentbuilder/contentModules.php' ); ?>
           </div>

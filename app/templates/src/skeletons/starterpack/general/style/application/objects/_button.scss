@@ -55,13 +55,13 @@
 
   // Base Modifier -------------------------
   // [root]--big
-  &--big {
+  &--big#{$root}--big {
     @include fontsize(api(size,big,fontsize));
     padding: api(size,big,padding);
   }
 
   // [root]--small
-  &--small {
+  &--small#{$root}--small {
     @include fontsize(api(size,small,fontsize));
     padding: api(size,small,padding);
   }
@@ -90,6 +90,7 @@
     display: inline-block;
     line-height: 1;
     text-align: center;
+    @include fontsize(api(size,regular,fontsize));
     padding: api(size,regular,padding);
     transition: all 300ms ease-in-out;
     transition-property: color, background-color;
