@@ -29,7 +29,8 @@ let bundle = {
     filename: 'js/[name].js'
   },
   externals: {
-    Modernizr: 'Modernizr'
+    Modernizr: 'Modernizr'<% if (projectjquery) { %>,
+    jquery: 'jQuery'<% } %>
   },
   resolve: {
     extensions: [<% if ( projectJSFramework === 'Vue.js' ) { %>
@@ -67,12 +68,7 @@ let bundle = {
       'process.env': {
         NODE_ENV: JSON.stringify(nodeEnv)
       }
-    }),<% if (projectjquery) { %>
-    new webpack.ProvidePlugin({
-        $: 'jquery',
-        jQuery: 'jquery',
-        'window.jQuery': 'jquery'
-    }),<% } %>
+    }),
     new webpack.LoaderOptionsPlugin({
       options: {
         eslint: {
