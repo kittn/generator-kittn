@@ -6,7 +6,7 @@ if (document.querySelector('.o-slideoutbox__trigger') !== null) {
   for (let i = 0; i < items.length; i++) {
     const item = items[i]
     const trigger = item.querySelector('.o-slideoutbox__trigger')
-    trigger.addEventListener('click', function(el) {
+    trigger.addEventListener('click', function (el) {
       const eventTarget = el.target || el.srcElement
       const classes = eventTarget.classList
       const slideElement = eventTarget.parentElement.parentElement.querySelector('.o-slideoutbox__body')
@@ -36,8 +36,8 @@ if (document.querySelector('.o-accordion__trigger') !== null) {
   for (let i = 0; i < items.length; i++) {
     const item = items[i]
     const triggers = item.querySelectorAll('.o-accordion__trigger')
-    triggers.forEach(function(item) {
-      item.addEventListener('click', function(el) {
+    triggers.forEach(function (item) {
+      item.addEventListener('click', function (el) {
         const eventTarget = el.target || el.srcElement
         const classes = eventTarget.classList
         const slideElement = eventTarget.parentElement.querySelector('.o-accordion__body')
