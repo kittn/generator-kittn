@@ -1,10 +1,10 @@
-import webpack from 'webpack'
-import merge from 'webpack-merge'
-import path from 'path'
-import yargs from 'yargs'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'<% if ( projectJSFramework === 'Vue.js' ) { %>
-import vueutils from './build/vue-utils'<% } %>
-import kittnConf from './config.json'
+const webpack = require('webpack')
+const merge = require('webpack-merge')
+const path = require('path')
+const yargs = require('yargs')
+const ExtractTextPlugin = require('extract-text-webpack-plugin')<% if ( projectJSFramework === 'Vue.js' ) { %>
+const vueutils = require('./build/vue-utils')<% } %>
+const kittnConf = require('./config.json')
 
 const argv = yargs.argv
 const env = argv.env || 'development'
@@ -78,7 +78,7 @@ let bundle = {
         eslint: {
           failOnError  : false,
           failOnWarning: false,
-          configFile   : './.eslintrc',
+          configFile: env === 'development' ? './.eslintrc-dev' : './.eslintrc',
           formatter    : require('eslint-formatter-pretty')
         }<% if ( projectJSFramework === 'Vue.js' ) { %>,
         vue: {
@@ -106,4 +106,4 @@ if(nodeEnv === 'production') {
   })
 }<% } %>
 
-export default bundle
+module.exports = bundle

@@ -19,11 +19,14 @@
 {% set classname = name is defined and name != '' ? name : 'o-button' %}
 
 {# Build Element Block #}
-<div class="{{ classname }}{{ options.position != 'default' ? ' '~classname~'--'~options.position : '' }}">
+<div class="{{ classname }}{{ options.position is defined and options.position != 'default' ? ' '~classname~'--'~options.position : '' }}">
   <a itemprop="url"
      role="button"
-     href="{{ data.url }}" {{ data.target ? ' target="_blank"' }}
-     class="{{ classname }}__element{{ options.style ? ' '~classname~'--s-'~options.style }}{{ options.size ? ' '~classname~'--'~options.size }}{{ options.fullwidth ? ' '~classname~'--fullwidth' }}">
+     href="{{ data.url }}" {{ data.target is defined and data.target ? ' target=_blank' }}
+     class="{{- classname~'__element' -}}
+      {{- options.style is defined and options.style ? ' '~classname~'--s-'~options.style -}}
+      {{- options.size is defined and options.size ? ' '~classname~'--'~options.size -}}
+      {{- options.fullwidth is defined and options.fullwidth ? ' '~classname~'--fullwidth' -}}">
     {{ data.text }}
   </a>
 </div>

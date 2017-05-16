@@ -143,6 +143,15 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
+        when: function(props) {
+          return props.projectsasssyntax === 'SCSS';
+        },
+        type: 'confirm',
+        name: 'projectstylelint',
+        message: chalk.cyan.underline.bold('Activate Stylelint') + '\n\xa0 Do you want to ativate Stylelint?',
+        default: true
+      },
+      {
         type: 'list',
         name: 'projectbreakpointunit',
         message: chalk.cyan.underline.bold('Media Query Unit') + '\n\xa0 Which Unit do you prefer for Media Queries?',
@@ -438,6 +447,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.credentialdbpass       = props.credentialdbpass;
       this.credentialdbdatabase   = props.credentialdbdatabase;
       this.projectsasssyntax      = props.projectsasssyntax;
+      this.projectstylelint       = props.projectstylelint;
       this.projectscriptlinter    = props.projectscriptlinter;
       this.projectastrum          = props.projectastrum;
       this.projectcraftbp         = props.projectcraftbp;
@@ -480,6 +490,7 @@ var KittnGenerator = yeoman.Base.extend({
       credentialdbpass      : this.credentialdbpass,
       credentialdbdatabase  : this.credentialdbdatabase,
       projectsasssyntax     : this.projectsasssyntax,
+      projectstylelint      : this.projectstylelint,
       projectscriptlinter   : this.projectscriptlinter,
       projectastrum         : this.projectastrum,
       projectcraftbp        : this.projectcraftbp,
@@ -554,9 +565,17 @@ var KittnGenerator = yeoman.Base.extend({
 
     this.fs.copyTpl(
       this.templatePath('_loader.scss'),
-      this.destinationPath('src/style/_loader'+sassFileEnding),
+      this.destinationPath('src/style/_loader.scss'),
       templateParams
     );
+
+    if ( this.projectstylelint ) {
+      this.fs.copyTpl(
+        this.templatePath('stylelintrc'),
+        this.destinationPath('.stylelintrc'),
+        templateParams
+      );
+    }
 
     if ( this.projectcritical ) {
       this.fs.copyTpl(
@@ -565,6 +584,12 @@ var KittnGenerator = yeoman.Base.extend({
         templateParams
       );
     }
+
+    this.fs.copyTpl(
+      this.templatePath('_compile-css.js'),
+      this.destinationPath('gulpfile/tasks/compile-css.js'),
+      templateParams
+    );
 
     // Put Craft Base Files in Structure or simple Structure Files
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {
@@ -791,6 +816,11 @@ var KittnGenerator = yeoman.Base.extend({
       this.destinationPath('.eslintrc'),
       templateParams
     )
+    this.fs.copyTpl(
+      this.templatePath('eslintrc-dev'),
+      this.destinationPath('.eslintrc-dev'),
+      templateParams
+    )
 
     this.fs.copyTpl(
       this.templatePath('_webpack.config.babel.js'),
@@ -872,7 +902,7 @@ var KittnGenerator = yeoman.Base.extend({
               '\n                    \\/                   \\/  ' +
               '\n  ' + chalk.styles.yellow.close  + chalk.styles.green.open +
               '\n   Now we are finished. Make your last settings and start `npm run init`.' +
-              '\n      When you are finished activate `npm run dev` and happy Coding.' +
+              '\n      When npm is finished activate `npm run dev` and happy Coding.' +
               '\n ' + chalk.styles.green.close
       console.log(goodbye)
     })

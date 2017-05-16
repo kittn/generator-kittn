@@ -29,22 +29,23 @@
 {# Set Coloum Layout Class#}
 {% switch content.children|length %}
   {% case "2" %}
-    {% set columLayout = ' '~classname~'__row--cl-'~layout.twoColumns %}
+    {% set cl = '--cl-'~layout.twoColumns %}
   {% case "3" %}
-    {% set columLayout = ' '~classname~'__row--cl-'~layout.threeColumns %}
+    {% set cl = '--cl-'~layout.threeColumns %}
   {% case "4" %}
-    {% set columLayout = ' '~classname~'__row--cl-'~layout.fourColumns %}
+    {% set cl = '--cl-'~layout.fourColumns %}
   {% default %}
     {% set columLayout = '' %}
+    {% set cl = '--cl-1' %}
 {% endswitch %}
 
 {# Build Element Block #}
 <section class="{{ classname }}{{ options.fullheight ? ' '~classname~'--fullheight' }}{{ options.style ? ' '~classname~'--s-'~options.style }}"{{ options.anchor != '' ? 'id='~options.anchor|lower }}>
-  {% if background.backgroundImage|length %}
+  {% if background.backgroundImage is defined and background.backgroundImage|length %}
     <div class="{{ classname~'__bg' }}{{ background.behavior != 'default' ? ' '~classname~'__bg--'~background.behavior }}{{ ' '~classname~'--p-'~background.align }}{{ background.adaptContainer ? ' '~classname~'__bg--size-'~options.innerContainer }}">
       <div class="{{ classname~'__bg__container'}} {{ classname~'__bg__container--size-'~background.width }}">
         <div
-          {{ myMacro.mediaImageSet(background.backgroundImage.first(), background.ratio, {
+          {{ _.mediaImageSet(background.backgroundImage.first(), background.ratio, {
             class: classname~'__bg__background',
             elementtype: false,
             background: true,
@@ -55,14 +56,16 @@
     </div>
   {% endif %}
   <div class="{{ classname }}__container{{ options.innerContainer != 'default' ? ' '~classname~'__container--'~options.innerContainer }}">
-    <div class="{{ classname }}__row {{ classname~'__row--child-'~content.children|length }}{{ columLayout }}">
+    <div class="{{ classname }}__row {{ classname~'__row--child-'~content.children|length }}">
       {% for key, column in content.children %}
-        <div class="{{ classname }}__column{{ column.setSectionColumn.style != 'default' ? ' '~classname~'__column--'~column.setSectionColumn.style }}{{ column.setSectionColumn.align != 'default' ? ' '~classname~'__inner--align-'~column.setSectionColumn.align }}{{ column.setSectionColumn.verticalAlign != 'default' ? ' '~classname~'__inner--valign-'~column.setSectionColumn.verticalAlign }}">
-          <div class="{{ classname }}__inner">
-            {% for child in column.children %}
-              {% include '_builder/_cb-objects' with { data: child } %}
-            {% endfor %}
-          </div>
+        <div class="{{ classname }}__column{{ column.children|length == 0 ? '---empty' }} {{ classname }}__column{{ cl }}{{ column.setSectionColumn.style != 'default' ? ' '~classname~'__column--'~column.setSectionColumn.style }}{{ column.setSectionColumn.align != 'default' ? ' '~classname~'__inner--align-'~column.setSectionColumn.align }}{{ column.setSectionColumn.verticalAlign != 'default' ? ' '~classname~'__inner--valign-'~column.setSectionColumn.verticalAlign }}">
+          {% if column.children|length > 0 %}
+            <div class="{{ classname }}__inner">
+              {% for child in column.children %}
+                {% include '_builder/_cb-objects' with { data: child } %}
+              {% endfor %}
+            </div>
+          {% endif %}
         </div>
       {% endfor %}
     </div>

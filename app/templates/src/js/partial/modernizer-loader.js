@@ -14,10 +14,9 @@ const host = `//${window.location.hostname}`
 
 if (typeof Modernizr !== 'undefined') {
   // Polyfill for Picture Element (Ie10 and IE11) needed for Lazysizes
-  Modernizr.on('picture', (result) => {
+  Modernizr.on('picture', (result) => { // eslint-disable-line
     if (!result) {
       toast(`${host}/assets/js/ls.respimg.js`)
     }
   })
 }
-
