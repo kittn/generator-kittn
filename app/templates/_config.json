@@ -79,10 +79,6 @@
     "proxy": <% if (projectcredential) { %>"<% if (credentialprotocol == 'https') { %>https://<% } %><%= credentialdomain %>"<% } else { %>false<% } %>
   },
   "files": {
-    "jsApp": {
-      "srcName": "app.js",
-      "distName": "app.js"
-    },
     "jsCopy": [
       "node_modules/lazysizes/plugins/respimg/ls.respimg.js",
       "node_modules/html5shiv/dist/html5shiv.js"
