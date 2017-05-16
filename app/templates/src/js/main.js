@@ -1,5 +1,5 @@
 // Main JS File<% if (projectjquery === true) { %>
-import $ from 'jquery'<% } %><% if ( projectJSFramework === 'React' ) { %>
+import $ from 'jquery' // eslint-disable-line<% } %><% if ( projectJSFramework === 'React' ) { %>
 import React from 'react'
 import ReactDOM from 'react-dom'<% } %>
 import cq from 'cq-prolyfill' // eslint-disable-line<% if ( projectJSFramework === 'Vue.js' ) { %>
