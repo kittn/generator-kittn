@@ -23,6 +23,7 @@ const initTask = (cb) => {
       'copy:wpconfig',
       'copy:wpplugins'<% } else if (projectUsage === 'Integrate in CraftCMS') { %>,
       'copy:craftindex',
+      'copy:craftplugins',
       'copy:craftenv'<% } %>
     ],
     [
