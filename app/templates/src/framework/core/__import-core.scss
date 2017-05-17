@@ -3,8 +3,8 @@
 // =====================================
 
 // Functions
-@import 'functions/typechecks';
-@import 'functions/container-queries';
+@import 'functions/typechecks';<% if (projectcontainerqueries === true ) { %>
+@import 'functions/container-queries';<% } %>
 @import 'functions/maps';
 @import 'functions/em';
 @import 'functions/breakpoints';

@@ -60,9 +60,9 @@ const compilerCssTask = () => {
     .pipe($.sass({})
       .on('error', errorHandler))
     .pipe($.postcss(preCssConf()))
-    .pipe($.size({
+    .pipe(env === 'development' ? $.size({
         title: '>>> CSS File Size: '
-    }))
+    }) : gutil.noop())
     .pipe(env == 'development' ? $.sourcemaps.write('.') : gutil.noop())
     .pipe(gulp.dest(kc.dist.css))
 };

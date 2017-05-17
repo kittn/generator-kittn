@@ -20,7 +20,8 @@ const buildTask = (cb) => {
       'copy:launch',
       'copy:fonts',
       'rebuild:js',
-      'rebuild:images',
+      'rebuild:images',<% if (projectUsage == 'Integrate in CraftCMS' ) { %>
+      'copy:craftplugins',<% } %>
       'copy:contentimages'<% if (projectUsage === 'Integrate in Wordpress' ) { %>,
       'copy:wpconfig',
       'copy:wpplugins'<% } %>

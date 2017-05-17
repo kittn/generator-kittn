@@ -143,8 +143,8 @@
     "html5shiv": "^3.7.3",
     "conditionizr": "^4.5.0",
     "svgxuse": "^1.2.1",
-    "lazysizes": "^3.0.0",
-    "cq-prolyfill": "^0.3.3",<% if (projectcraftbp === true || projectwordpressbp === true) { %>
+    "lazysizes": "^3.0.0",<% if ( projectcontainerqueries === true ) { %>
+    "cq-prolyfill": "^0.3.3",<% } %><% if (projectcraftbp === true || projectwordpressbp === true) { %>
     "anchor-scroll": "^2.0.0",
     "photoswipe": "^4.1.1",
     "flickity": "^2.0.5",
