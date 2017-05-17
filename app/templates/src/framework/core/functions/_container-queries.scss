@@ -97,3 +97,37 @@
 @function cq($query) {
   @return unquote(".\\:container\\(" + cq-prolyfill-escape(cq-prolyfill-strip-spaces(to-lower-case($query))) + "\\)");
 }
+
+
+/// ContainerQuery as Mixin
+///
+/// @group core-containerQuery
+///
+/// @param  {string}   $query - Query Condition
+@mixin cq($condition) {
+  $selector: &;
+
+  @at-root {
+    #{$selector}#{cq('#{$condition}')} {
+      @content;
+    }
+  }
+}
+
+/// ContainerQuery as Mixin with Root Selector
+///
+/// @group core-containerQuery
+///
+/// @param  {string}   $root  - Root Selector as Reference
+/// @param  {string}   $query - Query Condition
+@mixin cqr($root,$condition) {
+  $selector: &;
+
+  @at-root {
+    #{$root}#{cq('#{$condition}')} {
+      #{$selector} {
+        @content;
+      }
+    }
+  }
+}

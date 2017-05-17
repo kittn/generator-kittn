@@ -351,10 +351,26 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
-        type: 'confirm',
+        type: 'list',
         name: 'projectjquery',
         message: chalk.cyan.underline.bold('jQuery') + '\n\xa0 Want to use jQuery?',
-        default: false
+        choices: [
+          {
+            'name': 'Nope',
+            'value': false,
+            'short': 'none'
+          },
+          {
+            'name': 'Yeah (slim)',
+            'value': 'slim',
+            'short': 'Slim'
+          },
+          {
+            'name': 'Yeah (full)',
+            'value': 'full',
+            'short': 'Full'
+          }
+        ]
       },
       {
         type: 'list',
@@ -601,12 +617,19 @@ var KittnGenerator = yeoman.Base.extend({
       this.directory('src/skeletons/craftcms/env/', 'src/.system/env/')
       this.directory('src/skeletons/craftcms/public/', 'src/.system/public/')
 
+      // Copy Craft Footer
+      this.fs.copyTpl(
+        this.templatePath('_craftcms-document-footer.html'),
+        this.destinationPath('src/structure/templates/_parts/document-footer.html'),
+        templateParams
+      )
+
       if ( this.projectcredential ) {
         this.fs.copyTpl(
           this.templatePath('src/skeletons/craftcms/.env.sh'),
           this.destinationPath('craftscripts/.env.sh'),
           templateParams
-        );
+        )
       }
 
       // Copy Additional Gulp Tasks
@@ -614,12 +637,13 @@ var KittnGenerator = yeoman.Base.extend({
         this.templatePath('_copy-craftenv.js'),
         this.destinationPath('gulpfile/tasks/copy-craftenv.js'),
         templateParams
-      );
+      )
+
       this.fs.copyTpl(
         this.templatePath('_copy-craftindex.js'),
         this.destinationPath('gulpfile/tasks/copy-craftindex.js'),
         templateParams
-      );
+      )
 
       // Install Craft Starterpack
       if (this.projectcraftbp) {
@@ -634,11 +658,25 @@ var KittnGenerator = yeoman.Base.extend({
           this.templatePath('src/skeletons/starterpack/craftcms/contentbuilder.json'),
           this.destinationPath('contentbuilder.json'),
           templateParams
-        );
+        )
+
+        // Copy Craft Footer
+        this.fs.copyTpl(
+          this.templatePath('_craftcms-starterpack-document-footer.html'),
+          this.destinationPath('src/structure/templates/_parts/document-footer.html'),
+          templateParams
+        )
       }
 
     } else if ( this.projectUsage === 'Integrate in Wordpress' ) {
       this.directory('src/skeletons/wordpress/', 'src/structure/');
+
+      // Copy Wordpress Footer
+      this.fs.copyTpl(
+        this.templatePath('_wordpress-footer.php'),
+        this.destinationPath('src/structure/templates/footer.php'),
+        templateParams
+      );
 
       // Add Server Credentials
       if ( this.projectcredential ) {
@@ -658,12 +696,12 @@ var KittnGenerator = yeoman.Base.extend({
         this.templatePath('_copy-wpconfig.js'),
         this.destinationPath('gulpfile/tasks/copy-wpconfig.js'),
         templateParams
-      );
+      )
       this.fs.copyTpl(
         this.templatePath('_copy-wpplugins.js'),
         this.destinationPath('gulpfile/tasks/copy-wpplugins.js'),
         templateParams
-      );
+      )
 
       // Install Wordpress Starterpack
       if (this.projectwordpressbp) {
@@ -678,13 +716,19 @@ var KittnGenerator = yeoman.Base.extend({
           this.templatePath('src/skeletons/starterpack/wordpress/contentbuilder.json'),
           this.destinationPath('acf-contentbuilder.json'),
           templateParams
-        );
+        )
         // Copy Contentbuilder Config
         this.fs.copyTpl(
           this.templatePath('src/skeletons/starterpack/wordpress/adminimize-settings.json'),
           this.destinationPath('adminimize-settings.json'),
           templateParams
-        );
+        )
+
+        this.fs.copyTpl(
+          this.templatePath('_wordpress-document-footer.php'),
+          this.destinationPath('src/structure/templates/_parts/document-footer.php'),
+          templateParams
+        )
       }
 
     } else {
@@ -716,6 +760,12 @@ var KittnGenerator = yeoman.Base.extend({
     // Include the Twig Working Dir
     if ( this.projectstructure === 'Twig Template' ) {
       this.directory('src/skeletons/twig/', 'src/template/');
+
+      this.fs.copyTpl(
+        this.templatePath('_site-scripts.twig'),
+        this.destinationPath('src/template/parts/_site-scripts.twig'),
+        templateParams
+      )
     }
 
     if ( this.projectJSFramework === 'Vue.js' ) {
@@ -731,7 +781,7 @@ var KittnGenerator = yeoman.Base.extend({
         this.templatePath('_app.vue'),
         this.destinationPath('src/js/app.vue'),
         templateParams
-      );
+      )
     }
 
     if (this.projectastrum) {

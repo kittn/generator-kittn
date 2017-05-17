@@ -43,7 +43,7 @@ const stateInteractive = () => {
 const stateComplete = () => {
   // Change Classes for the Progressbar
   pelements.barInner.classList.remove(pelements.barstates.loading)
-  pelements.barInner.className +=  ' ' + pelements.barstates.complete
+  pelements.barInner.className += ' ' + pelements.barstates.complete
 
   // After a small Timeout toggle the Body Class
   setTimeout(() => {
