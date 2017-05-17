@@ -610,6 +610,7 @@ var KittnGenerator = yeoman.Base.extend({
     // Put Craft Base Files in Structure or simple Structure Files
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {
       this.directory('src/skeletons/craftcms/structure/', 'src/structure/')
+      this.directory('src/skeletons/craftcms/craftplugins/', 'src/craftplugins/')
 
       this.directory('src/skeletons/craftcms/craftscripts/', 'craftscripts/')
 
@@ -645,10 +646,17 @@ var KittnGenerator = yeoman.Base.extend({
         templateParams
       )
 
+      this.fs.copyTpl(
+        this.templatePath('_copy-craftplugins.js'),
+        this.destinationPath('gulpfile/tasks/copy-craftplugins.js'),
+        templateParams
+      )
+
       // Install Craft Starterpack
       if (this.projectcraftbp) {
         // Copy Plugins and Templates
         this.directory('src/skeletons/starterpack/craftcms/structure/', 'src/structure/')
+        this.directory('src/skeletons/starterpack/craftcms/craftplugins/', 'src/craftplugins/')
         // Copy JS Script Files
         this.directory('src/skeletons/starterpack/general/js/', 'src/js/partial/')
         // Copy Sass Files

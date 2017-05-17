@@ -164,7 +164,8 @@
     "structure": "src/structure/templates/",
     "config": "src/structure/config/",
     "plugins": "src/structure/plugins/",<% } else { %>
-    "structure": "src/structure/",<% } %>
+    "structure": "src/structure/",<% } %><% if (projectUsage == 'Integrate in CraftCMS' ) { %>
+    "plugins": "src/craftplugins/",<% } %>
     "js": "src/js/",
     "bower": "src/bower/",
     "scripts" : "src/scripts",
