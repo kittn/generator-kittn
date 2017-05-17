@@ -1,6 +1,6 @@
 /* eslint-disable */
 import PhotoSwipe from 'photoswipe'
-import PhotoSwipeUI_Default from '../../../node_modules/photoswipe/dist/photoswipe-ui-default'
+import PhotoSwipeUI_Default from 'photoswipe/dist/photoswipe-ui-default'
 const initPhotoSwipeFromDOM = (gallerySelector) => {
 
   // parse slide data (url, title, size ...) from DOM elements
