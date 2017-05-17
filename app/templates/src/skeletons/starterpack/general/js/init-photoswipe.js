@@ -210,4 +210,4 @@ const initPhotoSwipeFromDOM = (gallerySelector) => {
   }
 };
 
-module.exports = initPhotoSwipeFromDOM
+export default initPhotoSwipeFromDOM
