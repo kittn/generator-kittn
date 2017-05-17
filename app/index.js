@@ -161,6 +161,12 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
+        type: 'confirm',
+        name: 'projectcontainerqueries',
+        message: chalk.cyan.underline.bold('Use Container-Queries') + '\n\xa0 Do you want to use container-queries (see https://github.com/ausi/cq-prolyfill)?',
+        default: false
+      },
+      {
         type: 'list',
         name: 'projectcssstructure',
         message: chalk.cyan.underline.bold('CSS Methodologies') + chalk.styles.red.close + '\n\xa0 CSS Writing Methodologies',
@@ -443,6 +449,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.projectauthor          = props.projectauthor;
       this.projectmail            = props.projectmail;
       this.projectbreakpointunit  = props.projectbreakpointunit;
+      this.projectcontainerqueries = props.projectcontainerqueries;
       this.projectcritical        = props.projectcritical;
       this.projectcriticalinline  = props.projectcriticalinline;
       this.projectcssfilename     = props.projectcssfilename;
@@ -486,6 +493,7 @@ var KittnGenerator = yeoman.Base.extend({
       projectauthor         : this.projectauthor,
       projectmail           : this.projectmail,
       projectbreakpointunit : this.projectbreakpointunit,
+      projectcontainerqueries : this.projectcontainerqueries,
       projectcritical       : this.projectcritical,
       projectcriticalinline : this.projectcriticalinline,
       projectcssfilename    : this.projectcssfilename,
@@ -514,8 +522,14 @@ var KittnGenerator = yeoman.Base.extend({
       credentialdbopen      : this.credentialdbopen,
       saltKeys              : this.saltKeys,
       projectpath           : process.cwd(),
-      pkg: this.pkg
+      pkg                   : this.pkg
     };
+
+    // Check for Container-Queries need
+    if ( this.projectwordpressbp || this.projectcraftbp ) {
+      this.projectcontainerqueries = true
+      templateParams.projectcontainerqueries = true
+    }
 
     // Move the SRC Folder
     mkdirp.sync('dist/');
@@ -601,11 +615,13 @@ var KittnGenerator = yeoman.Base.extend({
       );
     }
 
-    this.fs.copyTpl(
-      this.templatePath('_compile-css.js'),
-      this.destinationPath('gulpfile/tasks/compile-css.js'),
-      templateParams
-    );
+    if ( this.projectcontainerqueries ) {
+      this.fs.copyTpl(
+        this.templatePath('_container-queries.scss'),
+        this.destinationPath('src/framework/core/functions/_container-queries.scss'),
+        templateParams
+      );
+    }
 
     // Put Craft Base Files in Structure or simple Structure Files
     if ( this.projectUsage === 'Integrate in CraftCMS' ) {
@@ -616,13 +632,6 @@ var KittnGenerator = yeoman.Base.extend({
       // Copy .env Config File
       this.directory('src/skeletons/craftcms/env/', 'src/.system/env/')
       this.directory('src/skeletons/craftcms/public/', 'src/.system/public/')
-
-      // Copy Craft Footer
-      this.fs.copyTpl(
-        this.templatePath('_craftcms-document-footer.html'),
-        this.destinationPath('src/structure/templates/_parts/document-footer.html'),
-        templateParams
-      )
 
       if ( this.projectcredential ) {
         this.fs.copyTpl(
@@ -659,24 +668,10 @@ var KittnGenerator = yeoman.Base.extend({
           this.destinationPath('contentbuilder.json'),
           templateParams
         )
-
-        // Copy Craft Footer
-        this.fs.copyTpl(
-          this.templatePath('_craftcms-starterpack-document-footer.html'),
-          this.destinationPath('src/structure/templates/_parts/document-footer.html'),
-          templateParams
-        )
       }
 
     } else if ( this.projectUsage === 'Integrate in Wordpress' ) {
       this.directory('src/skeletons/wordpress/', 'src/structure/');
-
-      // Copy Wordpress Footer
-      this.fs.copyTpl(
-        this.templatePath('_wordpress-footer.php'),
-        this.destinationPath('src/structure/templates/footer.php'),
-        templateParams
-      );
 
       // Add Server Credentials
       if ( this.projectcredential ) {
@@ -760,12 +755,6 @@ var KittnGenerator = yeoman.Base.extend({
     // Include the Twig Working Dir
     if ( this.projectstructure === 'Twig Template' ) {
       this.directory('src/skeletons/twig/', 'src/template/');
-
-      this.fs.copyTpl(
-        this.templatePath('_site-scripts.twig'),
-        this.destinationPath('src/template/parts/_site-scripts.twig'),
-        templateParams
-      )
     }
 
     if ( this.projectJSFramework === 'Vue.js' ) {
