@@ -368,16 +368,14 @@
   @param {string} options.class       = Optional Classname
   @param {string} options.iconpath    = Path to icons
   @param {string} options.iconname    = Iconfile Name (Sprite)
-  @param {string} options.iconprefix  = Prefix for icons
   @param {string} options.viewbox     = Viewbox Size
 #}
-{% macro svgicon(icon, options) %}
+{% macro svgicon(icon, viewbox, options) %}
   {% set opt = {
-    'class': false,
-    'iconpath': '/assets/img/',
-    'iconname': 'symbol-sprite.svg',
-    'iconprefix': 'icon-',
-    'viewbox': '0 0 20 20'
+  'class': false,
+  'iconpath': '/assets/img/',
+  'iconname': 'symbol-sprite.svg',
+  'viewbox': viewbox ? viewbox : '0 0 20 20'
   } %}
 
   {# Merge Options with Defaults #}
@@ -385,6 +383,6 @@
 
   {# Building Block - Modify structure if needed #}
   <svg{{ options.class ? ' class='~options.class }} viewBox="{{ options.viewbox }}">
-    <use xlink:href="{{ options.iconpath }}{{ options.iconname }}#{{ options.iconprefix }}{{ icon }}"></use>
+    <use xlink:href="{{ options.iconpath }}{{ options.iconname }}#{{ icon }}"></use>
   </svg>
 {% endmacro %}

@@ -126,7 +126,7 @@
   }'>
   {% for photo in data %}
     <div class="{{ classname }}__slide{{ slideWidth }}" style="{{ spaceBetween }}" itemscope itemtype="http://schema.org/ImageObject">
-      {{ myMacro.mediaImageSet(photo, options.ratio, {
+      {{ _.mediaImageSet(photo, options.ratio, {
         class: classname~'__image'
       }) }}
     </div>
