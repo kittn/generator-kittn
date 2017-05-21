@@ -232,13 +232,14 @@
   @param {object} networks = Possible Social Networks
   @param {bool}   networks.facebook
   @param {bool}   networks.twitter
-  @param {bool}   networks.googleplus
+  @param {bool}   networks.google-plus
   @param {bool}   networks.pinterest
   @param {bool}   networks.mail
   @param {bool}   networks.whatsapp
 
   @param {object} options     = Config Options
   @param {string} class       = Classname
+  @param {string} modifyclass = Additional Modifierclass
   @param {*}      request     = Request URL
   @param {*}      description = Seo Description
   @param {*}      image       = Seo Image URL
@@ -252,26 +253,27 @@
 {% macro socialShare(networks, options) %}
   {# Array for Networks #}
   {% set net = {
-    'facebook': true,
-    'twitter': true,
-    'googleplus': true,
-    'pinterest': true,
-    'mail': false,
-    'whatsapp': false
+  'facebook': true,
+  'twitter': true,
+  'google-plus': true,
+  'pinterest': true,
+  'mail': false,
+  'whatsapp': true
   } %}
 
   {# Option Array #}
   {% set opt = {
-    'class': 'o-socialshare',
-    'request': craft.request.url,
-    'description': seomaticMeta.seoDescription,
-    'image': seomaticMeta.seoImage,
-    'title': seomaticMeta.seoTitle,
-    'icon': true,
-    'iconpath': '/assets/img/',
-    'iconname': 'symbol-sprite.svg',
-    'iconprefix': 'icon-',
-    'viewbox': '0 0 20 20'
+  'class': 'o-socialshare',
+  'modifyclass': '',
+  'request': craft.request.url,
+  'description': seomaticMeta.seoDescription,
+  'image': seomaticMeta.seoImage,
+  'title': seomaticMeta.seoTitle,
+  'icon': true,
+  'iconpath': '/assets/img/',
+  'iconname': 'symbol-sprite.svg',
+  'iconprefix': 'icon-',
+  'viewbox': '0 0 50 50'
   } %}
 
   {# Merge Options with Defaults #}
@@ -280,16 +282,16 @@
 
   {# Build Share URLs #}
   {% set shareUrl = {
-    'facebook': 'http://www.facebook.com/sharer.php?u='~options.request,
-    'twitter': 'http://twitter.com/share?url='~options.request~'&amp;text='~options.description,
-    'googleplus': 'https://plus.google.com/share?url='~options.request,
-    'pinterest': '//pinterest.com/pin/create/link/?url='~options.request~'&amp;media='~options.image~'&amp;description='~options.description|e,
-    'mail': 'mailto:?Subject='~options.title~'&Body=%20'~options.request,
-    'whatsapp': 'whatsapp://send?text='~options.request~' '~options.description
+  'facebook': 'http://www.facebook.com/sharer.php?u='~options.request,
+  'twitter': 'http://twitter.com/share?url='~options.request~'&amp;text='~options.description,
+  'google-plus': 'https://plus.google.com/share?url='~options.request,
+  'pinterest': '//pinterest.com/pin/create/link/?url='~options.request~'&amp;media='~options.image~'&amp;description='~options.description|e,
+  'mail': 'mailto:?Subject='~options.title~'&Body=%20'~options.request,
+  'whatsapp': 'whatsapp://send?text='~options.request~' '~options.description
   } %}
 
   {# Building Block - Modify structure if needed #}
-  <nav role="navigation" class="{{ options.class }}">
+  <nav role="navigation" class="{{ options.class }} {{ options.modifyclass is defined ? options.modifyclass }}">
     {% for key, network in networks if network != false %}
       {% if options.icon == true %}<div class="{{ options.class }}__box">{% endif %}
       <a href="{{ shareUrl[key] }}" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
