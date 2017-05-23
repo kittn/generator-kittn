@@ -179,9 +179,7 @@
     "selector-list-comma-space-before": "never",
     "shorthand-property-no-redundant-values": true,
     "string-quotes": "single",
-    "unit-blacklist": [
-      "em"
-    ],
+    "unit-blacklist": [],
     "unit-case": "lower",
     "unit-no-unknown": true,
     "value-keyword-case": "lower",
