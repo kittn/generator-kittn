@@ -41,7 +41,7 @@
     {% endfor %}
 
     {# Include Pagination #}
-    {{ myMacro.pagination(paginate,craft,'',searches.search) }}
+    {{ _.pagination(paginate,craft,'',searches.search) }}
 
   {% else %}
     <h1>{{ templateBriefing.name }}</h1>

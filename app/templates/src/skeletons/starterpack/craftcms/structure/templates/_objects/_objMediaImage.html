@@ -14,8 +14,8 @@
 #}
 
 {# Load Macro if not available #}
-{% if myMacro is not defined %}
-  {% import '_macros/my-macro.html' as myMacro %}
+{% if _ is not defined %}
+  {% import '_macros/my-macro.html' as _ %}
 {% endif %}
 
 {# Class Overwrite #}
@@ -29,7 +29,7 @@
 
 {# Build Element Block #}
 <figure class="{{ classname }}{{ height }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}" role="group" itemscope itemtype="http://schema.org/ImageObject">
-  {{ myMacro.mediaImageSet(data.photo.first(), options.ratio, {
+  {{ _.mediaImageSet(data.photo.first(), options.ratio, {
     class: classname~'__image'
   }) }}
   {% if data.caption %}

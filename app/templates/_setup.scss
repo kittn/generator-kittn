@@ -187,10 +187,12 @@ $kittn-typo-sizes: (
 // @prop {string|bool} base.lineheight     - false' or 'd' (for line-height:1) or a unitless number
 // @prop {number|bool} base.marginbottom   - Bottom Margin
 // @prop {number|bool} base.fontweight     - Heading Fontweight
+// @prop {number|bool} base.texttransform  - Global Texttransform for headings
 $kittn-global-heading: (
   lineheight: false,
   marginbottom: 0,
-  fontweight: false
+  fontweight: false,
+  texttransform: false
 );
 
 // All possible Typostyles in a Map.
