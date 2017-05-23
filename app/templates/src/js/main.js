@@ -39,10 +39,10 @@ new Vue({
 // Vue App
 /* eslint-disable no-new */
 new Vue({
-    el: '#app',
-    router,
-    store,
-    render: h => h(App)
+  el: '#app',
+  router,
+  store,
+  render: h => h(App)
 })<% } %><% if ( projectJSFramework === 'React') { %>
 ReactDOM.render(
 <h1>Hello, world! from React</h1>,

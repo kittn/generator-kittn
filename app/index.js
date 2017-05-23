@@ -331,7 +331,7 @@ var KittnGenerator = yeoman.Base.extend({
         },
         type: 'confirm',
         name: 'credentialdbopen',
-        message: chalk.cyan.underline.bold('DB Name') + chalk.styles.red.close + '\n\xa0 Do you want to automatically add a database to your MySQL database?',
+        message: chalk.cyan.underline.bold('DB Name') + chalk.styles.red.close + '\n\xa0 Do you want to create a new MySQL-Database?',
         default: true
       },
       {
