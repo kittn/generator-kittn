@@ -14,14 +14,13 @@ const ROOT_PATH = path.resolve(__dirname)<% if (projectUsage == 'Integrate in Cr
 const PUBLIC_PATH = path.join(ROOT_PATH, `${kittnConf.dist.dist}/public/`)<% } else { %>
 const PUBLIC_PATH = path.join(ROOT_PATH, kittnConf.dist.dist)<% } %>
 const ASSETS_PATH = kittnConf.dist.webpackjsassets
-const SOURCE_PATH = './js/'
 const LOADER_PATH = path.join(ROOT_PATH, kittnConf.src.js)
 const PRIMARY_FILE_NAME = 'main.js'
 
 let bundle = {
-  context: path.join( ROOT_PATH, 'src'),
+  context: path.join(ROOT_PATH, 'src'),
   entry: {
-    main: `${SOURCE_PATH}${PRIMARY_FILE_NAME}`
+    main: `${LOADER_PATH}${PRIMARY_FILE_NAME}`
   },
   output: {
     path: path.join(PUBLIC_PATH, ASSETS_PATH),
