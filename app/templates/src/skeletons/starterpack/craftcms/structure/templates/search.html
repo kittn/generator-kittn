@@ -6,10 +6,11 @@
 {# Subtemplate Setup #}
 {# `classToInner` Is an array in which all classes are listed from the outer container to the container of the content builder. Used for the section element. #}
 {% set templateBriefing = {
-  bodyclass: 'search',
-  sections: ['blog'],
-  limit: 10,
-  classToInner: ['o-area__container']
+bodyclass: 'search',
+sections: ['blog'],
+name: 'Search',
+limit: 10,
+classToInner: ['o-area__container']
 } %}
 
 {% extends '_layout/main-layout.html' %}
@@ -17,13 +18,13 @@
 {% block content %}
   {# Search Query #}
   {% set searches = craft.entries({
-    search: craft.request.getParam('q'),
-    section: templateBriefimg.sections,
-    order: 'score',
-    limit: templateBriefing.limit
+  search: craft.request.getParam('q'),
+  section: templateBriefing.sections,
+  order: 'score',
+  limit: templateBriefing.limit
   })%}
 
-  <div class="o-area__container">
+<div class="o-area__container">
   {% if searches|length %}
     <h1>{{ templateBriefing.name }}</h1>
     <p>{{ searches.total }} Ergebnisse für:<br>
@@ -35,7 +36,7 @@
 
     {% for searchentry in search %}
       <article>
-        <h2><a href="{{ searchentry.url }}">{{ cat.title }}</a></h2>
+        <h2><a href="{{ searchentry.url }}">{{ searchentry.title }}</a></h2>
         <p>{{ searchentry.body }}</p>
       </article>
     {% endfor %}
