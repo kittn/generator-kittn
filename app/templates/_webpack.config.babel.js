@@ -45,12 +45,12 @@ let bundle = {
       {
         enforce: 'pre',
         test: /\.js$/,
-        loader: 'eslint-loader',
+        use: 'eslint-loader',
         exclude: /node_modules/
       },
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        use: 'babel-loader',
         include: LOADER_PATH,
         exclude: /node_modules/
       }<% if ( projectJSFramework === 'Vue.js' ) { %>,
@@ -58,7 +58,7 @@ let bundle = {
         test: /\.vue$/,
         include: LOADER_PATH,
         exclude: /node_modules/,
-        loader: 'vue-loader'
+        use: 'vue-loader'
       },<% } %>
     ]
   },
