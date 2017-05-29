@@ -1,8 +1,8 @@
 // Main JS File<% if (projectjquery === true) { %>
 import $ from 'jquery' // eslint-disable-line<% } %><% if ( projectJSFramework === 'React' ) { %>
 import React from 'react'
-import ReactDOM from 'react-dom'<% } %>
-import cq from 'cq-prolyfill' // eslint-disable-line<% if ( projectJSFramework === 'Vue.js' ) { %>
+import ReactDOM from 'react-dom'<% } %><% if ( projectcontainerqueries === true)  { %>
+import cq from 'cq-prolyfill' // eslint-disable-line<% } %><% if ( projectJSFramework === 'Vue.js' ) { %>
 import Vue from 'vue'<% } %><% if ( projectvueplugins === true)  { %>
 import { sync } from 'vuex-router-sync'
 import axios from 'axios'
@@ -56,10 +56,10 @@ window.lazySizesConfig.expand = 130
 lazySizesConfig.expFactor = 1.3
 
 // Lazy Sizes Init
-lazySizes.init()<% if (projectcraftbp === true || projectwordpressbp === true) { %>
+lazySizes.init()<% if ( projectcontainerqueries === true ) { %>
 
 // Activate Container Queries
-cq({postcss: true})
+cq({postcss: true})<% } %><% if ( projectcraftbp === true || projectwordpressbp === true ) { %>
 
 // Init Photoswipe
 initPhotoSwipeFromDOM('.is-photoswipped')

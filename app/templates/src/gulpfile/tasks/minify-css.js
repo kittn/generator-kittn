@@ -14,6 +14,9 @@ const minifyCssTask = () => {
   return gulp
     .src(kc.dist.css + '*.css')
     .pipe($.postcss(postCssNano()))
+    .pipe($.size({
+        title: '>>> CSS File Size: '
+    }))
     .pipe(gulp.dest(kc.dist.css))
 }
 
