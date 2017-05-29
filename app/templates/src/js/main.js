@@ -34,7 +34,7 @@ Vue.use(VueAxios, axios)<% } %><% if ( projectJSFramework === 'Vue.js' && projec
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
-  render: h => h(App)
+  render: (h) => h(App)
 })<% } %><% if ( projectJSFramework === 'Vue.js' && projectvueplugins === true) { %>
 // Vue App
 /* eslint-disable no-new */
