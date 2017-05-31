@@ -50,7 +50,7 @@
   {% for gallery in data %}
     <figure class="{{ classname }}__figure" itemprop="associatedMedia"{{ thumbWidth }}itemscope itemtype="http://schema.org/ImageObject">
       <a class="{{ classname }}__link" href="{{ gallery.photo.first().url }}" itemprop="contentUrl" data-size="{{ gallery.photo.first().width }}x{{ gallery.photo.first().height }}">
-        {{ myMacro.mediaImageSet(gallery.photo.first(), crop, {
+        {{ _.mediaImageSet(gallery.photo.first(), crop, {
           class: classname~'__thumbnail',
           sizes: [
             { width: 1200 },

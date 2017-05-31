@@ -116,6 +116,9 @@ select, option, button, a, input[type="button"],input[type="reset"],input[type="
 */
 %heading {
   text-rendering: optimizeLegibility;
+  @if map-get($kittn-global-heading,texttransform) != false {
+    text-transform: map-get($kittn-global-heading,texttransform);
+  }
 
   @if map-get($kittn-global-heading,lineheight) != false {
     @if map-get($kittn-global-heading,lineheight) == d {

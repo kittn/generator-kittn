@@ -33,16 +33,16 @@ Vue.use(VueAxios, axios)<% } %><% if ( projectJSFramework === 'Vue.js' && projec
 // Vue App
 /* eslint-disable no-new */
 new Vue({
-    el: '#app',
-    render: h => h(App)
+  el: '#app',
+  render: (h) => h(App)
 })<% } %><% if ( projectJSFramework === 'Vue.js' && projectvueplugins === true) { %>
 // Vue App
 /* eslint-disable no-new */
 new Vue({
-    el: '#app',
-    router,
-    store,
-    render: h => h(App)
+  el: '#app',
+  router,
+  store,
+  render: h => h(App)
 })<% } %><% if ( projectJSFramework === 'React') { %>
 ReactDOM.render(
 <h1>Hello, world! from React</h1>,

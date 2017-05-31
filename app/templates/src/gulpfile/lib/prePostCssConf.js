@@ -32,7 +32,6 @@ const preCssConf = () => {
     }),
     // Prefixer
     require('autoprefixer')({
-      browsers: kc.css.prefix,
       cascade: false
     }),
     require('postcss-svg-fragments'),
