@@ -13,6 +13,11 @@
   "engines": {
     "node": ">=6.0.0"
   },
+  "browserslist": [
+    "> 5%",
+    "ie 11",
+    "last 2 versions"
+  ],
   "scripts": {
     "subtask:bundlewebpack": "webpack --config webpack.config.babel.js -p --colors --env.bundle=production --env=production",
     "subtask:buildgulp": "gulp build --env=production<% if (projectcritical === true) { %> --critical<% } %>",
@@ -25,7 +30,8 @@
     "htmlassets": "gulp copy:contentimages --env=init",
     "template": "gulp compiler:html --env=init",
     "favicon": "gulp build:favicon --env=init",
-    "assets": "gulp copy:assets --env=init"
+    "assets": "gulp copy:assets --env=init"<% if ( projectstylelint ) { %>,
+    "stylelint": "stylelint 'src/style/**/**/*.scss'"<% } %>
   },
   "devDependencies": {
     "browser-sync": "^2.18.7",<% if (projectcritical === true) { %>
@@ -64,7 +70,7 @@
     "markdown": "^0.5.0",
     "matchdep": "^1.0.1",
     "postcss-calc": "^5.3.1",
-    "autoprefixer": "^6.7.2",
+    "autoprefixer": "^7.1.1",
     "postcss-custom-selectors": "^3.0.0",
     "postcss-custom-media": "^5.0.1",
     "postcss-pseudo-class-any-link": "^1.0.0",

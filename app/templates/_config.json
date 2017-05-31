@@ -52,12 +52,7 @@
   "css": {
     "spacer": "20px",
     "baseFontSize": "16px",
-    "filename": "<%= projectcssfilename %>",
-    "prefix": [
-      "last 2 version",
-      "ie 9",
-      "> 5%"
-    ]
+    "filename": "<%= projectcssfilename %>"
   }<% if (projectcritical == true) { %>,
     "cssabove": {
       "width": "1024",
