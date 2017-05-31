@@ -13,8 +13,7 @@ import progressLoader from './partial/progressloader'
 import initPhotoSwipeFromDOM from './partial/init-photoswipe' // eslint-disable-line
 import './partial/init-heighttransition'
 import './partial/init-autoscroll'
-import 'flickity'
-import 'flickity-imagesloaded'<% } %>
+import './partial/flickity-package'<% } %>
 import lazySizes from 'lazysizes'
 import lazybgset from 'lazysizes/plugins/bgset/ls.bgset' // eslint-disable-line
 import 'babel-polyfill'

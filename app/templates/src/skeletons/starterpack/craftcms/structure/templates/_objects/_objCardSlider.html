@@ -101,7 +101,7 @@
 {% endif %}
 
 {# Build Element Block #}
-<figure class="{{ classname }} {{ classname ~ '--card' }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}"
+<figure class="{{ classname }} js-imageSlider {{ classname ~ '--card' }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}"
         itemscope itemtype="http://schema.org/ImageGallery" role="presentation"
         data-flickity='{
           "accessibility": false,
