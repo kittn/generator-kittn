@@ -58,6 +58,9 @@ Copy all or Generate the Template Files.
 **`npm run favicon`**<br>
 Generate Favicons and the HTML Snippet (generated Files you will find in `src/.system/`)
 
+## New in 4.1.0
+Autoprefixer and Babel now use the browserslist-variable from the package.json.
+
 ## Starterpacks
 To make it easier for you to work with Craft or Wordpress, we have also integrated Starterpacks. With the Starterpack you get a Contentbuilder (in the case of Wordpress you still need ACF 5 Pro) and the necessary templates, plugins (free), SCSS and JS files you need.
 
