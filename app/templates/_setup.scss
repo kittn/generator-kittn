@@ -210,7 +210,7 @@ $kittn-typostyles-map: (
   h1: (
     font-size: 36,
     line-height: d,
-    margin-bottom: gap(0.5),
+    margin-bottom: gap(.5),
     font-weight: false,
     tag: true,
     extend: '%heading'
@@ -218,7 +218,7 @@ $kittn-typostyles-map: (
   h2: (
     font-size: 32,
     line-height: d,
-    margin-bottom: gap(0.5),
+    margin-bottom: gap(.5),
     font-weight: false,
     tag: true,
     extend: '%heading'
@@ -226,7 +226,7 @@ $kittn-typostyles-map: (
   h3: (
     font-size: 29,
     line-height: d,
-    margin-bottom: gap(0.5),
+    margin-bottom: gap(.5),
     font-weight: false,
     tag: true,
     extend: '%heading'
@@ -234,7 +234,7 @@ $kittn-typostyles-map: (
   h4: (
     font-size: 25,
     line-height: d,
-    margin-bottom: gap(0.5),
+    margin-bottom: gap(.5),
     font-weight: false,
     tag: true,
     extend: '%heading'
@@ -242,7 +242,7 @@ $kittn-typostyles-map: (
   h5: (
     font-size: 22,
     line-height: d,
-    margin-bottom: gap(0.5),
+    margin-bottom: gap(.5),
     font-weight: false,
     tag: true,
     extend: '%heading'
@@ -250,7 +250,7 @@ $kittn-typostyles-map: (
   h6: (
     font-size: 19,
     line-height: d,
-    margin-bottom: gap(0.5),
+    margin-bottom: gap(.5),
     font-weight: false,
     tag: true,
     extend: '%heading'
