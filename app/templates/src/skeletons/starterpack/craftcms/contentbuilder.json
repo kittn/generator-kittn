@@ -957,10 +957,13 @@
                 "handle": "embed",
                 "instructions": "Hier den entsprechenden IFrame Code einf\u00fcgen. Falls das URL Feld gef\u00fcllt ist wird der Code ignoriert.",
                 "required": 0,
-                "type": "SimpleText",
+                "type": "PlainText",
                 "width": "",
                 "typesettings": {
-                  "initialRows": 2
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 1
                 }
               },
               "new3": {
