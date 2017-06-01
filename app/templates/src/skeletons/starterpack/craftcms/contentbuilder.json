@@ -939,9 +939,23 @@
           "new": {
             "fields": {
               "new1": {
-                "name": "Embed",
+                "name": "Embed URL",
+                "handle": "embedUrl",
+                "instructions": "Wenn es ein Video von Youtube, Vimeo oder Facebook ist, kann man die URL in das Feld kopieren.",
+                "required": 0,
+                "type": "PlainText",
+                "width": "",
+                "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": "",
+                  "initialRows": 4
+                }
+              },
+              "new2": {
+                "name": "Embed Code",
                 "handle": "embed",
-                "instructions": "",
+                "instructions": "Hier den entsprechenden IFrame Code einf\u00fcgen. Falls das URL Feld gef\u00fcllt ist wird der Code ignoriert.",
                 "required": 0,
                 "type": "SimpleText",
                 "width": "",
@@ -949,7 +963,7 @@
                   "initialRows": 2
                 }
               },
-              "new2": {
+              "new3": {
                 "name": "Caption",
                 "handle": "caption",
                 "instructions": "Optionale Asset Caption",
@@ -2670,27 +2684,27 @@
                     },
                     {
                       "label": 2,
-                      "value": 2,
+                      "value": "\"2\"",
                       "default": ""
                     },
                     {
                       "label": 3,
-                      "value": 3,
+                      "value": "\"3\"",
                       "default": ""
                     },
                     {
                       "label": 4,
-                      "value": 4,
+                      "value": "\"4\"",
                       "default": ""
                     },
                     {
                       "label": 5,
-                      "value": 5,
+                      "value": "\"5\"",
                       "default": ""
                     },
                     {
                       "label": 6,
-                      "value": 6,
+                      "value": "\"6\"",
                       "default": ""
                     }
                   ]
@@ -2699,7 +2713,7 @@
               "new5": {
                 "name": "Freescroll",
                 "handle": "freescroll",
-                "instructions": "Mit Freescroll kann der Slider frei beweg werden",
+                "instructions": "Mit Freescroll kann der Slider frei bewegt werden",
                 "required": 0,
                 "type": "Lightswitch",
                 "width": "",
@@ -3657,7 +3671,7 @@
       "template": "section_blog\/_category",
       "maxLevels": 1,
       "locales": {
-        "de_de": {
+        "de": {
           "urlFormat": "blog\/kategorien\/{slug}",
           "nestedUrlFormat": null
         }
@@ -3678,7 +3692,7 @@
       "template": null,
       "maxLevels": 1,
       "locales": {
-        "de_de": {
+        "de": {
           "urlFormat": null,
           "nestedUrlFormat": null
         }
