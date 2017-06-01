@@ -76,7 +76,7 @@ endswitch;
 ?>
 
 <? // Build Element Block ?>
-<figure class="<?= $classname; ?> <?= $classname.'--image'; ?><?= $style != 'default' ? ' '.$classname.'--s-'.$style : '' ?>"
+<figure class="<?= $classname; ?> js-imageSlider <?= $classname.'--image'; ?><?= $style != 'default' ? ' '.$classname.'--s-'.$style : '' ?>"
         role="presentation"
         itemscope itemtype="http://schema.org/ImageGallery"
         data-flickity='{

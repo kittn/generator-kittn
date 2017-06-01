@@ -76,7 +76,7 @@ endswitch;
 ?>
 
 <?php // Build Element Block ?>
-<figure class="<?= $classnameCardSlider; ?> <?= $classnameCardSlider.'--card'; ?><?= $style != 'default' ? ' '.$classnameCardSlider.'--s-'.$style : '' ?>"
+<figure class="<?= $classnameCardSlider; ?> js-imageSlider <?= $classnameCardSlider.'--card'; ?><?= $style != 'default' ? ' '.$classnameCardSlider.'--s-'.$style : '' ?>"
         role="presentation"
         itemscope itemtype="http://schema.org/MediaObject"
         data-flickity='{

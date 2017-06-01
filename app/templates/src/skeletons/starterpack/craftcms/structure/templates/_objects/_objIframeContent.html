@@ -22,17 +22,23 @@
 {% set ar = r|split(':') %}
 
 {# Build Element Block #}
-<div class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}" role="presentation">
-  {% if options.responsive %}
-    <div class="{{ classname }}__inner" style="padding-bottom: {{ (ar|last)/(ar|first) * 100 }}%">
-    {{ data.embed|raw }}
+{% if data.embedUrl|length or data.embed|length %}
+  <div class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}" role="presentation">
+    {% if options.responsive %}
+      <div class="{{ classname }}__inner" style="padding-bottom: {{ (ar|last)/(ar|first) * 100 }}%">
+        {% if data.embedUrl|length %}
+          {{ data.embedUrl|videoEmbed }}
+        {% else %}
+          {{ data.embed|raw }}
+        {% endif %}
+      </div>
+    {% else %}
+      <div class="{{ ' '~classname~'--align-'~options.align }}">
+        {{ data.embed|raw }}
+      </div>
+    {% endif %}
+    {% if data.caption %}
+      <div class="{{ classname }}__caption">{{ data.caption }}</div>
+    {% endif %}
   </div>
-  {% else %}
-  <div class="{{ ' '~classname~'--align-'~options.align }}">
-    {{ data.embed|raw }}
-  </div>
-  {% endif %}
-  {% if data.caption %}
-    <div class="{{ classname }}__caption">{{ data.caption }}</div>
-  {% endif %}
-</div>
+{% endif %}
