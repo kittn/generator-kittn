@@ -3,6 +3,7 @@
 .sass-cache
 *.css.map
 npm-debug.log
+package-lock.json
 /node_modules
 /src/bower
 /.idea
