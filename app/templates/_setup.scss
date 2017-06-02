@@ -271,7 +271,7 @@ $kittn-generate-typostyles: true;
 
 $kittn-color-map: (
   'primary': (
-    color: #29b8f2
+    color: <% if (projectthemecolor) { %><%= projectthemecolor %><% } else { %>#29b8f2<% } %>
   ),
   'main': (
     color: #242424
