@@ -51,6 +51,22 @@
     }
   }
 
+  // [root]__wrapper
+  &__wrapper {
+    > * {
+      display: inline-block !important;
+    }
+
+    // [root]--align-left
+    #{$root}--align-left & { text-align: left; }
+
+    // [root]--align-center
+    #{$root}--align-center & { text-align: center; }
+
+    // [root]--align-right
+    #{$root}--align-right & { text-align: right; }
+  }
+
   // [root]--align-left
   &--align-left { text-align: left; }
 

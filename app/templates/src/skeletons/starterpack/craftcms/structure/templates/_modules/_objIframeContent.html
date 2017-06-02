@@ -23,20 +23,14 @@
 
 {# Build Element Block #}
 {% if data.embedUrl|length or data.embed|length %}
-  <div class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}" role="presentation">
-    {% if options.responsive %}
-      <div class="{{ classname }}__inner" style="padding-bottom: {{ (ar|last)/(ar|first) * 100 }}%">
-        {% if data.embedUrl|length %}
-          {{ data.embedUrl|videoEmbed }}
-        {% else %}
-          {{ data.embed|raw }}
-        {% endif %}
-      </div>
-    {% else %}
-      <div class="{{ ' '~classname~'--align-'~options.align }}">
+  <div class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}{{ ' '~classname~'--align-'~options.align }}" role="presentation">
+    <div class="{{ classname }}{{ options.responsive ? '__inner' : '__wrapper' }}"{% if options.responsive %} style="padding-bottom: {{ (ar|last)/(ar|first) * 100 }}%"{% endif %}>
+      {% if data.embedUrl|length %}
+        {{ data.embedUrl|videoEmbed }}
+      {% else %}
         {{ data.embed|raw }}
-      </div>
-    {% endif %}
+      {% endif %}
+    </div>
     {% if data.caption %}
       <div class="{{ classname }}__caption">{{ data.caption }}</div>
     {% endif %}
