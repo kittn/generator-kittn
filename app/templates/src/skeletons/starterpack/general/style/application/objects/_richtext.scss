@@ -11,22 +11,16 @@
 
   // Build Root and Rootname
   $root: #{&};
-  // Rootname only for prefixing Extends
-  $rn: str_slice($root,4);
 
   // API Grabber
   @function api($keys...) {
     @return map-deep-get($api, $keys...);
   }
 
-  // Local Style Storage  -------------------
-  // Store  : %#{$rn}--example { color: red; }
-  // Unload : @extend %#{$rn}--example;
-
   // Base Modifier -------------------------
   // [root]--s-style1
   &--s-style1 {
     font-size: 120%;
-    color: c('gray')
+    color: c('gray');
   }
 }

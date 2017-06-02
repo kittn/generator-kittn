@@ -18,17 +18,11 @@
 
   // Build Root and Rootname
   $root: #{&};
-  // Rootname only for prefixing Extends
-  $rn: str_slice($root,4);
 
   // API Grabber
   @function api($keys...) {
     @return map-deep-get($api, $keys...);
   }
-
-  // Local Style Storage  -------------------
-  // Store  : %#{$rn}--example { color: red; }
-  // Unload : @extend %#{$rn}--example;
 
   // Base Style ----------------------------
   margin-bottom: api(margin-bottom);
@@ -38,17 +32,18 @@
   }
 
   // Tags ----------------------------------
-
   // Base Modifier -------------------------
 
   // Build Color Modifier
   @each $colorkey,$color in api(color) {
     &--c-#{$colorkey} {
-      @if(map-get($color,background) != false) {
-        background-color: map-get($color,background);
+
+      @if (map-get($color,background) != false) {
+        background-color: map-get($color, background);
       }
-      @if(map-get($color,text) != false) {
-        color: map-get($color,text);
+
+      @if (map-get($color,text) != false) {
+        color: map-get($color, text);
       }
     }
   }
