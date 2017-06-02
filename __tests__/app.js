@@ -9,9 +9,9 @@ describe('generator-kittn:app', () => {
       .withPrompts({someAnswer: true});
   });
 
-  it('creates files', () => {
-    assert.file([
-      'dummyfile.txt'
-    ]);
-  });
+  // It('creates files', () => {
+  //   assert.file([
+  //     'dummyfile.txt'
+  //   ]);
+  // });
 });

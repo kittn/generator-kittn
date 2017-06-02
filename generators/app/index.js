@@ -39,5 +39,12 @@ module.exports = class extends Generator {
           '\n ';
     clear();
     this.log(welcome);
+
+    // Now ask some questions already
+    const prompts = promptsFunction();
+    return this.prompt(prompts).then(props => {
+      // To access props later use this.props.someAnswer;
+      this.props = props;
+    });
   }
 };
