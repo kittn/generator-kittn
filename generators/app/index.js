@@ -1,22 +1,28 @@
-'use strict';
+'use strict'
 
-const Generator = require('yeoman-generator');
-const chalk = require('chalk');
-const yosay = require('yosay');
-const clear = require('clear-terminal');
+const Generator = require('yeoman-generator')
+const chalk = require('chalk')
+const yosay = require('yosay')
+const clear = require('clear-terminal')
 
 // Importing modules
-const promptsFunction = require('./modules/prompts');
-const pkg = require('../../package.json');
+const promptsFunction = require('./modules/prompts')
+const pkg = require('../../package.json')
+
+// Package.json Partials
+const addBaseSettings = require('./modules/package/base.js')
 
 // And Action!
 module.exports = class extends Generator {
-  constructor(args, opts) {
-    super(args, opts);
-    this.pkg = pkg;
-    this.promptsFunction = promptsFunction.bind(this);
+  constructor (args, opts) {
+    super(args, opts)
+    this.pkg = pkg
+    this.promptsFunction = promptsFunction.bind(this)
+
+    // Package.json
+    this.addBaseSettings = addBaseSettings.bind(this)
   }
-  prompting() {
+  prompting () {
     // Custom Greeting
     var welcome =
           '\n ' + chalk.styles.cyan.open +
@@ -36,15 +42,28 @@ module.exports = class extends Generator {
           '\n  ' +
           '\n   Authors: Sascha Fuchs (@gisugosu) ' +
           '\n   URL    : http://kittn.de   ' +
-          '\n ';
-    clear();
-    this.log(welcome);
+          '\n '
+    clear()
+    this.log(welcome)
 
     // Now ask some questions already
-    const prompts = promptsFunction();
+    const prompts = promptsFunction()
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
-      this.props = props;
-    });
+      this.props = props
+    })
   }
-};
+
+  writePackageJson () {
+    this.log(`${chalk.magenta('Writing package.json')}`)
+
+    // Get Base package.json (empty file)
+    const pkg = this.fs.readJSON(this.templatePath('package.json'), {})
+
+    // Add Partials
+    this.addBaseSettings({pkg})
+
+    // Write File to destination
+    this.fs.writeJSON(this.destinationPath('package.json'), pkg)
+  }
+}
