@@ -11,6 +11,8 @@ const pkg = require('../../package.json')
 
 // Package.json Partials
 const addBaseSettings = require('./modules/package/base.js')
+const addAuthorData = require('./modules/package/author.js')
+const addBrowsersList = require('./modules/package/browserslist.js')
 
 // And Action!
 module.exports = class extends Generator {
@@ -21,6 +23,7 @@ module.exports = class extends Generator {
 
     // Package.json
     this.addBaseSettings = addBaseSettings.bind(this)
+    this.addBrowsersList = addBrowsersList.bind(this)
   }
   prompting () {
     // Custom Greeting
@@ -62,6 +65,7 @@ module.exports = class extends Generator {
 
     // Add Partials
     this.addBaseSettings({pkg})
+    this.addBrowsersList({pkg})
 
     // Write File to destination
     this.fs.writeJSON(this.destinationPath('package.json'), pkg)
