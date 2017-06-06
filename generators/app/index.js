@@ -13,8 +13,8 @@ const pkg = require('../../package.json')
 // Package JSON
 const writePackageJson = require('./modules/writing/packageJson')
 
-// Copy Sources
-const copySrc = require('./config/copySrc')
+// Copy Source Files
+const copySources = require('./modules/writing/copySources')
 
 // And Action!
 module.exports = class extends Generator {
@@ -27,7 +27,7 @@ module.exports = class extends Generator {
     this.writePackageJson = writePackageJson.bind(this)
 
     // Copy Sources
-    this.copySrc = copySrc
+    this.copySources = copySources.bind(this)
   }
 
     // Initializing
@@ -78,36 +78,7 @@ module.exports = class extends Generator {
     // Write Package.json
     this.writePackageJson().writing(this)
 
-    // Copy all sources
-    this.copySrc.files.forEach(file => {
-      if (!file.projectContext || file.projectContext.includes(this.props.projectcssstructure)) {
-        if (file.filename) {
-          this.log(this.props)
-          this.log(`Filename: ${file.filename}`)
-          this.log(this.props[file.filename])
-          this.fs.copyTpl(
-            this.templatePath(file.src),
-            this.destinationPath(file.dest.replace('%s', this.props[file.filename])),
-            this.props
-          )
-        } else {
-          this.fs.copyTpl(
-            this.templatePath(file.src),
-            this.destinationPath(file.dest),
-            this.props
-          )
-        }
-      }
-    })
-
-    this.copySrc.folders.forEach(folder => {
-      if (folder.projectContext.includes(this.props.projectcssstructure)) {
-        this.fs.copyTpl(
-          this.templatePath(folder.src),
-          this.destinationPath(folder.dest),
-          this.props
-        )
-      }
-    })
+    // Copy Source Files and Folders
+    this.copySources().writing(this)
   }
 }
