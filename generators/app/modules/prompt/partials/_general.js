@@ -1,4 +1,4 @@
-const message = require('../../helpers/prompts/message')
+const message = require('../../../helpers/prompts/message')
 
 const generalPrompts = [
   {

@@ -7,11 +7,14 @@ const clear = require('clear-terminal')
 const commandExists = require('command-exists')
 
 // Importing modules
-const promptsFunction = require('./modules/prompts')
+const promptsFunction = require('./modules/prompt')
 const pkg = require('../../package.json')
 
 // Package JSON
 const writePackageJson = require('./modules/writing/packageJson')
+
+// Copy Sources
+const copySrc = require('./config/copySrc')
 
 // And Action!
 module.exports = class extends Generator {
@@ -22,6 +25,9 @@ module.exports = class extends Generator {
 
     // Package.json
     this.writePackageJson = writePackageJson.bind(this)
+
+    // Copy Sources
+    this.copySrc = copySrc
   }
 
     // Initializing
@@ -69,6 +75,28 @@ module.exports = class extends Generator {
   async writing () {
     this.log(`${chalk.magenta('Writing package.json')}`)
 
+    // Write Package.json
     this.writePackageJson().writing(this)
+
+    // Copy all sources
+    this.copySrc.files.forEach(file => {
+      if (file.projectContext.includes(this.props.projectcssstructure)) {
+        this.fs.copyTpl(
+          this.templatePath(file.src),
+          this.destinationPath(file.dest),
+          this.props
+        )
+      }
+    })
+
+    this.copySrc.folders.forEach(folder => {
+      if (folder.projectContext.includes(this.props.projectcssstructure)) {
+        this.fs.copyTpl(
+          this.templatePath(folder.src),
+          this.destinationPath(folder.dest),
+          this.props
+        )
+      }
+    })
   }
 }
