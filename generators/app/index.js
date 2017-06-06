@@ -4,15 +4,14 @@ const Generator = require('yeoman-generator')
 const chalk = require('chalk')
 const yosay = require('yosay')
 const clear = require('clear-terminal')
+const commandExists = require('command-exists')
 
 // Importing modules
 const promptsFunction = require('./modules/prompts')
 const pkg = require('../../package.json')
 
-// Package.json Partials
-const addBaseSettings = require('./modules/package/base.js')
-const addAuthorData = require('./modules/package/author.js')
-const addBrowsersList = require('./modules/package/browserslist.js')
+// Package JSON
+const writePackageJson = require('./modules/writing/packageJson')
 
 // And Action!
 module.exports = class extends Generator {
@@ -22,9 +21,19 @@ module.exports = class extends Generator {
     this.promptsFunction = promptsFunction.bind(this)
 
     // Package.json
-    this.addBaseSettings = addBaseSettings.bind(this)
-    this.addBrowsersList = addBrowsersList.bind(this)
+    this.writePackageJson = writePackageJson.bind(this)
   }
+
+    // Initializing
+  async initializing () {
+    this.log(`${chalk.magenta('Cleaning Directory')}`)
+    try {
+      this.spawnCommandSync('rm', ['-rf', '*'])
+    } catch (e) {
+      if (e) this.log(e)
+    }
+  }
+
   prompting () {
     // Custom Greeting
     var welcome =
@@ -57,17 +66,9 @@ module.exports = class extends Generator {
     })
   }
 
-  writePackageJson () {
+  async writing () {
     this.log(`${chalk.magenta('Writing package.json')}`)
 
-    // Get Base package.json (empty file)
-    const pkg = this.fs.readJSON(this.templatePath('package.json'), {})
-
-    // Add Partials
-    this.addBaseSettings({pkg})
-    this.addBrowsersList({pkg})
-
-    // Write File to destination
-    this.fs.writeJSON(this.destinationPath('package.json'), pkg)
+    this.writePackageJson().writing(this)
   }
 }
