@@ -5,7 +5,7 @@ function addBrowsersList (files = {}) {
     browserslist: [
       '> 5%',
       'ie 11',
-      'last 3'
+      'last 2 versions'
     ]
   })
 }

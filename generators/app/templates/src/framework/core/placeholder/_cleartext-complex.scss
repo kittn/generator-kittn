@@ -1,0 +1,69 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+/// Text Replacement Method from HTML5 Boilerplate
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include cleartext-complex();
+///   }
+///   .box-2 {
+///     @include cleartext-complex();
+///   }
+///   @include break(4) {
+///     .box-3 {
+///       @include cleartext-complex(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1, .box-2 {
+///     background-color: transparent;
+///     border: 0;
+///     overflow: hidden;
+///   }
+///   .box-1:before, .box-2:before {
+///     content: '';
+///     display: block;
+///     width: 0;
+///     height: 150%;
+///   }
+///   @media screen and (min-width: 768px) {
+///     .box-3 {
+///       background-color: transparent;
+///       border: 0;
+///       overflow: hidden;
+///     }
+///     .box-3:before {
+///       content: '';
+///       display: block;
+///       width: 0;
+///       height: 150%;
+///     }
+///   }
+@mixin cleartext-complex($extend: true) {
+  @if $extend {
+    @extend %cleartext-complex;
+
+  } @else {
+    background-color: transparent;
+    border: 0;
+    overflow: hidden;
+    &:before {
+      content: '';
+      display: block;
+      width: 0;
+      height: 150%;
+    }
+  }
+}
+
+// Placeholder Class
+%cleartext-complex {
+  @include cleartext-complex(false);
+}

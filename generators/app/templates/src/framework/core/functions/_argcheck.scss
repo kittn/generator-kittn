@@ -1,0 +1,36 @@
+// ===================================================
+// Argument Check
+// ===================================================
+
+/// Check if the keys are available in the map
+///
+/// @group core - inspect
+///
+/// @param  {map}    $map  - Agumentlist map
+/// @param  {string} $list - List with Arguments
+/// @param  {string} $key  - Argument
+///
+/// @return {bool}
+@function check-args($map, $list, $key) {
+  @if index(map-get($map, $list), $key) {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+/// Add a warning to the Console when the wrong Keyword is used
+///
+/// @group core - inspect
+///
+/// @require {function} check-args
+///
+/// @param  {map}    $map  - Agumentlist map
+/// @param  {string} $list - List with Arguments
+/// @param  {string} $key  - Argument
+/// @param  {string} $name - Name from the Mixin that drop the Warning
+@mixin warn-args($map, $list, $key, $name) {
+  @if not(check-args($map, $list, $key)) {
+    @warn "ERROR in Mixin [#{$name}()]. The Argument '#{$key}' is not valid. Use one of these Arguments: (#{map-get($map, $list)})";
+  }
+}

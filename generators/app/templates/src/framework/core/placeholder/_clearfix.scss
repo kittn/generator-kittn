@@ -1,0 +1,53 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+/// Close Floats
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include clearfix();
+///   }
+///   .box-2 {
+///     @include clearfix();
+///   }
+///   @include break(4) {
+///     .box-3 {
+///       @include clearfix(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1:after, .box-2:after {
+///     content: '';
+///     display: table;
+///     clear: both;
+///   }
+///   @media screen and (min-width: 768px) {
+///     .box-3:after {
+///       content: '';
+///       display: table;
+///       clear: both;
+///     }
+///   }
+@mixin clearfix($extend: true) {
+  @if $extend {
+    @extend %clearfix;
+
+  } @else {
+    &:after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+  }
+}
+
+// Placeholder Class
+%clearfix {
+  @include clearfix(false);
+}

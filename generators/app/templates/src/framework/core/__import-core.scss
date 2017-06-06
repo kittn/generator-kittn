@@ -1,0 +1,46 @@
+// =====================================
+// Core Import File
+// =====================================
+
+// Functions
+@import 'functions/typechecks';<% if (projectcontainerqueries === true ) { %>
+@import 'functions/container-queries';<% } %>
+@import 'functions/maps';
+@import 'functions/em';
+@import 'functions/breakpoints';
+@import 'functions/colors';
+@import 'functions/fontfamily';
+@import 'functions/rem';
+@import 'functions/sassylists';
+@import 'functions/spacing';
+@import 'functions/unitcheck';
+@import 'functions/argcheck';
+
+// Mixins
+@import 'mixins/jacket';
+@import 'mixins/family';
+@import 'mixins/bem';
+@import 'mixins/size';
+@import 'mixins/break';
+@import 'mixins/fontface';
+@import 'mixins/pos';
+@import 'mixins/fluid';
+
+// Placeholder
+@import 'placeholder/antialias';
+@import 'placeholder/block-center';
+@import 'placeholder/clearfix';
+@import 'placeholder/cleartext';
+@import 'placeholder/cleartext-complex';
+@import 'placeholder/cleartext-simple';
+@import 'placeholder/decollapse';
+@import 'placeholder/embed-responsive';
+@import 'placeholder/expand-clickarea';
+@import 'placeholder/perfomance';
+@import 'placeholder/simple-button';
+@import 'placeholder/text-truncate';
+@import 'placeholder/vertical-align';
+@import 'placeholder/vertical-center';
+@import 'placeholder/visually-hidden';
+@import 'placeholder/word-wrap';
+@import 'placeholder/text-hyphen';

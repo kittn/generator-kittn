@@ -1,0 +1,115 @@
+// ===================================================
+// Elementqueries
+// Info: http://elementqueries.com/
+// ===================================================
+
+/// Generate Elementquery
+///
+/// @group core - eqcss
+///
+/// @param  {arglist}  $conditions - 1+ of Maps of EQCSS conditions
+///
+/// @return {string}  Element Query
+///
+/// @access private
+@function _eq($conditions...) {
+  $selector: &;
+  $joined-conditions: ();
+
+  // at least one EQCSS condition is required
+  @if length($conditions) < 1 or type-of(nth($conditions, length($conditions))) != map {
+    @error 'element query must include at least one condition';
+  }
+
+  // flatten and join conditions into single string
+  @for $i from 1 through length($conditions) {
+    $condition: nth($conditions, $i);
+    // if a selector (string) wasn't specified at the beginning of the arguments, this will be the current context
+    @if $i == 1 and type-of($condition) == string {
+      $selector: $condition;
+    }
+    @else if type-of($condition) == map {
+      // join each with ' and '
+      @each $key, $value in $condition {
+        $joined-conditions: $joined-conditions + if(length($joined-conditions) > 0, ' and ', '');
+
+        $joined-conditions: $joined-conditions + '(#{$key}: #{$value})';
+      }
+    }
+    @else { @error 'element query conditions must be a map'; }
+  }
+
+  @return $joined-conditions;
+}
+
+
+/// EQCSS
+///
+/// @group core - eqcss
+///
+/// @param  {arglist}  $conditions - 1+ of Maps of EQCSS conditions
+///
+/// @content [Style declatation inside the EQCSS Bubble]
+///
+/// @example scss - scss
+///    .parent {
+///      @include eq((min-width: 500px)) {
+///        eq_this {
+///          display: flex;
+///        }
+///      }
+///    }
+///
+/// @example css - css
+///    @element '.parent' and (min-width: 500px) {
+///      eq_this {
+///        display: flex; } }
+@mixin eq($conditions...) {
+  $selector: &;
+  $joined-conditions: ();
+
+  $element-query: unquote("'#{$selector}' and #{_eq($conditions...)}");
+
+  // Needs to be placed outside of current context to work
+  @at-root {
+    // @element syntax doesn't parse with sass, so send as raw string
+    @element #{inspect($element-query)} {
+      @content;
+    }
+  }
+}
+
+/// EQCSS with Root Reference
+///
+/// @group core - eqcss
+///
+/// @param  {string}   $root - Root Selector
+/// @param  {arglist}  $conditions - 1+ of Maps of EQCSS conditions
+///
+/// @content [Style declatation inside the EQCSS Bubble]
+///
+/// @example scss - scss
+///    .child {
+///      @include eqr('.root', (min-width: 500px)) {
+///        flex: 1;
+///      }
+///    }
+///
+/// @example css - css
+///    @element '.root' and (min-width: 500px) {
+///      .child {
+///        flex: 1 1 0%; } }
+@mixin eqr($root, $conditions...) {
+  $selector: &;
+  $joined-conditions: ();
+
+  $element-query: unquote("'#{$root}' and #{_eq($conditions...)}");
+
+  @at-root {
+    @element #{inspect($element-query)} {
+      #{$selector} {
+        @content;
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+// ===================================================
+// Maps Helper
+// ===================================================
+
+/// Calculate a Fontsize to REM
+///
+/// @group core - rem
+///
+/// @access private
+@function rembase() {
+  @if map-get($kittn-typo, unit) == rem {
+    @return 16;
+  } @else {
+    @return 16 / 100 * map-get($kittn-typo, base-scale);
+  }
+}
+
+/// Calculate px in rem
+///
+/// @group core - rem
+///
+/// @require {function} rembase
+///
+/// @param  {number} $px   - The Size in PX
+/// @param  {number} $base - The Base for the calculation
+///
+/// @return {Number}  Return the size in rem
+///
+/// @example scss - scss
+///   .test {
+///     font-size: rem(14);
+///   }
+///
+/// @example css - css
+///   .test {
+///     font-size: 0.875rem;
+///   }
+@function rem($px, $base: rembase()) {
+  @if unitless($px) {
+    @return #{$px / $base}rem;
+
+  } @else {
+    $pxpx: strip-units($px);
+    @return #{$pxpx / $base}rem;
+  }
+}

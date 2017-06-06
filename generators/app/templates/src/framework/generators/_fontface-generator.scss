@@ -1,0 +1,60 @@
+// ===================================================
+// Fontface Generator
+// ===================================================
+
+/// Include all Font Faces from the Font Face Map
+/// Will be activated with Internal Functions
+///
+/// @group generators
+///
+/// @requires {mixin} fontface
+///
+/// @param  {map}    $map - Map
+@mixin fontface-generator($map: $kittn-fontface-map ) {
+  // Add Counter
+  $counter: 1;
+
+  // Check if fontface mixin exists
+  @if mixin_exists(fontface) {
+/*
+  FontFaces
+
+  Styleguide 1.7
+*/
+    // Run through each font face
+    @each $name, $entry in $map {
+
+      // Move the Counter Up to count the Loop
+      $counter: $counter + 1;
+/*
+  Font: #{$name}
+
+  markup:
+  <h2 style="font-family: #{$name}">Lorem ipsum dolor sit amet, consetetur sadipscing elitr</h2>
+  <p style="font-family: #{$name}">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+
+  sg-wrapper:
+  <div class="sg-body">
+    <sg-wrapper-content/>
+  </div>
+
+  Styleguide 1.7.#{$counter}
+*/
+      @each $key, $style in $entry {
+
+        // Call the Mixin
+        @include fontface(
+          $fontname: $name,
+          $o: (
+            filename: map-get($style,filename),
+            weight: map-get($style,weight),
+            style: map-get($style,style),
+            short: map-get($style,short)
+          )
+        );
+      }
+    }
+  } @else {
+    @warn "Fontface mixin dosen't exists";
+  }
+}

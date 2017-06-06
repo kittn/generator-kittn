@@ -1,0 +1,45 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+/// Activate Antialias on Webkit Browsers
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include antialias();
+///   }
+///   @include break(4) {
+///     .box-2 {
+///       @include antialias(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1 {
+///     -webkit-font-smoothing: antialiased;
+///     -moz-osx-font-smoothing: grayscale;
+///   }
+///   @media screen and (min-width: 768px) {
+///     .box-2 {
+///       -webkit-font-smoothing: antialiased;
+///       -moz-osx-font-smoothing: grayscale;
+///     }
+///   }
+@mixin antialias($extend: true) {
+  @if $extend {
+    @extend %antialias;
+
+  } @else {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+// Placeholder Class
+%antialias {
+  @include antialias(false);
+}

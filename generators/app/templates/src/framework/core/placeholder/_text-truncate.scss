@@ -1,0 +1,55 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+/// Mixin for truncating Text
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include text-truncate();
+///   }
+///   .box-2 {
+///     @include text-truncate();
+///   }
+///   .box-3 {
+///     @include break(4) {
+///       @include text-truncate(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1, .box-2 {
+///     max-width: 100%;
+///     overflow: hidden;
+///     text-overflow: ellipsis;
+///     white-space: nowrap;
+///     word-wrap: normal; }
+///
+///   @media screen and (min-width: 768px) {
+///     .box-3 {
+///       max-width: 100%;
+///       overflow: hidden;
+///       text-overflow: ellipsis;
+///       white-space: nowrap;
+///       word-wrap: normal; } }
+@mixin text-truncate($extend: true) {
+  @if $extend {
+    @extend %text-truncate;
+
+  } @else {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    word-wrap: normal;
+  }
+}
+
+// Placeholder Class
+%text-truncate {
+  @include text-truncate(false);
+}

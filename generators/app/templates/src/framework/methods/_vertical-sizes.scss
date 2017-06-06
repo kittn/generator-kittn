@@ -1,0 +1,338 @@
+// ===================================================
+// Vertical Sizes
+// ===================================================
+
+/// Recalculate the px values to rem, with lines option
+///
+/// @group methods - vertical sizes
+///
+/// @param   {*}      $arg  - Attribute
+/// @param   {number} $size - Value
+///
+/// @example scss - scss
+///   .box {
+///     @include remsize(font-size, 3);
+///   }
+///
+/// @example css - css
+///   .box {
+///     font-size: 3.9375rem;
+///   }
+@mixin remsize($arg, $lines) {
+  @if map-get($kittn-typo, unit) == px {
+    #{$arg}: $lines * map-get($kittn-typo, line-height) + 0px;
+  }
+
+  @if map-get($kittn-typo, unit) == rem {
+    #{$arg}: rem($lines * map-get($kittn-typo, line-height));
+  }
+}
+
+/// Recalculate the px values to rem
+///
+/// @group methods - vertical sizes
+///
+/// @param   {*}      $arg  - Attribute
+/// @param   {number} $size - Value
+///
+/// @example scss - scss
+///   .box {
+///     @include pxsize(font-size, 13);
+///   }
+///
+/// @example css - css
+///   .box {
+///     font-size: 0.8125rem;
+///   }
+@mixin pxsize($arg, $size) {
+  @if unitless($size) {
+    @if map-get($kittn-typo, unit) == px {
+      #{$arg}: $size + 0px;
+    }
+
+    @if map-get($kittn-typo, unit) == rem {
+      #{$arg}: rem($size);
+    }
+  } @else {
+    #{$arg}: $size;
+  }
+}
+
+/// Calculate the Rem Sizes, with Baseline Option
+///
+/// @group methods - vertical sizes
+///
+/// @param  {*}      $arg      - Attribute
+/// @param  {number} $size     - Size
+/// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule
+///
+/// @example scss - scss
+///   .box {
+///     @include rem(font-size,14);
+///   }
+///
+/// @example css - css
+///   .box {
+///     font-size: 0.875rem;
+///   }
+@mixin rem($arg, $size, $baseline: map-get($kittn-activate, baseline)) {
+  @if unitless($size) {
+    $size: strip-units($size);
+  }
+
+  @if $baseline == true {
+    $lines: ceil($size / map-get($kittn-typo, line-height));
+    @include remsize($arg, $lines);
+  } @else {
+    @include pxsize($arg, $size);
+  }
+}
+
+/// Calculate the Lineheight from PX to REM, provides a px Fallback
+///
+/// @group methods - vertical sizes
+///
+/// @param  {number} $size     - Size
+/// @param  {*}      $baseline - When 'true', the Value follow the Baselinerule
+///
+/// @example scss - scss
+///   .box {
+///     @include lineheight(32);
+///   }
+///
+/// @example css - css
+///   .box {
+///     line-height: 2rem;
+///   }
+@mixin lineheight($size, $baseline: map-get($kittn-activate, baseline)) {
+  @include rem(line-height, $size, $baseline);
+}
+
+/// Caluclate the Font Size in PX to REM with Fallback
+///
+/// @group methods - vertical sizes
+///
+/// @param  {Number} $size - Font Size
+///
+/// @example scss - scss
+///   .box {
+///     @include fontsize(14);
+///   }
+///
+/// @example css - css
+///   .box {
+///     font-size: 0.875rem;
+///   }
+@mixin fontsize($size) {
+  @include pxsize(font-size, $size);
+}
+
+/// Calculate Fontsize and Lineheight
+///
+/// @group methods - vertical sizes
+///
+/// @param  {number} $fontsize     - Font Size
+/// @param  {number} $lineheight [false] - Lineheight for the Font - can be false than used the factor
+/// @param  {number} $factor [1.2] - The Calculationfactor
+///
+/// @example scss - scss
+///   .box {
+///     @include fontcalc(14);
+///   }
+///
+/// @example css - css
+///   .box {
+///     font-size: 0.875rem;
+///     line-height: 1.05rem;
+///   }
+@mixin fontcalc($fontsize, $lineheight: false, $factor: 1.2) {
+  @include fontsize($fontsize);
+
+  @if $lineheight == false {
+    @include lineheight($fontsize * $factor);
+  } @else {
+    @include lineheight($lineheight);
+  }
+}
+
+/// Calculate the Margin Bottom from PX to REM, provides a px Fallback
+///
+/// @group methods - vertical sizes
+///
+/// @param  {Number}  $size     - Size
+/// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+///
+/// @example scss - scss
+///   .box {
+///     @include marginbottom(30);
+///   }
+///
+/// @example css - css
+///   .box {
+///     margin-bottom: 1.875rem;
+///   }
+@mixin marginbottom($size, $baseline: map-get($kittn-activate, baseline)){
+  @include rem(margin-bottom, $size, $baseline);
+}
+
+/// Calculate the Margin Top from PX to REM, provides a px Fallback
+///
+/// @group methods - vertical sizes
+///
+/// @param  {Number}  $size     - Size
+/// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+///
+/// @example scss - scss
+///   .box {
+///     @include margintop(30);
+///   }
+///
+/// @example css - css
+///   .box {
+///     margin-top: 1.875rem;
+///   }
+@mixin margintop($size, $baseline: map-get($kittn-activate, baseline)) {
+  @include rem(margin-top,$size, $baseline);
+}
+
+/// Calculate the Margin Left from PX to REM, provides a px Fallback
+///
+/// @group methods - vertical sizes
+///
+/// @param  {Number}  $size     - Size
+/// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+///
+/// @example scss - scss
+///   .box {
+///     @include marginleft(30);
+///   }
+///
+/// @example css - css
+///   .box {
+///     margin-left: 1.875rem;
+///   }
+@mixin marginleft($size, $baseline: map-get($kittn-activate, baseline)) {
+  @include rem(margin-left,$size, $baseline);
+}
+
+/// Calculate the Margin Right from PX to REM, provides a px Fallback
+///
+/// @group methods - vertical sizes
+///
+/// @param  {Number}  $size     - Size
+/// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+///
+/// @example scss - scss
+///   .box {
+///     @include marginright(30);
+///   }
+///
+/// @example css - css
+///   .box {
+///     margin-right: 1.875rem;
+///   }
+@mixin marginright($size, $baseline: map-get($kittn-activate, baseline)) {
+  @include rem(margin-right,$size, $baseline);
+}
+
+/// Calculate the Padding Top from PX to REM, provides a px Fallback
+///
+/// @group methods - vertical sizes
+///
+/// @param  {Number}  $size     - Size
+/// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+///
+/// @example scss - scss
+///   .box {
+///     @include paddingtop(30);
+///   }
+///
+/// @example css - css
+///   .box {
+///     padding-top: 1.875rem;
+///   }
+@mixin paddingtop($size, $baseline: map-get($kittn-activate, baseline)) {
+  @include rem(padding-top, $size, $baseline);
+}
+
+/// Calculate the Padding Bottom from PX to REM, provides a px Fallback
+///
+/// @group methods - vertical sizes
+///
+/// @param  {Number}  $size     - Size
+/// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+///
+/// @example scss - scss
+///   .box {
+///     @include paddingbottom(30);
+///   }
+///
+/// @example css - css
+///   .box {
+///     padding-bottom: 1.875rem;
+///   }
+@mixin paddingbottom($size, $baseline: map-get($kittn-activate, baseline)) {
+  @include rem(padding-bottom, $size, $baseline);
+}
+
+/// Calculate the Padding Left from PX to REM, provides a px Fallback
+///
+/// @group methods - vertical sizes
+///
+/// @param  {Number}  $size     - Size
+/// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+///
+/// @example scss - scss
+///   .box {
+///     @include paddingleft(30);
+///   }
+///
+/// @example css - css
+///   .box {
+///     padding-left: 1.875rem;
+///   }
+@mixin paddingleft($size, $baseline: map-get($kittn-activate, baseline)) {
+  @include rem(padding-left, $size, $baseline);
+}
+
+/// Calculate the Padding Right from PX to REM, provides a px Fallback
+///
+/// @group methods - vertical sizes
+///
+/// @param  {Number}  $size     - Size
+/// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+///
+/// @example scss - scss
+///   .box {
+///     @include paddingright(30);
+///   }
+///
+/// @example css - css
+///   .box {
+///     padding-right: 1.875rem;
+///   }
+@mixin paddingright($size, $baseline: map-get($kittn-activate, baseline)) {
+  @include rem(padding-right, $size, $baseline);
+}
+
+/// Calculate the Height from PX to REM, provides a px Fallback
+///
+/// @group methods - vertical sizes
+///
+/// @param  {Number}  $size     - Size
+/// @param  {*}      $baseline  - When 'true', the Value follow the Baselinerule
+///
+/// @example scss - scss
+///   .box {
+///     @include height(200);
+///   }
+///
+/// @example css - css
+///   .box {
+///     height: 12.5rem;
+///   }
+@mixin height($size, $baseline: map-get($kittn-activate, baseline)) {
+  @include rem(height, $size, $baseline);
+}
+
+

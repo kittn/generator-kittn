@@ -1,0 +1,105 @@
+// ===================================================
+// Type Checks
+// ===================================================
+
+/// Checks if a Value is included
+///
+/// @group core - inspect
+///
+/// @param  {*}     $value - Included value to check
+///
+/// @return {bool}
+@function is-true($value) {
+  @return if($value == null, false, $value and $value != null and $value != "" and $value != ());
+}
+
+/// Checks if Value is a map
+///
+/// @group core - inspect
+///
+/// @param  {*}      $value - Included value to check
+///
+/// @return {bool}
+@function is-map($value) {
+  @return type-of($value) == "map";
+}
+
+/// Checks if Value is a list
+///
+/// @group core - inspect
+///
+/// @param  {*}      $value - Included value to check
+///
+/// @return {bool}
+@function is-list($value) {
+  @return type-of($value) == "list";
+}
+
+/// Checks if Value is a number
+///
+/// @group core - inspect
+///
+/// @param  {*}      $value - Included value to check
+///
+/// @return {bool}
+@function is-number($value) {
+  @return type-of($value) == "number";
+}
+
+/// Checks if Value is a string
+///
+/// @group core - inspect
+///
+/// @param  {*}      $value - Included value to check
+///
+/// @return {bool}
+@function is-string($value) {
+  @return type-of($value) == "string";
+}
+
+/// Checks if Value is not a string
+///
+/// @group core - inspect
+///
+/// @param  {*}      $value - Included value to check
+///
+/// @return {bool}
+@function is-not-string($value) {
+  @return type-of($value) != "string";
+}
+
+/// Check if the Selector is nested
+///
+/// @group core - inspect
+///
+/// @return {bool}
+@function is-nested() {
+  $p: &;
+  $list: ();
+
+  @each $par in $p {
+    $list: append($par, $list, comma);
+  }
+
+  // Check the length from the selector list
+  @if length($list) > 2 {
+    @return true;
+  } @else {
+    @return false;
+  }
+}
+
+/// Check if a map has entries
+///
+/// @group core - inspect
+///
+/// @param  {map}    $map - Map
+///
+/// @return {bool}
+@function map-filled($map) {
+  @if length(map-keys($map)) > 0 {
+    @return true;
+  } @else {
+    @return false;
+  }
+}

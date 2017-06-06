@@ -1,0 +1,13 @@
+// ===================================================
+// Start Generators
+// ===================================================
+
+// Include all Fontfaces from the Setup Map
+@include fontface-generator();
+
+// Generate the Baseclasses for the Icons
+@if map-get($kittn-iconfont, name) {
+  @include icon-font-base(map-get($kittn-iconfont, name));
+  @include icon-generator($kittn-font-icons);
+}
+

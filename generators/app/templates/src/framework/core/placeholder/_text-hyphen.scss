@@ -1,0 +1,49 @@
+// ===================================================
+// Hyphen Class
+// ===================================================
+
+/// Mixin for Hyphenating Text
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include text-hyphen();
+///   }
+///   .box-2 {
+///     @include text-hyphen();
+///   }
+///   .box-3 {
+///     @include break(4) {
+///       @include text-hyphen(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1, .box-2 {
+///     -webkit-hyphens: auto;
+///     -moz-hyphens: auto;
+///     -ms-hyphens: auto;
+///     hyphens: auto; }
+///
+///   @media screen and (min-width: 768px) {
+///     .box-3 {
+///       -webkit-hyphens: auto;
+///       -moz-hyphens: auto;
+///       -ms-hyphens: auto;
+///       hyphens: auto; } }
+@mixin text-hyphen($extend: true) {
+  @if $extend {
+    @extend %text-hyphen;
+
+  } @else {
+    hyphens: auto;
+  }
+}
+
+// Placeholder Class
+%text-hyphen {
+  @include text-hyphen(false);
+}

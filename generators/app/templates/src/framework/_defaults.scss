@@ -1,0 +1,59 @@
+// ------------------------------------
+// Framework Defaults
+// ------------------------------------
+
+// Global spacing unit, used for Spacer and Lines Mixins.
+//
+// @type Number
+$kittn-global-spacing: 20;
+
+// Default unit for unitless values.
+//
+// @type Number
+$kittn-default-unit: px;
+
+// BEM Prefixes for Elements and Modifiers
+//
+// @type Map
+$kittn-bem: (
+  element: '__',
+  modifier: '--',
+  instance: '---'
+);
+
+// Kittn Directory Organisation
+//
+// @type Map
+$kittn-directories: (
+  fonts: '../fonts/',
+  images: '../img/',
+  svgonly: '../img/svgfiles/',
+  bitmaps: '../img/bitmaps/',
+  bitmap: 'bitmaps/',
+  vector: 'svgfiles/'
+);
+
+$kittn-spritefiles: (
+  bitmap-sprite: 'sprite.png',
+  vector-sprite: 'vector-sprite.svg'
+);
+
+// Activate Base Features
+//
+// - 'debugging' {Bool} - Activate the CSS Debugging Features
+// - 'box-sizing' {Bool} - Activate the new old Box Model ;P
+// - 'baseline' {Bool} - Activate Baseline Features
+// - 'hyphens' {Bool} - All Words would be breaked with Hyphens
+// - 'viewport-fix' {Bool} - Activate Viewport-Fixes for Windows Mobile 8
+// - 'mobile-first' {Bool} - Grid and Breakpoints oriented from Smallest to Biggest Size
+//
+// @type Map
+$kittn-activate: (
+  debugging: false,
+  box-sizing: true,
+  baseline: false,
+  antialias: true,
+  hyphens: true,
+  viewport-fix: false,
+  mobile-first: true
+);

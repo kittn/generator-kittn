@@ -1,0 +1,51 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+/// Simpler Cleartext
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include cleartext-simple();
+///   }
+///   .box-2 {
+///     @include cleartext-simple();
+///   }
+///   .box-3 {
+///     @include break(4) {
+///       @include cleartext-simple(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1, .box-2 {
+///     text-indent: 100%;
+///     white-space: nowrap;
+///     overflow: hidden;
+///   }
+///   @media screen and (min-width: 768px) {
+///     .box-3 {
+///       text-indent: 100%;
+///       white-space: nowrap;
+///       overflow: hidden;
+///     }
+///   }
+@mixin cleartext-simple($extend: true) {
+  @if $extend {
+    @extend %cleartext-simple;
+
+  } @else {
+    text-indent: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+}
+
+// Placeholder Class
+%cleartext-simple {
+  @include cleartext-simple(false);
+}

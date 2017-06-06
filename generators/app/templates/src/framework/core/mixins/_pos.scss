@@ -1,0 +1,48 @@
+// ===================================================
+// Pos
+// ===================================================
+
+/// Set the Position for the Position Mixins.
+/// For Zero Position (0) set the value to 'z'
+/// - One value = top
+/// - Two values = top left
+/// - Four values = top right bottom left
+///
+/// @group core - pos
+///
+/// @param  {list}   $position - Position Values.
+@mixin pos($position) {
+
+  // Setup internal vars
+  $targets: null !default;
+  $count: length($position);
+
+  // Check if enough values available
+  @if $count > 4 or $count <= 0 or $count == 3 {
+    @warn 'Please check the position values.';
+
+  } @else {
+    // Build the Position Matrix
+    @if $count == 1 { $targets: top; }
+
+    @if $count == 2 { $targets: top left; }
+
+    @if $count == 4 { $targets: top right bottom left; }
+
+    // Include the Attributes
+    @for $i from 1 through $count {
+      @if nth($position,$i) == z {
+
+        // With 'z' set position to 0
+        #{nth($targets,($i))}: 0;
+
+      } @else {
+        // Otherwise set the Position based on the Value
+        @if nth($position, $i) > 0 or nth($position,$i) < 0 {
+          #{nth($targets, ($i))}: if(unitless(nth($position,$i)), nth($position,$i) + 0px, nth($position,$i));
+        }
+      }
+    }
+  }
+}
+

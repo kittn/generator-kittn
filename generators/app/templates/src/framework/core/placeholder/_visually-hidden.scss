@@ -1,0 +1,64 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+/// Visually hide elements without hiding them from screen readers or crawlers.
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include visually-hidden();
+///   }
+///   .box-2 {
+///     @include visually-hidden();
+///   }
+///   .box-3 {
+///     @include break(4) {
+///       @include visually-hidden(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1, .box-2 {
+///     border: 0;
+///     clip: rect(0, 0, 0, 0);
+///     height: 1px;
+///     width: 1px;
+///     margin: 1px;
+///     overflow: hidden;
+///     padding: 0;
+///     position: absolute; }
+///
+///   @media screen and (min-width: 768px) {
+///     .box-3 {
+///       border: 0;
+///       clip: rect(0, 0, 0, 0);
+///       height: 1px;
+///       width: 1px;
+///       margin: 1px;
+///       overflow: hidden;
+///       padding: 0;
+///       position: absolute; } }
+@mixin visually-hidden($extend: true) {
+  @if $extend {
+    @extend %visually-hidden;
+
+  } @else {
+    border: 0;
+    clip: rect(0,0,0,0);
+    height: 1px;
+    width: 1px;
+    margin: 1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+  }
+}
+
+// Placeholder Class
+%visually-hidden {
+  @include visually-hidden(false);
+}

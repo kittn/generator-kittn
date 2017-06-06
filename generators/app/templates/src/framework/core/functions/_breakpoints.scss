@@ -1,0 +1,24 @@
+// -------------------------------------
+// Breakpoint
+// -------------------------------------
+
+/// Pick the Values from the Breakpoint Map
+///
+/// @group core - breakpoints
+///
+/// @param  {string} $target  - Selected Breakpoint
+/// @param  {map}    $entries - Connection to the Breakpoint Map
+///
+/// @returns {number}         - Return the breakpoint width
+///
+/// @example scss
+///   @media screen and (min-width: bp(2) ){ ... }
+@function bp($target, $entries: $kittn-breakpoint-map) {
+
+  // Pick the Values
+  @if map-has-key($entries,$target) {
+    @return map-get(map-get($entries,$target),size);
+  } @else {
+    @warn 'The Breakpoint "#{$target}" are not available in the Breakpoint Map! Possible Breakpointkeys are: "#{map-keys($entries)}"';
+  }
+}

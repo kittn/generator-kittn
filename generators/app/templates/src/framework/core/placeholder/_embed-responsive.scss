@@ -1,0 +1,81 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+/// Make a Embedded Iframe (Youtube Video, Google Maps) responsive
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include embed-responsive();
+///   }
+///   .box-2 {
+///     @include embed-responsive();
+///   }
+///   .box-3 {
+///     @include break(4) {
+///       @include embed-responsive(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1, .box-2 {
+///     position: relative;
+///     padding-bottom: 54%;
+///     padding-top: 15px;
+///     height: 0;
+///     overflow: hidden;
+///     margin-bottom: 20px;
+///   }
+///   .box-1 iframe, .box-2 iframe {
+///     position: absolute;
+///     top: 0;
+///     left: 0;
+///     width: 100%;
+///     height: 100%;
+///   }
+///   @media screen and (min-width: 768px) {
+///     .box-3 {
+///       position: relative;
+///       padding-bottom: 54%;
+///       padding-top: 15px;
+///       height: 0;
+///       overflow: hidden;
+///       margin-bottom: 20px;
+///     }
+///     .box-3 iframe {
+///       position: absolute;
+///       top: 0;
+///       left: 0;
+///       width: 100%;
+///       height: 100%;
+///     }
+///   }
+@mixin embed-responsive($extend: true) {
+  @if $extend {
+    @extend %embed-responsive;
+
+  } @else {
+    position: relative;
+    padding-bottom: 54%;
+    padding-top: 15px;
+    height: 0;
+    overflow: hidden;
+    margin-bottom: 20px;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%
+    }
+  }
+}
+
+%embed-responsive {
+  @include embed-responsive(false);
+}

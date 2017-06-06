@@ -1,0 +1,86 @@
+// ===================================================
+// Typography Generator
+// ===================================================
+
+/// Generate the Typo based on the Typo-Map
+///
+/// @group generators
+///
+/// @param  {map}    $map [$kittn-typostyles-map] - Map
+@mixin typogenerator($map: $kittn-typostyles-map) {
+  // Add Counter
+  $counter: 1;
+
+  @each $style, $entry in $map {
+    $selector: null;
+
+    // Move the Counter Up to count the Loop
+    $counter: $counter + 1;
+
+    // Build the Selector
+    @if map-get($entry,tag) != false {
+      $selector: '.#{$style},#{$style}';
+/*
+  #{$style}
+
+  markup:
+  <#{$style}>Lorem Ipsum it dolor</#{$style}>
+  <p class="#{$style}">Lorem Ipsum it dolor</p>
+
+  sg-wrapper:
+  <div class="sg-body">
+    <sg-wrapper-content/>
+  </div>
+
+  Styleguide 1.1.#{$counter}
+*/
+
+    } @else {
+      $selector: '.#{$style}';
+/*
+  #{$style}
+
+  markup:
+  <p class="#{$style}">Lorem Ipsum it dolor</p>
+
+  sg-wrapper:
+  <div class="sg-body">
+    <sg-wrapper-content/>
+  </div>
+
+  Styleguide 1.1.#{$counter}
+*/
+    }
+    // Add Style
+    #{$selector} {
+      // Extend with a outer class
+      @if map-get($entry,extend) { @extend #{map-get($entry,extend)} }
+
+      // Set the Fontsize
+      @include fontsize(map-get($entry,font-size));
+
+      // Add the Line-Height
+      @if map-get($entry,line-height) {
+        @if map-get($entry,line-height) == d {
+          line-height: 1.25;
+
+        } @else if map-get($entry,line-height) == c {
+          @include lineheight((map-get($entry,font-size) * 1.24 ));
+
+        } @else {
+          @include lineheight(map-get($entry,line-height));
+        }
+      }
+
+      // Add a Bottom Margin
+      @if map-get($entry,margin-bottom) {
+        @include marginbottom(map-get($entry,margin-bottom));
+      }
+
+      // Include Font-Weight
+      @if map-get($entry,font-weight) {
+        font-weight: map-get($entry,font-weight);
+      }
+    }
+  }
+}

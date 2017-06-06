@@ -1,0 +1,57 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+/// Method for Text Replacement
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include cleartext();
+///   }
+///   .box-2 {
+///     @include cleartext();
+///   }
+///   @include break(4) {
+///     .box-3 {
+///       @include cleartext(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1, .box-2 {
+///     background-color: transparent;
+///     border: 0;
+///     color: transparent;
+///     font: 0/0 a;
+///     text-shadow: none;
+///   }
+///   @media screen and (min-width: 768px) {
+///     .box-3 {
+///       background-color: transparent;
+///       border: 0;
+///       color: transparent;
+///       font: 0/0 a;
+///       text-shadow: none;
+///     }
+///   }
+@mixin cleartext($extend: true) {
+  @if $extend {
+    @extend %cleartext;
+
+  } @else {
+    background-color: transparent;
+    border: 0;
+    color: transparent;
+    font: 0/0 a;
+    text-shadow: none;
+  }
+}
+
+// Placeholder Class
+%cleartext {
+  @include cleartext(false);
+}

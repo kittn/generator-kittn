@@ -1,0 +1,72 @@
+// ===================================================
+// Size
+// ===================================================
+
+/// For include Element Dimensions in Width, Height and Line-Height.
+/// When '$size' have only one Value will height and width the same (square)
+///
+/// @group core - size
+///
+/// @param  {list}   $size               - Width and/or Height
+/// @param  {bool}   $lineheight [false] - Line-Height can also added. Either it use the 'size' Value or a Number
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include size(40);
+///   }
+///   .box-2 {
+///     @include size(200 3rem);
+///   }
+///   .box-3 {
+///     @include size(50 20, 20);
+///   }
+///
+/// @example css - css
+///   .box-1 {
+///     width: 40px;
+///     height: 40px;
+///   }
+///   .box-2 {
+///     width: 200px;
+///     height: 3rem;
+///   }
+///   .box-3 {
+///     width: 50px;
+///     height: 20px;
+///     line-height: 20px;
+///   }
+@mixin size($size, $lineheight: false) {
+  @if length($size) <= 2 {
+    @if length($size) == 2 {
+      width: if(unitless(nth($size,1)),nth($size,1) + 0px, nth($size,1));
+      height: if(unitless(nth($size,2)),nth($size,2) + 0px, nth($size,2));
+
+      // Add Line-height
+      @if $lineheight {
+        @if is-number($lineheight) {
+          line-height: if(unitless($lineheight), $lineheight + 0px, $lineheight);
+
+        } @else {
+          line-height: if(unitless(nth($size,2)),nth($size,2) + 0px, nth($size,2));
+        }
+      }
+    }
+
+    @if length($size) == 1 {
+      width: if(unitless($size),$size + 0px, $size);
+      height: if(unitless($size),$size + 0px, $size);
+
+      @if $lineheight {
+        @if is-number($lineheight) {
+          line-height: if(unitless($lineheight), $lineheight + 0px, $lineheight);
+
+        } @else {
+          line-height: if(unitless($size),$size + 0px, $size);
+        }
+      }
+    }
+
+  } @else {
+    @warn 'Too many Size Values. Maximum two values';
+  }
+}

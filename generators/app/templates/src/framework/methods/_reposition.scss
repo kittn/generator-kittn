@@ -1,0 +1,209 @@
+// ===================================================
+// Reposition
+// ===================================================
+
+/// Transform named Positions to number
+///
+/// @group methods - reposition
+///
+/// @access private
+///
+/// @param  {string} $pos - Position Value. (left, center, right, top, middle, bottom, number, bool)
+/// @param  {string} $axis - The Position Axis. (vert, horz)
+@function _position-translate($pos, $axis) {
+  $result: null;
+
+  @if is-number($pos) {
+    $result: clamp(strip-units($pos), 0, 100);
+
+  // When a Keywords are used
+  } @else {
+    @if $axis == vert {
+      @if $pos == top { $result: 0; }
+      @if $pos == middle { $result: 50; }
+      @if $pos == bottom { $result: 100; }
+    } @else {
+      @if $pos == left { $result: 0; }
+      @if $pos == center { $result: 50; }
+      @if $pos == right { $result: 100; }
+    }
+  }
+
+  @return $result;
+}
+
+/// Move the Pivot Point from a Element, based on 2D CSS Transform
+///
+/// @group methods - reposition
+///
+/// @param  {string} $vert [middle] - Vertical Position from the Pivot Point. (middle, top, bottom, number, bool)
+/// @param  {string} $horz [false] - Horizontal Position from the Pivot Point. (false, left, center, right, number, bool)
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include pivot();
+///   }
+///   .box-2 {
+///     @include pivot($horz: center);
+///   }
+///
+/// @example css - css
+///   .box-1 {
+///     -webkit-transform: translateY(-50%);
+///     -ms-transform: translateY(-50%);
+///     transform: translateY(-50%);
+///   }
+///   .box-2 {
+///     -webkit-transform: translate(-50%, -50%);
+///     -ms-transform: translate(-50%, -50%);
+///     transform: translate(-50%, -50%);
+///   }
+@mixin pivot($vert: middle, $horz: false) {
+  $v: null;
+  $h: null;
+
+  // If Vert is active
+  @if $vert { $v: _position-translate($vert, vert); }
+
+  // If Horz is active
+  @if $horz { $h: _position-translate($horz, horz); }
+
+  // Set the Pivot Point
+  @if $v and $h {
+    transform: translate((0 - $h + 0%), (0 - $v + 0%));
+
+  } @else {
+    @if $v { transform: translateY(0 - $v + 0%); }
+
+    @if $h { transform: translateX(0 - $h + 0%); }
+  }
+}
+
+/// Move an Element
+///
+/// @param {Number} $vert [50] - Vertical Position
+/// @param {Number} $horz [false] - Horizontal Position
+/// @param {string} $type [absolute] - Position Type (absolute, fixed)
+///
+/// @group methods - reposition
+///
+/// @example scss - scss
+///   .box {
+///     @include slide();
+///   }
+///
+/// @example css - css
+///   .box {
+///     position: absolute;
+///     top: 50%;
+///   }
+@mixin slide($vert: 50, $horz: false, $type: absolute) {
+
+  @if $vert or $horz { position: $type; }
+
+  // If Vert is Active
+  @if $vert { top: _position-translate($vert, vert) + 0%; }
+
+  // If Horz is active
+  @if $horz { left: _position-translate($horz, horz) + 0%; }
+}
+
+/// Center a absolute positioned Element in the middle
+///
+/// @group methods - reposition
+///
+/// @require {mixin} slide
+/// @require {mixin} pivot
+///
+/// @example scss - scss
+///   .box {
+///     @include pivot-center();
+///   }
+///
+/// @example css - css
+///   .box {
+///     position: absolute;
+///     top: 50%;
+///     left: 50%;
+///     -webkit-transform: translate(-50%, -50%);
+///     -ms-transform: translate(-50%, -50%);
+///     transform: translate(-50%, -50%);
+///   }
+@mixin pivot-center {
+  @include slide(50,50);
+  @include pivot(50,50);
+}
+
+/// Middle Elements with Pivot
+///
+/// @group methods - reposition
+///
+/// @require {mixin} slide
+/// @require {mixin} pivot
+///
+/// @example scss - scss
+///   .box {
+///     @include pivot-middle();
+///   }
+///
+/// @example css - css
+///   .box {
+///     position: absolute;
+///     top: 50%;
+///     -webkit-transform: translateY(-50%);
+///     -ms-transform: translateY(-50%);
+///     transform: translateY(-50%);
+///   }
+@mixin pivot-middle {
+  @include slide();
+  @include pivot();
+}
+
+/// Moving an absolute position element in the Center - optional in the Middle (with Height)
+///
+/// @group methods - reposition
+///
+/// @param  {list}   $dimension - Dimensions from the Element (Width and the Height)
+///
+/// @example scss - scss
+///   .box {
+///     @include absolute-middle(200 300);
+///   }
+///
+/// @example css - css
+///   .box {
+///     height: 300px;
+///     width: 200px;
+///     position: absolute;
+///     left: 50%;
+///     top: 50%;
+///     margin-top: -150px;
+///     margin-left: -100px;
+///   }
+@mixin absolute-middle($dimension: 0 0) {
+  $width  : 0 !default;
+  $height : 0 !default;
+
+  // Setup the Sizes
+  @if length($dimension) == 2 {
+    $width: if(unitless(nth($dimension,1)),nth($dimension,1) + 0px, nth($dimension,1));
+    $height: if(unitless(nth($dimension,2)),nth($dimension,2) + 0px, nth($dimension,2));
+
+  } @else {
+    $width: if(unitless($dimension),$dimension + 0px, $dimension);
+  }
+
+  // Build the Style
+  @if length($dimension) == 2 { height: $height }
+
+  width: $width;
+  position: absolute;
+  left: 50%;
+
+  @if length($dimension) == 2 {
+    top: 50%;
+    margin-top: 0 - ($height / 2);
+  }
+
+  margin-left: 0 - ($width / 2);
+}

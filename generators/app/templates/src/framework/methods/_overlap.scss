@@ -1,0 +1,31 @@
+// ===================================================
+// Overlap
+// ===================================================
+
+/// Overlaps a Element over the Side Padding
+///
+/// @group methods - overlap
+///
+/// @param  {list}   $size - Value to be overlapped on the left and right side. You can define two sides with one value, or left and right selective
+///
+/// @example scss - scss
+///   .overlap {
+///     @include overlap(20);
+///   }
+///
+/// @example css - css
+///   .overlap {
+///     margin-left: -20px;
+///     margin-right: -20px;
+///   }
+@mixin overlap($size) {
+  @if length($size) == 1 {
+    margin-left: 0 - if(unitless($size), $size + 0px, $size);
+    margin-right: 0 - if(unitless($size), $size + 0px, $size);
+  }
+
+  @if length($size) == 2 {
+    margin-left: 0 - if(unitless(nth($size,1)), nth($size,1) + 0px, nth($size,1));
+    margin-right: 0 - if(unitless(nth($size,2)), nth($size,2) + 0px, nth($size,2));
+  }
+}

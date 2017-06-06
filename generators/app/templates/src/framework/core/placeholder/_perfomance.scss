@@ -1,0 +1,45 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+/// Activate the Hardware Acceleration on Webkit Browsers
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include performance();
+///   }
+///   .box-2 {
+///     @include performance();
+///   }
+///   .box-3 {
+///     @include break(4) {
+///       @include performance(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1, .box-2 {
+///     transform: translate3d(0, 0, 0);
+///   }
+///   @media screen and (min-width: 768px) {
+///     .box-3 {
+///       transform: translate3d(0, 0, 0);
+///     }
+///   }
+@mixin performance($extend: true) {
+  @if $extend {
+    @extend %performance;
+
+  } @else {
+    transform: translate3d(0,0,0);
+  }
+}
+
+// Placeholder Class
+%performance {
+  @include performance(false);
+}

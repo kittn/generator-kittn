@@ -1,0 +1,111 @@
+// ===================================================
+// Bar Elements
+// ===================================================
+
+/// Style for Bar Elements
+///
+/// @group methods - bar
+///
+/// @param  {string} $variant  - Position Variant (f = fixed, a = absolute)
+/// @param  {string} $position - Position (t = Top, b = Bottom, l = Left, r = Right)
+/// @param  {number} $z-index  - Z-Index [9999]
+///
+/// @example scss - scss
+///   .header {
+///     @include bar($variant: f, $position: t);
+///   }
+///
+/// @example css - css
+///   .header {
+///     position: fixed;
+///     z-index: 9999;
+///     top: 0;
+///     left: 0;
+///     width: 100%;
+///   }
+@mixin bar($variant, $position, $z: 9999) {
+
+  // Set the position variant
+  @if $variant == f {
+    position: fixed;
+  } @else {
+    position: absolute;
+  }
+
+  // Set the z-index
+  z-index: $z;
+
+  // Set Position and Dimension
+  @if $position == l {
+    left: 0;
+    top: 0;
+    height: 100%;
+
+  } @else if $position == r {
+    right: 0;
+    top: 0;
+    height: 100%;
+
+  } @else if $position == b {
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+  } @else {
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+/// Set for a Barelement at the top from the Viewport or Document
+///
+/// @group methods - bar
+///
+/// @require {mixin} bar
+///
+/// @param  {number} $z           - Z-Index
+/// @param  {string} $variant [f] - Position Variant (f = fixed, a = absolute)
+///
+/// @example scss - scss
+///   .header {
+///     @include bar-top($z: 10, $variant: a);
+///   }
+///
+/// @example css - css
+///   .header {
+///     position: absolute;
+///     z-index: 10;
+///     top: 0;
+///     left: 0;
+///     width: 100%;
+///   }
+@mixin bar-top($z: 9999, $variant: f) {
+  @include bar($variant, t, $z);
+}
+
+/// Set for a Barelement at the bottom from the Viewport or Document
+///
+/// @group methods - bar
+///
+/// @require {mixin} bar
+///
+/// @param  {number} $z           - Z-Index
+/// @param  {string} $variant [f] - Position Variant (f = fixed, a = absolute)
+///
+/// @example scss - scss
+///   .footer {
+///     @include bar-bottom();
+///   }
+///
+/// @example css - css
+///   .footer {
+///     position: fixed;
+///     z-index: 9999;
+///     bottom: 0;
+///     left: 0;
+///     width: 100%;
+///   }
+@mixin bar-bottom($z: 9999, $variant: f) {
+  @include bar($variant, b, $z);
+}

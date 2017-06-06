@@ -1,0 +1,56 @@
+// ===================================================
+// Scale
+// ===================================================
+
+/// Scale a container with Aspect Ratio
+///
+/// @group methods - scale
+///
+/// @param  {list}   $dimension - The actual size from the container
+/// @param  {number} $scale [1] - Scale Factor
+/// @param  {list}   $resize    - Calculate the nes size ($scale must 'false'). E.g. w 200 => new width with 200px (w, h, bool)
+///
+/// @example scss - scss
+///   .box {
+///     @include scale(20 40, .5);
+///   }
+///
+/// @example css - css
+///   .box {
+///     width: 10px;
+///     height: 20px;
+///   }
+@mixin scale($dimension, $scale: 1, $resize: false) {
+  $dim1: null;
+  $dim2: null;
+
+  // Get the Dimension Values from the List
+  @if length($dimension) == 2 {
+    $dim1: nth($dimension,1);
+    $dim2: nth($dimension,2);
+  } @else {
+    $dim1: $dimension;
+    $dim2: $dimension;
+  }
+
+  // Add a unix when not defined
+  @if unitless($dim1) { $dim1: $dim1 + 0px;}
+  @if unitless($dim2) { $dim2: $dim2 + 0px; }
+
+  // Simple recalculate the Dimension with a Factor
+  @if $scale {
+    width: $dim1 * $scale;
+    height: $dim2 * $scale;
+
+  // Resize the Container with the Aspect Ratio
+  } @else {
+    @if nth($resize,1) == w {
+      width: nth($resize,2) + 0px;
+      height: ($dim2 / $dim1) * nth($resize,2) + 0px;
+
+    } @else if nth($resize,1) == h {
+      height: nth($resize,2) + 0px;
+      width: $dim1 / $dim2 * nth($resize,2) + 0px;
+    }
+  }
+}

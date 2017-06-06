@@ -1,0 +1,136 @@
+// ===================================================
+// Position
+// ===================================================
+
+/// Shorthand for Relative positioning. For Zero Position (0) set the value to 'z'
+/// - One value = top
+/// - Two values = top left
+/// - Four values = top right bottom left
+///
+/// @group methods - positioning
+///
+/// @require {mixin} pos
+///
+/// @param {list}   $pos [0] - Position Values
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include relative(20 50);
+///   }
+///   .box-2 {
+///     @include relative(z z 100 50);
+///   }
+///
+/// @example css - css
+///   .box-1 {
+///     position: relative;
+///     top: 20px;
+///     left: 50px;
+///   }
+///   .box-2 {
+///     position: relative;
+///     top: 0;
+///     right: 0;
+///     bottom: 100px;
+///     left: 50px;
+///   }
+@mixin relative($pos: 0) {
+  position: relative;
+  @include pos($pos);
+}
+
+/// Shorthand for Absolute positioning. For Zero Position (0) set the value to 'z'
+/// - One value = top
+/// - Two values = top left
+/// - Four values = top right bottom left
+///
+/// @group methods - positioning
+///
+/// @require {mixin} pos
+///
+/// @param {list}   $pos [0] - Position Values
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include absolute(30);
+///   }
+///   .box-2 {
+///     @include absolute(z z z z);
+///   }
+///
+/// @example css - css
+///   .box-1 {
+///     position: absolute;
+///     top: 30px;
+///   }
+///   .box-2 {
+///     position: absolute;
+///     top: 0;
+///     right: 0;
+///     bottom: 0;
+///     left: 0;
+///   }
+@mixin absolute($pos: 0) {
+  position: absolute;
+  @include pos($pos);
+}
+
+/// Shorthand for Fixed positioning. For Zero Position (0) set the value to 'z'
+/// - One value = top
+/// - Two values = top left
+/// - Four values = top right bottom left
+///
+/// @group methods - positioning
+///
+/// @require {mixin} pos
+///
+/// @param {list}   $pos [0] - Position Values
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include fixed(0 10);
+///   }
+///   .box-2 {
+///     @include fixed(0 0 10 10);
+///   }
+///
+/// @example css - css
+///   .box-1 {
+///     position: fixed;
+///     left: 10px;
+///   }
+///   .box-2 {
+///     position: fixed;
+///     bottom: 10px;
+///     left: 10px;
+///   }
+@mixin fixed($pos: 0) {
+  position: fixed;
+  @include pos($pos);
+}
+
+/// Shorthand for Static positioning reset all position values
+///
+/// @group methods - positioning
+///
+/// @example scss - scss
+///   .box {
+///     @include static();
+///   }
+///
+/// @example css - css
+///   .box {
+///     position: static;
+///     left: inherit;
+///     right: inherit;
+///     top: inherit;
+///     bottom: inherit;
+///   }
+@mixin static {
+  position: static;
+  left: inherit;
+  right: inherit;
+  top: inherit;
+  bottom: inherit;
+}
+

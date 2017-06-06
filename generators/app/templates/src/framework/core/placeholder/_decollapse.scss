@@ -1,0 +1,48 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+/// Helper to prevent collapsing Margins
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include decollapse();
+///   }
+///   .box-2 {
+///     @include decollapse();
+///   }
+///   .box-3 {
+///     @include break(4) {
+///       @include decollapse(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1, .box-2 {
+///     padding-top: 1px;
+///     margin-top: 1px;
+///   }
+///   @media screen and (min-width: 768px) {
+///     .box-3 {
+///       padding-top: 1px;
+///       margin-top: 1px;
+///     }
+///   }
+@mixin decollapse($extend: true) {
+  @if $extend {
+    @extend %decollapse;
+
+  } @else {
+    padding-top: 1px;
+    margin-top: 1px;
+  }
+}
+
+// Placeholder Class
+%decollapse {
+  @include decollapse(false);
+}

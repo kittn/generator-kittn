@@ -1,0 +1,170 @@
+// ===================================================
+// BEM Helper
+// ===================================================
+
+/// Build a BEM Element
+///
+/// @group core - bem
+///
+/// @param  {string} $name - Element name
+///
+/// @content
+///
+/// @example scss - scss
+///   .test {
+///     height: 200px;
+///     @include element(mod) {
+///       color: red;
+///     }
+///   }
+///
+/// @example css - css
+///   .test {
+///     height: 200px;
+///   }
+///   .test__mod {
+///     color: red;
+///   }
+@mixin element($name) {
+  @at-root {
+    &#{map-get($kittn-bem, element)}#{$name} {
+      @content;
+    }
+  }
+}
+
+/// Build a BEM Modifier. Add a Modification Class
+/// (independent form parent style)
+///
+/// @group core - bem
+///
+/// @param  {string} $name - Modifier name
+///
+/// @content
+///
+/// @example scss - scss
+///   .test {
+///     height: 200px;
+///     @include modifier(mod) {
+///       color: red;
+///     }
+///   }
+///
+/// @example css - css
+///   .test {
+///     height: 200px;
+///   }
+///   .test--mod {
+///     color: red;
+///   }
+@mixin modifier($name, $extend: false) {
+  @at-root {
+    &#{map-get($kittn-bem, modifier)}#{$name} {
+      @content;
+    }
+  }
+}
+
+/// Build a BEM Instance. Use the parent style and combine it with
+/// the instance class.
+///
+/// @group core - bem
+///
+/// @param  {string} $name - Instance name
+///
+/// @content
+///
+/// @example scss - scss
+///   .test {
+///     display: inline-block;
+///     @include instance(instance) {
+///       height: 200px;
+///     }
+///   }
+///
+/// @example css - css
+///   .test, .test---instance {
+///     display: inline-block;
+///   }
+///   .test---instance {
+///     height: 200px;
+///   }
+@mixin instance($name) {
+  // Get the Parent Selector name
+  $e: &;
+
+  @at-root {
+    &#{map-get($kittn-bem, instance)}#{$name} {
+      // Extend with the Parent Element
+      @extend #{$e};
+      @content;
+    }
+  }
+}
+
+/// Setup the Root Element for multiple chained Modifiers.
+///
+/// @group core - bem
+///
+/// @content
+///
+/// @example scss - scss
+///   .test {
+///     @include chainroot {
+///      content: hello;
+///     }
+///   }
+///
+/// @example css - css
+///   .test, [class^="test"] {
+///     content: hello;
+///   }
+@mixin chainroot {
+  // Define the Parent Class - for Nested Chains
+  $r: &;
+  $root: str-slice('#{$r}',2,str-length('#{$r}'));
+
+  @at-root {
+    &, [class^="#{$root}"] {
+      @content;
+    }
+  }
+}
+
+/// Build the multiple chain modifier
+///
+/// @group core - bem
+///
+/// @param  {string} $name - Modifier names
+///
+/// @content
+///
+/// @example scss - scss
+///   .main {
+///     @include chain(smaller) {
+///       width: 300px;
+///     }
+///
+///     @include chain(fill) {
+///       background-color: red;
+///     }
+///   }
+///
+/// @example css - css
+///   [class^="main"][class*="--smaller"] {
+///     width: 300px;
+///   }
+///
+///   [class^="main"][class*="--fill"] {
+///     background-color: red;
+///   }
+@mixin chain($name) {
+  $p: &;
+  $parent: str-slice('#{$p}',2,str-length('#{$p}'));
+
+  @at-root {
+    [class^="#{$parent}"][class*="#{map-get($kittn-bem, modifier)}#{$name}"] {
+      @content;
+    }
+  }
+}

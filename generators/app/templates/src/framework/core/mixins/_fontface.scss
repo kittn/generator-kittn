@@ -1,0 +1,76 @@
+// ===================================================
+// Fontface Generator
+// ===================================================
+
+/// Generate the Font-Face
+///
+/// @group core - fluidtype
+///
+/// @param  {string} $fontname          - Fontname
+/// @param  {map}    $o                 - Setup args
+/// @param  {string} $o.name [false]    - Desired filename, otherwise use the Fontname
+/// @param  {string} $o.weight [normal] - Fontweight
+/// @param  {string} $o.style [normal]  - Fontstyle
+/// @param  {bool}   $o.short [true]    - Use the Short Fontface Declaration
+///
+/// @example scss - scss
+///   @include fontface(myArial,(
+///     filename: 'arial'
+///   ));
+///   @include fontface(myVerdana, (
+///     short: false
+///   ));
+///
+/// @example css - css
+///   @font-face {
+///     font-family: myArial;
+///     src: url("../fonts/arial.woff2") format("woff2"),
+///          url("../fonts/arial.woff") format("woff");
+///     font-weight: normal;
+///     font-style: normal;
+///   }
+///
+///   @font-face {
+///     font-family: myVerdana;
+///     src: url("../fonts/myVerdana.eot");
+///     src: url("../fonts/myVerdana.eot?#iefix") format("eot"),
+///          url("../fonts/myVerdana.woff") format("woff"),
+///          url("../fonts/myVerdana.ttf") format("truetype"),
+///          url("../fonts/myVerdana.svg#myVerdana") format("svg");
+///     font-weight: normal;
+///     font-style: normal;
+///   }
+@mixin fontface($fontname, $o: ()) {
+
+  // Mixin Default Vars
+  $o: map-merge((
+    filename: false,
+    weight: normal,
+    style: normal,
+    short: true
+  ),$o);
+
+  // If 'filename' is false use the fontname
+  $filename: if(map-get($o, filename), map-get($o, filename), $fontname);
+
+  // Two different calls for a Fontface
+  @if map-get($o, short) {
+    @font-face {
+      font-family: $fontname;
+      src: url('#{map-get($kittn-directories, fonts)}#{$filename}.woff2') format('woff2'),
+           url('#{map-get($kittn-directories, fonts)}#{$filename}.woff') format('woff');
+      font-weight : map-get($o, weight);
+      font-style  : map-get($o, style); }
+
+  } @else {
+    @font-face {
+      font-family: $fontname;
+      src: url('#{map-get($kittn-directories, fonts)}#{$filename}.eot');
+      src: url('#{map-get($kittn-directories, fonts)}#{$filename}.eot?#iefix') format('eot'),
+           url('#{map-get($kittn-directories, fonts)}#{$filename}.woff') format('woff'),
+           url('#{map-get($kittn-directories, fonts)}#{$filename}.ttf') format('truetype'),
+           url('#{map-get($kittn-directories, fonts)}#{$filename}.svg##{$fontname}') format('svg');
+      font-weight : map-get($o, weight);
+      font-style  : map-get($o, style); }
+  }
+}

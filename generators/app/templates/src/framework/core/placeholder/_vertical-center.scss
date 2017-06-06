@@ -1,0 +1,46 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+/// Vertical Center Elements
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include vertical-center();
+///   }
+///   .box-2 {
+///     @include vertical-center();
+///   }
+///   .box-3 {
+///     @include break(4) {
+///       @include vertical-center(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1, .box-2 {
+///     display: table-cell;
+///     vertical-align: middle; }
+///
+///   @media screen and (min-width: 768px) {
+///     .box-3 {
+///       display: table-cell;
+///       vertical-align: middle; } }
+@mixin vertical-center($extend: true) {
+  @if $extend {
+    @extend %vertical-center;
+
+  } @else {
+    display: table-cell;
+    vertical-align: middle;
+  }
+}
+
+// Placeholder Class
+%vertical-center {
+  @include vertical-center(false);
+}

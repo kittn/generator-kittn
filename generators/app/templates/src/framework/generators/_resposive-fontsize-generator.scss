@@ -1,0 +1,40 @@
+// ===================================================
+// Responsive Fontsize Generator
+// ===================================================
+
+/// Generate Responsive Fonts, based on the Breakpoint Map
+///
+/// @group generators
+///
+/// @param  {number} $base - The Base Font Size in percent
+@mixin responsive-fontsize($base) {
+  $list: ();
+
+  // Move Values in a list
+  @each $name, $entry in $kittn-breakpoint-map {
+    @if map-get($entry, fontsize) != false {
+      $list: append($list, (map-get($entry,size) map-get($entry, fontsize)), comma);
+    }
+  }
+
+  // Delete any Duplicates
+  $list: sl-remove-duplicates($list);
+
+  // Sort the List
+  @if map-get($kittn-activate, mobile-first) != true { $list: sl-reverse($list); }
+
+  font-size: strip-units($base) + 0%;
+  // Build the Stepped Width
+  @for $i from 1 through length($list) {
+    $l: nth($list,$i);
+    $size: nth($l,1);
+
+    @if map-get($kittn-typo, mqunit) == em {
+      $size: em($size);
+    }
+
+    @media screen and (if(map-get($kittn-activate, mobile-first),min-width,max-width): $size) {
+      font-size: nth($l,2) + 0%;
+    }
+  }
+}

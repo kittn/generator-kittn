@@ -1,0 +1,79 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+/// Simple Button Element that build a default style for every Button Element
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include simple-button();
+///   }
+///   .box-2 {
+///     @include simple-button();
+///   }
+///   .box-3 {
+///     @include break(4) {
+///       @include simple-button(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1, .box-2 {
+///     border: 0;
+///     padding: 0;
+///     margin: 0;
+///     border-radius: 0;
+///     text-align: center;
+///     cursor: pointer;
+///     display: inline-block;
+///     -webkit-appearance: none; }
+///   .box-1::-moz-focus-inner, .box-2::-moz-focus-inner {
+///     border: 0; }
+///   .box-1:hover, .box-2:hover {
+///     text-decoration: none; }
+///
+///   @media screen and (min-width: 768px) {
+///     .box-3 {
+///       border: 0;
+///       padding: 0;
+///       margin: 0;
+///       border-radius: 0;
+///       text-align: center;
+///       cursor: pointer;
+///       display: inline-block;
+///       -webkit-appearance: none; }
+///     .box-3::-moz-focus-inner {
+///       border: 0; }
+///     .box-3:hover {
+///       text-decoration: none; } }
+@mixin simple-button($extend: true) {
+  @if $extend {
+    @extend %simple-button;
+
+  } @else {
+    border: 0;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+    -webkit-appearance: none;
+
+    &::-moz-focus-inner {
+      border: 0;
+    }
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+%simple-button {
+  @include simple-button(false);
+}

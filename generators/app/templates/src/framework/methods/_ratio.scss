@@ -1,0 +1,120 @@
+// ===================================================
+// Ratio Calculator
+// ===================================================
+
+/// A Floating Grid System
+///
+/// @group methods - ratio
+///
+/// @param  {list}   $ratio [1]        - Ratio between width and height
+/// @param  {string} $selector [false] - Use the following child element or a named selector
+///
+/// @example scss - scss
+///   .box {
+///     @include ratio(200 400);
+///   }
+///
+/// @example css - css
+///   .box {
+///     overflow: hidden;
+///     position: relative;
+///   }
+///   .box:before {
+///     content: '';
+///     display: block;
+///     height: 0;
+///     padding-top: 200%;
+///   }
+///   .box > * {
+///     position: absolute;
+///     left: 0;
+///     top: 0;
+///     height: 100%;
+///     width: 100%;
+///   }
+@mixin ratio($ratio: 1, $selector: false) {
+  $sel: null;
+  $rat1: null;
+  $rat2: null;
+
+  @if length($ratio) == 2 {
+    $rat1: strip-units(nth($ratio,1));
+    $rat2: strip-units(nth($ratio,2));
+
+  } @else {
+    $rat1: strip-units($ratio);
+    $rat2: strip-units($ratio);
+  }
+
+  overflow: hidden;
+  position: relative;
+
+  &:before {
+    content: '';
+    display: block;
+    height: 0;
+    padding-top: ($rat2 / $rat1) * 100%;
+  }
+
+  @if $selector != false {
+    $sel: '& > #{$selector}';
+  } @else {
+    $sel: '& > *';
+  }
+
+  #{$sel} {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    @content;
+  }
+}
+
+/// Reset any ratio
+///
+/// @group methods - ratio
+///
+/// @param  {string} $selector [false] - Use the following child element or a named selector
+///
+/// @example scss - scss
+///   .box {
+///     @include ratio-reset();
+///   }
+///
+/// @example css - css
+///   .box:before {
+///     height: auto;
+///     padding-top: 0;
+///   }
+///   .box > * {
+///     position: inherit;
+///     left: inherit;
+///     top: inherit;
+///     height: inherit;
+///     width: inherit;
+///   }
+@mixin ratio-reset($selector: false) {
+  $sel: null;
+
+  &:before {
+    height: auto;
+    padding-top: 0;
+  }
+
+  @if $selector != false {
+    $sel: '& > #{$selector}';
+  } @else {
+    $sel: '& > *';
+  }
+
+  #{$sel} {
+    position: inherit;
+    left: inherit;
+    top: inherit;
+    height: inherit;
+    width: inherit;
+    @content;
+  }
+}

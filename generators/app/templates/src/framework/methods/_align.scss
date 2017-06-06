@@ -1,0 +1,98 @@
+// ===================================================
+// Alignment
+// ===================================================
+
+/// Mixin to Insert Height and Line-Height on a Simple Way
+///
+/// @group methods - align
+///
+/// @param  {number} $height - Height
+/// @param  {number} $factor [1] - Multiplier
+///
+/// @example scss - scss
+///   .box {
+///     @include align-height(20);
+///   }
+///
+/// @example css - css
+///   .box {
+///     height: 20px;
+///     line-height: 20px;
+///   }
+@mixin align-height($height, $factor: 1) {
+  height: if(unitless($height), $height + 0px, $height);
+  line-height: if(unitless($height), $height + 0px, $height) * strip-units($factor);
+}
+
+/// Mixin to Insert Height and Line-Height on a Simple Way
+///
+/// @group methods - align
+///
+/// @param  {number} $size   - Fontsize
+/// @param  {number} $factor [1.2] - Multiplier
+///
+/// @example scss - scss
+///   .box {
+///     @include align-fontsize(20);
+///   }
+///
+/// @example css - css
+///   .box {
+///     font-size: 20px;
+///     line-height: 24px;
+///   }
+@mixin align-fontsize($size, $factor: 1.2) {
+  font-size: if(unitless($size), $size + 0px, $size);
+  line-height: if(unitless($size), $size + 0px, $size) * strip-units($factor);
+}
+
+/// Center and Middle a Element in a box
+///
+/// @group methods - align
+///
+/// @require {mixin} size
+///
+/// @param  {number} $size - Width and/or Height
+///
+/// @example scss - scss
+///   .box {
+///     @include center(300);
+///   }
+///
+/// @example css - css
+///   .box {
+///     width: 300px;
+///     height: 300px;
+///     line-height: 300px;
+///     text-align: center;
+///   }
+@mixin center($size) {
+  @include size($size, $size);
+  text-align: center;
+}
+
+/// Center Circle
+///
+/// @group methods - align
+///
+/// @require {mixin} center
+///
+/// @param  {value}  $size - Size of the Circle
+///
+/// @example scss - scss
+///   .box {
+///     @include center-circle(300);
+///   }
+///
+/// @example css - css
+///   .box {
+///     width: 300px;
+///     height: 300px;
+///     line-height: 300px;
+///     text-align: center;
+///     border-radius: 300px;
+///   }
+@mixin center-circle($size) {
+  @include center($size);
+  border-radius: if(unitless($size), $size + 0px, $size);
+}

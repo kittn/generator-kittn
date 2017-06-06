@@ -1,0 +1,50 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+/// Compatible Mixin for Word-Wrap
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include word-wrap();
+///   }
+///   .box-2 {
+///     @include word-wrap();
+///   }
+///   .box-3 {
+///     @include break(4) {
+///       @include word-wrap(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1, .box-2 {
+///     -ms-word-break: break-all;
+///     word-break: break-all;
+///     word-break: break-word; }
+///
+///   @media screen and (min-width: 768px) {
+///     .box-3 {
+///       -ms-word-break: break-all;
+///       word-break: break-all;
+///       word-break: break-word; } }
+@mixin word-wrap($extend: true) {
+  @if $extend {
+    @extend %word-wrap;
+
+  } @else {
+    hyphens: auto;
+    -ms-word-break: break-all;
+    word-break: break-all;
+    word-break: break-word;
+  }
+}
+
+// Placeholder Class
+%word-wrap {
+  @include word-wrap(false);
+}

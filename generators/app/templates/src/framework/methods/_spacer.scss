@@ -1,0 +1,304 @@
+// ===================================================
+// Spacer
+// ===================================================
+
+// Spacer Option Map
+$spacer-options: (
+  w: width,
+  h: height,
+  lh: line-height,
+  pt: padding-top,
+  pb: padding-bottom,
+  pl: padding-left,
+  pr: padding-right,
+  mt: margin-top,
+  mb: margin-bottom,
+  ml: margin-left,
+  mr: margin-right,
+  mv: margin-vertical,
+  mh: margin-horizontal,
+  pv: padding-vertical,
+  ph: padding-horizontal
+) !global;
+
+/// Mixin for build easy margin and paddings
+///
+/// @group methods - spacer
+///
+/// @access private
+///
+/// @param  {map}    $o                   - Setup Vars
+/// @param  {list}   $o.value [false]     - Generate all four sides, with different length of values.
+/// @param  {string} $o.type [padding]    - Margin or Padding Type
+/// @param  {bool}   $o.important [false] - For include a '!important'
+///
+/// @example scss - scss
+///   .box {
+///     @include _margin-padding((
+///       value: 10 20em
+///     ));
+///   }
+///
+/// @example css - css
+///   .box {
+///     padding-top: 10px;
+///     padding-right: 20em;
+///     padding-bottom: 10px;
+///     padding-left: 20em;
+///   }
+@mixin _margin-padding($o) {
+  // Setup Default var
+  $o: map-merge((
+    value: false,
+    type: padding,
+    important: false
+  ),$o);
+
+  $dir: top right bottom left;
+  $v: map-get($o,value);
+  $l: null;
+  $c: null;
+  $cl: null;
+
+  // Check type
+  @if map-get($o,type) == padding OR map-get($o,type) == margin {
+
+    // Check if Value is filled
+    @if map-get($o, value) != false {
+
+      // Check Length
+      @if length(map-get($o, value)) > 4 {
+        @warn 'Too many Values, please reduce to max 4.';
+
+      } @else {
+
+        $l: length($v);
+
+        // Set the Sides
+        @if $l == 4 {
+          $cl: 1 2 3 4;
+
+        } @else if $l == 3 {
+          $cl: 1 2 1 2;
+
+        } @else if $l == 2 {
+          $cl: 1 2 1 2;
+
+        } @else {
+          $cl: 1 1 1 1;
+        }
+
+        // Recalculate
+        @for $i from 1 through 4 {
+          $c: nth($cl,$i);
+
+          #{map-get($o,type)}-#{nth($dir,$i)}: if(unitless(nth($v,$c)),nth($v,$c) + 0px, nth($v,$c)) if(map-get($o,important) == true, !important, null);
+        }
+      }
+    } @else {
+      @warn 'Please insert a value for margin or padding.';
+    }
+
+  } @else {
+    @warn 'Type "#{map-get($o,type)}" is not possible. Use "padding" or "margin".';
+  }
+}
+
+/// Generate Paddings for all four sides off a box.
+///
+/// @group methods - spacer
+///
+/// @param  {list}   $value [false]     - Generate all four sides, with different length of values.
+/// @param  {bool}   $important [false] - For include a '!important'
+///
+/// @example scss - scss
+///   .box {
+///     @include padding(10 30 4rem 5%);
+///   }
+///
+/// @example css - css
+///   .box {
+///     padding-top: 10px;
+///     padding-right: 30px;
+///     padding-bottom: 4rem;
+///     padding-left: 5%;
+///   }
+@mixin padding($value: null, $important: false) {
+  @include _margin-padding((
+    value: $value,
+    type: padding,
+    important: $important
+  ));
+}
+
+/// Generate Margins for all four sides off a box.
+///
+/// @group methods - spacer
+///
+/// @param  {list}   $value [false]     - Generate all four sides, with different length of values.
+/// @param  {bool}   $important [false] - For include a '!important'
+///
+/// @example scss - scss
+///   .box {
+///     @include margin(10 30 4rem 5%);
+///   }
+///
+/// @example css - css
+///   .box {
+///     margin-top: 10px;
+///     margin-right: 30px;
+///     margin-bottom: 4rem;
+///     margin-left: 5%;
+///   }
+@mixin margin($value: null, $important: false) {
+  @include _margin-padding((
+    value: $value,
+    type: margin,
+    important: $important
+  ));
+}
+
+/// Generate Spacing based on the Global Spacing
+///
+/// - w = width, h = height, lh = line-height
+/// - pt = padding-top, pb = padding-bottom, pl = padding-left, pr = padding-right
+/// - mt = margin-top, mb = margin-bottom, ml = margin-left, mr = margin-right
+/// - mv = margin-vertical, mh = margin-horizontal
+/// - pv = padding-vertical, ph = padding-horizontal
+///
+/// @group methods - spacer
+///
+/// @param {List}   $options                      - Spacing Type (w, h, lh, pt, pb, pl, pr, mt, mb, ml, mr, mv, mh, pv, ph)
+/// @param {Number} $lines [1]                    - Spacing Multiplicator
+/// @param {Bool}   $important [false]            - Overwrite Values with !important
+/// @param {Number} $size [$kittn-global-spacing] - Global Size Value
+///
+/// @example scss - scss
+///   .box {
+///     @include spacer(pt mb h, 2 1 10);
+///   }
+///
+/// @example css - css
+///   .box {
+///     padding-top: 40px;
+///     margin-bottom: 20px;
+///     height: 200px;
+///   }
+@mixin spacer($options, $lines: 1, $important: false, $size: $kittn-global-spacing) {
+
+  // Remove Duplicates
+  $o: sl-remove-duplicates($options);
+
+  // Set the Line Var
+  $line: null;
+
+  @for $i from 1 through length($o) {
+
+    // Move the Pointer to the List Entry
+    $option: nth($o, $i);
+
+    // When $lines have more than one Value
+    // the Pointer moves here also one step forward
+    @if length($lines) > 1 {
+      $line: nth($lines, $i);
+    } @else {
+      $line: $lines;
+    }
+
+    // Check if the Key is Available in the List
+    @if map-has-key($spacer-options,$option) {
+      @if index(margin-vertical margin-horizontal padding-vertical padding-horizontal, map-get($spacer-options,$option)) {
+
+        // Setting the Dual variable
+        $sd: strip-units($line) * if(unitless($size), $size + 0px, $size) if($important == true, !important, null);
+
+        @if map-get($spacer-options,$option) == margin-vertical {
+          margin-left: $sd;
+          margin-right: $sd;
+        }
+        @if map-get($spacer-options,$option) == margin-horizontal {
+          margin-top: $sd;
+          margin-bottom: $sd;
+        }
+        @if map-get($spacer-options,$option) == padding-vertical {
+          padding-left: $sd;
+          padding-right: $sd;
+        }
+        @if map-get($spacer-options,$option) == padding-horizontal {
+          padding-top: $sd;
+          padding-bottom: $sd;
+        }
+      } @else {
+        #{map-get($spacer-options,$option)}: strip-units($line) * if(unitless($size), $size + 0px, $size) if($important == true, !important, null);
+      }
+    } @else {
+      @warn 'The Option "#{$option}" is not available.';
+    }
+  }
+}
+
+/// Reset all spacing Spacing
+///
+/// - w = width, h = height, lh = line-height
+/// - pt = padding-top, pb = padding-bottom, pl = padding-left, pr = padding-right
+/// - mt = margin-top, mb = margin-bottom, ml = margin-left, mr = margin-right
+/// - mv = margin-vertical, mh = margin-horizontal
+/// - pv = padding-vertical, ph = padding-horizontal
+///
+/// @group methods - spacer
+///
+/// @param {List}   $options           - Spacing Type (w, h, lh, pt, pb, pl, pr, mt, mb, ml, mr, mv, mh, pv, ph)
+/// @param {Bool}   $important [false] - Overwrite Values with !important
+///
+/// @example scss - scss
+///   .box {
+///     @include spacer-reset(pt mb h);
+///   }
+///
+/// @example css - css
+///   .box {
+///     padding-top: inherit;
+///     margin-bottom: inherit;
+///     height: inherit;
+///   }
+@mixin spacer-reset($options, $important: false) {
+  // Remove Duplicates
+  $o: sl-remove-duplicates($options);
+
+  @for $i from 1 through length($o) {
+
+    // Move the Pointer to the List Entry
+    $option: nth($o, $i);
+
+    // Check if the Key is Available in the List
+    @if map-has-key($spacer-options,$option) {
+      @if index(margin-vertical margin-horizontal padding-vertical padding-horizontal, map-get($spacer-options,$option)) {
+
+        // Setting the Dual variable
+        $sd: inherit if($important == true, !important, null);
+
+        @if map-get($spacer-options,$option) == margin-vertical {
+          margin-left: $sd;
+          margin-right: $sd;
+        }
+        @if map-get($spacer-options,$option) == margin-horizontal {
+          margin-top: $sd;
+          margin-bottom: $sd;
+        }
+        @if map-get($spacer-options,$option) == padding-vertical {
+          padding-left: $sd;
+          padding-right: $sd;
+        }
+        @if map-get($spacer-options,$option) == padding-horizontal {
+          padding-top: $sd;
+          padding-bottom: $sd;
+        }
+      } @else {
+        #{map-get($spacer-options,$option)}: inherit if($important == true, !important, null);
+      }
+
+    } @else {
+      @warn 'The Option "#{$option}" is not available.';
+    }
+  }
+}

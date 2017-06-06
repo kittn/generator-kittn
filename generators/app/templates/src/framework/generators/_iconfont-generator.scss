@@ -1,0 +1,40 @@
+// ===================================================
+// Iconfont Generator
+// ===================================================
+
+/// Generate the Icon Classes
+///
+/// @group generators
+///
+/// @param  {map}    $icons [$kittn-font-icons] - Icon Font Map
+@mixin icon-generator($icons: $kittn-font-icons) {
+  // Add Counter
+  $counter: 1;
+
+/*
+  Iconfont Icons
+
+  Styleguide 1.9
+*/
+  @each $name, $icon in $icons {
+    // Move the Counter Up to count the Loop
+    $counter: $counter + 1;
+
+/*
+  Icon: #{$name}
+
+  markup:
+  <i class="#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}#{$name}"></i>
+
+  sg-wrapper:
+  <div class="sg-body">
+    <sg-wrapper-content/>
+  </div>
+
+  Styleguide 1.9.#{$counter}
+*/
+    .#{map-get($kittn-iconfont, prefix)}#{map-get($kittn-bem, modifier)}#{$name}:before {
+      content: $icon;
+    }
+  }
+}

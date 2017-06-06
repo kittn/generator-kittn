@@ -1,0 +1,71 @@
+// ===================================================
+// Placeholder Class
+// ===================================================
+
+/// Expand the Clickable Area
+///
+/// @link http://front-back.com/expand-clickable-areas-for-a-better-touch-experience
+///
+/// @param {bool} $extend [true] - Set it on false the mixin will used as regular mixin
+///
+/// @group core - placeholder
+///
+/// @example scss - scss
+///   .box-1 {
+///     @include expand-clickarea();
+///   }
+///   .box-2 {
+///     @include expand-clickarea();
+///   }
+///   .box-3 {
+///     @include break(4) {
+///       @include expand-clickarea(false);
+///     }
+///   }
+///
+/// @example css - css
+///   .box-1, .box-2 {
+///     position: relative;
+///   }
+///   .box-1:before, .box-2:before {
+///     content: '';
+///     position: absolute;
+///     top: -10px;
+///     left: -10px;
+///     bottom: -10px;
+///     right: -10px;
+///   }
+///   @media screen and (min-width: 768px) {
+///     .box-3 {
+///       position: relative;
+///     }
+///     .box-3:before {
+///       content: '';
+///       position: absolute;
+///       top: -10px;
+///       left: -10px;
+///       bottom: -10px;
+///       right: -10px;
+///     }
+///   }
+@mixin expand-clickarea($extend: true) {
+  @if $extend {
+    @extend %expand-clickarea;
+
+  } @else {
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      bottom: -10px;
+      right: -10px;
+    }
+  }
+}
+
+// Placeholder Class
+%expand-clickarea {
+  @include expand-clickarea(false);
+}

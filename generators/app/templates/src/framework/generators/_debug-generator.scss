@@ -1,0 +1,153 @@
+// ===================================================
+// Element Debugger
+// ===================================================
+
+// Generate Debug Styling
+@if map-get($kittn-activate, debugging) == true {
+
+  $deb-color-error: #f00c00;
+  $deb-color-double-check: #ffff00;
+  $deb-color-mq: #AAF8FF;
+
+  // Empty Elements on the Page
+  :empty {
+    outline: 5px solid $deb-color-double-check;
+  }
+
+  // Images require 'alt' attributes, empty 'alt' are fine but should be
+  // double-checked, no 'alt' is bad and is flagged red.
+  img {
+    outline: 5px solid $deb-color-error;
+  }
+
+  img[alt] {
+    outline: none;
+  }
+
+  img[alt=""] {
+    outline: 5px solid $deb-color-double-check;
+  }
+
+  // Links sometimes, though not always, benefit from 'title' attributes. Links
+  // without are never invalid but it's a good idea to check.
+  a {
+    outline: 5px solid $deb-color-double-check;
+  }
+
+  a[title] {
+    outline: none;
+  }
+
+  // Double-check any links whose 'href' is something questionable.
+  a[href="#"],
+  a[href*="javascript"] {
+    outline: 5px solid $deb-color-double-check;
+  }
+
+  // The 'target' attribute ain’t too nice...
+  a[target] {
+    outline: 5px solid $deb-color-double-check;
+  }
+
+  // Ensure any lists only contain 'li's as children.
+  ul,
+  ol {
+    > *:not(li) {
+      outline: 5px solid $deb-color-error;
+    }
+  }
+
+  // It’s always nice to give 'th's 'scope' attributes.
+  th {
+    outline: 5px solid $deb-color-double-check;
+  }
+
+  th[scope] {
+    outline: none;
+  }
+
+  // 'tr's as children of 'table's ain’t great, did you need a 'thead'/'tbody'?
+  table > tr {
+    outline: 5px solid $deb-color-double-check;
+  }
+
+  // 'tfoot' needs to come *before* 'tbody'.
+  tbody + tfoot {
+    outline: 5px solid $deb-color-double-check;
+  }
+
+  // Forms require 'action' attributes
+  form {
+    outline: 5px solid $deb-color-error;
+  }
+  form[action] {
+    outline: none;
+  }
+
+  // Various form-field types have required attributes. 'input's need 'type'
+  // attributes, 'textarea's need 'rows' and 'cols' attributes and submit buttons
+  // need a 'value' attribute.
+  textarea,
+  input {
+    outline: 5px solid $deb-color-error;
+  }
+
+  input[type] {
+    outline: none;
+  }
+
+  textarea[rows][cols] {
+    outline: none;
+  }
+
+  input[type=submit] {
+    outline: 5px solid $deb-color-error;
+  }
+
+  input[type=submit][value] {
+    outline: none;
+  }
+
+  // Avoid inline styles where possible.
+  [style] {
+    outline: 5px solid $deb-color-double-check;
+  }
+
+  // You should avoid using IDs for CSS, is this doing any styling?
+  [id] {
+    outline: 5px solid $deb-color-double-check;
+  }
+
+  // Media Query Debug
+  // Base Style
+  body:after {
+    background-color: $deb-color-mq;
+    color: darken($deb-color-mq, 50);
+    padding: 5px 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 100000;
+    font-size: 13px;
+    line-height: 16px;
+  }
+
+  // Loop all MQs and display the actual Breakpoint
+  @each $breakpoint, $entry in $kittn-breakpoint-map {
+    // Get the Data from the Map
+    $s: map-get($entry,size);
+    $d: map-get($kittn-activate, mobile-first);
+
+    // Set the Vars
+    $size: if($d, $s, ($s - 1));
+    $dir: if($d, 'min-width', 'max-width');
+    $dirsign: if($d, '≥', '≤');
+
+    // Build the Debug Breakpoint
+    @media screen and (#{$dir}: $size) {
+      body:after {
+        content: 'BP: #{$breakpoint} ( #{$dirsign} #{$size} )';
+      }
+    }
+  }
+}
