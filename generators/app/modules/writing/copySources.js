@@ -15,6 +15,15 @@ const processConfig = (cfg, context) => {
       )
     }
   })
+  cfg.folders.forEach(folder => {
+    if (!folder.projectContext || folder.projectContext.includes(context.props.projectcssstructure)) {
+      context.fs.copyTpl(
+        context.templatePath(folder.src),
+        context.destinationPath(folder.dest),
+        context.props
+      )
+    }
+  })
 }
 
 const copySources = () => {

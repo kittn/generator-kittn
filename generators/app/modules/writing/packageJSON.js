@@ -6,6 +6,7 @@ const addAuthorData = require('../package/info/author.js')
 const addBrowsersList = require('../package/info/browserslist.js')
 
 // Dependencies
+const addBaseDependencies = require('../package/dependencies/base.js')
 const addSassDependencies = require('../package/dependencies/sass.js')
 
 const writePackageJson = () => {
@@ -25,6 +26,7 @@ const writePackageJson = () => {
         context.addBrowsersList = addBrowsersList.bind(context)
 
         // Dependencies
+        context.addBaseDependencies = addBaseDependencies.bind(context)
         context.addSassDependencies = addSassDependencies.bind(context)
 
         // ============================
@@ -33,6 +35,8 @@ const writePackageJson = () => {
         context.addBaseSettings({pkg})
         context.addAuthorData({pkg})
         context.addBrowsersList({pkg})
+
+        context.addBaseDependencies({pkg})
         context.addSassDependencies({pkg})
 
         // Write package.json

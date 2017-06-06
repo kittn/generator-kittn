@@ -33,6 +33,13 @@ const styles = (context) => {
         ],
         src: 'src/skeletons/style/_application_own.scss',
         dest: 'src/style/_application/_application.scss'
+      },
+      {
+        projectContext: [
+          'projectstylelint'
+        ],
+        src: '.stylelintrc',
+        dest: '.stylelintrc'
       }
     ],
     folders: [

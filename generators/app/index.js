@@ -26,15 +26,27 @@ module.exports = class extends Generator {
 
     // Copy Sources
     this.copySources = copySources.bind(this)
+
+    // Command Checks
+    this.commands = {
+      composer: false,
+      yarn: false,
+      git: false,
+      wp: false
+    }
   }
 
     // Initializing
   async initializing () {
     this.log(`${chalk.magenta('Cleaning Directory')}`)
-    try {
-      // await this.spawnCommand('rm', ['-rf', '*'])
-    } catch (e) {
-      if (e) this.log(e)
+
+    for (const command in this.commands) {
+      try {
+        await commandExists(command)
+        this.commands[command] = true
+      } catch (e) {
+        if (e) this.log(e)
+      }
     }
   }
 
@@ -78,5 +90,13 @@ module.exports = class extends Generator {
 
     // Copy Source Files and Folders
     this.copySources().writing(this)
+  }
+
+  install () {
+    if (this.commands.yarn) {
+      this.yarnInstall()
+    } else {
+      this.npmInstall()
+    }
   }
 }

@@ -4,9 +4,18 @@ const base = (context) => {
       {
         src: 'gulpfile.babel.js',
         dest: 'gulpfile.babel.js'
+      },
+      {
+        src: 'config.json',
+        dest: 'config.json'
       }
     ],
-    folders: []
+    folders: [
+      {
+        src: 'gulpfile',
+        dest: 'gulpfile/'
+      }
+    ]
   }
 }
 
