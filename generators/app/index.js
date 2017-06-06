@@ -80,12 +80,23 @@ module.exports = class extends Generator {
 
     // Copy all sources
     this.copySrc.files.forEach(file => {
-      if (file.projectContext.includes(this.props.projectcssstructure)) {
-        this.fs.copyTpl(
-          this.templatePath(file.src),
-          this.destinationPath(file.dest),
-          this.props
-        )
+      if (!file.projectContext || file.projectContext.includes(this.props.projectcssstructure)) {
+        if (file.filename) {
+          this.log(this.props)
+          this.log(`Filename: ${file.filename}`)
+          this.log(this.props[file.filename])
+          this.fs.copyTpl(
+            this.templatePath(file.src),
+            this.destinationPath(file.dest.replace('%s', this.props[file.filename])),
+            this.props
+          )
+        } else {
+          this.fs.copyTpl(
+            this.templatePath(file.src),
+            this.destinationPath(file.dest),
+            this.props
+          )
+        }
       }
     })
 

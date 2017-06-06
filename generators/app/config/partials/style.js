@@ -1,6 +1,19 @@
 module.exports = {
   files: [
     {
+      src: 'src/style/style.scss',
+      dest: 'src/style/%s.scss',
+      filename: 'projectcssfilename'
+    },
+    {
+      src: 'src/style/_loader.scss',
+      dest: 'src/style/_loader.scss'
+    },
+    {
+      src: 'src/style/_setup.scss',
+      dest: 'src/style/_loader.scss'
+    },
+    {
       projectContext: [
         'sassAtomic'
       ],

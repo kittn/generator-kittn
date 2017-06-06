@@ -8,8 +8,9 @@ const generalPrompts = [
     message: message({
       headline: 'Project Theme Color',
       description: 'Main Theme-Color of the project',
-      defaultValue: '#29b8f2'
+      defaultValue: 'Default: #29b8f2'
     }),
+    default: '#29b8f2',
     store: true
   },
   // Filename
@@ -19,9 +20,10 @@ const generalPrompts = [
     message: message({
       headline: 'CSS Filename',
       description: '(only the name without .css or .scss)',
-      defaultValue: 'style'
+      defaultValue: 'Default: style'
     }),
-    store: true
+    default: 'style',
+    store: false
   },
   // Syntax Style
   {
@@ -52,7 +54,7 @@ const generalPrompts = [
       description: 'Do you want to ativate Stylelint?',
       defaultValue: true
     }),
-    store: true
+    default: true
   },
   // Breakpoint Units
   {
