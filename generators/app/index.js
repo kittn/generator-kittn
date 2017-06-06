@@ -1,5 +1,3 @@
-'use strict'
-
 const Generator = require('yeoman-generator')
 const chalk = require('chalk')
 const yosay = require('yosay')
@@ -34,7 +32,7 @@ module.exports = class extends Generator {
   async initializing () {
     this.log(`${chalk.magenta('Cleaning Directory')}`)
     try {
-      this.spawnCommandSync('rm', ['-rf', '*'])
+      // await this.spawnCommand('rm', ['-rf', '*'])
     } catch (e) {
       if (e) this.log(e)
     }
