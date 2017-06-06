@@ -2,7 +2,7 @@ import kc from '../../config.json'
 
 const preCssConf = () => {
   return [
-    function(css) { // Spacer Function
+    function (css) { // Spacer Function
       css.walkDecls(function (decl) {
         const SPACER = parseInt(kc.css.spacer, 10)
         const BASE = parseInt(kc.css.baseFontSize, 10)
@@ -13,7 +13,7 @@ const preCssConf = () => {
           decl.value = parseFloat(decl.value) / BASE + 'rem'
         }
         if (decl.value.match(/rspace/)) {
-          decl.value = SPACER * parseFloat(decl.value) / BASE  + 'rem'
+          decl.value = SPACER * parseFloat(decl.value) / BASE + 'rem'
         }
       })
     },
@@ -35,8 +35,6 @@ const preCssConf = () => {
       cascade: false
     }),
     require('postcss-svg-fragments'),
-    // Include the LostGrid System
-    require('lost')({}),
     // Include Size Short hands
     require('postcss-short-size'),
     // Fix some Flexbox Bugs

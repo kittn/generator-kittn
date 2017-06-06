@@ -16,7 +16,6 @@ function addSassDependencies (files = {}) {
       'gulp-sourcemaps': '^2.6.0',
       'gulp-stylelint': '^3.9.0', // Make Conditional
       'gulp-util': '^3.0.8',
-      'lost': '^8.0.0',
       'postcss-aspect-ratio': '^1.0.1',
       'postcss-assets': '^4.1.0',
       'postcss-calc': '^5.3.1',
