@@ -85,6 +85,9 @@ module.exports = class extends Generator {
   async writing () {
     this.log(`${chalk.magenta('Writing package.json')}`)
 
+    // Additional Props
+    this.props.projectpath = process.cwd()
+
     // Write Package.json
     this.writePackageJson().writing(this)
 
