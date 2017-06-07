@@ -42,7 +42,7 @@
   "dependencies": {
     "chalk": "^1.1.3",
     "clear-terminal": "0.0.2",
-    "command-exists": "github:mathisonian/command-exists#pull/6/head",
+    "command-exists": "latest",
     "mkdirp": "^0.5.1",
     "mysql": "^2.13.0",
     "randomstring": "^1.1.5",
