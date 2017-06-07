@@ -29,6 +29,36 @@ const projecttype = (context) => {
         },
         src: 'src/skeletons/craftcms/.env.sh',
         dest: 'craftscripts/.env.sh'
+      },
+      {
+        conditions: {
+          projectusage: 'wordpress'
+        },
+        src: 'gulpfile_additions/copy-wpconfig.js',
+        dest: 'gulpfile/tasks/copy-wpconfig.js'
+      },
+      {
+        conditions: {
+          projectusage: 'wordpress'
+        },
+        src: 'gulpfile_additions/copy-wpplugins.js',
+        dest: 'gulpfile/tasks/copy-wpplugins.js'
+      },
+      {
+        conditions: {
+          projectusage: 'wordpress',
+          projectcredential: true
+        },
+        src: 'src/skeletons/wordpress/wp-db--local.php',
+        dest: 'src/structure/config/wp-config/wp-db--local.php'
+      },
+      {
+        conditions: {
+          projectusage: 'wordpress',
+          projectcredential: true
+        },
+        src: 'src/skeletons/wordpress/wp-config-sample.php',
+        dest: 'src/structure/config/wp-config.php'
       }
     ],
     folders: [
@@ -66,6 +96,20 @@ const projecttype = (context) => {
         },
         src: 'src/skeletons/craftcms/public',
         dest: 'src/.system/public/'
+      },
+      {
+        conditions: {
+          projectusage: 'wordpress'
+        },
+        src: 'src/skeletons/wordpress/structure',
+        dest: 'src/structure/'
+      },
+      {
+        conditions: {
+          projectusage: 'html'
+        },
+        src: 'src/skeletons/simplestructure',
+        dest: 'src/structure/'
       }
     ]
   }
