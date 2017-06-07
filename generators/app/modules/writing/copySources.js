@@ -4,6 +4,7 @@
 const base = require('../../config/copySrc/base.js')
 const style = require('../../config/copySrc/style.js')
 const script = require('../../config/copySrc/script.js')
+const tools = require('../../config/copySrc/tools.js')
 
 const copyAction = (data, context) => {
   context.fs.copyTpl(
@@ -52,9 +53,13 @@ const copySources = () => {
         const styleConfig = style(context)
         processConfig(styleConfig, context)
 
-        // Style
+        // Script
         const scriptConfig = script(context)
         processConfig(scriptConfig, context)
+
+        // Tools
+        const toolConfig = tools(context)
+        processConfig(toolConfig, context)
 
         resolve()
       })
