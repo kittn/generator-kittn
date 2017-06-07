@@ -1,5 +1,5 @@
-const message = require('../../../helpers/prompts/message')
-const when = require('../../../helpers/prompts/when')
+const message = require('../helpers/message')
+const when = require('../helpers/when')
 
 const projectPrompts = [
   {

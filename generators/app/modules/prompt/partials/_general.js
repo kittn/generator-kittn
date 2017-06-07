@@ -1,5 +1,5 @@
 const chalk = require('chalk')
-const message = require('../../../helpers/prompts/message')
+const message = require('../helpers/message')
 
 const generalPrompts = [
   {
