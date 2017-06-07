@@ -12,6 +12,18 @@ const script = (context) => {
       {
         src: '.babelrc',
         dest: '.babelrc'
+      },
+      {
+        src: '.babelrc',
+        dest: '.babelrc'
+      },
+      {
+        src: 'webpack.config.babel.js',
+        dest: 'webpack.config.babel.js'
+      },
+      {
+        src: 'webpack.dev.config.babel.js',
+        dest: 'webpack.dev.config.babel.js'
       }
     ],
     folders: [
