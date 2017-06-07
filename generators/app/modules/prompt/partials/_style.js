@@ -96,7 +96,8 @@ const generalPrompts = [
       headline: 'CriticalCSS',
       description: 'Do you wan\'t to automatically create CriticalCSS (Above the fold)?',
       defaultValue: false
-    })
+    }),
+    default: false
   },
   {
     when: when('projectcritical', true),
