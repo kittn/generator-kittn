@@ -1,0 +1,13 @@
+{# layout.twig #}
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    {% include '../parts/_site-header.twig' %}
+  </head>
+  <body>
+    <section>
+      {% block page %}{% endblock %}
+    </section>
+    {% include '../parts/_site-scripts.twig' %}
+  </body>
+</html>

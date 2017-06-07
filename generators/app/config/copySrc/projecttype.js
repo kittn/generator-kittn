@@ -64,6 +64,13 @@ const projecttype = (context) => {
     folders: [
       {
         conditions: {
+          projectusage: 'html'
+        },
+        src: 'src/skeletons/twig',
+        dest: 'src/template/'
+      },
+      {
+        conditions: {
           projectusage: 'craft'
         },
         src: 'src/skeletons/craftcms/structure',
@@ -106,7 +113,7 @@ const projecttype = (context) => {
       },
       {
         conditions: {
-          projectusage: 'html'
+          projectstructure: 'uncompiled'
         },
         src: 'src/skeletons/simplestructure',
         dest: 'src/structure/'

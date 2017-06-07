@@ -1,0 +1,24 @@
+<meta charset="utf-8"/>
+<title>{{ siteTitle }}</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+{% if environment == 'development' %}
+  <meta name="robots" content="noindex,nofollow">
+{% endif %}
+<link rel="stylesheet" href="{{assetsCss}}<%= projectcssfilename %>.css">
+<meta name="description" content="[Description]">
+<meta property="og:description" content="[Description]">
+<meta property="og:title" content="{{ siteTitle }}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="[URL]">
+<meta property="og:image" content="{{assetsCssImg}}system/facebook-og-image.jpg">
+<meta name="twitter:description" content="[Description]">
+<meta name="twitter:title" content="{{ siteTitle }}">
+<meta name="twitter:image:src" content="{{assetsCssImg}}system/twitter-og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<!-- Browser Tab Bar Color -->
+<meta name="theme-color" content="<%= projectthemecolor %>">
+<meta name="msapplication-navbutton-color" content="<%= projectthemecolor %>">
+<!--[if lt IE 9]>
+<script src="{{assetsJs}}html5shiv.js"></script>
+<![endif]-->
