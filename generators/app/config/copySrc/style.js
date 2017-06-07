@@ -36,6 +36,20 @@ const styles = (context) => {
       },
       {
         conditions: {
+          projectcritical: true
+        },
+        src: 'gulpfile_additions/optimize-criticalCss.js',
+        dest: 'gulpfile/tasks/optimize-criticalCss.js'
+      },
+      {
+        conditions: {
+          projectcontainerqueries: true
+        },
+        src: 'style_additions/_container-queries.scss',
+        dest: 'src/framework/core/functions/_container-queries.scss'
+      },
+      {
+        conditions: {
           projectstylelint: true
         },
         src: '.stylelintrc',

@@ -4,6 +4,7 @@
 const base = require('../../config/copySrc/base.js')
 const style = require('../../config/copySrc/style.js')
 const script = require('../../config/copySrc/script.js')
+const projecttype = require('../../config/copySrc/projecttype.js')
 const tools = require('../../config/copySrc/tools.js')
 
 const copyAction = (data, context) => {
@@ -56,6 +57,10 @@ const copySources = () => {
         // Script
         const scriptConfig = script(context)
         processConfig(scriptConfig, context)
+
+        // Tools
+        const projecttypeConfig = projecttype(context)
+        processConfig(projecttypeConfig, context)
 
         // Tools
         const toolConfig = tools(context)
