@@ -17,6 +17,13 @@ const styles = (context) => {
       }
     ],
     folders: [
+      {
+        conditions: {
+          projectastrum: true
+        },
+        src: 'pattern-library',
+        dest: 'doc/pattern-library/'
+      }
     ]
   }
 }
