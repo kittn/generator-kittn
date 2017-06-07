@@ -12,7 +12,7 @@
   // Build Root and Rootname
   $root: #{&};
   // Rootname only for prefixing Extends
-  $rn: str_slice($root,4);
+  $rn: str_slice($root, 4);
 
   // API Grabber
   @function api($keys...) {

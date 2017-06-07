@@ -21,6 +21,10 @@ const script = (context) => {
         },
         src: 'build',
         dest: 'build/'
+      },
+      {
+        src: 'src/js',
+        dest: 'src/js/'
       }
     ]
   }

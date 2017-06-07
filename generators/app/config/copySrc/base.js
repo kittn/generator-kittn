@@ -20,6 +20,14 @@ const base = (context) => {
       {
         src: '.bowerrc',
         dest: '.bowerrc'
+      },
+      {
+        src: 'bower.json',
+        dest: 'bower.json'
+      },
+      {
+        src: '_gitignore',
+        dest: '.gitignore'
       }
     ],
     folders: [

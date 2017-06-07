@@ -1679,9 +1679,12 @@
                 "handle": "copy",
                 "instructions": "",
                 "required": 0,
-                "type": "SimpleText",
+                "type": "PlainText",
                 "width": "",
                 "typesettings": {
+                  "placeholder": "",
+                  "maxLength": "",
+                  "multiline": 1,
                   "initialRows": 2
                 }
               },

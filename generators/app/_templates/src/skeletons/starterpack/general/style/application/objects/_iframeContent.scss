@@ -12,17 +12,11 @@
 
   // Build Root and Rootname
   $root: #{&};
-  // Rootname only for prefixing Extends
-  $rn: str_slice($root,4);
 
   // API Grabber
   @function api($keys...) {
     @return map-deep-get($api, $keys...);
   }
-
-  // Local Style Storage  -------------------
-  // Store  : %#{$rn}--example { color: red; }
-  // Unload : @extend %#{$rn}--example;
 
   // Base Style ----------------------------
   margin: 0 auto api(margin-bottom) auto;
@@ -30,11 +24,10 @@
   overflow: hidden;
 
   // Tags ----------------------------------
-
   // Base Modifier -------------------------
 
   // Style Modifier
-  &#{$root}--s-style1 {}
+  //&#{$root}--s-style1 {}
 
   // Childs --------------------------------
   // [root]__inner
@@ -58,23 +51,35 @@
     }
 
     // [root]--align-left
-    #{$root}--align-left & { text-align: left; }
+    #{$root}--align-left & {
+      text-align: left;
+    }
 
     // [root]--align-center
-    #{$root}--align-center & { text-align: center; }
+    #{$root}--align-center & {
+      text-align: center;
+    }
 
     // [root]--align-right
-    #{$root}--align-right & { text-align: right; }
+    #{$root}--align-right & {
+      text-align: right;
+    }
   }
 
   // [root]--align-left
-  &--align-left { text-align: left; }
+  &--align-left {
+    text-align: left;
+  }
 
   // [root]--align-center
-  &--align-center { text-align: center; }
+  &--align-center {
+    text-align: center;
+  }
 
   // [root]--align-right
-  &--align-right { text-align: right; }
+  &--align-right {
+    text-align: right;
+  }
 
   // [root]__caption
   &__caption {

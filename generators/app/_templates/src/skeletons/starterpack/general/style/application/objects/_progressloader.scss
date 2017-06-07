@@ -8,10 +8,10 @@
   $api: (
     breakpoint: 'm',
     bar: (
-      color: darken(c('primary'),20),
+      color: darken(c('primary'), 20),
       height: 2px
     ),
-    el: ( // Elements that used by progressloader
+    el: (
       jsmod: '.plj',
       canvas: '.o-area__wrapper'
     )
@@ -19,20 +19,14 @@
 
   // Build Root and Rootname
   $root: #{&};
-  // Rootname only for prefixing Extends
-  $rn: str_slice($root,4);
 
   // API Grabber
   @function api($keys...) {
     @return map-deep-get($api, $keys...);
   }
 
-  // Local Style Storage  -------------------
-  // Store  : %#{$rn}--example { color: red; }
-  // Unload : @extend %#{$rn}--example;
-
   // Base Style ----------------------------
-  #{api(el,jsmod)} & {
+  #{api(el, jsmod)} & {
     position: fixed;
     top: 0;
     left: 0;
@@ -41,28 +35,28 @@
     z-index: 9999;
   }
 
-  #{api(el,jsmod)} #{$root}--complete & {
+  #{api(el, jsmod)} #{$root}--complete & {
     opacity: 0;
   }
 
   // Base Modifier -------------------------
   @at-root { // Modify outer Wrapper
-    #{api(el,jsmod)} {
-      #{api(el,canvas)} {
+    #{api(el, jsmod)} {
+      #{api(el, canvas)} {
         opacity: 0;
         transition: opacity .5s ease-in-out;
       }
 
       // Dont hide Screen with Craft Livepreview
-      .is-livepreview #{api(el,canvas)} {
+      .is-livepreview #{api(el, canvas)} {
         opacity: 1;
       }
     }
   }
 
   // [root]--complete
-  @at-root #{api(el,canvas)} {
-    #{api(el,jsmod)} #{$root}--complete & {
+  @at-root #{api(el, canvas)} {
+    #{api(el, jsmod)} #{$root}--complete & {
       opacity: 1;
     }
   }
@@ -70,19 +64,19 @@
   // Childs --------------------------------
   // [root]__loader
   &__loader {
-    #{api(el,jsmod)} & {
+    #{api(el, jsmod)} & {
       position: absolute;
       left: 0;
       width: 100%;
-      height: api(bar,height);
-      background-color: api(bar,color);
+      height: api(bar, height);
+      background-color: api(bar, color);
       transition: transform 600ms ease-in-out, height 300ms 800ms ease-in-out;
       transform: translateX(-100%);
     }
 
     &#{$root}--bar--complete {
-      #{api(el,jsmod)} & {
-        transform:translateX(0%);
+      #{api(el, jsmod)} & {
+        transform: translateX(0%);
         height: 0;
       }
     }

@@ -16,7 +16,7 @@ const toolPrompts = [
     name: 'projectsassdocs',
     message: message({
       headline: 'Sass Docs',
-      description: 'Do you want to create sass documentations?',
+      description: 'Do you like to create the sass documentation?',
       defaultValue: false
     }),
     default: false

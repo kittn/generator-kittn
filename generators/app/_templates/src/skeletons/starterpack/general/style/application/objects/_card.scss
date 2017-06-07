@@ -11,28 +11,20 @@
 
   // Build Root and Rootname
   $root: #{&};
-  // Rootname only for prefixing Extends
-  $rn: str_slice($root,4);
 
   // API Grabber
   @function api($keys...) {
     @return map-deep-get($api, $keys...);
   }
 
-  // Local Style Storage  -------------------
-  // Store  : %#{$rn}--example { color: red; }
-  // Unload : @extend %#{$rn}--example;
-
   // Base Style ----------------------------
-
   // Tags ----------------------------------
-
   // Base Modifier -------------------------
 
   // [root]--s-style1
   &--s-style1 {
     background-color: c('white');
-    box-shadow: 0 2px 30px rgba(0,0,0,.2);
+    box-shadow: 0 2px 30px rgba(0, 0, 0, .2);
 
     // [root]__inner
     #{$root}__inner {
@@ -62,17 +54,17 @@
     // [root]__meta
     #{$root}__meta {
       font-size: 95%;
-      color: lighten(c('gray'),10);
+      color: lighten(c('gray'), 10);
     }
 
     // [root]__body
-    #{$root}__body {}
+    //#{$root}__body {}
   }
 
   // [root]--s-style1
   &--s-style2 {
     background-color: c('white');
-    box-shadow: 0 0 60px rgba(0,0,0,.1);
+    box-shadow: 0 0 60px rgba(0, 0, 0, .1);
     border-radius: 4px;
 
     // [root]__inner
@@ -87,7 +79,7 @@
       bottom: 0;
       width: 100%;
       padding: 20px;
-      background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.85) 100%);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, .85) 100%);
     }
 
     // [root]__header
@@ -109,7 +101,7 @@
     // [root]__meta
     #{$root}__meta {
       font-size: 95%;
-      color: lighten(c('gray'),10);
+      color: lighten(c('gray'), 10);
     }
 
     // [root]__body
@@ -120,7 +112,7 @@
   // [root]--s-style1
   &--s-style3 {
     background-color: c('white');
-    box-shadow: 0 0 60px rgba(0,0,0,.1);
+    box-shadow: 0 0 60px rgba(0, 0, 0, .1);
     border-radius: 4px;
 
     // [root]__inner
@@ -155,16 +147,16 @@
     #{$root}__meta {
       display: block;
       font-size: 95%;
-      color: lighten(c('gray'),10);
+      color: lighten(c('gray'), 10);
     }
 
     // [root]__body
-    #{$root}__body {}
+    //#{$root}__body {}
   }
   // Childs --------------------------------
 
   // [root]__inner
-  &__inner {}
+  //&__inner {}
 
   // [root]__media
   &__media {
@@ -182,7 +174,7 @@
   }
 
   // [root]__header
-  &__header {}
+  //&__header {}
 
   // [root]__headline
   &__headline {
@@ -195,8 +187,8 @@
   }
 
   // [root]__meta
-  &__meta {}
+  //&__meta {}
 
   // [root]__body
-  &__body {}
+  //&__body {}
 }

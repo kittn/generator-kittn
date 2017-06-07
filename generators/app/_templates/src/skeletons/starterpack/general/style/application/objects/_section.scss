@@ -51,8 +51,6 @@
 
   // Build Root and Rootname
   $root: #{&};
-  // Rootname only for prefixing Extends
-  $rn: str_slice($root,4);
 
   // API Grabber
   @function api($keys...) {
@@ -85,7 +83,7 @@
   }
 
   // Column Style Modifier
-  &--s-style1 {}
+  //&--s-style1 {}
 
   // Childs --------------------------------
 
@@ -94,7 +92,7 @@
     @extend %e-container;
 
     // Container in Container, remove inner Gutter
-    .o-area__container & {
+    .o-area__container & { /* stylelint-disable-line */
       padding-left: 0;
       padding-right: 0;
     }
@@ -110,19 +108,19 @@
 
     // [root]--bigger-45
     &--bigger-45 {
-      max-width: map-deep-get($kittn-page-size,maxsize) * 1.45;
+      max-width: map-deep-get($kittn-page-size, maxsize) * 1.45;
     }
     // [root]--bigger-25
     &--bigger-25 {
-      max-width: map-deep-get($kittn-page-size,maxsize) * 1.25;
+      max-width: map-deep-get($kittn-page-size, maxsize) * 1.25;
     }
     // [root]--smaller-25
     &--smaller-25 {
-      max-width: map-deep-get($kittn-page-size,maxsize) * .75;
+      max-width: map-deep-get($kittn-page-size, maxsize) * .75;
     }
     // [root]--smaller-50
     &--smaller-50 {
-      max-width: map-deep-get($kittn-page-size,maxsize) * .50;
+      max-width: map-deep-get($kittn-page-size, maxsize) * .5;
     }
   }
 
@@ -158,6 +156,7 @@
     // [root]---empty
     @at-root {
       $e: #{&};
+
       &---empty {
         // Extend with the Parent Element
         @extend #{$e};
@@ -165,6 +164,7 @@
       }
     }
 
+    /* stylelint-disable */
     @each $columnStyleName, $setup in api(columns) {
       @each $key, $column in map-deep-get($setup,layout) {
         &--#{$key} {
@@ -178,6 +178,7 @@
         }
       }
     }
+    /* stylelint-enable */
   }
 
   // Inner Column
@@ -186,14 +187,30 @@
     position: relative;
 
     // Column inner Align
-    &--align-left { text-align: left; }
-    &--align-center { text-align: center; }
-    &--align-right { text-align: right; }
+    &--align-left {
+      text-align: left;
+    }
+
+    &--align-center {
+      text-align: center;
+    }
+
+    &--align-right {
+      text-align: right;
+    }
 
     // Column inner VerticalAlign
-    &--valign-top { align-self: flex-start; }
-    &--valign-middle { align-self: center; }
-    &--valign-bottom { align-self: flex-end; }
+    &--valign-top {
+      align-self: flex-start;
+    }
+
+    &--valign-middle {
+      align-self: center;
+    }
+
+    &--valign-bottom {
+      align-self: flex-end;
+    }
   }
 
   // [root]__bg
@@ -203,23 +220,33 @@
     width: 100%;
     height: 100%;
     left: 50%;
-    min-width: map-deep-get($kittn-page-size,minsize);
+    min-width: map-deep-get($kittn-page-size, minsize);
     transform: translate(-50%);
 
     // Default Adapt size
-    &--size-default { max-width: map-deep-get($kittn-page-size,maxsize); }
+    &--size-default {
+      max-width: map-deep-get($kittn-page-size, maxsize);
+    }
 
     // [root]--bigger-45
-    &--size-bigger-45 { max-width: map-deep-get($kittn-page-size,maxsize) * 1.45; }
+    &--size-bigger-45 {
+      max-width: map-deep-get($kittn-page-size, maxsize) * 1.45;
+    }
 
     // [root]--bigger-25
-    &--size-bigger-25 { max-width: map-deep-get($kittn-page-size,maxsize) * 1.25; }
+    &--size-bigger-25 {
+      max-width: map-deep-get($kittn-page-size, maxsize) * 1.25;
+    }
 
     // [root]--smaller-25
-    &--size-smaller-25 { max-width: map-deep-get($kittn-page-size,maxsize) * .75; }
+    &--size-smaller-25 {
+      max-width: map-deep-get($kittn-page-size, maxsize) * .75;
+    }
 
     // [root]--smaller-50
-    &--size-smaller-50 { max-width: map-deep-get($kittn-page-size,maxsize) * .50; }
+    &--size-smaller-50 {
+      max-width: map-deep-get($kittn-page-size, maxsize) * .5;
+    }
 
     // [root]--behavior1
     &--behavior1 {
@@ -235,7 +262,9 @@
       size: 100%;
 
       // [root]__bg__container--size
-      &--size-default { width: 100%; }
+      &--size-default {
+        width: 100%;
+      }
 
       // [root]__bg__container--size
       &--size-half {

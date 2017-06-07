@@ -181,7 +181,6 @@
     "unit-blacklist": [],
     "unit-case": "lower",
     "unit-no-unknown": true,
-    "value-keyword-case": "lower",
     "value-no-vendor-prefix": true,
     "value-list-comma-newline-after": "always-multi-line",
     "value-list-comma-newline-before": "always-multi-line",
