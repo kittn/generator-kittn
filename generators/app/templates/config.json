@@ -1,5 +1,5 @@
 {
-  "dist": {<% if (projectusage == 'Building HTML Prototypes' || projectusage == 'Integrate in KirbyCMS') { %>
+  "dist": {<% if (projectusage == 'html') { %>
     "dist": "dist/",
     "base": "dist/",
     "markup": "dist/",
@@ -70,8 +70,8 @@
   },
   "browsersync": {
     "openbrowser": true,
-    "https": <% if (credentialprotocol == 'https') { %>true<% } else { %>false<% } %>,
-    "proxy": <% if (projectcredential) { %>"<% if (credentialprotocol == 'https') { %>https://<% } %><%= credentialdomain %>"<% } else { %>false<% } %>
+    "https": <% if (typeof credentialprotocol !== 'undefined' && credentialprotocol == 'https') { %>true<% } else { %>false<% } %>,
+    "proxy": <% if (typeof projectcredential !== 'undefined' && projectcredential) { %>"<% if (typeof credentialprotocol !== 'undefined' && credentialprotocol == 'https') { %>https://<% } %><%= credentialdomain %>"<% } else { %>false<% } %>
   },
   "files": {
     "jsCopy": [
@@ -91,7 +91,7 @@
       {"src": "twitter-og-image.jpg", "dest": "assets/img/system/"},
       {"src": ".htaccess", "dest": ""},
       {"src": "404.html", "dest": ""},
-      {"src": "robots.txt", "dest": ""}<% } if (projectusage == 'wordpress' || projectusage == 'Integrate in KirbyCMS' || projectusage == 'craft') { %>,
+      {"src": "robots.txt", "dest": ""}<% } if (projectusage == 'wordpress' || projectusage == 'craft') { %>,
       {"src": "facebook-og-image.jpg", "dest": "assets/img/system/"},
       {"src": "twitter-og-image.jpg", "dest": "assets/img/system/"}<% } %>
     ]

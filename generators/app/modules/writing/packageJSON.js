@@ -9,6 +9,7 @@ const addBrowsersList = require('../package/info/browserslist.js')
 const addBaseDependencies = require('../package/dependencies/base.js')
 const addStyleDependencies = require('../package/dependencies/style.js')
 const addScriptDependencies = require('../package/dependencies/script.js')
+const addToolsDependencies = require('../package/dependencies/tools.js')
 
 const writePackageJson = () => {
   return {
@@ -27,6 +28,7 @@ const writePackageJson = () => {
         addBaseDependencies({pkg}, context)
         addStyleDependencies({pkg}, context)
         addScriptDependencies({pkg}, context)
+        addToolsDependencies({pkg}, context)
 
         // Write package.json
         context.fs.writeJSON(context.destinationPath('package.json'), pkg)

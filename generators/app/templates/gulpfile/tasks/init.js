@@ -10,10 +10,10 @@ const initTask = (cb) => {
   // Overwrite the Changed Check
   global.checkChanged = false
 
-  runSequence(
+  runSequence(<% if (projectsassdocs === true) { %>
     [
       'sassdoc:generate'
-    ],
+    ],<% } %>
     [
       'copy:launch',
       'copy:fonts',

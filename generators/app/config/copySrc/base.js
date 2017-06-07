@@ -34,6 +34,10 @@ const base = (context) => {
       {
         src: 'gulpfile',
         dest: 'gulpfile/'
+      },
+      {
+        src: 'src/.system',
+        dest: 'src/.system/'
       }
     ]
   }
