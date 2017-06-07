@@ -93,10 +93,10 @@ module.exports = class extends Generator {
   }
 
   install () {
-    // if (this.commands.yarn) {
-    //   this.yarnInstall()
-    // } else {
-    //   this.npmInstall()
-    // }
+    if (this.commands.yarn) {
+      this.yarnInstall()
+    } else {
+      this.npmInstall()
+    }
   }
 }

@@ -3,7 +3,8 @@ const extend = require('deep-extend')
 function addSassDependencies (files = {}, context) {
   extend(files.pkg, {
     scripts: {
-      styles: 'gulp compiler:css'
+      styles: 'gulp compiler:css',
+      stylesMinify: 'gulp minify:css'
     },
     devDependencies: {
       'autoprefixer': '^7.1.1',
