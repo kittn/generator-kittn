@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "4.2.0-alpha.1",
+  "version": "4.2.0-alpha.2",
   "description": "Kittn Scaffolding and Frontend Toolchain",
   "main": "generators/index.js",
   "repository": "kittn/generator-kittn",
