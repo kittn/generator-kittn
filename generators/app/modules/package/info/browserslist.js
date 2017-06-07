@@ -1,6 +1,6 @@
 const extend = require('deep-extend')
 
-function addBrowsersList (files = {}) {
+function addBrowsersList (files = {}, context) {
   extend(files.pkg, {
     browserslist: [
       '> 5%',

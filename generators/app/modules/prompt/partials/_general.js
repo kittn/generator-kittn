@@ -4,7 +4,7 @@ const message = require('../../../helpers/prompts/message')
 const generalPrompts = [
   {
     type: 'input',
-    name: 'projectName',
+    name: 'projectname',
     message: message({
       headline: 'Project Name',
       description: 'Please give the project a name (without Spaces)',
@@ -30,7 +30,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
   },
   {
     type: 'input',
-    name: 'projectDescription',
+    name: 'projectdescription',
     message: message({
       headline: 'Project Description',
       description: 'Description of the project',

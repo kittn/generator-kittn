@@ -1,6 +1,6 @@
 const extend = require('deep-extend')
 
-function addBaseDependencies (files = {}) {
+function addBaseDependencies (files = {}, context) {
   extend(files.pkg, {
     devDependencies: {
       'ansi-html': '^0.0.7',

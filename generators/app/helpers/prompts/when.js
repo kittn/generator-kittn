@@ -9,11 +9,18 @@
  * @returns {function(*)}
  */
 
-const when = (key, answer) => {
+const when = (key, answer, key2 = false, answer2 = true, andOr = 'and') => {
     // Return actual when function provided by inquirer
   return (promptAnswers) => {
-    console.log('foobar')
-    return promptAnswers[key] === answer
+    if (key2 !== false) {
+      if (andOr === 'and') {
+        return (promptAnswers[key] === answer && promptAnswers[key2] === answer2)
+      } else {
+        return (promptAnswers[key] === answer || promptAnswers[key2] === answer2)
+      }
+    } else {
+      return promptAnswers[key] === answer
+    }
   }
 }
 

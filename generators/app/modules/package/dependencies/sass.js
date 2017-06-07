@@ -1,6 +1,6 @@
 const extend = require('deep-extend')
 
-function addSassDependencies (files = {}) {
+function addSassDependencies (files = {}, context) {
   extend(files.pkg, {
     scripts: {
       styles: 'gulp compiler:css'

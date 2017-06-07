@@ -1,6 +1,6 @@
 const extend = require('deep-extend')
 
-function addAuthorData (files = {}) {
+function addAuthorData (files = {}, context) {
   extend(files.pkg, {
     author: {
       name: '',

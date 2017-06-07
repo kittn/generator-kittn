@@ -1,15 +1,15 @@
 const extend = require('deep-extend')
 
-function addBaseSettings (files = {}) {
+function addBaseSettings (files = {}, context) {
   extend(files.pkg, {
-    title: '',
-    name: this.props.projectName,
-    description: this.props.projectDescription,
-    version: '',
-    license: '',
-    repository: '',
+    title: 'SiteTitle',
+    name: context.props.projectname,
+    description: context.props.projectdescription,
+    version: '0.0.1',
+    license: 'MIT',
+    repository: 'https://...',
     engines: {
-      node: '>=6.0.0'
+      node: '>=7.6.0'
     }
   })
 }
