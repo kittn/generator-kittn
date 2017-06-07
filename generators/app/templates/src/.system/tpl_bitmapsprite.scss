@@ -1,0 +1,20 @@
+// All Bitmap Sprites are in this Map
+//
+// @type Map
+/* stylelint-disable */
+
+$bitmapspritebase: (
+  width: {{spritesheet.px.width}},
+  height: {{spritesheet.px.height}}
+);
+
+$bitmapsprites: (
+  {{#items}}
+  {{name}}: (
+    width: {{px.width}},
+    height: {{px.height}},
+    posX: {{px.offset_x}},
+    posY: {{px.offset_y}}
+  ),
+  {{/items}}
+);

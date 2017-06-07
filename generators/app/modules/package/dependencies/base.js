@@ -3,6 +3,7 @@ const extend = require('deep-extend')
 function addBaseDependencies (files = {}, context) {
   extend(files.pkg, {
     scripts: {
+      'subtask:buildgulp': 'gulp build --env=production',
       'assets': 'gulp copy:assets --env=init',
       'build': 'npm run subtask:bundlewebpack && NODE_ENV=production npm run subtask:buildgulp',
       'deploy': 'npm run subtask:bundlewebpack && npm run subtask:buildgulp',

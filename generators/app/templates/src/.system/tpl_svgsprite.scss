@@ -1,0 +1,20 @@
+// All SVG Sprites are in this Map
+//
+// @type Map
+/* stylelint-disable */
+
+$svgspritebase: (
+  width: {{spriteWidth}}px,
+  height: {{spriteHeight}}px
+);
+
+$svgsprites: (
+{{#shapes}}
+  {{base}}: (
+    width: {{width.outer}}px,
+    height: {{height.outer}}px,
+    posX: {{position.absolute.x}}px,
+    posY: {{position.absolute.y}}px
+  ),
+{{/shapes}}
+);
