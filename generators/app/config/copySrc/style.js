@@ -14,32 +14,36 @@ const styles = (context) => {
         dest: 'src/style/_setup.scss'
       },
       {
-        projectContext: [
-          'sassAtomic'
-        ],
+        conditions: {
+          projectcssstructure: 'sassAtomic'
+        },
         src: 'src/skeletons/style/_application_atomic.scss',
         dest: 'src/style/application/_application.scss'
       },
       {
-        projectContext: [
-          'sassITCSS'
-        ],
+        conditions: {
+          projectcssstructure: 'sassITCSS'
+        },
         src: 'src/skeletons/style/_application_itcss.scss',
         dest: 'src/style/application/_application.scss'
       },
       {
-        projectContext: [
-          'sassOwn'
-        ],
+        conditions: {
+          projectcssstructure: 'sassOwn'
+        },
         src: 'src/skeletons/style/_application_own.scss',
         dest: 'src/style/application/_application.scss'
       },
       {
-        projectContext: [
-          'projectstylelint'
-        ],
+        conditions: {
+          projectstylelint: true
+        },
         src: '.stylelintrc',
         dest: '.stylelintrc'
+      },
+      {
+        src: '.sass-lint',
+        dest: '.sass-lint'
       }
     ],
     folders: [
@@ -56,16 +60,16 @@ const styles = (context) => {
         dest: 'src/style/vendor/'
       },
       {
-        projectContext: [
-          'sassAtomic'
-        ],
+        conditions: {
+          projectcssstructure: 'sassAtomic'
+        },
         src: 'src/skeletons/style/atomic',
         dest: 'src/style/application/'
       },
       {
-        projectContext: [
-          'sassITCSS'
-        ],
+        conditions: {
+          projectcssstructure: 'sassITCSS'
+        },
         src: 'src/skeletons/style/itcss',
         dest: 'src/style/application/'
       }

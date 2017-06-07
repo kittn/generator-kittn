@@ -1,0 +1,11 @@
+{
+  "presets": [
+    ["env", {
+      "modules": false,
+      "useBuiltIns": true,
+      "debug": false
+    }]
+  ],
+  "plugins": ["syntax-dynamic-import"]<% if (projectjsframework == 'react') { %>,
+  "react"<% } %>
+}

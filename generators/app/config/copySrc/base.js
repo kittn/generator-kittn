@@ -8,6 +8,18 @@ const base = (context) => {
       {
         src: 'config.json',
         dest: 'config.json'
+      },
+      {
+        src: '.nvmrc',
+        dest: '.nvmrc'
+      },
+      {
+        src: '.editorconfig',
+        dest: '.editorconfig'
+      },
+      {
+        src: '.bowerrc',
+        dest: '.bowerrc'
       }
     ],
     folders: [

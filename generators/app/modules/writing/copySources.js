@@ -3,27 +3,41 @@
 // ===========================
 const base = require('../../config/copySrc/base.js')
 const style = require('../../config/copySrc/style.js')
+const script = require('../../config/copySrc/script.js')
+
+const copyAction = (data, context) => {
+  context.fs.copyTpl(
+    context.templatePath(data.src),
+    context.destinationPath(data.dest),
+    context.props
+  )
+}
+
+const checkCondition = (data, context) => {
+  if (data.conditions) {
+    let error = false
+    for (const cond in data.conditions) {
+      if (data.conditions[cond] !== context.props[cond]) {
+        error = true
+      }
+    }
+
+    if (!error) {
+      copyAction(data, context)
+    }
+  } else {
+    copyAction(data, context)
+  }
+}
 
 const processConfig = (cfg, context) => {
   // Copy all sources
-  cfg.files.forEach(file => {
-    if (!file.projectContext || file.projectContext.includes(context.props.projectcssstructure)) {
-      context.fs.copyTpl(
-        context.templatePath(file.src),
-        context.destinationPath(file.dest),
-        context.props
-      )
-    }
-  })
-  cfg.folders.forEach(folder => {
-    if (!folder.projectContext || folder.projectContext.includes(context.props.projectcssstructure)) {
-      context.fs.copyTpl(
-        context.templatePath(folder.src),
-        context.destinationPath(folder.dest),
-        context.props
-      )
-    }
-  })
+  for (const file of cfg.files) {
+    checkCondition(file, context)
+  }
+  for (const folder of cfg.folders) {
+    checkCondition(folder, context)
+  }
 }
 
 const copySources = () => {
@@ -37,6 +51,10 @@ const copySources = () => {
         // Style
         const styleConfig = style(context)
         processConfig(styleConfig, context)
+
+        // Style
+        const scriptConfig = script(context)
+        processConfig(scriptConfig, context)
 
         resolve()
       })
