@@ -25,28 +25,8 @@ const generalPrompts = [
     default: 'style',
     store: false
   },
-  // Syntax Style
-  {
-    type: 'list',
-    name: 'projectsasssyntax',
-    message: message({
-      headline: 'Sass Compiler Syntax',
-      description: 'Do you want to use indented syntax (sass) or Sassy CSS syntax (SCSS)'
-    }),
-    choices: [
-      {
-        name: 'SCSS',
-        value: 'scss'
-      },
-      {
-        name: 'Sass',
-        value: 'sass'
-      }
-    ]
-  },
   // Stylelint
   {
-    when: when('projectsasssyntax', 'scss'),
     type: 'confirm',
     name: 'projectstylelint',
     message: message({
