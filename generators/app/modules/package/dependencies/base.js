@@ -29,7 +29,7 @@ function addBaseDependencies (files = {}, context) {
       'gulp-modernizr': '^1.0.0-alpha',
       'gulp-notify': '^3.0.0',
       'gulp-plumber': '^1.1.0',
-      'gulp-spritesmith': '^0.0.2',
+      'gulp.spritesmith': '^6.3.0',
       'gulp-svg-sprite': '^1.3.7',
       'gulp-twig': '^0.7.0',
       'gulp-uglify': '^3.0.0',

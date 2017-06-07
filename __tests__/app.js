@@ -15,12 +15,12 @@ describe('generator-kittn:app', () => {
     ])
   })
 
-  it('adds base infos to package.json', () => {
-    assert.JSONFileContent('package.json', {
-      name: '',
-      description: '',
-      version: '',
-      authors: [{ name: '', email: '', homepage: '' }]
-    })
-  })
+  // it('adds base infos to package.json', () => {
+  //   assert.JSONFileContent('package.json', {
+  //     name: '',
+  //     description: '',
+  //     version: '',
+  //     authors: [{ name: '', email: '', homepage: '' }]
+  //   })
+  // })
 })

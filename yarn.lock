@@ -3073,6 +3073,16 @@ sntp@1.x.x:
   dependencies:
     hoek "2.x.x"
 
+sort-object-keys@^1.1.1:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/sort-object-keys/-/sort-object-keys-1.1.2.tgz#d3a6c48dc2ac97e6bc94367696e03f6d09d37952"
+
+sort-package-json@^1.6.1:
+  version "1.6.1"
+  resolved "https://registry.yarnpkg.com/sort-package-json/-/sort-package-json-1.6.1.tgz#2ae463e4f5bb5d803bfdffdb4f92551c8fa66593"
+  dependencies:
+    sort-object-keys "^1.1.1"
+
 source-map-support@^0.4.2:
   version "0.4.15"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.15.tgz#03202df65c06d2bd8c7ec2362a193056fef8d3b1"

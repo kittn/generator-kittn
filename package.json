@@ -59,6 +59,7 @@
     "jest": "^20.0.0",
     "jest-cli": "^20.0.0",
     "nsp": "^2.6.3",
+    "sort-package-json": "^1.6.1",
     "yeoman-assert": "^3.0.0",
     "yeoman-test": "^1.6.0"
   },
