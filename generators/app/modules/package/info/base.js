@@ -5,7 +5,7 @@ function addBaseSettings (files = {}, context) {
     title: 'SiteTitle',
     name: context.props.projectname,
     description: context.props.projectdescription,
-    version: '0.0.1',
+    version: context.props.projectversion,
     license: 'MIT',
     repository: 'https://...',
     engines: {

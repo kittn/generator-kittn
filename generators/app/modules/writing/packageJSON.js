@@ -7,7 +7,8 @@ const addBrowsersList = require('../package/info/browserslist.js')
 
 // Dependencies
 const addBaseDependencies = require('../package/dependencies/base.js')
-const addSassDependencies = require('../package/dependencies/sass.js')
+const addStyleDependencies = require('../package/dependencies/style.js')
+const addScriptDependencies = require('../package/dependencies/script.js')
 
 const writePackageJson = () => {
   return {
@@ -24,7 +25,8 @@ const writePackageJson = () => {
         addBrowsersList({pkg}, context)
 
         addBaseDependencies({pkg}, context)
-        addSassDependencies({pkg}, context)
+        addStyleDependencies({pkg}, context)
+        addScriptDependencies({pkg}, context)
 
         // Write package.json
         context.fs.writeJSON(context.destinationPath('package.json'), pkg)

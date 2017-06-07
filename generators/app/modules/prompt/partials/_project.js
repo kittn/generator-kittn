@@ -3,6 +3,16 @@ const message = require('../helpers/message')
 const toolPrompts = [
   {
     type: 'input',
+    name: 'projectversion',
+    message: message({
+      headline: 'Project Version',
+      description: 'The Version Number',
+      defaultValue: false
+    }),
+    default: '0.0.1'
+  },
+  {
+    type: 'input',
     name: 'projectauthor',
     message: message({
       headline: 'Project Author',
