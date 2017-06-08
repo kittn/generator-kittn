@@ -1,0 +1,148 @@
+<!-- BEGIN SEOmatic rendered SEO Meta -->
+
+<title>{% if craft.config.devMode %}{{ seomaticSiteMeta.siteDevModeTitle }} {% endif %}{% if seomaticSiteMeta.siteSeoTitlePlacement == "before" %}{{ seomaticSiteMeta.siteSeoName |raw }}{% if seomaticMeta.seoTitle %} {{ seomaticSiteMeta.siteSeoTitleSeparator }} {% endif %}{% endif %}{{ seomaticMeta.seoTitle |raw }}{% if seomaticSiteMeta.siteSeoTitlePlacement == "after" %}{% if seomaticMeta.seoTitle %} {{ seomaticSiteMeta.siteSeoTitleSeparator }} {% endif %}{{ seomaticSiteMeta.siteSeoName |raw }}{% endif %}</title>
+
+<!-- Standard SEO -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="referrer" content="always" />
+{% if seomaticMeta.robots is defined and seomaticMeta.robots %}
+<meta name="robots" content="{{ seomaticMeta.robots |raw }}" />
+{% endif %}
+{% if seomaticMeta.seoKeywords is defined and seomaticMeta.seoKeywords %}
+<meta name="keywords" content="{{ seomaticMeta.seoKeywords |raw }}" />
+{% endif %}
+{% if seomaticMeta.seoDescription is defined and seomaticMeta.seoDescription %}
+<meta name="description" content="{{ seomaticMeta.seoDescription |raw }}" />
+{% endif %}
+<meta name="generator" content="SEOmatic" />
+<link rel="canonical" href="{{ seomaticMeta.canonicalUrl }}" />
+{% set localizedUrls = getLocalizedUrls() %}
+{% if localizedUrls |length > 1 %}
+{% for key, value in localizedUrls %}
+<link rel="alternate" hreflang="{{ key |lower |replace ('_', '-') }}" href="{{ value }}" />
+{% endfor %}
+{% endif %}
+{% if seomaticIdentity.address.addressRegion is defined and seomaticIdentity.address.addressRegion %}
+<meta name="geo.region" content="{{ seomaticIdentity.address.addressRegion |raw }}" />
+{% endif %}
+{% if seomaticIdentity.location.geo.latitude is defined and seomaticIdentity.location.geo.latitude and seomaticIdentity.location.geo.latitude is defined and seomaticIdentity.location.geo.latitude %}
+<meta name="geo.position" content="{{ seomaticIdentity.location.geo.latitude |raw }},{{ seomaticIdentity.location.geo.longitude |raw }}" />
+<meta name="ICBM" content="{{ seomaticIdentity.location.geo.latitude |raw }},{{ seomaticIdentity.location.geo.longitude |raw }}" />
+{% endif %}
+{% if seomaticIdentity.location.name is defined and seomaticIdentity.location.name %}
+<meta name="geo.placename" content="{{ seomaticIdentity.location.name |raw }}" />
+{% endif %}
+
+<!-- Dublin Core basic info -->
+
+<meta name="dcterms.Identifier" content="{{ seomaticMeta.canonicalUrl }}" />
+<meta name="dcterms.Format" content="text/html" />
+<meta name="dcterms.Relation" content="{{ seomaticSiteMeta.siteSeoName |raw }}" />
+<meta name="dcterms.Language" content="{{ craft.locale | slice (0,2) }}" />
+<meta name="dcterms.Publisher" content="{{ seomaticSiteMeta.siteSeoName |raw }}" />
+<meta name="dcterms.Type" content="text/html" />
+<meta name="dcterms.Coverage" content="{{ siteUrl }}" />
+<meta name="dcterms.Rights" content="{{ seomaticHelper.ownerCopyrightNotice |raw }}" />
+<meta name="dcterms.Title" content="{{ seomaticMeta.seoTitle |raw }}" />
+{% if seomaticCreator.name is defined and seomaticCreator.name %}
+<meta name="dcterms.Creator" content="{{ seomaticCreator.name |raw }}" />
+{% endif %}
+<meta name="dcterms.Subject" content="{{ seomaticMeta.seoKeywords |raw }}" />
+<meta name="dcterms.Contributor" content="{{ seomaticSiteMeta.siteSeoName |raw }}" />
+<meta name="dcterms.Date" content="{{ now | date('Y-m-d') }}" />
+<meta name="dcterms.Description" content="{{ seomaticMeta.seoDescription |raw }}" />
+
+{% if seomaticMeta.og is defined and seomaticMeta.og %}
+<!-- Facebook OpenGraph -->
+
+{% if seomaticSocial.facebookProfileId %}
+<meta property="fb:profile_id" content="{{ seomaticSocial.facebookProfileId |raw }}" />
+{% endif %}
+{% if seomaticSocial.facebookAppId %}
+<meta property="fb:app_id" content="{{ seomaticSocial.facebookAppId |raw }}" />
+{% endif %}
+{% for key, value in seomaticMeta.og %}
+{% if value %}
+{% if value is iterable %}
+{% for subvalue in value %}
+<meta property="og:{{ key }}" content="{{ subvalue |raw }}" />
+{% endfor %}
+{% else %}
+<meta property="og:{{ key }}" content="{{ value |raw }}" />
+{% endif %}
+{% endif %}
+{% endfor %}
+{% if seomaticMeta.article is defined and seomaticMeta.article %}
+{% for key, value in seomaticMeta.article %}
+{% if value %}
+{% if value is iterable %}
+{% for subvalue in value %}
+<meta property="article:{{ key }}" content="{{ subvalue |raw }}" />
+{% endfor %}
+{% else %}
+<meta property="article:{{ key }}" content="{{ value |raw }}" />
+{% endif %}
+{% endif %}
+{% endfor %}
+{% endif %}
+{% endif %}
+
+{% if seomaticMeta.twitter is defined and seomaticMeta.twitter %}
+<!-- Twitter Card -->
+
+{% for key, value in seomaticMeta.twitter %}
+{% if value %}
+<meta name="twitter:{{ key }}" content="{{ value |raw }}" />
+{% endif %}
+{% endfor %}
+
+{% endif %}
+{% if seomaticSocial.googlePlusHandle %}
+<!-- Google Publisher -->
+
+<link rel="publisher" href="{{ seomaticHelper.googlePlusUrl }}" />
+{% endif %}
+
+<!-- Humans.txt authorship http://humanstxt.org -->
+
+<link type="text/plain" rel="author" href="/humans.txt" />
+
+<!-- Domain verification -->
+
+{% if seomaticHelper.ownerGoogleSiteVerification %}
+<meta name="google-site-verification" content="{{ seomaticHelper.ownerGoogleSiteVerification |raw }}" />
+{% endif %}
+{% if seomaticHelper.ownerBingSiteVerification %}
+<meta name="msvalidate.01" content="{{ seomaticHelper.ownerBingSiteVerification |raw }}" />
+{% endif %}
+
+<!-- Identity -->
+
+{{ craft.seomatic.renderIdentity() |raw }}
+
+<!-- WebSite -->
+
+{{ craft.seomatic.renderWebsite() |raw }}
+
+<!-- Place -->
+
+{{ craft.seomatic.renderPlace() |raw }}
+
+<!-- Main Entity of Page -->
+
+{{ craft.seomatic.renderMainEntityOfPage() |raw }}
+
+<!-- Breadcrumbs -->
+
+{{ craft.seomatic.renderBreadcrumbs() |raw }}
+
+<!-- Google Tag Manager -->
+
+{% if not craft.request.isLivePreview %}{{ craft.seomatic.renderGoogleTagManager() |raw }}{% else %}<!-- Google Tag Manager script is NOT included in LivePreview -->{% endif %}
+
+<!-- Google Analytics -->
+
+{% if not craft.config.devMode and not craft.request.isLivePreview %}{{ craft.seomatic.renderGoogleAnalytics() |raw }}{% else %}<!-- Google Analytics script is NOT included in LivePreview or if devMode is on -->{% endif %}
+
+<!-- END SEOmatic rendered SEO Meta -->

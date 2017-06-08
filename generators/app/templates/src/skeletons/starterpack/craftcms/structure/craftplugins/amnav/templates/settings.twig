@@ -1,0 +1,27 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.textField({
+    id: 'pluginName',
+    name: 'pluginName',
+    label: 'Plugin name'|t,
+    value: settings.pluginName,
+    first: true,
+    autofocus: true,
+    instructions: 'Plugin name for the end user.'|t
+}) }}
+<hr>
+{{ forms.lightswitchField({
+    id: 'canDoActions',
+    name: 'canDoActions',
+    label: 'Can add, edit and delete'|t,
+    on: settings.canDoActions,
+    instructions: 'Whether non-admins can add, edit and delete navigations.'|t
+}) }}
+<hr>
+{{ forms.lightswitchField({
+    id: 'quietErrors',
+    name: 'quietErrors',
+    label: 'Quiet errors'|t,
+    on: settings.quietErrors,
+    instructions: 'Whether to silently log an error or throw an exception if a navigation does not exist. By default, it will throw an exception.'|t
+}) }}

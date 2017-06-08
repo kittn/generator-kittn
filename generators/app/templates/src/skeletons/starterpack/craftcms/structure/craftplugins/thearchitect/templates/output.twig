@@ -1,0 +1,68 @@
+{% extends "_layouts/cp" %}
+{% set title = "The Architect"|t %}
+
+{% import "_includes/forms" as forms %}
+
+{% set tabs = {
+    tab1: { label: "Raw Input"|t, url: url('thearchitect') },
+    tab2: { label: "Available Files"|t, url: url('thearchitect/files') },
+    tab3: { label: "Export"|t, url: url('thearchitect/blueprint') },
+    tab4: { label: "Migrations"|t, url: url('thearchitect/migrations') },
+    tab5: { label: "Matrix to Neo Export"|t, url: url('thearchitect/convert') },
+} %}
+
+{% set selectedTab = tab %}
+
+{% set content %}
+<div class="the-architect">
+
+    {% if selectedTab == 'tab5' %}
+    <p>
+        To import this json back into Craft you will need the <a href="https://github.com/benjamminf/craft-neo" target="_blank">Neo Plugin</a> installed.
+    </p>
+    <p>
+        If you plan on re-importing this json directly into this instance of Craft remember to rename the handle either in this json model or on the old matrix field.
+    </p>
+    <p>
+        <code class="output">{{ oldFieldCount }} fields found in matrix field(s) reduced to {{ newFieldCount }} fields used by Neo</code>
+    </p>
+    {% endif %}
+    {# Text Area for Output Data #}
+    {{ forms.textarea({
+        name: 'json',
+        class: 'nicetext code',
+        value: (json is defined ? json : null),
+        first: true,
+        autofocus: true,
+        rows: 24
+    }) }}
+    {% if similarFields is defined and similarFields | length %}
+    <h2>Some similar fields you might want to review and combine manually.</h2>
+    <table id="similarFields" class="data fullwidth collapsible">
+        <thead>
+            <tr>
+                <th scope="col">
+                    Field A
+                </th>
+                <th scope="col">
+                    Field B
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fields in similarFields %}
+            <tr>
+                <td>
+                    <pre class="text nicetext code" style="white-space: pre-wrap;">{{ fields.A }}</pre>
+                </td>
+                <td>
+                    <pre class="text nicetext code" style="white-space: pre-wrap;">{{ fields.B }}</pre>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+</div>
+{% endset %}

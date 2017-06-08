@@ -1,0 +1,61 @@
+{#
+  Card
+  ====
+  Media and text content as card module
+
+  @param {string} name          = Classname
+  @param {object} data          = Dataobject
+  @param {string} data.style    = Optional Styleclass Name
+#}
+
+{# Class Overwrite #}
+{% set classname = name is defined and name != '' ? name : 'o-card' %}
+{% set cardurl = data.cardlink.url is defined ? data.cardlink.url : '' %}
+
+{# Build Element Block #}
+<div class="{{ classname }}{{ options.style != 'default' ? ' '~classname~'--s-'~options.style }}" role="group" itemscope itemtype="http://schema.org/MediaObject">
+
+  <div class="{{ classname }}__inner">
+    {% if data.video|length or data.photo|length  %}
+      <figure class="{{ classname }}__media">
+        {% if options.videobox %}
+          {% if data.video %}
+            <video muted preload="none" autoplay="autoplay" class="{{ classname }}__video" loop role="application">
+              {% for video in data.video %}
+                <source src="{{ video.url }}" type="{{ video.getMimeType }}">
+              {% endfor %}
+              {% if data.photo %}
+                {{ _.mediaImageSet(data.photo.first(), options.mediaRatio, {
+                  class: classname~'__image'
+                }) }}
+              {% endif %}
+            </video>
+          {% endif %}
+
+        {% else %}
+          {% if data.photo %}
+            {{ _.mediaImageSet(data.photo.first(), options.mediaRatio, {
+              class: classname~'__image'
+            }) }}
+          {% endif %}
+        {% endif %}
+      </figure>
+    {% endif %}
+    {% if data.headline != '' or data.subline != '' or data.meta != '' or data.body != '' %}
+      <div class="{{ classname }}__copy">
+        {% if data.headline != '' or data.subline != '' or data.meta != '' %}
+          <header class="{{ classname }}__header">
+            {% if data.meta != '' %}<span class="{{ classname }}__meta">{{ data.meta }}</span>{% endif %}
+            {% if data.headline != '' %}<h3 class="{{ classname }}__headline">
+              {% if cardurl is defined and cardurl != '' %}<a href="{{ cardurl }}"{{ data.cardlink.type == 'custom' ? ' target="_blank"' }}>{% endif %}
+                {{ data.headline }}
+                {% if cardurl is defined and cardurl != '' %}</a>{% endif %}
+              </h3>{% endif %}
+            {% if data.subline != '' %}<h6 class="{{ classname }}__subline">{{ data.subline }}</h3>{% endif %}
+          </header>
+        {% endif %}
+        {% if data.body != '' %}<div class="{{ classname }}__body">{{ data.body }}</div>{% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>

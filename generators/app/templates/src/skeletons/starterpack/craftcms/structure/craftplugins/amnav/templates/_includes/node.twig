@@ -1,0 +1,28 @@
+<div class="amnav__node element" data-id="{{ '%%id%%'|replace(replaceWith) }}" data-label="{{ '%%label%%'|replace(replaceWith) }}">
+    <div class="label">
+        <span class="amnav__id visuallyhidden"><strong>{{ '%%id%%'|replace(replaceWith) }}</strong></span>
+        <span class="status {{ '%%status%%'|replace(replaceWith) }}"></span>
+        <span class="title">{{ '%%label%%'|replace(replaceWith) }}</span>
+        {% if replaceWith|length and currentUser.admin -%}
+            <span class="amnav__listclass">{{ '%%listClass%%'|replace(replaceWith) }}</span>
+        {% endif %}
+        <span class="amnav__blank {{ '%%blank%%'|replace(replaceWith) }}" title="{{ 'Opens in a new window'|t }}"></span>
+    </div>
+</div>
+{% if replaceWith|length %}
+	{% if currentUser.admin or level >= settings.canMoveFromLevel %}
+    	<a class="move icon" title="{{ 'Move'|t }}"></a>
+    {% endif %}
+
+    <a class="settings icon" title="{{ 'Settings'|t }}"></a>
+
+    {% if currentUser.admin or level >= settings.canDeleteFromLevel %}
+    	<a class="delete icon" title="{{ 'Delete'|t }}"></a>
+    {% endif %}
+{% endif %}
+<div class="amnav__url">
+    <a href="{{ '%%url%%'|replace(replaceWith) }}" target="_blank" title="{{ '%%label%%'|replace(replaceWith) }}" rel="nofollow">{{ '%%urlless%%'|replace(replaceWith)|raw }}</a>
+</div>
+<div class="amnav__type">
+    <span class="amnav__type--{{ '%%type%%'|replace(replaceWith)|lower }}">{{ '%%typeLabel%%'|replace(replaceWith)|t }}</span>
+</div>

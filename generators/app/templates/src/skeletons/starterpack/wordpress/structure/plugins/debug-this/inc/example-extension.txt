@@ -1,0 +1,12 @@
+add_debug_extension(
+	'actions', #Mode
+	__('Actions', 'debug-this'), #Label
+	__('$wp_actions contains all active registered actions', 'debug-this'), #Description
+	'foo_callback', #Callback - accepts object methods as well
+	'Filters And Actions' #Admin Bar Group
+);
+function foo_callback($buffer){
+	#Do something
+	#$debug contains the rendered page/post HTML
+	return $debug;
+}
