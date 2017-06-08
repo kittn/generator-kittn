@@ -6,8 +6,8 @@ const style = require('../../config/copySrc/style.js')
 const script = require('../../config/copySrc/script.js')
 const projecttype = require('../../config/copySrc/projecttype.js')
 const tools = require('../../config/copySrc/tools.js')
-// const starterpackCraft = require('../../config/copySrc/starterpackCraft.js')
-// const starterpackWordpress = require('../../config/copySrc/starterpackWordpress.js')
+const starterpackCraft = require('../../config/copySrc/starterpackCraft.js')
+const starterpackWordpress = require('../../config/copySrc/starterpackWordpress.js')
 
 const copyAction = (data, context) => {
   if (data.simplecopy) {
