@@ -38,6 +38,18 @@ const base = (context) => {
       {
         src: 'src/.system',
         dest: 'src/.system/'
+      },
+      {
+        src: 'src/images',
+        dest: 'src/images/'
+      },
+      {
+        src: 'src/scripts',
+        dest: 'src/scripts/'
+      },
+      {
+        src: 'src/fonts',
+        dest: 'src/fonts/'
       }
     ]
   }
