@@ -61,6 +61,14 @@ function addStyleDependencies (files = {}, context) {
       }
     })
   }
+
+  if (context.props.projectnormalize === 'regular') {
+    extend(files.pkg, {
+      devDependencies: {
+        'postcss-normalize': '^3.0.0'
+      }
+    })
+  }
 }
 
 module.exports = addStyleDependencies
