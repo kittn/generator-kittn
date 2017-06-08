@@ -9,7 +9,7 @@ const promptsFunction = require('./modules/prompt')
 const pkg = require('../../package.json')
 
 // Package JSON
-const writePackageJson = require('./modules/writing/packageJson')
+const writePackageJson = require('./modules/writing/packageJSON')
 
 // Copy Source Files
 const copySources = require('./modules/writing/copySources')

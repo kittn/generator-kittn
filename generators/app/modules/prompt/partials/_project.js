@@ -28,6 +28,15 @@ const toolPrompts = [
       description: 'Mailadress from the Author',
       defaultValue: false
     })
+  },
+  {
+    type: 'input',
+    name: 'projecturl',
+    message: message({
+      headline: 'Project Repository URL',
+      description: 'Web-Adress for the Repository',
+      defaultValue: false
+    })
   }
 ]
 

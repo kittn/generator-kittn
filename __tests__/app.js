@@ -22,7 +22,10 @@ describe('generator-kittn:app', () => {
     return helpers.run(path.join(__dirname, '../generators/app'))
       .withPrompts({
         projectname: project.name,
-        projectdescription: project.description
+        projectdescription: project.description,
+        projectauthor: author.name,
+        projectmail: author.email,
+        projecturl: author.homepage
       })
   })
   // Test for Basic Files
@@ -32,22 +35,8 @@ describe('generator-kittn:app', () => {
       assert.JSONFileContent('package.json', {
         name: project.name,
         description: project.description
+        // author: {name: author.name, email: author.email, url: author.homepage}
       })
     })
   })
-
-  // it('creates a package.json', () => {
-  //   assert.file([
-  //     'package.json'
-  //   ])
-  // })
-
-  // it('adds base infos to package.json', () => {
-  //   assert.JSONFileContent('package.json', {
-  //     name: '',
-  //     description: '',
-  //     version: '',
-  //     authors: [{ name: '', email: '', homepage: '' }]
-  //   })
-  // })
 })
