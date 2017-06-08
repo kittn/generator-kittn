@@ -19,6 +19,7 @@ module.exports = class extends Generator {
   constructor (args, opts) {
     super(args, opts)
     this.pkg = pkg
+
     this.promptsFunction = promptsFunction.bind(this)
 
     // Package.json
