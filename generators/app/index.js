@@ -32,6 +32,7 @@ module.exports = class extends Generator {
       composer: false,
       yarn: false,
       git: false,
+      wget: false,
       wp: false
     }
   }

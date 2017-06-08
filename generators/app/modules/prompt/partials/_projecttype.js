@@ -74,6 +74,30 @@ const projectPrompts = [
   },
   //
   // TODO: Wordpress CLI automatic Install
+  {
+    when: function (response) {
+      return response.projectusage === 'wordpress' // && commands.wp === false)
+    },
+    type: 'confirm',
+    name: 'projectwpcli',
+    message: message({
+      headline: 'Wordpress Install',
+      description: 'Should the generator install WordPress for you?',
+      defaultValue: false
+    }),
+    default: true
+  },
+  {
+    when: when('projectusage', 'craft', 'commands', 'wget'),
+    type: 'confirm',
+    name: 'projectcraftcli',
+    message: message({
+      headline: 'Craft Install',
+      description: 'Should the generator install CraftCMS for you?',
+      defaultValue: false
+    }),
+    default: true
+  },
   // TODO: CraftCMS CLI automatic Install
   //
   {
