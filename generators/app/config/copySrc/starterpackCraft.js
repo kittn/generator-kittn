@@ -29,7 +29,8 @@ const starterpackCraft = (context) => {
           projectcraftbp: true
         },
         src: 'src/skeletons/starterpack/craftcms/structure/craftplugins/',
-        dest: 'src/craftplugins/'
+        dest: 'src/craftplugins/',
+        simplecopy: true
       },
       {
         conditions: {

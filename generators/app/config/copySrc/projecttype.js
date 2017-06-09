@@ -32,6 +32,20 @@ const projecttype = (context) => {
       },
       {
         conditions: {
+          projectusage: 'craft'
+        },
+        src: 'src/skeletons/craftcms/env/.env.php',
+        dest: 'src/.system/env/.env.php'
+      },
+      {
+        conditions: {
+          projectusage: 'craft'
+        },
+        src: 'src/skeletons/craftcms/env/example.env.php',
+        dest: 'src/.system/env/example.env.php'
+      },
+      {
+        conditions: {
           projectusage: 'wordpress'
         },
         src: 'gulpfile_additions/copy-wpconfig.js',
@@ -89,13 +103,6 @@ const projecttype = (context) => {
         },
         src: 'src/skeletons/craftcms/craftscripts',
         dest: 'craftscripts/'
-      },
-      {
-        conditions: {
-          projectusage: 'craft'
-        },
-        src: 'src/skeletons/craftcms/env',
-        dest: 'src/.system/env/'
       },
       {
         conditions: {
