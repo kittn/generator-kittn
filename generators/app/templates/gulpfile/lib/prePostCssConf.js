@@ -16,7 +16,8 @@ const preCssConf = () => {
           decl.value = SPACER * parseFloat(decl.value) / BASE + 'rem'
         }
       })
-    },
+    },<% if (projectnormalize === 'regular') { %>
+    require('postcss-normalize'),<% } %>
     // CSS Level 4 Stuff
     require('postcss-custom-selectors'),
     require('postcss-custom-media'),

@@ -6,13 +6,22 @@ const style = require('../../config/copySrc/style.js')
 const script = require('../../config/copySrc/script.js')
 const projecttype = require('../../config/copySrc/projecttype.js')
 const tools = require('../../config/copySrc/tools.js')
+const starterpackCraft = require('../../config/copySrc/starterpackCraft.js')
+const starterpackWordpress = require('../../config/copySrc/starterpackWordpress.js')
 
 const copyAction = (data, context) => {
-  context.fs.copyTpl(
-    context.templatePath(data.src),
-    context.destinationPath(data.dest),
-    context.props
-  )
+  if (data.simplecopy) {
+    context.fs.copy(
+      context.templatePath(data.src),
+      context.destinationPath(data.dest)
+    )
+  } else {
+    context.fs.copyTpl(
+      context.templatePath(data.src),
+      context.destinationPath(data.dest),
+      context.props
+    )
+  }
 }
 
 const checkCondition = (data, context) => {
@@ -45,7 +54,7 @@ const processConfig = (cfg, context) => {
 const copySources = () => {
   return {
     writing: (context) => {
-      return new Promise((resolve) => {
+      return new Promise((resolve, reject) => {
         // Base Config
         const baseConfig = base(context)
         processConfig(baseConfig, context)
@@ -58,13 +67,21 @@ const copySources = () => {
         const scriptConfig = script(context)
         processConfig(scriptConfig, context)
 
-        // Tools
+        // Projecttype
         const projecttypeConfig = projecttype(context)
         processConfig(projecttypeConfig, context)
 
         // Tools
         const toolConfig = tools(context)
         processConfig(toolConfig, context)
+
+        // Starterpack Craft
+        const starterpackCraftConfig = starterpackCraft(context)
+        processConfig(starterpackCraftConfig, context)
+
+        // Starterpack Wordpress
+        const starterpackWordpressConfig = starterpackWordpress(context)
+        processConfig(starterpackWordpressConfig, context)
 
         resolve()
       })

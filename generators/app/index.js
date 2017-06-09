@@ -103,5 +103,22 @@ module.exports = class extends Generator {
     } else {
       this.npmInstall()
     }
+
+    // Goodbye
+    this.on('end', () => {
+      const goodbye =
+              '\n ' + chalk.styles.yellow.open +
+              '\n                    __    .__  __    __ ' +
+              '\n                    |  | _|__|/  |__/  |_  ____ ' +
+              '\n                    |  |/ /  \\   __\\   __\\/    \\ ' +
+              '\n                    |    <|  ||  |  |  | |   |  \\ ' +
+              '\n                    |__|_ \\__||__|  |__| |___|  / ' +
+              '\n                    \\/                   \\/  ' +
+              '\n  ' + chalk.styles.yellow.close + chalk.styles.green.open +
+              '\n   Now we are finished. Make your last settings and start `npm run init`.' +
+              '\n      When npm is finished activate `npm run dev` and happy Coding.' +
+              '\n ' + chalk.styles.green.close
+      this.log(goodbye)
+    })
   }
 }

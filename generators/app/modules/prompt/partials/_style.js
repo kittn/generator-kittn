@@ -55,6 +55,29 @@ const generalPrompts = [
       }
     ]
   },
+  // Normalize
+  {
+    type: 'list',
+    name: 'projectnormalize',
+    message: message({
+      headline: 'normalize.css',
+      description: 'Do you want to use normalize.css?'
+    }),
+    choices: [
+      {
+        name: 'Custom',
+        value: 'custom'
+      },
+      {
+        name: 'Regular',
+        value: 'regular'
+      },
+      {
+        name: 'No',
+        value: false
+      }
+    ]
+  },
   // Container-Queries
   {
     type: 'confirm',

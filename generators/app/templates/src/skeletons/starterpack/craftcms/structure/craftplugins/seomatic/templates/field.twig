@@ -1,0 +1,513 @@
+{% import "_includes/forms" as forms %}
+
+{% set locale = craft.isLocalized() ? (element ? element.locale : craft.locale) %}
+
+{% set someUrl = getFullyQualifiedUrl(element.url) | default(siteUrl) %}
+{% include "seomatic/_preview_display_modal" with {'previewMetaPath': '', 'locale': locale } %}
+{% include "seomatic/_preview_tags_modal" with {'previewMetaPath': '', 'elementId': elementId,  'locale': locale } %}
+
+<div id="{{ id }}" class="seomatic-meta-field">
+
+    <div class="seomatic-meta-field-title">
+        <img class="seomatic-field-icon" src="{{ resourceUrl('seomatic/icon.svg') }}" width="16px" height="auto" /><span>SEOmatic Meta</span>
+    </div>
+    <div class="field first">
+        <div class="preview-field-wrapper">
+            <div id="preview-display" class="btn big seomatic-livepreviewbtn">
+                {{ "Preview SEO Meta Display" |t }}
+            </div>
+        </div>
+
+        <div class="preview-field-wrapper">
+            <div id="preview-tags" class="btn big seomatic-livepreviewbtn secondbtn">
+                {{ "Preview SEO Meta Tags" |t }}
+            </div>
+        </div>
+    </div>
+
+    <div class="field">
+        <div class="heading">
+            <label for="seoMainEntityOfPage">{{ "Main Entity of Page"|t}}{% if craft.isLocalized and meta.locale %}<span class="locale">{{ meta.locale }}</span>{% endif %}</label>
+            <div class="instructions"><p>{{ "The Main Entity of Page is a more specific, additional type that describes this entry.  This additional JSON-LD structured data entity will be added to your page, more specifically describing the page's content.  It is accessible via the <code>seomaticMainEntityOfPage</code> Twig variable, should you wish to modify or add to it" |t |raw}}</p></div>
+        </div>
+        <div>
+            <div class="inline-item">
+                {{ forms.selectField({
+                    id: id ~ "seoMainEntityCategory",
+                    class: "inline-item",
+                    fieldClass: "inline-item",
+                    options: {
+                        "CreativeWork": "CreativeWork",
+                        "Event": "Event",
+                        "Person": "Person",
+                        "Product": "Product",
+                    },
+                    name: name ~ "[seoMainEntityCategory]",
+                    value: meta.seoMainEntityCategory,
+                    locale: field.translatable ? locale,
+                }) }}
+            </div>
+            <div class="inline-item">
+                {{ forms.selectField({
+                    label: "&rarr;",
+                    class: "inline-item",
+                    fieldClass: "inline-item",
+                    id: id ~ "seoMainEntityOfPage",
+                    options: {
+                    },
+                    name: name ~ "[seoMainEntityOfPage]",
+                    value: meta.seoMainEntityOfPage,
+                    locale: field.translatable ? locale,
+                }) }}
+            </div>
+            <div class="inline-item">
+                <div class="inline-item inline-item-padding seomaticSchemaInfo">
+                </div>
+            </div>
+        </div>
+    </div>
+    {% set myJs %}
+        setSelectedValue("{{ meta.seoMainEntityOfPage }}");
+    {% endset %}
+    {% includeJs myJs %}
+
+    <div class="field comboField-wrapper first">
+        <div class="heading">
+            <label for="seoTitle">{{ "SEO Title"|t}}{% if locale %}<span class="locale">{{ locale }}</span>{% endif %}</label>
+            <div class="instructions"><p>{{ "<a href='http://blog.woorank.com/2014/07/15-title-tag-optimization-guidelines-usability-seo/' target='_blank'>The SEO Title</a> should be between 10 and 70 characters (spaces included).  Make sure your title tag is explicit and contains your most important keywords. Be sure that each page has a unique title tag.  The <code>siteSeoName</code> length is subtracted from the 70 character limit automatically, since it is appended to the <code>seoTitle</code>." |t |raw}}</p></div>
+        </div>
+        <div class="source-container"{% if not seoTitleSourceChangeable %} style="display: none;"{% endif %}>
+            <div class="source-item">
+                <p>{{ "Source" |t }} </p>
+            </div>
+            <div class="source-item">
+                {{ forms.selectField({
+                    fieldClass: 'nomarginfield',
+                    class: 'selectField',
+                    id: id ~ "seoTitleSource",
+                    options: {
+                        "custom": "Custom Text"|t,
+                        "field": "From Field"|t,
+                    },
+                    name: name ~ "[seoTitleSource]",
+                    value: meta.seoTitleSource,
+                    locale: field.translatable ? locale,
+                }) }}
+            </div>
+        </div>
+        <div id="seoTitleSourceField-wrapper" class="selectFieldWrapper">
+            <div {% if not seoTitleSourceChangeable %} style="display: none;"{% endif %}>
+            {{ forms.selectField({
+                fieldClass: 'nomarginfield',
+                id: id ~ "seoTitleSourceField",
+                options: fieldList,
+                name: name ~ "[seoTitleSourceField]",
+                value: meta.seoTitleSourceField,
+                locale: field.translatable ? locale,
+            }) }}
+            </div>
+            <p class="textpreview" id="{{ id ~ 'seoTitle-preview' }}"></p>
+       </div>
+        <div id ="seoTitle-wrapper" class="field customFieldWrapper">
+            <div class="heading">
+                <div class="instructions"><p>{{ "You can include tags that output entry properties, such as <code>{title}</code> or <code>{myCustomField}</code> in the text field below." |t |raw}}</p></div>
+            </div>
+           {{ forms.textField({
+                fieldClass: 'nomarginfield',
+                id: id ~ 'seoTitle',
+                class: 'nicetext',
+                name: name ~ '[seoTitleUnparsed]',
+                value: meta.seoTitleUnparsed,
+                errors: meta.getErrors('seoTitleUnparsed'),
+                maxlength: titleLength,
+                showCharsLeft: true,
+                required: false,
+                locale: field.translatable ? locale,
+            }) }}
+        </div>
+    </div>
+
+    <div class="field comboField-wrapper" id="{{ id }}seoDescription-field">
+        <div class="heading">
+            <label for="{{ id }}seoDescription">{{ "SEO Description"|t}}{% if locale %}<span class="locale">{{ locale }}</span>{% endif %}</label>
+            <div class="instructions"><p>{{ "<a href='http://blog.woorank.com/2013/03/the-importance-of-meta-descriptions/' target='_blank'>The SEO Description</a> should be between 70 and 160 characters (spaces included).  Meta descriptions allow you to influence how your web pages are described and displayed in search results.  Ensure that all of your web pages have a unique meta description that is explicit and contains your most important keywords." |t |raw}}</p></div>
+        </div>
+        <div class="source-container"{% if not seoDescriptionSourceChangeable %} style="display: none;"{% endif %}>
+            <div class="source-item">
+                <p>{{ "Source" |t }} </p>
+            </div>
+            <div class="source-item">
+                {{ forms.selectField({
+                    fieldClass: 'nomarginfield',
+                    class: 'selectField',
+                    id: id ~ "seoDescriptionSource",
+                    options: {
+                        "custom": "Custom Text"|t,
+                        "field": "From Field"|t,
+                    },
+                    name: name ~ "[seoDescriptionSource]",
+                    value: meta.seoDescriptionSource,
+                    locale: field.translatable ? locale,
+                }) }}
+            </div>
+        </div>
+        <div id="seoDescriptionSourceField-wrapper" class="selectFieldWrapper">
+            <div {% if not seoDescriptionSourceChangeable %} style="display: none;"{% endif %}>
+            {{ forms.selectField({
+                fieldClass: 'nomarginfield',
+                id: id ~ "seoDescriptionSourceField",
+                options: fieldList,
+                name: name ~ "[seoDescriptionSourceField]",
+                value: meta.seoDescriptionSourceField,
+                locale: field.translatable ? locale,
+            }) }}
+            </div>
+            <p class="textpreview" id="{{ id ~ 'seoDescription-preview' }}"></p>
+        </div>
+        <div id ="seoDescription-wrapper" class="field customFieldWrapper">
+            <div class="heading">
+                <div class="instructions"><p>{{ "You can include tags that output entry properties, such as <code>{title}</code> or <code>{myCustomField}</code> in the text field below." |t |raw}}</p></div>
+            </div>
+            {{ forms.textarea({
+                id: id ~ 'seoDescription',
+                fieldClass: 'nomarginfield',
+                class: 'nicetext',
+                name: name ~ '[seoDescriptionUnparsed]',
+                value: meta.seoDescriptionUnparsed,
+                errors: meta.getErrors('seoDescriptionUnparsed'),
+                maxlength: 160,
+                showCharsLeft: true,
+                required: false,
+                locale: field.translatable ? locale,
+            }) }}
+        </div>
+    </div>
+
+    <div class="field comboField-wrapper" id="{{ id }}seoKeywords-field">
+        <div class="heading">
+            <label for="seoKeywords">{{ "SEO Keywords"|t}}{% if locale %}<span class="locale">{{ locale }}</span>{% endif %}</label>
+            <div class="instructions"><p>{{ "Google ignores the <a href='http://blog.woorank.com/2014/06/meta-element-a-beguiners-guide/#metakeyword' target='_blank'>SEO Keywords tag</a>; though other search engines do look at it.  Utilize it carefully, as improper or spammy use most likely will hurt you, or even have your site marked as spam.  Avoid overstuffing the keywords and do not include keywords that are not related to the specific page you place them on." |t |raw}}</p></div>
+        </div>
+        <div class="source-container"{% if not seoKeywordsSourceChangeable %} style="display: none;"{% endif %}>
+            <div class="source-item">
+                <p>{{ "Source" |t }} </p>
+            </div>
+            <div class="source-item">
+                {{ forms.selectField({
+                    fieldClass: 'nomarginfield',
+                    class: 'selectField',
+                    id: id ~ "seoKeywordsSource",
+                    options: {
+                        "custom": "Custom Text"|t,
+                        "field": "From Field"|t,
+                        "keywords": "Keywords From Field"|t,
+                    },
+                    name: name ~ "[seoKeywordsSource]",
+                    value: meta.seoKeywordsSource,
+                    locale: field.translatable ? locale,
+                }) }}
+            </div>
+        </div>
+        <div id="seoKeywordsSourceField-wrapper" class="selectFieldWrapper">
+            <div {% if not seoKeywordsSourceChangeable %} style="display: none;"{% endif %}>
+            {{ forms.selectField({
+                fieldClass: 'nomarginfield',
+                id: id ~ "seoKeywordsSourceField",
+                options: fieldList,
+                name: name ~ "[seoKeywordsSourceField]",
+                value: meta.seoKeywordsSourceField,
+                locale: field.translatable ? locale,
+            }) }}
+            </div>
+            <p class="textpreview" id="{{ id ~ 'seoKeywords-preview' }}"></p>
+        </div>
+        <div id ="seoKeywords-wrapper" class="field customFieldWrapper">
+            <div class="heading">
+                <div class="instructions"><p>{{ "You can include tags that output entry properties, such as <code>{title}</code> or <code>{myCustomField}</code> in the text field below." |t |raw}}</p></div>
+            </div>
+            {{ forms.textarea({
+                id: id ~ 'seoKeywords',
+                class: 'nicetext',
+                name: name ~ '[seoKeywordsUnparsed]',
+                value: meta.seoKeywordsUnparsed,
+                errors: meta.getErrors('seoKeywordsUnparsed'),
+                maxlength: 200,
+                showCharsLeft: true,
+                required: false,
+                locale: field.translatable ? locale,
+            }) }}
+        </div>
+    </div>
+
+    <div class="field comboField-wrapper" id="{{ id }}seoImageId-field">
+        <div class="heading">
+            <label for="{{ id }}seoImageId">{{ "SEO Image"|t}}{% if locale %}<span class="locale">{{ locale }}</span>{% endif %}</label>
+            <div class="instructions"><p>{{ "This is the image that will be used for display as the webpage brand for this entry, as well as on Twitter Cards and Facebook OpenGraph that link to this page, if they are not specified.  The image must be in JPG, PNG, or GIF format." |t |raw}}</p></div>
+        </div>
+        <div class="source-container"{% if not seoImageIdSourceChangeable %} style="display: none;"{% endif %}>
+            <div class="source-item">
+                <p>{{ "Source" |t }} </p>
+            </div>
+            <div class="source-item">
+                {{ forms.selectField({
+                    fieldClass: 'nomarginfield',
+                    class: 'selectField',
+                    id: id ~ "seoImageIdSource",
+                    options: {
+                        "custom": "Custom Image"|t,
+                        "field": "From Field"|t,
+                    },
+                    name: name ~ "[seoImageIdSource]",
+                    value: meta.seoImageIdSource,
+                    locale: field.translatable ? locale,
+                }) }}
+            </div>
+        </div>
+        <div id="seoImageIdSourceField-wrapper" class="selectFieldWrapper">
+            <div {% if not seoImageIdSourceChangeable %} style="display: none;"{% endif %}>
+            {{ forms.selectField({
+                fieldClass: 'nomarginfield',
+                id: id ~ "seoImageIdSourceField",
+                options: imageFieldList,
+                name: name ~ "[seoImageIdSourceField]",
+                value: meta.seoImageIdSourceField,
+                locale: field.translatable ? locale,
+            }) }}
+            </div>
+        <img id="{{ id ~ 'seoImageIdSource-preview' }}" class="scale-with-grid" src="{{ resourceUrl('seomatic/images/missing_image.png') }}" alt="Image Preview" />
+       </div>
+        <div id ="seoImageId-wrapper" class="customFieldWrapper">
+            <div class="input">
+                {% if assetsSourceExists %}
+                    {{ forms.elementSelect({
+                        elements: elements,
+                        id: id ~ 'seoImageId',
+                        name: name ~ '[seoImageId]',
+                        elementType: elementType,
+                        criteria: {
+                            'kind': ['image'],
+                            'localeEnabled': null,
+                            'locale': craft.locale,
+                        },
+                        sourceElementId: seoImageId,
+                        sources: assetSources,
+                        jsClass: 'Craft.AssetSelectInput',
+                        addButtonLabel: "Select SEO Image" |t,
+                        limit: 1,
+                        locale: field.translatable ? locale,
+                    }) }}
+                {% else %}
+                    <p class="error">No assets sources currently exist. <a href="{{ newAssetsSourceUrl }}">Create one now...</a></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {{ forms.selectField({
+        label: "SEO Image Transform"|t,
+        instructions: "The image transform to apply to the Site SEO Image."|t,
+        id: id ~ "seoImageTransform",
+        options: transformsList,
+        name: name ~ "[seoImageTransform]",
+        value: meta.seoImageTransform,
+        locale: field.translatable ? locale,
+    }) }}
+
+    <div class="field comboField-wrapper"{% if not twitterCardTypeChangeable %} style="display: none;"{% endif %}>
+    {{ forms.selectField({
+        label: "Twitter Card Type"|t,
+        instructions: "With Twitter Cards, you can attach rich photos and information to Tweets that drive traffic to your website. Users who Tweet links to your content will have a “Card” added to the Tweet that’s visible to all of their followers.  Setting it to a blank value means 'no change'."|t,
+        id: id ~ "twitterCardType",
+        options: {
+            "": "",
+            "summary": "Summary Card"|t,
+            "summary_large_image": "Summary Card with Large Image"|t,
+        },
+        name: name ~ "[twitterCardType]",
+        value: meta.twitterCardType,
+        locale: field.translatable ? locale,
+    }) }}
+    </div>
+
+    <div class="field comboField-wrapper" id="{{ id }}seoTwitterImageId-field">
+        <div class="heading">
+            <label for="{{ id }}seoTwitterImageId">{{ "Twitter Card Image"|t}}{% if locale %}<span class="locale">{{ locale }}</span>{% endif %}</label>
+            <div class="instructions"><p>{{ "This is the image that will be used for display on Twitter Cards for tweets that link to this entry.  If no image is specified here, the Site SEO Image will be used for Twitter Cards instead.  The image must be in JPG, PNG, or GIF format." |t |raw}}</p></div>
+        </div>
+        <div class="source-container"{% if not seoTwitterImageIdSourceChangeable %} style="display: none;"{% endif %}>
+            <div class="source-item">
+                <p>{{ "Source" |t }} </p>
+            </div>
+            <div class="source-item">
+                {{ forms.selectField({
+                    fieldClass: 'nomarginfield',
+                    class: 'selectField',
+                    id: id ~ "seoTwitterImageIdSource",
+                    options: {
+                        "custom": "Custom Image"|t,
+                        "field": "From Field"|t,
+                    },
+                    name: name ~ "[seoTwitterImageIdSource]",
+                    value: meta.seoTwitterImageIdSource,
+                    locale: field.translatable ? locale,
+                }) }}
+            </div>
+        </div>
+        <div id="seoTwitterImageIdSourceField-wrapper" class="selectFieldWrapper">
+            <div {% if not seoTwitterImageIdSourceChangeable %} style="display: none;"{% endif %}>
+            {{ forms.selectField({
+                fieldClass: 'nomarginfield',
+                id: id ~ "seoTwitterImageIdSourceField",
+                options: imageFieldList,
+                name: name ~ "[seoTwitterImageIdSourceField]",
+                value: meta.seoTwitterImageIdSourceField,
+                locale: field.translatable ? locale,
+            }) }}
+            </div>
+        <img id="{{ id ~ 'seoTwitterImageIdSource-preview' }}" class="scale-with-grid" src="{{ resourceUrl('seomatic/images/missing_image.png') }}" alt="Image Preview" />
+       </div>
+        <div id ="seoTwitterImageId-wrapper" class="customFieldWrapper">
+            <div class="input">
+                {% if assetsSourceExists %}
+                    {{ forms.elementSelect({
+                        elements: elementsTwitter,
+                        id: id ~ 'seoTwitterImageId',
+                        name: name ~ '[seoTwitterImageId]',
+                        elementType: elementType,
+                        criteria: {
+                            'kind': ['image'],
+                            'localeEnabled': null,
+                            'locale': craft.locale,
+                        },
+                        sourceElementId: seoTwitterImageId,
+                        sources: assetSources,
+                        jsClass: 'Craft.AssetSelectInput',
+                        addButtonLabel: "Select Twitter Card Image" |t,
+                        limit: 1,
+                        locale: field.translatable ? locale,
+                    }) }}
+                {% else %}
+                    <p class="error">No assets sources currently exist. <a href="{{ newAssetsSourceUrl }}">Create one now...</a></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {{ forms.selectField({
+        label: "Twitter Card Image Transform"|t,
+        instructions: "The image transform to apply to the Twitter Card Image.  Twitter recommends: 120 x 120 pixels minimum size, 1:1 aspect ratio, 1mb max size for Summary Card images, and 280x150 pixels minimum size, 1.86:1 aspect ratio, 1mb max size for Summary Card with Large Image images."|t,
+        id: id ~ "seoTwitterImageTransform",
+        options: transformsList,
+        name: name ~ "[seoTwitterImageTransform]",
+        value: meta.seoTwitterImageTransform,
+        locale: field.translatable ? locale,
+    }) }}
+
+    <div class="field comboField-wrapper"{% if not openGraphTypeChangeable %} style="display: none;"{% endif %}>
+    {{ forms.selectField({
+        label: "Facebook OpenGraph Type"|t,
+        instructions: "Adding OpenGraph tags to your website influences the performance of your links on social media by allowing you to control what appears when a user posts a link to your content on Facebook.  Setting it to a blank value means 'no change'."|t,
+        id: id ~ "openGraphType",
+        options: {
+            "": "",
+            "website": "Website"|t,
+            "article": "Article"|t,
+        },
+        name: name ~ "[openGraphType]",
+        value: meta.openGraphType,
+        locale: field.translatable ? locale,
+    }) }}
+    </div>
+
+    <div class="field comboField-wrapper" id="{{ id }}seoFacebookImageId-field">
+        <div class="heading">
+            <label for="{{ id }}seoFacebookImageId">{{ "Facebook OpenGraph Image"|t}}{% if locale %}<span class="locale">{{ locale }}</span>{% endif %}</label>
+            <div class="instructions"><p>{{ "This is the image that will be used for display on Facebook posts that link to this entry.  If no image is specified here, the Site SEO Image will be used for Facebook posts instead.  The image must be in JPG, PNG, or GIF format." |t |raw}}</p></div>
+        </div>
+        <div class="source-container"{% if not seoFacebookImageIdSourceChangeable %} style="display: none;"{% endif %}>
+            <div class="source-item">
+                <p>{{ "Source" |t }} </p>
+            </div>
+            <div class="source-item">
+                {{ forms.selectField({
+                    fieldClass: 'nomarginfield',
+                    class: 'selectField',
+                    id: id ~ "seoFacebookImageIdSource",
+                    options: {
+                        "custom": "Custom Image"|t,
+                        "field": "From Field"|t,
+                    },
+                    name: name ~ "[seoFacebookImageIdSource]",
+                    value: meta.seoFacebookImageIdSource,
+                    locale: field.translatable ? locale,
+                }) }}
+            </div>
+        </div>
+        <div id="seoFacebookImageIdSourceField-wrapper" class="selectFieldWrapper">
+            <div {% if not seoFacebookImageIdSourceChangeable %} style="display: none;"{% endif %}>
+            {{ forms.selectField({
+                fieldClass: 'nomarginfield',
+                id: id ~ "seoFacebookImageIdSourceField",
+                options: imageFieldList,
+                name: name ~ "[seoFacebookImageIdSourceField]",
+                value: meta.seoFacebookImageIdSourceField,
+                locale: field.translatable ? locale,
+            }) }}
+            </div>
+        <img id="{{ id ~ 'seoFacebookImageIdSource-preview' }}" class="scale-with-grid" src="{{ resourceUrl('seomatic/images/missing_image.png') }}" alt="Image Preview" />
+       </div>
+        <div id ="seoFacebookImageId-wrapper" class="customFieldWrapper">
+            <div class="input">
+                {% if assetsSourceExists %}
+                    {{ forms.elementSelect({
+                        elements: elementsFacebook,
+                        id: id ~ 'seoFacebookImageId',
+                        name: name ~ '[seoFacebookImageId]',
+                        elementType: elementType,
+                        criteria: {
+                            'kind': ['image'],
+                            'localeEnabled': null,
+                            'locale': craft.locale,
+                        },
+                        sourceElementId: seoFacebookImageId,
+                        sources: assetSources,
+                        jsClass: 'Craft.AssetSelectInput',
+                        addButtonLabel: "Select Facebook OpenGraph Image" |t,
+                        limit: 1,
+                        locale: field.translatable ? locale,
+                    }) }}
+                {% else %}
+                    <p class="error">No assets sources currently exist. <a href="{{ newAssetsSourceUrl }}">Create one now...</a></p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    {{ forms.selectField({
+        label: "Facebook OpenGraph Image Transform"|t,
+        instructions: "The image transform to apply to the Facebook OpenGraph Image.  Facebook recommends: 1200 x 630 pixels minimum size, 1.9:1 aspect ratio, 8mb max size."|t,
+        id: id ~ "seoFacebookImageTransform",
+        options: transformsList,
+        name: name ~ "[seoFacebookImageTransform]",
+        value: meta.seoFacebookImageTransform,
+        locale: field.translatable ? locale,
+    }) }}
+
+    <div class="field comboField-wrapper"{% if not robotsChangeable %} style="display: none;"{% endif %}>
+    {{ forms.selectField({
+        label: "Robots Meta Tag"|t,
+        instructions: "The robots meta tag lets you utilize a granular, page-specific approach to controlling how an individual page should be indexed and served to users in search results.  Setting it to a blank value means 'no change'."|t,
+        id: id ~ "robots",
+        options: {
+            "": "",
+            "all": "all - Index this page and follow links (default)" |t,
+            "noindex": "noindex - Do not index this page" |t,
+            "nofollow": "nofollow - Do not follow links on this page" |t,
+            "none": "none - Do not index or follow links on this page" |t,
+        },
+        name: name ~ "[robots]",
+        value: meta.robots,
+        locale: field.translatable ? locale,
+    }) }}
+    </div>
+</div>
