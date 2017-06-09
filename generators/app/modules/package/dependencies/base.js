@@ -16,6 +16,7 @@ function addBaseDependencies (files = {}, context) {
     },
     devDependencies: {
       'ansi-html': '^0.0.7',
+      'babel-cli': '^6.24.1',
       'babel-core': '^6.24.1',
       'babel-preset-es2015': '^6.24.1',
       'browser-sync': '^2.18.7',
