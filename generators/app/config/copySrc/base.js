@@ -10,15 +10,15 @@ const base = (context) => {
         dest: 'config.json'
       },
       {
-        src: '.nvmrc',
+        src: '_nvmrc',
         dest: '.nvmrc'
       },
       {
-        src: '.editorconfig',
+        src: '_editorconfig',
         dest: '.editorconfig'
       },
       {
-        src: '.bowerrc',
+        src: '_bowerrc',
         dest: '.bowerrc'
       },
       {

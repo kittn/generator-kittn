@@ -52,11 +52,11 @@ const styles = (context) => {
         conditions: {
           projectstylelint: true
         },
-        src: '.stylelintrc',
+        src: '_stylelintrc',
         dest: '.stylelintrc'
       },
       {
-        src: '.sass-lint',
+        src: '_sass-lint',
         dest: '.sass-lint'
       }
     ],

@@ -2,19 +2,15 @@ const script = (context) => {
   return {
     files: [
       {
-        src: '.eslintrc',
+        src: '_eslintrc',
         dest: '.eslintrc'
       },
       {
-        src: '.eslintrc-dev',
+        src: '_eslintrc-dev',
         dest: '.eslintrc-dev'
       },
       {
-        src: '.babelrc',
-        dest: '.babelrc'
-      },
-      {
-        src: '.babelrc',
+        src: '_babelrc',
         dest: '.babelrc'
       },
       {
