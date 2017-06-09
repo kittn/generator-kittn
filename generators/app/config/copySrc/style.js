@@ -15,6 +15,20 @@ const styles = (context) => {
       },
       {
         conditions: {
+          projectnormalize: 'custom'
+        },
+        src: 'src/framework_additions/_normalize.scss',
+        dest: 'src/framework/partials/_normalize.scss'
+      },
+      {
+        conditions: {
+          projectnormalize: 'regular'
+        },
+        src: 'src/framework_additions/_normalize-slim.scss',
+        dest: 'src/framework/partials/_normalize.scss'
+      },
+      {
+        conditions: {
           projectcssstructure: 'sassAtomic'
         },
         src: 'src/skeletons/style/_application_atomic.scss',
