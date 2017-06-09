@@ -7,8 +7,6 @@ function addScriptDependencies (files = {}, context) {
       'scripts': 'gulp rebuild:js --env=init'
     },
     devDependencies: {
-      'babel-cli': '^6.24.1',
-      'babel-core': '^6.22.1',
       'babel-loader': '^6.2.10',
       'babel-plugin-transform-runtime': '^6.22.0',
       'babel-plugin-syntax-dynamic-import': '^6.18.0',

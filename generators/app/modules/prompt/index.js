@@ -9,7 +9,7 @@ function prompts () {
   return [
     ...general,
     ...style,
-    ...projecttype(),
+    ...projecttype,
     ...script,
     ...tools,
     ...project
