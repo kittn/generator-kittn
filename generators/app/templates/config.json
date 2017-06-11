@@ -51,18 +51,17 @@
   },
   "css": {
     "spacer": "20px",
-    "baseFontSize": "16px",
-    "filename": "<%= projectcssfilename %>"
+    "baseFontSize": "16px"
   }<% if (projectcritical == true) { %>,
-    "cssabove": {
-      "width": "1024",
-      "height": "768",
-      "minify": true,
-      "inline": <% if (projectcriticalinline === 'Inline') {%>true<%} else { %>false<% } %>,
-      "sources": [
-        "index.html"
-      ]<% if (projectcriticalinline != 'Inline') {%>,
-      "destFilename": "critical.css"<% } %>
+  "cssabove": {
+    "width": "1024",
+    "height": "768",
+    "minify": true,
+    "inline": <% if (projectcriticalinline === true) {%>true<%} else { %>false<% } %>,
+    "sources": [
+      "index.html"
+    ]<% if (projectcriticalinline !== true) {%>,
+    "destFilename": "critical.css"<% } %>
   }<% } %>,
   "template": {
     "globalTitle": "<%= projectname %>",

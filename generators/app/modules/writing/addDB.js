@@ -26,10 +26,8 @@ const addDB = () => {
           })
           connection.end()
         } else {
-          if (!context.commands.mysql) {
+          if (context.props.projectcredential && context.props.credentialdbopen && context.commands.mysql !== true) {
             console.error('`mysql`-command not available')
-          } else {
-            console.error('Something went wrong when crating the Database!')
           }
         }
       })

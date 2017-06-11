@@ -1,6 +1,13 @@
 {
   "presets": [
     ["env", {
+      "targets": {
+        "browsers": [
+          "> 5%",
+          "ie 11",
+          "last 2 versions"
+        ]
+      },
       "modules": false,
       "useBuiltIns": true,
       "debug": false
