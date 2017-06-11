@@ -14,6 +14,9 @@ const writePackageJson = require('./modules/writing/packageJSON')
 // Copy Source Files
 const copySources = require('./modules/writing/copySources')
 
+// Add MySQL Database
+const addDB = require('./modules/writing/addDB')
+
 // And Action!
 module.exports = class extends Generator {
   constructor (args, opts) {
@@ -25,6 +28,9 @@ module.exports = class extends Generator {
     // Package.json
     this.writePackageJson = writePackageJson.bind(this)
 
+    // Add Database
+    this.addDB = addDB.bind(this)
+
     // Copy Sources
     this.copySources = copySources.bind(this)
 
@@ -34,7 +40,8 @@ module.exports = class extends Generator {
       yarn: false,
       git: false,
       wget: false,
-      wp: false
+      wp: false,
+      mysql: false
     }
   }
 
@@ -92,6 +99,9 @@ module.exports = class extends Generator {
 
     // Write Package.json
     this.writePackageJson().writing(this)
+
+    // Add Database if user wants to
+    this.addDB().writing(this)
 
     // Copy Source Files and Folders
     this.copySources().writing(this)

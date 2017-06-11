@@ -12,7 +12,6 @@
 const whenExtra = (key, answer, spawny) => {
     // Return actual when function provided by inquirer
   return (promptAnswers) => {
-    console.log(spawny)
     return promptAnswers[key] === answer && spawny === true
   }
 }

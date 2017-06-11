@@ -45,7 +45,7 @@
     "mkdirp": "^0.5.1",
     "mysql": "^2.13.0",
     "randomstring": "^1.1.5",
-    "yeoman-generator": "^1.0.0",
+    "yeoman-generator": "^1.1.1",
     "yosay": "^2.0.0"
   },
   "devDependencies": {

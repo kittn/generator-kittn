@@ -6,7 +6,8 @@ const whenExtra = require('../helpers/whenExtra')
 const projectPrompts = () => {
   const commands = {
     wget: false,
-    wp: false
+    wp: false,
+    mysql: false
   }
 
   for (const command in commands) {
@@ -204,7 +205,7 @@ const projectPrompts = () => {
       default: function (props) { return props.projectname.toLowerCase() }
     },
     {
-      when: when('projectcredential', true),
+      when: when('projectcredential', true, commands.mysql),
       type: 'confirm',
       name: 'credentialdbopen',
       message: message({
