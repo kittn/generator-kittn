@@ -11,11 +11,7 @@ const generalPrompts = [
       defaultValue: false
     }),
     default () {
-      return process.cwd()
-                .split('/')
-                .pop(-1)
-                .toLowerCase()
-                .replace(/\s/g, '')
+      return process.cwd().replace('\\', '/').split('/').pop(-1).toLowerCase().replace(/[^a-zA-Z0-9]/g, '')
     },
     validate (input) {
         // Do async stuff
