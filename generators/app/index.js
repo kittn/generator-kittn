@@ -2,6 +2,7 @@ const Generator = require('yeoman-generator')
 const chalk = require('chalk')
 const yosay = require('yosay')
 const clear = require('clear-terminal')
+const random = require('randomstring')
 const commandExists = require('command-exists')
 
 // Importing modules
@@ -43,6 +44,17 @@ module.exports = class extends Generator {
       wp: false,
       mysql: false
     }
+
+    // Function for Generate Salt Keys
+    var saltKeys = []
+
+    for (var i = 0; i < 8; i++) {
+      saltKeys.push(random.generate({
+        length: 64,
+        charset: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!§$%/()=_;:,.^'
+      }))
+    }
+    this.saltKeys = saltKeys
   }
 
     // Initializing
@@ -88,6 +100,7 @@ module.exports = class extends Generator {
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
       this.props = props
+      this.props.saltKeys = this.saltKeys
     })
   }
 
@@ -109,7 +122,7 @@ module.exports = class extends Generator {
 
   install () {
     if (this.commands.yarn) {
-      this.yarnInstall()
+      // this.yarnInstall()
     } else {
       this.npmInstall()
     }
