@@ -63,8 +63,8 @@ const projecttype = (context) => {
           projectusage: 'wordpress',
           projectcredential: true
         },
-        src: 'src/skeletons/wordpress/wp-db--local.php',
-        dest: 'src/structure/config/wp-config/wp-db--local.php'
+        src: 'src/skeletons/wordpress/wp-db-local.php',
+        dest: 'src/structure/config/wp-config/wp-db-local.php'
       },
       {
         conditions: {
@@ -73,6 +73,15 @@ const projecttype = (context) => {
         },
         src: 'src/skeletons/wordpress/wp-config-sample.php',
         dest: 'src/structure/config/wp-config.php'
+      },
+      {
+        conditions: {
+          projectusage: 'wordpress',
+          projectcredential: true
+        },
+        src: 'src/skeletons/wordpress/screenshot.png',
+        dest: 'src/structure/screenshot.png',
+        simplecopy: true
       }
     ],
     folders: [
@@ -115,8 +124,22 @@ const projecttype = (context) => {
         conditions: {
           projectusage: 'wordpress'
         },
-        src: 'src/skeletons/wordpress/structure',
-        dest: 'src/structure/'
+        src: 'src/skeletons/wordpress/structure/config',
+        dest: 'src/structure/config/'
+      },
+      {
+        conditions: {
+          projectusage: 'wordpress'
+        },
+        src: 'src/skeletons/wordpress/structure/plugins',
+        dest: 'src/structure/plugins/'
+      },
+      {
+        conditions: {
+          projectusage: 'wordpress'
+        },
+        src: 'src/skeletons/wordpress/structure/templates',
+        dest: 'src/structure/templates/'
       },
       {
         conditions: {

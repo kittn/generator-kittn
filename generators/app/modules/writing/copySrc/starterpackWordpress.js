@@ -21,8 +21,16 @@ const starterpackWordpress = (context) => {
         conditions: {
           projectwordpressbp: true
         },
-        src: 'src/skeletons/starterpack/wordpress/structure/',
-        dest: 'src/structure/'
+        src: 'src/skeletons/starterpack/wordpress/structure/templates',
+        dest: 'src/structure/templates/'
+      },
+      {
+        conditions: {
+          projectwordpressbp: true
+        },
+        src: 'src/skeletons/starterpack/wordpress/structure/plugins',
+        dest: 'src/structure/plugins/',
+        simplecopy: true
       },
       {
         conditions: {

@@ -1,13 +1,13 @@
 // ===========================
 // Source Files/Folders Config
 // ===========================
-const base = require('../../config/copySrc/base.js')
-const style = require('../../config/copySrc/style.js')
-const script = require('../../config/copySrc/script.js')
-const projecttype = require('../../config/copySrc/projecttype.js')
-const tools = require('../../config/copySrc/tools.js')
-const starterpackCraft = require('../../config/copySrc/starterpackCraft.js')
-const starterpackWordpress = require('../../config/copySrc/starterpackWordpress.js')
+const base = require('./copySrc/base.js')
+const style = require('./copySrc/style.js')
+const script = require('./copySrc/script.js')
+const projecttype = require('./copySrc/projecttype.js')
+const tools = require('./copySrc/tools.js')
+const starterpackCraft = require('./copySrc/starterpackCraft.js')
+const starterpackWordpress = require('./copySrc/starterpackWordpress.js')
 
 const copyAction = (data, context) => {
   if (data.simplecopy) {
