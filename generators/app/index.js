@@ -122,7 +122,7 @@ module.exports = class extends Generator {
 
   install () {
     if (this.commands.yarn) {
-      // this.yarnInstall()
+      this.yarnInstall()
     } else {
       this.npmInstall()
     }
