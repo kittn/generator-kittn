@@ -18,6 +18,10 @@ const copySources = require('./modules/writing/copySources')
 // Add MySQL Database
 const addDB = require('./modules/writing/addDB')
 
+// Install CMS
+const installWordpress = require('./modules/writing/install/wordpress')
+const installCraft = require('./modules/writing/install/craft')
+
 // And Action!
 module.exports = class extends Generator {
   constructor (args, opts) {
@@ -34,6 +38,10 @@ module.exports = class extends Generator {
 
     // Copy Sources
     this.copySources = copySources.bind(this)
+
+    // Copy Sources
+    this.installWordpress = installWordpress.bind(this)
+    this.installCraft = installCraft.bind(this)
 
     // Command Checks
     this.commands = {
@@ -59,8 +67,6 @@ module.exports = class extends Generator {
 
     // Initializing
   async initializing () {
-    this.log(`${chalk.magenta('Cleaning Directory')}`)
-
     for (const command in this.commands) {
       try {
         await commandExists(command)
@@ -118,6 +124,10 @@ module.exports = class extends Generator {
 
     // Copy Source Files and Folders
     this.copySources().writing(this)
+
+    // Install CMS
+    this.installWordpress().install(this)
+    this.installCraft().install(this)
   }
 
   install () {
@@ -126,22 +136,22 @@ module.exports = class extends Generator {
     } else {
       this.npmInstall()
     }
+  }
 
-    // Goodbye
-    this.on('end', () => {
-      const goodbye =
-              '\n ' + chalk.styles.yellow.open +
-              '\n                    __    .__  __    __ ' +
-              '\n                    |  | _|__|/  |__/  |_  ____ ' +
-              '\n                    |  |/ /  \\   __\\   __\\/    \\ ' +
-              '\n                    |    <|  ||  |  |  | |   |  \\ ' +
-              '\n                    |__|_ \\__||__|  |__| |___|  / ' +
-              '\n                    \\/                   \\/  ' +
-              '\n  ' + chalk.styles.yellow.close + chalk.styles.green.open +
-              '\n   Now we are finished. Make your last settings and start `npm run init`.' +
-              '\n      When npm is finished activate `npm run dev` and happy Coding.' +
-              '\n ' + chalk.styles.green.close
-      this.log(goodbye)
-    })
+  end () {
+    clear()
+    const goodbye =
+            '\n ' + chalk.styles.yellow.open +
+            '\n                    __    .__  __    __ ' +
+            '\n                    |  | _|__|/  |__/  |_  ____ ' +
+            '\n                    |  |/ /  \\   __\\   __\\/    \\ ' +
+            '\n                    |    <|  ||  |  |  | |   |  \\ ' +
+            '\n                    |__|_ \\__||__|  |__| |___|  / ' +
+            '\n                    \\/                   \\/  ' +
+            '\n  ' + chalk.styles.yellow.close + chalk.styles.green.open +
+            '\n   Now we are finished. Make your last settings and start `npm run init`.' +
+            '\n      When npm is finished activate `npm run dev` and happy Coding.' +
+            '\n ' + chalk.styles.green.close
+    this.log(goodbye)
   }
 }

@@ -42,6 +42,7 @@ const projectPrompts = () => {
           value: 'wordpress'
         }
       ],
+      default: 'wordpress',
       store: false
     },
     {
