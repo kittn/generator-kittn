@@ -109,8 +109,7 @@ const generalPrompts = [
         name: 'ITCSS',
         value: 'sassITCSS'
       }
-    ],
-    default: 'sassITCSS'
+    ]
   },
   // Critical CSS
   {
