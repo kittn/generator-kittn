@@ -22,7 +22,7 @@ const installCraft = () => {
             //   resolve()
             // })
           } else {
-            console.log('Before you run `npm run init`, you must manually install Craft in the `dist/` directory.')
+            context.log('Before you run `npm run init`, you must manually install Craft in the `dist/` directory.')
             resolve()
           }
         } else {

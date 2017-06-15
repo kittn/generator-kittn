@@ -1,6 +1,5 @@
 const Generator = require('yeoman-generator')
 const chalk = require('chalk')
-const yosay = require('yosay')
 const clear = require('clear-terminal')
 const random = require('randomstring')
 const commandExists = require('command-exists')
