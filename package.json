@@ -1,8 +1,8 @@
 {
   "name": "generator-kittn",
-  "version": "4.2.0-beta.4",
+  "version": "4.2.0-beta.5",
   "description": "Kittn Scaffolding and Frontend Toolchain",
-  "main": "generators/index.js",
+  "main": "generators/app/index.js",
   "repository": "kittn/generator-kittn",
   "author": "Sascha Fuchs <gisu2onic@gmail.com>",
   "contributors": [
@@ -19,7 +19,7 @@
     "generators"
   ],
   "engines": {
-    "node": ">=7.0.0"
+    "node": ">=7.6.0"
   },
   "scripts": {
     "test": "jest"
