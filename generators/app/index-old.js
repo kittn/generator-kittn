@@ -1,24 +1,23 @@
-'use strict';
-var util          = require('util');
-var path          = require('path');
-var yosay         = require('yosay');
-var chalk         = require('chalk');
-var yeoman        = require('yeoman-generator');
-var mkdirp        = require('mkdirp');
-var shelljs       = require('shelljs/global');
-var commandExists = require('command-exists');
-var clear         = require('clear-terminal');
-var random        = require('randomstring');
-var mysql         = require('mysql');
-
+'use strict'
+var util = require('util')
+var path = require('path')
+var yosay = require('yosay')
+var chalk = require('chalk')
+var yeoman = require('yeoman-generator')
+var mkdirp = require('mkdirp')
+var shelljs = require('shelljs/global')
+var commandExists = require('command-exists')
+var clear = require('clear-terminal')
+var random = require('randomstring')
+var mysql = require('mysql')
 
 // Function for Generate Salt Keys
-var saltKeys = [];
+var saltKeys = []
 
-for ( var i = 0; i < 8; i++ ) {
+for (var i = 0; i < 8; i++) {
   saltKeys.push(random.generate({
     length: 64,
-    charset: "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!§$%/()=_;:,.^"
+    charset: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!§$%/()=_;:,.^'
   }))
 }
 
@@ -27,9 +26,9 @@ const getGitUserName = () => {
 
   // check git info
   commandExists('git')
-    .then(function(command) {
+    .then(function (command) {
       gitUserName = exec('git config user.name', {silent: true}).replace(/\n/g, '')
-    }).catch(function() {
+    }).catch(function () {
       gitUserName = ''
     })
 
@@ -41,9 +40,9 @@ const getGitUserMail = () => {
 
   // check git info
   commandExists('git')
-    .then(function(command) {
+    .then(function (command) {
       gitUserMail = exec('git config user.email', {silent: true}).replace(/\n/g, '')
-    }).catch(function() {
+    }).catch(function () {
       gitUserMail = ''
     })
 
@@ -52,12 +51,12 @@ const getGitUserMail = () => {
 
 var KittnGenerator = yeoman.Base.extend({
   init: function () {
-    this.pkg = require('../package.json');
+    this.pkg = require('../package.json')
   },
   askFor: function () {
-    var done      = this.async();
-    var wp_cli    = false;
-    var craft_wget = false;
+    var done = this.async()
+    var wp_cli = false
+    var craft_wget = false
 
     // Custom Greeting
     var welcome =
@@ -78,24 +77,24 @@ var KittnGenerator = yeoman.Base.extend({
           '\n  ' +
           '\n   Authors: Sascha Fuchs (@gisugosu) ' +
           '\n   URL    : http://kittn.de   ' +
-          '\n ';
-    clear();
-    console.log(welcome);
+          '\n '
+    clear()
+    console.log(welcome)
 
     // check if cli tools exist
     commandExists('wp')
-      .then(function(command){
+      .then(function (command) {
         wp_cli = true
-      }).catch(function(){
-      wp_cli = false;
-    });
+      }).catch(function () {
+        wp_cli = false
+      })
 
     commandExists('wget --help')
-      .then(function(command) {
+      .then(function (command) {
         craft_wget = true
-      }).catch(function() {
-      craft_wget = false
-    })
+      }).catch(function () {
+        craft_wget = false
+      })
 
     // Ask something to setup the project skeleton
     return this.prompt([
@@ -109,10 +108,10 @@ var KittnGenerator = yeoman.Base.extend({
           // Do async stuff
           if (input.indexOf(' ') >= 0 || /[~`!#$%\^&*+=\-\[\]\\';,/{}|\\":<>\?]/g.test(input)) {
             // Pass the return value in the done callback
-            console.log('\n' + chalk.styles.red.open + 'No whitespaces or special-chars allowed!' + chalk.styles.red.close);
-            return false;
+            console.log('\n' + chalk.styles.red.open + 'No whitespaces or special-chars allowed!' + chalk.styles.red.close)
+            return false
           }
-          return true;
+          return true
         }
       },
       {
@@ -130,7 +129,7 @@ var KittnGenerator = yeoman.Base.extend({
       {
         type: 'input',
         name: 'projectcssfilename',
-        message: chalk.cyan.underline.bold('CSS Filename') +  '\n\xa0 (only the name without .css or .scss)',
+        message: chalk.cyan.underline.bold('CSS Filename') + '\n\xa0 (only the name without .css or .scss)',
         default: 'style'
       },
       {
@@ -143,8 +142,8 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
-        when: function(props) {
-          return props.projectsasssyntax === 'SCSS';
+        when: function (props) {
+          return props.projectsasssyntax === 'SCSS'
         },
         type: 'confirm',
         name: 'projectstylelint',
@@ -184,8 +183,8 @@ var KittnGenerator = yeoman.Base.extend({
         default: false
       },
       {
-        when: function(props) {
-          return props.projectcritical === true;
+        when: function (props) {
+          return props.projectcritical === true
         },
         type: 'list',
         name: 'projectcriticalinline',
@@ -206,8 +205,8 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
-        when: function(props) {
-          return props.projectUsage === 'Integrate in CraftCMS' && props.projectcssstructure === 'ITCSS';
+        when: function (props) {
+          return props.projectUsage === 'Integrate in CraftCMS' && props.projectcssstructure === 'ITCSS'
         },
         type: 'confirm',
         name: 'projectcraftbp',
@@ -215,8 +214,8 @@ var KittnGenerator = yeoman.Base.extend({
         default: true
       },
       {
-        when: function(props) {
-          return props.projectUsage === 'Integrate in Wordpress' && props.projectcssstructure === 'ITCSS';
+        when: function (props) {
+          return props.projectUsage === 'Integrate in Wordpress' && props.projectcssstructure === 'ITCSS'
         },
         type: 'confirm',
         name: 'projectwordpressbp',
@@ -224,8 +223,8 @@ var KittnGenerator = yeoman.Base.extend({
         default: true
       },
       {
-        when: function(props) {
-          return props.projectUsage === 'Building HTML Prototypes';
+        when: function (props) {
+          return props.projectUsage === 'Building HTML Prototypes'
         },
         type: 'list',
         name: 'projectstructure',
@@ -236,8 +235,8 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
-        when: function(props) {
-          if(props.projectUsage === 'Integrate in Wordpress' && wp_cli) {
+        when: function (props) {
+          if (props.projectUsage === 'Integrate in Wordpress' && wp_cli) {
             return true
           }
           return false
@@ -248,11 +247,11 @@ var KittnGenerator = yeoman.Base.extend({
         default: true
       },
       {
-        when: function(props) {
-          if(props.projectUsage === 'Integrate in CraftCMS' && craft_wget) {
+        when: function (props) {
+          if (props.projectUsage === 'Integrate in CraftCMS' && craft_wget) {
             return true
           }
-          return false;
+          return false
         },
         type: 'confirm',
         name: 'projectcraftcli',
@@ -260,17 +259,17 @@ var KittnGenerator = yeoman.Base.extend({
         default: true
       },
       {
-        when: function(props) {
-          return props.projectUsage !== 'Building HTML Prototypes';
+        when: function (props) {
+          return props.projectUsage !== 'Building HTML Prototypes'
         },
         type: 'confirm',
         name: 'projectcredential',
-        message: chalk.cyan.underline.bold('Local Environment Credentials') +  '\n\xa0 Want to enter your URL and Database Credentials for your local Environment?',
+        message: chalk.cyan.underline.bold('Local Environment Credentials') + '\n\xa0 Want to enter your URL and Database Credentials for your local Environment?',
         default: true
       },
       {
-        when: function(props) {
-          return props.projectcredential === true;
+        when: function (props) {
+          return props.projectcredential === true
         },
         type: 'list',
         name: 'credentialprotocol',
@@ -281,17 +280,17 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
-        when: function(props) {
-          return props.projectcredential === true;
+        when: function (props) {
+          return props.projectcredential === true
         },
         type: 'input',
         name: 'credentialdomain',
         message: chalk.cyan.underline.bold('Credentials Domain Protocol') + '\n\xa0 Domain without HTTP or HTTPS',
-        default: function(props) { return props.projectname + '.local' }
+        default: function (props) { return props.projectname + '.local' }
       },
       {
-        when: function(props) {
-          return props.projectcredential === true;
+        when: function (props) {
+          return props.projectcredential === true
         },
         type: 'input',
         name: 'credentialdbserver',
@@ -299,8 +298,8 @@ var KittnGenerator = yeoman.Base.extend({
         default: 'localhost'
       },
       {
-        when: function(props) {
-          return props.projectcredential === true;
+        when: function (props) {
+          return props.projectcredential === true
         },
         type: 'input',
         name: 'credentialdbuser',
@@ -308,8 +307,8 @@ var KittnGenerator = yeoman.Base.extend({
         default: 'root'
       },
       {
-        when: function(props) {
-          return props.projectcredential === true;
+        when: function (props) {
+          return props.projectcredential === true
         },
         type: 'input',
         name: 'credentialdbpass',
@@ -317,17 +316,17 @@ var KittnGenerator = yeoman.Base.extend({
         default: 'root'
       },
       {
-        when: function(props) {
-          return props.projectcredential === true;
+        when: function (props) {
+          return props.projectcredential === true
         },
         type: 'input',
         name: 'credentialdbdatabase',
         message: chalk.cyan.underline.bold('DB Name') + chalk.styles.red.close + '\n\xa0 Database Name',
-        default: function(props) { return props.projectname }
+        default: function (props) { return props.projectname }
       },
       {
-        when: function(props) {
-          return props.projectcredential === true;
+        when: function (props) {
+          return props.projectcredential === true
         },
         type: 'confirm',
         name: 'credentialdbopen',
@@ -381,7 +380,7 @@ var KittnGenerator = yeoman.Base.extend({
       {
         type: 'list',
         name: 'projectJSFramework',
-        message: chalk.cyan.underline.bold('JS Frameworks')  + '\n\xa0 Would you like to integrate a JS framework (Vue, React)?',
+        message: chalk.cyan.underline.bold('JS Frameworks') + '\n\xa0 Would you like to integrate a JS framework (Vue, React)?',
         choices: [
           'none',
           'Vue.js',
@@ -389,8 +388,8 @@ var KittnGenerator = yeoman.Base.extend({
         ]
       },
       {
-        when: function(props) {
-          return props.projectJSFramework === 'Vue.js';
+        when: function (props) {
+          return props.projectJSFramework === 'Vue.js'
         },
         type: 'confirm',
         name: 'projectvueplugins',
@@ -398,8 +397,8 @@ var KittnGenerator = yeoman.Base.extend({
         default: false
       },
       {
-        when: function(props) {
-          return props.projectJSFramework === 'Vue.js';
+        when: function (props) {
+          return props.projectJSFramework === 'Vue.js'
         },
         type: 'list',
         name: 'projectvueversion',
@@ -434,7 +433,7 @@ var KittnGenerator = yeoman.Base.extend({
         default: getGitUserMail()
       }
     ]).then(function (props) {
-      function checkAnswer(prop) {
+      function checkAnswer (prop) {
         if (prop) {
           return prop
         } else {
@@ -442,97 +441,96 @@ var KittnGenerator = yeoman.Base.extend({
         }
       }
 
-      this.projectname            = props.projectname;
-      this.projectdescription     = props.projectdescription;
-      this.projectthemecolor      = props.projectthemecolor;
-      this.projectversion         = props.projectversion;
-      this.projectauthor          = props.projectauthor;
-      this.projectmail            = props.projectmail;
-      this.projectbreakpointunit  = props.projectbreakpointunit;
-      this.projectcontainerqueries = props.projectcontainerqueries;
-      this.projectcritical        = props.projectcritical;
-      this.projectcriticalinline  = props.projectcriticalinline;
-      this.projectcssfilename     = props.projectcssfilename;
-      this.projectstructure       = checkAnswer(props.projectstructure);
-      this.projectUsage           = props.projectUsage;
-      this.projectjquery          = props.projectjquery;
-      this.projectJSFramework     = props.projectJSFramework;
-      this.projectcssstructure    = props.projectcssstructure;
-      this.projectvueplugins      = props.projectvueplugins;
-      this.projectvueversion      = checkAnswer(props.projectvueversion);
-      this.projectwpcli           = props.projectwpcli;
-      this.projectcraftcli        = props.projectcraftcli;
-      this.projectcredential      = props.projectcredential;
-      this.credentialprotocol     = props.credentialprotocol;
-      this.credentialdomain       = props.credentialdomain;
-      this.credentialdbserver     = props.credentialdbserver;
-      this.credentialdbuser       = props.credentialdbuser;
-      this.credentialdbpass       = props.credentialdbpass;
-      this.credentialdbdatabase   = props.credentialdbdatabase;
-      this.projectsasssyntax      = props.projectsasssyntax;
-      this.projectstylelint       = props.projectstylelint;
-      this.projectscriptlinter    = props.projectscriptlinter;
-      this.projectastrum          = props.projectastrum;
-      this.projectcraftbp         = props.projectcraftbp;
-      this.projectwordpressbp     = props.projectwordpressbp;
-      this.credentialdbopen       = props.credentialdbopen;
-      this.saltKeys               = saltKeys;
+      this.projectname = props.projectname
+      this.projectdescription = props.projectdescription
+      this.projectthemecolor = props.projectthemecolor
+      this.projectversion = props.projectversion
+      this.projectauthor = props.projectauthor
+      this.projectmail = props.projectmail
+      this.projectbreakpointunit = props.projectbreakpointunit
+      this.projectcontainerqueries = props.projectcontainerqueries
+      this.projectcritical = props.projectcritical
+      this.projectcriticalinline = props.projectcriticalinline
+      this.projectcssfilename = props.projectcssfilename
+      this.projectstructure = checkAnswer(props.projectstructure)
+      this.projectUsage = props.projectUsage
+      this.projectjquery = props.projectjquery
+      this.projectJSFramework = props.projectJSFramework
+      this.projectcssstructure = props.projectcssstructure
+      this.projectvueplugins = props.projectvueplugins
+      this.projectvueversion = checkAnswer(props.projectvueversion)
+      this.projectwpcli = props.projectwpcli
+      this.projectcraftcli = props.projectcraftcli
+      this.projectcredential = props.projectcredential
+      this.credentialprotocol = props.credentialprotocol
+      this.credentialdomain = props.credentialdomain
+      this.credentialdbserver = props.credentialdbserver
+      this.credentialdbuser = props.credentialdbuser
+      this.credentialdbpass = props.credentialdbpass
+      this.credentialdbdatabase = props.credentialdbdatabase
+      this.projectsasssyntax = props.projectsasssyntax
+      this.projectstylelint = props.projectstylelint
+      this.projectscriptlinter = props.projectscriptlinter
+      this.projectastrum = props.projectastrum
+      this.projectcraftbp = props.projectcraftbp
+      this.projectwordpressbp = props.projectwordpressbp
+      this.credentialdbopen = props.credentialdbopen
+      this.saltKeys = saltKeys
 
-      done();
-    }.bind(this));
+      done()
+    }.bind(this))
   },
 
   app: function () {
-
     // Add the Template Vars for the Process
     var templateParams = {
-      projectname           : this.projectname,
-      projectdescription    : this.projectdescription,
-      projectthemecolor     : this.projectthemecolor,
-      projectversion        : this.projectversion,
-      projectauthor         : this.projectauthor,
-      projectmail           : this.projectmail,
-      projectbreakpointunit : this.projectbreakpointunit,
-      projectcontainerqueries : this.projectcontainerqueries,
-      projectcritical       : this.projectcritical,
-      projectcriticalinline : this.projectcriticalinline,
-      projectcssfilename    : this.projectcssfilename,
-      projectstructure      : this.projectstructure,
-      projectUsage          : this.projectUsage,
-      projectjquery         : this.projectjquery,
-      projectJSFramework    : this.projectJSFramework,
-      projectcssstructure   : this.projectcssstructure,
-      projectvueplugins     : this.projectvueplugins,
-      projectvueversion     : this.projectvueversion,
-      projectcraftcli       : this.projectcraftcli,
-      projectwpcli          : this.projectwpcli,
-      projectcredential     : this.projectcredential,
-      credentialprotocol    : this.credentialprotocol,
-      credentialdomain      : this.credentialdomain,
-      credentialdbserver    : this.credentialdbserver,
-      credentialdbuser      : this.credentialdbuser,
-      credentialdbpass      : this.credentialdbpass,
-      credentialdbdatabase  : this.credentialdbdatabase,
-      projectsasssyntax     : this.projectsasssyntax,
-      projectstylelint      : this.projectstylelint,
-      projectscriptlinter   : this.projectscriptlinter,
-      projectastrum         : this.projectastrum,
-      projectcraftbp        : this.projectcraftbp,
-      projectwordpressbp    : this.projectwordpressbp,
-      credentialdbopen      : this.credentialdbopen,
-      saltKeys              : this.saltKeys,
-      projectpath           : process.cwd(),
-      pkg                   : this.pkg
-    };
+      projectname: this.projectname,
+      projectdescription: this.projectdescription,
+      projectthemecolor: this.projectthemecolor,
+      projectversion: this.projectversion,
+      projectauthor: this.projectauthor,
+      projectmail: this.projectmail,
+      projectbreakpointunit: this.projectbreakpointunit,
+      projectcontainerqueries: this.projectcontainerqueries,
+      projectcritical: this.projectcritical,
+      projectcriticalinline: this.projectcriticalinline,
+      projectcssfilename: this.projectcssfilename,
+      projectstructure: this.projectstructure,
+      projectUsage: this.projectUsage,
+      projectjquery: this.projectjquery,
+      projectJSFramework: this.projectJSFramework,
+      projectcssstructure: this.projectcssstructure,
+      projectvueplugins: this.projectvueplugins,
+      projectvueversion: this.projectvueversion,
+      projectcraftcli: this.projectcraftcli,
+      projectwpcli: this.projectwpcli,
+      projectcredential: this.projectcredential,
+      credentialprotocol: this.credentialprotocol,
+      credentialdomain: this.credentialdomain,
+      credentialdbserver: this.credentialdbserver,
+      credentialdbuser: this.credentialdbuser,
+      credentialdbpass: this.credentialdbpass,
+      credentialdbdatabase: this.credentialdbdatabase,
+      projectsasssyntax: this.projectsasssyntax,
+      projectstylelint: this.projectstylelint,
+      projectscriptlinter: this.projectscriptlinter,
+      projectastrum: this.projectastrum,
+      projectcraftbp: this.projectcraftbp,
+      projectwordpressbp: this.projectwordpressbp,
+      credentialdbopen: this.credentialdbopen,
+      saltKeys: this.saltKeys,
+      projectpath: process.cwd(),
+      pkg: this.pkg
+    }
 
     // Check for Container-Queries need
-    if ( this.projectwordpressbp || this.projectcraftbp ) {
+    if (this.projectwordpressbp || this.projectcraftbp) {
       this.projectcontainerqueries = true
       templateParams.projectcontainerqueries = true
     }
 
     // Move the SRC Folder
-    mkdirp.sync('dist/');
+    mkdirp.sync('dist/')
     this.directory('src/js/', 'src/js/')
     this.directory('src/fonts/', 'src/fonts/')
     this.directory('src/images/', 'src/images/')
@@ -541,90 +539,90 @@ var KittnGenerator = yeoman.Base.extend({
     this.directory('src/gulpfile/', 'gulpfile/')
 
     // Define Sass File Type
-    if ( this.projectsasssyntax === 'SCSS') {
+    if (this.projectsasssyntax === 'SCSS') {
       var sassFileEnding = '.scss'
     } else {
       var sassFileEnding = '.sass'
     }
 
     // Copy the CSS Structure
-    switch(this.projectcssstructure) {
+    switch (this.projectcssstructure) {
       case 'Atomic Design':
         this.directory('src/skeletons/css/atomic', 'src/style/application/')
-        this.template('src/skeletons/css/_application_atomic.scss', 'src/style/application/_application'+sassFileEnding, templateParams)
+        this.template('src/skeletons/css/_application_atomic.scss', 'src/style/application/_application' + sassFileEnding, templateParams)
         break
 
       case 'ITCSS':
         this.directory('src/skeletons/css/itcss', 'src/style/application/')
-        this.template('src/skeletons/css/_application_itcss.scss', 'src/style/application/_application'+sassFileEnding, templateParams)
+        this.template('src/skeletons/css/_application_itcss.scss', 'src/style/application/_application' + sassFileEnding, templateParams)
         break
 
       case 'OOCSS':
         this.directory('src/skeletons/css/oocss', 'src/style/application/')
-        this.template('src/skeletons/css/_application_oocss.scss', 'src/style/application/_application'+sassFileEnding, templateParams)
+        this.template('src/skeletons/css/_application_oocss.scss', 'src/style/application/_application' + sassFileEnding, templateParams)
         break
 
       default:
         this.directory('src/skeletons/css/own', 'src/style/application/')
-        this.template('src/skeletons/css/_application_own.scss', 'src/style/application/_application'+sassFileEnding, templateParams)
+        this.template('src/skeletons/css/_application_own.scss', 'src/style/application/_application' + sassFileEnding, templateParams)
         break
     }
 
-    this.directory('src/framework/', 'src/framework/');
+    this.directory('src/framework/', 'src/framework/')
 
-    this.directory('src/sassfiles/', 'src/style/');
+    this.directory('src/sassfiles/', 'src/style/')
 
     // Add SCSS Files with the desired Filename
     this.fs.copyTpl(
       this.templatePath('_style.scss'),
-      this.destinationPath('src/style/'+this.projectcssfilename+sassFileEnding),
+      this.destinationPath('src/style/' + this.projectcssfilename + sassFileEnding),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('_setup.scss'),
       this.destinationPath('src/style/_setup.scss'),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('_workfile.scss'),
-      this.destinationPath('src/style/_workfile'+sassFileEnding),
+      this.destinationPath('src/style/_workfile' + sassFileEnding),
       templateParams
-    );
+    )
 
     this.fs.copyTpl(
       this.templatePath('_loader.scss'),
       this.destinationPath('src/style/_loader.scss'),
       templateParams
-    );
+    )
 
-    if ( this.projectstylelint ) {
+    if (this.projectstylelint) {
       this.fs.copyTpl(
         this.templatePath('stylelintrc'),
         this.destinationPath('.stylelintrc'),
         templateParams
-      );
+      )
     }
 
-    if ( this.projectcritical ) {
+    if (this.projectcritical) {
       this.fs.copyTpl(
         this.templatePath('_copy-criticalcss.js'),
         this.destinationPath('gulpfile/tasks/optimize-criticalCss.js'),
         templateParams
-      );
+      )
     }
 
-    if ( this.projectcontainerqueries ) {
+    if (this.projectcontainerqueries) {
       this.fs.copyTpl(
         this.templatePath('_container-queries.scss'),
         this.destinationPath('src/framework/core/functions/_container-queries.scss'),
         templateParams
-      );
+      )
     }
 
     // Put Craft Base Files in Structure or simple Structure Files
-    if ( this.projectUsage === 'Integrate in CraftCMS' ) {
+    if (this.projectUsage === 'Integrate in CraftCMS') {
       this.directory('src/skeletons/craftcms/structure/', 'src/structure/')
       this.directory('src/skeletons/craftcms/craftplugins/', 'src/craftplugins/')
 
@@ -634,7 +632,7 @@ var KittnGenerator = yeoman.Base.extend({
       this.directory('src/skeletons/craftcms/env/', 'src/.system/env/')
       this.directory('src/skeletons/craftcms/public/', 'src/.system/public/')
 
-      if ( this.projectcredential ) {
+      if (this.projectcredential) {
         this.fs.copyTpl(
           this.templatePath('src/skeletons/craftcms/.env.sh'),
           this.destinationPath('craftscripts/.env.sh'),
@@ -677,22 +675,21 @@ var KittnGenerator = yeoman.Base.extend({
           templateParams
         )
       }
-
-    } else if ( this.projectUsage === 'Integrate in Wordpress' ) {
-      this.directory('src/skeletons/wordpress/', 'src/structure/');
+    } else if (this.projectUsage === 'Integrate in Wordpress') {
+      this.directory('src/skeletons/wordpress/', 'src/structure/')
 
       // Add Server Credentials
-      if ( this.projectcredential ) {
+      if (this.projectcredential) {
         this.fs.copyTpl(
           this.templatePath('_wp-db--local.php'),
           this.destinationPath('src/structure/config/wp-config/wp-db--local.php'),
           templateParams
-        );
+        )
         this.fs.copyTpl(
           this.templatePath('_wp-config-sample.php'),
           this.destinationPath('src/structure/config/wp-config.php'),
           templateParams
-        );
+        )
       }
 
       this.fs.copyTpl(
@@ -733,42 +730,40 @@ var KittnGenerator = yeoman.Base.extend({
           templateParams
         )
       }
-
     } else {
       this.directory('src/skeletons/simplestructure', 'src/structure/')
     }
 
     // Adding Database
-    if ( this.projectcredential && this.credentialdbopen ) {
+    if (this.projectcredential && this.credentialdbopen) {
       const connection = mysql.createConnection({
-        host     : this.credentialdbserver,
-        user     : this.credentialdbuser,
-        password : this.credentialdbpass
+        host: this.credentialdbserver,
+        user: this.credentialdbuser,
+        password: this.credentialdbpass
       })
 
-      connection.connect(function(err) {
+      connection.connect(function (err) {
         if (err) {
-          console.error('error connecting: ' + err.stack);
-          return;
+          console.error('error connecting: ' + err.stack)
         }
       })
 
-      connection.query('CREATE DATABASE IF NOT EXISTS '+this.credentialdbdatabase+';', function (error, results, fields) {
-        if (error) throw error;
-        console.log('Added Database ['+this.credentialdbdatabase+'] to your MySQL DB');
+      connection.query('CREATE DATABASE IF NOT EXISTS ' + this.credentialdbdatabase + ';', function (error, results, fields) {
+        if (error) throw error
+        console.log('Added Database [' + this.credentialdbdatabase + '] to your MySQL DB')
       })
       connection.end()
     }
 
     // Include the Twig Working Dir
-    if ( this.projectstructure === 'Twig Template' ) {
-      this.directory('src/skeletons/twig/', 'src/template/');
+    if (this.projectstructure === 'Twig Template') {
+      this.directory('src/skeletons/twig/', 'src/template/')
     }
 
-    if ( this.projectJSFramework === 'Vue.js' ) {
+    if (this.projectJSFramework === 'Vue.js') {
       this.directory('src/skeletons/vue/components/', 'src/js/components/')
       this.directory('src/skeletons/vue/shared/', 'src/js/shared/')
-      if ( this.projectvueplugins === true ) {
+      if (this.projectvueplugins === true) {
         this.directory('src/skeletons/vue/store/', 'src/js/store/')
         this.directory('src/skeletons/vue/router/', 'src/js/router/')
       }
@@ -788,7 +783,7 @@ var KittnGenerator = yeoman.Base.extend({
         this.templatePath('_astrum-config.json'),
         this.destinationPath('astrum-config.json'),
         templateParams
-      );
+      )
     }
 
     // Include some other important files
@@ -880,10 +875,9 @@ var KittnGenerator = yeoman.Base.extend({
       this.destinationPath('webpack.dev.config.babel.js'),
       templateParams
     )
-
   },
 
-  installCraft() {
+  installCraft () {
     // Put Craft Base Files in Structure or simple Structure Files
     if (this.projectUsage === 'Integrate in CraftCMS') {
       if (this.projectcraftcli) {
@@ -903,15 +897,13 @@ var KittnGenerator = yeoman.Base.extend({
         // For the Future CRAFT3.0 Composer Power
         // const done = this.async()
         // this.spawnCommand('composer', ['create-project', 'craftcms/craft', 'dist', '-s', 'beta']).on('close', done)
-
       } else {
         console.log('Before you run `npm run init`, you must manually install Craft in the `dist/` directory.')
       }
     }
   },
 
-  installWP() {
-
+  installWP () {
     if (this.projectUsage === 'Integrate in Wordpress') {
       if (this.projectwpcli) {
         const done = this.async()
@@ -922,18 +914,18 @@ var KittnGenerator = yeoman.Base.extend({
     }
   },
 
-  install() {
+  install () {
     let _self = this
 
     // check if yarn is available and use it instead of npm
     commandExists('yarn', function (err, commandExists) {
       if (commandExists) {
         const done = _self.async()
-        _self.spawnCommand('yarn').on('close', done);
+        _self.spawnCommand('yarn').on('close', done)
       } else {
         const done = _self.async()
         _self.npmInstall()
-        _self.spawnCommand('npm', ['install']).on('close', done);
+        _self.spawnCommand('npm', ['install']).on('close', done)
       }
     })
 
@@ -947,7 +939,7 @@ var KittnGenerator = yeoman.Base.extend({
               '\n                    |    <|  ||  |  |  | |   |  \\ ' +
               '\n                    |__|_ \\__||__|  |__| |___|  / ' +
               '\n                    \\/                   \\/  ' +
-              '\n  ' + chalk.styles.yellow.close  + chalk.styles.green.open +
+              '\n  ' + chalk.styles.yellow.close + chalk.styles.green.open +
               '\n   Now we are finished. Make your last settings and start `npm run init`.' +
               '\n      When npm is finished activate `npm run dev` and happy Coding.' +
               '\n ' + chalk.styles.green.close

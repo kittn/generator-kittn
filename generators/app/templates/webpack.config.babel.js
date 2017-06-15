@@ -36,8 +36,9 @@ let bundle = {
       '.vue',<% }  %>
       '.js'
     ],
-    alias: {<% if ( projectjsframework === 'vue' && projectvueversion === 'standalone' ) { %>
-      'vue$': 'vue/dist/vue.common.js'<% } %>
+    alias: {<% if ( projectjsframework === 'vue' ) { %>
+      components: path.resolve(LOADER_PATH, 'components/')<% if ( projectvueversion === 'standalone' ) { %>,
+      'vue$': 'vue/dist/vue.common.js'<% } } %>
     }
   },
   module: {
