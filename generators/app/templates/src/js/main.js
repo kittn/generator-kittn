@@ -7,8 +7,8 @@ import Vue from 'vue'<% } %><% if (typeof projectvueplugins !== 'undefined' && p
 import { sync } from 'vuex-router-sync'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import router from './router/router'
-import store from './store/store'<% } %><% if ( (typeof projectcraftbp !== 'undefined' && projectcraftbp === true) || (typeof projectwordpressbp !== 'undefined' && projectwordpressbp === true) ) { %>
+import router from './router'
+import store from './store'<% } %><% if ( (typeof projectcraftbp !== 'undefined' && projectcraftbp === true) || (typeof projectwordpressbp !== 'undefined' && projectwordpressbp === true) ) { %>
 import progressLoader from './partial/progressloader'
 import initPhotoSwipeFromDOM from './partial/init-photoswipe' // eslint-disable-line
 import './partial/init-heighttransition'
