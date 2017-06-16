@@ -9,8 +9,6 @@ import gutil from 'gulp-util'
 import browserSync from 'browser-sync'
 import gulpLoadPlugins from 'gulp-load-plugins'
 import errorHandler from '../lib/errorHandler'
-import preCssConf from '../lib/prePostCssConf'
-import postCssNano from '../lib/postCssNano'
 import yargs from 'yargs'<% if ( projectstylelint ) { %>
 import ansiHTML from 'ansi-html'
 import api from 'stylelint'<% } %>
@@ -18,7 +16,7 @@ import api from 'stylelint'<% } %>
 const args = yargs.argv
 const $ = gulpLoadPlugins()
 
-// Gulp Task 
+// Gulp Task
 const compilerCssTask = () => {
   const env = args.env || 'development'
 
@@ -59,7 +57,7 @@ const compilerCssTask = () => {
     }) : gutil.noop())<% } %>
     .pipe($.sass({})
       .on('error', errorHandler))
-    .pipe($.postcss(preCssConf()))
+    .pipe($.postcss())
     .pipe(env === 'development' ? $.size({
         title: '>>> CSS File Size: '
     }) : gutil.noop())

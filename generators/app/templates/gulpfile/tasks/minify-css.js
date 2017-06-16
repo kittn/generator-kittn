@@ -6,16 +6,15 @@
 import kc from '../../config.json'
 import gulp from 'gulp'
 import gulpLoadPlugins from 'gulp-load-plugins'
-import postCssNano from '../lib/postCssNano'
 
 const $ = gulpLoadPlugins()
 
 const minifyCssTask = () => {
   return gulp
     .src(kc.dist.css + '*.css')
-    .pipe($.postcss(postCssNano()))
+    .pipe($.postcss())
     .pipe($.size({
-        title: '>>> CSS File Size: '
+      title: '>>> CSS File Size: '
     }))
     .pipe(gulp.dest(kc.dist.css))
 }

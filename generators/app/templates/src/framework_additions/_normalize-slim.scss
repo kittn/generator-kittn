@@ -26,12 +26,13 @@ html {
 
 html,
 body {
-  min-height: 100%;
+  padding: 0;
+  margin: 0;
+  height: 100%;
   font-size: map-get($kittn-typo, base-size-px);
 }
 
 body {
-  margin: 0;
   position: relative;
   color: map-get($kittn-color-route, text);
   @include fontsize(map-get($kittn-typo, base-size));

@@ -10,6 +10,10 @@ const base = (context) => {
         dest: 'config.json'
       },
       {
+        src: '_browserslistrc',
+        dest: '.browserslistrc'
+      },
+      {
         src: '_nvmrc',
         dest: '.nvmrc'
       },

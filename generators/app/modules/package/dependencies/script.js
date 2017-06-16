@@ -76,7 +76,7 @@ function addScriptDependencies (files = {}, context) {
         'eslint-config-vue': '^2.0.2',
         'eslint-plugin-vue': '^2.0.1',
         'css-loader': '^0.26.1',
-        'vue-loader': '^10.3.0',
+        'vue-loader': '^12.2.1',
         'sass-loader': '^5.0.1',
         'vue-style-loader': '^2.0.0',
         'vue-template-compiler': '^2.1.10'

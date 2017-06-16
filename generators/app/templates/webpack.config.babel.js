@@ -81,12 +81,7 @@ let bundle = {
           loaders: vueutils.cssLoaders({
             sourceMap: false,
             extract: nodeEnv === 'production' ? true : false
-          }),
-          postcss: [
-            require('autoprefixer')({
-              browsers: ['last 2 versions']
-            })
-          ]
+          })
         }<% } %>
       }
     })

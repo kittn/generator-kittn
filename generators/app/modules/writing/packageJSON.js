@@ -5,7 +5,6 @@ const sortPackageJson = require('sort-package-json')
 
 const addBaseSettings = require('../package/info/base.js')
 const addAuthorData = require('../package/info/author.js')
-const addBrowsersList = require('../package/info/browserslist.js')
 
 // Dependencies
 const addBaseDependencies = require('../package/dependencies/base.js')
@@ -25,7 +24,6 @@ const writePackageJson = () => {
         // ============================
         addBaseSettings({pkg}, context)
         addAuthorData({pkg}, context)
-        addBrowsersList({pkg}, context)
 
         addBaseDependencies({pkg}, context)
         addStyleDependencies({pkg}, context)

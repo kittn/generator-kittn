@@ -14,6 +14,10 @@ const styles = (context) => {
         dest: 'src/style/_setup.scss'
       },
       {
+        src: 'postcss.config.js',
+        dest: 'postcss.config.js'
+      },
+      {
         conditions: {
           projectnormalize: 'custom'
         },
