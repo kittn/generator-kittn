@@ -11,6 +11,7 @@ const addBaseDependencies = require('../package/dependencies/base.js')
 const addStyleDependencies = require('../package/dependencies/style.js')
 const addScriptDependencies = require('../package/dependencies/script.js')
 const addToolsDependencies = require('../package/dependencies/tools.js')
+const addStarterpackDependencies = require('../package/dependencies/starterpack.js')
 
 const writePackageJson = () => {
   return {
@@ -29,6 +30,7 @@ const writePackageJson = () => {
         addStyleDependencies({pkg}, context)
         addScriptDependencies({pkg}, context)
         addToolsDependencies({pkg}, context)
+        addStarterpackDependencies({pkg}, context)
 
         // Sort package.json data
         pkg = sortPackageJson(pkg)

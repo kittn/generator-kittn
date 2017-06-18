@@ -1,6 +1,6 @@
 module.exports = (ctx) => ({
   parser: 'postcss-scss',
-  plugins: {<% if (projectnormalize === 'regular') %>
+  plugins: {<% if (projectnormalize === 'regular') { %>
     'postcss-normalize': {},<% } %>
     'postcss-custom-selectors': {},
     'postcss-custom-media': {},
