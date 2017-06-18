@@ -15,15 +15,15 @@ const addDB = () => {
             password: context.props.credentialdbpass
           })
 
-          connection.connect(function (err) {
+          connection.connect((err) => {
             if (err) {
-              console.error('error connecting: ' + err.stack)
+              context.log('error connecting: ' + err.stack)
             }
           })
 
-          connection.query('CREATE DATABASE IF NOT EXISTS ' + context.props.credentialdbdatabase + ';', function (error, results, fields) {
+          connection.query('CREATE DATABASE IF NOT EXISTS ' + context.props.credentialdbdatabase + ';', (error, results, fields) => {
             if (error) throw error
-            console.log('Added Database [' + context.props.credentialdbdatabase + '] to your MySQL DB')
+            context.log('Added Database [' + context.props.credentialdbdatabase + '] to your MySQL DB')
           })
           connection.end()
         } else {
