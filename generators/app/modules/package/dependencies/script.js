@@ -34,6 +34,15 @@ function addScriptDependencies (files = {}, context) {
     }
   })
 
+  // Container-Queries
+  if (context.props.projectcontainerqueries === true) {
+    extend(files.pkg, {
+      dependencies: {
+        'cq-prolyfill': '^0.4.0'
+      }
+    })
+  }
+
   // ESLint Standard
   if (context.props.projectscriptlinter === 'standard') {
     extend(files.pkg, {
