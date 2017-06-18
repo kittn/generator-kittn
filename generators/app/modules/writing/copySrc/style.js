@@ -63,7 +63,7 @@ const styles = (context) => {
         conditions: {
           projectcontainerqueries: true
         },
-        src: 'style_additions/_container-queries.scss',
+        src: 'src/style_additions/_container-queries.scss',
         dest: 'src/framework/core/functions/_container-queries.scss'
       },
       {
