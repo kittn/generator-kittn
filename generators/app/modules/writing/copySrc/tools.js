@@ -14,6 +14,13 @@ const styles = (context) => {
         },
         src: 'gulpfile_additions/sassdoc-generate.js',
         dest: 'gulpfile/tasks/sassdoc-generate.js'
+      },
+      {
+        conditions: {
+          projectastrum: true
+        },
+        src: 'pattern-library/data.json',
+        dest: 'doc/pattern-library/data.json'
       }
     ],
     folders: [
@@ -21,8 +28,9 @@ const styles = (context) => {
         conditions: {
           projectastrum: true
         },
-        src: 'pattern-library',
-        dest: 'doc/pattern-library/'
+        src: 'pattern-library/data',
+        dest: 'doc/pattern-library/',
+        simplecopy: true
       }
     ]
   }
