@@ -1,6 +1,7 @@
 // ===========================
 // Add Database
 // ===========================
+const mysql = require('mysql')
 
 const addDB = () => {
   return {
