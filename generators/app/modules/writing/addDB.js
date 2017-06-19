@@ -9,7 +9,10 @@ const addDB = () => {
       return new Promise((resolve, reject) => {
         // Adding Database
         if (context.props.projectcredential && context.props.credentialdbopen && context.commands.mysql === true) {
+          const socket = context.props.projectmamp ? '/Applications/MAMP/tmp/mysql/mysql.sock' : false
+
           const connection = mysql.createConnection({
+            socketPath: socket,
             host: context.props.credentialdbserver,
             user: context.props.credentialdbuser,
             password: context.props.credentialdbpass

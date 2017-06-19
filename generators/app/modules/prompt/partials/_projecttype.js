@@ -114,8 +114,6 @@ const projectPrompts = () => {
       }),
       default: true
     },
-    // TODO: CraftCMS CLI automatic Install
-    //
     {
       when: when('projectusage', 'wordpress', 'projectusage', 'craft', 'or'),
       type: 'confirm',
@@ -205,7 +203,7 @@ const projectPrompts = () => {
       default: function (props) { return props.projectname.toLowerCase() }
     },
     {
-      when: when('projectcredential', true, commands.mysql),
+      when: whenExtra('projectcredential', true, commands.mysql),
       type: 'confirm',
       name: 'credentialdbopen',
       message: message({
@@ -214,6 +212,17 @@ const projectPrompts = () => {
         defaultValue: false
       }),
       default: true
+    },
+    {
+      when: when('credentialdbopen', true),
+      type: 'confirm',
+      name: 'projectmamp',
+      message: message({
+        headline: 'Use MAMP socket?',
+        description: 'Do you use MAMP?',
+        defaultValue: false
+      }),
+      default: false
     }
   ]
 }
