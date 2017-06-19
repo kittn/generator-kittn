@@ -18,7 +18,7 @@ const writePackageJson = () => {
     writing: (context) => {
       return new Promise((resolve) => {
         // Getting the template files
-        let pkg = context.fs.readJSON(context.templatePath('_package.json'), {})
+        let pkg = context.fs.readJSON(context.templatePath('package.json'), {})
 
         // ============================
         // Apply Data to JSON-String

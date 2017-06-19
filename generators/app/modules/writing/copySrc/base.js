@@ -6,10 +6,6 @@ const base = (context) => {
         dest: 'gulpfile.babel.js'
       },
       {
-        src: 'config.json',
-        dest: 'config.json'
-      },
-      {
         src: '_browserslistrc',
         dest: '.browserslistrc'
       },

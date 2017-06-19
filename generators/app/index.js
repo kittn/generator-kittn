@@ -11,6 +11,9 @@ const pkg = require('../../package.json')
 // Package JSON
 const writePackageJson = require('./modules/writing/packageJSON')
 
+// Config JSON
+const writeConfigJson = require('./modules/writing/configJSON')
+
 // Copy Source Files
 const copySources = require('./modules/writing/copySources')
 
@@ -31,6 +34,9 @@ module.exports = class extends Generator {
 
     // Package.json
     this.writePackageJson = writePackageJson.bind(this)
+
+    // Config.json
+    this.writeConfigJson = writeConfigJson.bind(this)
 
     // Add Database
     this.addDB = addDB.bind(this)
@@ -117,6 +123,9 @@ module.exports = class extends Generator {
 
     // Write Package.json
     this.writePackageJson().writing(this)
+
+    // Write config.json
+    this.writeConfigJson().writing(this)
 
     // Add Database if user wants to
     this.addDB().writing(this)

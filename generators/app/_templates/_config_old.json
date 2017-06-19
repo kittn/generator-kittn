@@ -1,5 +1,5 @@
 {
-  "dist": {<% if (projectusage == 'html') { %>
+  "dist": {<% if (projectUsage == 'Building HTML Prototypes' || projectUsage == 'Integrate in KirbyCMS') { %>
     "dist": "dist/",
     "base": "dist/",
     "markup": "dist/",
@@ -12,7 +12,7 @@
     "bitmaps": "dist/assets/img/bitmaps/",
     "vectors": "dist/assets/img/svgfiles/",
     "contentimage": "dist/images/",
-    "webpackjsassets": "assets/",<% } if (projectusage == 'wordpress' ) { %>
+    "webpackjsassets": "assets/",<% } if (projectUsage == 'Integrate in Wordpress' ) { %>
     "dist": "dist/",
     "base": "dist/wp-content/themes/<%= projectname %>/",
     "markup": "dist/wp-content/themes/<%= projectname %>/",
@@ -25,7 +25,7 @@
     "bitmaps": "dist/wp-content/themes/<%= projectname %>/assets/img/bitmaps/",
     "vectors": "dist/wp-content/themes/<%= projectname %>/assets/img/svgfiles/",
     "contentimage": "dist/wp-content/themes/<%= projectname %>/images/",
-    "webpackjsassets": "wp-content/themes/<%= projectname %>/assets/",<% } if (projectusage == 'craft' ) { %>
+    "webpackjsassets": "wp-content/themes/<%= projectname %>/assets/",<% } if (projectUsage == 'Integrate in CraftCMS' ) { %>
     "dist": "dist/",
     "base": "dist/public/",
     "markup": "dist/craft/",
@@ -51,26 +51,27 @@
   },
   "css": {
     "spacer": "20px",
-    "baseFontSize": "16px"
+    "baseFontSize": "16px",
+    "filename": "<%= projectcssfilename %>"
   }<% if (projectcritical == true) { %>,
-  "cssabove": {
-    "width": "1024",
-    "height": "768",
-    "minify": true,
-    "inline": <% if (projectcriticalinline === true) {%>true<%} else { %>false<% } %>,
-    "sources": [
-      "index.html"
-    ]<% if (projectcriticalinline !== true) {%>,
-    "destFilename": "critical.css"<% } %>
+    "cssabove": {
+      "width": "1024",
+      "height": "768",
+      "minify": true,
+      "inline": <% if (projectcriticalinline === 'Inline') {%>true<%} else { %>false<% } %>,
+      "sources": [
+        "index.html"
+      ]<% if (projectcriticalinline != 'Inline') {%>,
+      "destFilename": "critical.css"<% } %>
   }<% } %>,
   "template": {
     "globalTitle": "<%= projectname %>",
-    "compiler": <% if (projectusage == 'html') { if (typeof projectstructure !== 'undefined' && projectstructure === 'twig') { %>true<% } } else { %>false<% } %>
+    "compiler": <% if ( projectstructure == 'Twig Template' && projectUsage == 'Building HTML Prototypes') { %>true<% } else { %>false<% } %>
   },
   "browsersync": {
     "openbrowser": true,
-    "https": <% if (typeof credentialprotocol !== 'undefined' && credentialprotocol == 'https') { %>true<% } else { %>false<% } %>,
-    "proxy": <% if (typeof projectcredential !== 'undefined' && projectcredential) { %>"<% if (typeof credentialprotocol !== 'undefined' && credentialprotocol == 'https') { %>https://<% } %><%= credentialdomain %>"<% } else { %>false<% } %>
+    "https": <% if (credentialprotocol == 'https') { %>true<% } else { %>false<% } %>,
+    "proxy": <% if (projectcredential) { %>"<% if (credentialprotocol == 'https') { %>https://<% } %><%= credentialdomain %>"<% } else { %>false<% } %>
   },
   "files": {
     "jsCopy": [
@@ -85,12 +86,12 @@
       "src/fonts/**"
     ],
     "launch": [
-      {"src": "favicons/**", "dest": "assets/img/system/"}<% if (projectusage == 'html') { %>,
+      {"src": "favicons/**", "dest": "assets/img/system/"}<% if (projectUsage == 'Building HTML Prototypes') { %>,
       {"src": "facebook-og-image.jpg", "dest": "assets/img/system/"},
       {"src": "twitter-og-image.jpg", "dest": "assets/img/system/"},
       {"src": ".htaccess", "dest": ""},
       {"src": "404.html", "dest": ""},
-      {"src": "robots.txt", "dest": ""}<% } if (projectusage == 'wordpress' || projectusage == 'craft') { %>,
+      {"src": "robots.txt", "dest": ""}<% } if (projectUsage == 'Integrate in Wordpress' || projectUsage == 'Integrate in KirbyCMS' || projectUsage == 'Integrate in CraftCMS') { %>,
       {"src": "facebook-og-image.jpg", "dest": "assets/img/system/"},
       {"src": "twitter-og-image.jpg", "dest": "assets/img/system/"}<% } %>
     ]
@@ -154,11 +155,11 @@
   },
   "src": {
     "style": "src/style/",
-    "template": "src/template/",<% if (projectusage == 'wordpress' ) { %>
+    "template": "src/template/",<% if (projectUsage == 'Integrate in Wordpress' ) { %>
     "structure": "src/structure/templates/",
     "config": "src/structure/config/",
     "plugins": "src/structure/plugins/",<% } else { %>
-    "structure": "src/structure/",<% } %><% if (projectusage == 'craft' ) { %>
+    "structure": "src/structure/",<% } %><% if (projectUsage == 'Integrate in CraftCMS' ) { %>
     "plugins": "src/craftplugins/",<% } %>
     "js": "src/js/",
     "bower": "src/bower/",
