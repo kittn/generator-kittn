@@ -46,6 +46,20 @@ const projecttype = (context) => {
       },
       {
         conditions: {
+          projectusage: 'craft'
+        },
+        src: 'src/skeletons/craftcms/public_additions/_htaccess',
+        dest: 'src/.system/public/.htaccess'
+      },
+      {
+        conditions: {
+          projectusage: 'craft'
+        },
+        src: 'src/skeletons/craftcms/public_additions/en/_htaccess',
+        dest: 'src/.system/public/en/.htaccess'
+      },
+      {
+        conditions: {
           projectusage: 'wordpress'
         },
         src: 'gulpfile_additions/copy-wpconfig.js',
