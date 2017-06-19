@@ -6,7 +6,7 @@ function addBaseDependencies (files = {}, context) {
       'subtask:buildgulp': 'gulp build --env=production',
       'assets': 'gulp copy:assets --env=init',
       'build': 'cross-env NODE_ENV=production npm run subtask:bundlewebpack && cross-env NODE_ENV=production npm run subtask:buildgulp',
-      'deploy': 'cross-env NODE_ENV=production npm run subtask:bundlewebpack && npm run subtask:buildgulp',
+      'deploy': 'npm run build',
       'dev': 'cross-env NODE_ENV=development gulp',
       'favicon': 'gulp build:favicon --env=init',
       'htmlassets': 'gulp copy:contentimages --env=init',

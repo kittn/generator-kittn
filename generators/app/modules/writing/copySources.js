@@ -13,8 +13,7 @@ const copyAction = (data, context) => {
   if (data.simplecopy) {
     context.fs.copy(
       context.templatePath(data.src),
-      context.destinationPath(data.dest),
-      { globOptions: { dot: true } }
+      context.destinationPath(data.dest)
     )
   } else {
     context.fs.copyTpl(

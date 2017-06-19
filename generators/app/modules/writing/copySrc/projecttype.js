@@ -27,14 +27,14 @@ const projecttype = (context) => {
           projectusage: 'craft',
           projectcredential: true
         },
-        src: 'src/skeletons/craftcms/.env.sh',
+        src: 'src/skeletons/craftcms/env.sh',
         dest: 'craftscripts/.env.sh'
       },
       {
         conditions: {
           projectusage: 'craft'
         },
-        src: 'src/skeletons/craftcms/env/.env.php',
+        src: 'src/skeletons/craftcms/env/env.php',
         dest: 'src/.system/env/.env.php'
       },
       {

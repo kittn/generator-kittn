@@ -32,6 +32,10 @@ const base = (context) => {
       {
         src: '_gitignore',
         dest: '.gitignore'
+      },
+      {
+        src: 'src/.system_additions/htaccess',
+        dest: 'src/.system/.htaccess'
       }
     ],
     folders: [
