@@ -1,0 +1,15 @@
+{#
+  <%= moduleName %>
+  =================
+  Description
+
+  @param {string} name            = Classname
+#}
+
+{# Set Class #}
+{% set c = name is defined and name != '' ? name : '<%= moduleType %>-<%= moduleName %>' %}
+
+{# Build Element Block #}
+<div class="{{ c }}">
+
+</div>
