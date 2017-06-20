@@ -21,9 +21,9 @@ function addScriptDependencies (files = {}, context) {
       'eslint-plugin-import': '^2.2.0',
       'eslint-plugin-jsx-a11y': '^4.0.0',
       'extract-text-webpack-plugin': '2.1.0',
-      'webpack': '^2.2.1',
+      'webpack': '^3.0.0',
       'webpack-dev-middleware': '^1.10.0',
-      'webpack-hot-middleware': '^2.16.1',
+      'webpack-hot-middleware': '^2.18.0',
       'webpack-merge': '^2.6.1'
     },
     dependencies: {

@@ -69,6 +69,7 @@ let bundle = {
         NODE_ENV: JSON.stringify(nodeEnv)
       }
     }),
+    new webpack.optimize.ModuleConcatenationPlugin(),
     new webpack.LoaderOptionsPlugin({
       options: {
         eslint: {
