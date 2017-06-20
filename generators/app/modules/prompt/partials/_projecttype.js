@@ -11,12 +11,10 @@ const projectPrompts = () => {
   }
 
   for (const command in commands) {
-    try {
-      commandExists(command)
-      commands[command] = true
-    } catch (e) {
-      if (e) this.log(e)
-    }
+    commandExists(command)
+      .then((command) => {
+        commands[command] = true
+      }).catch((error) => {})
   }
 
   return [

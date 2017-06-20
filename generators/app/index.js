@@ -73,12 +73,10 @@ module.exports = class extends Generator {
     // Initializing
   async initializing () {
     for (const command in this.commands) {
-      try {
-        await commandExists(command)
-        this.commands[command] = true
-      } catch (e) {
-        if (e) this.log(e)
-      }
+      commandExists(command)
+        .then((command) => {
+          this.commands[command] = true
+        }).catch((error) => {})
     }
   }
 
