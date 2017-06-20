@@ -118,6 +118,7 @@
         class="{{ options.class~' lazyload' }}" style="background-image: url({{ photos|last.url }});{{ options.position ? 'background-position:'~options.position }}" data-sizes="auto" data-bgset="{{ craft.imager.srcset( photos ) }}"
       {% endif %}
     {% else %}
+      <noscript><img src="{{ photo.url }}"></noscript>
       <img class="{{ options.class }} lazyload" data-sizes="auto" src="{{ photos|last.url }}" data-srcset="{{ craft.imager.srcset( photos ) }}" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
     {% endif %}
   {% endif %}

@@ -18,7 +18,7 @@ import api from 'stylelint'<% } %>
 const args = yargs.argv
 const $ = gulpLoadPlugins()
 
-// Gulp Task with two Ways one Libsass (default) one Rubysass
+// Gulp Task 
 const compilerCssTask = () => {
   const env = args.env || 'development'
 

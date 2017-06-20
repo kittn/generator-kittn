@@ -664,8 +664,9 @@ var KittnGenerator = yeoman.Base.extend({
       // Install Craft Starterpack
       if (this.projectcraftbp) {
         // Copy Plugins and Templates
-        this.directory('src/skeletons/starterpack/craftcms/structure/', 'src/structure/')
-        this.directory('src/skeletons/starterpack/craftcms/craftplugins/', 'src/craftplugins/')
+        this.directory('src/skeletons/starterpack/craftcms/structure/config/', 'src/structure/config/')
+        this.directory('src/skeletons/starterpack/craftcms/structure/templates/', 'src/structure/templates/')
+        this.directory('src/skeletons/starterpack/craftcms/structure/craftplugins/', 'src/craftplugins/')
         // Copy JS Script Files
         this.directory('src/skeletons/starterpack/general/js/', 'src/js/partial/')
         // Copy Sass Files

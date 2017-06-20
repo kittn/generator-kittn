@@ -16,36 +16,30 @@
 
   // Build Root and Rootname
   $root: #{&};
-  // Rootname only for prefixing Extends
-  $rn: str_slice($root,4);
 
   // API Grabber
   @function api($keys...) {
     @return map-deep-get($api, $keys...);
   }
 
-  // Local Style Storage  -------------------
-  // Store  : %#{$rn}--example { color: red; }
-  // Unload : @extend %#{$rn}--example;
-
   // Base Style ----------------------------
   display: flex;
   margin-bottom: api(margin-bottom);
 
   // Tags ----------------------------------
-
   // Base Modifier -------------------------
-
   // Childs --------------------------------
+
   // [root]__box
   &__box {
-    @include size(api(box,size));
+    @include size(api(box, size));
 
     &:not(:first-of-type) {
-      margin-left: api(box,gutter);
+      margin-left: api(box, gutter);
     }
+
     &:not(:last-of-type) {
-      margin-right: api(box,gutter);
+      margin-right: api(box, gutter);
     }
   }
 
@@ -56,8 +50,9 @@
 
     // [root]---solo
     @include instance(solo) {
-      &:not(:last-child) {
-        margin-right: api(box,gutter) * 2;
+
+      &:not(:last-child) {  /* stylelint-disable-line */
+        margin-right: api(box, gutter) * 2;
       }
     }
   }

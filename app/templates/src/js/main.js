@@ -13,8 +13,7 @@ import progressLoader from './partial/progressloader'
 import initPhotoSwipeFromDOM from './partial/init-photoswipe' // eslint-disable-line
 import './partial/init-heighttransition'
 import './partial/init-autoscroll'
-import 'flickity'
-import 'flickity-imagesloaded'<% } %>
+import './partial/flickity-package'<% } %>
 import lazySizes from 'lazysizes'
 import lazybgset from 'lazysizes/plugins/bgset/ls.bgset' // eslint-disable-line
 import 'babel-polyfill'
@@ -59,7 +58,7 @@ lazySizesConfig.expFactor = 1.3
 lazySizes.init()<% if ( projectcontainerqueries === true ) { %>
 
 // Activate Container Queries
-cq({postcss: true})<% } %><% if ( projectcraftbp === true || projectwordpressbp === true ) { %>
+cq({ postcss: true })<% } %><% if ( projectcraftbp === true || projectwordpressbp === true ) { %>
 
 // Init Photoswipe
 initPhotoSwipeFromDOM('.is-photoswipped')
