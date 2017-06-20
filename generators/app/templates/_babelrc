@@ -11,7 +11,9 @@
       "modules": false,
       "useBuiltIns": true,
       "debug": false
-    }]
+    }]<% if (projectjsframework === 'vue') { %>,
+    "es2015",
+    "stage-2"<% } %>
   ],
   "plugins": ["syntax-dynamic-import"]<% if (projectjsframework == 'react') { %>,
   "react"<% } %>

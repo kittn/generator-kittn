@@ -82,6 +82,8 @@ function addScriptDependencies (files = {}, context) {
   if (context.props.projectjsframework === 'vue') {
     extend(files.pkg, {
       devDependencies: {
+        'babel-preset-es2015': '^6.24.1',
+        'babel-preset-stage-2': '^6.24.1',
         'eslint-config-vue': '^2.0.2',
         'eslint-plugin-vue': '^2.0.1',
         'css-loader': '^0.26.1',
