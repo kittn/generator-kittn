@@ -22,7 +22,7 @@ import './partial/kittnad' // Small Advertising for Kittn :)
 import './partial/modernizer-loader'
 import './partial/conditionizr-init'
 import './partial/disable-pointerevents'<% if ( projectjsframework === 'vue') { %>
-import App from './app.vue'<%}%><% if (typeof projectvueplugins !== 'undefined' && projectvueplugins === true)  { %>
+import App from './app'<%}%><% if (typeof projectvueplugins !== 'undefined' && projectvueplugins === true)  { %>
 
 // keep vue-router and vuex store in sync
 sync(store, router)
@@ -41,7 +41,7 @@ new Vue({
   el: '#app',
   router,
   store,
-  render: h => h(App)
+  render: (h) => h(App)
 })<% } %><% if ( projectjsframework === 'react') { %>
 ReactDOM.render(
 <h1>Hello, world! from React</h1>,

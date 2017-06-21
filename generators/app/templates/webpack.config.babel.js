@@ -44,8 +44,9 @@ let bundle = {
   module: {
     rules: [
       {
-        enforce: 'pre',
-        test: /\.js$/,
+        enforce: 'pre',<% if ( projectjsframework === 'vue' ) { %>
+        test: /\.(js|vue)$/,<% } else { %>
+        test: /\.js$/,<% } %>
         use: 'eslint-loader',
         exclude: /node_modules/
       },
@@ -75,7 +76,7 @@ let bundle = {
         eslint: {
           failOnError  : false,
           failOnWarning: false,
-          configFile: env === 'development' ? './.eslintrc-dev' : './.eslintrc',
+          configFile: env === 'development' ? './.eslintrc-dev.js' : './.eslintrc.js',
           formatter    : require('eslint-formatter-pretty')
         }<% if ( projectjsframework === 'vue' ) { %>,
         vue: {

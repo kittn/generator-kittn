@@ -8,6 +8,7 @@ function addScriptDependencies (files = {}, context) {
     },
     devDependencies: {
       'babel-loader': '^6.2.10',
+      'babel-eslint': '^7.2.3',
       'babel-plugin-transform-runtime': '^6.22.0',
       'babel-plugin-syntax-dynamic-import': '^6.18.0',
       'babel-polyfill': '^6.23.0',
@@ -20,6 +21,7 @@ function addScriptDependencies (files = {}, context) {
       'eslint-plugin-html': '^2.0.0',
       'eslint-plugin-import': '^2.2.0',
       'eslint-plugin-jsx-a11y': '^4.0.0',
+      'eslint-import-resolver-webpack': '^0.8.1',
       'extract-text-webpack-plugin': '2.1.0',
       'webpack': '^3.0.0',
       'webpack-dev-middleware': '^1.10.0',
@@ -85,6 +87,7 @@ function addScriptDependencies (files = {}, context) {
         'babel-preset-es2015': '^6.24.1',
         'babel-preset-stage-2': '^6.24.1',
         'eslint-config-vue': '^2.0.2',
+        'eslint-plugin-html': '^3.0.0',
         'eslint-plugin-vue': '^2.0.1',
         'css-loader': '^0.26.1',
         'vue-loader': '^12.2.1',

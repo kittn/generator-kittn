@@ -2,16 +2,16 @@ const script = (context) => {
   return {
     files: [
       {
-        src: '_kttnrc',
+        src: '_kittnrc',
         dest: '.kittnrc'
       },
       {
-        src: '_eslintrc',
-        dest: '.eslintrc'
+        src: '_eslintrc.js',
+        dest: '.eslintrc.js'
       },
       {
-        src: '_eslintrc-dev',
-        dest: '.eslintrc-dev'
+        src: '_eslintrc-dev.js',
+        dest: '.eslintrc-dev.js'
       },
       {
         src: '_babelrc',
