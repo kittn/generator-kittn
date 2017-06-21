@@ -60,11 +60,6 @@ const styles = (context) => {
         dest: 'gulpfile/tasks/optimize-criticalCss.js'
       },
       {
-        conditions: {
-          projectcontainerqueries: true,
-          projectcraftbp: true,
-          projectwordpressbp: true
-        },
         src: 'src/framework_additions/_container-queries.scss',
         dest: 'src/framework/core/functions/_container-queries.scss'
       },

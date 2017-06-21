@@ -13,8 +13,8 @@
       "debug": false
     }]<% if (projectjsframework === 'vue') { %>,
     "es2015",
-    "stage-2"<% } %>
+    "stage-2"<% } %><% if (projectjsframework === 'react') { %>,
+    "react"<% } %>
   ],
-  "plugins": ["syntax-dynamic-import"]<% if (projectjsframework === 'react' || projectscriptlinter === 'airbnb') { %>,
-  "react"<% } %>
+  "plugins": ["syntax-dynamic-import"]
 }

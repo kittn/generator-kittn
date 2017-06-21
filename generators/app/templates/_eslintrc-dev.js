@@ -12,10 +12,9 @@ module.exports = {
     'es6': true,
     'jquery': true
   },
-  extends: [<% if (projectscriptlinter == 'airbnb') { %>
-    'airbnb',<% } if (projectscriptlinter == 'standard') { %>
+  extends: [
     // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-    'standard',<% } if ( projectjsframework === 'vue' ) { %>
+    'standard',<% if ( projectjsframework === 'vue' ) { %>
     'vue',<% } %>
     'plugin:import/errors',
     'plugin:import/warnings'
@@ -49,11 +48,6 @@ module.exports = {
     'arrow-body-style': [2, 'as-needed'],
     'no-param-reassign': [2, { 'props' : false }],
     'func-names': 1,
-    'space-before-function-paren': 1<% if (projectscriptlinter == 'airbnb') { %>,
-    'import/no-unresolved': [2, {'commonjs': true, 'amd': true}],
-    'import/named': 2,
-    'import/namespace': 2,
-    'import/default': 2,
-    'import/export': 2<% } %>
+    'space-before-function-paren': 1
   }
 }

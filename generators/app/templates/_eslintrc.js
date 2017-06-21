@@ -12,10 +12,9 @@ module.exports = {
     'es6': true,
     'jquery': true
   },
-  extends: [<% if (projectscriptlinter == 'airbnb') { %>
-    'airbnb',<% } if (projectscriptlinter == 'standard') { %>
+  extends: [
     // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-    'standard',<% } if ( projectjsframework === 'vue' ) { %>
+    'standard',<% if ( projectjsframework === 'vue' ) { %>
     'vue',<% } %>
     'plugin:import/errors',
     'plugin:import/warnings'

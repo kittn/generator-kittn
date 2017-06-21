@@ -4,30 +4,6 @@ const when = require('../helpers/when')
 const generalPrompts = [
   {
     type: 'list',
-    name: 'projectscriptlinter',
-    message: message({
-      headline: 'JS EsLint-Settings',
-      description: 'Pick an ESLint preset'
-    }),
-    choices: [
-      {
-        name: 'Standard (https://github.com/feross/standard)',
-        value: 'standard'
-      },
-      {
-        name: 'AirBNB (https://github.com/airbnb/javascript)',
-        value: 'airbnb'
-      },
-      {
-        name: 'none (configure it yourself)',
-        value: 'none'
-      }
-    ],
-    default: 'standard',
-    store: true
-  },
-  {
-    type: 'list',
     name: 'projectjquery',
     message: message({
       headline: 'jQuery',

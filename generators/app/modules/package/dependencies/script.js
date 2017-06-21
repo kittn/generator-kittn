@@ -14,6 +14,9 @@ function addScriptDependencies (files = {}, context) {
       'babel-preset-env': '^1.2.2',
       'babel-register': '^6.22.0',
       'eslint': '^3.15.0',
+      'eslint-config-standard': '^6.2.1',
+      'eslint-plugin-promise': '^3.4.1',
+      'eslint-plugin-standard': '^2.0.1',
       'eslint-formatter-pretty': '^1.1.0',
       'eslint-friendly-formatter': '^2.0.7',
       'eslint-loader': '^1.6.1',
@@ -42,28 +45,6 @@ function addScriptDependencies (files = {}, context) {
     extend(files.pkg, {
       dependencies: {
         'cq-prolyfill': '^0.4.0'
-      }
-    })
-  }
-
-  // ESLint Standard
-  if (context.props.projectscriptlinter === 'standard') {
-    extend(files.pkg, {
-      devDependencies: {
-        'eslint-config-standard': '^6.2.1',
-        'eslint-plugin-promise': '^3.4.1',
-        'eslint-plugin-standard': '^2.0.1'
-      }
-    })
-  }
-
-  // ESLint Airbnb
-  if (context.props.projectscriptlinter === 'airbnb') {
-    extend(files.pkg, {
-      devDependencies: {
-        'eslint-config-airbnb': '^14.1.0',
-        'eslint-config-airbnb-base': '^11.1.0',
-        'eslint-plugin-react': '^6.9.0'
       }
     })
   }
