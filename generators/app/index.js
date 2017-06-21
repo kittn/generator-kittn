@@ -73,7 +73,7 @@ module.exports = class extends Generator {
     // Initializing
   async initializing () {
     for (const command in this.commands) {
-      commandExists(command)
+      await commandExists(command)
         .then((command) => {
           this.commands[command] = true
         }).catch((error) => {})
@@ -105,7 +105,7 @@ module.exports = class extends Generator {
     this.log(welcome)
 
     // Now ask some questions already
-    const prompts = promptsFunction()
+    const prompts = promptsFunction(this)
     return this.prompt(prompts).then(props => {
       // To access props later use this.props.someAnswer;
       this.props = props

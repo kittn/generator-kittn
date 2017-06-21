@@ -3,20 +3,7 @@ const message = require('../helpers/message')
 const when = require('../helpers/when')
 const whenExtra = require('../helpers/whenExtra')
 
-const projectPrompts = () => {
-  const commands = {
-    wget: false,
-    wp: false,
-    mysql: false
-  }
-
-  for (const command in commands) {
-    commandExists(command)
-      .then((command) => {
-        commands[command] = true
-      }).catch((error) => {})
-  }
-
+const projectPrompts = (context) => {
   return [
     {
       type: 'list',
@@ -88,10 +75,8 @@ const projectPrompts = () => {
       default: 'twig',
       store: false
     },
-    //
-    // TODO: Wordpress CLI automatic Install
     {
-      when: whenExtra('projectusage', 'wordpress', commands.wp),
+      when: whenExtra('projectusage', 'wordpress', context.commands.wp),
       type: 'confirm',
       name: 'projectwpcli',
       message: message({
@@ -102,7 +87,7 @@ const projectPrompts = () => {
       default: true
     },
     {
-      when: whenExtra('projectusage', 'craft', 'commands', commands.wget),
+      when: whenExtra('projectusage', 'craft', context.commands.wget),
       type: 'confirm',
       name: 'projectcraftcli',
       message: message({
@@ -201,7 +186,7 @@ const projectPrompts = () => {
       default: function (props) { return props.projectname.toLowerCase() }
     },
     {
-      when: whenExtra('projectcredential', true, commands.mysql),
+      when: whenExtra('projectcredential', true, context.commands.mysql),
       type: 'confirm',
       name: 'credentialdbopen',
       message: message({
