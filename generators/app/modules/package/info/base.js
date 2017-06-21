@@ -7,7 +7,7 @@ function addBaseSettings (files = {}, context) {
     description: context.props.projectdescription,
     version: context.props.projectversion,
     license: 'MIT',
-    repository: 'https://...',
+    repository: context.props.projecturl,
     engines: {
       node: '>=7.6.0'
     }

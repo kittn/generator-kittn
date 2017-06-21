@@ -3,9 +3,9 @@ const extend = require('deep-extend')
 function addAuthorData (files = {}, context) {
   extend(files.pkg, {
     author: {
-      name: '',
-      email: '',
-      url: ''
+      name: context.props.projectauthor,
+      email: context.props.projectmail,
+      url: context.props.projecturl
     }
   })
 }

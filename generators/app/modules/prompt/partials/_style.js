@@ -1,5 +1,6 @@
 const message = require('../helpers/message')
 const when = require('../helpers/when')
+const chalk = require('chalk')
 
 const generalPrompts = [
   {
@@ -11,6 +12,16 @@ const generalPrompts = [
       defaultValue: 'Default: #29b8f2'
     }),
     default: '#29b8f2',
+    validate (input) {
+      // Do async stuff
+      const smallhex = /[0-9A-Fa-f]{3}/g
+      const longHex = /[0-9A-Fa-f]{6}/g
+      if (!smallhex.test(input) && !longHex.test(input)) {
+            // Pass the return value in the done callback
+        return `${chalk.styles.red.open} This is no valid HEX-Color${chalk.styles.red.close}`
+      }
+      return true
+    },
     store: true
   },
   // Filename
