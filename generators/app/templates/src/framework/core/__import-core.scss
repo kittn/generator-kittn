@@ -3,7 +3,7 @@
 // =====================================
 
 // Functions
-@import 'functions/typechecks';<% if (projectcontainerqueries === true || projectcraftbp === true || projectwordpressbp === true ) { %>
+@import 'functions/typechecks';<% if (projectcontainerqueries === true || (typeof projectcraftbp !== 'undefined' && projectcraftbp === true) || (typeof projectwordpressbp !== 'undefined' && projectwordpressbp === true)) { %>
 @import 'functions/container-queries';<% } %>
 @import 'functions/maps';
 @import 'functions/em';
