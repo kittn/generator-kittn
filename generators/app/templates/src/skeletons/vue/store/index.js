@@ -6,7 +6,7 @@ import * as mutations from './mutations'
 
 Vue.use(Vuex)
 
-export default new Vuex.Store({
+export default new Vuex.Store({ // eslint-disable-line
   actions,
   getters,
   mutations,

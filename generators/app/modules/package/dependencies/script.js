@@ -11,7 +11,6 @@ function addScriptDependencies (files = {}, context) {
       'babel-eslint': '^7.2.3',
       'babel-plugin-transform-runtime': '^6.22.0',
       'babel-plugin-syntax-dynamic-import': '^6.18.0',
-      'babel-polyfill': '^6.23.0',
       'babel-preset-env': '^1.2.2',
       'babel-register': '^6.22.0',
       'eslint': '^3.15.0',
@@ -30,6 +29,7 @@ function addScriptDependencies (files = {}, context) {
       'webpack-merge': '^2.6.1'
     },
     dependencies: {
+      'babel-polyfill': '^6.23.0',
       'conditionizr': '^4.5.0',
       'lazysizes': '^3.0.0',
       'pyrsmk-toast': '^2.1.1',
@@ -62,7 +62,8 @@ function addScriptDependencies (files = {}, context) {
     extend(files.pkg, {
       devDependencies: {
         'eslint-config-airbnb': '^14.1.0',
-        'eslint-config-airbnb-base': '^11.1.0'
+        'eslint-config-airbnb-base': '^11.1.0',
+        'eslint-plugin-react': '^6.9.0'
       }
     })
   }

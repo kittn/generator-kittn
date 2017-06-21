@@ -61,9 +61,11 @@ const styles = (context) => {
       },
       {
         conditions: {
-          projectcontainerqueries: true
+          projectcontainerqueries: true,
+          projectcraftbp: true,
+          projectwordpressbp: true
         },
-        src: 'src/style_additions/_container-queries.scss',
+        src: 'src/framework_additions/_container-queries.scss',
         dest: 'src/framework/core/functions/_container-queries.scss'
       },
       {
