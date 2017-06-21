@@ -14,9 +14,8 @@ const generalPrompts = [
     default: '#29b8f2',
     validate (input) {
       // Do async stuff
-      const smallhex = /[0-9A-Fa-f]{3}/g
-      const longHex = /[0-9A-Fa-f]{6}/g
-      if (!smallhex.test(input) && !longHex.test(input)) {
+      const hex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i
+      if (!hex.test(input)) {
             // Pass the return value in the done callback
         return `${chalk.styles.red.open} This is no valid HEX-Color${chalk.styles.red.close}`
       }
