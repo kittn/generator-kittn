@@ -72,12 +72,14 @@ module.exports = class extends Generator {
 
     // Initializing
   async initializing () {
-    for (const command in this.commands) {
-      await commandExists(command)
-        .then((command) => {
-          this.commands[command] = true
-        }).catch((error) => {})
-    }
+    await Promise.all(Object.keys(this.commands)
+      .map(command => {
+        return commandExists(command)
+          .then(commandResult => {
+            this.commands[commandResult] = true
+          })
+          .catch((error) => {})
+      }))
   }
 
   prompting () {
