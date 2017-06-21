@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const path = require('path')
 const yargs = require('yargs')
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')<% if ( projectjsframework === 'vue' ) { %>
 const vueutils = require('./build/vue-utils')<% } %>
 const kittnConf = require('./config.json')
