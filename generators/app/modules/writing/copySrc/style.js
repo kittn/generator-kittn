@@ -67,8 +67,8 @@ const styles = (context) => {
         dest: '.stylelintrc'
       },
       {
-        src: '_sass-lint',
-        dest: '.sass-lint'
+        src: '_sass-lint.yml',
+        dest: '.sass-lint.yml'
       }
     ],
     folders: [
