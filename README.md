@@ -8,6 +8,8 @@ Yeoman Generator for the Kittn Toolkit. Scaffolds and Prepare the Toolkit for yo
 
 [Documentation](http://kittn.de/). 
 
+**IMPORTANT:** You need Node >= `7.6` for this generator. 
+
 ## Install
 
 ```bash
@@ -69,21 +71,19 @@ Further steps in the documentation.
 
 ## Dependencies
 
-- Node >= 6.x
+- Node >= 7.6
 - Gulp 3.9.1
-- Yeoman 1.4.8
+- Yeoman 2.0.0
 - Git CLI
 - Wget 
 - WP CLI
-
-## Optional Dependencies
-- Bower 1.4.0
+- mysql CLI
 
 ## Special Thanks to
 - David Hellmann (@davidhellmann) - for his Fluidtype Mixin
+- Martin Herweg (@martinherweg) - for his Support with the new generator
 - Hugo Giraudel (@HugoGiraudel) - for his awesome Sass Scripts
 - Team Sass - Jacket
-- LukyVj (@LukyVj) - for Family.scss
 
 ## Authors
 - Sascha Fuchs @gisugosu

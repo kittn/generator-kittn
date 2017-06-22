@@ -1,0 +1,15 @@
+.DS_Store
+*.sassc
+.sass-cache
+*.css.map
+npm-debug.log
+package-lock.json
+/node_modules
+/src/bower
+/.idea
+/dist
+/doc<% if (projectusage == 'craft' ) { %>
+/src/env/.env.php
+/craftscripts/.env.sh
+/src/structure/config/license.key
+/src/.system/env/.env.php<% } %>
