@@ -1,0 +1,59 @@
+// ===================================================
+// Normalize
+// ===================================================
+
+/*
+  Base Styles
+
+  Styleguide 1
+*/
+html {
+  background: transparent;
+
+  @if map-get($kittn-activate, box-sizing) { box-sizing: border-box; }
+}
+
+// Global Activation
+* {
+  @if map-get($kittn-activate, antialias) { @include antialias; }
+
+  @if map-get($kittn-activate, box-sizing) == true {
+    &, &:before, &:after {
+      box-sizing: inherit;
+    }
+  }
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  font-size: map-get($kittn-typo, base-size-px);
+}
+
+body {
+  position: relative;
+  color: map-get($kittn-color-route, text);
+  @include fontsize(map-get($kittn-typo, base-size));
+  line-height: map-get($kittn-typo, line-height);
+
+  @if map-get($kittn-activate, hyphens) { @include text-hyphen; }
+
+  @if map-get($kittn-color-route, body) { background-color: map-get($kittn-color-route, body); }
+
+  @if map-get($kittn-typo-style, base-weight) { font-weight: map-get($kittn-typo-style, base-weight); }
+}
+
+@if map-get($kittn-activate, viewport-fix) { @-ms-viewport { width: device-width; }}
+
+@if map-get($kittn-activate, hyphens) == true {
+  abbr, acronym, code, dir, kbd,
+  listing, plaintext, q, samp, tt, var, xmp {
+    hyphens: none;
+  }
+}
+
+body, button, input, select, textarea, .sg-body {
+  font-family: map-get($kittn-typo-style, base-font);
+}

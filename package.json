@@ -1,9 +1,8 @@
 {
   "name": "generator-kittn",
-  "version": "4.1.6",
+  "version": "5.0.0",
   "description": "Kittn Scaffolding and Frontend Toolchain",
-  "license": "MIT",
-  "main": "app/index.js",
+  "main": "generators/app/index.js",
   "repository": "kittn/generator-kittn",
   "author": "Sascha Fuchs <gisu2onic@gmail.com>",
   "contributors": [
@@ -17,13 +16,13 @@
     }
   ],
   "files": [
-    "app"
+    "generators"
   ],
   "engines": {
-    "node": ">=6.0.0"
+    "node": ">=7.6.0"
   },
   "scripts": {
-    "test": "node test/fine.js"
+    "test": "jest"
   },
   "keywords": [
     "yeoman-generator",
@@ -32,7 +31,6 @@
     "svgsprite",
     "yeoman",
     "webpack",
-    "typescript",
     "yarn",
     "babel",
     "es6",
@@ -43,13 +41,36 @@
     "chalk": "^1.1.3",
     "clear-terminal": "^0.0.2",
     "command-exists": "^1.2.2",
+    "deep-extend": "^0.5.0",
     "mkdirp": "^0.5.1",
     "mysql": "^2.13.0",
     "randomstring": "^1.1.5",
-    "yeoman-generator": "^0.24.1",
-    "yosay": "^1.2.0"
+    "sort-package-json": "^1.6.1",
+    "yeoman-generator": "^1.1.1"
   },
   "devDependencies": {
-    "shelljs": "^0.7.5"
-  }
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.1",
+    "eslint-config-xo-space": "^0.16.0",
+    "eslint-plugin-import": "^2.3.0",
+    "eslint-plugin-node": "^5.0.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1",
+    "jest": "^20.0.0",
+    "jest-cli": "^20.0.0",
+    "nsp": "^2.6.3",
+    "yeoman-assert": "^3.0.0",
+    "yeoman-test": "^1.6.0"
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "eslintConfig": {
+    "extends": "standard",
+    "env": {
+      "jest": true,
+      "node": true
+    }
+  },
+  "license": "MIT"
 }
