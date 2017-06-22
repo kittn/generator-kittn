@@ -1,1 +1,0 @@
-The objects are parts of the content builder, so they are used with Advanced Custom Fields (Wordpress) or with CraftCMS. Within Craft, the modules can also be used outside of the content builder, the corresponding interfaces are available for this.
