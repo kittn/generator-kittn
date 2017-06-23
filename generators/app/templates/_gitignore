@@ -11,4 +11,5 @@ package-lock.json
 /doc<% if (projectusage == 'craft' ) { %>
 /src/env/.env.php
 /craftscripts/.env.sh
-/src/structure/config/license.key<% } %>
+/src/structure/config/license.key
+/src/.system/env/.env.php<% } %>

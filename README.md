@@ -39,9 +39,6 @@ Intialize your Project and the Sass Documentation (/sassdocs/)
 **`npm run dev`**<br>
 Main development task with BrowserSync and Webpack
 
-**`npm run devdashboard`**<br>
-Main development task with Webpack Dashboard - More NASA Style :D
-
 **`npm run build`**<br>
 Minify JS, Images, CSS. Is for a automated Build Process, comes after a Gulp Init.
 
