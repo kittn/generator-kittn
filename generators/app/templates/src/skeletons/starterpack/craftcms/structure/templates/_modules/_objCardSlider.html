@@ -125,7 +125,7 @@
   {% for child in content.children %}
     {% for child in child.children %}
       {% for child in child.children %}
-        <div class="{{ classname }}__slide"{{ slideWidth }}" style="{{ spaceBetween }}" itemscope itemtype="http://schema.org/MediaObject">
+        <div class="{{ classname }}__slide {{ slideWidth }}" style="{{ spaceBetween }}" itemscope itemtype="http://schema.org/MediaObject">
         <div class="{{ classname }}__slide__inner">
           {% include '_builder/_cb-objects' with { data: child } %}
         </div>
