@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# Pull Database
+# Restore Database
 #
-# Pull remote database down from a remote and restore it to to local
+# Restore the local database to the file path passed in via ARGV
 #
 # @author    nystudio107
 # @copyright Copyright (c) 2017 nystudio107
 # @link      https://nystudio107.com/
 # @package   craft-scripts
-# @since     1.1.0
+# @since     1.1.1
 # @license   MIT
 
 # Get the directory of the currently executing script
@@ -32,13 +32,32 @@ do
     fi
 done
 
-# Temporary db dump path (remote & local)
-TMP_DB_PATH="/tmp/${REMOTE_DB_NAME}-db-dump-$(date '+%Y%m%d').sql"
-BACKUP_DB_PATH="/tmp/${LOCAL_DB_NAME}-db-backup-$(date '+%Y%m%d').sql"
+# Get the path to the database passed in
+SRC_DB_PATH=$1
+if [ "${SRC_DB_PATH}" == "" ] ; then
+    echo "No input database dump specified"
+    exit 1
+fi
+if [[ ! -f "${SRC_DB_PATH}" ]] ; then
+    echo "File not found"
+    exit 1
+fi
 
-# Get the remote db dump
-ssh $REMOTE_SSH_LOGIN -p $REMOTE_SSH_PORT "$REMOTE_MYSQLDUMP_CMD $REMOTE_DB_CREDS $MYSQLDUMP_SCHEMA_ARGS > '$TMP_DB_PATH' ; $REMOTE_MYSQLDUMP_CMD $REMOTE_DB_CREDS $MYSQLDUMP_DATA_ARGS >> '$TMP_DB_PATH' ; gzip -f '$TMP_DB_PATH'"
-scp -P $REMOTE_SSH_PORT -- $REMOTE_SSH_LOGIN:"${TMP_DB_PATH}.gz" "${TMP_DB_PATH}.gz"
+# Figure out what type of file we're being passed in
+CAT_CMD=""
+if [ "${SRC_DB_PATH: -3}" == ".gz" ] ; then
+    CAT_CMD="${DB_ZCAT_CMD}"
+fi
+if [ "${SRC_DB_PATH: -4}" == ".sql" ] ; then
+    CAT_CMD="${DB_CAT_CMD}"
+fi
+if [ "${CAT_CMD}" == "" ] ; then
+    echo "Unknown file type"
+    exit 1
+fi
+
+# Temporary db dump path (remote & local)
+BACKUP_DB_PATH="/tmp/${LOCAL_DB_NAME}-db-backup-$(date '+%Y%m%d').sql"
 
 # Backup the local db
 $LOCAL_MYSQLDUMP_CMD $LOCAL_DB_CREDS $MYSQLDUMP_SCHEMA_ARGS > "$BACKUP_DB_PATH"
@@ -46,9 +65,9 @@ $LOCAL_MYSQLDUMP_CMD $LOCAL_DB_CREDS $MYSQLDUMP_DATA_ARGS >> "$BACKUP_DB_PATH"
 gzip -f "$BACKUP_DB_PATH"
 echo "*** Backed up local database to ${BACKUP_DB_PATH}.gz"
 
-# Restore the local db from the remote db dump
-${DB_ZCAT_CMD} "${TMP_DB_PATH}.gz" | $LOCAL_MYSQL_CMD $LOCAL_DB_CREDS
-echo "*** Restored local database from ${TMP_DB_PATH}.gz"
+# Restore the local db from the passed in db dump
+$CAT_CMD "${SRC_DB_PATH}" | $LOCAL_MYSQL_CMD $LOCAL_DB_CREDS
+echo "*** Restored local database from ${SRC_DB_PATH}"
 
 # Normal exit
 exit 0

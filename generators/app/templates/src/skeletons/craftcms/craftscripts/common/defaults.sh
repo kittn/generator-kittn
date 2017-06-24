@@ -1,6 +1,6 @@
-# Craft Scripts Environment
+# Craft Scripts Defaults
 #
-# Local environmental config for nystudio107 Craft scripts
+# Default settings for Craft scripts
 #
 # @author    nystudio107
 # @copyright Copyright (c) 2017 nystudio107
@@ -8,9 +8,6 @@
 # @package   craft-scripts
 # @since     1.1.6
 # @license   MIT
-#
-# This file should be renamed to '.env.sh' and it should reside in the
-# `scripts` directory.  Add '.env.sh' to your .gitignore.
 
 # -- GLOBAL settings --
 
@@ -76,7 +73,7 @@ LOCAL_MYSQL_CMD="mysql"
 LOCAL_MYSQLDUMP_CMD="mysqldump"
 
 # Local backups path; paths should always have a trailing /
-LOCAL_BACKUPS_PATH="REPLACE_ME"
+LOCAL_BACKUPS_PATH="/tmp/"
 
 # -- REMOTE settings --
 
@@ -105,7 +102,7 @@ REMOTE_MYSQL_CMD="mysql"
 REMOTE_MYSQLDUMP_CMD="mysqldump"
 
 # Remote backups path; paths should always have a trailing /
-REMOTE_BACKUPS_PATH="REPLACE_ME"
+REMOTE_BACKUPS_PATH="/tmp/"
 
 # Remote Amazon S3 bucket name
 REMOTE_S3_BUCKET="REPLACE_ME"
