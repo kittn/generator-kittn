@@ -1,0 +1,131 @@
+.amcommand {
+    display: none;
+    background: #ffffff;
+    border-radius: 0;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    top: 20%;
+    position: fixed;
+    width: 600px;
+    z-index: 1337;
+    -webkit-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 5px 25px -5px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 5px 25px -5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03), 0 5px 25px -5px rgba(0, 0, 0, 0.25);
+}
+
+.amcommand__execute {
+    float: right;
+    margin: 6px 15px 0 0;
+}
+
+.amcommand__tabs {
+    padding: 12px 15px 10px;
+    border-radius: 5px 5px 0 0;
+    color: #29323d;
+    cursor: default;
+    font-size: 15px;
+    background-image: -webkit-linear-gradient(#f7f7f8, #f4f5f6);
+    background-image: -moz-linear-gradient(#f7f7f8, #f4f5f6);
+    background-image: -ms-linear-gradient(#f7f7f8, #f4f5f6);
+    background-image: -o-linear-gradient(#f7f7f8, #f4f5f6);
+    background-image: linear-gradient(#f7f7f8, #f4f5f6);
+}
+
+.amcommand__container {
+    padding: 15px;
+}
+
+
+/**
+ * Input
+ */
+.amcommand__search input[type=text] {
+    width: 100%;
+    border: 0;
+    background: rgba(238, 238, 238, 0.72);
+    padding: 8px 30px 10px 10px;
+    border-radius: 0;
+    font-size: 28px;
+    line-height: 1;
+}
+
+.amcommand__search input[type=text]:focus {
+    box-shadow: none;
+}
+
+
+/**
+ * Loaders
+ */
+.amcommand__loader {
+    position: absolute;
+    top: 25px;
+    right: 20px;
+}
+
+
+/**
+ * Commands
+ */
+.amcommand__commands > ul {
+    max-height: 400px;
+    margin-top: 15px;
+    overflow: auto;
+}
+.amcommand__commands li {
+    border-top: 1px dotted rgba(115, 127, 140, 0.15);
+    font-size: 18px;
+    padding: 10px 10px;
+}
+
+.amcommand__commands li:hover {
+    background: #f5f6f6;
+    cursor: pointer;
+}
+
+.amcommand__commands li.focus {
+    background: rgba(239, 240, 241, 0.43);
+}
+
+.amcommand__commands .go:hover:after {
+    color: inherit;
+}
+.amcommand__commands li.focus .go:after {
+    color: inherit;
+}
+
+.amcommand__commands--name {
+    color: rgba(0, 0, 0, 0.82);
+    display: block;
+    font-size: 100%;
+}
+
+.amcommand__commands li.focus .amcommand__commands--name {
+    color: rgba(0, 0, 0, 0.90);
+}
+
+.amcommand__commands--info {
+    color: #b9bfc6;
+    display: block;
+    font-size: 80%;
+    margin-top: 5px;
+}
+
+
+/**
+ * Notices
+ */
+
+.amcommand__notice {
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+
+/**
+ * Icon
+ */
+.visuallyhidden {
+    display: none;
+}

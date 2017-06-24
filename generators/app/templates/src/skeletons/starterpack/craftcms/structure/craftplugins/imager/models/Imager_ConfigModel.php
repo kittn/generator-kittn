@@ -31,8 +31,8 @@ class Imager_ConfigModel extends BaseModel
             }
         }
         
-        if (isset(ImagerService::$craftPositonTranslate[(string)$this->position])) {
-            $this->position = ImagerService::$craftPositonTranslate[(string)$this->position];
+        if (isset(ImagerService::$craftPositionTranslate[(string)$this->position])) {
+            $this->position = ImagerService::$craftPositionTranslate[(string)$this->position];
         } 
             
         $this->position = str_replace('%', '', $this->position);
@@ -60,12 +60,17 @@ class Imager_ConfigModel extends BaseModel
           'hashFilename' => array(AttributeType::Bool),
           'hashPath' => array(AttributeType::Bool),
           'hashRemoteUrl' => array(AttributeType::Bool),
+          'useRemoteUrlQueryString' => array(AttributeType::Bool),
           'cacheEnabled' => array(AttributeType::Bool),
           'cacheDuration' => array(AttributeType::Number),
           'cacheDurationRemoteFiles' => array(AttributeType::Number),
           'instanceReuseEnabled' => array(AttributeType::Bool),
           'noop' => array(AttributeType::Bool),
           'suppressExceptions' => array(AttributeType::Bool),
+          'convertToRGB' => array(AttributeType::Bool),
+          'fillTransforms' => array(AttributeType::Bool),
+          'fillAttribute' => array(AttributeType::String),
+          'fillInterval' => array(AttributeType::Number),
           'jpegoptimEnabled' => array(AttributeType::Bool),
           'jpegoptimPath' => array(AttributeType::String),
           'jpegoptimOptionString' => array(AttributeType::String),
@@ -81,9 +86,13 @@ class Imager_ConfigModel extends BaseModel
           'pngquantEnabled' => array(AttributeType::Bool),
           'pngquantPath' => array(AttributeType::String),
           'pngquantOptionString' => array(AttributeType::String),
+          'gifsicleEnabled' => array(AttributeType::Bool),
+          'gifsiclePath' => array(AttributeType::String),
+          'gifsicleOptionString' => array(AttributeType::String),
           'tinyPngEnabled' => array(AttributeType::Bool),
           'tinyPngApiKey' => array(AttributeType::String),
           'optimizeType' => array(AttributeType::String),
+          'skipExecutableExistCheck' => array(AttributeType::Bool),
           'logOptimizations' => array(AttributeType::Bool),
           'awsEnabled' => array(AttributeType::Bool),
           'awsAccessKey' => array(AttributeType::String),
@@ -93,6 +102,12 @@ class Imager_ConfigModel extends BaseModel
           'awsCacheDuration' => array(AttributeType::Number),
           'awsRequestHeaders' => array(AttributeType::Mixed),
           'awsStorageType' => array(AttributeType::String),
+          'gcsEnabled' => array(AttributeType::Bool),
+          'gcsAccessKey' => array(AttributeType::String),
+          'gcsSecretAccessKey' => array(AttributeType::String),
+          'gcsBucket' => array(AttributeType::String),
+          'gcsFolder' => array(AttributeType::String),
+          'gcsCacheDuration' => array(AttributeType::Number),
           'cloudfrontInvalidateEnabled' => array(AttributeType::String),
           'cloudfrontDistributionId' => array(AttributeType::String),
           'removeMetadata' => array(AttributeType::Bool),

@@ -1,5 +1,85 @@
 [
     {
+        "version": "1.1.47",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-06-08T11:00:00-11:00",
+        "notes": [
+            "[Fixed] Fixed an issue with Live Preview and a previous or draft version of an entry",
+            "[Fixed] Fixed a problem where the `dataLayer` wasn't passed down to the Google Tag Manager script",
+            "[Improved] Commerce products now have the `name` set to the variant + title"
+        ]
+    },
+    {
+        "version": "1.1.46",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-04-08T11:00:00-11:00",
+        "notes": [
+            "[Improved] Force `publisher` to be a `Person` or `Organization` for news articles",
+            "[Improved] Fixed the AdminCP documentation URL"
+        ]
+    },
+    {
+        "version": "1.1.45",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-03-27T11:00:00-11:00",
+        "notes": [
+            "[Fixed] Fixed an issue with `addTrailingSlashesToUrls` and certain PHP configurations"
+        ]
+    },
+    {
+        "version": "1.1.44",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-03-22T11:00:00-11:00",
+        "notes": [
+            "[Fixed] Fixed an issue with SEOmetrics and PHP 7.1 that would cause `Error parsing the DOM` errors",
+            "[Fixed] Include our own copy of jQuery for SEOmetrics, rather than depending on the Craft version",
+            "[Improved] The calls to `file_get_contents` for SEOmetrics are now much more permissive",
+            "[Improved] If the current request is a 404, set the `canonicalUrl` to an empty string",
+            "[Improved] If the `canonicalUrl` is set to an empty string, don't render the `<meta rel='canonical'` tag",
+            "[Improved] Add a trailing / if `addTrailingSlashesToUrls` is set, but only if there's on extension",
+            "[Improved] Fixed some deprecated meta information in `SeomaticPlugin.php`"
+        ]
+    },
+    {
+        "version": "1.1.43",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-03-03T11:00:00-11:00",
+        "notes": [
+            "[Added] Added Organization to Main Entity of Page",
+            "[Added] Improved error logging on internally rendered template errors",
+            "[Improved] Respect `addTrailingSlashesToUrls` when returning fully qualified URLs",
+            "[Improved] Respect `addTrailingSlashesToUrls` in the URLs returned from `getLocalizedUrls()`",
+            "[Improved] The default `robots.txt` template is now smarter about trailing slashes on the `siteUrl`",
+            "[Improved] Dunn & Bradstreet -> Dun & Bradstreet in `DOCS.md`",
+            "[Fixed] Return error messages from internally rendered templates as $htmlText",
+            "[Fixed] Fix for extracting content from a Neo field"
+        ]
+    },
+    {
+        "version": "1.1.42",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-02-12T11:00:00-11:00",
+        "notes": [
+            "[Fixed] Fixed a regression that could cause FieldTypes to not save properly",
+            "[Improved] Moved the lattitude/longitude info down below the address information for on the Site Identity & Site Creator settings",
+            "[Improved] Wrapped all `templates->render()` calls in try/catch blocks to more gracefully handle errors",
+            "[Added] Added an `Anonymize IP` toggle for Google Analytics, for compliance with some local laws",
+            "[Added] Added Wikipedia to the Social Media settings & `sameAs` entity information"
+        ]
+    },
+    {
+        "version": "1.1.41",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-02-10T11:00:00-11:00",
+        "notes": [
+            "[Improved] Broke the changelog out to CHANGELOG.md",
+            "[Fixed] Fixed a bug when saving meta fails",
+            "[Fixed] Fixed an issue with the Charge plugin if you used the Charge element path",
+            "[Fixed] Fixed an issue where re-saving a Section might not re-save the SEOmatic FieldType info",
+            "[Improved] Updated the README.md"
+        ]
+    },
+    {
         "version": "1.1.40",
         "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
         "date": "2016-12-20T11:00:00-11:00",
