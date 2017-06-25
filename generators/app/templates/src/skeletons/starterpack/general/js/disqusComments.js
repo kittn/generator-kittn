@@ -5,10 +5,10 @@
 export default function (element) {
   const trigger = document.querySelector(element)
 
-  // Get Disqus name from Element
-  const name = trigger.getAttribute('data-disqus-name')
-
   if (trigger !== null) {
+    // Get Disqus name from Element
+    const name = trigger.getAttribute('data-disqus-name')
+
     // Watch Trigger for click
     trigger.addEventListener('click', () => {
       const scriptElement = document.createElement('script')

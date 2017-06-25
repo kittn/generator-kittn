@@ -11,6 +11,7 @@ import router from './router'
 import store from './store'<% } %><% if ( (typeof projectcraftbp !== 'undefined' && projectcraftbp === true) || (typeof projectwordpressbp !== 'undefined' && projectwordpressbp === true) ) { %>
 import progressLoader from './partial/progressloader'
 import initPhotoSwipeFromDOM from './partial/init-photoswipe' // eslint-disable-line
+import disqusLoader from './partial/disqusComments'
 import './partial/init-heighttransition'
 import './partial/init-autoscroll'
 import './partial/flickity-package'<% } %>
@@ -64,4 +65,7 @@ cq({ postcss: true })<% } %><% if ( (typeof projectcraftbp !== 'undefined' && pr
 initPhotoSwipeFromDOM('.is-photoswipped')
 
 // Activate Progressloader
-progressLoader()<% } %>
+progressLoader()
+
+// Activate Disqus Button
+disqusLoader('.c-disqusComments__button')<% } %>
