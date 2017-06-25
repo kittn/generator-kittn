@@ -2,6 +2,12 @@
 //          Base Setup
 // ------------------------------------------------------------
 
+// Activates the Responsive Fontsize Generator (Starting Fontsize)
+// Set on false
+//
+// @type {bool | number }                   - Set to false if you do not want responsive fontsizes
+$kittn-active-responsive-fonts: 85;
+
 // Map with all breakpoints and related behavior
 //
 // @type map
@@ -29,12 +35,12 @@ $kittn-breakpoint-map: (
   'm': (
     size: 768px,
     step: true,
-    fontsize: 85
+    fontsize: 90
   ),
   'ml': (
     size: 960px,
     step: true,
-    fontsize: 90
+    fontsize: 95
   ),
   'l': (
     size: 1180px,
@@ -110,11 +116,6 @@ $kittn-typo: (
   base-size-px: 16px,
   line-height: 1.5
 );
-
-// Activates the Responsive Fontsize Generator
-//
-// @type Bool | Number
-$kittn-active-responsive-fonts: 80;
 
 // Default Margin for Typographic Elements (set on '0' when not needed)
 //
