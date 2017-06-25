@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-vimeo</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon-vimeo" fill-rule="nonzero" fill="#000000">
+            <g id="Vimeo-Icon" transform="translate(10.000000, 11.000000)">
+                <path d="M23.5,0 C19.8,0 16,1 16,8.5 C16,8.8 16.2,9 16.5,9 L18.6,9 C19.8,9 20,9.6 20,10.1 C20.3,12.4 17.2,16.8 16.4,17 C15.4,17 14.7,12.8 14.1,9.7 C13.3,4.7 12.5,0 10,0 C8.2,0 4.4,2.9 0.1,9.2 C-1.77635684e-15,9.3 -1.77635684e-15,9.5 -1.77635684e-15,9.6 C-1.77635684e-15,9.7 0.1,9.9 0.2,9.9 L2.7,11.4 C2.9,11.5 3.1,11.5 3.3,11.3 L5.1,9.5 C5.7,13.9 7.9,28 13.5,28 C19.8,28 30,14.2 30,7.5 C30,3.9 27.7,0 23.5,0 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>
