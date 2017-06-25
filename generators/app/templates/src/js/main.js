@@ -12,6 +12,7 @@ import store from './store'<% } %><% if ( (typeof projectcraftbp !== 'undefined'
 import progressLoader from './partial/progressloader'
 import initPhotoSwipeFromDOM from './partial/init-photoswipe' // eslint-disable-line
 import disqusLoader from './partial/disqusComments'
+import offCanvasToggle from './partial/offcanvas-trigger'
 import './partial/init-heighttransition'
 import './partial/init-autoscroll'
 import './partial/flickity-package'<% } %>
@@ -68,4 +69,7 @@ initPhotoSwipeFromDOM('.is-photoswipped')
 progressLoader()
 
 // Activate Disqus Button
-disqusLoader('.c-disqusComments__button')<% } %>
+disqusLoader('.c-disqusComments__button')
+
+// Add Offcanvas Trigger
+offCanvasToggle('.c-offCanvas__trigger')<% } %>
