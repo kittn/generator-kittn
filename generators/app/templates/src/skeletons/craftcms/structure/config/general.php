@@ -34,6 +34,12 @@ return array(
       'de' => 'de',
       'en_us' => 'en',
       'en' => 'en'
+    ),
+    'imageRatios' => array(
+      'featuredImage' => array(
+        'thumb' => '4:3',
+        'regular' => '16:9'
+      )
     )
   ),
   // Productive Environment
