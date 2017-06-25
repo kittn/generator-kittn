@@ -274,5 +274,5 @@
 ///
 /// @param  {args}   $keys - Keys to get
 @function glob($keys...) {
-  @return map-deep-get($kittn-site,$keys...);
+  @return map-deep-get($kittn-globals,$keys...);
 }

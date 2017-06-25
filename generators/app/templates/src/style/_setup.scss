@@ -43,10 +43,18 @@ $kittn-breakpoint-map: (
   )
 );
 
-// Define Pagesize
-$kittn-page-size: (
-  minsize: 320px,
-  maxsize: 1200px
+/// Specific variables for the template. Get values with the `glob()` function
+///
+/// @type map
+///
+/// @prop {map}    pagesize           - Pagesizes for the Container Module
+/// @prop {number} pagesize.min       - Minimal Pagesize
+/// @prop {number} pagesize.max       - Maximal Pagesize
+$kittn-globals: (
+  pagesize: (
+    min: 320px,
+    max: 1200px
+  )
 );
 
 // Define the different fontfaces that are loaded locally
@@ -388,6 +396,3 @@ $kittn-tables: (
   padding: 8px,
   trigger: 400px,
 );
-
-/// Add global variables to your components here
-$kittn-site: ();
