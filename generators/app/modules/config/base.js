@@ -128,6 +128,25 @@ function addBaseCofig (files = {}, context) {
     }
   })
 
+  if (typeof context.props.projectcredential !== 'undefined' && projectcredential) {
+    let prefix = ''
+
+    if (!context.props.credentialdomain.startsWith('http')) {
+      prefix = (typeof context.props.credentialprotocol !== 'undefined' && credentialprotocol === 'https') ? 'https://' : 'http://'
+    }
+    extend(files.pkg, {
+      'browsersync': {
+        'proxy': prefix + context.props.credentialdomain
+      }
+    })
+  }
+  if (typeof context.props.credentialprotocol !== 'undefined' && credentialprotocol === 'https') {
+    extend(files.pkg, {
+      'browsersync': {
+        'https': true
+      }
+    })
+  }
   if (context.props.projectcritical === true) {
     extend(files.pkg, {
       'cssabove': {
