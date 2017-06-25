@@ -128,11 +128,11 @@ function addBaseCofig (files = {}, context) {
     }
   })
 
-  if (typeof context.props.projectcredential !== 'undefined' && projectcredential) {
+  if (typeof context.props.projectcredential !== 'undefined' && context.props.projectcredential) {
     let prefix = ''
 
     if (!context.props.credentialdomain.startsWith('http')) {
-      prefix = (typeof context.props.credentialprotocol !== 'undefined' && credentialprotocol === 'https') ? 'https://' : 'http://'
+      prefix = (typeof context.props.credentialprotocol !== 'undefined' && context.props.credentialprotocol === 'https') ? 'https://' : 'http://'
     }
     extend(files.pkg, {
       'browsersync': {
@@ -140,7 +140,7 @@ function addBaseCofig (files = {}, context) {
       }
     })
   }
-  if (typeof context.props.credentialprotocol !== 'undefined' && credentialprotocol === 'https') {
+  if (typeof context.props.credentialprotocol !== 'undefined' && context.props.credentialprotocol === 'https') {
     extend(files.pkg, {
       'browsersync': {
         'https': true
