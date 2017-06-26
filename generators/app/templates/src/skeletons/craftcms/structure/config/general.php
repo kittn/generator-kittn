@@ -37,7 +37,7 @@ return array(
     ),
     'imageRatios' => array(
       'featuredImage' => array(
-        'thumb' => '4:3',
+        'thumb' => '5:3',
         'regular' => '16:9'
       )
     )

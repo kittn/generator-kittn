@@ -49,17 +49,30 @@ $kittn-breakpoint-map: (
   )
 );
 
-/// Specific variables for the template. Get values with the `glob()` function
+/// Specific variables for the template
 ///
 /// @type map
 ///
 /// @prop {map}    pagesize           - Pagesizes for the Container Module
 /// @prop {number} pagesize.min       - Minimal Pagesize
 /// @prop {number} pagesize.max       - Maximal Pagesize
+/// @prop {map}    header             - Headerstyle
+/// @prop {map}    header.height      - Header heights
+/// @prop {map}    footer             - Footerstyles
+/// @prop {number} footer.font-size   - Base footer fontsize in px
 $kittn-globals: (
   pagesize: (
     min: 320px,
     max: 1200px
+  ),
+  header: (
+    height: (
+      mobile: 50px,
+      desktop: 100px
+    )
+  ),
+  footer: (
+    font-size: 14px
   )
 );
 
