@@ -1,4 +1,0 @@
-{
-  "type": "<%= projectusage %>",
-  "methodology": "<%= projectcssstructure %>"
-}

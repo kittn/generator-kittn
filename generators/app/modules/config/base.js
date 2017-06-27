@@ -100,6 +100,11 @@ function addBaseCofig (files = {}, context) {
       }
     },
     'src': {
+      'baseconf': {
+        'type': context.props.projectusage,
+        'methodology': context.props.projectcssstructure,
+        'structure': context.props.projectstructure,
+      },
       'style': 'src/style/',
       'template': 'src/template/',
       'js': 'src/js/',

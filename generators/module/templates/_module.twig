@@ -9,7 +9,14 @@
 {# Set Class #}
 {% set c = name is defined and name != '' ? name : '<%= moduleType %>-<%= moduleName %>' %}
 
+{# Module defaults #}
+{% set defaults = {
+  name: '<%= moduleName %>'
+} %}
+
+{% set m = m is defined ? defaults|merge(m) : defaults %}
+
 {# Build Element Block #}
 <div class="{{ c }}">
-
+  {{ m.name }}
 </div>

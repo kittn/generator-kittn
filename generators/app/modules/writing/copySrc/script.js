@@ -2,10 +2,6 @@ const script = (context) => {
   return {
     files: [
       {
-        src: '_kittnrc',
-        dest: '.kittnrc'
-      },
-      {
         src: '_eslintrc.js',
         dest: '.eslintrc.js'
       },
