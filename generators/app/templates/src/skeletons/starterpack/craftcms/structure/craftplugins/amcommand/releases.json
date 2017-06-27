@@ -1,0 +1,87 @@
+[
+    {
+        "version": "2.0.2",
+        "downloadUrl": "https://github.com/am-impact/amcommand/archive/master.zip",
+        "date": "2017-06-14T16:00:00+01:00",
+        "notes": [
+            "[Fixed] Combining commands (default and found commands by the element search) were not always merged correctly.",
+            "[Fixed] Only add the search criteria to commands found by the element search, if none of the characters were found."
+        ]
+    },
+    {
+        "version": "2.0.1",
+        "downloadUrl": "https://github.com/am-impact/amcommand/archive/master.zip",
+        "date": "2017-06-14T14:00:00+01:00",
+        "notes": [
+            "[Improved] Display settings in a nicer way.",
+            "[Fixed] Install default plugin settings through a migration, regarding the element types used for the element search.",
+            "[Fixed] When search keywords were not found, display them in the command between brackets, when found by element search."
+        ]
+    },
+    {
+        "version": "2.0.0",
+        "downloadUrl": "https://github.com/am-impact/amcommand/archive/master.zip",
+        "date": "2017-06-14T10:00:00+01:00",
+        "notes": [
+            "[Added] New command: New command: compare entry version. This command becomes available when you are viewing an entry in the CP.",
+            "[Added] New command: Create overview and detail section command. This will create a single with channel / structure for the detailed entry. Will create templates folder as well.",
+            "[Added] New command: Plugin settings. Quickly navigate to a plugin's settings.",
+            "[Added] New section and field commands.",
+            "[Added] Allow commands to be sorted in reversed order.",
+            "[Added] Allow commands to return HTML to be displayed.",
+            "[Improved] UI update.",
+            "[Improved] Renewed functionality of the palette. It works more like Alfred on Mac OS now.",
+            "[Improved] Shortcuts CMD / CTRL + 1 till 9 to quickly trigger a command.",
+            "[Improved] Redirect to entries section after deleting all entries from that section.",
+            "[Improved] Show the amount of entries on edit / delete commands in the command's description.",
+            "[Improved] Close palette when CMD + SHIFT + P is pressed again.",
+            "[Improved] Allow direct element search when no deeper command is executed.",
+            "[Improved] All commands are enabled from now on. You no longer can disable a command.",
+            "[Improved] Enable / disable certain Element Types for element searches, in the plugin's settings.",
+            "[Fixed] Fix searching when on a different locale.",
+            "[Fixed] Locale fix for the entry one is about to duplicate."
+        ]
+    },
+    {
+        "version": "1.2.0",
+        "downloadUrl": "https://github.com/am-impact/amcommand/archive/master.zip",
+        "date": "2016-11-03T10:00:00+01:00",
+        "notes": [
+            "[Added] Added commands to manage tasks."
+        ]
+    },
+    {
+        "version": "1.1.8",
+        "downloadUrl": "https://github.com/am-impact/amcommand/archive/master.zip",
+        "date": "2016-08-04T10:00:00+01:00",
+        "notes": [
+            "[Added] New command under tools to restart failed tasks."
+        ]
+    },
+    {
+        "version": "1.1.7",
+        "downloadUrl": "https://github.com/am-impact/amcommand/archive/master.zip",
+        "date": "2016-05-02T10:00:00+01:00",
+        "notes": [
+            "[Added] Added functionality to set a return title through plugins.",
+            "[Fixed] Restoring to actions when pressing ESC in a sub command / action."
+        ]
+    },
+    {
+        "version": "1.1.6",
+        "downloadUrl": "https://github.com/am-impact/amcommand/archive/master.zip",
+        "date": "2016-04-19T10:00:00+01:00",
+        "notes": [
+            "[Added] Added functionality to set return commands through plugins."
+        ]
+    },
+    {
+        "version": "1.1.5",
+        "downloadUrl": "https://github.com/am-impact/amcommand/archive/master.zip",
+        "date": "2016-04-18T10:00:00+01:00",
+        "notes": [
+            "[Added] Added releases JSON.",
+            "[Added] Added plugin icons."
+        ]
+    }
+]

@@ -1,0 +1,9 @@
+{#
+  ProgressLoader
+  ===========
+#}
+{% if craft.request.isLivePreview != true %}
+  <div class="c-progressloader">
+    <div class="c-progressloader__loader"></div>
+  </div>
+{% endif %}

@@ -1,0 +1,69 @@
+{#
+  Global Entry Template
+  =====================
+  For Channels
+ #}
+
+{# Import Section Grouping Macro #}
+{% import '_macros/section-macro.html' as sectionSelect %}
+
+{# Extract Template Handle #}
+{% set templateHandle = sectionSelect.sec(entry) %}
+
+{# Subtemplate Setup #}
+{# `classToInner` Is an array in which all classes are listed from the outer container to the container of the content builder. Used for the section element. #}
+{% set _t = {
+  sectionHomeURL: templateHandle,
+  bodyclass: templateHandle ~ ' entry',
+  classToInner: ['c-articleEntry']
+} %}
+
+{% extends '_layout/main-layout.html' %}
+
+{% block content %}
+  {% cache globally using key craft.request.path %}
+    <article class="c-articleEntry" role="article" itemscope itemtype="http://schema.org/Article">
+      {# Include Featured Image #}
+      {% include '_components/featuredImage.html' with { data: entry } %}
+
+      <header class="c-articleEntry__header" role="header">
+
+        {# Include Postmeta #}
+        {% include '_components/postMeta.html' with { data: entry, type: templateHandle } %}
+
+        <h1 role="heading" itemprop="name" class="c-articleEntry__headline">{{ entry.title }}</h1>
+
+        {# Include CategoryMarker #}
+        {% switch templateHandle %}
+          {% case 'blog' %}
+            {% include '_components/marker.html' with { data: entry.categorySelectBlog, type: templateHandle } %}
+        {% endswitch %}
+      </header>
+
+      {# Add Contentbuilder #}
+      {% include '_builder/content-builder.html' %}
+
+      <footer class="c-articleEntry__footer">
+        {# Include Share Bar #}
+        {% switch templateHandle %}
+          {% case 'blog' %}
+            {{ _.socialShare({}, {
+              'modifier': 'button'
+            }) }}
+        {% endswitch %}
+
+        {# Add Disqus Comments #}
+        {% if main.disqusName | length %}
+          {% include '_components/disqusComments.html' with { data: entry.commentSwitch } %}
+        {% endif %}
+      </footer>
+    </article>
+
+    {# Adding some specific entry element #}
+    {% switch templateHandle %}
+      {% case 'blog' %}
+        {% include '_components/relatedEntries.html' with { section: templateHandle~'Channel' } %}
+    {% endswitch %}
+
+  {% endcache %}
+{% endblock %}

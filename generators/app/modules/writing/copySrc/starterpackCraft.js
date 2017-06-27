@@ -43,7 +43,7 @@ const starterpackCraft = (context) => {
         conditions: {
           projectcraftbp: true
         },
-        src: 'src/skeletons/starterpack/general/style/',
+        src: 'src/skeletons/starterpack/craftcms/style/',
         dest: 'src/style/'
       }
     ]

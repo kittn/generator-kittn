@@ -1,0 +1,29 @@
+{% import "_includes/forms" as forms %}
+
+<table class="data fullwidth">
+    <thead>
+        <tr>
+            <th scope="col" style="width: 50%;">{{ 'Element Type'|t }}</th>
+            <th scope="col">{{ 'Enabled'|t }}</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for row in elementSearchElementTypes %}
+        <tr>
+            <td>
+                {{ row.elementType }}
+                <input type="hidden" name="elementSearchElementTypes[{{ row.elementType }}][elementType]" value="{{ row.elementType }}">
+            </td>
+            <td>
+                {{ forms.lightswitchField({
+                    first: loop.first,
+                    id: 'enabled-' ~ row.elementType,
+                    name: 'elementSearchElementTypes['~ row.elementType ~'][enabled]',
+                    on: row.enabled
+                }) }}
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+

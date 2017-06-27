@@ -1,0 +1,47 @@
+/*
+  List
+  ====
+  Creates a list of freely selectable bullets and individual styling
+*/
+.c-list {
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  line-height: 1.4;
+
+  // ::::::::: MODIFIER
+
+  // [root]--circle
+  &--circle {
+    list-style: circle;
+  }
+
+  // [root]--square
+  &--square {
+    list-style: square;
+  }
+
+  // [root]--ordered
+  &--ordered {
+    list-style-type: decimal;
+  }
+
+  // ::::::::: CHILDS
+
+  // [root]__entry
+  // &__entry {
+  //
+  //  // Costom Modifier
+  //  #{$root}---custom & {}
+  // }
+}

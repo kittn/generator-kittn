@@ -18,7 +18,7 @@
 ///   .test {
 ///     @include f(18px, 24px, padding-left padding-right);
 ///   }
-@mixin fluid($min-value, $max-value, $properties: font-size, $min-vw: map-get($kittn-page-size,minsize), $max-vw: map-get($kittn-page-size,maxsize)) {
+@mixin fluid($min-value, $max-value, $properties: font-size, $min-vw: glob(pagesize, min), $max-vw: glob(pagesize, max)) {
   @each $property in $properties {
     #{$property}: $min-value;
   }

@@ -34,8 +34,8 @@ const projectPrompts = (context) => {
       type: 'confirm',
       name: 'projectcraftbp',
       message: message({
-        headline: 'Craft Bonus Round',
-        description: 'Do you want that the Generator implement a Craft Starterpack? \n\xa0 Adding a Contentbuilder, the Stylefiles (in ITCSS) and some JS Files for Lightboxes, and some Craft Plugins',
+        headline: 'Craft Contentbuilder',
+        description: 'Do you want that the Generator implement a Craft ContentBuilder?',
         defaultValue: false
       }),
       default: true,

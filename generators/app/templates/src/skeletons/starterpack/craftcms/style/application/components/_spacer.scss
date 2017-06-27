@@ -1,0 +1,36 @@
+/*
+  Spacer
+  ======
+  Generates distances based on globalspacing
+*/
+.c-spacer {
+  // Component Config
+  $api: (
+    subspacer: .25 .5 .75,
+    uptospacer: 1 2 3 4 5 6 7 8 9 10
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+
+  // Build Small Spacer
+  @each $i in api(subspacer) {
+    &--0#{$i*100} {
+      height: s($i);
+    }
+  }
+
+  // Build Big Spacer
+  @each $i in api(uptospacer) {
+    &--#{$i} {
+      height: s($i);
+    }
+  }
+}

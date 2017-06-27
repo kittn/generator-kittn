@@ -14,7 +14,7 @@ class SuperTablePlugin extends BasePlugin
 
     public function getVersion()
     {
-        return '1.0.2';
+        return '1.0.5';
     }
 
     public function getSchemaVersion()
@@ -48,11 +48,28 @@ class SuperTablePlugin extends BasePlugin
     }
 
     public function onBeforeInstall()
-    {   
+    {
+        $version = craft()->getVersion();
+
+        // Craft 2.6.2951 deprecated `craft()->getBuild()`, so get the version number consistently
+        if (version_compare(craft()->getVersion(), '2.6.2951', '<')) {
+            $version = craft()->getVersion() . '.' . craft()->getBuild();
+        }
+
         // Craft 2.3.2615 getFieldsForElementsQuery()
-        if (version_compare(craft()->getVersion() . '.' . craft()->getBuild(), '2.3.2615', '<')) {
+        if (version_compare($version, '2.3.2615', '<')) {
             throw new Exception($this->getName() . ' requires Craft CMS 2.3.2615+ in order to run.');
         }
+    }
+
+    public function init()
+    {
+        Craft::import('plugins.supertable.integrations.feedme.fields.SuperTableFeedMeFieldType');
+
+        // Hook on to (any) element deletion event to cleanup Super Table Blocks for that element
+        craft()->on('elements.onBeforeDeleteElements', function(Event $event) {
+            craft()->superTable->onBeforeDeleteElements($event);
+        });
     }
 
 
@@ -60,22 +77,12 @@ class SuperTablePlugin extends BasePlugin
     // HOOKS
     // =========================================================================
 
-    // FeedMe 1.4.0
-    public function registerFeedMeMappingOptions()
+    // FeedMe 2.0.0
+    public function registerFeedMeFieldTypes()
     {
         return array(
-            'SuperTable' => 'supertable/_plugins/feedMeOptions',
+            new SuperTableFeedMeFieldType(),
         );
-    }
-
-    public function prepForFeedMeFieldType($field, &$data, $handle)
-    {
-        craft()->superTable->prepForFeedMeFieldType($field, $data, $handle);
-    }
-
-    public function postForFeedMeFieldType(&$fieldData)
-    {
-        craft()->superTable->postForFeedMeFieldType($fieldData);
     }
 
     // Export 0.5.8

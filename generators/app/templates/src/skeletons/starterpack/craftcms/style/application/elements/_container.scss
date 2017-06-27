@@ -1,0 +1,23 @@
+/*
+  Container
+  =========
+  Container Element
+*/
+%e-container {
+  // Component Config
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  @include container($spacing: 20);
+}

@@ -108,19 +108,19 @@
 
     // [root]--bigger-45
     &--bigger-45 {
-      max-width: map-deep-get($kittn-page-size, maxsize) * 1.45;
+      max-width: glob(pagesize, max) * 1.45;
     }
     // [root]--bigger-25
     &--bigger-25 {
-      max-width: map-deep-get($kittn-page-size, maxsize) * 1.25;
+      max-width: glob(pagesize, max) * 1.25;
     }
     // [root]--smaller-25
     &--smaller-25 {
-      max-width: map-deep-get($kittn-page-size, maxsize) * .75;
+      max-width: glob(pagesize, max) * .75;
     }
     // [root]--smaller-50
     &--smaller-50 {
-      max-width: map-deep-get($kittn-page-size, maxsize) * .5;
+      max-width: glob(pagesize, max) * .5;
     }
   }
 
@@ -220,32 +220,32 @@
     width: 100%;
     height: 100%;
     left: 50%;
-    min-width: map-deep-get($kittn-page-size, minsize);
+    min-width: glob(pagesize, min);
     transform: translate(-50%);
 
     // Default Adapt size
     &--size-default {
-      max-width: map-deep-get($kittn-page-size, maxsize);
+      max-width: glob(pagesize, max);
     }
 
     // [root]--bigger-45
     &--size-bigger-45 {
-      max-width: map-deep-get($kittn-page-size, maxsize) * 1.45;
+      max-width: glob(pagesize, max) * 1.45;
     }
 
     // [root]--bigger-25
     &--size-bigger-25 {
-      max-width: map-deep-get($kittn-page-size, maxsize) * 1.25;
+      max-width: glob(pagesize, max) * 1.25;
     }
 
     // [root]--smaller-25
     &--size-smaller-25 {
-      max-width: map-deep-get($kittn-page-size, maxsize) * .75;
+      max-width: glob(pagesize, max) * .75;
     }
 
     // [root]--smaller-50
     &--size-smaller-50 {
-      max-width: map-deep-get($kittn-page-size, maxsize) * .5;
+      max-width: glob(pagesize, max) * .5;
     }
 
     // [root]--behavior1

@@ -1,0 +1,48 @@
+/*
+  Footernavigation
+  ================
+  Footer Navigation Module
+*/
+.c-footernav {
+  $api: (
+    breakpoint: 'm',
+    font-size: glob(footer, font-size),
+    color: (
+      regular: c('black-70'),
+      hover: c('primary')
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+
+
+  // ::::::::: TAGS
+  a {
+    transition: all 300ms ease-in;
+    text-transform: uppercase;
+    color: api(color, regular);
+    font-size: api(font-size);
+
+    &:not(:last-child):after {
+      content: '\00a0/\00a0';
+      color: api(color, regular);
+    }
+
+    &:hover,
+    &.is-active {
+      color: api(color, hover);
+    }
+  }
+
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+}

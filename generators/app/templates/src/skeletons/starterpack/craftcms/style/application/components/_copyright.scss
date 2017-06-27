@@ -1,0 +1,39 @@
+/*
+  copyright
+  =========
+  Copyright Styling
+*/
+.c-copyright {
+  $api: (
+    breakpoint: 'm',
+    font-size: glob(footer, font-size),
+    color: c('black-60')
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  font-size: api(font-size);
+  color: api(color);
+
+  // ::::::::: TAGS
+
+  a {
+    color: c('primary');
+    transition: color 300ms;
+
+    &:hover {
+      color: c('white');
+    }
+  }
+
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+}

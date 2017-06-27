@@ -1,0 +1,29 @@
+/*
+  Richtext
+  ========
+  For WYSISWYG fields
+*/
+.c-richtext {
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: MODIFIER
+  // [root]--s-lead
+  &--s-lead {
+    font-size: 120%;
+  }
+
+  // [root]--s-center
+  &--s-center {
+    text-align: center;
+  }
+}

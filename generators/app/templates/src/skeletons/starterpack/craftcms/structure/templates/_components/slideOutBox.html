@@ -1,0 +1,28 @@
+{#
+  Slide Out Box
+  ==============
+  A simple box with hidden content to open
+
+  @param {string} name                   = Classname
+  @param {object} data                   = Dataobject
+  @param {string} data.trigger           = Label the click area
+  @param {string} data.body              = Hidden Content
+  @param {object} options                = Optionsobject
+  @param {string} options.style          = Optional Styleclassname
+#}
+
+{# Class Overwrite #}
+{% set c = name is defined and name != '' ? name : 'c-slideoutbox' %}
+
+{# Set Style #}
+{% set style = options.style != 'default' ? ' ' ~ c ~ '--s-' ~ options.style : '' %}
+
+{# Build Element Block #}
+<div class="{{ c }}{{ style }}" role="tablist">
+  <div class="{{ c ~ '__head' }}" role="tab">
+    <div class="{{ c ~ '__trigger' }}">{{ data.trigger }}</div>
+  </div>
+  <div class="{{ c ~ '__body' }}" role="tabpanel">
+    <div class="{{ c ~ '__body__inner' }}">{{ data.body }}</div>
+  </div>
+</div>

@@ -267,3 +267,12 @@
 
   @return nth($map-list, map-get-length($map))
 }
+
+/// Get Values from the Kittn-Site Object
+///
+/// @group core - maps
+///
+/// @param  {args}   $keys - Keys to get
+@function glob($keys...) {
+  @return map-deep-get($kittn-globals,$keys...);
+}

@@ -24,5 +24,5 @@
   // Unload : @extend %#{$rn}--example;
 
   // Base Style ----------------------------
-  @include container($width: map-deep-get($kittn-page-size,minsize) map-deep-get($kittn-page-size,maxsize), $spacing: 20);
+  @include container($spacing: 20);
 }

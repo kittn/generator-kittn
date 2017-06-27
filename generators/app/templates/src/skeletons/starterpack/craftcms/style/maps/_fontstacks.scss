@@ -1,0 +1,96 @@
+// A Map for predefined Fontstacks
+//
+// @type Map
+/* stylelint-disable */
+$kittn-fontstack-map: (
+  'baskerville': (
+    Baskerville, 'Baskerville Old Face', 'Hoefler Text', Garamond, 'Times New Roman', serif
+  ),
+  'big caslon': (
+    'Big Caslon', 'Book Antiqua', 'Palatino Linotype', Georgia, serif
+  ),
+  'bodoni': (
+    'Bodoni MT', Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif
+  ),
+  'antiqua': (
+    'Book Antiqua', Palatino, 'Palatino Linotype', 'Palatino LT STD', Georgia, serif
+  ),
+  'cambria': (
+    Cambria, Georgia, serif
+  ),
+  'constantia': (
+    Constantia, Palatino, 'Palatino Linotype', 'Palatino LT STD', Georgia, serif
+  ),
+  'didot': (
+    Didot, 'Didot LT STD', 'Hoefler Text', Garamond, 'Times New Roman', serif
+  ),
+  'garamond': (
+    Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif
+  ),
+  'goudy': (
+    'Goudy Old Style', Garamond, 'Big Caslon', 'Times New Roman', serif
+  ),
+  'hoefler': (
+    'Hoefler Text', 'Baskerville Old Face', Garamond, 'Times New Roman', serif
+  ),
+  'lucida-bright': (
+    'Lucida Bright', Georgia, serif
+  ),
+  'palatino': (
+    Palatino, 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', Georgia, serif
+  ),
+  'times': (
+    'Times New Roman', Times, serif
+  ),
+  'serif': (
+    serif
+  ),
+  'calibri': (
+    Calibri, Candara, Segoe, 'Segoe UI', Optima, Arial, sans-serif
+  ),
+  'candara': (
+    Candara, Calibri, Segoe, 'Segoe UI', Optima, Arial, sans-serif
+  ),
+  'franklin': (
+    'Franklin Gothic Medium', Arial, sans-serif
+  ),
+  'futura': (
+    Futura, 'Trebuchet MS', Arial, sans-serif
+  ),
+  'geneva': (
+    Geneva, Tahoma, Verdana, sans-serif
+  ),
+  'gill-sans': (
+    'Gill Sans', 'Gill Sans MT', Calibri, sans-serif
+  ),
+  'helvetica': (
+    'Helvetica Neue', Helvetica, Arial, sans-serif
+  ),
+  'lucida-grande': (
+    'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif
+  ),
+  'optima': (
+    Optima, Segoe, 'Segoe UI', Candara, Calibri, Arial, sans-serif
+  ),
+  'segoe': (
+    Segoe, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif
+  ),
+  'tahoma': (
+    Tahoma, Geneva, Verdana, sans-serif
+  ),
+  'trebuchet': (
+    'Trebuchet MS', 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Tahoma, sans-serif
+  ),
+  'arial': (
+    Arial, sans-serif
+  ),
+  'verdana': (
+    Verdana, Geneva, sans-serif
+  ),
+  'sans-serif': (
+    sans-serif
+  ),
+  'monospace': (
+    'Inconsolata', 'DejaVu Sans Mono', Menlo, Monaco, Consolas, Courier, monospace
+  ),
+);

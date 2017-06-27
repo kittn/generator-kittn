@@ -1,0 +1,27 @@
+{#
+  Group Entries
+#}
+{%- macro sec(entry) -%}
+  {% spaceless %}
+    {% set sections = ['blog', 'pages'] %}
+    {% for section in sections %}
+      {% if entry.getSection().handle starts with section %}
+        {{- section -}}
+      {% endif %}
+    {% endfor %}
+  {% endspaceless %}
+{%- endmacro -%}
+
+{#
+  Group Categories
+#}
+{%- macro cat(category) -%}
+  {% spaceless %}
+    {% set sections = ['blog', 'pages'] %}
+    {% for section in sections %}
+      {% if category.group().handle starts with section %}
+        {{- section -}}
+      {% endif %}
+    {% endfor %}
+  {% endspaceless %}
+{%- endmacro -%}
