@@ -1,4 +1,4 @@
-import transition from 'transition-tc-from-auto'
+import transition from 'transition-to-from-auto'
 
 // Trigger for the Slideout Box
 if (document.querySelector('.c-slideoutbox__trigger') !== null) {
