@@ -1,0 +1,43 @@
+/*
+  Area
+  ======
+  Page Layout Areas
+*/
+.o-area {
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__page
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  // [root]__container
+  &__container {
+    @extend %e-container;
+    position: relative;
+  }
+
+  // [root]__main
+  &__main {
+    flex: 1 1 auto;
+    margin-bottom: s(2);
+  }
+}

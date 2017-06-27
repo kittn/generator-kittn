@@ -1,0 +1,31 @@
+/*
+  Horizontalruler
+  ===============
+  Simple horizontal Ruler
+*/
+.c-horizontalruler {
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  background-color: rgba(c('gray'), .3);
+  border-top: 0;
+
+  // [root]---style1
+  @include instance(style1) {
+    height: 1px;
+    background-color: c('primary');
+  }
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+}

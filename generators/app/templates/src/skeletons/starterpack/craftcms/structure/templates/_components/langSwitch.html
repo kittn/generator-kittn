@@ -1,0 +1,16 @@
+{#
+  LangSwitch
+  =====
+  For switching Languages
+#}
+
+{% set c = 'c-langSwitch' %}
+
+<nav class="{{ c }}">
+  {% for locale in craft.i18n.getSiteLocales() %}
+    {% set locID = entry is defined ? entry.id : category.id %}
+    {% set localisedEntry = craft.entries.id(locID).locale(locale.id).first() %}
+    {% set linkUrl =  localisedEntry ? localisedEntry.getUrl() : craft.config.siteUrl[locale.id] %}
+    <a href="{{ linkUrl }}" class="{{ c ~ '__item' }}{{ craft.locale == locale.id ? ' ' ~ c ~ '__item--current' }}">{{ craft.config.currentLanguage[locale.id]|upper }}</a>
+  {% endfor %}
+</nav>

@@ -1,0 +1,29 @@
+/*
+  Headline
+  ========
+  Simple Headline Module
+*/
+.c-headline {
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: MODIFIER
+
+  // [root]--s-style1
+  &--s-style1 {
+    font-style: italic;
+    color: c('primary');
+  }
+
+  // ::::::::: CHILDS
+}

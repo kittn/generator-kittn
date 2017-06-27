@@ -1,0 +1,15 @@
+{#
+  Copyright
+  =========
+  Build links with Icons
+#}
+
+{% set c = 'c-copyright' %}
+
+<div class="{{ c }}">
+  {% if data %}
+    {{ data }}
+  {% else %}
+    Copyright &copy; {{ now|date('Y') }} {{ siteName }}. {{ 'Alle rechte vorbehalten.'|t }}
+  {% endif %}
+</div>

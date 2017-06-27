@@ -7,87 +7,105 @@
 {% switch data.type %}
   {# Headline Module #}
   {% case 'objHeadline' %}
-    {% include '_modules/_objHeadline' with { data: data.objHeadline, options: data.setHeadline } %}
+    {% include '_components/headline' with { data: data.objHeadline, options: data.setHeadline } %}
 
   {# Richtext Module #}
   {% case 'objRichtext' %}
-    {% include '_modules/_objRichtext' with { data: data.objRichtext, options: data.setRichtext } %}
+    {% include '_components/richtext' with { data: data.objRichtext, options: data.setRichtext } %}
 
   {# Markdown Module #}
   {% case 'objMarkdown' %}
-    {% include '_modules/_objMarkdown' with { data: data.objMarkdown, options: data.setMarkdown } %}
+    {% include '_components/markdown' with { data: data.objMarkdown, options: data.setMarkdown } %}
 
   {# List Module #}
   {% case 'objList' %}
-    {% include '_modules/_objList' with { data: data.objList, options: data.setList, name: '' } %}
-
-  {# Quote Module #}
-  {% case 'objQuote' %}
-    {% include '_modules/_objQuote' with { data: data.objQuote, options: data.setQuote, name: '' } %}
-
-  {# Iframe Module #}
-  {% case 'objIframeContent' %}
-    {% include '_modules/_objIframeContent' with { data: data.objIframeContent, options: data.setIframeContent, name: '' } %}
-
-  {# Gallery #}
-  {% case 'objGallery' %}
-    {% include '_modules/_objGallery' with { data: data.objGallery, options: data.setGallery, name: '' } %}
-
-  {# Media Image Module #}
-  {% case 'objMediaImage' %}
-    {% include '_modules/_objMediaImage' with { data: data.objMediaImage, options: data.setMediaImage, name: '' } %}
-
-  {# Image Slider Module #}
-  {% case 'objImageSlider' %}
-    {% include '_modules/_objImageSlider' with { data: data.objImageSlider, options: data.setImageSlider, setup: data.setSliderSetup, general: data.setSliderSetupGeneral, name: '' } %}
-
-  {# Text Slider Module #}
-  {% case 'objCardSlider' %}
-    {% include '_modules/_objCardSlider' with { data: data.objCardSlider, options: data.setCardSlider, setup: data.setSliderSetup, general: data.setSliderSetupGeneral, name: '' } %}
-
-
-  {# Mediabox Module #}
-  {% case 'objMediaBox' %}
-    {% include '_modules/_objMediaBox' with { data: data.objMediaBox, options: data.setMediaBox, name: '' } %}
-
-  {# Button Module #}
-  {% case 'objButton' %}
-    {% include '_modules/_objButton' with { data: data.objButton, options: data.setButton, name: '' } %}
+    {% include '_components/list' with { data: data.objList, options: data.setList, name: '' } %}
 
   {# Horizontal Ruler #}
   {% case 'objHorizontalRuler' %}
-    {% include '_modules/_objHorizontalRuler' with { data: data.objHorizontalRuler, name: '' } %}
+    {% include '_components/horizontalRuler' with { data: data.objHorizontalRuler, name: '' } %}
 
-  {# Spacer #}
-  {% case 'objSpacer' %}
-    {% include '_modules/_objSpacer' with { data: data.objSpacer, name: '' } %}
+  {# Quote Module #}
+  {% case 'objQuote' %}
+    {% include '_components/quote' with { data: data.objQuote, options: data.setQuote, name: '' } %}
 
-  {# Anchor #}
-  {% case 'objAnchor' %}
-    {% include '_modules/_objAnchor' with { data: data.objAnchor, options: data.setAnchor, name: '' } %}
+  {# Media Image Module #}
+  {% case 'objMediaImage' %}
+    {% include '_components/mediaImage' with { data: data.objMediaImage, options: data.setMediaImage, name: '' } %}
+
+  {# Embed Module #}
+  {% case 'objEmbedContent' %}
+    {% include '_components/embedContent' with { data: data.objEmbedContent, options: data.setEmbedContent, name: '' } %}
+
+  {# Button Module #}
+  {% case 'objButton' %}
+    {% include '_components/button' with { data: data.objButton, options: data.setButton, name: '' } %}
+
+  {# Gallery #}
+  {% case 'objGallery' %}
+    {% include '_components/gallery' with { data: data.objGallery, options: data.setGallery, name: '' } %}
 
   {# SlideOut Box #}
   {% case 'objSlideOutBox' %}
-    {% include '_modules/_objSlideOutBox' with { data: data.objSlideOutBox, options: data.setSlideOutBox, name: '' } %}
-
-  {# Accordions #}
-  {% case 'objAccordionWrapper' %}
-    {% include '_modules/_objAccordion' with { data: data.objAccordionWrapper, name: '' } %}
-
-  {# Tabs #}
-  {% case 'objTabWrapper' %}
-    {% include '_modules/_objTab' with { data: data.objTabWrapper, name: '' } %}
+    {% include '_components/slideOutBox' with { data: data.objSlideOutBox, options: data.setSlideOutBox, name: '' } %}
 
   {# Card #}
   {% case 'objCard' %}
-    {% include '_modules/_objCard' with { data: data.objCard, options: data.setCard, name: '' } %}
+    {% include '_components/card' with { data: data.objCard, options: data.setCard, name: '' } %}
+
+  {# Anchor #}
+  {% case 'objAnchor' %}
+    {% include '_components/anchor' with { data: data.objAnchor, options: data.setAnchor, name: '' } %}
 
   {# JumpNavigation #}
   {% case 'objJumpNavigation' %}
-    {% include '_modules/_objJumpNavigation' with { data: data.objJumpNavigation, options: data.setJumpNavigation, name: '' } %}
+    {% include '_components/jumpNavigation' with { data: data.objJumpNavigation, options: data.setJumpNavigation, name: '' } %}
+
+  {# Spacer #}
+  {% case 'objSpacer' %}
+    {% include '_components/spacer' with { data: data.objSpacer, name: '' } %}
+
+  {# Image Slider Module #}
+  {% case 'objImageSlider' %}
+    {% include '_components/imageSlider' with { data: data.objImageSlider, options: data.setImageSlider, setup: data.setSliderSetup, general: data.setSliderSetupGeneral, name: '' } %}
+
+  {# Text Slider Module #}
+  {% case 'objCardSlider' %}
+    {% include '_components/cardSlider' with { data: data.objCardSlider, options: data.setCardSlider, setup: data.setSliderSetup, general: data.setSliderSetupGeneral, name: '' } %}
+
+  {# Accordions #}
+  {% case 'objAccordionWrapper' %}
+    {% include '_components/accordion' with { data: data.objAccordionWrapper, name: '' } %}
+
+  {# Tabs #}
+  {% case 'objTabWrapper' %}
+    {% include '_components/_tab' with { data: data.objTabWrapper, name: '' } %}
 
   {# Section #}
   {% case 'objSection' %}
-    {% include '_modules/_objSection' with { data: data.objSection, options: data.setSection, layout: data.setSectionLayout, background: data.setSectionBackground, name: '' } %}
+    {% include '_components/section' with { data: data.objSection, options: data.setSection, layout: data.setSectionLayout, background: data.setSectionBackground, name: '' } %}
 
 {% endswitch %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

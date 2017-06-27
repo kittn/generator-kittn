@@ -1,0 +1,22 @@
+{#
+  PageHeader
+  ===========
+#}
+
+{% set c = 'c-pageHeader' %}
+
+<header class="{{ c }}" role="banner">
+  {% cache %}
+  <div class="{{ c ~ '__inner' }}">
+    <div class="{{ c ~ '__logo' }} {{ c ~ '__block' }}">
+      {% include '_components/pagelogo.html' with { name: '' } %}
+    </div>
+    <div class="{{ c ~ '__nav' }} {{ c ~ '__block' }}">
+      {{ _.siteNavigation('c-mainnav', 'mainnav') }}
+    </div>
+    <div class="{{ c ~ '__offcanvas' }}">
+      <div class="c-offCanvas__trigger"><span></span><span></span><span></span><span></span></div>
+    </div>
+  </div>
+  {% endcache %}
+</header>

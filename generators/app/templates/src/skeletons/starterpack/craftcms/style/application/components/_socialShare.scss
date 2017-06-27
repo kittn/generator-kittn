@@ -1,0 +1,99 @@
+/*
+  socialShare
+  ===========
+  Social sharing Buttons
+*/
+.c-socialShare {
+  $api: (
+    breakpoint: 'm',
+    margin-bottom: s(1),
+    box: (
+      size: 40px,
+      gutter: 4px
+    ),
+    regular: (
+      size: 26px,
+      fill: c('gray') c('primary'),
+    ),
+    button: (
+      size: 45px,
+      padding: 5px,
+      fill: c('white') c('primary'),
+      background: c('primary') c('white'),
+      border-color: c('primary') null,
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+  display: flex;
+  margin-bottom: api(margin-bottom);
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+
+  // [root]--button
+  &--button {
+    justify-content: center;
+  }
+
+  // ::::::::: CHILDS
+
+  // [root]__box
+  &__box {
+    &:not(:first-of-type) {
+      margin-left: api(box,gutter);
+    }
+    &:not(:last-of-type) {
+      margin-right: api(box,gutter);
+    }
+  }
+
+  // [root]__link
+  &__link {
+    cursor: pointer;
+    display: block;
+    transition: all 300ms ease-in-out;
+    fill: apin(1, regular, fill);
+    size: api(regular, size);
+    overflow: hidden;
+
+    &:hover {
+      fill: apin(2, regular, fill);
+    }
+
+    // Buttonstyle
+    #{$root}--button & {
+      size: api(button,size);
+      border: 1px solid apin(1, button, border-color);
+      background-color: apin(1, button, background);
+      padding: api(button, padding);
+      fill: apin(1, button, fill);
+
+      &:hover {
+        background-color: apin(2, button, background);
+        fill: apin(2, button, fill);
+        border-color: apin(2, button, border-color);
+      }
+    }
+
+    // [root]---solo
+    @include instance(solo) {
+      &:not(:last-child) {
+        margin-right: api(box,gutter) * 2;
+      }
+    }
+  }
+}

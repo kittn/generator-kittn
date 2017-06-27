@@ -1,0 +1,51 @@
+/*
+  Mainnavigation
+  ==============
+  Main Navigation Module
+*/
+.c-mainnav {
+  $api: (
+    breakpoint: 'm',
+    color: c('black-60') c('primary'),
+    font-size: rem(18),
+    gutter: 10px
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+
+  // ::::::::: API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__link
+  &__link {
+    transition: all 300ms ease-in;
+    font-size: api(font-size);
+    display: inline-block;
+    color: apin(1, color);
+
+    &:not(:first-of-type) {
+      margin-left: api(gutter);
+    }
+
+    &:not(:last-of-type) {
+      margin-right: api(gutter);
+    }
+
+    &:hover,
+    &.is-active {
+      color: apin(2, color);
+    }
+  }
+}

@@ -1,0 +1,58 @@
+/*
+  Slideoutbox
+  ===========
+  Adds a simple SlideOut Box, just for content.
+*/
+.c-slideoutbox {
+  // Component Config
+  $api: (
+    breakpoint: 'm',
+    margin-bottom: s(1)
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  margin-bottom: api(margin-bottom);
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__trigger
+  &__trigger {
+    font-weight: bold; /* stylelint-disable-line */
+    color: c('primary');
+    cursor: pointer;
+    display: inline-block;
+  }
+
+  // [root]__body
+  &__body {
+    height: 0;
+    overflow: hidden;
+    transition: height 300ms ease-in-out;
+
+    // [root]__inner
+    &__inner {
+      padding-top: 10px;
+
+      *:last-child {
+        margin-bottom: 0;
+      }
+
+      // Style Modifier
+      #{$root}--s-style1 & {
+        font-size: 95%;
+        padding-top: 5px;
+        color: c('gray');
+      }
+    }
+  }
+}

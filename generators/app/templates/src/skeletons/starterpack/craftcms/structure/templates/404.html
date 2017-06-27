@@ -6,7 +6,7 @@
 
 {# Subtemplate Setup #}
 {# `classToInner` Is an array in which all classes are listed from the outer container to the container of the content builder. Used for the section element. #}
-{% set templateBriefing = {
+{% set _t = {
   bodyclass: 'error-404',
   slug: '',
   classToInner: ['o-area__container']
@@ -15,9 +15,24 @@
 {% extends '_layout/main-layout.html' %}
 
 {% block content %}
-  <div class="o-area__container">
-    <h1>ERROR 404 : Page not found</h1>
+  {% set entry = craft.entries.uri('404').first() %}
 
-    <p>What’s worse, a hilarious 404 page can’t be found either.</p>
+  <div class="o-area__container">
+    {# Include Featured Image #}
+    {% include '_components/featuredImage.html' with { data: entry } %}
+
+    <h1>{{ 'Error 404!'|t }}</h1>
+
+    {# If Contentbuilder is used on this page the default Content is hidden #}
+    {% if entry.contentBuilder.level(1) | length %}
+      {% include '_builder/content-builder.html' %}
+
+    {% else %}
+      <p>{{ 'Die gesuchte Seite wurde nicht gefunden.'|t }}</p>
+      <div class="o-button">
+        <a href="{{ siteUrl }}" class="o-button__element o-button--s-default">{{ 'Zur Startseite'|t }}</a>
+      </div>
+    {% endif %}
+
   </div>
 {% endblock %}

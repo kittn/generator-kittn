@@ -1,0 +1,59 @@
+{#
+  Global Index Template
+  =====================
+  For Section Mainpages
+ #}
+
+ {# Import Section Grouping Macro #}
+{% import '_macros/section-macro.html' as sectionSelect %}
+
+{# Extract Template Handle #}
+{% set templateHandle = sectionSelect.sec(entry) %}
+
+{# Subtemplate Setup #}
+{# `classToInner` Is an array in which all classes are listed from the outer container to the container of the content builder. Used for the section element. #}
+{% set _t = {
+  sectionHomeURL: templateHandle,
+  bodyclass: templateHandle,
+  limit: 10,
+  classToInner: ['o-area__container']
+} %}
+
+{% extends '_layout/main-layout.html' %}
+
+{% block content %}
+  {% cache globally using key templateHandle ~ '-archives-' ~ craft.request.path ~ (craft.request.getPageNum ? '/p' ~ craft.request.getPageNum : '') %}
+    <div class="o-area__container">
+
+      {# Include Featured Image #}
+      {% include '_components/featuredImage.html' with { structure: _t.classToInner, data: entry } %}
+
+      {# Add Content Builder #}
+      {% include '_builder/content-builder.html' %}
+
+      {# Add individual page parts based on the respective entry name #}
+      {% switch templateHandle %}
+        {% case 'blog' %}
+          {# Build Query #}
+          {% set entries = craft.entries({
+            section: templateHandle ~ 'Channel',
+            sort: 'postDate',
+            relatedTo: (category is defined ? category : false),
+            limit: _t.limit
+          }) %}
+
+          {# Initiate the Pagination #}
+          {% paginate entries as pageInfo, pageEntries %}
+
+            {# Loop through entries #}
+            {% include '_components/articleBoxes.html' with { data: pageEntries, type: templateHandle } %}
+
+          {# Include Pagination #}
+          {{ _.pagination(pageInfo,craft) }}
+
+        {% default %}
+
+      {% endswitch %}
+    </div>
+  {% endcache %}
+{% endblock %}

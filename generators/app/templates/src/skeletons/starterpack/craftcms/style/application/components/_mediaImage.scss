@@ -1,0 +1,56 @@
+/*
+  Mediaimage
+  ==========
+  Image Container Element, can overlap Pagecontainer
+*/
+.c-mediaimage {
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  margin: 0 auto s(1) auto;
+  position: relative;
+
+  // ::::::::: TAGS
+
+  // ::::::::: MODIFIER
+  &#{$root}--maxheight {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  // Style Modifier
+  //&#{$root}--s-style1 {
+  //  #{$root}__image {}
+  //}
+
+  // ::::::::: CHILDS
+  // [root]__image
+  //&__image {}
+
+  // [root]__caption
+  &__caption {
+    padding-top: 5px;
+    font-size: 90%;
+    color: c('gray');
+    text-align: center;
+
+    #{$root}--maxheight & {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      padding-bottom: 5px;
+      background-color: rgba(c('white'), .4);
+      color: c('main');
+    }
+  }
+}

@@ -57,8 +57,10 @@ $kittn-breakpoint-map: (
 /// @prop {number} pagesize.min       - Minimal Pagesize
 /// @prop {number} pagesize.max       - Maximal Pagesize
 /// @prop {map}    header             - Headerstyle
+/// @prop {map}    header.breaksizes  - Header Breakpoints
 /// @prop {map}    header.height      - Header heights
 /// @prop {map}    footer             - Footerstyles
+/// @prop {map}    footer.breaksizes  - Footer Breakpoints
 /// @prop {number} footer.font-size   - Base footer fontsize in px
 $kittn-globals: (
   pagesize: (
@@ -66,12 +68,18 @@ $kittn-globals: (
     max: 1200px
   ),
   header: (
+    breaksizes: (
+      one: 600px
+    ),
     height: (
       mobile: 50px,
       desktop: 100px
     )
   ),
   footer: (
+    breaksizes: (
+      one: 600px
+    ),
     font-size: 14px
   )
 );

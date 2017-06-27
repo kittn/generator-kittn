@@ -5,23 +5,46 @@
 
 {# Subtemplate Setup #}
 {# `classToInner` Is an array in which all classes are listed from the outer container to the container of the content builder. Used for the section element. #}
-{% set templateBriefing = {
-  bodyclass: 'homepage',
-  slug: '',
+{% set _t = {
+  isHome: true,
+  sectionChannel: 'blog',
+  bodyclass: 'home',
+  limit: 10,
   classToInner: ['o-area__container']
 } %}
 
 {% extends '_layout/main-layout.html' %}
 
 {% block content %}
-  <div class="o-area__container">
-    {% cache globally using key "home" ~ craft.request.path %}
-    <h1>{{ entry.title }}</h1>
+  {% cache globally using key 'home' ~ craft.request.path ~ (craft.request.getPageNum ? '/p' ~ craft.request.getPageNum : '') %}
 
-    {{ entry.body }}
+  {# Include Hero Image #}
+  {% include '_components/hero.html' with { data: entry }  %}
 
-    <h2>Fill your Homepage with Life</h2>
-    {% endcache %}
-  </div>
+    <div class="o-area__container">
 
+      {# Include Featured Image #}
+      {% include '_components/featuredImage.html' with { structure: _t.classToInner, data: entry } %}
+
+      {# Add Content Builder #}
+      {% include '_builder/content-builder.html' %}
+
+      {# Add individual page parts based on the respective entry name #}
+      {% set entries = craft.entries({
+        section: _t.sectionChannel ~ 'Channel',
+        sort: 'postDate',
+        relatedTo: (category is defined ? category : false),
+        limit: _t.limit
+      }) %}
+
+      {# Initiate the Pagination #}
+      {% paginate entries as pageInfo, pageEntries %}
+
+        {# Loop through entries #}
+        {% include '_components/articleBoxes.html' with { data: pageEntries, type: _t.sectionChannel } %}
+
+      {# Include Pagination #}
+      {{ _.pagination(pageInfo,craft) }}
+    </div>
+  {% endcache %}
 {% endblock %}

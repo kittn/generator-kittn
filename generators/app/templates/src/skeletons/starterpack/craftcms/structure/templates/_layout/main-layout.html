@@ -13,22 +13,18 @@
 {# Include the Document Header #}
 {% include '_parts/document-header.html' %}
 
-<body class="{{ craft.request.isLivePreview ? ' is-livepreview ' }}{{ templateBriefing is defined ? ' '~templateBriefing.bodyclass~' ' }}">
-  {# Deactivate Progress Load on Livepreview #}
-  {% if craft.request.isLivePreview != true %}
-    <div class="o-progressloader">
-      <div class="o-progressloader__loader"></div>
-    </div>
-  {% endif %}
+<body class="{{ craft.request.isLivePreview ? ' is-livepreview ' }}{{ _t is defined ? ' '~ _t.bodyclass ~ ' ' }}">
+
+  {% include '_components/progressloader.html' %}
 
   <div class="o-area__wrapper">
-    {% include '_parts/page-header.html' %}
+    {# Add Page Header #}
+    {% include '_components/pageHeader.html' %}
 
-    <main class="o-area__main" role="main">
-      {{ block('content') }}
-    </main>
+    <main class="o-area__main" role="main">{{ block('content') }}</main>
 
-    {% include '_parts/page-footer.html' %}
+    {# Add Page Footer #}
+    {% include '_components/pageFooter.html' %}
   </div>
 
 	{# Adding the Document Footer #}

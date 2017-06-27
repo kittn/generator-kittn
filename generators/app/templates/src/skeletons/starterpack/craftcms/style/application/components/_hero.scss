@@ -1,0 +1,108 @@
+/*
+  hero
+  =====
+  Hero Image
+*/
+.c-hero {
+  $api: (
+    breakpoint: 'm',
+    breaksizes: (
+      one: glob(header, breaksizes, one)
+    ),
+    margin-bottom: s(2),
+    height: (
+      min: 600px,
+      max: 90vh
+    ),
+    headline: (
+      size: 24px 60px,
+      color: c('white')
+    ),
+    indicator: (
+      color: c('white')
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  // For getting values from lists
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+  background-color: c('gray',light);
+  position: relative;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  min-height: api(height, min);
+  max-height: api(height, max);
+  margin-bottom: api(margin-bottom);
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__image
+  &__image {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  // [root]__overlay
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  // [root]__headline
+  &__headline {
+    @include fluid(apin(1,headline, size), apin(2, headline, size));
+    text-shadow: 0 0 60px rgba(0,0,0,.2);
+    color: api(headline, color);
+    margin-bottom: s(1);
+  }
+
+  // [root]__inner
+  &__inner {
+    @extend %e-container;
+    text-align: center;
+  }
+
+  // [root]__scroll
+  &__scroll {
+    opacity: 0.8;
+    position: absolute;
+    width: 80px;
+    bottom: 20px;
+    transform: translateX(-50%);
+    left: 50%;
+
+    // [root]__text
+    &__text {
+      text-transform: uppercase;
+      font-size: 10px;
+      color: api(indicator, color);
+      margin-bottom: 5px;
+    }
+
+    svg {
+      fill: api(indicator, color);
+    }
+  }
+}

@@ -1,0 +1,173 @@
+/*
+  articleBoxes
+  ============
+  Preview Boxes for Posts
+*/
+.c-articleBoxes {
+  $api: (
+    breakpoint: 'm',
+    breaksizes: (
+      one: 'width >= 800px',
+      two: 'width >= 1000px'
+    ),
+    gutter: (
+      horz: 10px 20px,
+      vert: 20px 40px
+    ),
+    background: c('white'),
+    padding: 15px 15px,
+    image: (
+      ratio: 5 3,
+      background-color: c('black-90')
+    ),
+    meta: (
+      color: c('black-20'),
+      font-size: rem(14)
+    ),
+    heading: (
+      color: c('primary'),
+      font-size: 18px
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  // For getting values from lists
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+  @include overlap(apin(1, gutter, horz));
+
+  &#{cq(api(breaksizes, one))} {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &#{cq(api(breaksizes, two))} {
+    @include overlap(apin(2, gutter, horz));
+  }
+
+  // ::::::::: TAGS
+  a {
+    transition: all 400ms ease-in-out;
+  }
+
+  // ::::::::: MODIFIER
+
+  // [root]--related
+  &--related {
+    justify-content: center;
+  }
+
+  // ::::::::: CHILDS
+
+  // [root]__box
+  &__box {
+    background-color: api(background);
+    margin-left: apin(1, gutter, horz);
+    margin-right: apin(1, gutter, horz);
+    margin-bottom: apin(1, gutter, vert);
+    position: relative;
+
+    #{$root}#{cq(api(breaksizes, one))} & {
+      width: calc(33.33% - #{apin(1, gutter, horz) * 2});
+    }
+
+    #{$root}#{cq(api(breaksizes, two))} & {
+      width: calc(33.33% - #{apin(2, gutter, horz) * 2});
+      margin-bottom: apin(2, gutter, vert);
+      margin-left: apin(2, gutter, horz);
+      margin-right: apin(2, gutter, horz);
+    }
+  }
+
+  // [root]__figure
+  &__figure {
+    @include ratio(api(image, ratio), '#{$root}__image');
+
+    .c-marker {
+      position: absolute;
+      z-index: 10;
+      top: 10px;
+      right: 10px;
+    }
+  }
+
+  // [root]__image
+  &__image {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-color: api(image, background-color);
+    display: block;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+
+  // [root]__body
+  &__body {
+    padding: api(padding);
+
+    // [root]--center
+    &--center {
+      text-align: center;
+    }
+  }
+
+  // [root]__header
+  &__header {
+    &:not(:last-child)  {
+      margin-bottom: s(.5);
+    }
+  }
+
+  // [root]__meta
+  &__meta {
+    font-size: api(meta, font-size);
+    color: api(meta, color);
+    margin-bottom: 5px;
+    @include overlap(5);
+
+    > div, > time {
+      margin-left: 5px;
+      margin-right: 5px;
+    }
+  }
+
+  // [root]__date
+  &__date {
+    display: inline-block;
+  }
+
+  // [root]__author
+  &__author {
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  // [root]__heading
+  &__heading {
+    font-size: api(heading, font-size);
+    color: api(heading, color);
+    line-height: 1.15;
+    margin-bottom: 0;
+
+    &#{cq('width >= 450px')} {
+      font-size: rem(api(heading, font-size) + 6px);
+    }
+
+    &#{cq('width >= 700px')} {
+      font-size: rem(api(heading, font-size) + 12px);
+    }
+  }
+}
