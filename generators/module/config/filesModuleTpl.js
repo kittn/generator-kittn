@@ -1,9 +1,11 @@
-const filesModuleTpl = (context, destPath, pMeth) => {
+const filesModuleTpl = (context, destPath, pMeth, ptype, pCompiler) => {
   // Set Var
   let sassCompPath = ''
   let structureCompPath = ''
   let compName = 'components'
   let objName = 'objects'
+  let srcType = ''
+  let destType = ''
 
   // Rename Comp and Objects if Atomic
   if (pMeth === 'sassAtomic') {
@@ -21,6 +23,28 @@ const filesModuleTpl = (context, destPath, pMeth) => {
     structureCompPath = objName
   }
 
+  // Switch between different Templatetypes
+  switch(ptype) {
+    case 'html' :
+      if (pCompiler === 'twig') {
+        srcType = 'twig'
+        destType = 'twig'
+      } else {
+        srcType = 'html'
+        destType = 'html'
+      }
+      break
+    case 'craft' :
+      srcType = 'twig'
+      destType = 'html'
+      break
+
+    case 'wordpress' :
+      srcType = 'php'
+      destType = 'php'
+      break
+  }
+
   return {
     javascript: [
       {
@@ -36,34 +60,13 @@ const filesModuleTpl = (context, destPath, pMeth) => {
         type: 'css'
       },
     ],
-    templateCraft: [
+    template: [
       {
-        src: `_module.twig`,
-        dest: `${destPath}/_${structureCompPath}/${context.props.moduleName}.html`,
+        src: `_module.${srcType}`,
+        dest: `${destPath}/_${structureCompPath}/${context.props.moduleName}.${destType}`,
         type: 'template'
       }
-    ],
-    templateWordpres: [
-      {
-        src: `_module.php`,
-        dest: `${destPath}/_${structureCompPath}/${context.props.moduleName}.php`,
-        type: 'template'
-      }
-    ],
-    templateHTML: [
-      {
-        src: `_module.html`,
-        dest: `${destPath}/${structureCompPath}/${context.props.moduleName}.html`,
-        type: 'template'
-      }
-    ],
-    templateHTMLTwig: [
-      {
-        src: `_module.twig`,
-        dest: `${destPath}/${structureCompPath}/${context.props.moduleName}.twig`,
-        type: 'template'
-      }
-    ],
+    ]
   }
 }
 

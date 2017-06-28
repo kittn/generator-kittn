@@ -99,7 +99,7 @@ module.exports = class extends Generator {
   // Writing
   async writing() {
     // Write JS File
-    this.filesModuleTpl(this, jsPath, pMeth).javascript.forEach(file => {
+    this.filesModuleTpl(this, jsPath, pMeth, pType, pCompiler).javascript.forEach(file => {
       this.fs.copyTpl(
         this.templatePath(file.src),
         this.destinationPath(file.dest),
@@ -108,7 +108,7 @@ module.exports = class extends Generator {
     })
 
     // Write Style File
-    this.filesModuleTpl(this, stylePath, pMeth).style.forEach(file => {
+    this.filesModuleTpl(this, stylePath, pMeth, pType, pCompiler).style.forEach(file => {
       this.fs.copyTpl(
         this.templatePath(file.src),
         this.destinationPath(file.dest),
@@ -116,51 +116,13 @@ module.exports = class extends Generator {
       )
     })
 
-    // Write Structure File
-    switch (pType) {
-      case 'html' :
-        if (pCompiler === 'twig') {
-          this.filesModuleTpl(this, templatePath, pMeth).templateHTMLTwig.forEach(file => {
-            this.fs.copyTpl(
-              this.templatePath(file.src),
-              this.destinationPath(file.dest),
-              this.props
-            )
-          })
-
-        } else {
-          this.filesModuleTpl(this, templatePath, pMeth).templateHTML.forEach(file => {
-            this.fs.copyTpl(
-              this.templatePath(file.src),
-              this.destinationPath(file.dest),
-              this.props
-            )
-          })
-        }
-        break
-
-      case 'craft' :
-        this.filesModuleTpl(this, templatePath, pMeth).templateCraft.forEach(file => {
-          this.fs.copyTpl(
-            this.templatePath(file.src),
-            this.destinationPath(file.dest),
-            this.props
-          )
-        })
-        break
-
-      case 'wordpress' :
-        this.filesModuleTpl(this, templatePath, pMeth).templateWordpres.forEach(file => {
-          this.fs.copyTpl(
-            this.templatePath(file.src),
-            this.destinationPath(file.dest),
-            this.props
-          )
-        })
-        break
-    }
-
-
+    this.filesModuleTpl(this, templatePath, pMeth, pType, pCompiler).template.forEach(file => {
+      this.fs.copyTpl(
+        this.templatePath(file.src),
+        this.destinationPath(file.dest),
+        this.props
+      )
+    })
   }
 
   end() {
