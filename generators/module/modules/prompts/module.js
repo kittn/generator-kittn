@@ -80,12 +80,10 @@ No whitespaces allowed!${chalk.styles.red.close}`
   }
 ]
 
-
 if (pMeth === 'sassAtomic') {
   promptsModule.push(customPromptAtomic)
 } else {
   promptsModule.push(customPromptITCSS)
-
 }
 
 module.exports = promptsModule
