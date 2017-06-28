@@ -1,6 +1,62 @@
 // Importing message helper function
+const filesystem = require('fs-extra')
 const message = require('../../helpers/prompts/message')
 const when = require('../../helpers/prompts/when')
+const config = './config.json'
+const json = JSON.parse(filesystem.readFileSync(config, 'utf8'))
+const pMeth = json.src.baseconf.methodology
+
+const customPromptITCSS = {
+  type: 'list',
+  name: 'moduleType',
+  message: message({
+    headline: 'Module Type',
+    description: 'Please provide the desired module type',
+    defaultValue: false
+  }),
+  choices: [
+    {
+      name: 'Compontent',
+      value: 'c'
+    },
+    {
+      name: 'Object',
+      value: 'o'
+    }
+  ],
+  default: 'c',
+  store: false
+}
+
+const customPromptAtomic =  {
+  type: 'list',
+  name: 'moduleType',
+  message: message({
+    headline: 'Module Type',
+    description: 'Please provide the desired module type',
+    defaultValue: false
+  }),
+  choices: [
+    {
+      name: 'Atom',
+      value: 'a'
+    },
+    {
+      name: 'Molecule',
+      value: 'm'
+    },
+    {
+      name: 'Organism',
+      value: 'o'
+    },
+    {
+      name: 'Template',
+      value: 't'
+    }
+  ],
+  default: 'm',
+  store: false
+}
 
 const promptsModule = [
   {
@@ -21,28 +77,15 @@ No whitespaces allowed!${chalk.styles.red.close}`
       }
       return true
     }
-  },
-  {
-    type: 'list',
-    name: 'moduleType',
-    message: message({
-      headline: 'Module Type',
-      description: 'Please provide the desired module type',
-      defaultValue: false
-    }),
-    choices: [
-      {
-        name: 'Compontent',
-        value: 'c'
-      },
-      {
-        name: 'Object',
-        value: 'o'
-      }
-    ],
-    default: 'c',
-    store: false
   }
 ]
+
+
+if (pMeth === 'sassAtomic') {
+  promptsModule.push(customPromptAtomic)
+} else {
+  promptsModule.push(customPromptITCSS)
+
+}
 
 module.exports = promptsModule

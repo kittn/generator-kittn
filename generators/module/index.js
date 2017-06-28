@@ -1,13 +1,11 @@
 // Dependencies
 const chalk = require('chalk')
 const clear = require('clear-terminal')
-const commandExists = require('command-exists')
 const filesystem = require('fs-extra')
 const Generator = require('yeoman-generator')
 const yosay = require('yosay')
 
 // Import Helpers & Package File
-const _pkg = require('../../package.json')
 const branding = require('./helpers/messages/branding')
 const logMessage = require('./helpers/messages/logMessage')
 
@@ -56,10 +54,10 @@ module.exports = class extends Generator {
   }
 
   async configuration() {
-    const _package = './config.json'
+    const config = './config.json'
 
-    if (filesystem.existsSync(_package)) {
-      const json = JSON.parse(filesystem.readFileSync(_package, 'utf8'))
+    if (filesystem.existsSync(config)) {
+      const json = JSON.parse(filesystem.readFileSync(config, 'utf8'))
       pCompiler = json.src.baseconf.structure
       pMeth = json.src.baseconf.methodology
       pType = json.src.baseconf.type
