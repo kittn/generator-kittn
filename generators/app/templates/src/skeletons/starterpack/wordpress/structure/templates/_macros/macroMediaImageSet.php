@@ -13,7 +13,7 @@
  * @param {string} $position   = Optional background position for background images
  */
 function macro_mediaImageSet($image,$classname,$format,$background = false, $tag = 'figure', $position = false) {
-  $imageset = '';
+  $imageset = array();
   $imagepre = '';
   $backgroundPosition = '';
   $imageformats = ['uncropped', 'wide', 'extrawide', 'square', 'rect'];

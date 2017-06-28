@@ -16,7 +16,7 @@ function macro_mediaImageSet($image,$classname,$format,$background = false, $tag
   // Getting defined Sizes
   global $CROPPED_FORMAT,$CROPPED_SIZES,$UNCROPPED_SIZES;
 
-  $imageset = '';
+  $imageset = array();
   $imagepre = '';
   $backgroundPosition = '';
   $imageformats = ['uncropped'];
