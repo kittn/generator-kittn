@@ -9,13 +9,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router'
 import store from './store'<% } %><% if ( (typeof projectcraftbp !== 'undefined' && projectcraftbp === true) || (typeof projectwordpressbp !== 'undefined' && projectwordpressbp === true) ) { %>
-import progressLoader from './partial/progressLoader'
-import initPhotoSwipeFromDOM from './partial/init-photoswipe' // eslint-disable-line
-import disqusLoader from './partial/disqusComments'
-import offCanvasToggle from './partial/offcanvas-trigger'
-import './partial/init-heighttransition'
-import './partial/init-autoscroll'
-import './partial/flickity-package'<% } %>
+import './partial/contentBuilder'<% } %>
 import lazySizes from 'lazysizes'
 import lazybgset from 'lazysizes/plugins/bgset/ls.bgset' // eslint-disable-line
 import 'babel-polyfill'
@@ -60,16 +54,4 @@ lazySizesConfig.expFactor = 1.3
 lazySizes.init()<% if ( projectcontainerqueries === true ) { %>
 
 // Activate Container Queries
-cq({ postcss: true })<% } %><% if ( (typeof projectcraftbp !== 'undefined' && projectcraftbp === true) || (typeof projectwordpressbp !== 'undefined' && projectwordpressbp === true) ) { %>
-
-// Init Photoswipe
-initPhotoSwipeFromDOM('.is-photoswipped')
-
-// Activate Progressloader
-progressLoader()
-
-// Activate Disqus Button
-disqusLoader('.c-disqusComments__button')
-
-// Add Offcanvas Trigger
-offCanvasToggle('.c-offCanvas__trigger')<% } %>
+cq({ postcss: true })<% } %>
