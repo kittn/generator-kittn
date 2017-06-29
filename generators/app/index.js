@@ -100,7 +100,7 @@ module.exports = class extends Generator {
           '\n  ' + chalk.styles.cyan.close +
           '\n                                                       v.' + chalk.bold(this.pkg.version) +
           '\n  ' +
-          '\n   Authors: Sascha Fuchs (@gisugosu) ' +
+          '\n   Authors: Sascha Fuchs (@gisugosu) & Lars Eichler (@cinkon)' +
           '\n   URL    : http://kittn.de   ' +
           '\n '
     clear()

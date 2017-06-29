@@ -9,7 +9,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router'
 import store from './store'<% } %><% if ( (typeof projectcraftbp !== 'undefined' && projectcraftbp === true) || (typeof projectwordpressbp !== 'undefined' && projectwordpressbp === true) ) { %>
-import progressLoader from './partial/progressloader'
+import progressLoader from './partial/progressLoader'
 import initPhotoSwipeFromDOM from './partial/init-photoswipe' // eslint-disable-line
 import disqusLoader from './partial/disqusComments'
 import offCanvasToggle from './partial/offcanvas-trigger'

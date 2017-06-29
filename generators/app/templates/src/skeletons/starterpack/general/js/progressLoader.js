@@ -5,16 +5,16 @@
 const pelements = {
   body: document.getElementsByTagName('body')[0],
   holder: document.querySelector('.canvas'),
-  barOuter: document.querySelector('.c-progressloader'),
-  barInner: document.querySelector('.c-progressloader__loader'),
+  barOuter: document.querySelector('.c-progressLoader'),
+  barInner: document.querySelector('.c-progressLoader__loader'),
   states: {
-    loading: 'c-progressloader--load',
-    interact: 'c-progressloader--interact',
-    complete: 'c-progressloader--complete'
+    loading: 'c-progressLoader--load',
+    interact: 'c-progressLoader--interact',
+    complete: 'c-progressLoader--complete'
   },
   barstates: {
-    loading: 'c-progressloader--bar--load',
-    complete: 'c-progressloader--bar--complete'
+    loading: 'c-progressLoader--bar--load',
+    complete: 'c-progressLoader--bar--complete'
   }
 }
 
