@@ -154,7 +154,7 @@
     "selector-id-pattern": "^[a-zA-Z]+$",
     "selector-max-compound-selectors": 5,
     "selector-max-specificity": "0,4,0",
-    "selector-no-id": true,
+    "selector-max-id": 0,
     "selector-no-qualifying-type": [
       true,
       {
