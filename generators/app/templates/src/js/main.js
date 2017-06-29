@@ -1,7 +1,7 @@
 // Main JS File<% if (projectjquery === true) { %>
 import $ from 'jquery' // eslint-disable-line<% } %><% if ( projectjsframework === 'react' ) { %>
 import React from 'react'
-import ReactDOM from 'react-dom'<% } %><% if ( projectcontainerqueries === true)  { %>
+import ReactDOM from 'react-dom'<% } %><% if ( projectcontainerqueries === true || (typeof projectcraftbp !== 'undefined' && projectcraftbp === true) || (typeof projectwordpressbp !== 'undefined' && projectwordpressbp === true) )  { %>
 import cq from 'cq-prolyfill' // eslint-disable-line<% } %><% if ( projectjsframework === 'vue' ) { %>
 import Vue from 'vue'<% } %><% if (typeof projectvueplugins !== 'undefined' && projectvueplugins === true)  { %>
 import { sync } from 'vuex-router-sync'
@@ -51,7 +51,7 @@ window.lazySizesConfig.expand = 130
 lazySizesConfig.expFactor = 1.3
 
 // Lazy Sizes Init
-lazySizes.init()<% if ( projectcontainerqueries === true ) { %>
+lazySizes.init()<% if ( projectcontainerqueries === true || (typeof projectcraftbp !== 'undefined' && projectcraftbp === true) || (typeof projectwordpressbp !== 'undefined' && projectwordpressbp === true) ) { %>
 
 // Activate Container Queries
 cq({ postcss: true })<% } %>
