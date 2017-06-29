@@ -20,6 +20,9 @@ const copySources = require('./modules/writing/copySources')
 // Add MySQL Database
 const addDB = require('./modules/writing/addDB')
 
+// Import MySQL Database
+const importDB = require('./modules/writing/importDB')
+
 // Install CMS
 const installWordpress = require('./modules/writing/install/wordpress')
 const installCraft = require('./modules/writing/install/craft')
@@ -40,6 +43,9 @@ module.exports = class extends Generator {
 
     // Add Database
     this.addDB = addDB.bind(this)
+
+    // Import Database
+    this.importDB = importDB.bind(this)
 
     // Copy Sources
     this.copySources = copySources.bind(this)
@@ -129,6 +135,9 @@ module.exports = class extends Generator {
 
     // Add Database if user wants to
     this.addDB().writing(this)
+
+    // Write Database if user wants to
+    this.importDB().writing(this)
 
     // Copy Source Files and Folders
     this.copySources().writing(this)
