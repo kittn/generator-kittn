@@ -16,7 +16,7 @@ module.exports = (ctx) => ({
     'autoprefixer': {
       cascade: false
     },
-    'postcss-svg-fragments': {},
+    'postcss-svg': {},
     'postcss-short-size': {},
     'postcss-flexbugs-fixes': {},
     'cssnano': ctx.env !== 'production' ? false : {
