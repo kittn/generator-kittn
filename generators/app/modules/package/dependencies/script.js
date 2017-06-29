@@ -41,7 +41,7 @@ function addScriptDependencies (files = {}, context) {
   })
 
   // Container-Queries
-  if (context.props.projectcontainerqueries === true) {
+  if (context.props.projectcontainerqueries === true || context.props.projectwordpressbp === true || context.props.projectcraftbp === true) {
     extend(files.pkg, {
       dependencies: {
         'cq-prolyfill': '^0.4.0'
