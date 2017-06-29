@@ -1,7 +1,6 @@
 /**
  * Essential JS for ContentBuilder
  */
-import cq from 'cq-prolyfill'
 import progressLoader from './progressLoader'
 import initPhotoSwipeFromDOM from './init-photoswipe' // eslint-disable-line
 import disqusLoader from './disqusComments'
@@ -21,5 +20,3 @@ disqusLoader('.c-disqusComments__button')
 
 // Add Offcanvas Trigger
 offCanvasToggle('.c-offCanvas__trigger')
-
-cq({ postcss: true })
