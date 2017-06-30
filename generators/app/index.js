@@ -33,6 +33,8 @@ module.exports = class extends Generator {
     super(args, opts)
     this.pkg = pkg
 
+    this.devMode = opts.dev ? opts.dev : false
+
     this.promptsFunction = promptsFunction.bind(this)
 
     // Package.json
@@ -140,18 +142,24 @@ module.exports = class extends Generator {
     this.importDB().writing(this)
 
     // Copy Source Files and Folders
-    this.copySources().writing(this)
+    if (!this.devMode) {
+      this.copySources().writing(this)
+    }
 
     // Install CMS
-    this.installWordpress().install(this)
-    this.installCraft().install(this)
+    if (!this.devMode) {
+      this.installWordpress().install(this)
+      this.installCraft().install(this)
+    }
   }
 
   install () {
-    if (this.commands.yarn) {
-      this.yarnInstall()
-    } else {
-      this.npmInstall()
+    if (!this.devMode) {
+      if (this.commands.yarn) {
+        this.yarnInstall()
+      } else {
+        this.npmInstall()
+      }
     }
   }
 
