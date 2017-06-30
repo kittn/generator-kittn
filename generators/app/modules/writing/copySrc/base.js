@@ -32,6 +32,10 @@ const base = (context) => {
       {
         src: 'src/.system_additions/htaccess',
         dest: 'src/.system/.htaccess'
+      },
+      {
+        src: 'README.md',
+        dest: 'README.md'
       }
     ],
     folders: [
