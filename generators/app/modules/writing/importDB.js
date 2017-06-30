@@ -45,7 +45,8 @@ const importDB = () => {
             socketPath: socket,
             host: context.props.credentialdbserver,
             user: context.props.credentialdbuser,
-            password: context.props.credentialdbpass
+            password: context.props.credentialdbpass,
+            database: context.props.credentialdbdatabase
           })
 
           connection.connect((err) => {
