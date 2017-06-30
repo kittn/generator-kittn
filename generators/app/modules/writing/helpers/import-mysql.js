@@ -1,5 +1,5 @@
 const mysql = require('mysql')
-const fs = require('fs-promise')
+const fs = require('fs-extra')
 const Validator = require('jsonschema').Validator
 const v = new Validator()
 var conn
