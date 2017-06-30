@@ -97,29 +97,36 @@
 
   {# Check if Image is Available otherwise use a neutral Placeholder #}
   {% if photo %}
-    {# Check if image would cropped#}
-    {% if imageratio != 'nocrop' %}
-      {% set ratio = imageratio|default('35:24')|split(':') %}
-      {% set focusPosition = photo.focalpoint is defined ? photo.focalpoint : '50% 50%' %}
-      {% set globalModifier = { jpegQuality: options.quality, ratio: ratio|first/ratio|last , mode: 'crop', position: focusPosition } %}
+
+    {% if photo.extension in ['svg', 'gif'] %}
+      <img class="{{ options.class }} lazyload" data-sizes="auto" src="{{ photo.url }}" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
 
     {% else %}
-      {% set globalModifier = { jpegQuality: options.quality } %}
-    {% endif %}
+      {# Check if image would cropped#}
+      {% if imageratio != 'nocrop' %}
+        {% set ratio = imageratio|default('35:24')|split(':') %}
+        {% set focusPosition = photo.focalpoint is defined ? photo.focalpoint : '50% 50%' %}
+        {% set globalModifier = { jpegQuality: options.quality, ratio: ratio|first/ratio|last , mode: 'crop', position: focusPosition } %}
 
-    {# Build the Image Set #}
-    {% set photos = craft.imager.transformImage(photo, options.sizes, globalModifier) %}
-
-    {# Output as <img> or Background #}
-    {% if (options.background) %}
-      {% if options.elementtype != false %}
-        <{{ options.elementtype }} class="{{ options.class }} lazyload" style="background-image: url({{ photos|last.url }});{{ options.position ? 'background-position:'~options.position }}" data-sizes="auto" data-bgset="{{ craft.imager.srcset( photos ) }}"></{{ options.elementtype }}>
       {% else %}
-        class="{{ options.class~' lazyload' }}" style="background-image: url({{ photos|last.url }});{{ options.position ? 'background-position:'~options.position }}" data-sizes="auto" data-bgset="{{ craft.imager.srcset( photos ) }}"
+        {% set globalModifier = { jpegQuality: options.quality } %}
+        {% set focusPosition = photo.focalpoint is defined ? photo.focalpoint : '50% 50%' %}
       {% endif %}
-    {% else %}
-      <noscript><img src="{{ photo.url }}"></noscript>
-      <img class="{{ options.class }} lazyload" data-sizes="auto" src="{{ photos|last.url }}" data-srcset="{{ craft.imager.srcset( photos ) }}" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
+
+      {# Build the Image Set #}
+      {% set photos = craft.imager.transformImage(photo, options.sizes, globalModifier) %}
+
+      {# Output as <img> or Background #}
+      {% if (options.background) %}
+        {% if options.elementtype != false %}
+          <{{ options.elementtype }} class="{{ options.class }} lazyload" style="background-image: url({{ photos|last.url }});{{ options.position ? options.position == 'focal' ? 'background-position:'~focusPosition : 'background-position:'~options.position }}" data-sizes="auto" data-bgset="{{ craft.imager.srcset( photos ) }}"></{{ options.elementtype }}>
+        {% else %}
+          class="{{ options.class~' lazyload' }}" style="background-image: url({{ photos|last.url }});{{ options.position ? options.position == 'focal' ? 'background-position:'~focusPosition : 'background-position:'~options.position }}" data-sizes="auto" data-bgset="{{ craft.imager.srcset( photos ) }}"
+        {% endif %}
+      {% else %}
+        <noscript><img src="{{ photo.url }}"></noscript>
+        <img class="{{ options.class }} lazyload" data-sizes="auto" src="{{ photos|last.url }}" data-srcset="{{ craft.imager.srcset( photos ) }}" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
+      {% endif %}
     {% endif %}
   {% endif %}
 {% endmacro %}
