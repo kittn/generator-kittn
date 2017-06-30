@@ -128,6 +128,7 @@ const projectPrompts = (context) => {
           value: 'https'
         }
       ],
+      store: true,
       default: 'http'
     },
     {
@@ -139,6 +140,7 @@ const projectPrompts = (context) => {
         description: 'Domain without HTTP or HTTPS',
         defaultValue: false
       }),
+      store: true,
       default: function (props) { return props.projectname.toLowerCase() + '.local' }
     },
     {
@@ -150,6 +152,7 @@ const projectPrompts = (context) => {
         description: 'Database Server Host without ending slash',
         defaultValue: false
       }),
+      store: true,
       default: 'localhost'
     },
     {
@@ -161,6 +164,7 @@ const projectPrompts = (context) => {
         description: 'Database User',
         defaultValue: false
       }),
+      store: true,
       default: 'root'
     },
     {
@@ -172,6 +176,7 @@ const projectPrompts = (context) => {
         description: 'Database Password',
         defaultValue: false
       }),
+      store: true,
       default: 'root'
     },
     {
@@ -183,6 +188,7 @@ const projectPrompts = (context) => {
         description: 'Database Name',
         defaultValue: false
       }),
+      store: true,
       default: function (props) { return props.projectname.toLowerCase() }
     },
     {
@@ -205,6 +211,7 @@ const projectPrompts = (context) => {
         description: 'Do you use MAMP?',
         defaultValue: false
       }),
+      store: true,
       default: false
     }
   ]
