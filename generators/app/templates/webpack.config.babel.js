@@ -3,7 +3,8 @@ const merge = require('webpack-merge')
 const path = require('path')
 const yargs = require('yargs')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')<% if ( projectjsframework === 'vue' ) { %>
+const ExtractTextPlugin = require('extract-text-webpack-plugin')<% if ( projectjsframework === 'vue' ) { %><% if (projectstylelint) { %>
+const StylelintPlugin = require('stylelint-webpack-plugin')<% } %>
 const vueutils = require('./build/vue-utils')<% } %>
 const kittnConf = require('./config.json')
 
@@ -86,7 +87,11 @@ let bundle = {
           })
         }<% } %>
       }
-    })
+    })<% if ( projectjsframework === 'vue' && projectstylelint) { %>,
+    new StylelintPlugin({
+      context: LOADER_PATH,
+      syntax: 'scss'
+    })<% } %>
   ]
 };
 <% if ( projectjsframework === 'vue' ) { %>

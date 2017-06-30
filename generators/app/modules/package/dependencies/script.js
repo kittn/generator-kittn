@@ -75,11 +75,20 @@ function addScriptDependencies (files = {}, context) {
         'css-loader': '^0.26.1',
         'vue-loader': '^12.2.1',
         'sass-loader': '^5.0.1',
+        'stylelint-webpack-plugin': '^0.8.0',
         'vue-style-loader': '^2.0.0',
         'vue-template-compiler': '^2.1.10'
       },
       dependencies: {
         'vue': '^2.1.10'
+      }
+    })
+  }
+
+  if (context.props.projectjsframework === 'vue' && context.props.projectstylelint === true) {
+    extend(files.pkg, {
+      devDependencies: {
+        'stylelint-webpack-plugin': '^0.8.0'
       }
     })
   }
