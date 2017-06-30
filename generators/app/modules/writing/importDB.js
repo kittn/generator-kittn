@@ -3,7 +3,6 @@
 // ===========================
 const importer = require('./helpers/import-mysql')
 let dbFile = ''
-let conn
 
 const importDB = () => {
   return {
