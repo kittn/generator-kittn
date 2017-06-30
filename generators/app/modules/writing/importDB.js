@@ -4,6 +4,7 @@
 const mysql = require('mysql')
 const fs = require('fs')
 const readline = require('readline')
+const importer = require('node-mysql-importer')
 let dbFile = ''
 
 const importDB = () => {
@@ -12,7 +13,6 @@ const importDB = () => {
       return new Promise((resolve, reject) => {
         // Connect Database
         if (context.props.projectcredential && context.props.credentialdbopen && context.commands.mysql === true) {
-          const socket = context.props.projectmamp ? '/Applications/MAMP/tmp/mysql/mysql.sock' : false
 
           // Define Database File based on projecttype and contentbuilder option
           switch (context.props.projectusage) {
@@ -35,37 +35,52 @@ const importDB = () => {
               break
           }
 
+          importer.config({
+            'host': context.props.credentialdbserver,
+            'user': context.props.credentialdbuser,
+            'password': context.props.credentialdbpass,
+            'database': context.props.credentialdbdatabase
+          })
+
+          importer.importSQL(context.templatePath(`./databases/${dbFile}`)).then(() => {
+            context.log('all statements have been executed')
+          }).catch((err) => {
+            context.log(`error: ${err}`)
+          })
           // Import Databases as File
-          const rl = readline.createInterface({
-            input: fs.createReadStream(context.templatePath(`./databases/${dbFile}`)),
-            terminal: false
-          })
+          // const rl = readline.createInterface({
+          //   input: fs.createReadStream(context.templatePath(`./databases/${dbFile}`)),
+          //   terminal: true
+          // })
 
-          const connection = mysql.createConnection({
-            socketPath: socket,
-            host: context.props.credentialdbserver,
-            user: context.props.credentialdbuser,
-            password: context.props.credentialdbpass
-          })
+          // const connection = mysql.createConnection({
+          //   socketPath: socket,
+          //   host: context.props.credentialdbserver,
+          //   user: context.props.credentialdbuser,
+          //   password: context.props.credentialdbpass,
+          //   database: context.props.credentialdbdatabase
+          // })
 
-          connection.connect((err) => {
-            if (err) {
-              context.log('error connecting: ' + err.stack)
-              reject(err)
-            }
-          })
+          // console.log(`mysql -u ${context.props.credentialdbuser} -p'${context.props.credentialdbpass}' ${context.props.credentialdbdatabase} < ${context.templatePath(`./databases/${dbFile}`)}`)
 
-          rl.on('line', function(chunk){
-            connection.query(chunk.toString('ascii'), (error, sets, fields) => {
-              if(error) {
-                reject(error)
-              } else {
-                context.log('Database is written. Login with: kittn / kittn')
-              }
-            })
-          })
+          // connection.connect((err) => {
+          //   if (err) {
+          //     context.log('error connecting: ' + err.stack)
+          //     reject(err)
+          //   }
+          // })
 
-          connection.end()
+          // rl.on('line', function(chunk){
+          //   connection.query(chunk.toString('ascii'), (error, sets, fields) => {
+          //     if(error) {
+          //       reject(error)
+          //     } else {
+          //       context.log('Database is written. Login with: kittn / kittn')
+          //     }
+          //   })
+          // })
+
+          // connection.end()
           resolve()
         } else {
           if (context.props.projectcredential && context.props.credentialdbopen && context.commands.mysql !== true) {
