@@ -77,8 +77,8 @@ const projecttype = (context) => {
           projectusage: 'wordpress',
           projectcredential: true
         },
-        src: 'src/skeletons/wordpress/wp-db-local.php',
-        dest: 'src/structure/config/wp-config/wp-db-local.php'
+        src: 'src/skeletons/wordpress/wp-db--local.php',
+        dest: 'src/structure/config/wp-config/wp-db--local.php'
       },
       {
         conditions: {
