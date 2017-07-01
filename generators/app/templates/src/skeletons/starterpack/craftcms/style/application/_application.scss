@@ -13,7 +13,27 @@
 @import 'objects/grid';
 @import 'objects/area';
 
-// 6. Components
+// 6.1. ContentBuilder Components
+@import 'components/headline';
+@import 'components/richtext';
+@import 'components/markdown';
+@import 'components/list';
+@import 'components/quote';
+@import 'components/horizontalRuler';
+@import 'components/mediaImage';
+@import 'components/embedContent';
+@import 'components/button';
+@import 'components/gallery';
+@import 'components/slideOutBox';
+@import 'components/card';
+@import 'components/jumpNavigation';
+@import 'components/spacer';
+@import 'components/slider';
+@import 'components/accordion';
+@import 'components/tab';
+@import 'components/section';
+
+// 6.2 Regular Components
 @import 'components/progressLoader';
 @import 'components/marker';
 @import 'components/pagelogo';
@@ -34,26 +54,6 @@
 @import 'components/hero';
 @import 'components/glossaryCategory';
 @import 'components/relatedEntries';
-
-// 6.1. Primary contentBuilder Modules
-@import 'components/headline';
-@import 'components/richtext';
-@import 'components/markdown';
-@import 'components/list';
-@import 'components/quote';
-@import 'components/horizontalRuler';
-@import 'components/mediaImage';
-@import 'components/embedContent';
-@import 'components/button';
-@import 'components/gallery';
-@import 'components/slideOutBox';
-@import 'components/card';
-@import 'components/jumpNavigation';
-@import 'components/spacer';
-@import 'components/slider';
-@import 'components/accordion';
-@import 'components/tab';
-@import 'components/section';
 
 // 7. Trumps
 
