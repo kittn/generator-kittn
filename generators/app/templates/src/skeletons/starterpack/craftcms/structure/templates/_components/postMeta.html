@@ -23,7 +23,7 @@
       </div>
       <div class="{{ c ~ '__details'}}">
         <div class="{{ c ~ '__author' }}">{{ data.author.name }}</div>
-        <time datetime="{{ data.postDate|date('Y-m-d') }}" class="{{ c ~ '__data'}}">
+        <time datetime="{{ data.postDate|date('Y-m-d') }}" class="{{ c ~ '__date'}}">
           {{ _.langDate(data.postDate) }}
         </time>
       </div>
