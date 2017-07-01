@@ -26,7 +26,7 @@ function addScriptDependencies (files = {}, context) {
       'eslint-import-resolver-webpack': '^0.8.1',
       'extract-text-webpack-plugin': '2.1.0',
       'friendly-errors-webpack-plugin': '^1.6.1',
-      'webpack': '^3.0.0',
+      'webpack': '^2.6.1',
       'webpack-dev-middleware': '^1.10.0',
       'webpack-hot-middleware': '^2.18.0',
       'webpack-merge': '^2.6.1'
