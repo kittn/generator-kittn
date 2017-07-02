@@ -11,9 +11,10 @@
  * @param {bool}   $background = Background Option
  * @param {string} $tag        = Tag for Background Element (default: 'figure')
  * @param {string} $position   = Optional background position for background images
+ * @param {number} $offset     = Optional offset to reduce image sizes arrays
  */
-function macro_mediaImageSet($image,$classname,$format,$background = false, $tag = 'figure', $position = false) {
-  $imageset = array();
+function macro_mediaImageSet($image,$classname,$format,$background = false, $tag = 'figure', $position = false, $offset = 0) {
+  $imageset = '';
   $imagepre = '';
   $backgroundPosition = '';
   $imageformats = ['uncropped', 'wide', 'extrawide', 'square', 'rect'];
@@ -47,8 +48,9 @@ function macro_mediaImageSet($image,$classname,$format,$background = false, $tag
 
     // Check Imageformat
     if (in_array($format, $imageformats)) {
+      // Get Imagesize array
       // Generate Image Set
-      foreach (($format != 'uncropped' ? $cropsizes : $imagesizes) as $key => $value) {
+      foreach (array_slice(($format != 'uncropped' ? $cropsizes : $imagesizes), $offset) as $key => $value) {
         $imageset .= $image['sizes'][$format.'_'.$key] . $value;
       }
 

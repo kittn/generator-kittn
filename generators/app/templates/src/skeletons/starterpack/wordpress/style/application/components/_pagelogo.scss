@@ -1,0 +1,45 @@
+/*
+  Pagelogo
+  ========
+  Simple Page Logo
+*/
+.c-pagelogo {
+  $api: (
+    breakpoint: 'm',
+    margin-bottom: s(.5)
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  margin-bottom: 0;
+
+  /* stylelint-disable */
+  svg {
+  }
+  /* stylelint-enable */
+
+  &, a {
+    @include fontsize(50);
+    color: c('black-30');
+    line-height: 1;
+    font-weight: bold; /* stylelint-disable */
+  }
+
+  a {
+    transition: all 300ms ease-in;
+
+    &:hover {
+      color: c('primary');
+    }
+  }
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+}

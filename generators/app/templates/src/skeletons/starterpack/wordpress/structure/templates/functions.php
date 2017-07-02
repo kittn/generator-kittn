@@ -52,7 +52,14 @@ require_once('_functions/disableComments.php');
 // Use the other MediaImageSet if the Referencing will not work on your Server
 require_once('_macros/macroMediaImageSetRef.php');
 
+// Add Share Bar
 require_once('_macros/macroSocialShare.php');
+
+// Add Social Networkw
+require_once('_macros/macroSocialNetworks.php');
+
+// Add SVG Macro
+require_once('_macros/macroSvgicon.php');
 
 // Custom Loader GIF CF7
 // require_once('_functions/cf7CustomLoader.php');

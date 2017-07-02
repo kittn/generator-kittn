@@ -25,10 +25,11 @@
  */
 function macro_socialShare($options = []) {
   $opt = [
-    'class'       => 'o-socialshare',
+    'class'       => 'c-socialShare',
     'request'     => get_permalink(),
-    'image'       => (has_post_thumbnail() ? the_post_thumbnail() : ''),
-    'title'       => wp_title(),
+    'image'       => (has_post_thumbnail() ? get_the_post_thumbnail_url() : (get_field('fi_image') ? get_field('fi_image')['url'] : '')),
+    'title'       => get_the_title(),
+    'modifier'    => false,
     'icon'        => true,
     'iconpath'    => '/assets/img/',
     'iconname'    => 'symbol-sprite.svg',
@@ -37,9 +38,9 @@ function macro_socialShare($options = []) {
     'networks'    => [
       'facebook'  => true,
       'twitter'   => true,
-      'googleplus'=> true,
+      'google-plus'=> true,
       'pinterest' => true,
-      'mail'      => true,
+      'email'      => false,
       'whatsapp'  => false
     ]
   ];
@@ -51,26 +52,29 @@ function macro_socialShare($options = []) {
   $shareUrl = [
     'facebook'   => 'http://www.facebook.com/sharer.php?u='.$options['request'],
     'twitter'    => 'http://twitter.com/share?url='.$options['request'].'&amp;text='.$options['title'],
-    'googleplus' => 'https://plus.google.com/share?url='.$options['request'],
+    'google-plus' => 'https://plus.google.com/share?url='.$options['request'],
     'pinterest'  => '//pinterest.com/pin/create/link/?url='.$options['request'].'&amp;media='.$options['image'].'&amp;description='.$options['title'],
-    'mail'       => 'mailto:?Subject='.$options['title'].'&Body=%20'.$options['request'],
+    'email'       => 'mailto:?Subject='.$options['title'].'&Body=%20'.$options['request'],
     'whatsapp'   => 'whatsapp://send?text='.$options['request'].' '.$options['title']
   ];
 
   // Building Block - Modify structure if needed
-  echo '<nav role="navigation" class="'.$options['class'].'">';
+  echo '<nav role="navigation" class="'.$options['class'].($options['modifier'] ? ' ' . $options['class'] . '--'.$options['modifier'] : '' ).'">';
   foreach ($options['networks'] as $key => $network) {
-    echo ($options['icon'] == true ? '<div class="'.$options['class'].'__box">' : '');
-    echo '<a href="'.$shareUrl[$key].'" target="_blank" class="'.$options['class'].'__link'.($options['icon'] == true ? '---solo' : '').'" title="Share with '.ucfirst($key).'">';
-    if ($options['icon'] == true) {
-      echo '<svg class="'.$options['class'].'__icon" viewBox="'.$options['viewbox'].'">';
-        echo '<use xlink:href="'.$options['iconpath'].$options['iconname'].'#'.$options['iconprefix'].$key.'"></use>';
-      echo '</svg>';
-    } else {
-      echo ucfirst($key);
+    if ($network) {
+      echo ($options['icon'] == true ? '<div class="'.$options['class'].'__box">' : '');
+      echo '<a href="'.$shareUrl[$key].'" target="_blank" class="'.$options['class'].'__link'.($options['icon'] == true ? '---solo' : '').'" title="Share with '.ucfirst($key).'">';
+      if ($options['icon'] == true) {
+        macro_svgicon($options['iconprefix'].$key, [
+          'class' => $options['class'].'__icon'
+        ]);
+      } else {
+        echo ucfirst($key);
+      }
+      echo '</a>';
+      echo ($options['icon'] == true ? '</div>' : '');
     }
-    echo '</a>';
-    echo ($options['icon'] == true ? '</div>' : '');
+
   }
   echo '</nav>';
 }

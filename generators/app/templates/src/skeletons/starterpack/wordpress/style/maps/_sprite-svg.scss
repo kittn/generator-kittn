@@ -1,0 +1,66 @@
+// All SVG Sprites are in this Map
+//
+// @type Map
+/* stylelint-disable */
+
+$svgspritebase: (
+  width: 90px,
+  height: 90px
+);
+
+$svgsprites: (
+  icon-email: (
+    width: 30px,
+    height: 30px,
+    posX: 0px,
+    posY: 0px
+  ),
+  icon-facebook: (
+    width: 30px,
+    height: 30px,
+    posX: -30px,
+    posY: 0px
+  ),
+  icon-google-plus: (
+    width: 30px,
+    height: 30px,
+    posX: 0px,
+    posY: -30px
+  ),
+  icon-instagram: (
+    width: 30px,
+    height: 30px,
+    posX: -30px,
+    posY: -30px
+  ),
+  icon-pinterest: (
+    width: 30px,
+    height: 30px,
+    posX: -60px,
+    posY: 0px
+  ),
+  icon-twitter: (
+    width: 30px,
+    height: 30px,
+    posX: -60px,
+    posY: -30px
+  ),
+  icon-vimeo: (
+    width: 30px,
+    height: 30px,
+    posX: 0px,
+    posY: -60px
+  ),
+  icon-whatsapp: (
+    width: 30px,
+    height: 30px,
+    posX: -30px,
+    posY: -60px
+  ),
+  icon-youtube: (
+    width: 30px,
+    height: 30px,
+    posX: -60px,
+    posY: -60px
+  ),
+);

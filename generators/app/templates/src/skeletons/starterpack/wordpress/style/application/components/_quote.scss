@@ -1,0 +1,43 @@
+/*
+  Quote
+  =====
+  Simple Quote Module with Cite Element
+*/
+.c-quote {
+  $api: (
+    breakpoint: 'm',
+    style1: (
+      border: 5px solid c('black-80'),
+      color: c('black-40')
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: TAGS
+  p {
+    margin-bottom: 0;
+  }
+
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__cite
+  &__cite {
+    font-size: 90%;
+  }
+
+  // [root]--s-style1
+  &--s-style1 {
+    border-left: api(style1, border);
+    padding-left: s(1);
+    color: api(style1, color);
+  }
+}

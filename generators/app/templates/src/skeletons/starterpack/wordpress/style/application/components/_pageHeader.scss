@@ -1,0 +1,86 @@
+/*
+  PageHeader
+  ==========
+  Header Styling
+*/
+.c-pageHeader {
+  $api: (
+    breakpoint: 'm',
+    breaksizes: (
+      one: glob(header, breaksizes, one)
+    ),
+    background: c('body'),
+    vertpadding: s(1),
+    height: (
+      mobile: glob(header, height, mobile),
+      desktop: glob(header, height, desktop)
+
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  // For getting values from lists
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+  background-color: api(background);
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__inner
+  &__inner {
+    @extend %e-container;
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: api(height, mobile);
+
+    @include break(api(breaksizes, one)) {
+      min-height: api(height, desktop);
+    }
+  }
+
+  // [root]__block
+  &__block {
+    // Margin only if element has Childs
+    &:not(:empty) {
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+  }
+
+  // [root]__copy
+  // &__logo {}
+
+  // [root]__nav
+  &__nav {
+    display: none;
+
+    @include break(api(breaksizes, one)) {
+      display: block;
+      flex: 1 1 auto;
+      text-align: right;
+      margin-right: s(1);
+    }
+  }
+
+  // [root]__offcanvas
+  &__offcanvas {
+    margin-left: auto;
+
+    @include break(api(breaksizes, one)) {
+      display: none;
+    }
+  }
+}
