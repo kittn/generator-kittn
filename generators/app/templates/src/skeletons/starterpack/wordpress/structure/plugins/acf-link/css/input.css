@@ -1,0 +1,30 @@
+.acf-link {
+    overflow: visible;
+}
+
+.acf-link .link-info {
+    display: inline-block;
+    padding-right: 100px;
+}
+
+.acf-link .acf-soh-target {
+    position: absolute;
+    top: -5px;
+    right: 5px;
+}
+
+.acf-link .acf-soh-target li {
+    margin-left: 4px;
+}
+
+.acf-link-hidden {
+    display: none !important;
+}
+
+body.upload-php #wp-link-backdrop {
+    z-index: 160001;
+}
+
+body.upload-php #wp-link-wrap {
+    z-index: 160001;
+}
