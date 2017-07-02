@@ -25,10 +25,10 @@ const filesModuleTpl = (context, destPath, pMeth, ptype, pCompiler) => {
   } else {
     // ITCSS Tree
     if (context.props.moduleType === 'c') {
-      pathName = '_components'
+      pathName = 'components'
 
     } else {
-      pathName = '_objects'
+      pathName = 'objects'
     }
   }
 
@@ -73,7 +73,7 @@ const filesModuleTpl = (context, destPath, pMeth, ptype, pCompiler) => {
     template: [
       {
         src: `_module.${srcType}`,
-        dest: `${destPath}/${pathName}/${context.props.moduleName}.${destType}`,
+        dest: `${destPath}/_${pathName}/${context.props.moduleName}.${destType}`,
         type: 'template'
       }
     ]
