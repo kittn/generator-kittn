@@ -96,14 +96,17 @@ module.exports = class extends Generator {
 
   // Writing
   async writing() {
-    // Write JS File
-    this.filesModuleTpl(this, jsPath, pMeth, pType, pCompiler).javascript.forEach(file => {
-      this.fs.copyTpl(
-        this.templatePath(file.src),
-        this.destinationPath(file.dest),
-        this.props
-      )
-    })
+    if (this.props.disableGenerateJS == false) {
+      // Write JS File
+      this.filesModuleTpl(this, jsPath, pMeth, pType, pCompiler).javascript.forEach(file => {
+        this.fs.copyTpl(
+          this.templatePath(file.src),
+          this.destinationPath(file.dest),
+          this.props
+        )
+      })
+    }
+
 
     // Write Style File
     this.filesModuleTpl(this, stylePath, pMeth, pType, pCompiler).style.forEach(file => {

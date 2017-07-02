@@ -77,6 +77,16 @@ No whitespaces allowed!${chalk.styles.red.close}`
       }
       return true
     }
+  },
+  {
+    type: 'confirm',
+    name: 'disableGenerateJS',
+    message: message({
+      headline: 'Generate Javascript',
+      description: 'Disable Javascript generation?',
+      defaultValue: false
+    }),
+    default: false
   }
 ]
 
