@@ -140,7 +140,7 @@ const projectPrompts = (context) => {
         description: 'Domain without HTTP or HTTPS',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: function (props) { return props.projectname.toLowerCase() + '.local' }
     },
     {
@@ -188,7 +188,7 @@ const projectPrompts = (context) => {
         description: 'Database Name',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: function (props) { return props.projectname.toLowerCase() }
     },
     {

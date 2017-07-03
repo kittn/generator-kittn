@@ -1,14 +1,13 @@
 <?php
 // Prevent file from being accessed directly
 if (!defined('ABSPATH')) exit();
-
-define('DB_NAME',     '');
-define('DB_USER',     '');
-define('DB_PASSWORD', '');
-define('DB_HOST',     'localhost');
+define('DB_NAME',     '<%= projectcredential ? credentialdbdatabase : '' %>');
+define('DB_USER',     '<%= projectcredential ? credentialdbuser : '' %>');
+define('DB_PASSWORD', '<%= projectcredential ? credentialdbpass : '' %>');
+define('DB_HOST',     '<%= projectcredential ? credentialdbserver : '' %>');
 
 define('WP_DEBUG',    true);
-define('WP_HOME',     'http://domain');
-define('WP_SITEURL',  'http://domain');
+define('WP_HOME',     'http://<%= projectcredential ? credentialdomain : '' %>');
+define('WP_SITEURL',  'http://<%= projectcredential ? credentialdomain : '' %>');
 
 define('WP_ENV',      'local');

@@ -22,7 +22,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
       }
       return true
     },
-    store: true
+    store: false
   },
   {
     type: 'input',

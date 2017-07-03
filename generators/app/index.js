@@ -165,18 +165,34 @@ module.exports = class extends Generator {
 
   end () {
     clear()
-    const goodbye =
-            '\n ' + chalk.styles.yellow.open +
-            '\n                    __    .__  __    __ ' +
-            '\n                    |  | _|__|/  |__/  |_  ____ ' +
-            '\n                    |  |/ /  \\   __\\   __\\/    \\ ' +
-            '\n                    |    <|  ||  |  |  | |   |  \\ ' +
-            '\n                    |__|_ \\__||__|  |__| |___|  / ' +
-            '\n                    \\/                   \\/  ' +
-            '\n  ' + chalk.styles.yellow.close + chalk.styles.green.open +
-            '\n   Now we are finished. Make your last settings and start `npm run init`.' +
-            '\n      When npm is finished activate `npm run dev` and happy Coding.' +
-            '\n ' + chalk.styles.green.close
+    const goodbye =`
+          
+          
+          ${chalk.styles.yellow.open} 
+                           __    .__  __    __ 
+                           |  | _|__|/  |__/  |_  ____ 
+                           |  |/ /  \\   __\\   __\\/    \\ 
+                           |    <|  ||  |  |  | |   |  \\ 
+                           |__|_ \\__||__|  |__| |___|  / 
+                           \\/                   \\/  
+           ${chalk.styles.yellow.close} ${chalk.styles.green.open}
+                              Now we are finished.
+          ${chalk.styles.green.close}
+          
+          ${chalk.styles.cyan.open}
+          ${chalk.styles.bold.open}Next Steps: ${chalk.styles.bold.close}
+          ${this.props.projectwordpressbp ? ' - Copy your ACF5 Pro Plugin on src/structure/plugins/' : ''}
+          ${this.props.projectcraftbp ? '- Setup User and Staff on craftscripts/env.sh' : ''}
+          - Setup your vHost on '${this.props.credentialdomain}' on '[projectFolder]/dist/${this.props.projectusage === 'craft' ? '/public/' : ''}'
+          - Activate 'npm run init' 
+          ${this.props.projectcraftbp ? '- Go to /craftscripts/ and activate ./set_perms.sh' : ''}
+          ${this.props.projectusage === 'wordpress' || this.props.projectusage === 'craft' ? '- Import database.sql found on project root' : ''}
+          ${this.props.projectusage === 'wordpress' || this.props.projectusage === 'craft' ? '- Login on the Backend with kittn / kittn. Make a new user' : ''}
+          - Start the devtask with 'npm run dev'
+          
+          Happy Coding.
+          ${chalk.styles.cyan.close}
+          `
     this.log(goodbye)
   }
 }

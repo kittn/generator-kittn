@@ -64,7 +64,7 @@ const projecttype = (context) => {
           projectcraftbp: false
         },
         src: 'databases/craft.sql',
-        dest: 'src/.system/craft.sql'
+        dest: 'database.sql'
       },
       {
         conditions: {
@@ -72,7 +72,7 @@ const projecttype = (context) => {
           projectcraftbp: true
         },
         src: 'databases/craftCB.sql',
-        dest: 'src/.system/craftCB.sql'
+        dest: 'database.sql'
       },
       {
         conditions: {
@@ -112,6 +112,22 @@ const projecttype = (context) => {
         src: 'src/skeletons/wordpress/screenshot.png',
         dest: 'src/structure/screenshot.png',
         simplecopy: true
+      },
+      {
+        conditions: {
+          projectusage: 'wordpress',
+          projectcraftbp: false
+        },
+        src: 'databases/wordpress.sql',
+        dest: 'database.sql'
+      },
+      {
+        conditions: {
+          projectusage: 'wordpress',
+          projectcraftbp: true
+        },
+        src: 'databases/wordpressCB.sql',
+        dest: 'database.sql'
       }
     ],
     folders: [

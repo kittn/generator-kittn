@@ -32,20 +32,30 @@ const importDB = () => {
               break
           }
 
-          importer.config({
-            'host': context.props.credentialdbserver,
-            'user': context.props.credentialdbuser,
-            'password': context.props.credentialdbpass,
-            'database': context.props.credentialdbdatabase
-          })
+          // TODO: Wont work with SQL Files with JSON Fragments
 
-          importer.importSQL(context.templatePath(`./databases/${dbFile}`)).then(() => {
-            context.log('all statements have been executed')
-          }).catch((err) => {
-            context.log(`error: ${err}`)
-          })
+          // importer.config({
+          //   'host': context.props.credentialdbserver,
+          //   'user': context.props.credentialdbuser,
+          //   'password': context.props.credentialdbpass,
+          //   'database': context.props.credentialdbdatabase
+          // })
+          //
+          // importer.importSQL(context.templatePath(`./databases/${dbFile}`)).then(() => {
+          //   context.log('all statements have been executed')
+          // }).catch((err) => {
+          //   context.log(`error: ${err}`)
+          // })
 
-          resolve()
+          const sqlfile = context.templatePath(`./databases/${dbFile}`);
+
+          console.log(`Use mysql to Import database, use the following Line to import:`)
+          console.log(`mysql -u${context.props.credentialdbuser} -p${context.props.credentialdbpass} ${context.props.credentialdbdatabase} < ${sqlfile}`)
+
+          // Other Try with SpawnCommand
+          // context.spawnCommand('mysql', [`-u${context.props.credentialdbuser}`, `-p${context.props.credentialdbpass}`, context.props.credentialdbdatabase, '<', sqlfile]).on('close', () => {
+          //   resolve()
+          // })
         } else {
           if (context.props.projectcredential && context.props.credentialdbopen && context.commands.mysql !== true) {
             console.error('`mysql`-command not available')
