@@ -61,7 +61,7 @@ const projecttype = (context) => {
       {
         conditions: {
           projectusage: 'craft',
-          projectcraftbp: false
+          projectcraftbp: undefined
         },
         src: 'databases/craft.sql',
         dest: 'database.sql'
@@ -116,7 +116,7 @@ const projecttype = (context) => {
       {
         conditions: {
           projectusage: 'wordpress',
-          projectcraftbp: false
+          projectwordpressbp: undefined
         },
         src: 'databases/wordpress.sql',
         dest: 'database.sql'
@@ -124,7 +124,7 @@ const projecttype = (context) => {
       {
         conditions: {
           projectusage: 'wordpress',
-          projectcraftbp: true
+          projectwordpressbp: true
         },
         src: 'databases/wordpressCB.sql',
         dest: 'database.sql'

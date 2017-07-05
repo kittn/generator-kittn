@@ -21,7 +21,7 @@ const copySources = require('./modules/writing/copySources')
 const addDB = require('./modules/writing/addDB')
 
 // Import MySQL Database
-const importDB = require('./modules/writing/importDB')
+// const importDB = require('./modules/writing/importDB')
 
 // Install CMS
 const installWordpress = require('./modules/writing/install/wordpress')
@@ -47,7 +47,7 @@ module.exports = class extends Generator {
     this.addDB = addDB.bind(this)
 
     // Import Database
-    this.importDB = importDB.bind(this)
+    // this.importDB = importDB.bind(this)
 
     // Copy Sources
     this.copySources = copySources.bind(this)
@@ -139,12 +139,10 @@ module.exports = class extends Generator {
     this.addDB().writing(this)
 
     // Write Database if user wants to
-    this.importDB().writing(this)
+    // this.importDB().writing(this)
 
     // Copy Source Files and Folders
-    if (!this.devMode) {
-      this.copySources().writing(this)
-    }
+    this.copySources().writing(this)
 
     // Install CMS
     if (!this.devMode) {
@@ -182,12 +180,13 @@ module.exports = class extends Generator {
           ${chalk.styles.cyan.open}
           ${chalk.styles.bold.open}Next Steps: ${chalk.styles.bold.close}
           ${this.props.projectwordpressbp ? ' - Copy your ACF5 Pro Plugin on src/structure/plugins/' : ''}
-          ${this.props.projectcraftbp ? '- Setup User and Staff on craftscripts/env.sh' : ''}
+          ${this.props.projectusage === 'craft' ? '- Setup User and Staff on craftscripts/env.sh' : ''}
           - Setup your vHost on '${this.props.credentialdomain}' on '[projectFolder]/dist/${this.props.projectusage === 'craft' ? '/public/' : ''}'
           - Activate 'npm run init' 
-          ${this.props.projectcraftbp ? '- Go to /craftscripts/ and activate ./set_perms.sh' : ''}
+          ${this.props.projectusage === 'craft' ? '- Go to /craftscripts/ and activate ./set_perms.sh' : ''}
           ${this.props.projectusage === 'wordpress' || this.props.projectusage === 'craft' ? '- Import database.sql found on project root' : ''}
-          ${this.props.projectusage === 'wordpress' || this.props.projectusage === 'craft' ? '- Login on the Backend with kittn / kittn. Make a new user' : ''}
+          ${this.props.projectusage === 'wordpress' ? '- Login on the Backend with kittn / kittn. Make a new user' : ''}
+          ${this.props.projectusage === 'craft' ? '- Login on the Backend with kittn / kittnc. Make a new user' : ''}
           - Start the devtask with 'npm run dev'
           
           Happy Coding.

@@ -16,7 +16,11 @@
       "typesettings": {
         "template": 404,
         "urlFormat": 404,
-        "nestedUrlFormat": null
+        "nestedUrlFormat": null,
+        "en": {
+          "urlFormat": 404,
+          "nestedUrlFormat": null
+        }
       }
     },
     {
@@ -28,7 +32,11 @@
         "hasUrls": 1,
         "template": "general\/entry",
         "urlFormat": "blog\/e\/{slug}",
-        "nestedUrlFormat": null
+        "nestedUrlFormat": null,
+        "en": {
+          "urlFormat": "blog\/e\/{slug}",
+          "nestedUrlFormat": null
+        }
       }
     },
     {
@@ -41,7 +49,11 @@
         "template": "general\/pages",
         "maxLevels": 2,
         "urlFormat": "blog\/{slug}",
-        "nestedUrlFormat": "{parent.uri}\/{slug}"
+        "nestedUrlFormat": "{parent.uri}\/{slug}",
+        "en": {
+          "urlFormat": "blog\/{slug}",
+          "nestedUrlFormat": "{parent.uri}\/{slug}"
+        }
       }
     },
     {
@@ -52,7 +64,11 @@
       "typesettings": {
         "template": "index",
         "urlFormat": "__home__",
-        "nestedUrlFormat": null
+        "nestedUrlFormat": null,
+        "en": {
+          "urlFormat": "__home__",
+          "nestedUrlFormat": null
+        }
       }
     },
     {
@@ -65,7 +81,11 @@
         "template": "general\/pages",
         "maxLevels": 2,
         "urlFormat": "{slug}",
-        "nestedUrlFormat": "{parent.uri}\/{slug}"
+        "nestedUrlFormat": "{parent.uri}\/{slug}",
+        "en": {
+          "urlFormat": "{slug}",
+          "nestedUrlFormat": "{parent.uri}\/{slug}"
+        }
       }
     }
   ],
@@ -96,6 +116,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -147,6 +168,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -219,6 +241,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -259,12 +282,12 @@
                       "default": 1
                     },
                     {
-                      "label": "Gro\u00df",
+                      "label": "Big",
                       "value": "big",
                       "default": ""
                     },
                     {
-                      "label": "Klein",
+                      "label": "Small",
                       "value": "small",
                       "default": ""
                     }
@@ -274,7 +297,7 @@
               "new3": {
                 "name": "Full Width",
                 "handle": "fullwidth",
-                "instructions": "Wenn der Button Zentriert angelegt wurde, kann man ihm auch die volle Breite geben",
+                "instructions": "If the button centered has been created, you can also give it the full width.",
                 "required": 0,
                 "type": "Lightswitch",
                 "width": "",
@@ -285,7 +308,7 @@
               "new4": {
                 "name": "Position",
                 "handle": "position",
-                "instructions": "Regul\u00e4r sind die Buttons linksb\u00fcndig angeordnet, k\u00f6nnen hiermit \u00fcberschrieben werden.",
+                "instructions": "The buttons are arranged left-aligned, can be overwritten.",
                 "required": 0,
                 "type": "Dropdown",
                 "width": "",
@@ -326,6 +349,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -347,6 +371,7 @@
                   "allowedKinds": [
                     "image"
                   ],
+                  "targetLocale": "",
                   "limit": 1,
                   "viewMode": "list",
                   "selectionLabel": ""
@@ -355,7 +380,7 @@
               "new2": {
                 "name": "Headline",
                 "handle": "headline",
-                "instructions": "Optional headline",
+                "instructions": "",
                 "required": 0,
                 "type": "PlainText",
                 "width": "",
@@ -369,7 +394,7 @@
               "new3": {
                 "name": "Subline",
                 "handle": "subline",
-                "instructions": "Optional subline",
+                "instructions": "",
                 "required": 0,
                 "type": "PlainText",
                 "width": "",
@@ -383,7 +408,7 @@
               "new4": {
                 "name": "Meta",
                 "handle": "meta",
-                "instructions": "Optionale meta field",
+                "instructions": "",
                 "required": 0,
                 "type": "PlainText",
                 "width": "",
@@ -453,6 +478,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -515,6 +541,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -543,12 +570,13 @@
               "new2": {
                 "name": "Setup",
                 "handle": "setup",
-                "instructions": "Optional. W\u00e4hle eines der bestehenden Setups aus oder definiere ein neues unter `Kategorien > Settings : Image Slider`",
+                "instructions": "Select one of the existing setups or define a new one under `Categories> Settings: Image Slider`",
                 "required": 0,
                 "type": "Categories",
                 "width": "",
                 "typesettings": {
                   "source": "settingsImageSlider",
+                  "targetLocale": "",
                   "limit": 1,
                   "selectionLabel": "Setup ausw\u00e4hlen"
                 }
@@ -567,6 +595,7 @@
       "type": "Categories",
       "typesettings": {
         "source": "blogCategories",
+        "targetLocale": "",
         "limit": 1,
         "selectionLabel": ""
       }
@@ -622,6 +651,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": 1,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -684,6 +714,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -801,6 +832,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -861,6 +893,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -917,6 +950,7 @@
         "staticField": null,
         "selectionLabel": "Add a picture",
         "maxRows": 30,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -938,8 +972,9 @@
                   "allowedKinds": [
                     "image"
                   ],
+                  "targetLocale": "",
                   "limit": 1,
-                  "viewMode": "list",
+                  "viewMode": "large",
                   "selectionLabel": ""
                 }
               },
@@ -974,6 +1009,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -1002,7 +1038,7 @@
               "new2": {
                 "name": "Ratio",
                 "handle": "ratio",
-                "instructions": "Image ratio of the thumbnails for the Simplen layout mode. Format '1:1'",
+                "instructions": "Image ratio of the thumbnails for the `simple layout` mode. Format '1:1'",
                 "required": 0,
                 "type": "PlainText",
                 "width": "",
@@ -1058,6 +1094,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": 1,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -1189,6 +1226,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -1299,6 +1337,7 @@
         "allowedKinds": [
           "image"
         ],
+        "targetLocale": "",
         "limit": 10,
         "viewMode": "large",
         "selectionLabel": ""
@@ -1316,6 +1355,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -1358,12 +1398,13 @@
               "new3": {
                 "name": "Setup",
                 "handle": "setup",
-                "instructions": "Optional. Select one of the existing setups or define a new one under `Categories> Settings: Image Slider`",
+                "instructions": "Select one of the existing setups or define a new one under `Categories> Settings: Image Slider`",
                 "required": 0,
                 "type": "Categories",
                 "width": "",
                 "typesettings": {
                   "source": "settingsImageSlider",
+                  "targetLocale": "",
                   "limit": 1,
                   "selectionLabel": "Setup ausw\u00e4hlen"
                 }
@@ -1385,6 +1426,7 @@
         "staticField": null,
         "selectionLabel": "Add a link",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -1433,6 +1475,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -1521,6 +1564,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -1609,6 +1653,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -1662,6 +1707,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -1683,6 +1729,7 @@
                   "allowedKinds": [
                     "image"
                   ],
+                  "targetLocale": "",
                   "limit": 1,
                   "viewMode": "large",
                   "selectionLabel": ""
@@ -1719,6 +1766,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -1786,6 +1834,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": 1,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -1834,6 +1883,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -1877,6 +1927,7 @@
         "availableTransforms": "*",
         "cleanupHtml": 1,
         "purifyHtml": 1,
+        "purifierConfig": "",
         "columnType": "text"
       }
     },
@@ -1892,6 +1943,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -1939,6 +1991,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -2098,6 +2151,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -2204,6 +2258,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -2320,6 +2375,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -2483,6 +2539,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -2534,6 +2591,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -2576,6 +2634,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -2704,6 +2763,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -2871,6 +2931,7 @@
         "staticField": null,
         "selectionLabel": "Add Network",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -3057,6 +3118,7 @@
         "staticField": 1,
         "selectionLabel": "Zeile hinzuf\u00fcgen",
         "maxRows": null,
+        "minRows": null,
         "blockTypes": {
           "new": {
             "fields": {
@@ -3639,7 +3701,7 @@
       "sectionHandle": "pages",
       "hasTitleField": 1,
       "titleLabel": "Titel",
-      "name": "Seiten",
+      "name": "Pages",
       "handle": "pages",
       "fieldLayout": {
         "Content": [
@@ -3705,6 +3767,10 @@
         "de": {
           "urlFormat": "blog\/c\/{slug}",
           "nestedUrlFormat": null
+        },
+        "en": {
+          "urlFormat": "blog\/c\/{slug}",
+          "nestedUrlFormat": null
         }
       },
       "fieldLayout": {
@@ -3730,6 +3796,10 @@
       "maxLevels": 1,
       "locales": {
         "de": {
+          "urlFormat": null,
+          "nestedUrlFormat": null
+        },
+        "en": {
           "urlFormat": null,
           "nestedUrlFormat": null
         }

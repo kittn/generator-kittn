@@ -1,16 +1,3 @@
-# ************************************************************
-# Sequel Pro SQL dump
-# Version 4541
-#
-# http://www.sequelpro.com/
-# https://github.com/sequelpro/sequelpro
-#
-# Host: localhost (MySQL 5.6.34)
-# Datenbank: ktest3
-# Erstellt am: 2017-06-29 20:09:26 +0000
-# ************************************************************
-
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -37,6 +24,16 @@ CREATE TABLE `craft_amnav_navs` (
   UNIQUE KEY `craft_amnav_navs_handle_unq_idx` (`handle`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+LOCK TABLES `craft_amnav_navs` WRITE;
+/*!40000 ALTER TABLE `craft_amnav_navs` DISABLE KEYS */;
+
+INSERT INTO `craft_amnav_navs` (`id`, `name`, `handle`, `settings`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,'Main Navigation','mainNavigation','{\"entrySources\":\"*\",\"maxLevels\":\"\",\"canMoveFromLevel\":\"\",\"canDeleteFromLevel\":\"\"}','2017-07-04 22:04:01','2017-07-04 22:04:01','48cb752a-1a5b-4473-80c1-02f738d85929'),
+	(2,'Footer Navigation','footerNavigation','{\"entrySources\":\"*\",\"maxLevels\":\"\",\"canMoveFromLevel\":\"\",\"canDeleteFromLevel\":\"\"}','2017-07-04 22:04:12','2017-07-04 22:04:12','9114cf43-4d10-4f85-baa0-34cddc8d9ccc');
+
+/*!40000 ALTER TABLE `craft_amnav_navs` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Export von Tabelle craft_amnav_nodes
@@ -93,15 +90,6 @@ CREATE TABLE `craft_assetfiles` (
   CONSTRAINT `craft_assetfiles_sourceId_fk` FOREIGN KEY (`sourceId`) REFERENCES `craft_assetsources` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-LOCK TABLES `craft_assetfiles` WRITE;
-/*!40000 ALTER TABLE `craft_assetfiles` DISABLE KEYS */;
-
-INSERT INTO `craft_assetfiles` (`id`, `sourceId`, `folderId`, `filename`, `kind`, `width`, `height`, `size`, `dateModified`, `dateCreated`, `dateUpdated`, `uid`)
-VALUES
-	(7,1,1,'DSC_8059.jpg','image',1400,927,536027,'2017-06-27 01:12:08','2017-06-27 01:12:08','2017-06-27 01:12:08','8d28bd81-f22b-4997-b5f4-56fe13985618');
-
-/*!40000 ALTER TABLE `craft_assetfiles` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Export von Tabelle craft_assetfolders
@@ -131,7 +119,7 @@ LOCK TABLES `craft_assetfolders` WRITE;
 
 INSERT INTO `craft_assetfolders` (`id`, `parentId`, `sourceId`, `name`, `path`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,NULL,1,'Bilder','','2017-06-27 01:04:54','2017-06-27 01:04:54','08e0f80e-cbac-4a2c-ae89-adb169375c62');
+	(1,NULL,1,'Bilder','','2017-07-04 22:00:58','2017-07-04 22:00:58','4ce5a23f-3510-4a3a-a93f-901e27d329ae');
 
 /*!40000 ALTER TABLE `craft_assetfolders` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -189,7 +177,7 @@ LOCK TABLES `craft_assetsources` WRITE;
 
 INSERT INTO `craft_assetsources` (`id`, `name`, `handle`, `type`, `settings`, `sortOrder`, `fieldLayoutId`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'Bilder','images','Local','{\"path\":\"{basePath}uploads\\/images\\/\",\"publicURLs\":1,\"url\":\"{baseUrl}uploads\\/images\\/\"}',1,10,'2017-06-27 01:04:54','2017-06-27 01:04:54','bb6ce8eb-6d68-46d1-9b97-be94c2fb3077');
+	(1,'Bilder','images','Local','{\"path\":\"{basePath}uploads\\/images\\/\",\"publicURLs\":1,\"url\":\"{baseUrl}uploads\\/images\\/\"}',1,70,'2017-07-04 22:00:57','2017-07-04 22:01:04','5cdce67f-c18e-450f-b05f-67cd30e0c7e8');
 
 /*!40000 ALTER TABLE `craft_assetsources` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -262,6 +250,15 @@ CREATE TABLE `craft_categories` (
   CONSTRAINT `craft_categories_id_fk` FOREIGN KEY (`id`) REFERENCES `craft_elements` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+LOCK TABLES `craft_categories` WRITE;
+/*!40000 ALTER TABLE `craft_categories` DISABLE KEYS */;
+
+INSERT INTO `craft_categories` (`id`, `groupId`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(7,2,'2017-07-05 20:08:13','2017-07-05 20:08:13','e9544ba7-4930-435b-914f-f5ee135aea68');
+
+/*!40000 ALTER TABLE `craft_categories` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Export von Tabelle craft_categorygroups
@@ -294,8 +291,8 @@ LOCK TABLES `craft_categorygroups` WRITE;
 
 INSERT INTO `craft_categorygroups` (`id`, `structureId`, `fieldLayoutId`, `name`, `handle`, `hasUrls`, `template`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,3,77,'Blog Categories','blogCategories',1,'general/category','2017-06-27 01:06:41','2017-06-27 01:06:47','ec135f65-4c87-42d3-930e-c78cf6ebc461'),
-	(2,4,78,'Settings: Image Slider','settingsImageSlider',0,NULL,'2017-06-27 01:06:41','2017-06-27 01:06:47','a11b51db-8cdd-488e-b0b3-245d4495f0f5');
+	(1,3,78,'Blog Categories','blogCategories',1,'general/category','2017-07-04 22:00:58','2017-07-04 22:01:04','a32bf9fe-87b8-4594-8d01-39a6855da07f'),
+	(2,4,79,'Settings: Image Slider','settingsImageSlider',0,NULL,'2017-07-04 22:00:58','2017-07-04 22:01:04','15e70a07-1e99-48e4-afe7-d7038e9dbe7a');
 
 /*!40000 ALTER TABLE `craft_categorygroups` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -327,8 +324,10 @@ LOCK TABLES `craft_categorygroups_i18n` WRITE;
 
 INSERT INTO `craft_categorygroups_i18n` (`id`, `groupId`, `locale`, `urlFormat`, `nestedUrlFormat`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,1,'de','blog/c/{slug}',NULL,'2017-06-27 01:06:41','2017-06-27 01:06:41','cb6d3e10-d66c-428c-b89c-d8ca04ea293d'),
-	(2,2,'de',NULL,NULL,'2017-06-27 01:06:41','2017-06-27 01:06:41','04e4ac66-b0ca-4701-92fa-ffecffa00dda');
+	(1,1,'de','blog/c/{slug}',NULL,'2017-07-04 22:00:58','2017-07-04 22:00:58','b2f2623e-4e85-4e3d-a961-e66877435f0a'),
+	(2,2,'de',NULL,NULL,'2017-07-04 22:00:58','2017-07-04 22:00:58','a24764ea-a405-4cfa-9384-d376fd718ece'),
+	(3,1,'en','blog/c/{slug}',NULL,'2017-07-04 22:03:19','2017-07-04 22:03:19','e97ff6c0-3bbb-4eb0-80f2-2df223bef3d8'),
+	(4,2,'en',NULL,NULL,'2017-07-04 22:03:19','2017-07-04 22:03:19','ab888d7b-0d11-451f-8c31-e618adf685be');
 
 /*!40000 ALTER TABLE `craft_categorygroups_i18n` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -379,13 +378,17 @@ LOCK TABLES `craft_content` WRITE;
 
 INSERT INTO `craft_content` (`id`, `elementId`, `locale`, `title`, `field_body`, `field_objAccordion`, `field_objAnchor`, `field_objButton`, `field_objCardSlider`, `field_commentSwitch`, `field_copyright`, `field_disqusName`, `field_focalpoint`, `field_objHeadline`, `field_objHorizontalRuler`, `field_objList`, `field_objMarkdown`, `field_objRichtext`, `field_objSectionColumn`, `field_objSection`, `field_seo`, `field_objSpacer`, `field_objTab`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,1,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-06-27 01:02:17','2017-06-27 01:02:17','3e5996d9-e6b6-46f4-b44f-a04d654a64a0'),
-	(2,2,'de','Welcome to Ktest3.local!','<p>It’s true, this site doesn’t have a whole lot of content yet, but don’t worry. Our web developers have just installed the CMS, and they’re setting things up for the content editors this very moment. Soon Ktest3.local will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Welcome to Ktest3.local!\",\"seoDescription\":\"Welcome to Ktest3.local!\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"seoTitleUnparsed\":\"Welcome to Ktest3.local!\",\"seoDescriptionUnparsed\":\"Welcome to Ktest3.local!\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,'2017-06-27 01:02:20','2017-06-27 01:12:21','1cf841c4-2b70-47d5-8fb4-154117a1e407'),
-	(4,4,'de','404',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-06-27 01:04:54','2017-06-27 01:04:54','0de141d0-0d28-48be-87ed-755550ef4d78'),
-	(5,5,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-06-27 01:06:47','2017-06-27 01:06:47','d5b75488-5f66-4c07-9977-a27acc6ec750'),
-	(6,6,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,'',NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-06-27 01:06:47','2017-06-27 01:26:35','756ff3e5-f227-4c98-bf32-fd3fc7a92f08'),
-	(7,7,'de','Dsc 8059',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-06-27 01:12:08','2017-06-27 01:12:08','0c34b831-95ae-42ff-8871-485735f2c1b9'),
-	(8,9,'de','Just a test',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Just a test\",\"seoDescription\":\"Just a test\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"7\",\"seoTwitterImageId\":\"7\",\"seoFacebookImageId\":\"7\",\"seoTitleUnparsed\":\"Just a test\",\"seoDescriptionUnparsed\":\"Just a test\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"featuredImage\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"featuredImage\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"featuredImage\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,'2017-06-27 01:16:06','2017-06-27 01:16:06','4fff40b1-183a-42ba-9457-4d552c2cc3bf');
+	(1,1,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-04 21:45:00','2017-07-04 22:05:13','cbaf4989-9591-427d-8938-162b4d17915b'),
+	(2,2,'de','Home','<p>It’s true, this site doesn’t have a whole lot of content yet, but don’t worry. Our web developers have just installed the CMS, and they’re setting things up for the content editors this very moment. Soon Ktest10.local will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Home\",\"seoDescription\":\"Home\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"seoTitleUnparsed\":\"Home\",\"seoDescriptionUnparsed\":\"Home\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,'2017-07-04 21:45:04','2017-07-05 21:34:43','9fb54827-4097-4fa5-a8fd-1d35d9c8bd38'),
+	(4,4,'de','404',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-04 22:00:57','2017-07-05 21:33:48','0276ef36-ab9b-4ef1-a923-788dd824faf2'),
+	(5,5,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-04 22:01:04','2017-07-04 22:03:20','2403fbb2-6815-4688-9579-12f44c00389e'),
+	(6,6,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-04 22:01:04','2017-07-04 22:03:20','7252c02a-aa48-4507-8a8a-f101ab29f8d4'),
+	(7,5,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-04 22:03:20','2017-07-04 22:03:20','f0e44c50-1591-4839-99f2-35b7e6ad43dc'),
+	(8,6,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-04 22:03:20','2017-07-04 22:03:20','c225a677-ac00-479a-8b2f-6add1e66827c'),
+	(9,7,'de','Carousel',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-05 20:08:13','2017-07-05 20:08:13','261ced72-8fae-449e-b661-441803e6aed8'),
+	(10,7,'en','Carousel',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-05 20:08:13','2017-07-05 20:08:13','140b40f2-6bd4-44cf-b725-606af79ceab2'),
+	(11,4,'en','404',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-05 21:33:48','2017-07-05 21:33:48','a6a1aa02-76c4-40ea-8709-e78a77f4fa97'),
+	(12,2,'en','Home','<p>It’s true, this site doesn’t have a whole lot of content yet, but don’t worry. Our web developers have just installed the CMS, and they’re setting things up for the content editors this very moment. Soon Ktest10.local will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Home\",\"seoDescription\":\"Home\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"seoTitleUnparsed\":\"Home\",\"seoDescriptionUnparsed\":\"Home\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,'2017-07-05 21:34:43','2017-07-05 21:34:43','a6ab581b-b6ea-4919-abac-ed9597442825');
 
 /*!40000 ALTER TABLE `craft_content` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -434,6 +437,16 @@ CREATE TABLE `craft_elementindexsettings` (
   UNIQUE KEY `craft_elementindexsettings_type_unq_idx` (`type`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+LOCK TABLES `craft_elementindexsettings` WRITE;
+/*!40000 ALTER TABLE `craft_elementindexsettings` DISABLE KEYS */;
+
+INSERT INTO `craft_elementindexsettings` (`id`, `type`, `settings`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,'Entry','{\"sourceOrder\":[[\"key\",\"*\"],[\"key\",\"singles\"],[\"heading\",\"Kan\\u00e4le\"],[\"key\",\"section:2\"],[\"heading\",\"Strukturen\"],[\"key\",\"section:6\"],[\"heading\",\"Blog\"],[\"key\",\"section:4\"],[\"key\",\"section:5\"]],\"sources\":{\"section:4\":{\"tableAttributes\":{\"1\":\"postDate\",\"2\":\"expiryDate\",\"3\":\"author\",\"4\":\"link\"}}}}','2017-07-04 22:05:44','2017-07-04 22:06:06','ee0c7b23-4a47-42d2-ad30-9dbfcfa2e455'),
+	(3,'Category','{\"sourceOrder\":[[\"heading\",\"Settings\"],[\"key\",\"group:2\"],[\"heading\",\"Blog\"],[\"key\",\"group:1\"]],\"sources\":{\"group:1\":{\"tableAttributes\":{\"1\":\"link\"}}}}','2017-07-04 22:08:08','2017-07-04 22:08:36','5800665a-e36c-41ce-b880-f87a7a03d925');
+
+/*!40000 ALTER TABLE `craft_elementindexsettings` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Export von Tabelle craft_elements
@@ -460,17 +473,15 @@ LOCK TABLES `craft_elements` WRITE;
 
 INSERT INTO `craft_elements` (`id`, `type`, `enabled`, `archived`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'User',1,0,'2017-06-27 01:02:17','2017-06-27 01:02:17','641bcdc5-5c2a-49cc-80d4-285fc20de6f8'),
-	(2,'Entry',1,0,'2017-06-27 01:02:20','2017-06-27 01:12:21','f4370f58-a103-44cc-bf54-6c1ebefc3e77'),
-	(4,'Entry',1,0,'2017-06-27 01:04:54','2017-06-27 01:04:54','a8542da3-7093-428e-b52d-31e0b8ee2660'),
-	(5,'GlobalSet',1,0,'2017-06-27 01:06:47','2017-06-27 01:06:47','a22da309-6f30-4459-829d-f4f0c4f81abf'),
-	(6,'GlobalSet',1,0,'2017-06-27 01:06:47','2017-06-27 01:26:35','834dca9c-6b0b-44b5-8f38-02096881d22c'),
-	(7,'Asset',1,0,'2017-06-27 01:12:08','2017-06-27 01:12:08','f46dcac8-8688-4d80-addf-e4cfdb445dea'),
-	(8,'SuperTable_Block',1,0,'2017-06-27 01:12:21','2017-06-27 01:12:21','9970d8ac-f76c-412e-ab7d-9c5f5e889281'),
-	(9,'Entry',1,0,'2017-06-27 01:16:06','2017-06-27 01:16:06','cd04a52a-654b-4d4c-9298-c6aa24120bfd'),
-	(10,'SuperTable_Block',1,0,'2017-06-27 01:16:06','2017-06-27 01:16:06','cc2c9c01-ac00-450b-b470-9891dd5d0b98'),
-	(11,'SuperTable_Block',1,0,'2017-06-27 01:16:06','2017-06-27 01:16:06','93548d06-885e-4d05-b878-ec533fcfff39'),
-	(12,'SuperTable_Block',1,0,'2017-06-27 01:26:36','2017-06-27 01:26:36','dfd092ea-b05e-496c-a3f6-3527a741bc66');
+	(1,'User',1,0,'2017-07-04 21:45:00','2017-07-04 22:05:13','c217e49e-c721-4924-9348-928638224692'),
+	(2,'Entry',1,0,'2017-07-04 21:45:04','2017-07-05 21:34:43','e03cba08-abbf-4500-ba9c-502704e48f78'),
+	(4,'Entry',1,0,'2017-07-04 22:00:57','2017-07-05 21:33:47','cba1ee13-1a0f-4ba9-aefd-54b2c80a7e55'),
+	(5,'GlobalSet',1,0,'2017-07-04 22:01:04','2017-07-04 22:03:20','708ae318-3f09-49e3-9839-4e530ae511a9'),
+	(6,'GlobalSet',1,0,'2017-07-04 22:01:04','2017-07-04 22:03:20','db06c4ce-1cb8-4c2b-bce8-2402f56b953f'),
+	(7,'Category',1,0,'2017-07-05 20:08:13','2017-07-05 20:08:13','80dfd2d2-abac-4878-a8d5-2c6ced2f8f15'),
+	(8,'SuperTable_Block',1,0,'2017-07-05 20:08:13','2017-07-05 20:08:13','8c9f1d41-5281-4b17-8796-f85573c4fb9d'),
+	(9,'SuperTable_Block',1,0,'2017-07-05 20:08:13','2017-07-05 20:08:13','cba1a30c-9278-4d47-b32d-8e3ce1995823'),
+	(10,'SuperTable_Block',1,0,'2017-07-05 21:33:19','2017-07-05 21:33:19','7364e1ea-afed-4617-a0b6-edd67ffa7777');
 
 /*!40000 ALTER TABLE `craft_elements` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -506,17 +517,22 @@ LOCK TABLES `craft_elements_i18n` WRITE;
 
 INSERT INTO `craft_elements_i18n` (`id`, `elementId`, `locale`, `slug`, `uri`, `enabled`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,1,'de','',NULL,1,'2017-06-27 01:02:17','2017-06-27 01:02:17','77baf54b-e0eb-4214-ba4a-fc5fd5d61763'),
-	(2,2,'de','homepage','__home__',1,'2017-06-27 01:02:20','2017-06-27 01:12:21','ef26ea8a-15a2-4951-a576-94f839628b00'),
-	(4,4,'de','404','404',1,'2017-06-27 01:04:54','2017-06-27 01:04:54','c0c42693-bfab-4652-a623-29fb7bcac048'),
-	(5,5,'de','',NULL,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','192176a2-066a-420b-a030-01fee4aec3c1'),
-	(6,6,'de','',NULL,1,'2017-06-27 01:06:47','2017-06-27 01:26:36','cc84cde1-505d-4a21-bb51-086034c1ac41'),
-	(7,7,'de','dsc-8059',NULL,1,'2017-06-27 01:12:08','2017-06-27 01:12:08','2c761113-53bf-4c06-bb6c-6d20752e8753'),
-	(8,8,'de','',NULL,1,'2017-06-27 01:12:21','2017-06-27 01:12:21','37ea0cd1-b7e0-4fd2-8e44-a3593db54b2c'),
-	(9,9,'de','just-a-test','just-a-test',1,'2017-06-27 01:16:06','2017-06-27 01:16:08','e16eeb29-bc95-455d-af67-26cf8a153ad9'),
-	(10,10,'de','',NULL,1,'2017-06-27 01:16:06','2017-06-27 01:16:06','6b2cbea0-7b0a-4e7d-a9ec-3ae56010cbd9'),
-	(11,11,'de','',NULL,1,'2017-06-27 01:16:06','2017-06-27 01:16:06','c8bf9dd4-34d5-4b22-8040-0048cf1a9204'),
-	(12,12,'de','',NULL,1,'2017-06-27 01:26:36','2017-06-27 01:26:36','b039634c-70eb-4a48-919f-569fd7caa158');
+	(1,1,'de','',NULL,1,'2017-07-04 21:45:00','2017-07-04 22:05:13','0cb638ff-c30e-4e0f-9e2d-ee6db00d3115'),
+	(2,2,'de','homepage','__home__',1,'2017-07-04 21:45:04','2017-07-05 21:34:43','974d33f2-d7ef-425f-959f-022b86c304c5'),
+	(4,4,'de','404','404',1,'2017-07-04 22:00:57','2017-07-05 21:33:48','8e3d67f1-9249-4c1f-a99b-9aa785e2b239'),
+	(5,5,'de','',NULL,1,'2017-07-04 22:01:04','2017-07-04 22:03:20','eab58c53-7331-412e-bdda-86dedb7ee256'),
+	(6,6,'de','',NULL,1,'2017-07-04 22:01:04','2017-07-04 22:03:20','0544ef7d-f059-4c71-a262-f1579e86421f'),
+	(7,5,'en','',NULL,1,'2017-07-04 22:03:20','2017-07-04 22:03:20','d39f95b0-d625-4895-9c27-1e36d74296ed'),
+	(8,6,'en','',NULL,1,'2017-07-04 22:03:20','2017-07-04 22:03:20','74b24024-1f9e-4726-a798-c6d1254fd0e1'),
+	(9,7,'de','carousel',NULL,1,'2017-07-05 20:08:13','2017-07-05 20:08:15','05195cb8-b220-48de-93e2-517c0f2704a9'),
+	(10,7,'en','carousel',NULL,1,'2017-07-05 20:08:13','2017-07-05 20:08:15','217b24cd-352d-4c01-bf70-c3204ae434b2'),
+	(11,8,'de','',NULL,1,'2017-07-05 20:08:13','2017-07-05 20:08:13','4748ccec-8b0d-457d-b45a-64c04a94b20b'),
+	(12,8,'en','',NULL,1,'2017-07-05 20:08:13','2017-07-05 20:08:13','9f7aa1b5-bde2-4600-99dc-b08cec235e91'),
+	(13,9,'de','',NULL,1,'2017-07-05 20:08:13','2017-07-05 20:08:13','e76c476d-2b6a-417b-a5c2-d84efd080b97'),
+	(14,9,'en','',NULL,1,'2017-07-05 20:08:13','2017-07-05 20:08:13','afb32c4b-ad18-481a-9eab-ab1416eb6855'),
+	(15,10,'de','',NULL,1,'2017-07-05 21:33:19','2017-07-05 21:33:19','2a645fcf-c92e-46fd-bb98-01bf9fa06b11'),
+	(16,4,'en','404','404',1,'2017-07-05 21:33:48','2017-07-05 21:33:48','7459f1b5-ce3f-454a-9f7f-b1687b2eea15'),
+	(17,2,'en','homepage','__home__',1,'2017-07-05 21:34:43','2017-07-05 21:34:43','3f9118d4-db28-4343-aa89-0908b07ec43f');
 
 /*!40000 ALTER TABLE `craft_elements_i18n` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -576,9 +592,8 @@ LOCK TABLES `craft_entries` WRITE;
 
 INSERT INTO `craft_entries` (`id`, `sectionId`, `typeId`, `authorId`, `postDate`, `expiryDate`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(2,1,NULL,NULL,'2017-06-27 01:02:20',NULL,'2017-06-27 01:02:20','2017-06-27 01:12:21','ccdbdadd-cf93-40b1-8967-72db1b23005e'),
-	(4,3,NULL,NULL,'2017-06-27 01:04:54',NULL,'2017-06-27 01:04:54','2017-06-27 01:04:54','eaaf4f93-747b-4cb7-ba6a-565d047cfcfc'),
-	(9,6,6,1,'2017-06-27 01:16:06',NULL,'2017-06-27 01:16:06','2017-06-27 01:16:06','2b3a2e64-21f1-4329-83e9-1ea4ff3a8f77');
+	(2,1,1,NULL,'2017-07-05 21:34:42',NULL,'2017-07-04 21:45:04','2017-07-05 21:34:42','a32f5949-bfff-425c-86c9-f54c7897194a'),
+	(4,3,3,NULL,'2017-07-05 21:33:46',NULL,'2017-07-04 22:00:57','2017-07-05 21:33:46','5dcf217a-74d9-4288-bdbf-dfc12a44beb5');
 
 /*!40000 ALTER TABLE `craft_entries` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -646,11 +661,11 @@ LOCK TABLES `craft_entrytypes` WRITE;
 
 INSERT INTO `craft_entrytypes` (`id`, `sectionId`, `fieldLayoutId`, `name`, `handle`, `hasTitleField`, `titleLabel`, `titleFormat`, `sortOrder`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,1,73,'Homepage','homepage',1,'Title',NULL,1,'2017-06-27 01:02:20','2017-06-27 01:06:47','1b99853a-69d7-4266-917e-a38c8246f2a8'),
-	(3,3,70,'404','error404',0,NULL,'{section.name|raw}',1,'2017-06-27 01:04:54','2017-06-27 01:06:47','71117672-db58-48da-9fdb-f3b7953fe94a'),
-	(4,4,71,'Blog Channel','blogChannel',1,'Title',NULL,1,'2017-06-27 01:04:54','2017-06-27 01:06:47','b8fa7dec-a0b6-4ea6-af90-ea6884d888bc'),
-	(5,5,72,'Blog Pages','blogPages',1,'Titel',NULL,1,'2017-06-27 01:04:54','2017-06-27 01:06:47','ab73b148-0b55-45b3-9c91-e2b35dd12732'),
-	(6,6,74,'Seiten','pages',1,'Titel',NULL,1,'2017-06-27 01:04:54','2017-06-27 01:06:47','29065c80-0b69-4496-8de3-719fc89f0c2c');
+	(1,1,74,'Homepage','homepage',1,'Title',NULL,1,'2017-07-04 21:45:04','2017-07-04 22:01:04','1a7005ae-e418-40ab-aa9e-322250cf8d9e'),
+	(3,3,71,'404','error404',0,NULL,'{section.name|raw}',1,'2017-07-04 22:00:57','2017-07-04 22:01:04','a0f23f77-2806-46e9-a100-66aee2ffb017'),
+	(4,4,72,'Blog Channel','blogChannel',1,'Title',NULL,1,'2017-07-04 22:00:57','2017-07-04 22:01:04','8ec15887-70a9-461e-a5f4-8cf8ac2fd2c4'),
+	(5,5,73,'Blog Pages','blogPages',1,'Titel',NULL,1,'2017-07-04 22:00:57','2017-07-04 22:01:04','3fedf900-5788-4d98-ac62-8cbaff8b4086'),
+	(6,6,94,'Pages','pages',1,'Titel',NULL,1,'2017-07-04 22:00:57','2017-07-05 21:42:35','8d24947b-db81-4306-b38a-ede668f8bc92');
 
 /*!40000 ALTER TABLE `craft_entrytypes` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -689,11 +704,10 @@ LOCK TABLES `craft_entryversions` WRITE;
 
 INSERT INTO `craft_entryversions` (`id`, `entryId`, `sectionId`, `creatorId`, `locale`, `num`, `notes`, `data`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,2,1,1,'de',1,NULL,'{\"typeId\":\"1\",\"authorId\":null,\"title\":\"Homepage\",\"slug\":\"homepage\",\"postDate\":1498525340,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":[]}','2017-06-27 01:02:20','2017-06-27 01:02:20','c38d3f90-1800-405c-9d92-c481cecb7aa5'),
-	(2,2,1,1,'de',2,NULL,'{\"typeId\":null,\"authorId\":null,\"title\":\"Welcome to Ktest3.local!\",\"slug\":\"homepage\",\"postDate\":1498525340,\"expiryDate\":null,\"enabled\":\"1\",\"parentId\":null,\"fields\":{\"1\":\"<p>It\\u2019s true, this site doesn\\u2019t have a whole lot of content yet, but don\\u2019t worry. Our web developers have just installed the CMS, and they\\u2019re setting things up for the content editors this very moment. Soon Ktest3.local will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.<\\/p>\"}}','2017-06-27 01:02:20','2017-06-27 01:02:20','f95fccb8-afbe-4a5c-8be3-083a6b68e093'),
-	(4,4,3,1,'de',1,NULL,'{\"typeId\":\"3\",\"authorId\":null,\"title\":\"404\",\"slug\":\"404\",\"postDate\":1498525494,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":[]}','2017-06-27 01:04:54','2017-06-27 01:04:54','4f94f622-d2e3-4ef4-8ff6-edb1ddf77f49'),
-	(5,2,1,1,'de',3,'','{\"typeId\":null,\"authorId\":null,\"title\":\"Welcome to Ktest3.local!\",\"slug\":\"homepage\",\"postDate\":1498525340,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":{\"152\":\"\",\"62\":{\"new1\":{\"type\":\"14\",\"fields\":{\"photo\":[\"7\"],\"headline\":\"Summer Holiday\",\"linkit\":{\"type\":\"\",\"custom\":\"\",\"entry\":\"\",\"category\":\"\",\"customText\":\"\",\"target\":\"\"}}}},\"124\":{\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoTitleUnparsed\":\"\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoDescriptionUnparsed\":\"\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoKeywordsUnparsed\":\"\",\"seoImageIdSource\":\"field\",\"seoImageId\":\"\",\"seoImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageId\":\"\",\"seoTwitterImageTransform\":\"\",\"openGraphType\":\"article\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageId\":\"\",\"seoFacebookImageTransform\":\"\",\"robots\":\"all\"}}}','2017-06-27 01:12:21','2017-06-27 01:12:21','2cb509e1-1819-4230-9d63-2949aff672df'),
-	(6,9,6,1,'de',1,'','{\"typeId\":null,\"authorId\":\"1\",\"title\":\"Just a test\",\"slug\":\"just-a-test\",\"postDate\":1498526166,\"expiryDate\":null,\"enabled\":1,\"parentId\":\"\",\"fields\":{\"152\":\"\",\"42\":[\"7\"],\"43\":{\"new1\":{\"type\":\"9\",\"fields\":{\"headline\":\"\",\"linkit\":{\"type\":\"\",\"tel\":\"\",\"custom\":\"\",\"entry\":\"\",\"asset\":\"\",\"category\":\"\",\"customText\":\"\",\"target\":\"\"}}}},\"46\":{\"new1\":{\"type\":\"10\",\"fields\":{\"fullbleed\":\"\",\"ratio\":\"\"}}},\"124\":{\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoTitleUnparsed\":\"\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoDescriptionUnparsed\":\"\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoKeywordsUnparsed\":\"\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"featuredImage\",\"seoImageId\":\"\",\"seoImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"featuredImage\",\"seoTwitterImageId\":\"\",\"seoTwitterImageTransform\":\"\",\"openGraphType\":\"article\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"featuredImage\",\"seoFacebookImageId\":\"\",\"seoFacebookImageTransform\":\"\",\"robots\":\"all\"}}}','2017-06-27 01:16:06','2017-06-27 01:16:06','3102c4c7-858e-417b-97cd-a2a2c684a040');
+	(1,2,1,1,'de',1,NULL,'{\"typeId\":\"1\",\"authorId\":null,\"title\":\"Homepage\",\"slug\":\"homepage\",\"postDate\":1499204704,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":[]}','2017-07-04 21:45:04','2017-07-04 21:45:04','965e0e98-f141-4aec-8609-7432da3b9bbb'),
+	(2,2,1,1,'de',2,NULL,'{\"typeId\":null,\"authorId\":null,\"title\":\"Welcome to Ktest10.local!\",\"slug\":\"homepage\",\"postDate\":1499204704,\"expiryDate\":null,\"enabled\":\"1\",\"parentId\":null,\"fields\":{\"1\":\"<p>It\\u2019s true, this site doesn\\u2019t have a whole lot of content yet, but don\\u2019t worry. Our web developers have just installed the CMS, and they\\u2019re setting things up for the content editors this very moment. Soon Ktest10.local will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.<\\/p>\"}}','2017-07-04 21:45:04','2017-07-04 21:45:04','313a8fdb-8604-476e-a329-fd73002135fd'),
+	(4,4,3,1,'de',1,NULL,'{\"typeId\":\"3\",\"authorId\":null,\"title\":\"404\",\"slug\":\"404\",\"postDate\":1499205657,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":[]}','2017-07-04 22:00:57','2017-07-04 22:00:57','080283eb-ec61-454d-a304-325202f800b7'),
+	(5,2,1,1,'de',3,'','{\"typeId\":null,\"authorId\":null,\"title\":\"Home\",\"slug\":\"homepage\",\"postDate\":1499204704,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":{\"152\":\"\",\"62\":{\"new1\":{\"type\":\"14\",\"fields\":{\"photo\":\"\",\"headline\":\"\",\"linkit\":{\"type\":\"\",\"custom\":\"\",\"entry\":\"\",\"category\":\"\",\"customText\":\"\",\"target\":\"\"}}}},\"124\":{\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoTitleUnparsed\":\"\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoDescriptionUnparsed\":\"\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoKeywordsUnparsed\":\"\",\"seoImageIdSource\":\"field\",\"seoImageId\":\"\",\"seoImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageId\":\"\",\"seoTwitterImageTransform\":\"\",\"openGraphType\":\"article\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageId\":\"\",\"seoFacebookImageTransform\":\"\",\"robots\":\"all\"}}}','2017-07-05 21:33:19','2017-07-05 21:33:19','2bbf5018-03f0-48da-bc07-0cfe789d96b5');
 
 /*!40000 ALTER TABLE `craft_entryversions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -719,12 +733,12 @@ LOCK TABLES `craft_fieldgroups` WRITE;
 
 INSERT INTO `craft_fieldgroups` (`id`, `name`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'Default','2017-06-27 01:02:20','2017-06-27 01:02:20','2c0743f0-7fd9-4f9e-a7e8-4170bd739d30'),
-	(2,'Objects','2017-06-27 01:04:54','2017-06-27 01:04:54','e75e067a-d3bd-4e42-b576-a16c0ba2f9b0'),
-	(3,'ObjectsOptions','2017-06-27 01:04:54','2017-06-27 01:04:54','03eba6c1-fa01-4234-a4ac-7f39e850817d'),
-	(4,'Meta','2017-06-27 01:04:54','2017-06-27 01:04:54','e4e122c5-11fc-40b8-be84-06763763e307'),
-	(5,'Builder','2017-06-27 01:04:54','2017-06-27 01:04:54','cd6252dd-0fcc-40dd-acf4-23b270f96a9c'),
-	(6,'Globals','2017-06-27 01:04:54','2017-06-27 01:04:54','3bf68e8b-7cfc-444e-9675-1e88d85885d7');
+	(1,'Default','2017-07-04 21:45:04','2017-07-04 21:45:04','532e92f3-02b5-4956-b9dd-dc16911e4657'),
+	(2,'Objects','2017-07-04 22:00:57','2017-07-04 22:00:57','a0453dfc-cf44-4520-9585-0f733378bd5a'),
+	(3,'ObjectsOptions','2017-07-04 22:00:57','2017-07-04 22:00:57','d5bb4820-5a69-4d6f-a8a6-155b363f5e90'),
+	(4,'Meta','2017-07-04 22:00:57','2017-07-04 22:00:57','c41b9854-ec13-4a44-920c-070e286c3b96'),
+	(5,'Builder','2017-07-04 22:00:57','2017-07-04 22:00:57','5d770c42-f4f4-4348-a3d1-c27d96f3341f'),
+	(6,'Globals','2017-07-04 22:00:57','2017-07-04 22:00:57','834a367a-cfe0-4c3c-801a-a25e8dd2fa38');
 
 /*!40000 ALTER TABLE `craft_fieldgroups` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -760,177 +774,178 @@ LOCK TABLES `craft_fieldlayoutfields` WRITE;
 
 INSERT INTO `craft_fieldlayoutfields` (`id`, `layoutId`, `tabId`, `fieldId`, `required`, `sortOrder`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(4,13,3,5,0,1,'2017-06-27 01:06:41','2017-06-27 01:06:41','90beb1e1-a6ec-4d39-a5d4-113bc50a53be'),
-	(5,14,4,8,0,1,'2017-06-27 01:06:41','2017-06-27 01:06:41','69ce280f-73dc-49f8-9300-e1014b25d6cb'),
-	(6,15,5,11,0,1,'2017-06-27 01:06:41','2017-06-27 01:06:41','a0b94470-c2ff-45c7-a8db-5da79ac27ea6'),
-	(7,15,5,12,0,2,'2017-06-27 01:06:41','2017-06-27 01:06:41','e8c04b28-8457-423f-8fda-3bb3ae502232'),
-	(8,15,5,13,0,3,'2017-06-27 01:06:41','2017-06-27 01:06:41','c48f1363-9196-4ca4-ad8a-54fc020d791b'),
-	(9,15,5,14,0,4,'2017-06-27 01:06:41','2017-06-27 01:06:41','0ac700a0-ab63-4b48-b795-c198ae63e122'),
-	(10,16,6,16,0,1,'2017-06-27 01:06:42','2017-06-27 01:06:42','5fc9b409-cbac-4ec4-ad98-aefbe4d1771b'),
-	(11,16,6,17,0,2,'2017-06-27 01:06:42','2017-06-27 01:06:42','697b9efc-1598-4d53-a6b0-7d29d95ed4fb'),
-	(12,16,6,18,0,3,'2017-06-27 01:06:42','2017-06-27 01:06:42','d22cfe25-fabd-4ce3-bd66-06d9bc5cc8b3'),
-	(13,16,6,19,0,4,'2017-06-27 01:06:42','2017-06-27 01:06:42','b273ebd1-c8c4-4bc9-af4a-f644cb0877a2'),
-	(14,16,6,20,0,5,'2017-06-27 01:06:42','2017-06-27 01:06:42','1071c630-dc44-4f77-9ba7-7929bab5dc1f'),
-	(15,16,6,21,0,6,'2017-06-27 01:06:42','2017-06-27 01:06:42','021cb8eb-bdd2-44f7-acde-2ac4f05bf244'),
-	(16,17,7,23,0,1,'2017-06-27 01:06:42','2017-06-27 01:06:42','63e1936f-f847-4553-a1e9-8456fa63163a'),
-	(17,17,7,24,0,2,'2017-06-27 01:06:42','2017-06-27 01:06:42','aa0108c1-8a5a-47af-afad-61af0534c16b'),
-	(18,18,8,27,0,1,'2017-06-27 01:06:42','2017-06-27 01:06:42','49c4bf0a-1ceb-4a6a-b62b-8ea9fb4c5e16'),
-	(19,18,8,28,0,2,'2017-06-27 01:06:42','2017-06-27 01:06:42','89a2d9eb-d23f-4c52-883c-ae5090a7a81e'),
-	(20,19,9,34,0,1,'2017-06-27 01:06:42','2017-06-27 01:06:42','f632c555-258c-4bca-b971-435106af76ef'),
-	(21,19,9,35,0,2,'2017-06-27 01:06:42','2017-06-27 01:06:42','b0c9d19f-8e93-4ee0-a60b-e0221a2c2f01'),
-	(22,19,9,36,0,3,'2017-06-27 01:06:42','2017-06-27 01:06:42','9c5621ec-c0a8-4331-bb61-a6757c065093'),
-	(23,20,10,38,0,1,'2017-06-27 01:06:42','2017-06-27 01:06:42','3b69fae0-871a-498d-a985-4dd7c37a1ea7'),
-	(24,20,10,39,0,2,'2017-06-27 01:06:42','2017-06-27 01:06:42','df528104-716c-42d9-bcc1-118deac51968'),
-	(25,20,10,40,0,3,'2017-06-27 01:06:42','2017-06-27 01:06:42','3ca5ef35-1814-4143-80d7-4850200f9ad4'),
-	(26,20,10,41,0,4,'2017-06-27 01:06:42','2017-06-27 01:06:42','e2f7e027-955a-4edf-9b24-776e9b99a3f9'),
-	(27,21,11,44,0,1,'2017-06-27 01:06:42','2017-06-27 01:06:42','510f50e2-02a5-4f25-8b6f-0829172e1c90'),
-	(28,21,11,45,0,2,'2017-06-27 01:06:42','2017-06-27 01:06:42','7c947b12-38fb-43b5-8a55-ba8630fa876a'),
-	(29,22,12,47,0,1,'2017-06-27 01:06:43','2017-06-27 01:06:43','bfb6e042-7ce5-4e42-9eb4-60c7fdad3a82'),
-	(30,22,12,48,0,2,'2017-06-27 01:06:43','2017-06-27 01:06:43','4171c499-f163-4772-bf76-f6f58fde64a0'),
-	(31,23,13,51,1,1,'2017-06-27 01:06:43','2017-06-27 01:06:43','f9721e0d-20e1-4632-b57c-560a10f9c472'),
-	(32,23,13,52,0,2,'2017-06-27 01:06:43','2017-06-27 01:06:43','55fd91fb-2d85-4a05-abd3-df73748df95f'),
-	(33,24,14,54,0,1,'2017-06-27 01:06:43','2017-06-27 01:06:43','f2300e53-a166-4bf8-80c4-58927da88e55'),
-	(34,24,14,55,0,2,'2017-06-27 01:06:43','2017-06-27 01:06:43','cd8ca4b4-bbcc-4721-bf3b-29e4c4516fba'),
-	(35,24,14,56,0,3,'2017-06-27 01:06:43','2017-06-27 01:06:43','81f0361c-8b86-459b-859c-85224c63e040'),
-	(36,25,15,59,0,1,'2017-06-27 01:06:43','2017-06-27 01:06:43','d6dcd71f-e1b8-4535-b1d2-08d515ff1a14'),
-	(37,25,15,60,0,2,'2017-06-27 01:06:43','2017-06-27 01:06:43','b2dafeb2-32ed-4f60-a520-ad51e5ae77e5'),
-	(38,25,15,61,0,3,'2017-06-27 01:06:43','2017-06-27 01:06:43','f87d6b29-ed14-42bf-8b0b-80bbaad6723e'),
-	(39,26,16,63,0,1,'2017-06-27 01:06:43','2017-06-27 01:06:43','e526f9c4-e29a-4d47-b17c-ff2234b1c34e'),
-	(40,26,16,64,0,2,'2017-06-27 01:06:43','2017-06-27 01:06:43','83442741-8dca-4e20-8bec-c81e073e44e1'),
-	(41,26,16,65,0,3,'2017-06-27 01:06:43','2017-06-27 01:06:43','781e8df6-80a1-4f25-a9d9-54dbab05dd80'),
-	(42,27,17,69,0,1,'2017-06-27 01:06:43','2017-06-27 01:06:43','45d4e140-7433-427d-81f0-226e7759a5c9'),
-	(43,27,17,70,0,2,'2017-06-27 01:06:43','2017-06-27 01:06:43','17e27161-7a37-46e7-94b3-947a8de4b484'),
-	(44,27,17,71,0,3,'2017-06-27 01:06:43','2017-06-27 01:06:43','b5576d74-1b16-4377-8f87-a412561475e8'),
-	(45,28,18,73,0,1,'2017-06-27 01:06:44','2017-06-27 01:06:44','0a129a85-1205-42d2-9741-7f880f27696b'),
-	(46,28,18,74,0,2,'2017-06-27 01:06:44','2017-06-27 01:06:44','712e6914-e1e3-4b38-93c0-7bc2ddda5384'),
-	(47,29,19,76,0,1,'2017-06-27 01:06:44','2017-06-27 01:06:44','a59b9c49-9790-409e-b351-c85f47121389'),
-	(48,29,19,77,0,2,'2017-06-27 01:06:44','2017-06-27 01:06:44','6870afe9-b3fa-4998-9fdd-a4151ca46d79'),
-	(49,30,20,80,0,1,'2017-06-27 01:06:44','2017-06-27 01:06:44','f5af12bf-4feb-40f8-9040-e95d9ae7b25d'),
-	(50,30,20,81,0,2,'2017-06-27 01:06:44','2017-06-27 01:06:44','246d6ce6-9266-4780-8ad7-bdb6dc4199af'),
-	(51,31,21,84,0,1,'2017-06-27 01:06:44','2017-06-27 01:06:44','0917d00a-a1a3-48ab-9ab8-667aad8cb59e'),
-	(52,31,21,85,0,2,'2017-06-27 01:06:44','2017-06-27 01:06:44','04e724f9-fe3d-46dc-a57c-06ed94ec7053'),
-	(53,32,22,87,0,1,'2017-06-27 01:06:44','2017-06-27 01:06:44','416dcc5f-42ce-4281-8b31-7fc9d07911c6'),
-	(54,32,22,88,0,2,'2017-06-27 01:06:44','2017-06-27 01:06:44','4fabd09b-1572-4386-a03e-2f86caf5ac90'),
-	(55,33,23,90,0,1,'2017-06-27 01:06:44','2017-06-27 01:06:44','14183b9f-d156-49d5-88e5-782cbdef9d12'),
-	(56,33,23,91,0,2,'2017-06-27 01:06:44','2017-06-27 01:06:44','251c1b96-838f-45cb-9704-03be86afe436'),
-	(57,33,23,92,0,3,'2017-06-27 01:06:44','2017-06-27 01:06:44','7f25dab9-479f-4e73-a5b9-2e8e5a03c249'),
-	(58,34,24,94,0,1,'2017-06-27 01:06:44','2017-06-27 01:06:44','0a158984-838e-4b16-88ed-7d7bed4b92d5'),
-	(59,34,24,95,0,2,'2017-06-27 01:06:44','2017-06-27 01:06:44','9c4400ca-56f0-4b30-8f60-49fce324dd93'),
-	(60,35,25,97,0,1,'2017-06-27 01:06:45','2017-06-27 01:06:45','ff8db5ca-8a5a-4abb-ac28-498986b686f0'),
-	(61,36,26,100,0,1,'2017-06-27 01:06:45','2017-06-27 01:06:45','db15c101-f195-488c-9e15-1c4491e629a9'),
-	(62,37,27,102,0,1,'2017-06-27 01:06:45','2017-06-27 01:06:45','19ac266d-d7e8-4747-a470-9215f505d95a'),
-	(63,37,27,103,0,2,'2017-06-27 01:06:45','2017-06-27 01:06:45','f1e5a39d-faee-4142-98be-120e5d9b1706'),
-	(64,37,27,104,0,3,'2017-06-27 01:06:45','2017-06-27 01:06:45','cdab6a21-a460-4938-950e-1c7482694a33'),
-	(65,37,27,105,0,4,'2017-06-27 01:06:45','2017-06-27 01:06:45','29f8218e-195d-44ce-a751-ec73521c3e5f'),
-	(66,37,27,106,0,5,'2017-06-27 01:06:45','2017-06-27 01:06:45','5365c34c-ea4a-44b7-844f-037754ee2ac6'),
-	(67,37,27,107,0,6,'2017-06-27 01:06:45','2017-06-27 01:06:45','86d770f6-793d-4907-89f5-ed15d4a5b735'),
-	(68,37,27,108,0,7,'2017-06-27 01:06:45','2017-06-27 01:06:45','74353547-0505-40b4-9cfd-6e53e68fc25c'),
-	(69,38,28,111,0,1,'2017-06-27 01:06:45','2017-06-27 01:06:45','61661c76-3ffc-462d-aab2-fe8f55bf3cbd'),
-	(70,38,28,112,0,2,'2017-06-27 01:06:45','2017-06-27 01:06:45','517e75b0-28f1-4d3c-8fd8-c3f710b282f3'),
-	(71,38,28,113,0,3,'2017-06-27 01:06:45','2017-06-27 01:06:45','738fbc76-adef-4756-ad0a-4af4152388e9'),
-	(72,39,29,115,0,1,'2017-06-27 01:06:45','2017-06-27 01:06:45','9d8417f3-5a11-4cc6-9fa5-058ff0c64bb8'),
-	(73,39,29,116,0,2,'2017-06-27 01:06:45','2017-06-27 01:06:45','7ce959ab-9cb8-47cd-878d-37a0be29c385'),
-	(74,39,29,117,0,3,'2017-06-27 01:06:45','2017-06-27 01:06:45','9033a826-ceff-473d-aeca-725275fea523'),
-	(75,40,30,119,0,1,'2017-06-27 01:06:45','2017-06-27 01:06:45','4d41272d-85f6-40f3-b45e-637d44f6f6bb'),
-	(76,40,30,120,0,2,'2017-06-27 01:06:45','2017-06-27 01:06:45','1fb766ce-5872-4778-8718-ccc991c82158'),
-	(77,40,30,121,0,3,'2017-06-27 01:06:45','2017-06-27 01:06:45','2d49562f-b4ab-41e9-bb5a-dc4b3f40bef7'),
-	(78,40,30,122,0,4,'2017-06-27 01:06:45','2017-06-27 01:06:45','1c050936-80d8-4b89-86b2-b9b9152f11dd'),
-	(79,41,31,126,0,1,'2017-06-27 01:06:46','2017-06-27 01:06:46','fffb6737-36c7-48c7-bc27-3b2e166bb70e'),
-	(80,41,31,127,0,2,'2017-06-27 01:06:46','2017-06-27 01:06:46','a7183231-22fb-42ad-bd00-4d932234307f'),
-	(81,42,32,129,0,1,'2017-06-27 01:06:46','2017-06-27 01:06:46','50a712b9-a438-4ba1-8553-328dd86a47b2'),
-	(82,43,33,131,0,1,'2017-06-27 01:06:46','2017-06-27 01:06:46','9bc3779d-2ad5-4490-a18e-0af61c6e18c6'),
-	(83,43,33,132,0,2,'2017-06-27 01:06:46','2017-06-27 01:06:46','e31c5475-1c51-4dbe-9196-9cc92b02f109'),
-	(84,43,33,133,0,3,'2017-06-27 01:06:46','2017-06-27 01:06:46','7531793a-6312-4d5b-9e6c-755ae5295060'),
-	(85,43,33,134,0,4,'2017-06-27 01:06:46','2017-06-27 01:06:46','4eca4cac-d2a2-4e1f-bb34-c3d398164941'),
-	(86,43,33,135,0,5,'2017-06-27 01:06:46','2017-06-27 01:06:46','29f59338-5dfd-473b-9f9d-791d557688fe'),
-	(87,43,33,136,0,6,'2017-06-27 01:06:46','2017-06-27 01:06:46','6af94cfe-8a20-45e7-9f40-bad7ca5ed6c2'),
-	(88,44,34,138,0,1,'2017-06-27 01:06:46','2017-06-27 01:06:46','dd3615b3-254b-4339-9c36-c51012dcea5b'),
-	(89,44,34,139,0,2,'2017-06-27 01:06:46','2017-06-27 01:06:46','dd3b7d42-72d9-47d1-84ea-3a5a69bc05df'),
-	(90,44,34,140,0,3,'2017-06-27 01:06:46','2017-06-27 01:06:46','46788bef-a1db-4a6d-b158-47e2b60701ec'),
-	(91,44,34,141,0,4,'2017-06-27 01:06:46','2017-06-27 01:06:46','c33b7eff-e42b-47a3-8898-2bd2265b5cea'),
-	(92,44,34,142,0,5,'2017-06-27 01:06:46','2017-06-27 01:06:46','24bc9942-4dee-44b8-b049-f275ce6fe40b'),
-	(93,44,34,143,0,6,'2017-06-27 01:06:46','2017-06-27 01:06:46','8369a0d3-955d-4552-9b5a-5378c64fc744'),
-	(94,45,35,145,0,1,'2017-06-27 01:06:46','2017-06-27 01:06:46','2a41effb-fd48-4ca6-9cea-e0ca847bd57b'),
-	(95,45,35,146,0,2,'2017-06-27 01:06:46','2017-06-27 01:06:46','787ab031-6e07-4c0d-8acd-26f4fdc01e1e'),
-	(96,45,35,147,0,3,'2017-06-27 01:06:46','2017-06-27 01:06:46','89e5cba9-ab0b-4722-b5ce-ff53c719b712'),
-	(97,46,36,151,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','8c3f1831-9397-4d92-ace5-3bcc1b9cfbc9'),
-	(98,47,37,57,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','65bb7da9-30f4-4603-afec-7bdff781736f'),
-	(99,47,38,58,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','80f9dd0d-e947-41f4-b88a-1c29a16a4a76'),
-	(100,48,39,98,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','82845fb3-b121-44a2-b720-7bb10d1a35a3'),
-	(101,48,40,99,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','01122b4d-0e9b-417c-8f7e-014e7b7b615b'),
-	(102,49,41,82,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','45adb78c-4f0b-4cb8-a8bc-524a5944c907'),
-	(103,49,42,83,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','b4602377-b4a7-47fe-8b20-d88d8a8ec269'),
-	(104,50,43,78,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','3998f436-ed98-417e-800a-8de51276b210'),
-	(105,50,44,79,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','46bc5609-a92e-448c-b45c-299378ed54c0'),
-	(106,51,45,93,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','5c1d7db3-0e26-4599-b6e3-c7ddac432660'),
-	(107,51,46,96,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','90c5553f-5451-4248-a689-35864563a08e'),
-	(108,52,47,86,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','5174590c-d868-45d0-bc71-9acbecf29c57'),
-	(109,52,48,89,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','5120908f-b5d0-4d8c-a8b6-0d6ded8931ce'),
-	(110,53,49,33,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','14238f68-7b74-48b5-abcb-7ba8b3b59eef'),
-	(111,53,50,37,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','dd02e46c-5eef-44d1-9d98-d330ae7183ce'),
-	(112,54,51,15,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','6cd00f7c-0e62-4094-a4e5-6bd917855335'),
-	(113,54,52,22,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','9785de21-e948-4448-a5e1-27412575afa9'),
-	(114,55,53,50,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','24d57396-15fd-4abe-ab8d-9a7ac2c45766'),
-	(115,55,54,53,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','78c34b65-74c5-42ad-b76a-83dfea45b152'),
-	(116,56,55,67,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','0133db1e-37a9-459b-8e4a-c4b3b73f75f9'),
-	(117,56,56,68,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','cbb043d3-1252-4fc6-8461-8f9da122065a'),
-	(118,57,57,25,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','8f06589c-ccf3-4d0e-aea1-e5e8857dacf6'),
-	(119,57,58,26,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','57a86c15-37c1-4fd4-bb64-de70ff9ceee9'),
-	(120,58,59,9,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','6e6302de-4562-400d-b909-0e2b1619ace2'),
-	(121,58,60,10,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','b3b96394-b4e3-445c-be1b-34f59bc21fe2'),
-	(122,59,61,125,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','ec7c9af1-436b-431a-938c-85bb86f56162'),
-	(123,59,62,128,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','3a2710d3-69bc-405f-9b05-374fcbcf9e48'),
-	(124,60,63,72,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','5d41ef59-c08f-4bb2-8e9c-27ea556c535a'),
-	(125,60,64,75,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','c58e5ecc-1efa-472d-89fb-b40ff4e8998d'),
-	(126,61,65,6,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','4e890afe-af0b-402d-b688-c497610cc15e'),
-	(127,61,66,7,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','af02ff67-08db-4164-9b92-4663a37b58c5'),
-	(128,62,67,66,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','7841c15d-08f7-451f-b6fc-d74afae62762'),
-	(129,63,68,148,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','d61de2a0-8c5d-49d4-b097-d4331b523200'),
-	(130,64,69,123,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','e71c3ff2-8ffe-45cf-a4a0-c875735ee2d5'),
-	(131,64,70,118,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','4e367f64-f802-4b3c-9709-9ab8b1e01b33'),
-	(132,64,70,114,0,2,'2017-06-27 01:06:47','2017-06-27 01:06:47','30100827-c6ea-4d11-84cc-065ac7ead75d'),
-	(133,64,70,101,0,3,'2017-06-27 01:06:47','2017-06-27 01:06:47','4042575a-6135-4a27-9f25-b38aa2a52134'),
-	(134,65,71,109,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','247d7e8b-c88d-43f3-a2ce-0018a56e987c'),
-	(135,65,72,110,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','8b915f52-2164-419d-92fa-d4657f4371d4'),
-	(136,66,73,4,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','67d6f2e6-6afc-4c3d-ab9f-68f4da5278f1'),
-	(137,67,74,3,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','ab6e2519-1f92-4565-925e-126c96f3ec26'),
-	(138,68,75,150,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','5a41dd26-9567-433f-8728-0607a977a3e7'),
-	(139,69,76,149,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','2ed744f1-71b4-4b9e-b9cf-6219cc4b52d1'),
-	(140,70,77,152,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','5bfa8f0c-9db2-405f-a4c1-f9b89b18740f'),
-	(141,70,78,42,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','cf593971-c99c-4b08-b48e-7908f3427871'),
-	(142,70,78,46,0,2,'2017-06-27 01:06:47','2017-06-27 01:06:47','a8a61f0b-c25a-405e-8d04-af90a1779737'),
-	(143,70,78,43,0,3,'2017-06-27 01:06:47','2017-06-27 01:06:47','bf35abcc-d34e-44da-909d-05dd2e57421a'),
-	(144,71,79,1,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','7def5aa9-217b-40b5-93d0-d6ceadb448fb'),
-	(145,71,79,152,0,2,'2017-06-27 01:06:47','2017-06-27 01:06:47','73a504cb-ed28-4580-9343-e1ebb2f38318'),
-	(146,71,80,42,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','f78ef492-891c-406e-b2c2-1d701ba7ef2c'),
-	(147,71,80,46,0,2,'2017-06-27 01:06:47','2017-06-27 01:06:47','aadf227a-507f-4ea9-939c-139bcea7f792'),
-	(148,71,81,29,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','1d90fd89-988a-4f19-97ef-19d23d3b7a06'),
-	(149,71,81,30,0,2,'2017-06-27 01:06:47','2017-06-27 01:06:47','cac9324a-1f6f-40e4-88f7-a2fda427ebf0'),
-	(150,71,82,124,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','295d703d-f947-4589-aa1d-cf62f1f16b09'),
-	(151,72,83,152,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','a74ce961-cec5-48e7-b5a0-cbd26b4e939e'),
-	(152,72,84,42,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','9f770780-55d2-41d0-b196-c0f4869e8643'),
-	(153,72,84,46,0,2,'2017-06-27 01:06:47','2017-06-27 01:06:47','1b225e00-7948-45ca-92df-ba54283ee494'),
-	(154,72,84,43,0,3,'2017-06-27 01:06:47','2017-06-27 01:06:47','544cba1e-1652-4263-8fbc-032c3f7e5173'),
-	(155,72,85,124,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','18f52294-3745-457a-b391-add2661abb6d'),
-	(156,73,86,152,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','2123a00f-f277-4672-b22a-ce11931acb29'),
-	(157,73,87,62,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','a57acd8d-a149-446b-b578-56ad8ad351f9'),
-	(158,73,88,124,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','769d05ea-f226-4685-8a08-4bb8afb10319'),
-	(159,74,89,152,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','c0a84e4e-cadd-4362-81bf-2f24fbcad270'),
-	(160,74,90,42,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','0d9bdcc0-5390-4d55-a80c-8c3ce0c9096a'),
-	(161,74,90,46,0,2,'2017-06-27 01:06:47','2017-06-27 01:06:47','245b94c4-a71d-4405-b906-98787e200f5e'),
-	(162,74,90,43,0,3,'2017-06-27 01:06:47','2017-06-27 01:06:47','b137fae6-9c69-40f9-8f6a-c1beeffcdaed'),
-	(163,74,91,124,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','4694c354-a1a1-4abc-bcca-2723802c3b07'),
-	(164,75,92,31,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','469ac943-d04a-41e0-a51f-955d997c819a'),
-	(165,76,93,144,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','23423d91-9c80-48b6-a089-1fc16815afc0'),
-	(166,76,93,32,0,2,'2017-06-27 01:06:47','2017-06-27 01:06:47','8c86e261-f92d-4151-ab31-314f1f9f01f3'),
-	(167,77,94,1,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','11a738ee-4842-471e-a570-7305b2a74814'),
-	(168,77,94,152,0,2,'2017-06-27 01:06:47','2017-06-27 01:06:47','d9ee913e-6169-4e8d-ad24-a9acedeadb02'),
-	(169,77,95,42,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','b674d2db-650c-41ef-bc7e-c608fd883e4c'),
-	(170,77,95,46,0,2,'2017-06-27 01:06:47','2017-06-27 01:06:47','4bd8e687-3097-4645-8517-0492c9ff6d2d'),
-	(171,77,95,43,0,3,'2017-06-27 01:06:47','2017-06-27 01:06:47','75d3e37d-4dca-4564-b394-7b0a8a431f93'),
-	(172,77,96,124,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','61651e5e-d738-43eb-8488-19173b5c4a97'),
-	(173,78,97,137,0,1,'2017-06-27 01:06:47','2017-06-27 01:06:47','5b7dae2b-5faa-4f51-9bbe-720532a31806'),
-	(174,78,97,130,0,2,'2017-06-27 01:06:47','2017-06-27 01:06:47','dc03a202-54ea-4c48-9a3f-3e0ebf554dcc');
+	(4,13,3,5,0,1,'2017-07-04 22:00:58','2017-07-04 22:00:58','c952eba5-d086-4850-b546-d67d6645e953'),
+	(5,14,4,8,0,1,'2017-07-04 22:00:58','2017-07-04 22:00:58','244da357-ea8a-45f6-a8ec-de2a8bc68476'),
+	(16,17,7,23,0,1,'2017-07-04 22:00:59','2017-07-04 22:00:59','3def6ada-5764-43ea-b3c9-a5064d7d04a4'),
+	(17,17,7,24,0,2,'2017-07-04 22:00:59','2017-07-04 22:00:59','784d7cdc-9f5c-4128-968d-1ca37bdb2bb2'),
+	(23,20,10,38,0,1,'2017-07-04 22:00:59','2017-07-04 22:00:59','0f2fc300-b891-4075-8cdd-757ee82a884f'),
+	(24,20,10,39,0,2,'2017-07-04 22:00:59','2017-07-04 22:00:59','1a5ce808-3d79-493b-a657-0296632fce9b'),
+	(25,20,10,40,0,3,'2017-07-04 22:00:59','2017-07-04 22:00:59','4070eb47-3e0d-438c-b18f-da5113816554'),
+	(26,20,10,41,0,4,'2017-07-04 22:00:59','2017-07-04 22:00:59','bb73a3c0-1de7-4a1c-8565-e089ebdba934'),
+	(29,22,12,47,0,1,'2017-07-04 22:00:59','2017-07-04 22:00:59','b49c1376-cf82-46f3-bb2b-e9de5ff1242b'),
+	(30,22,12,48,0,2,'2017-07-04 22:00:59','2017-07-04 22:00:59','df91d248-40f5-4aba-9d6a-ae087aedb97d'),
+	(36,25,15,59,0,1,'2017-07-04 22:01:00','2017-07-04 22:01:00','b485879e-9470-49af-bb43-f64590a46fa3'),
+	(37,25,15,60,0,2,'2017-07-04 22:01:00','2017-07-04 22:01:00','2aa54c60-48df-425c-8177-cabdd8b3d045'),
+	(38,25,15,61,0,3,'2017-07-04 22:01:00','2017-07-04 22:01:00','36610260-7668-4daa-89de-a694a25166c2'),
+	(47,29,19,76,0,1,'2017-07-04 22:01:01','2017-07-04 22:01:01','aefe510e-cf8a-471a-9a1f-67d6320927aa'),
+	(48,29,19,77,0,2,'2017-07-04 22:01:01','2017-07-04 22:01:01','9040cc3f-9972-470c-8e2f-5ae0ad694832'),
+	(49,30,20,80,0,1,'2017-07-04 22:01:01','2017-07-04 22:01:01','13811e82-1343-434c-b1db-67d017146e88'),
+	(50,30,20,81,0,2,'2017-07-04 22:01:01','2017-07-04 22:01:01','b290bb17-237b-45b6-9a46-5cbcae44a0cb'),
+	(51,31,21,84,0,1,'2017-07-04 22:01:01','2017-07-04 22:01:01','da2079f9-439c-4027-9fb6-aa4d76c99425'),
+	(52,31,21,85,0,2,'2017-07-04 22:01:01','2017-07-04 22:01:01','37076be0-c3ee-4a73-bac4-bc93d3e590ec'),
+	(55,33,23,90,0,1,'2017-07-04 22:01:01','2017-07-04 22:01:01','6f1f9087-4755-4417-82ce-37e50fe5f134'),
+	(56,33,23,91,0,2,'2017-07-04 22:01:01','2017-07-04 22:01:01','266230c3-4453-49b5-8baa-daec3814b49b'),
+	(57,33,23,92,0,3,'2017-07-04 22:01:01','2017-07-04 22:01:01','c1e00170-bd2c-4b80-a749-693666fa65d8'),
+	(60,35,25,97,0,1,'2017-07-04 22:01:01','2017-07-04 22:01:01','50391117-d74b-46b0-a7bf-c0efe3430ad3'),
+	(61,36,26,100,0,1,'2017-07-04 22:01:02','2017-07-04 22:01:02','3a394bd1-d903-4ce3-b692-03b0211cd5b3'),
+	(62,37,27,102,0,1,'2017-07-04 22:01:02','2017-07-04 22:01:02','67a5d6b9-8106-4b18-ac2a-30a71ce07bde'),
+	(63,37,27,103,0,2,'2017-07-04 22:01:02','2017-07-04 22:01:02','a4240225-0248-4829-958a-1556ab8d375a'),
+	(64,37,27,104,0,3,'2017-07-04 22:01:02','2017-07-04 22:01:02','cf8cedaf-1064-4871-9cf6-b80436fb61cd'),
+	(65,37,27,105,0,4,'2017-07-04 22:01:02','2017-07-04 22:01:02','cee7cf76-149f-4220-ba75-1f358e6cc45d'),
+	(66,37,27,106,0,5,'2017-07-04 22:01:02','2017-07-04 22:01:02','de524a1d-ba6e-4746-80f5-a4c1ba3df0e4'),
+	(67,37,27,107,0,6,'2017-07-04 22:01:02','2017-07-04 22:01:02','491cf0b3-a13f-4ee9-8d7a-3dd434681ffa'),
+	(68,37,27,108,0,7,'2017-07-04 22:01:02','2017-07-04 22:01:02','bbc63950-649c-4683-a60a-01d4a3b0e1d7'),
+	(69,38,28,111,0,1,'2017-07-04 22:01:02','2017-07-04 22:01:02','10fbba00-13f3-4889-a2e6-28f924746731'),
+	(70,38,28,112,0,2,'2017-07-04 22:01:02','2017-07-04 22:01:02','b25be3fe-3ab3-476a-a030-dcd4ec81d704'),
+	(71,38,28,113,0,3,'2017-07-04 22:01:02','2017-07-04 22:01:02','541b5ff7-236e-43d3-8991-e0ad5bd09df3'),
+	(72,39,29,115,0,1,'2017-07-04 22:01:02','2017-07-04 22:01:02','5f37e457-f604-4225-87a8-16211890cf1a'),
+	(73,39,29,116,0,2,'2017-07-04 22:01:02','2017-07-04 22:01:02','5b87580e-95cc-4b45-9c72-7374d0eb49c9'),
+	(74,39,29,117,0,3,'2017-07-04 22:01:02','2017-07-04 22:01:02','66227b30-ca14-4e4f-93ed-f711e246f4ca'),
+	(75,40,30,119,0,1,'2017-07-04 22:01:02','2017-07-04 22:01:02','85ab57c2-e02a-414c-b943-75af918b3874'),
+	(76,40,30,120,0,2,'2017-07-04 22:01:02','2017-07-04 22:01:02','c6b9db23-c623-4df7-90d8-786f8ce83827'),
+	(77,40,30,121,0,3,'2017-07-04 22:01:02','2017-07-04 22:01:02','9ab6a940-5942-49f3-abb4-3769d38bb8a6'),
+	(78,40,30,122,0,4,'2017-07-04 22:01:02','2017-07-04 22:01:02','43c6de9f-2762-47b6-a05a-6523d47afbf9'),
+	(81,42,32,129,0,1,'2017-07-04 22:01:03','2017-07-04 22:01:03','20b82be2-000d-45ea-975f-9ed4661f8312'),
+	(82,43,33,131,0,1,'2017-07-04 22:01:03','2017-07-04 22:01:03','d67f5453-8769-4b7d-b189-56197d230619'),
+	(83,43,33,132,0,2,'2017-07-04 22:01:03','2017-07-04 22:01:03','993e5776-c2db-40c1-b70d-efab3deebe03'),
+	(84,43,33,133,0,3,'2017-07-04 22:01:03','2017-07-04 22:01:03','4a435e67-dd8c-496c-9108-570f01195232'),
+	(85,43,33,134,0,4,'2017-07-04 22:01:03','2017-07-04 22:01:03','f85e827f-6f83-4b25-809e-44b1dc197d25'),
+	(86,43,33,135,0,5,'2017-07-04 22:01:03','2017-07-04 22:01:03','97e1b538-e5e8-4dab-8048-309d95f919c5'),
+	(87,43,33,136,0,6,'2017-07-04 22:01:03','2017-07-04 22:01:03','62d29ab4-ee80-4f55-8fed-a0c6c6a3e139'),
+	(88,44,34,138,0,1,'2017-07-04 22:01:03','2017-07-04 22:01:03','07f7541c-545b-4e02-acfa-8d43d0b06b48'),
+	(89,44,34,139,0,2,'2017-07-04 22:01:03','2017-07-04 22:01:03','10ff86de-3182-46a7-b95d-83305f073f47'),
+	(90,44,34,140,0,3,'2017-07-04 22:01:03','2017-07-04 22:01:03','aff44290-5af4-43fd-8ae1-6d06092fe3a7'),
+	(91,44,34,141,0,4,'2017-07-04 22:01:03','2017-07-04 22:01:03','7f25814c-f888-4a31-9515-41057cccb158'),
+	(92,44,34,142,0,5,'2017-07-04 22:01:03','2017-07-04 22:01:03','d3b4991a-555a-4ccf-90d6-703c321b13c0'),
+	(93,44,34,143,0,6,'2017-07-04 22:01:03','2017-07-04 22:01:03','aeed4c68-aa27-44da-a526-0d651b36aeff'),
+	(97,46,36,151,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','0ade2f3e-3ec3-493d-b431-30cd37845fb9'),
+	(98,47,37,57,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','9a6c79af-8687-4035-ae8b-2c82c90de573'),
+	(99,47,38,58,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','9a3b8d87-60e6-4c4f-915e-46f7fb357261'),
+	(100,48,39,98,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','e081fd16-e24e-4f47-994d-8379cd9be725'),
+	(101,48,40,99,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','d36844cc-46b7-423a-8ede-b47fc7b79c7a'),
+	(102,49,41,82,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','37c25c47-b706-4af1-83a2-54b585f2fc71'),
+	(103,49,42,83,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','a739ba0f-c20e-4d1b-9471-c3ce41b3c0ca'),
+	(104,50,43,78,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','b7e00da9-ce64-499b-82b3-968f1dfc40e8'),
+	(105,50,44,79,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','a7b0fbc7-1eca-46e5-a6c4-39c1d1c5b258'),
+	(106,51,45,93,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','d485a233-6c7b-4148-b48c-ed60140ed4cd'),
+	(107,51,46,96,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','c4a1f986-d1fb-4039-98ff-ca233390f8ed'),
+	(108,52,47,86,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','71a92a06-2d91-4abc-98d7-bb81c2ceff64'),
+	(109,52,48,89,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','0aff90aa-b2c1-4607-a4a0-64ded1e18dc0'),
+	(110,53,49,33,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','845363e5-4fd2-44c4-b57f-cc9e65302cf5'),
+	(111,53,50,37,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','c8366e1e-4051-4216-a4bb-6092cd08c2da'),
+	(112,54,51,15,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','39e8105d-aef0-4420-a74a-ce798b8dbb50'),
+	(113,54,52,22,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','b1339a2f-27e6-4b50-815f-a883148e9674'),
+	(114,55,53,50,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','86ae9bb0-aa4f-40d8-a096-2e9fd87f181b'),
+	(115,55,54,53,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','7eb8b7cd-0ff6-4f35-8cfb-610f9b3348dd'),
+	(116,56,55,67,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','30f6b0fd-8ef0-4b2d-9d5f-e5edaea53ad5'),
+	(117,56,56,68,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','1a8cbfb5-b50c-47c9-90ec-02e0077052b1'),
+	(118,57,57,25,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','a9279a8e-4655-4339-9569-ea6f151ea892'),
+	(119,57,58,26,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','ca24a5c3-16f9-4a9f-a8b4-a10edab54ff7'),
+	(120,58,59,9,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','0643a574-7a33-4b02-ac1f-b8970aff6734'),
+	(121,58,60,10,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','971cf587-2c68-4861-a42b-758677ff1da1'),
+	(122,59,61,125,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','8a54113e-f2ae-4e03-8227-f258e171b487'),
+	(123,59,62,128,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','a13b2e8a-3463-48fa-9ffd-ecbe6dc3df80'),
+	(124,60,63,72,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','0ea7c921-9405-468a-bdde-203a798855b9'),
+	(125,60,64,75,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','56507a5d-eb54-4eb6-b2f8-c43d1132e068'),
+	(126,61,65,6,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','46a69d75-0844-4a3a-afbe-09ac08692429'),
+	(127,61,66,7,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','365a9f64-bfbc-4014-8ccc-38d0a054642c'),
+	(128,62,67,66,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','7a74ec81-2dcd-4377-874d-41f84a3d21f6'),
+	(129,63,68,148,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','b97e53ac-460f-43f4-b9b4-fb87cf9d0a00'),
+	(130,64,69,123,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','075d21ce-039b-44a7-be73-6195b416073a'),
+	(131,64,70,118,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','a19ae68c-ba91-4605-ace4-dfce1e92c8a2'),
+	(132,64,70,114,0,2,'2017-07-04 22:01:04','2017-07-04 22:01:04','d05043cc-0bc8-4e31-85fe-155ae8b7ff3f'),
+	(133,64,70,101,0,3,'2017-07-04 22:01:04','2017-07-04 22:01:04','fcafd6fa-3856-4e9e-9d0d-fc66ea8d3ce8'),
+	(134,65,71,109,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','3250b501-9b49-423d-9a9a-362bdd2ab45d'),
+	(135,65,72,110,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','7f973354-5d5b-488c-94ad-42ffae5a5d9c'),
+	(136,66,73,4,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','19765b04-4314-4bc3-82bc-4427c678196e'),
+	(137,67,74,3,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','e6f2deab-27d5-4199-9fb7-abefe9e7329c'),
+	(138,68,75,150,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','7dda3ddf-35cc-43cc-91ca-a347e22b06c8'),
+	(139,69,76,149,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','4ff3a0bd-449e-404c-b7af-60f9e962c0a0'),
+	(140,70,77,49,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','81178906-1dd3-4dfe-8de4-2b72dbd1ba3e'),
+	(141,71,78,152,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','56dfe7e8-5d2e-4317-a383-b3aa9f2f6a51'),
+	(142,71,79,42,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','30c6c4c3-6b33-41a7-9785-feeda0e15e37'),
+	(143,71,79,46,0,2,'2017-07-04 22:01:04','2017-07-04 22:01:04','a5606d9b-2f38-4706-8c0f-8af8480e585e'),
+	(144,71,79,43,0,3,'2017-07-04 22:01:04','2017-07-04 22:01:04','128f9f04-107d-4dfc-9949-158b1d2d101a'),
+	(145,72,80,1,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','a6795423-1509-4a68-80b7-d5e4c21d3891'),
+	(146,72,80,152,0,2,'2017-07-04 22:01:04','2017-07-04 22:01:04','1702185e-b6b7-44b7-bc07-9a85aaaa527c'),
+	(147,72,81,42,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','372e3ef9-72f2-410d-90d7-4abee81a38fa'),
+	(148,72,81,46,0,2,'2017-07-04 22:01:04','2017-07-04 22:01:04','bbb415e0-5f2e-4bdc-86b1-c93132190fda'),
+	(149,72,82,29,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','8860da9e-54b7-4d6c-a42b-e79af100f906'),
+	(150,72,82,30,0,2,'2017-07-04 22:01:04','2017-07-04 22:01:04','2322e3ea-4358-4d46-898c-1e012adbd149'),
+	(151,72,83,124,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','07ccf1c1-6fed-4db3-8b57-5d9315249399'),
+	(152,73,84,152,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','422022b0-188b-48ff-a0ed-e7104da62a82'),
+	(153,73,85,42,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','bdf6bff1-d658-4c0b-a37c-72d73547aaef'),
+	(154,73,85,46,0,2,'2017-07-04 22:01:04','2017-07-04 22:01:04','b265b745-050e-4d25-8a69-b11126fcfb4d'),
+	(155,73,85,43,0,3,'2017-07-04 22:01:04','2017-07-04 22:01:04','3b1afbfe-849d-4908-aa77-7eb5046fcc5f'),
+	(156,73,86,124,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','4775b60e-ab7e-4730-b9e5-cffb77154846'),
+	(157,74,87,152,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','e6ed3bef-4465-4ec5-95b5-7247fac9c007'),
+	(158,74,88,62,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','7fda91c2-0f4d-43fb-8237-4a4621c2a66f'),
+	(159,74,89,124,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','a604e085-a279-42af-af6a-082a46c32672'),
+	(165,76,93,31,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','5402cfb9-4598-40f9-8a7f-dddb5e8a3bbe'),
+	(166,77,94,144,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','487f1e2d-80ee-4f04-bfc3-aa646fe22189'),
+	(167,77,94,32,0,2,'2017-07-04 22:01:04','2017-07-04 22:01:04','4569c2b4-8984-4b8b-b807-5056b74130da'),
+	(168,78,95,1,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','548fa82f-f87b-42a9-9660-896680bef8f1'),
+	(169,78,95,152,0,2,'2017-07-04 22:01:04','2017-07-04 22:01:04','9aae5bea-7909-4296-b9c6-a0872709d2f0'),
+	(170,78,96,42,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','78d585dc-5979-4e36-911e-0fbef241d348'),
+	(171,78,96,46,0,2,'2017-07-04 22:01:04','2017-07-04 22:01:04','ab77de9d-0460-43db-80c5-45b6ec80cbf7'),
+	(172,78,96,43,0,3,'2017-07-04 22:01:04','2017-07-04 22:01:04','4824f480-6463-4920-bfb3-32bf8ccca35e'),
+	(173,78,97,124,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','52b2f271-01a0-4901-bfa0-0700cf899fd3'),
+	(174,79,98,137,0,1,'2017-07-04 22:01:04','2017-07-04 22:01:04','b23035b6-bc28-452e-b923-c32789e1c359'),
+	(175,79,98,130,0,2,'2017-07-04 22:01:04','2017-07-04 22:01:04','6a2e4148-4bb6-4ad9-8fc7-c51ede6367bc'),
+	(176,80,99,145,0,1,'2017-07-04 22:15:15','2017-07-04 22:15:15','a3d32833-a034-428e-8387-a10cb9a89c61'),
+	(177,80,99,146,0,2,'2017-07-04 22:15:15','2017-07-04 22:15:15','41e7ea62-d467-428f-9fe0-3819f73b6f7f'),
+	(178,80,99,147,0,3,'2017-07-04 22:15:15','2017-07-04 22:15:15','b3dad32e-fb34-426e-af9d-72b10de19bcf'),
+	(179,81,100,44,0,1,'2017-07-04 22:15:50','2017-07-04 22:15:50','e0d6f6e2-b5f3-46a9-b8a9-b271b790a6b5'),
+	(180,81,100,45,0,2,'2017-07-04 22:15:50','2017-07-04 22:15:50','7ebc3c24-4af4-453a-ba1a-38edf44f51fc'),
+	(181,82,101,63,0,1,'2017-07-04 22:16:21','2017-07-04 22:16:21','8b07db6a-ea02-4968-8ef7-84baedc7ce77'),
+	(182,82,101,64,0,2,'2017-07-04 22:16:21','2017-07-04 22:16:21','90459f4b-98c8-404e-9500-a77d68829a1c'),
+	(183,82,101,65,0,3,'2017-07-04 22:16:21','2017-07-04 22:16:21','36376703-e735-4a39-94d7-69426a315e18'),
+	(184,83,102,16,0,1,'2017-07-05 19:45:58','2017-07-05 19:45:58','7a8cf315-ccaa-4203-86b3-a05cd5f3c940'),
+	(185,83,102,17,0,2,'2017-07-05 19:45:58','2017-07-05 19:45:58','e57f268b-34ed-4511-89b8-a0c584c14fb7'),
+	(186,83,102,18,0,3,'2017-07-05 19:45:58','2017-07-05 19:45:58','777fe323-23f8-40c3-94b2-48c3170901bb'),
+	(187,83,102,19,0,4,'2017-07-05 19:45:58','2017-07-05 19:45:58','79fe19ea-27d9-40f0-a052-9083fdb2560d'),
+	(188,83,102,20,0,5,'2017-07-05 19:45:58','2017-07-05 19:45:58','5c9843f1-b011-4c3b-947d-554ce1ddace5'),
+	(189,83,102,21,0,6,'2017-07-05 19:45:58','2017-07-05 19:45:58','499587de-ae10-48c3-a089-bb2ed21d7185'),
+	(190,84,103,34,0,1,'2017-07-05 19:46:26','2017-07-05 19:46:26','c449cb14-9993-49c4-87a2-e68f25b4e5dc'),
+	(191,84,103,35,0,2,'2017-07-05 19:46:26','2017-07-05 19:46:26','e21c21bd-bd8a-4004-a4f1-60605e47a458'),
+	(192,84,103,36,0,3,'2017-07-05 19:46:26','2017-07-05 19:46:26','10cd5d8e-de41-4d85-8fb2-730a5b2449b5'),
+	(193,85,104,51,1,1,'2017-07-05 19:47:03','2017-07-05 19:47:03','9293128d-1f7c-4a9a-a08d-523befb0abd6'),
+	(194,85,104,52,0,2,'2017-07-05 19:47:03','2017-07-05 19:47:03','7f7c0b29-9e24-405a-bd01-2af270d7bd63'),
+	(195,86,105,73,0,1,'2017-07-05 19:48:20','2017-07-05 19:48:20','12c9a754-a7f4-4e53-a677-b703322bfe24'),
+	(196,86,105,74,0,2,'2017-07-05 19:48:20','2017-07-05 19:48:20','30100ebc-7538-4b6e-935d-0c6511d241a7'),
+	(197,87,106,87,0,1,'2017-07-05 19:49:41','2017-07-05 19:49:41','de8defb5-341f-4082-a004-f1c3ad125cfa'),
+	(198,87,106,88,0,2,'2017-07-05 19:49:41','2017-07-05 19:49:41','1ba00fa5-2880-482b-b876-a98e273216ac'),
+	(199,88,107,94,0,1,'2017-07-05 19:50:10','2017-07-05 19:50:10','e76e52cf-10bb-41a9-9698-f2d413b4fe20'),
+	(200,88,107,95,0,2,'2017-07-05 19:50:10','2017-07-05 19:50:10','70618ba2-7f29-4eae-92fc-f790ea51a08c'),
+	(201,89,108,126,0,1,'2017-07-05 19:51:16','2017-07-05 19:51:16','89526e9c-c0a1-4d77-ad1d-adc047df7cf7'),
+	(202,89,108,127,0,2,'2017-07-05 19:51:16','2017-07-05 19:51:16','259ded10-e0ef-4e64-920c-ec63ad2c97d8'),
+	(203,90,109,11,0,1,'2017-07-05 19:58:39','2017-07-05 19:58:39','cf5c3068-4c17-44a0-be72-d255c49a6ad4'),
+	(204,90,109,12,0,2,'2017-07-05 19:58:39','2017-07-05 19:58:39','f6a03c73-e09a-45d2-9164-c5529c8afa40'),
+	(205,90,109,13,0,3,'2017-07-05 19:58:39','2017-07-05 19:58:39','7c2cbf46-135c-47c6-897c-240750dab1e2'),
+	(206,90,109,14,0,4,'2017-07-05 19:58:39','2017-07-05 19:58:39','068ae5df-f27a-421f-87c2-0c2b33ee70c2'),
+	(207,91,110,27,0,1,'2017-07-05 19:59:30','2017-07-05 19:59:30','4de72505-359b-4db6-be96-fb06f99ed353'),
+	(208,91,110,28,0,2,'2017-07-05 19:59:30','2017-07-05 19:59:30','9a7fae18-31b3-4cb5-8ad2-5495b5ccdedd'),
+	(209,92,111,54,0,1,'2017-07-05 20:01:59','2017-07-05 20:01:59','eb1eeb45-2c6e-4e88-8aef-a989f5600dde'),
+	(210,92,111,55,0,2,'2017-07-05 20:01:59','2017-07-05 20:01:59','8ed4a56c-4441-4198-8ff7-f881df926583'),
+	(211,92,111,56,0,3,'2017-07-05 20:01:59','2017-07-05 20:01:59','a027fa62-0143-4169-afb5-fd072caf766f'),
+	(212,93,112,69,0,1,'2017-07-05 20:03:04','2017-07-05 20:03:04','4705c281-a67c-4d6e-9862-231c7d576b18'),
+	(213,93,112,70,0,2,'2017-07-05 20:03:04','2017-07-05 20:03:04','2d92e231-78c8-4eb9-b30a-14cda89d1255'),
+	(214,93,112,71,0,3,'2017-07-05 20:03:04','2017-07-05 20:03:04','5528ba95-2583-4a9d-8266-29fe921fc81a'),
+	(215,94,113,152,0,1,'2017-07-05 21:42:35','2017-07-05 21:42:35','e1463f60-88ff-48df-a4d3-05364f07b574'),
+	(216,94,114,42,0,1,'2017-07-05 21:42:35','2017-07-05 21:42:35','964e0575-25af-4e48-b82d-e47d6ad64315'),
+	(217,94,114,46,0,2,'2017-07-05 21:42:35','2017-07-05 21:42:35','e1ce04db-e095-40a9-b116-8a812b5e6ec7'),
+	(218,94,114,43,0,3,'2017-07-05 21:42:35','2017-07-05 21:42:35','1ddf4b04-43f3-49b9-8d0b-d218efa97183'),
+	(219,94,115,124,0,1,'2017-07-05 21:42:35','2017-07-05 21:42:35','54d7a372-8749-41a0-a7db-2fd9f6026d84');
 
 /*!40000 ALTER TABLE `craft_fieldlayoutfields` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -956,74 +971,74 @@ LOCK TABLES `craft_fieldlayouts` WRITE;
 
 INSERT INTO `craft_fieldlayouts` (`id`, `type`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'Tag','2017-06-27 01:02:20','2017-06-27 01:02:20','26afd537-fb6c-4b41-b386-c195cd824e72'),
-	(10,'Asset','2017-06-27 01:04:54','2017-06-27 01:04:54','d4e9bb5e-9e44-4c98-9fba-971353a8998c'),
-	(13,'SuperTable_Block','2017-06-27 01:06:41','2017-06-27 01:06:41','61153c0a-cd79-49c4-808f-5e99a7ac625a'),
-	(14,'SuperTable_Block','2017-06-27 01:06:41','2017-06-27 01:06:41','bd827d00-6244-4d02-808a-883dcabf2b82'),
-	(15,'SuperTable_Block','2017-06-27 01:06:41','2017-06-27 01:06:41','f16ee415-074c-4b70-bf45-a76b65cb9750'),
-	(16,'SuperTable_Block','2017-06-27 01:06:42','2017-06-27 01:06:42','fbbcbd88-f697-42d1-a070-1cd0f56839ce'),
-	(17,'SuperTable_Block','2017-06-27 01:06:42','2017-06-27 01:06:42','87fdbc13-61c0-447b-8138-867817a966b8'),
-	(18,'SuperTable_Block','2017-06-27 01:06:42','2017-06-27 01:06:42','4226f213-f85b-49bb-836b-dc1bba12e17d'),
-	(19,'SuperTable_Block','2017-06-27 01:06:42','2017-06-27 01:06:42','aa41b26d-5187-4885-8c9d-00321e888907'),
-	(20,'SuperTable_Block','2017-06-27 01:06:42','2017-06-27 01:06:42','89c61e06-1951-4b80-8e21-73ebcd9c213f'),
-	(21,'SuperTable_Block','2017-06-27 01:06:42','2017-06-27 01:06:42','9e75cdbc-78dd-47ee-a788-a9e1def6dcb4'),
-	(22,'SuperTable_Block','2017-06-27 01:06:43','2017-06-27 01:06:43','7161d2c7-6eb5-470e-ba2f-c51b292e44c9'),
-	(23,'SuperTable_Block','2017-06-27 01:06:43','2017-06-27 01:06:43','7370b18c-502f-4b22-a861-08fce2a147ad'),
-	(24,'SuperTable_Block','2017-06-27 01:06:43','2017-06-27 01:06:43','e1b39386-d9dc-42a6-af37-f3d500f2bfe2'),
-	(25,'SuperTable_Block','2017-06-27 01:06:43','2017-06-27 01:06:43','581a571f-d688-44cd-8fa6-c66b0bf628e4'),
-	(26,'SuperTable_Block','2017-06-27 01:06:43','2017-06-27 01:06:43','557f3d6e-f5da-4091-9c59-3d23b536c439'),
-	(27,'SuperTable_Block','2017-06-27 01:06:43','2017-06-27 01:06:43','58135efd-1804-4a95-bb83-ff39f73368ea'),
-	(28,'SuperTable_Block','2017-06-27 01:06:44','2017-06-27 01:06:44','13fbfe99-8091-479e-861e-2b7bc11a386b'),
-	(29,'SuperTable_Block','2017-06-27 01:06:44','2017-06-27 01:06:44','e5d37b01-9065-4bab-b808-fbba56d585c7'),
-	(30,'SuperTable_Block','2017-06-27 01:06:44','2017-06-27 01:06:44','851f7b77-3871-49e3-8821-8477637624bb'),
-	(31,'SuperTable_Block','2017-06-27 01:06:44','2017-06-27 01:06:44','b0fe39c2-a8fd-4689-92d6-2826bc66099f'),
-	(32,'SuperTable_Block','2017-06-27 01:06:44','2017-06-27 01:06:44','894db629-09e6-42da-8bf2-e6c5e6e3ab1d'),
-	(33,'SuperTable_Block','2017-06-27 01:06:44','2017-06-27 01:06:44','3b8a4ce4-2911-4451-bd77-caf9ba2947ab'),
-	(34,'SuperTable_Block','2017-06-27 01:06:44','2017-06-27 01:06:44','cce2a29c-8071-4bbb-a59d-e2c5abe43e42'),
-	(35,'SuperTable_Block','2017-06-27 01:06:45','2017-06-27 01:06:45','6f4609bf-a380-4a17-a993-e5f4dfe3efc8'),
-	(36,'SuperTable_Block','2017-06-27 01:06:45','2017-06-27 01:06:45','94fcc914-e764-4d1c-84d5-5d9df41b9656'),
-	(37,'SuperTable_Block','2017-06-27 01:06:45','2017-06-27 01:06:45','3c35b6ab-dded-471f-8e17-968316c61b68'),
-	(38,'SuperTable_Block','2017-06-27 01:06:45','2017-06-27 01:06:45','a9f71ab1-375f-4949-b372-4ba0c07072ab'),
-	(39,'SuperTable_Block','2017-06-27 01:06:45','2017-06-27 01:06:45','adc87a48-cf10-459c-ae23-c9fd5797fa52'),
-	(40,'SuperTable_Block','2017-06-27 01:06:45','2017-06-27 01:06:45','7b5f92a1-5198-4404-8266-1ce525b72a12'),
-	(41,'SuperTable_Block','2017-06-27 01:06:46','2017-06-27 01:06:46','159d29db-2fc6-4bce-b1e3-af44b1a46f05'),
-	(42,'SuperTable_Block','2017-06-27 01:06:46','2017-06-27 01:06:46','32ba4134-7255-4413-8100-5b6fa749ca4b'),
-	(43,'SuperTable_Block','2017-06-27 01:06:46','2017-06-27 01:06:46','b2276f84-4410-48d8-bd5d-3abb641a3b84'),
-	(44,'SuperTable_Block','2017-06-27 01:06:46','2017-06-27 01:06:46','d7c4b43b-6b7d-4bd2-bbcc-b6f7e114153d'),
-	(45,'SuperTable_Block','2017-06-27 01:06:46','2017-06-27 01:06:46','a300c440-48fd-489f-9cc9-32a4e45c6fd1'),
-	(46,'SuperTable_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','f89894f6-82d0-4565-8cea-40260d08bd03'),
-	(47,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','ad4aa6a8-7b32-4f41-aada-ce377fec1da7'),
-	(48,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','71292258-5512-4419-bd13-0f4bfdadf05b'),
-	(49,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','5a4dcdbd-157e-4bc9-965c-4a5e808626c8'),
-	(50,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','4a6d3152-af26-4ab7-b61b-c535d7bff9f8'),
-	(51,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','25b27ab7-0174-41b0-9fa4-6462200416e9'),
-	(52,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','38f1111e-f2ed-4d4b-8e94-84beaa66f035'),
-	(53,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','406b3ad3-ffd5-4cd4-866b-33ec03d757b2'),
-	(54,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','3271264d-02df-4f0e-a271-ce816654d941'),
-	(55,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','5a48ead6-efa3-4365-8507-4f9784ee3c9d'),
-	(56,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','3884e2e8-0be7-486c-a5bc-24bca82d2268'),
-	(57,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','33506017-112c-4c66-9db0-631f0e1c5ec6'),
-	(58,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','0c9545d4-b189-42b2-b082-80c0e381957b'),
-	(59,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','0c944c2d-6d12-4fee-a6e3-fe709a620ce0'),
-	(60,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','c133bee4-2e2d-4fb4-b339-a47b45d2df8f'),
-	(61,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','7bc54454-691d-493a-8218-67654c070a2d'),
-	(62,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','40143288-a656-412f-9278-8c9e9de1d191'),
-	(63,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','ebd0ce5b-c4e0-4104-8730-5af7b4891a90'),
-	(64,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','f6cf74e8-c97d-4130-80a0-ce04f807eeb1'),
-	(65,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','8f79992f-23d2-4f76-b13d-ef300f804234'),
-	(66,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','c189db0c-1586-401f-92fd-6291b7949bd5'),
-	(67,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','a8943c92-7dca-4c4f-a894-799df92f8bdc'),
-	(68,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','ed3e95fe-5c95-4e91-9ea8-b328ccdd7949'),
-	(69,'Neo_Block','2017-06-27 01:06:47','2017-06-27 01:06:47','b581d88a-18cd-4914-877a-0f96cb6601c7'),
-	(70,'Entry','2017-06-27 01:06:47','2017-06-27 01:06:47','f36b217f-4965-41eb-b9aa-aade29cd6466'),
-	(71,'Entry','2017-06-27 01:06:47','2017-06-27 01:06:47','2aaa42a6-270b-471e-b64a-90beb468b165'),
-	(72,'Entry','2017-06-27 01:06:47','2017-06-27 01:06:47','b4679f06-2dbb-4cf9-8b12-8955b62d4701'),
-	(73,'Entry','2017-06-27 01:06:47','2017-06-27 01:06:47','022eeeab-ab9b-4c6b-b336-05dca53b2d7e'),
-	(74,'Entry','2017-06-27 01:06:47','2017-06-27 01:06:47','74289ce9-db7a-4068-b3e3-f4506daeabf5'),
-	(75,'GlobalSet','2017-06-27 01:06:47','2017-06-27 01:06:47','03f2bc5f-96d4-46db-b67f-f52d49d1e8ea'),
-	(76,'GlobalSet','2017-06-27 01:06:47','2017-06-27 01:06:47','34134cac-6266-483b-93c7-3eb55b773909'),
-	(77,'Category','2017-06-27 01:06:47','2017-06-27 01:06:47','d7bda9b8-33ec-42e5-8b0f-2466b7d21507'),
-	(78,'Category','2017-06-27 01:06:47','2017-06-27 01:06:47','d53ff4f4-174e-4042-8168-4ec7f086173a');
+	(1,'Tag','2017-07-04 21:45:04','2017-07-04 21:45:04','9b2da96c-7ab7-4e86-80c0-8196a6afe6c1'),
+	(13,'SuperTable_Block','2017-07-04 22:00:58','2017-07-04 22:00:58','228b2d13-cc8f-4e8a-92a2-eb9c48e8c70f'),
+	(14,'SuperTable_Block','2017-07-04 22:00:58','2017-07-04 22:00:58','1b636996-9dd4-42dc-ad4c-8805ba93560e'),
+	(17,'SuperTable_Block','2017-07-04 22:00:59','2017-07-04 22:00:59','f8211dc4-a97f-467e-a3a1-3f4a632ace92'),
+	(20,'SuperTable_Block','2017-07-04 22:00:59','2017-07-04 22:00:59','f710f7d3-ee03-480a-9aae-c17dee6086ff'),
+	(22,'SuperTable_Block','2017-07-04 22:00:59','2017-07-04 22:00:59','e224a1ac-3f07-4868-86b5-98e893241a62'),
+	(25,'SuperTable_Block','2017-07-04 22:01:00','2017-07-04 22:01:00','c546d14c-b6c2-41c1-9e6c-99cf3c7e848c'),
+	(29,'SuperTable_Block','2017-07-04 22:01:01','2017-07-04 22:01:01','fc5fcab0-7a37-4c8f-b992-ac79981f3571'),
+	(30,'SuperTable_Block','2017-07-04 22:01:01','2017-07-04 22:01:01','c33d60eb-79ea-4185-a93b-f5f913aaf441'),
+	(31,'SuperTable_Block','2017-07-04 22:01:01','2017-07-04 22:01:01','7ffbec27-efa5-4f55-891d-915fb81a21ba'),
+	(33,'SuperTable_Block','2017-07-04 22:01:01','2017-07-04 22:01:01','4b0ef6c3-3e39-474f-8f91-a8e0fe439e4c'),
+	(35,'SuperTable_Block','2017-07-04 22:01:01','2017-07-04 22:01:01','22ce161e-ee84-458c-b950-832f2978682d'),
+	(36,'SuperTable_Block','2017-07-04 22:01:02','2017-07-04 22:01:02','26d8ce7d-95e0-4123-a9cc-a85cef53a12d'),
+	(37,'SuperTable_Block','2017-07-04 22:01:02','2017-07-04 22:01:02','0b5b1814-d7b3-43c9-8555-b8b5f2707fd8'),
+	(38,'SuperTable_Block','2017-07-04 22:01:02','2017-07-04 22:01:02','64f1504d-04a2-4a6d-8806-96a0a9707642'),
+	(39,'SuperTable_Block','2017-07-04 22:01:02','2017-07-04 22:01:02','07cfef50-6326-4a6e-a464-23c8e9869494'),
+	(40,'SuperTable_Block','2017-07-04 22:01:02','2017-07-04 22:01:02','58f63c10-5bdf-45fd-a27c-5d2d9f8a131f'),
+	(42,'SuperTable_Block','2017-07-04 22:01:03','2017-07-04 22:01:03','272d3afb-e481-43e8-b373-dd1cd3773095'),
+	(43,'SuperTable_Block','2017-07-04 22:01:03','2017-07-04 22:01:03','473b8a14-c1a2-484a-8e9f-b6b894b2e0d2'),
+	(44,'SuperTable_Block','2017-07-04 22:01:03','2017-07-04 22:01:03','65d887bd-f125-4395-b3c7-eb351ed72ce4'),
+	(46,'SuperTable_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','c090832c-3917-4a23-82f6-310ea979a773'),
+	(47,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','5e7252dd-64e8-4aa6-b752-d9db37e9ed43'),
+	(48,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','82d286f6-776b-40a4-a665-bb49b67e15a0'),
+	(49,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','1e926c22-6c56-4d1f-9aa2-69eb74f82c39'),
+	(50,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','a9aea2ad-0241-4f46-bc78-9c9b54513a9f'),
+	(51,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','40ec5335-02fe-4c0a-b6b8-a950926ce4d8'),
+	(52,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','5752f9d5-da90-4599-a18e-1a28eabd64ba'),
+	(53,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','48fef88a-0c3a-4d05-a259-cbd668a2c30f'),
+	(54,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','5939b1ed-ca2c-4adc-8000-c8526754be96'),
+	(55,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','e1ec603f-7652-4f5d-ac0b-ca0989a86b84'),
+	(56,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','814bd146-2761-4abc-861f-60e6598dba8b'),
+	(57,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','7e80b917-b332-492a-bd01-a477112a8f8c'),
+	(58,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','30f1261f-e6a6-4d76-b860-ac043c4b407b'),
+	(59,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','8be5200b-8450-4649-a3c4-15918d997fe2'),
+	(60,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','d5229d37-d33e-4660-be35-7c0a022483d4'),
+	(61,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','5aa798ca-433e-4a8f-8209-8af989a785d1'),
+	(62,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','7fcf0505-5647-490a-ae90-dab255673a81'),
+	(63,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','97ed133f-9531-495c-b731-1e8be519ba1a'),
+	(64,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','9fa533f6-dc18-49ee-85f4-bd62b9fa3191'),
+	(65,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','ccb8a710-d824-4829-a0fa-b8c6e9c53c80'),
+	(66,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','b3f4f027-7e56-46d3-bb92-ab39fd495a11'),
+	(67,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','7eaa46ba-956c-4b46-8815-692019e6b36e'),
+	(68,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','2872772b-791d-46e5-b496-9daa765d111b'),
+	(69,'Neo_Block','2017-07-04 22:01:04','2017-07-04 22:01:04','f0e80404-cae0-4f17-a4cf-cca7e33011c6'),
+	(70,'Asset','2017-07-04 22:01:04','2017-07-04 22:01:04','0d775a4e-4adf-44bf-bfa3-45886ca4274e'),
+	(71,'Entry','2017-07-04 22:01:04','2017-07-04 22:01:04','99e7ec71-bd5d-4680-aaec-b324025837cb'),
+	(72,'Entry','2017-07-04 22:01:04','2017-07-04 22:01:04','274b2bac-9df5-4840-9b31-41811995e52c'),
+	(73,'Entry','2017-07-04 22:01:04','2017-07-04 22:01:04','cd9eab50-de40-4812-b1fb-28880078d1bc'),
+	(74,'Entry','2017-07-04 22:01:04','2017-07-04 22:01:04','be70f1b1-9f1a-408e-b407-3532828f4daa'),
+	(76,'GlobalSet','2017-07-04 22:01:04','2017-07-04 22:01:04','852b2c7c-b9ad-4faa-867f-dae67ae11554'),
+	(77,'GlobalSet','2017-07-04 22:01:04','2017-07-04 22:01:04','88d10fa3-57c7-45f2-b1b3-d45a7514c5d9'),
+	(78,'Category','2017-07-04 22:01:04','2017-07-04 22:01:04','6a49b926-0b0e-4879-9dc4-39d03a2a1e23'),
+	(79,'Category','2017-07-04 22:01:04','2017-07-04 22:01:04','ef46bca7-eee1-4b4e-a034-25cc3a451f7c'),
+	(80,'SuperTable_Block','2017-07-04 22:15:15','2017-07-04 22:15:15','42a99583-0baf-4109-8572-c42df62f067d'),
+	(81,'SuperTable_Block','2017-07-04 22:15:50','2017-07-04 22:15:50','44d18cd4-9862-4e0b-8372-4f6b589f74e7'),
+	(82,'SuperTable_Block','2017-07-04 22:16:21','2017-07-04 22:16:21','9e355cb0-7fb9-43d5-8265-a819a35b5652'),
+	(83,'SuperTable_Block','2017-07-05 19:45:58','2017-07-05 19:45:58','809bf866-392f-4ee9-b190-23a0ef42f988'),
+	(84,'SuperTable_Block','2017-07-05 19:46:26','2017-07-05 19:46:26','4474a66e-b024-4f52-ad9a-9c2def1460f6'),
+	(85,'SuperTable_Block','2017-07-05 19:47:03','2017-07-05 19:47:03','7376dd31-4e2d-4751-b50e-dd8afb1dfbd4'),
+	(86,'SuperTable_Block','2017-07-05 19:48:20','2017-07-05 19:48:20','dc37a271-9904-4b81-a17a-813087a8907f'),
+	(87,'SuperTable_Block','2017-07-05 19:49:41','2017-07-05 19:49:41','ea7ac693-2c30-4dbf-aa54-a1c6d4a6caeb'),
+	(88,'SuperTable_Block','2017-07-05 19:50:10','2017-07-05 19:50:10','3f0d9dc8-f14b-46b9-a1c4-0877d235fe5a'),
+	(89,'SuperTable_Block','2017-07-05 19:51:16','2017-07-05 19:51:16','b7271d76-638b-4dbc-91cb-6fb2c4e8f6c5'),
+	(90,'SuperTable_Block','2017-07-05 19:58:39','2017-07-05 19:58:39','a3da5964-ccff-4d53-866f-d500a870493a'),
+	(91,'SuperTable_Block','2017-07-05 19:59:30','2017-07-05 19:59:30','63705041-d9af-4bac-bbd9-952e0496710c'),
+	(92,'SuperTable_Block','2017-07-05 20:01:59','2017-07-05 20:01:59','c8da7ded-ea2b-46f0-9b51-f42d254aa4e5'),
+	(93,'SuperTable_Block','2017-07-05 20:03:04','2017-07-05 20:03:04','c6331cd8-359e-4946-af14-aba2e5ad37f4'),
+	(94,'Entry','2017-07-05 21:42:35','2017-07-05 21:42:35','eb636e4a-9866-46d5-9f71-1f8af1f56607');
 
 /*!40000 ALTER TABLE `craft_fieldlayouts` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1053,101 +1068,102 @@ LOCK TABLES `craft_fieldlayouttabs` WRITE;
 
 INSERT INTO `craft_fieldlayouttabs` (`id`, `layoutId`, `name`, `sortOrder`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(3,13,'Content',1,'2017-06-27 01:06:41','2017-06-27 01:06:41','c3cbf50d-2ad1-4982-832e-9a51540762e5'),
-	(4,14,'Content',1,'2017-06-27 01:06:41','2017-06-27 01:06:41','f5e890b3-e2fe-4d9e-ab48-511dcc72c5fc'),
-	(5,15,'Content',1,'2017-06-27 01:06:41','2017-06-27 01:06:41','9b8c9413-c217-4479-bb00-559013e20d3c'),
-	(6,16,'Content',1,'2017-06-27 01:06:42','2017-06-27 01:06:42','8fb532cd-2269-4c30-8019-62cb73558794'),
-	(7,17,'Content',1,'2017-06-27 01:06:42','2017-06-27 01:06:42','8b449830-446f-4aad-ac46-947c9f74eeeb'),
-	(8,18,'Content',1,'2017-06-27 01:06:42','2017-06-27 01:06:42','eef69b8b-783c-462c-b57b-a91bbf80b97d'),
-	(9,19,'Content',1,'2017-06-27 01:06:42','2017-06-27 01:06:42','3ceac636-13e1-4956-83fb-74ab2b1073b5'),
-	(10,20,'Content',1,'2017-06-27 01:06:42','2017-06-27 01:06:42','87e1410f-b0f7-4513-a83c-4d761460fe75'),
-	(11,21,'Content',1,'2017-06-27 01:06:42','2017-06-27 01:06:42','21bdf930-d9d0-4118-871d-8ef5bb98d363'),
-	(12,22,'Content',1,'2017-06-27 01:06:43','2017-06-27 01:06:43','34e4f4dd-648e-44f2-9117-a641f62eff3d'),
-	(13,23,'Content',1,'2017-06-27 01:06:43','2017-06-27 01:06:43','27e92759-687f-4b17-a84c-c0ddca63dd8c'),
-	(14,24,'Content',1,'2017-06-27 01:06:43','2017-06-27 01:06:43','f3ec626b-b787-486b-aa6b-09799e8b4ee5'),
-	(15,25,'Content',1,'2017-06-27 01:06:43','2017-06-27 01:06:43','a007b860-fc55-48e1-bd11-6d49da12efb8'),
-	(16,26,'Content',1,'2017-06-27 01:06:43','2017-06-27 01:06:43','e6dbd222-41fb-4cd6-82d4-e6f837dd358c'),
-	(17,27,'Content',1,'2017-06-27 01:06:43','2017-06-27 01:06:43','4312f764-d142-478c-9709-ab718894f008'),
-	(18,28,'Content',1,'2017-06-27 01:06:44','2017-06-27 01:06:44','bd987427-5a75-4a9c-bfe1-af100cd9c820'),
-	(19,29,'Content',1,'2017-06-27 01:06:44','2017-06-27 01:06:44','6bdc1d4c-7c3b-42a4-a44c-03dcf8e89d11'),
-	(20,30,'Content',1,'2017-06-27 01:06:44','2017-06-27 01:06:44','04e75f6f-46d1-41fd-b03e-447ade87f2c6'),
-	(21,31,'Content',1,'2017-06-27 01:06:44','2017-06-27 01:06:44','f9d82009-0d40-47d4-97c6-68ba5ee68447'),
-	(22,32,'Content',1,'2017-06-27 01:06:44','2017-06-27 01:06:44','0475d0f0-c2e0-40f5-9374-0be671dafaf1'),
-	(23,33,'Content',1,'2017-06-27 01:06:44','2017-06-27 01:06:44','eb97f6df-238c-48ed-a218-53285a4caaed'),
-	(24,34,'Content',1,'2017-06-27 01:06:44','2017-06-27 01:06:44','c60faeac-f287-4cda-bc17-ded2166e0c00'),
-	(25,35,'Content',1,'2017-06-27 01:06:45','2017-06-27 01:06:45','ee1bbc68-c7a4-49ba-b8a9-54598e9cc75b'),
-	(26,36,'Content',1,'2017-06-27 01:06:45','2017-06-27 01:06:45','263190f8-3cdd-4af8-bbcd-0079c0e0ef1a'),
-	(27,37,'Content',1,'2017-06-27 01:06:45','2017-06-27 01:06:45','12726781-8a84-4291-af43-2fe12491cdf2'),
-	(28,38,'Content',1,'2017-06-27 01:06:45','2017-06-27 01:06:45','32c7cb87-2a15-48ed-8e8f-1e7ca227c8de'),
-	(29,39,'Content',1,'2017-06-27 01:06:45','2017-06-27 01:06:45','20769ab7-1c94-4ebc-83cc-6ed005170811'),
-	(30,40,'Content',1,'2017-06-27 01:06:45','2017-06-27 01:06:45','5471347f-2c7c-4d3c-a886-61a99926513a'),
-	(31,41,'Content',1,'2017-06-27 01:06:46','2017-06-27 01:06:46','abfec462-5fcf-4857-a3d0-aa45a6c6364e'),
-	(32,42,'Content',1,'2017-06-27 01:06:46','2017-06-27 01:06:46','7e196da6-c48b-4e70-81c4-1b2be825b73f'),
-	(33,43,'Content',1,'2017-06-27 01:06:46','2017-06-27 01:06:46','f77f1ff2-8746-433b-b6bb-f714f7249d2c'),
-	(34,44,'Content',1,'2017-06-27 01:06:46','2017-06-27 01:06:46','07591e4b-dde7-4be4-9cb5-c53d510c12ef'),
-	(35,45,'Content',1,'2017-06-27 01:06:46','2017-06-27 01:06:46','cc14ec5b-3807-482a-abd0-6740b7e118b6'),
-	(36,46,'Content',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','218d317c-9fb6-4a47-a1b2-62e907f1f6da'),
-	(37,47,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','21eae822-1482-4211-80f5-5e42dbb9911f'),
-	(38,47,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','4faa8062-1ba2-4cc6-95ea-98a30d4734eb'),
-	(39,48,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','902ec4b3-4047-4abb-9e34-ddd80dfe6bc5'),
-	(40,48,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','13659dcc-8533-4729-84a5-fd9adce231f9'),
-	(41,49,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','c54650eb-a245-4c5d-9c03-2fdb59a86680'),
-	(42,49,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','089830ac-664e-4f9a-b430-9414712d54c8'),
-	(43,50,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','41177f2c-4dc3-4f8c-9722-586bebbc7839'),
-	(44,50,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','41842b8e-ef3f-45e5-9545-a2691671affe'),
-	(45,51,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','680f47a1-ac26-4a44-ac2c-85feeec5ebad'),
-	(46,51,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','c86dbe11-d75d-4f4a-b4bb-deee7623b937'),
-	(47,52,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','71825396-4a19-4be9-bf4a-b1b58070ec78'),
-	(48,52,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','41aa59a9-f285-412e-a23c-e305c9f0473b'),
-	(49,53,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','2a19c1bb-a7b1-42e8-bf8f-e5ea7bd80abf'),
-	(50,53,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','75f868d3-da6c-4595-b521-a6e1da417645'),
-	(51,54,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','a0d4972b-21b5-491e-b576-a1ba9788323f'),
-	(52,54,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','ffb4fbe6-8851-418c-8ed3-5c010957207e'),
-	(53,55,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','b46f9743-82ae-4a24-ad7f-ac88f9e8fdcd'),
-	(54,55,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','b8340d10-eafc-4cd8-9670-1a6336905bb5'),
-	(55,56,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','aec2d432-4be8-49c1-800a-39984ec36e7e'),
-	(56,56,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','97520ae0-957d-44c1-9c7f-6b50fe6812ca'),
-	(57,57,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','9d562f34-8ea1-4efb-a3f2-d08dae644a70'),
-	(58,57,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','71d09a68-715c-429a-9374-c3d4ee18aa6f'),
-	(59,58,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','efd8cb7b-d390-44f9-8e48-9d8486d7b355'),
-	(60,58,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','97196a71-68b1-4a29-ba80-76f8fb79548a'),
-	(61,59,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','520dc05a-5143-447d-a7db-4c1bcc62aa30'),
-	(62,59,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','59ff6142-80ab-42cf-a7ab-89236d9193d1'),
-	(63,60,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','15697ba0-703b-4a44-95ea-eb19f764e480'),
-	(64,60,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','b51889ab-e8f4-43fb-83a1-a6a9d05ac364'),
-	(65,61,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','bda5a67f-a95b-4fad-84e5-fb08da4cef03'),
-	(66,61,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','92ab6c49-05c7-49f6-9644-5cb34594f84a'),
-	(67,62,'Tab 1',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','121848d2-b4e6-45a2-a554-1a082c6da551'),
-	(68,63,'Tab 1',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','57042eea-363f-4948-942f-326ef5708b4d'),
-	(69,64,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','a770c68f-fca7-47a0-9f40-ed7f5a1fe3bf'),
-	(70,64,'Layout',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','c4b2d4f8-3fa5-4caf-8c99-29cf45166b01'),
-	(71,65,'Main',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','5ad43943-d012-4a5d-a4f5-005539b77dcb'),
-	(72,65,'Options',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','4ad96c37-ffd3-46ec-af96-1323bb337960'),
-	(73,66,'Tab 1',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','c50bd1ae-1e53-445c-afb1-0de3580be6e9'),
-	(74,67,'Tab 1',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','62de5f6b-d6bf-4c76-ba80-1630fd5bf285'),
-	(75,68,'Tab 1',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','b298d7f9-d6c6-4465-ac91-e5d2932b89c9'),
-	(76,69,'Tab 1',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','5dcdd291-22b2-45b7-92bd-4fbe2f3ddcca'),
-	(77,70,'Content',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','62d06b4b-6b8e-4a89-85c9-8b9dd454d9a5'),
-	(78,70,'Featured Image',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','87002b2b-d3ef-43e0-b71a-426447c6c4a2'),
-	(79,71,'Content',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','55f1f051-72e6-4540-85c4-ff6a2739769e'),
-	(80,71,'Featured Image',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','974a9da6-89f2-43ac-ade7-55fd178f2538'),
-	(81,71,'Meta',3,'2017-06-27 01:06:47','2017-06-27 01:06:47','33e35a4d-f36a-43b2-a7cd-b3ad9f16b5b4'),
-	(82,71,'Seo',4,'2017-06-27 01:06:47','2017-06-27 01:06:47','6cb471e4-8d18-44aa-b0d6-195ec16a3722'),
-	(83,72,'Content',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','3c5acfee-75d7-4d6c-97c0-f760ce4ec54c'),
-	(84,72,'Featured Image',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','7fd07bb0-af76-4e42-bca4-475958f91a69'),
-	(85,72,'Seo',3,'2017-06-27 01:06:47','2017-06-27 01:06:47','40074bae-5874-4ed5-a46e-4f4eb39629de'),
-	(86,73,'Content',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','11ba8241-b73c-4a7e-a547-1916364f49d9'),
-	(87,73,'Hero',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','c7410c04-cd5c-4ac0-b83c-95198ea0d289'),
-	(88,73,'Seo',3,'2017-06-27 01:06:47','2017-06-27 01:06:47','f018583b-52b9-432d-aaa3-8c53883c848b'),
-	(89,74,'Content',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','8c4d267b-89b7-4622-a93a-7280891d9f73'),
-	(90,74,'Featured Image',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','dbe2a0e0-fb59-4e90-a431-15df84578e93'),
-	(91,74,'Seo',3,'2017-06-27 01:06:47','2017-06-27 01:06:47','db654e45-ab0b-475c-93d8-6875054a1406'),
-	(92,75,'Inhalt',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','89f1fc86-5806-4b81-b310-5946e2fab36f'),
-	(93,76,'Inhalt',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','e56dc8f9-ea9f-45c9-8c10-bd1f8b78d70d'),
-	(94,77,'Content',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','97e422c9-d41c-49b6-9e67-2ee52d123aff'),
-	(95,77,'Featured Image',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','8de38f24-39e8-46a3-b946-571f0f3db03c'),
-	(96,77,'Seo',3,'2017-06-27 01:06:47','2017-06-27 01:06:47','f761dde0-d1dd-4d70-af1b-666f9ffab9b8'),
-	(97,78,'Tab 1',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','7062abeb-6578-498b-ad8f-9790bb14efe0');
+	(3,13,'Content',1,'2017-07-04 22:00:58','2017-07-04 22:00:58','923bbef9-1bf5-4091-bf6c-2fbb52b78bf2'),
+	(4,14,'Content',1,'2017-07-04 22:00:58','2017-07-04 22:00:58','7cf0bfd4-e7f8-4c73-bb7a-f368a992b01d'),
+	(7,17,'Content',1,'2017-07-04 22:00:59','2017-07-04 22:00:59','b158ceb8-cafd-4f4b-b3c3-06399a85efb1'),
+	(10,20,'Content',1,'2017-07-04 22:00:59','2017-07-04 22:00:59','2dc798ab-f54e-4744-be66-53a5846dd26d'),
+	(12,22,'Content',1,'2017-07-04 22:00:59','2017-07-04 22:00:59','d9e99c94-b136-4a15-bb59-e46abf59472e'),
+	(15,25,'Content',1,'2017-07-04 22:01:00','2017-07-04 22:01:00','e1d6a7cc-1adb-4cb0-8ffc-519dc9b6afd6'),
+	(19,29,'Content',1,'2017-07-04 22:01:01','2017-07-04 22:01:01','d2db42ba-a18d-4eb7-bb59-240634523ac3'),
+	(20,30,'Content',1,'2017-07-04 22:01:01','2017-07-04 22:01:01','754064b4-9351-421f-8583-af6dbb522bd2'),
+	(21,31,'Content',1,'2017-07-04 22:01:01','2017-07-04 22:01:01','1e5e1bba-6126-476f-b2a9-32dc9e3c7a44'),
+	(23,33,'Content',1,'2017-07-04 22:01:01','2017-07-04 22:01:01','2218f8aa-49de-4bfd-8f72-a59109ff7372'),
+	(25,35,'Content',1,'2017-07-04 22:01:01','2017-07-04 22:01:01','dc17a42c-c8eb-4a20-ab52-40da65b41d81'),
+	(26,36,'Content',1,'2017-07-04 22:01:02','2017-07-04 22:01:02','982b8e60-7701-47b0-84de-89ad36de1707'),
+	(27,37,'Content',1,'2017-07-04 22:01:02','2017-07-04 22:01:02','00b66ddb-096a-476b-88d4-b7b66713a147'),
+	(28,38,'Content',1,'2017-07-04 22:01:02','2017-07-04 22:01:02','ea249892-04c5-4671-9753-d699e4d0ab14'),
+	(29,39,'Content',1,'2017-07-04 22:01:02','2017-07-04 22:01:02','37e8a986-ce07-4723-bc83-7834bf1ab823'),
+	(30,40,'Content',1,'2017-07-04 22:01:02','2017-07-04 22:01:02','4e109252-a2b6-4ad7-808e-7bf69b22989a'),
+	(32,42,'Content',1,'2017-07-04 22:01:03','2017-07-04 22:01:03','68d24a94-fa2e-4a84-909e-40eda9c9d460'),
+	(33,43,'Content',1,'2017-07-04 22:01:03','2017-07-04 22:01:03','abd3e179-602e-49c4-a866-b8c4f675d841'),
+	(34,44,'Content',1,'2017-07-04 22:01:03','2017-07-04 22:01:03','580c8ce8-c4c8-4513-a91d-4c2fd1227300'),
+	(36,46,'Content',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','f588e7b0-20ec-4470-a9be-d359ef790f9a'),
+	(37,47,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','8a2dcabb-7927-4d5a-af6a-2fb863e3d76c'),
+	(38,47,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','afc82c86-b692-49a2-9ae7-45d65a467cf2'),
+	(39,48,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','41dcb710-495f-443f-b481-3e1d3d2be6c1'),
+	(40,48,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','a6216289-d2ae-40a2-9322-b93ff0b7ffb6'),
+	(41,49,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','0c6b76c1-17a7-4cfe-8b6e-03037b799fb3'),
+	(42,49,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','d9488817-6078-4a97-a05f-f8ddd458a6f6'),
+	(43,50,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','bd8fdcbd-1ce5-4403-abbd-dbfb042fe095'),
+	(44,50,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','90e5eeed-df28-45f1-9dd0-602d7543228c'),
+	(45,51,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','43551e52-3401-494d-a6f9-31c42ef048f2'),
+	(46,51,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','b456c0dc-b151-4b7b-8e26-1520369873a2'),
+	(47,52,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','e6c794e6-421c-4bb0-a61f-0c756fe68181'),
+	(48,52,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','8923cad7-f093-4cd5-a3ba-d728aff36711'),
+	(49,53,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','05e2862c-02ea-4852-a2e4-182f7a57df18'),
+	(50,53,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','5bafa147-6ee1-4164-8c12-b829a5849bf2'),
+	(51,54,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','701cfba0-5845-42ed-bfd9-4cb33ecf4f11'),
+	(52,54,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','8b95abd4-a663-4575-bc8b-8d9705eb3462'),
+	(53,55,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','0852d201-0c11-4566-abd6-4fbb19c77f9c'),
+	(54,55,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','4c405357-ffcb-480c-ac76-0b37b7087cbc'),
+	(55,56,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','187f8127-11df-4ef1-89b2-05a9abce3892'),
+	(56,56,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','eedebcac-43f9-4612-9e12-fe52b1570932'),
+	(57,57,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','335e4d51-a625-40e7-8a59-f88cb6ca0c8c'),
+	(58,57,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','40bcf1d2-c797-460a-b8a0-3234a386b88e'),
+	(59,58,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','2efa7897-ed9c-44ab-93c0-9065c6ef8b69'),
+	(60,58,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','0d8fbc67-80f1-4765-a9ef-9321599ecc7c'),
+	(61,59,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','07434fb2-9148-44d7-99ff-28f935d4b8d6'),
+	(62,59,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','53ea768f-8a59-4ece-a71e-5f5ba7a45d7b'),
+	(63,60,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','100ae68f-cb70-49bf-b8d5-d45fac07a544'),
+	(64,60,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','f40b170d-f023-4184-a96d-da13e53e4cd4'),
+	(65,61,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','334d6106-2696-431e-b5c5-09a2e876368b'),
+	(66,61,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','ea9b6b35-b676-4ad4-b9fb-52e74d4a8d36'),
+	(67,62,'Tab 1',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','ddee2bbc-b842-4812-b227-62c34b029b7b'),
+	(68,63,'Tab 1',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','c341b623-63a0-49f0-aabc-47f562044b46'),
+	(69,64,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','4ebfffc9-da12-403d-985b-daed1f959a18'),
+	(70,64,'Layout',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','4dbf3c2b-1e7c-44db-9e85-3ca5fcebe49f'),
+	(71,65,'Main',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','d8bc4267-36fc-40cd-a68b-de01522aa1b1'),
+	(72,65,'Options',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','0e6c8f1b-df36-49a4-bb38-5baa76ce88a7'),
+	(73,66,'Tab 1',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','987e8a96-e26f-4ff9-b3f8-9ad38098f79a'),
+	(74,67,'Tab 1',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','cb26fa31-2542-4c77-b7d4-8680426eb6cc'),
+	(75,68,'Tab 1',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','6740d945-54bd-4cd9-97e3-198629544ef2'),
+	(76,69,'Tab 1',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','437b9ee4-8cc4-441f-823a-4da1b18d2c8b'),
+	(77,70,'Inhalt',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','26c15784-3e35-4898-befa-65b8a29bd275'),
+	(78,71,'Content',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','90188988-19db-4d64-b458-b1e48dde84c4'),
+	(79,71,'Featured Image',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','46deb749-eaf1-4c27-b57b-8e48a1d5cff6'),
+	(80,72,'Content',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','9e4c70bb-7158-4801-bae1-9cca847a0b3e'),
+	(81,72,'Featured Image',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','d5ad65cd-d553-47a1-9573-6ef8d62f7184'),
+	(82,72,'Meta',3,'2017-07-04 22:01:04','2017-07-04 22:01:04','5b98ac55-f6e1-4237-bd91-1f6f88607f7e'),
+	(83,72,'Seo',4,'2017-07-04 22:01:04','2017-07-04 22:01:04','ec21a80e-b190-4773-bec7-21e0df5036a9'),
+	(84,73,'Content',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','415c815e-5b57-4d2c-a4f4-7e827069923d'),
+	(85,73,'Featured Image',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','6d9d3499-0483-45ad-8748-882003ecdcdf'),
+	(86,73,'Seo',3,'2017-07-04 22:01:04','2017-07-04 22:01:04','7b3c6c03-9fd1-4650-8365-4d3f3104cd5e'),
+	(87,74,'Content',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','8662199f-482f-4a38-8238-b48fbe01c339'),
+	(88,74,'Hero',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','ae296b52-d29e-4677-8a2f-016c69c1d4be'),
+	(89,74,'Seo',3,'2017-07-04 22:01:04','2017-07-04 22:01:04','cc214741-58e5-476f-95e2-4d6d4ec5f137'),
+	(93,76,'Inhalt',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','8cc5dd7b-a8a7-49fc-b4de-0c7e2285a05a'),
+	(94,77,'Inhalt',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','561f08ba-98f6-48ce-b7a8-c9241e174283'),
+	(95,78,'Content',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','2cde8675-1490-4d46-8240-f1de8bba5e02'),
+	(96,78,'Featured Image',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','5e0b03d0-cfe4-4bd1-9208-c391741fdec1'),
+	(97,78,'Seo',3,'2017-07-04 22:01:04','2017-07-04 22:01:04','c988af3d-fbb9-445a-aa05-7ca3953edb05'),
+	(98,79,'Tab 1',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','f6511752-3d04-43ed-8139-4c25e09875de'),
+	(99,80,'Content',1,'2017-07-04 22:15:15','2017-07-04 22:15:15','69490453-b3c5-419e-9ca2-89fc5b068bfe'),
+	(100,81,'Content',1,'2017-07-04 22:15:50','2017-07-04 22:15:50','a85735ac-d8c0-452d-b85d-829b156fb366'),
+	(101,82,'Content',1,'2017-07-04 22:16:21','2017-07-04 22:16:21','f236d76b-dd3a-49af-88ee-c2562ca551ca'),
+	(102,83,'Content',1,'2017-07-05 19:45:58','2017-07-05 19:45:58','f99c4065-90a2-46f2-8aa9-9d63eedc3b51'),
+	(103,84,'Content',1,'2017-07-05 19:46:26','2017-07-05 19:46:26','e42ae888-7a5e-49e0-8283-79b55c13cebe'),
+	(104,85,'Content',1,'2017-07-05 19:47:03','2017-07-05 19:47:03','63e5b111-ada3-43bb-910b-e1a9ecf2344e'),
+	(105,86,'Content',1,'2017-07-05 19:48:20','2017-07-05 19:48:20','a514e701-ee15-4641-9fd0-967c90c471be'),
+	(106,87,'Content',1,'2017-07-05 19:49:41','2017-07-05 19:49:41','b1bf1a5b-2f3a-4e2f-a940-414ad9b07f90'),
+	(107,88,'Content',1,'2017-07-05 19:50:10','2017-07-05 19:50:10','e488346b-d736-4ea3-88dd-99595c6cfecc'),
+	(108,89,'Content',1,'2017-07-05 19:51:16','2017-07-05 19:51:16','7f09683d-1495-45c0-85c0-f1c67bf7a46b'),
+	(109,90,'Content',1,'2017-07-05 19:58:39','2017-07-05 19:58:39','9ca614aa-129a-4dda-9792-98630742ea2b'),
+	(110,91,'Content',1,'2017-07-05 19:59:30','2017-07-05 19:59:30','aa3e7919-f90d-433c-9c9b-bbbe1d780a0f'),
+	(111,92,'Content',1,'2017-07-05 20:01:59','2017-07-05 20:01:59','b16a3e43-f01c-4bb2-842e-caec145e5db5'),
+	(112,93,'Content',1,'2017-07-05 20:03:04','2017-07-05 20:03:04','a187e745-dd5d-4f95-8c0b-dc049f00629d'),
+	(113,94,'Content',1,'2017-07-05 21:42:35','2017-07-05 21:42:35','88220292-6744-4502-bb5e-29eebf040613'),
+	(114,94,'Featured Image',2,'2017-07-05 21:42:35','2017-07-05 21:42:35','bba1317b-848b-477f-8f99-60bc89068519'),
+	(115,94,'Seo',3,'2017-07-05 21:42:35','2017-07-05 21:42:35','081ca77b-3c0d-4caf-aa11-4e8d25afe7ba');
 
 /*!40000 ALTER TABLE `craft_fieldlayouttabs` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1183,158 +1199,158 @@ LOCK TABLES `craft_fields` WRITE;
 
 INSERT INTO `craft_fields` (`id`, `groupId`, `name`, `handle`, `context`, `instructions`, `translatable`, `type`, `settings`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,1,'Body','body','global',NULL,1,'RichText','{\"configFile\":\"Standard.json\",\"columnType\":\"text\"}','2017-06-27 01:02:20','2017-06-27 01:02:20','c4750bef-665f-4983-9698-0427f723cc10'),
-	(2,1,'Tags','tags','global',NULL,0,'Tags','{\"source\":\"taggroup:1\"}','2017-06-27 01:02:20','2017-06-27 01:02:20','58ea6b88-6b04-43de-8a88-6d53eb3f0250'),
-	(3,2,'Accordion','objAccordion','global','Accordion Block - please specify a title',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:41','2017-06-27 01:06:41','c6188567-9f65-42b6-916d-c58ef035efa4'),
-	(4,2,'Accordion Wrapper','objAccordionWrapper','global','Wrapper of a group of Accordions.',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:41','2017-06-27 01:06:41','48dbfc9a-babf-446b-a5e7-eac2329b63e4'),
-	(5,NULL,'Style','style','superTableBlockType:1','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1}]}','2017-06-27 01:06:41','2017-06-27 01:06:41','78443a95-31bc-462b-a21b-a95396ab48b0'),
-	(6,2,'Anchor','objAnchor','global','Anchor name - no special characters and can not start with a number',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:41','2017-06-27 01:06:41','5fa16c3f-ef1a-4ad6-a80a-5200fce23d69'),
-	(7,3,'Anchor Options','setAnchor','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:41','2017-06-27 01:06:41','44b6913d-37b5-4235-81cb-2668c1fb4a33'),
-	(8,NULL,'Positionsfix','positionfix','superTableBlockType:2','If the anchor is too high or too low, the position value can be adjusted (higher or lower).',0,'PlainText','{\"placeholder\":\"-10px\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:41','2017-06-27 01:06:41','f1218e4e-e6dd-4f26-831d-6fb31ef4c03f'),
-	(9,2,'Button','objButton','global','Button for linking internal and external content',0,'FruitLinkIt','{\"types\":[\"email\",\"custom\",\"entry\",\"category\",\"asset\"],\"defaultText\":\"Link\",\"allowCustomText\":1,\"allowTarget\":1,\"entrySources\":[],\"entrySelectionLabel\":\"Select an entry\",\"assetSources\":\"*\",\"assetSelectionLabel\":\"Select an asset\",\"categorySources\":\"*\",\"categorySelectionLabel\":\"Select a category\"}','2017-06-27 01:06:41','2017-06-27 01:06:41','1b8a3bcd-ef1b-4fa3-876a-2bfbef139edc'),
-	(10,3,'Button Options','setButton','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"},\"new4\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:41','2017-06-27 01:06:41','906cf2f0-15e2-46f9-b89e-7584159be9d8'),
-	(11,NULL,'Style','style','superTableBlockType:3','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-06-27 01:06:41','2017-06-27 01:06:41','e1ebcc7b-1ce1-4756-a5df-0307eeab20de'),
-	(12,NULL,'Size','size','superTableBlockType:3','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Gro\\u00df\",\"value\":\"big\",\"default\":\"\"},{\"label\":\"Klein\",\"value\":\"small\",\"default\":\"\"}]}','2017-06-27 01:06:41','2017-06-27 01:06:41','e29ba38e-1394-47b9-937f-1f4b9ad884ee'),
-	(13,NULL,'Full Width','fullwidth','superTableBlockType:3','Wenn der Button Zentriert angelegt wurde, kann man ihm auch die volle Breite geben',0,'Lightswitch','{\"default\":\"\"}','2017-06-27 01:06:41','2017-06-27 01:06:41','e90c233d-8034-40b6-8837-c4dd36346828'),
-	(14,NULL,'Position','position','superTableBlockType:3','Regulär sind die Buttons linksbündig angeordnet, können hiermit überschrieben werden.',0,'Dropdown','{\"options\":[{\"label\":\"Left\",\"value\":\"left\",\"default\":1},{\"label\":\"Center\",\"value\":\"center\",\"default\":\"\"},{\"label\":\"Right\",\"value\":\"right\",\"default\":\"\"}]}','2017-06-27 01:06:41','2017-06-27 01:06:41','02192d3f-766f-4cb7-abf6-a28ae27a0050'),
-	(15,2,'Card','objCard','global','Text Box with Media Assets ',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"},\"new4\":{\"width\":\"\"},\"new5\":{\"width\":\"\"},\"new6\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:41','2017-06-27 01:06:41','0699ca2c-678d-4466-a306-6fbc47144d03'),
-	(16,NULL,'Image','photo','superTableBlockType:4','A picture will be integrated in any case. If a video is used, the picture serves as a fallback.',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":1,\"allowedKinds\":[\"image\"],\"limit\":1,\"viewMode\":\"list\",\"selectionLabel\":\"\"}','2017-06-27 01:06:41','2017-06-27 01:06:41','a19e237e-b3aa-430e-848d-7b7d4839d738'),
-	(17,NULL,'Headline','headline','superTableBlockType:4','Optional headline',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:41','2017-06-27 01:06:41','59488f62-e659-4e5a-9ae4-fc2552ea2a92'),
-	(18,NULL,'Subline','subline','superTableBlockType:4','Optional subline',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:41','2017-06-27 01:06:41','b455956d-4ef1-4ad4-a5f7-924dc2167d48'),
-	(19,NULL,'Meta','meta','superTableBlockType:4','Optionale meta field',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:42','2017-06-27 01:06:42','a4a1c2a9-282e-4438-b8a4-c7fc8a2518e2'),
-	(20,NULL,'Body','body','superTableBlockType:4','',0,'RichText','{\"configFile\":\"Reduced.json\",\"availableAssetSources\":\"*\",\"availableTransforms\":\"*\",\"cleanupHtml\":1,\"purifyHtml\":1,\"purifierConfig\":\"\",\"columnType\":\"text\"}','2017-06-27 01:06:42','2017-06-27 01:06:42','347467be-8592-43e8-8171-1897fcffcea9'),
-	(21,NULL,'Link','cardlink','superTableBlockType:4','Optional Card Link',0,'FruitLinkIt','{\"types\":[\"custom\",\"entry\",\"category\",\"asset\"],\"defaultText\":\"\",\"allowCustomText\":\"\",\"allowTarget\":\"\",\"entrySources\":[],\"entrySelectionLabel\":\"Select an entry\",\"assetSources\":\"*\",\"assetSelectionLabel\":\"Select an asset\",\"categorySources\":\"*\",\"categorySelectionLabel\":\"Select a category\"}','2017-06-27 01:06:42','2017-06-27 01:06:42','39b27fe9-e111-4018-8913-76c741caa9d8'),
-	(22,3,'Card Options','setCard','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:42','2017-06-27 01:06:42','cc495f1e-69a4-407d-8995-cd362027bd04'),
-	(23,NULL,'Style','style','superTableBlockType:5','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1}]}','2017-06-27 01:06:42','2017-06-27 01:06:42','a518b987-6d7a-44ff-b4a7-19b37251adeb'),
-	(24,NULL,'Media Ratio','mediaRatio','superTableBlockType:5','Aspect ratio of the image',0,'PlainText','{\"placeholder\":\"16:9\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:42','2017-06-27 01:06:42','123efa69-b7d2-4dec-a18a-58ed3aa87baa'),
-	(25,2,'Card Slider','objCardSlider','global','A slider module for cards',0,'SuperTable_Label','{\"value\":\"\"}','2017-06-27 01:06:42','2017-06-27 01:06:42','29d2223c-2c3d-42d9-8417-3a8936f038e8'),
-	(26,3,'Card Slider Options','setCardSlider','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:42','2017-06-27 01:06:42','812d9f7f-3781-4f7a-bca5-2ea2579353a2'),
-	(27,NULL,'Style','style','superTableBlockType:6','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-06-27 01:06:42','2017-06-27 01:06:42','cf3efb4d-3c63-4770-9eea-35ba2faab288'),
-	(28,NULL,'Setup','setup','superTableBlockType:6','Optional. Wähle eines der bestehenden Setups aus oder definiere ein neues unter `Kategorien > Settings : Image Slider`',0,'Categories','{\"source\":\"group:2\",\"limit\":1,\"selectionLabel\":\"Setup ausw\\u00e4hlen\"}','2017-06-27 01:06:42','2017-06-27 01:06:42','78638db1-5c05-4f8a-a79d-f3c00e78a69d'),
-	(29,4,'Category Select: Blog','categorySelectBlog','global','',0,'Categories','{\"source\":\"group:1\",\"limit\":1,\"selectionLabel\":\"\"}','2017-06-27 01:06:42','2017-06-27 01:06:42','8681f851-fed5-4a42-a610-b71821e8e60e'),
-	(30,4,'Comment Switch','commentSwitch','global','To disable comments',0,'Lightswitch','{\"default\":\"\"}','2017-06-27 01:06:42','2017-06-27 01:06:42','12b7e29d-2bdc-434c-861f-871d6cf7445f'),
-	(31,6,'Copyright','copyright','global','Copyright Message',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:42','2017-06-27 01:06:42','1ea38cf0-5126-4f45-8b6f-8044ee30c86c'),
-	(32,6,'Disqus Name','disqusName','global','Name of your disqus account',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:42','2017-06-27 01:06:42','e0697369-b7fd-4e9f-8dcd-4f09e02104fc'),
-	(33,2,'Embed Content','objEmbedContent','global','To include external content such as videos, code snippets, or maps',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":1,\"minRows\":null}','2017-06-27 01:06:42','2017-06-27 01:06:42','85932817-66ee-442d-b931-288c2096e799'),
-	(34,NULL,'Embed URL','embedUrl','superTableBlockType:7','If it is a video of Youtube, Vimeo or Facebook, you can copy the URL into the field.',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:42','2017-06-27 01:06:42','ee2c9c6c-f07a-40cc-a583-99c3b4f7cbbf'),
-	(35,NULL,'Embed Code','embed','superTableBlockType:7','Insert the corresponding IFrame code here. If the URL field is filled, the code is ignored.',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":1}','2017-06-27 01:06:42','2017-06-27 01:06:42','a3eef0b1-47a4-4195-b933-f4c3666200a4'),
-	(36,NULL,'Caption','caption','superTableBlockType:7','Optional asset caption',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:42','2017-06-27 01:06:42','9629a87e-b5ca-41b7-8f2b-b5e30246361a'),
-	(37,3,'Embed Content Options','setEmbedContent','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"},\"new4\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:42','2017-06-27 01:06:42','35a1c95f-7fe7-49b7-8368-8b1a9cf063c5'),
-	(38,NULL,'Style','style','superTableBlockType:8','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-06-27 01:06:42','2017-06-27 01:06:42','949b3f59-022a-4fe0-99e9-b998cab09daf'),
-	(39,NULL,'Responsive','responsive','superTableBlockType:8','Do you want to display the content responsive?',0,'Lightswitch','{\"default\":\"\"}','2017-06-27 01:06:42','2017-06-27 01:06:42','17a923e9-f6b3-4790-9ddc-b9cf2be7c56f'),
-	(40,NULL,'Ratio','ratio','superTableBlockType:8','Ratio of the iFrame',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:42','2017-06-27 01:06:42','7bd11a1a-62aa-480e-839e-26abbf737de2'),
-	(41,NULL,'Align','align','superTableBlockType:8','Alignment for content smaller than the page',0,'Dropdown','{\"options\":[{\"label\":\"Center\",\"value\":\"center\",\"default\":1},{\"label\":\"Left\",\"value\":\"left\",\"default\":\"\"},{\"label\":\"Right\",\"value\":\"right\",\"default\":\"\"}]}','2017-06-27 01:06:42','2017-06-27 01:06:42','93800c32-4715-4471-8943-90020688d701'),
-	(42,4,'Featured Image','featuredImage','global','Image of the respective posts - is used for surveys, headers, SEO and OG tags',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":1,\"allowedKinds\":[\"image\"],\"limit\":1,\"viewMode\":\"large\",\"selectionLabel\":\"Featured Image hinzuf\\u00fcgen\"}','2017-06-27 01:06:42','2017-06-27 01:06:42','ac123c5a-963d-4796-8d8f-9bd3941d3ea9'),
-	(43,4,'Featured Image Labeling','featuredImageLabeling','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:42','2017-06-27 01:06:42','03ef99f5-d3f0-4940-9411-fae2873b6876'),
-	(44,NULL,'Headline','headline','superTableBlockType:9','',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:42','2017-06-27 01:06:42','456ade82-dc41-417b-98f0-bfa9a6eaa89c'),
-	(45,NULL,'Link','linkit','superTableBlockType:9','',0,'FruitLinkIt','{\"types\":[\"tel\",\"custom\",\"entry\",\"category\",\"asset\"],\"defaultText\":\"Link\",\"allowCustomText\":1,\"allowTarget\":1,\"entrySources\":[],\"entrySelectionLabel\":\"Select an entry\",\"assetSources\":\"*\",\"assetSelectionLabel\":\"Select an asset\",\"categorySources\":\"*\",\"categorySelectionLabel\":\"Select a category\"}','2017-06-27 01:06:42','2017-06-27 01:06:42','a2f68c5a-ab93-4c24-9959-cbc1cfb8f793'),
-	(46,4,'Featured Image Options','featuredImageOptions','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:42','2017-06-27 01:06:42','b17feda3-2a9d-4550-aa76-4ce87d7e0991'),
-	(47,NULL,'Fullbleed','fullbleed','superTableBlockType:10','Should the image be spread over the entire browser width?',0,'Lightswitch','{\"default\":\"\"}','2017-06-27 01:06:43','2017-06-27 01:06:43','bd6fab43-9a6a-4391-8b7e-1c3930420a82'),
-	(48,NULL,'Ratio','ratio','superTableBlockType:10','Image Ratio',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:43','2017-06-27 01:06:43','62065877-e01b-4553-9914-ae3ed911d455'),
-	(49,6,'Fokuspunkt','focalpoint','global','',0,'FocalPointField_FocalPoint','{\"defaultFocalPoint\":\"50% 50%\"}','2017-06-27 01:06:43','2017-06-27 01:06:43','f0af8025-0810-4137-b92e-b986c4f0d29d'),
-	(50,2,'Gallery','objGallery','global','Gallery module with Lightbox Support and two layout types',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":null,\"selectionLabel\":\"Add a picture\",\"maxRows\":30,\"minRows\":null}','2017-06-27 01:06:43','2017-06-27 01:06:43','670549cd-26f2-41af-9c76-1bf6eb4a780c'),
-	(51,NULL,'Image','photo','superTableBlockType:11','',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":1,\"allowedKinds\":[\"image\"],\"limit\":1,\"viewMode\":\"list\",\"selectionLabel\":\"\"}','2017-06-27 01:06:43','2017-06-27 01:06:43','d6966f67-1c7a-4e4e-857b-76d9777ee4a8'),
-	(52,NULL,'Caption','caption','superTableBlockType:11','Optional caption is only visible in the lightbox.',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:43','2017-06-27 01:06:43','f344ea7c-6ae6-452f-b23d-758649661411'),
-	(53,3,'Gallery Options','setGallery','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:43','2017-06-27 01:06:43','ff703ee4-1ebc-41ea-a1e4-54bdfdbde142'),
-	(54,NULL,'Layout Typ','layoutType','superTableBlockType:12','Smart for a thumbnail layout in Tumbler Styles (Photogrid), Simple for simple thumbnail matching',0,'Dropdown','{\"options\":[{\"label\":\"Simple\",\"value\":\"simple\",\"default\":\"\"},{\"label\":\"Smart\",\"value\":\"smart\",\"default\":\"\"}]}','2017-06-27 01:06:43','2017-06-27 01:06:43','71a7a42c-4e3a-4889-bf8a-361eb8bda850'),
-	(55,NULL,'Ratio','ratio','superTableBlockType:12','Image ratio of the thumbnails for the Simplen layout mode. Format \'1:1\'',0,'PlainText','{\"placeholder\":\"1:1\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:43','2017-06-27 01:06:43','6a4d9dd8-d2b0-468f-a71e-c1716d10dbf0'),
-	(56,NULL,'Width','width','superTableBlockType:12','Thumbnail width for the Simple Layout. Regularly, the width of thumbnails depends on the number of images per row. If this is too big or too small, you can set the width yourself.',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:43','2017-06-27 01:06:43','662ed534-00c8-47a8-b2f2-0a1e0dbc106a'),
-	(57,2,'Headline','objHeadline','global','',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:43','2017-06-27 01:06:43','dc1db73b-8a47-4f23-8da2-054003b6b0c7'),
-	(58,3,'Headline Option','setHeadline','global','Size of the headline, the regular headline has a semantic size of a H2. The override controller can be used to readjust the size independent of its semantics.',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":1,\"minRows\":null}','2017-06-27 01:06:43','2017-06-27 01:06:43','99f8e11c-024b-4c2f-9816-7b65c1a8aef6'),
-	(59,NULL,'Style','style','superTableBlockType:13','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-06-27 01:06:43','2017-06-27 01:06:43','c95c1820-916f-4610-8a86-505edb626efe'),
-	(60,NULL,'Semantic Size','semantic','superTableBlockType:13','',0,'Dropdown','{\"options\":[{\"label\":\"H1\",\"value\":\"h1\",\"default\":\"\"},{\"label\":\"H2\",\"value\":\"h2\",\"default\":1},{\"label\":\"H3\",\"value\":\"h3\",\"default\":\"\"},{\"label\":\"H4\",\"value\":\"h4\",\"default\":\"\"},{\"label\":\"H5\",\"value\":\"h5\",\"default\":\"\"},{\"label\":\"H6\",\"value\":\"h6\",\"default\":\"\"}]}','2017-06-27 01:06:43','2017-06-27 01:06:43','74608dcd-b849-40a7-b9ba-1d0353ff74d9'),
-	(61,NULL,'Override','override','superTableBlockType:13','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"H1\",\"value\":\"h1\",\"default\":\"\"},{\"label\":\"H2\",\"value\":\"h2\",\"default\":\"\"},{\"label\":\"H3\",\"value\":\"h3\",\"default\":\"\"},{\"label\":\"H4\",\"value\":\"h4\",\"default\":\"\"},{\"label\":\"H5\",\"value\":\"h5\",\"default\":\"\"},{\"label\":\"H6\",\"value\":\"h6\",\"default\":\"\"}]}','2017-06-27 01:06:43','2017-06-27 01:06:43','19df0cc8-ae1e-4f54-be58-eeac5cf3820f'),
-	(62,4,'Hero','hero','global','Hero Image for Homepages',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:43','2017-06-27 01:06:43','24691d60-da65-403d-b0a2-7b16d208ee1e'),
-	(63,NULL,'Image','photo','superTableBlockType:14','',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":1,\"allowedKinds\":[\"image\"],\"targetLocale\":\"\",\"limit\":1,\"viewMode\":\"large\",\"selectionLabel\":\"\"}','2017-06-27 01:06:43','2017-06-27 01:06:43','ba255fe3-fba1-4102-97c7-386545910986'),
-	(64,NULL,'Headline','headline','superTableBlockType:14','',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:43','2017-06-27 01:06:43','28943ced-63af-458d-8deb-677c3e8a1ef8'),
-	(65,NULL,'Linkit','linkit','superTableBlockType:14','',0,'FruitLinkIt','{\"types\":[\"custom\",\"entry\",\"category\"],\"defaultText\":\"Link\",\"allowCustomText\":1,\"allowTarget\":1,\"entrySources\":[],\"entrySelectionLabel\":\"Select an entry\",\"assetSources\":\"*\",\"assetSelectionLabel\":\"Select an asset\",\"categorySources\":\"*\",\"categorySelectionLabel\":\"Select a category\"}','2017-06-27 01:06:43','2017-06-27 01:06:43','7e7be372-c923-4a27-8ad2-a23e3d23a5de'),
-	(66,2,'Horizontal Ruler','objHorizontalRuler','global','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-06-27 01:06:43','2017-06-27 01:06:43','90a94d49-850e-4836-99fe-151c6ff6f759'),
-	(67,2,'Image Slider','objImageSlider','global','Slider Modul',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":1,\"allowedKinds\":[\"image\"],\"limit\":10,\"viewMode\":\"large\",\"selectionLabel\":\"\"}','2017-06-27 01:06:43','2017-06-27 01:06:43','2b58e595-9b8a-4c4d-82dc-8d2c90db8725'),
-	(68,3,'Image Slider Options','setImageSlider','global','The ratio applies to all images, Craft will crops the pictures so they fit into the format (Default is 16:10). The Caption is optional and applies to the entire slider.',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:43','2017-06-27 01:06:43','7e978997-74b7-46f2-8892-fa92279296ea'),
-	(69,NULL,'Style','style','superTableBlockType:15','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-06-27 01:06:43','2017-06-27 01:06:43','68330fc6-245c-418c-8732-06902d91171f'),
-	(70,NULL,'Ratio','ratio','superTableBlockType:15','Image ratio for all slides',0,'PlainText','{\"placeholder\":\"16:10\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:43','2017-06-27 01:06:43','55abbe8c-0ff3-4d6d-b07d-0efdfbb8b084'),
-	(71,NULL,'Setup','setup','superTableBlockType:15','Optional. Select one of the existing setups or define a new one under `Categories> Settings: Image Slider`',0,'Categories','{\"source\":\"group:2\",\"limit\":1,\"selectionLabel\":\"Setup ausw\\u00e4hlen\"}','2017-06-27 01:06:43','2017-06-27 01:06:43','472158d1-3d7f-4af2-b43c-cf97d4da97d2'),
-	(72,2,'Jumpnavigation','objJumpNavigation','global','Buttons for jump navigations',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":null,\"selectionLabel\":\"Add a link\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:43','2017-06-27 01:06:43','68b09d42-7235-4ac5-b28f-bbf1b1dd8e5a'),
-	(73,NULL,'Linkname','linkname','superTableBlockType:16','Name of the link',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:44','2017-06-27 01:06:44','0ffdff8d-8893-42e2-8ad1-1a6f9c47d54f'),
-	(74,NULL,'Anchor','anchor','superTableBlockType:16','Name of the anchor without # (and no other no special character)',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:44','2017-06-27 01:06:44','cb95cad4-7d2d-4375-8fb6-384c8cdbcc99'),
-	(75,3,'Jumpnavigation Options','setJumpNavigation','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:44','2017-06-27 01:06:44','91c35b91-33e3-4014-919b-d30f505669af'),
-	(76,NULL,'Style','style','superTableBlockType:17','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-06-27 01:06:44','2017-06-27 01:06:44','d06ea0c9-fca1-4f97-a870-b453e5d0002f'),
-	(77,NULL,'Layout','layout','superTableBlockType:17','The default layout is a simple left-aligned string of the links, with the full width, the buttons are arranged in the full width (break at too small size but around which the buttons are interrelated). The buttons are arranged like a list.',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Full Width\",\"value\":\"fullwidth\",\"default\":\"\"},{\"label\":\"List\",\"value\":\"list\",\"default\":\"\"}]}','2017-06-27 01:06:44','2017-06-27 01:06:44','9661203a-ea60-4ee7-a5f1-16de5fe5879d'),
-	(78,2,'List','objList','global','',0,'Table','{\"columns\":{\"col1\":{\"heading\":\"Eintrag\",\"handle\":\"entry\",\"width\":\"\",\"type\":\"singleline\"}},\"defaults\":[]}','2017-06-27 01:06:44','2017-06-27 01:06:44','7c69ca64-92b6-4645-92ec-673d61eb9321'),
-	(79,3,'List Options','setList','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:44','2017-06-27 01:06:44','6cf1f38e-a9f7-40ba-b94b-cc721c0987ad'),
-	(80,NULL,'Typ','listtype','superTableBlockType:18','Listtype',0,'Dropdown','{\"options\":[{\"label\":\"Unsorted UL\",\"value\":\"ul\",\"default\":1},{\"label\":\"Sorted OL\",\"value\":\"ol\",\"default\":\"\"}]}','2017-06-27 01:06:44','2017-06-27 01:06:44','a9d3a34e-ff59-406d-b12e-47fac18b0ffb'),
-	(81,NULL,'Bullet','bullet','superTableBlockType:18','Style of Bullets on unsorted lists',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Circle\",\"value\":\"circle\",\"default\":\"\"},{\"label\":\"Square\",\"value\":\"square\",\"default\":\"\"},{\"label\":\"Custom\",\"value\":\"custom\",\"default\":\"\"}]}','2017-06-27 01:06:44','2017-06-27 01:06:44','cb403bac-8e93-4983-b4a8-8b90eccd0694'),
-	(82,2,'Markdown','objMarkdown','global','For contents in the Markdown format (http://markdown.de/)',0,'Doxter','{\"enableSoftTabs\":1,\"tabSize\":2,\"rows\":4,\"toolbarPlacement\":\"bottom\"}','2017-06-27 01:06:44','2017-06-27 01:06:44','359a9bec-5e72-4ad0-af84-86b566e7b549'),
-	(83,3,'Markdown Options','setMarkdown','global','Markdown Optionen',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:44','2017-06-27 01:06:44','076d6afc-70c7-486f-9526-2c1db026025a'),
-	(84,NULL,'Style','style','superTableBlockType:19','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-06-27 01:06:44','2017-06-27 01:06:44','1557c453-73d3-4fe0-acaf-46be49651e63'),
-	(85,NULL,'Add Anchor','addAnchor','superTableBlockType:19','Should the headings h1 - h3 be equipped with an anchor?',0,'Lightswitch','{\"default\":\"\"}','2017-06-27 01:06:44','2017-06-27 01:06:44','065773f7-2cf5-42dc-b9f6-709475f4a48c'),
-	(86,2,'Media Image','objMediaImage','global','This image takes the full content width and can be provided with a caption.',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:44','2017-06-27 01:06:44','daca1f5e-a187-4243-8b9b-7d00b0f96026'),
-	(87,NULL,'Image','photo','superTableBlockType:20','',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":1,\"allowedKinds\":[\"image\"],\"limit\":1,\"viewMode\":\"large\",\"selectionLabel\":\"\"}','2017-06-27 01:06:44','2017-06-27 01:06:44','88eb68f6-2957-4af6-aad4-d67d3aeeb017'),
-	(88,NULL,'Caption','caption','superTableBlockType:20','',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:44','2017-06-27 01:06:44','4cff7ff6-d388-42f7-a9be-69a33dbc00a2'),
-	(89,3,'Media Image Options','setMediaImage','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:44','2017-06-27 01:06:44','dc75d0e6-7215-4732-83ed-476dd5c7149f'),
-	(90,NULL,'Style','style','superTableBlockType:21','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-06-27 01:06:44','2017-06-27 01:06:44','a6338e6e-59b4-4aa4-a245-94c4474b5816'),
-	(91,NULL,'Ratio','ratio','superTableBlockType:21','Size ratio of the image',0,'PlainText','{\"placeholder\":\"16:9\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:44','2017-06-27 01:06:44','aa58f0a6-ffbd-4c11-8ffb-7d82dab5e409'),
-	(92,NULL,'Hight Restriction','heightrestriction','superTableBlockType:21','If it is a picture in the portrait format, it can be that it is longer than the viewport is high. The height limit limits the height to maximum viewport height - you no longer have to scroll around the entire image.',0,'Lightswitch','{\"default\":\"\"}','2017-06-27 01:06:44','2017-06-27 01:06:44','fbd8a462-3a1b-4690-b9c3-edf5d7887741'),
-	(93,2,'Quote','objQuote','global','For quote blocks with Author',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":1,\"minRows\":null}','2017-06-27 01:06:44','2017-06-27 01:06:44','300f77af-3e18-4f08-be73-11cfc8c26e39'),
-	(94,NULL,'Quote','copy','superTableBlockType:22','',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":1,\"initialRows\":2}','2017-06-27 01:06:44','2017-06-27 01:06:44','90ee36f6-5bbf-4fc8-92bd-bc7a7fe9705f'),
-	(95,NULL,'Source','source','superTableBlockType:22','',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:44','2017-06-27 01:06:44','68d7c5a7-1a72-4fb9-850f-1b76e040aa65'),
-	(96,3,'Quote Options','setQuote','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:44','2017-06-27 01:06:44','dad67892-3732-42b2-9e80-76bc93d67301'),
-	(97,NULL,'Style','style','superTableBlockType:23','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-06-27 01:06:45','2017-06-27 01:06:45','6ea94d3c-926a-4448-b85f-6e162cc08329'),
-	(98,2,'Richtext','objRichtext','global','',0,'RichText','{\"configFile\":\"Standard.json\",\"availableAssetSources\":\"*\",\"availableTransforms\":\"*\",\"cleanupHtml\":1,\"purifyHtml\":1,\"columnType\":\"text\"}','2017-06-27 01:06:45','2017-06-27 01:06:45','09291e6c-d6e2-408b-8332-a931e5647832'),
-	(99,3,'Richtext Options','setRichtext','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:45','2017-06-27 01:06:45','6ce90a4f-5f81-406d-aa7a-9dcced57b0c9'),
-	(100,NULL,'Style','style','superTableBlockType:24','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Lead\",\"value\":\"lead\",\"default\":\"\"},{\"label\":\"Center\",\"value\":\"center\",\"default\":\"\"}]}','2017-06-27 01:06:45','2017-06-27 01:06:45','8abf4660-e7db-4ac4-b401-779c660da55e'),
-	(101,3,'Section Background','setSectionBackground','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"},\"new4\":{\"width\":\"\"},\"new5\":{\"width\":\"\"},\"new6\":{\"width\":\"\"},\"new7\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:45','2017-06-27 01:06:45','b435a274-4f12-482d-8d8e-4ea85f7809b9'),
-	(102,NULL,'Image ','backgroundImage','superTableBlockType:25','',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":1,\"allowedKinds\":[\"image\"],\"limit\":1,\"viewMode\":\"large\",\"selectionLabel\":\"\"}','2017-06-27 01:06:45','2017-06-27 01:06:45','bcac7b3f-0579-4e86-b22b-88a2eaf05b7b'),
-	(103,NULL,'Adapt Container','adaptContainer','superTableBlockType:25','Do you want the background container to be as broad as the content container?\r\n',0,'Lightswitch','{\"default\":\"\"}','2017-06-27 01:06:45','2017-06-27 01:06:45','1fe7051b-ea34-4e8f-acd8-1d76bd16c00c'),
-	(104,NULL,'Width','width','superTableBlockType:25','Width of the background image - default always full width',0,'Dropdown','{\"options\":[{\"label\":\"Full\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Half\",\"value\":\"half\",\"default\":\"\"}]}','2017-06-27 01:06:45','2017-06-27 01:06:45','a2767d16-9443-4098-ba66-3ccc1af3233b'),
-	(105,NULL,'Align','align','superTableBlockType:25','Orientation of the background - not applicable for full area',0,'Dropdown','{\"options\":[{\"label\":\"Left\",\"value\":\"default\",\"default\":1},{\"label\":\"Right\",\"value\":\"right\",\"default\":\"\"}]}','2017-06-27 01:06:45','2017-06-27 01:06:45','1cc03a05-6e86-4b80-be7e-ca0c1dee55b6'),
-	(106,NULL,'Behavior','behavior','superTableBlockType:25','Additional layout rules',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Behavior 1\",\"value\":\"behavior1\",\"default\":\"\"}]}','2017-06-27 01:06:45','2017-06-27 01:06:45','1147f353-2f47-4fc3-ad2c-d06cc6da5b88'),
-	(107,NULL,'Position','position','superTableBlockType:25','Background Position of the image (css syntax)\r\n',0,'PlainText','{\"placeholder\":\"center center\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:45','2017-06-27 01:06:45','8dd63a98-a39d-4662-8b2d-48d5fd9f630d'),
-	(108,NULL,'Ratio','ratio','superTableBlockType:25','Ratio of the background image',0,'PlainText','{\"placeholder\":\"16:9\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:45','2017-06-27 01:06:45','35c75912-77f7-4e79-9f69-dbbf116e8436'),
-	(109,2,'Section Column','objSectionColumn','global','Column in a section',0,'SuperTable_Label','{\"value\":\"\"}','2017-06-27 01:06:45','2017-06-27 01:06:45','86bf0617-8913-46d4-a894-fc976303a2f1'),
-	(110,3,'Section Column Options','setSectionColumn','global','Spalte in einer Sektion',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:45','2017-06-27 01:06:45','0c4a040a-d323-43d6-bb7e-ef7bc37f850d'),
-	(111,NULL,'Style','style','superTableBlockType:26','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-06-27 01:06:45','2017-06-27 01:06:45','f92eba14-51de-44c5-a7b3-818e53ab09be'),
-	(112,NULL,'Align','align','superTableBlockType:26','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Left\",\"value\":\"left\",\"default\":\"\"},{\"label\":\"Center\",\"value\":\"center\",\"default\":\"\"},{\"label\":\"Right\",\"value\":\"right\",\"default\":\"\"}]}','2017-06-27 01:06:45','2017-06-27 01:06:45','13e04a7a-afac-4bb8-9fed-716ee2e75371'),
-	(113,NULL,'Vertical Align','verticalAlign','superTableBlockType:26','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Top\",\"value\":\"top\",\"default\":\"\"},{\"label\":\"Middle\",\"value\":\"middle\",\"default\":\"\"},{\"label\":\"Bottom\",\"value\":\"bottom\",\"default\":\"\"}]}','2017-06-27 01:06:45','2017-06-27 01:06:45','41489d91-9044-4714-aa3a-2edfa18bb8dd'),
-	(114,3,'Section Layout','setSectionLayout','global','Weighting of individual columns.',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:45','2017-06-27 01:06:45','f5396006-1721-49b9-85fe-c7f9270038ab'),
-	(115,NULL,'Two columns','twoColumns','superTableBlockType:27','Width ratio for two columns',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"1-1\",\"default\":\"\"},{\"label\":\"2-1\",\"value\":\"2-1\",\"default\":\"\"},{\"label\":\"1-2\",\"value\":\"1-2\",\"default\":\"\"},{\"label\":\"3-1\",\"value\":\"3-1\",\"default\":\"\"},{\"label\":\"1-3\",\"value\":\"1-3\",\"default\":\"\"}]}','2017-06-27 01:06:45','2017-06-27 01:06:45','0953f249-146d-4a6a-aa12-bc2de8515f7f'),
-	(116,NULL,'Three Columns','threeColumns','superTableBlockType:27','Width ratio for three columns',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"1-1-1\",\"default\":\"\"},{\"label\":\"2-6-2\",\"value\":\"2-6-2\",\"default\":\"\"},{\"label\":\"3-5-2\",\"value\":\"3-5-2\",\"default\":\"\"},{\"label\":\"2-5-3\",\"value\":\"2-5-3\",\"default\":\"\"}]}','2017-06-27 01:06:45','2017-06-27 01:06:45','1133984f-9760-4523-9bb6-22f62da876ca'),
-	(117,NULL,'Four Columns','fourColumns','superTableBlockType:27','Width ratio for four columns',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"1-1-1-1\",\"default\":\"\"},{\"label\":\"2-3-3-2\",\"value\":\"2-3-3-2\",\"default\":\"\"},{\"label\":\"2-3-4-1\",\"value\":\"2-3-4-1\",\"default\":\"\"}]}','2017-06-27 01:06:45','2017-06-27 01:06:45','08f6eb97-7268-4f72-ab1b-ad26dab78dc5'),
-	(118,3,'Section Options','setSection','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"},\"new4\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:45','2017-06-27 01:06:45','e9ed7d50-1baf-4110-bf22-c8d0a30d8e13'),
-	(119,NULL,'Style','style','superTableBlockType:28','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-06-27 01:06:45','2017-06-27 01:06:45','1c831955-15e9-4195-8a22-bd8376f920ac'),
-	(120,NULL,'Full height','fullheight','superTableBlockType:28','Should the section be extended to the full viewport height?',0,'Lightswitch','{\"default\":\"\"}','2017-06-27 01:06:45','2017-06-27 01:06:45','851cacb7-1ac8-4ea6-bb5c-7deb6b7e46cb'),
-	(121,NULL,'Inner Container','innerContainer','superTableBlockType:28','Layout of the inner container',0,'Dropdown','{\"options\":[{\"label\":\"Default Page Width\",\"value\":\"default\",\"default\":1},{\"label\":\"Full Viewport\",\"value\":\"full\",\"default\":\"\"},{\"label\":\"Bigger 25%\",\"value\":\"bigger-25\",\"default\":\"\"},{\"label\":\"Bigger 45%\",\"value\":\"bigger-45\",\"default\":\"\"},{\"label\":\"Smaller 25%\",\"value\":\"smaller-25\",\"default\":\"\"},{\"label\":\"Smaller 50%\",\"value\":\"smaller-50\",\"default\":\"\"}]}','2017-06-27 01:06:45','2017-06-27 01:06:45','86bf0a34-91cf-4edc-800e-f651046287f3'),
-	(122,NULL,'Anchor','anchor','superTableBlockType:28','Optional anchor for jump navigation without # (and without special characters)',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:45','2017-06-27 01:06:45','8b66bc27-4d5a-44b6-b372-7050c67cefa3'),
-	(123,2,'Section Wrapper','objSection','global','Subsegment of a content module, when the page wrapper is removed the section can run over the full browser width.',0,'SuperTable_Label','{\"value\":\"\"}','2017-06-27 01:06:46','2017-06-27 01:06:46','a528da42-3b7b-4fb1-8396-edda3e145190'),
-	(124,4,'SEO','seo','global','',0,'Seomatic_Meta','{\"assetSources\":\"*\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoTitle\":\"\",\"seoTitleSourceChangeable\":1,\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"body\",\"seoDescription\":\"\",\"seoDescriptionSourceChangeable\":1,\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoKeywords\":\"\",\"seoKeywordsSourceChangeable\":1,\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"featuredImage\",\"seoImageIdSourceChangeable\":1,\"seoImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"twitterCardTypeChangeable\":1,\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"featuredImage\",\"seoTwitterImageIdSourceChangeable\":1,\"seoTwitterImageTransform\":\"\",\"openGraphType\":\"article\",\"openGraphTypeChangeable\":1,\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"featuredImage\",\"seoFacebookImageIdSourceChangeable\":1,\"seoFacebookImageTransform\":\"\",\"robots\":\"all\",\"robotsChangeable\":1}','2017-06-27 01:06:46','2017-06-27 01:06:46','43d641e8-c80a-4b5c-b4b8-5e4e0610efb7'),
-	(125,2,'Slideout Box','objSlideOutBox','global','A content box that expands by click - intended to hide the user rather irrelevant content.',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:46','2017-06-27 01:06:46','559baf2f-c824-46b2-b098-d4156eebcbba'),
-	(126,NULL,'Trigger','trigger','superTableBlockType:29','Activation link to open the box',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:46','2017-06-27 01:06:46','188625c3-3e60-43d7-a405-9f2619905d24'),
-	(127,NULL,'Body','body','superTableBlockType:29','',0,'RichText','{\"configFile\":\"\",\"availableAssetSources\":\"*\",\"availableTransforms\":\"*\",\"cleanupHtml\":\"\",\"purifyHtml\":1,\"purifierConfig\":\"\",\"columnType\":\"text\"}','2017-06-27 01:06:46','2017-06-27 01:06:46','f57cbe41-439e-454a-81c5-5a2c011b092e'),
-	(128,3,'Slideout Box Options','setSlideOutBox','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:46','2017-06-27 01:06:46','cd00fc15-c088-43c6-b106-62147ba30bf9'),
-	(129,NULL,'Style','style','superTableBlockType:30','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-06-27 01:06:46','2017-06-27 01:06:46','12af8132-bbfa-413b-bbbf-928628db14d6'),
-	(130,3,'Slider Setup','setSliderSetup','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"},\"new4\":{\"width\":\"\"},\"new5\":{\"width\":\"\"},\"new6\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:46','2017-06-27 01:06:46','ed1cda86-1542-43cd-aed9-cf52f636edb1'),
-	(131,NULL,'Autoplay','autoplay','superTableBlockType:31','Speed of Autoplay mode',0,'Dropdown','{\"options\":[{\"label\":\"Deaktiviert\",\"value\":\"default\",\"default\":1},{\"label\":\"Slow\",\"value\":\"slow\",\"default\":\"\"},{\"label\":\"Medium\",\"value\":\"medium\",\"default\":\"\"},{\"label\":\"Fast\",\"value\":\"fast\",\"default\":\"\"}]}','2017-06-27 01:06:46','2017-06-27 01:06:46','5fd80d17-0f70-49b3-bcc8-ab436e165901'),
-	(132,NULL,'Animation Speed','speed','superTableBlockType:31','Setting the animation speed',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Slow\",\"value\":\"slow\",\"default\":\"\"},{\"label\":\"Medium\",\"value\":\"medium\",\"default\":\"\"},{\"label\":\"Fast\",\"value\":\"fast\",\"default\":\"\"}]}','2017-06-27 01:06:46','2017-06-27 01:06:46','3ab2d0eb-775d-44c8-ad49-9152dbabce60'),
-	(133,NULL,'Loop','loop','superTableBlockType:31','Should the slider run endlessly?',0,'Lightswitch','{\"default\":\"\"}','2017-06-27 01:06:46','2017-06-27 01:06:46','d91625a3-b2b4-4098-86c2-d31efcaa34e1'),
-	(134,NULL,'Hide Navigation','navigation','superTableBlockType:31','Should a navigation be hidden?',0,'Lightswitch','{\"default\":\"\"}','2017-06-27 01:06:46','2017-06-27 01:06:46','aace38ba-cffb-4bbe-8537-0646c4fe04fc'),
-	(135,NULL,'Hide Pagination','pagination','superTableBlockType:31','Should a pagination be hidden?',0,'Lightswitch','{\"default\":\"\"}','2017-06-27 01:06:46','2017-06-27 01:06:46','f961c1b2-2243-412b-bf1b-52e6ecf219b3'),
-	(136,NULL,'Autoheight','autoHeight','superTableBlockType:31','With Autoheight, the height of each Slides is Dynamic',0,'Lightswitch','{\"default\":\"\"}','2017-06-27 01:06:46','2017-06-27 01:06:46','c63e777b-d3ff-4728-98ea-305bfd83c517'),
-	(137,3,'Slider Setup General','setSliderSetupGeneral','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"},\"new4\":{\"width\":\"\"},\"new5\":{\"width\":\"\"},\"new6\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:46','2017-06-27 01:06:46','31e6e27f-e89b-4ab4-b67c-5798065714c7'),
-	(138,NULL,'Slide Position','position','superTableBlockType:32','Position of the slides',0,'Dropdown','{\"options\":[{\"label\":\"Center\",\"value\":\"center\",\"default\":1},{\"label\":\"Left\",\"value\":\"left\",\"default\":\"\"},{\"label\":\"Right\",\"value\":\"right\",\"default\":\"\"}]}','2017-06-27 01:06:46','2017-06-27 01:06:46','3be24fba-2a63-4943-8f43-1186e38934d7'),
-	(139,NULL,'Slides per View','slidesPerView','superTableBlockType:32','Number of visible slides',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Auto\",\"value\":\"auto\",\"default\":\"\"},{\"label\":2,\"value\":\"two\",\"default\":\"\"},{\"label\":3,\"value\":\"three\",\"default\":\"\"},{\"label\":4,\"value\":\"four\",\"default\":\"\"},{\"label\":5,\"value\":\"five\",\"default\":\"\"}]}','2017-06-27 01:06:46','2017-06-27 01:06:46','d80e5a30-b111-4b80-9940-1797a3d4f865'),
-	(140,NULL,'Space Between','spaceBetween','superTableBlockType:32','Distances between the slides',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:46','2017-06-27 01:06:46','9418d0fc-3606-4078-b4e5-4b659fff2004'),
-	(141,NULL,'Group Cell','groupCell','superTableBlockType:32','Slides can be grouped.',0,'Dropdown','{\"options\":[{\"label\":\"Nicht gruppiert\",\"value\":\"default\",\"default\":1},{\"label\":2,\"value\":\"\\\"2\\\"\",\"default\":\"\"},{\"label\":3,\"value\":\"\\\"3\\\"\",\"default\":\"\"},{\"label\":4,\"value\":\"\\\"4\\\"\",\"default\":\"\"},{\"label\":5,\"value\":\"\\\"5\\\"\",\"default\":\"\"},{\"label\":6,\"value\":\"\\\"6\\\"\",\"default\":\"\"}]}','2017-06-27 01:06:46','2017-06-27 01:06:46','39b2f824-9246-4fe3-bf33-4ec87fba126e'),
-	(142,NULL,'Freescroll','freescroll','superTableBlockType:32','With Freescroll, the slider can be moved freely',0,'Lightswitch','{\"default\":\"\"}','2017-06-27 01:06:46','2017-06-27 01:06:46','68e1d855-7bfa-4c07-8104-d353beea7fc7'),
-	(143,NULL,'Responsive','responsive','superTableBlockType:32','If multiple slides are displayed at the same time, you can reduce the number of columns by using Responsive with smaller viewport.',0,'Lightswitch','{\"default\":\"\"}','2017-06-27 01:06:46','2017-06-27 01:06:46','399edcdb-2c86-495e-9d36-d946bc99634d'),
-	(144,6,'Social Networks','socialNetworks','global','Links to the social networks',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":null,\"selectionLabel\":\"Add Network\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:46','2017-06-27 01:06:46','48c48bd7-3bb1-42bf-b19f-2036c96c893d'),
-	(145,NULL,'Icon','icon','superTableBlockType:33','Networktype',0,'Dropdown','{\"options\":[{\"label\":\"Facebook\",\"value\":\"facebook\",\"default\":\"\"},{\"label\":\"Twitter\",\"value\":\"twitter\",\"default\":\"\"},{\"label\":\"Googleplus\",\"value\":\"googleplus\",\"default\":\"\"},{\"label\":\"Pinterest\",\"value\":\"pinterest\",\"default\":\"\"},{\"label\":\"Instagram\",\"value\":\"instagram\",\"default\":\"\"},{\"label\":\"Vimeo\",\"value\":\"vimeo\",\"default\":\"\"},{\"label\":\"Youtube\",\"value\":\"youtube\",\"default\":\"\"}]}','2017-06-27 01:06:46','2017-06-27 01:06:46','0a313051-55df-4a0c-b09e-d08aef057bff'),
-	(146,NULL,'Link','linkit','superTableBlockType:33','',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:46','2017-06-27 01:06:46','94ac6956-814f-433d-9dbc-401a1f12ed4a'),
-	(147,NULL,'Caption','caption','superTableBlockType:33','Caption of the popover',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:46','2017-06-27 01:06:46','979b207b-3c9f-46ea-b8d1-de339763b068'),
-	(148,2,'Spacer','objSpacer','global','Element to expand the distance. A spacer is 20px',0,'Dropdown','{\"options\":[{\"label\":\"0.25 Spacer\",\"value\":\"--025\",\"default\":\"\"},{\"label\":\"0.50 Spacer\",\"value\":\"--050\",\"default\":1},{\"label\":\"0.75 Spacer\",\"value\":\"--075\",\"default\":\"\"},{\"label\":\"1 Spacer\",\"value\":\"--1\",\"default\":\"\"},{\"label\":\"2 Spacer\",\"value\":\"--2\",\"default\":\"\"},{\"label\":\"3 Spacer\",\"value\":\"--3\",\"default\":\"\"},{\"label\":\"4 Spacer\",\"value\":\"--4\",\"default\":\"\"},{\"label\":\"5 Spacer\",\"value\":\"--5\",\"default\":\"\"},{\"label\":\"6 Spacer\",\"value\":\"--6\",\"default\":\"\"},{\"label\":\"7 Spacer\",\"value\":\"--7\",\"default\":\"\"},{\"label\":\"8 Spacer\",\"value\":\"--8\",\"default\":\"\"},{\"label\":\"9 Spacer\",\"value\":\"--9\",\"default\":\"\"},{\"label\":\"10 Spacer\",\"value\":\"--10\",\"default\":\"\"}]}','2017-06-27 01:06:46','2017-06-27 01:06:46','2caf5919-6ba5-4944-9984-9b460b9a6db2'),
-	(149,2,'Tab','objTab','global','The individual tab, please enter the title of the tab',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-06-27 01:06:47','2017-06-27 01:06:47','c4eb0f1c-9ac5-4b07-b20c-1bbba0167a1e'),
-	(150,2,'Tab Wrapper','objTabWrapper','global','Wrapper of the Tab group',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-06-27 01:06:47','2017-06-27 01:06:47','b917150e-0fae-4390-a1ef-e51a57ff4ccb'),
-	(151,NULL,'Style','style','superTableBlockType:34','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-06-27 01:06:47','2017-06-27 01:06:47','a94129fd-acc4-412a-8048-f2c1c617a5c4'),
-	(152,5,'Content Builder','contentBuilder','global','',0,'Neo','{\"maxBlocks\":null}','2017-06-27 01:06:47','2017-06-27 01:06:47','c2ec1cdf-b4b2-4ef7-bfe4-0555478cdc5b');
+	(1,1,'Body','body','global',NULL,1,'RichText','{\"configFile\":\"Standard.json\",\"columnType\":\"text\"}','2017-07-04 21:45:04','2017-07-04 21:45:04','5df92e4c-59b9-4424-8173-5908b66ae8f6'),
+	(2,1,'Tags','tags','global','',1,'Tags','{\"source\":\"taggroup:1\",\"targetLocale\":\"\",\"selectionLabel\":\"\"}','2017-07-04 21:45:04','2017-07-04 22:14:21','47146b43-2ca6-4809-99df-b0ab7892918b'),
+	(3,2,'Accordion','objAccordion','global','Accordion Block - please specify a title',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:00:58','2017-07-04 22:18:04','bbb42e3c-caaa-4892-bec6-14db10746f17'),
+	(4,2,'Accordion Wrapper','objAccordionWrapper','global','Wrapper of a group of Accordions.',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:00:58','2017-07-04 22:00:58','bb9c8859-a791-4ef1-8a39-11e52092a41c'),
+	(5,NULL,'Style','style','superTableBlockType:1','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1}]}','2017-07-04 22:00:58','2017-07-04 22:00:58','cd38e7ae-a192-43a1-9a6a-56cc2282a20d'),
+	(6,2,'Anchor','objAnchor','global','Anchor name - no special characters and can not start with a number',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:00:58','2017-07-04 22:18:25','9cbfbff2-20e2-4d3c-9db4-88984f7e427a'),
+	(7,3,'Anchor Options','setAnchor','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:00:58','2017-07-04 22:00:58','315a402c-e5ce-4403-83dd-947a08be9186'),
+	(8,NULL,'Positionsfix','positionfix','superTableBlockType:2','If the anchor is too high or too low, the position value can be adjusted (higher or lower).',0,'PlainText','{\"placeholder\":\"-10px\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-07-04 22:00:58','2017-07-04 22:00:58','98f9d496-f15c-42c3-b1f5-e666731b63f9'),
+	(9,2,'Button','objButton','global','Button for linking internal and external content',1,'FruitLinkIt','{\"types\":[\"email\",\"custom\",\"entry\",\"category\",\"asset\"],\"defaultText\":\"Link\",\"allowCustomText\":\"1\",\"allowTarget\":\"1\",\"entrySources\":\"*\",\"entrySelectionLabel\":\"Select an entry\",\"assetSources\":\"*\",\"assetSelectionLabel\":\"Select an asset\",\"categorySources\":\"*\",\"categorySelectionLabel\":\"Select a category\"}','2017-07-04 22:00:58','2017-07-05 19:44:06','615fdd7c-a1c7-435c-9b14-2c2776614b79'),
+	(10,3,'Button Options','setButton','global','',0,'SuperTable','{\"columns\":{\"11\":{\"width\":\"\"},\"12\":{\"width\":\"\"},\"13\":{\"width\":\"\"},\"14\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:00:58','2017-07-05 19:58:39','665d788d-0316-495c-a133-0edc2b5f2df6'),
+	(11,NULL,'Style','style','superTableBlockType:3','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"1\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-07-04 22:00:58','2017-07-05 19:58:39','7f6d89c6-fcb0-4cc0-b586-2aa8645ea78a'),
+	(12,NULL,'Size','size','superTableBlockType:3','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"1\"},{\"label\":\"Big\",\"value\":\"big\",\"default\":\"\"},{\"label\":\"Small\",\"value\":\"small\",\"default\":\"\"}]}','2017-07-04 22:00:58','2017-07-05 19:58:39','1141564b-136a-43b2-943d-7334a13ba93d'),
+	(13,NULL,'Full Width','fullwidth','superTableBlockType:3','If the button centered has been created, you can also give it the full width.',0,'Lightswitch','{\"default\":\"\"}','2017-07-04 22:00:58','2017-07-05 19:58:39','3a854de1-2ab4-4e48-a96c-2c3ccac007df'),
+	(14,NULL,'Position','position','superTableBlockType:3','The buttons are arranged left-aligned, can be overwritten.',0,'Dropdown','{\"options\":[{\"label\":\"Left\",\"value\":\"left\",\"default\":\"1\"},{\"label\":\"Center\",\"value\":\"center\",\"default\":\"\"},{\"label\":\"Right\",\"value\":\"right\",\"default\":\"\"}]}','2017-07-04 22:00:58','2017-07-05 19:58:39','6dcd4460-6be7-4bf0-b70c-70730d8c50c4'),
+	(15,2,'Card','objCard','global','Text Box with Media Assets ',0,'SuperTable','{\"columns\":{\"16\":{\"width\":\"\"},\"17\":{\"width\":\"\"},\"18\":{\"width\":\"\"},\"19\":{\"width\":\"\"},\"20\":{\"width\":\"\"},\"21\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:00:58','2017-07-05 19:45:57','8c46621d-b157-427a-a045-ebdf5ed59d36'),
+	(16,NULL,'Image','photo','superTableBlockType:4','A picture will be integrated in any case. If a video is used, the picture serves as a fallback.',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":\"1\",\"allowedKinds\":[\"image\"],\"targetLocale\":\"\",\"limit\":\"1\",\"viewMode\":\"list\",\"selectionLabel\":\"\"}','2017-07-04 22:00:58','2017-07-05 19:45:57','fe73df1f-b075-4a5f-83ff-63069b809619'),
+	(17,NULL,'Headline','headline','superTableBlockType:4','',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:00:58','2017-07-05 19:45:57','78032f57-af13-411b-8485-ae8650e9289d'),
+	(18,NULL,'Subline','subline','superTableBlockType:4','',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:00:58','2017-07-05 19:45:57','5a9c422f-79df-4265-a100-53f562ef3ad8'),
+	(19,NULL,'Meta','meta','superTableBlockType:4','',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:00:58','2017-07-05 19:45:57','e8acf229-fa65-46e2-a78e-855f149d3a56'),
+	(20,NULL,'Body','body','superTableBlockType:4','',1,'RichText','{\"configFile\":\"Reduced.json\",\"availableAssetSources\":\"*\",\"availableTransforms\":\"*\",\"cleanupHtml\":\"1\",\"purifyHtml\":\"1\",\"purifierConfig\":\"\",\"columnType\":\"text\"}','2017-07-04 22:00:58','2017-07-05 19:45:57','910044eb-9bcc-428c-907c-308bbfe41310'),
+	(21,NULL,'Link','cardlink','superTableBlockType:4','Optional Card Link',1,'FruitLinkIt','{\"types\":[\"custom\",\"entry\",\"category\",\"asset\"],\"defaultText\":\"\",\"allowCustomText\":\"\",\"allowTarget\":\"\",\"entrySources\":\"*\",\"entrySelectionLabel\":\"Select an entry\",\"assetSources\":\"*\",\"assetSelectionLabel\":\"Select an asset\",\"categorySources\":\"*\",\"categorySelectionLabel\":\"Select a category\"}','2017-07-04 22:00:58','2017-07-05 19:45:57','8fbbff95-4266-4d89-8258-bc0c5319d2a6'),
+	(22,3,'Card Options','setCard','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:00:58','2017-07-04 22:00:58','254b16d5-1862-430c-988a-de6be78e9522'),
+	(23,NULL,'Style','style','superTableBlockType:5','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1}]}','2017-07-04 22:00:59','2017-07-04 22:00:59','552db1d3-6cf7-45e4-96d7-6494d49bae73'),
+	(24,NULL,'Media Ratio','mediaRatio','superTableBlockType:5','Aspect ratio of the image',0,'PlainText','{\"placeholder\":\"16:9\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-07-04 22:00:59','2017-07-04 22:00:59','0fd2189d-33d6-44ce-a258-4514874b3bb1'),
+	(25,2,'Card Slider','objCardSlider','global','A slider module for cards',1,'SuperTable_Label','{\"value\":\"\"}','2017-07-04 22:00:59','2017-07-05 19:46:07','cb6185e0-a7fa-4aa8-b345-9141476f102a'),
+	(26,3,'Card Slider Options','setCardSlider','global','',0,'SuperTable','{\"columns\":{\"27\":{\"width\":\"\"},\"28\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:00:59','2017-07-05 19:59:30','d9d7aa07-9278-4c29-ab45-3dee58e17bba'),
+	(27,NULL,'Style','style','superTableBlockType:6','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"1\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-07-04 22:00:59','2017-07-05 19:59:30','a10bf7df-23b2-43b0-912d-eab8b5cf6950'),
+	(28,NULL,'Setup','setup','superTableBlockType:6','Select one of the existing setups or define a new one under `Categories> Settings: Image Slider`',0,'Categories','{\"source\":\"group:2\",\"targetLocale\":\"\",\"limit\":\"1\",\"selectionLabel\":\"Setup ausw\\u00e4hlen\"}','2017-07-04 22:00:59','2017-07-05 19:59:30','1d649b24-8275-488b-ba99-0e3a45bb4713'),
+	(29,4,'Category Select: Blog','categorySelectBlog','global','',1,'Categories','{\"source\":\"group:1\",\"targetLocale\":\"\",\"limit\":\"1\",\"selectionLabel\":\"\"}','2017-07-04 22:00:59','2017-07-04 22:15:29','2e9a1a7c-e5ca-4541-8cb2-ef8415725299'),
+	(30,4,'Comment Switch','commentSwitch','global','To disable comments',0,'Lightswitch','{\"default\":\"\"}','2017-07-04 22:00:59','2017-07-04 22:00:59','f9bccd15-4cd0-467b-9d2d-6ddbd3fd59b7'),
+	(31,6,'Copyright','copyright','global','Copyright Message',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:00:59','2017-07-04 22:14:33','b9953ff9-8323-401d-a80d-284db8eaaa8b'),
+	(32,6,'Disqus Name','disqusName','global','Name of your disqus account',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:00:59','2017-07-04 22:14:43','ba7704f1-1d73-4d4d-8e17-91547a024a24'),
+	(33,2,'Embed Content','objEmbedContent','global','To include external content such as videos, code snippets, or maps',0,'SuperTable','{\"columns\":{\"34\":{\"width\":\"\"},\"35\":{\"width\":\"\"},\"36\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":\"1\",\"minRows\":null}','2017-07-04 22:00:59','2017-07-05 19:46:26','2269539e-8895-47f2-9d4c-c927fe3b8965'),
+	(34,NULL,'Embed URL','embedUrl','superTableBlockType:7','If it is a video of Youtube, Vimeo or Facebook, you can copy the URL into the field.',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:00:59','2017-07-05 19:46:26','4b4a85dd-6a8b-4510-9e0c-c1246568b9ba'),
+	(35,NULL,'Embed Code','embed','superTableBlockType:7','Insert the corresponding IFrame code here. If the URL field is filled, the code is ignored.',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"1\"}','2017-07-04 22:00:59','2017-07-05 19:46:26','13f57dde-ca27-4e5d-aff1-d170c20265dd'),
+	(36,NULL,'Caption','caption','superTableBlockType:7','Optional asset caption',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:00:59','2017-07-05 19:46:26','32c71120-eb68-46f3-af26-b8a1c920a345'),
+	(37,3,'Embed Content Options','setEmbedContent','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"},\"new4\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:00:59','2017-07-04 22:00:59','45005ce5-af73-4151-ae0f-92e2d719610d'),
+	(38,NULL,'Style','style','superTableBlockType:8','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-07-04 22:00:59','2017-07-04 22:00:59','70db2929-f9f7-48f6-89ab-295a181aebdd'),
+	(39,NULL,'Responsive','responsive','superTableBlockType:8','Do you want to display the content responsive?',0,'Lightswitch','{\"default\":\"\"}','2017-07-04 22:00:59','2017-07-04 22:00:59','5d8190a1-ccc4-4130-a048-a4941070121d'),
+	(40,NULL,'Ratio','ratio','superTableBlockType:8','Ratio of the iFrame',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-07-04 22:00:59','2017-07-04 22:00:59','623b6fa7-ff13-4e55-87a4-6ec39f9e7198'),
+	(41,NULL,'Align','align','superTableBlockType:8','Alignment for content smaller than the page',0,'Dropdown','{\"options\":[{\"label\":\"Center\",\"value\":\"center\",\"default\":1},{\"label\":\"Left\",\"value\":\"left\",\"default\":\"\"},{\"label\":\"Right\",\"value\":\"right\",\"default\":\"\"}]}','2017-07-04 22:00:59','2017-07-04 22:00:59','c0e6c680-ff10-496c-9bd5-7e9b50ac45ad'),
+	(42,4,'Featured Image','featuredImage','global','Image of the respective posts - is used for surveys, headers, SEO and OG tags',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":1,\"allowedKinds\":[\"image\"],\"limit\":1,\"viewMode\":\"large\",\"selectionLabel\":\"Featured Image hinzuf\\u00fcgen\"}','2017-07-04 22:00:59','2017-07-04 22:00:59','575ae61d-b48b-4d3d-902a-9c2cf2e54908'),
+	(43,4,'Featured Image Labeling','featuredImageLabeling','global','',0,'SuperTable','{\"columns\":{\"44\":{\"width\":\"\"},\"45\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:00:59','2017-07-04 22:15:50','eee56e8e-a3b1-4b10-be7b-eb763e2ee2bd'),
+	(44,NULL,'Headline','headline','superTableBlockType:9','',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:00:59','2017-07-04 22:15:50','36652989-5e2e-4d7e-9655-1e8efa0af7d0'),
+	(45,NULL,'Link','linkit','superTableBlockType:9','',1,'FruitLinkIt','{\"types\":[\"tel\",\"custom\",\"entry\",\"category\",\"asset\"],\"defaultText\":\"Link\",\"allowCustomText\":\"1\",\"allowTarget\":\"1\",\"entrySources\":\"*\",\"entrySelectionLabel\":\"Select an entry\",\"assetSources\":\"*\",\"assetSelectionLabel\":\"Select an asset\",\"categorySources\":\"*\",\"categorySelectionLabel\":\"Select a category\"}','2017-07-04 22:00:59','2017-07-04 22:15:50','139e8fdb-f8d2-4359-b874-bf9278729b0d'),
+	(46,4,'Featured Image Options','featuredImageOptions','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:00:59','2017-07-04 22:00:59','096940b8-592a-4491-8bc4-31ab4b4b7ca2'),
+	(47,NULL,'Fullbleed','fullbleed','superTableBlockType:10','Should the image be spread over the entire browser width?',0,'Lightswitch','{\"default\":\"\"}','2017-07-04 22:00:59','2017-07-04 22:00:59','6ee98edb-3756-4291-a8f4-3fcaae501297'),
+	(48,NULL,'Ratio','ratio','superTableBlockType:10','Image Ratio',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-07-04 22:00:59','2017-07-04 22:00:59','19685c7a-7c1a-4d4a-92c6-ec83a9f7f887'),
+	(49,6,'Fokuspunkt','focalpoint','global','',0,'FocalPointField_FocalPoint','{\"defaultFocalPoint\":\"50% 50%\"}','2017-07-04 22:00:59','2017-07-04 22:00:59','c71224f8-be47-497a-80c2-9836fe710772'),
+	(50,2,'Gallery','objGallery','global','Gallery module with Lightbox Support and two layout types',0,'SuperTable','{\"columns\":{\"51\":{\"width\":\"\"},\"52\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":null,\"selectionLabel\":\"Add a picture\",\"maxRows\":\"30\",\"minRows\":null}','2017-07-04 22:01:00','2017-07-05 19:47:03','2dbebb52-37d9-45ae-909f-8f53bd3e8c31'),
+	(51,NULL,'Image','photo','superTableBlockType:11','',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":\"1\",\"allowedKinds\":[\"image\"],\"targetLocale\":\"\",\"limit\":\"1\",\"viewMode\":\"large\",\"selectionLabel\":\"\"}','2017-07-04 22:01:00','2017-07-05 19:47:03','7ec62500-cb7b-41bd-9694-8f370812f8b7'),
+	(52,NULL,'Caption','caption','superTableBlockType:11','Optional caption is only visible in the lightbox.',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:00','2017-07-05 19:47:03','e0bef4ae-47b1-4c19-bf4f-ea03e2aff0b8'),
+	(53,3,'Gallery Options','setGallery','global','',0,'SuperTable','{\"columns\":{\"54\":{\"width\":\"\"},\"55\":{\"width\":\"\"},\"56\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:00','2017-07-05 20:01:59','eb6bdc36-65a2-4940-b55f-a1b93b94bf3a'),
+	(54,NULL,'Layout Typ','layoutType','superTableBlockType:12','Smart for a thumbnail layout in Tumbler Styles (Photogrid), Simple for simple thumbnail matching',0,'Dropdown','{\"options\":[{\"label\":\"Simple\",\"value\":\"simple\",\"default\":\"\"},{\"label\":\"Smart\",\"value\":\"smart\",\"default\":\"\"}]}','2017-07-04 22:01:00','2017-07-05 20:01:59','4cb3cd33-820c-4139-b085-742d8fb6afe5'),
+	(55,NULL,'Ratio','ratio','superTableBlockType:12','Image ratio of the thumbnails for the `simple layout` mode. Format \'1:1\'',0,'PlainText','{\"placeholder\":\"1:1\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:00','2017-07-05 20:01:59','a5a9923a-9188-4c26-bdfd-0e8d85acdddd'),
+	(56,NULL,'Width','width','superTableBlockType:12','Thumbnail width for the Simple Layout. Regularly, the width of thumbnails depends on the number of images per row. If this is too big or too small, you can set the width yourself.',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:00','2017-07-05 20:01:59','e5d9e8c7-d0ed-4923-96ef-9710b746fdb0'),
+	(57,2,'Headline','objHeadline','global','',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:00','2017-07-05 19:47:15','d5715b37-88b1-406a-8c7f-25b9694b5d98'),
+	(58,3,'Headline Option','setHeadline','global','Size of the headline, the regular headline has a semantic size of a H2. The override controller can be used to readjust the size independent of its semantics.',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":1,\"minRows\":null}','2017-07-04 22:01:00','2017-07-04 22:01:00','a5541072-55ce-4475-b17d-9ccd24f99a0a'),
+	(59,NULL,'Style','style','superTableBlockType:13','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-07-04 22:01:00','2017-07-04 22:01:00','22ce2ad8-4731-46ac-8346-9080b052255a'),
+	(60,NULL,'Semantic Size','semantic','superTableBlockType:13','',0,'Dropdown','{\"options\":[{\"label\":\"H1\",\"value\":\"h1\",\"default\":\"\"},{\"label\":\"H2\",\"value\":\"h2\",\"default\":1},{\"label\":\"H3\",\"value\":\"h3\",\"default\":\"\"},{\"label\":\"H4\",\"value\":\"h4\",\"default\":\"\"},{\"label\":\"H5\",\"value\":\"h5\",\"default\":\"\"},{\"label\":\"H6\",\"value\":\"h6\",\"default\":\"\"}]}','2017-07-04 22:01:00','2017-07-04 22:01:00','4770c7a2-a0c6-4bf0-b4a4-15e95962d4ed'),
+	(61,NULL,'Override','override','superTableBlockType:13','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"H1\",\"value\":\"h1\",\"default\":\"\"},{\"label\":\"H2\",\"value\":\"h2\",\"default\":\"\"},{\"label\":\"H3\",\"value\":\"h3\",\"default\":\"\"},{\"label\":\"H4\",\"value\":\"h4\",\"default\":\"\"},{\"label\":\"H5\",\"value\":\"h5\",\"default\":\"\"},{\"label\":\"H6\",\"value\":\"h6\",\"default\":\"\"}]}','2017-07-04 22:01:00','2017-07-04 22:01:00','a9c2a3a7-2314-457f-bb0a-c5adca20394e'),
+	(62,4,'Hero','hero','global','Hero Image for Homepages',0,'SuperTable','{\"columns\":{\"63\":{\"width\":\"\"},\"64\":{\"width\":\"\"},\"65\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:00','2017-07-04 22:16:21','df9bd73a-75a8-4658-9d2c-19bbd7a790fe'),
+	(63,NULL,'Image','photo','superTableBlockType:14','',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":\"1\",\"allowedKinds\":[\"image\"],\"targetLocale\":\"\",\"limit\":\"1\",\"viewMode\":\"large\",\"selectionLabel\":\"\"}','2017-07-04 22:01:00','2017-07-04 22:16:21','8e323f9d-90ca-4ba3-888d-5108e27604d6'),
+	(64,NULL,'Headline','headline','superTableBlockType:14','',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:00','2017-07-04 22:16:21','96327346-3e50-4b73-b865-3235d818eef5'),
+	(65,NULL,'Linkit','linkit','superTableBlockType:14','',1,'FruitLinkIt','{\"types\":[\"custom\",\"entry\",\"category\"],\"defaultText\":\"Link\",\"allowCustomText\":\"1\",\"allowTarget\":\"1\",\"entrySources\":\"*\",\"entrySelectionLabel\":\"Select an entry\",\"assetSources\":\"*\",\"assetSelectionLabel\":\"Select an asset\",\"categorySources\":\"*\",\"categorySelectionLabel\":\"Select a category\"}','2017-07-04 22:01:00','2017-07-04 22:16:21','fb366d13-d8b6-4673-b7fd-cd45b2169281'),
+	(66,2,'Horizontal Ruler','objHorizontalRuler','global','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-07-04 22:01:00','2017-07-04 22:01:00','25eab62e-9168-4fd0-9a8b-40574b0af85d'),
+	(67,2,'Image Slider','objImageSlider','global','Slider Modul',1,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":\"1\",\"allowedKinds\":[\"image\"],\"targetLocale\":\"\",\"limit\":\"10\",\"viewMode\":\"large\",\"selectionLabel\":\"\"}','2017-07-04 22:01:00','2017-07-05 19:48:00','f8ef43fd-e5b7-4359-9e23-d13e8f107839'),
+	(68,3,'Image Slider Options','setImageSlider','global','The ratio applies to all images, Craft will crops the pictures so they fit into the format (Default is 16:10). The Caption is optional and applies to the entire slider.',0,'SuperTable','{\"columns\":{\"69\":{\"width\":\"\"},\"70\":{\"width\":\"\"},\"71\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:00','2017-07-05 20:03:04','6e9da240-8c14-428e-97c7-0d66d7c182ed'),
+	(69,NULL,'Style','style','superTableBlockType:15','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-07-04 22:01:00','2017-07-05 20:03:04','6718b8d0-6cc9-4abc-a70d-ca94cd310b1f'),
+	(70,NULL,'Ratio','ratio','superTableBlockType:15','Image ratio for all slides',0,'PlainText','{\"placeholder\":\"16:10\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:00','2017-07-05 20:03:04','9defcbaa-a1e0-4227-815f-a44c77c5cd74'),
+	(71,NULL,'Setup','setup','superTableBlockType:15','Select one of the existing setups or define a new one under `Categories> Settings: Image Slider`',0,'Categories','{\"source\":\"group:2\",\"targetLocale\":\"\",\"limit\":\"1\",\"selectionLabel\":\"Setup ausw\\u00e4hlen\"}','2017-07-04 22:01:00','2017-07-05 20:03:04','92fb2855-f6b7-49d1-bbee-62ebf0cb1a21'),
+	(72,2,'Jumpnavigation','objJumpNavigation','global','Buttons for jump navigations',0,'SuperTable','{\"columns\":{\"73\":{\"width\":\"\"},\"74\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":null,\"selectionLabel\":\"Add a link\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:00','2017-07-05 19:48:20','955b4998-e5bc-4d79-828f-c34482693966'),
+	(73,NULL,'Linkname','linkname','superTableBlockType:16','Name of the link',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:00','2017-07-05 19:48:20','4d70e179-d6d0-47e6-b733-6e37ee20d282'),
+	(74,NULL,'Anchor','anchor','superTableBlockType:16','Name of the anchor without # (and no other no special character)',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:00','2017-07-05 19:48:20','10004309-9657-41f3-8b96-e08d5652bbae'),
+	(75,3,'Jumpnavigation Options','setJumpNavigation','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:00','2017-07-04 22:01:00','4ef2a5e4-a49f-43ab-a739-b55fd0982e09'),
+	(76,NULL,'Style','style','superTableBlockType:17','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-07-04 22:01:01','2017-07-04 22:01:01','cb3e1966-e916-4689-8eca-8539fa77d316'),
+	(77,NULL,'Layout','layout','superTableBlockType:17','The default layout is a simple left-aligned string of the links, with the full width, the buttons are arranged in the full width (break at too small size but around which the buttons are interrelated). The buttons are arranged like a list.',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Full Width\",\"value\":\"fullwidth\",\"default\":\"\"},{\"label\":\"List\",\"value\":\"list\",\"default\":\"\"}]}','2017-07-04 22:01:01','2017-07-04 22:01:01','a3dc35bf-02dd-41ca-9223-3bb6e07a37ae'),
+	(78,2,'List','objList','global','',1,'Table','{\"columns\":{\"col1\":{\"heading\":\"Eintrag\",\"handle\":\"entry\",\"width\":\"\",\"type\":\"singleline\"}},\"defaults\":[]}','2017-07-04 22:01:01','2017-07-05 19:48:32','5d0f8be1-3f54-4438-bd5f-2f19bf47b676'),
+	(79,3,'List Options','setList','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:01','2017-07-04 22:01:01','2d7cc877-e477-40f9-8a2e-3179890112b0'),
+	(80,NULL,'Typ','listtype','superTableBlockType:18','Listtype',0,'Dropdown','{\"options\":[{\"label\":\"Unsorted UL\",\"value\":\"ul\",\"default\":1},{\"label\":\"Sorted OL\",\"value\":\"ol\",\"default\":\"\"}]}','2017-07-04 22:01:01','2017-07-04 22:01:01','dd84d7cf-db0f-40ad-b791-024475b7eb4d'),
+	(81,NULL,'Bullet','bullet','superTableBlockType:18','Style of Bullets on unsorted lists',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Circle\",\"value\":\"circle\",\"default\":\"\"},{\"label\":\"Square\",\"value\":\"square\",\"default\":\"\"},{\"label\":\"Custom\",\"value\":\"custom\",\"default\":\"\"}]}','2017-07-04 22:01:01','2017-07-04 22:01:01','bde380aa-71b3-4d5e-bad4-f37651e1a02f'),
+	(82,2,'Markdown','objMarkdown','global','For contents in the Markdown format (http://markdown.de/)',1,'Doxter','{\"enableSoftTabs\":\"1\",\"tabSize\":\"2\",\"rows\":\"4\",\"toolbarPlacement\":\"bottom\"}','2017-07-04 22:01:01','2017-07-05 19:48:54','9f6f13d9-3526-4b6c-b147-e00028d5ff2d'),
+	(83,3,'Markdown Options','setMarkdown','global','Markdown Optionen',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:01','2017-07-04 22:01:01','df8bc593-fa67-486e-a172-14c9d9d622fe'),
+	(84,NULL,'Style','style','superTableBlockType:19','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-07-04 22:01:01','2017-07-04 22:01:01','4fd2bb31-409d-4407-b3f3-35f98620a94e'),
+	(85,NULL,'Add Anchor','addAnchor','superTableBlockType:19','Should the headings h1 - h3 be equipped with an anchor?',0,'Lightswitch','{\"default\":\"\"}','2017-07-04 22:01:01','2017-07-04 22:01:01','9bc68ccd-d0e9-4ed4-a4d0-7865848b6bfb'),
+	(86,2,'Media Image','objMediaImage','global','This image takes the full content width and can be provided with a caption.',0,'SuperTable','{\"columns\":{\"87\":{\"width\":\"\"},\"88\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:01','2017-07-05 19:49:41','fe422a80-97a5-4c23-be7c-4d234b831353'),
+	(87,NULL,'Image','photo','superTableBlockType:20','',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":\"1\",\"allowedKinds\":[\"image\"],\"targetLocale\":\"\",\"limit\":\"1\",\"viewMode\":\"large\",\"selectionLabel\":\"\"}','2017-07-04 22:01:01','2017-07-05 19:49:41','e1642a29-bb20-4e08-a062-db3596cc59cb'),
+	(88,NULL,'Caption','caption','superTableBlockType:20','',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:01','2017-07-05 19:49:41','5a255c5f-02de-465b-b12c-b9b1496cba14'),
+	(89,3,'Media Image Options','setMediaImage','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:01','2017-07-04 22:01:01','d69de1cc-aefa-4915-a5de-afbace2a3cbc'),
+	(90,NULL,'Style','style','superTableBlockType:21','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-07-04 22:01:01','2017-07-04 22:01:01','1132c20d-49f1-4940-9ed4-435d7c1cad36'),
+	(91,NULL,'Ratio','ratio','superTableBlockType:21','Size ratio of the image',0,'PlainText','{\"placeholder\":\"16:9\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-07-04 22:01:01','2017-07-04 22:01:01','2b393b5a-8c73-40d1-9f6d-8b7de15cde70'),
+	(92,NULL,'Hight Restriction','heightrestriction','superTableBlockType:21','If it is a picture in the portrait format, it can be that it is longer than the viewport is high. The height limit limits the height to maximum viewport height - you no longer have to scroll around the entire image.',0,'Lightswitch','{\"default\":\"\"}','2017-07-04 22:01:01','2017-07-04 22:01:01','b3ec4560-93bf-454b-8a55-f42a8d540d2a'),
+	(93,2,'Quote','objQuote','global','For quote blocks with Author',0,'SuperTable','{\"columns\":{\"94\":{\"width\":\"\"},\"95\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":\"1\",\"minRows\":null}','2017-07-04 22:01:01','2017-07-05 19:50:10','1e12e003-4cc9-4465-83af-43731f04fa1b'),
+	(94,NULL,'Quote','copy','superTableBlockType:22','',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"1\",\"initialRows\":\"2\"}','2017-07-04 22:01:01','2017-07-05 19:50:10','dbc2e0df-6b95-4d75-a6e4-3063a778998d'),
+	(95,NULL,'Source','source','superTableBlockType:22','',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:01','2017-07-05 19:50:10','766e9a15-5f02-4b47-87ec-81c44c4d8242'),
+	(96,3,'Quote Options','setQuote','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:01','2017-07-04 22:01:01','cca620e4-854b-40f3-880f-b32355ffd0fe'),
+	(97,NULL,'Style','style','superTableBlockType:23','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-07-04 22:01:01','2017-07-04 22:01:01','859e6121-cb53-4c1d-be0b-185c86add604'),
+	(98,2,'Richtext','objRichtext','global','',1,'RichText','{\"configFile\":\"Standard.json\",\"availableAssetSources\":\"*\",\"availableTransforms\":\"*\",\"cleanupHtml\":\"1\",\"purifyHtml\":\"1\",\"purifierConfig\":\"\",\"columnType\":\"text\"}','2017-07-04 22:01:02','2017-07-05 19:50:23','9de9ab1e-82cf-475b-b827-d379cce24cc8'),
+	(99,3,'Richtext Options','setRichtext','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:02','2017-07-04 22:01:02','cf91ade1-8ca0-46b2-9b83-55feb04b5170'),
+	(100,NULL,'Style','style','superTableBlockType:24','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Lead\",\"value\":\"lead\",\"default\":\"\"},{\"label\":\"Center\",\"value\":\"center\",\"default\":\"\"}]}','2017-07-04 22:01:02','2017-07-04 22:01:02','6bf6ca55-12c4-4c8a-9b06-2867523c9a16'),
+	(101,3,'Section Background','setSectionBackground','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"},\"new4\":{\"width\":\"\"},\"new5\":{\"width\":\"\"},\"new6\":{\"width\":\"\"},\"new7\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:02','2017-07-04 22:01:02','b48f7b82-c41b-49e0-9775-41e983d46538'),
+	(102,NULL,'Image ','backgroundImage','superTableBlockType:25','',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":1,\"allowedKinds\":[\"image\"],\"limit\":1,\"viewMode\":\"large\",\"selectionLabel\":\"\"}','2017-07-04 22:01:02','2017-07-04 22:01:02','e4b76598-2d6c-41dc-a6b1-c0178c8e8911'),
+	(103,NULL,'Adapt Container','adaptContainer','superTableBlockType:25','Do you want the background container to be as broad as the content container?\r\n',0,'Lightswitch','{\"default\":\"\"}','2017-07-04 22:01:02','2017-07-04 22:01:02','4740b3d5-70d9-484f-91ae-02057c45aabf'),
+	(104,NULL,'Width','width','superTableBlockType:25','Width of the background image - default always full width',0,'Dropdown','{\"options\":[{\"label\":\"Full\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Half\",\"value\":\"half\",\"default\":\"\"}]}','2017-07-04 22:01:02','2017-07-04 22:01:02','2551407a-cd3b-4770-9113-08b286f62125'),
+	(105,NULL,'Align','align','superTableBlockType:25','Orientation of the background - not applicable for full area',0,'Dropdown','{\"options\":[{\"label\":\"Left\",\"value\":\"default\",\"default\":1},{\"label\":\"Right\",\"value\":\"right\",\"default\":\"\"}]}','2017-07-04 22:01:02','2017-07-04 22:01:02','80c4ea30-03c8-4375-b31c-07022801fb59'),
+	(106,NULL,'Behavior','behavior','superTableBlockType:25','Additional layout rules',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Behavior 1\",\"value\":\"behavior1\",\"default\":\"\"}]}','2017-07-04 22:01:02','2017-07-04 22:01:02','c17b3343-e2dc-42fb-a899-26874ebec3f4'),
+	(107,NULL,'Position','position','superTableBlockType:25','Background Position of the image (css syntax)\r\n',0,'PlainText','{\"placeholder\":\"center center\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-07-04 22:01:02','2017-07-04 22:01:02','470227b9-5e8d-4b56-b2ac-3b347e9042c8'),
+	(108,NULL,'Ratio','ratio','superTableBlockType:25','Ratio of the background image',0,'PlainText','{\"placeholder\":\"16:9\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-07-04 22:01:02','2017-07-04 22:01:02','f7f0d586-ed77-4a34-bc5e-5aaf6588335d'),
+	(109,2,'Section Column','objSectionColumn','global','Column in a section',0,'SuperTable_Label','{\"value\":\"\"}','2017-07-04 22:01:02','2017-07-04 22:01:02','754df9af-4f8c-4625-9a1d-cbbc38c7080b'),
+	(110,3,'Section Column Options','setSectionColumn','global','Spalte in einer Sektion',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:02','2017-07-04 22:01:02','806a2d81-5831-4bf4-b0b5-e7a5e9837443'),
+	(111,NULL,'Style','style','superTableBlockType:26','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-07-04 22:01:02','2017-07-04 22:01:02','1da991e5-095b-4811-96bc-a75ec7c74115'),
+	(112,NULL,'Align','align','superTableBlockType:26','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Left\",\"value\":\"left\",\"default\":\"\"},{\"label\":\"Center\",\"value\":\"center\",\"default\":\"\"},{\"label\":\"Right\",\"value\":\"right\",\"default\":\"\"}]}','2017-07-04 22:01:02','2017-07-04 22:01:02','254f0250-ea08-4f5c-8dd5-f2c5f853eba5'),
+	(113,NULL,'Vertical Align','verticalAlign','superTableBlockType:26','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Top\",\"value\":\"top\",\"default\":\"\"},{\"label\":\"Middle\",\"value\":\"middle\",\"default\":\"\"},{\"label\":\"Bottom\",\"value\":\"bottom\",\"default\":\"\"}]}','2017-07-04 22:01:02','2017-07-04 22:01:02','4866df8d-8bc0-4ccb-9137-a7e1c548ba23'),
+	(114,3,'Section Layout','setSectionLayout','global','Weighting of individual columns.',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:02','2017-07-04 22:01:02','e6f308c0-dbc6-443b-820e-b72ffb6345f1'),
+	(115,NULL,'Two columns','twoColumns','superTableBlockType:27','Width ratio for two columns',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"1-1\",\"default\":\"\"},{\"label\":\"2-1\",\"value\":\"2-1\",\"default\":\"\"},{\"label\":\"1-2\",\"value\":\"1-2\",\"default\":\"\"},{\"label\":\"3-1\",\"value\":\"3-1\",\"default\":\"\"},{\"label\":\"1-3\",\"value\":\"1-3\",\"default\":\"\"}]}','2017-07-04 22:01:02','2017-07-04 22:01:02','03543bff-e6cc-4198-a216-bd5d45d12a4b'),
+	(116,NULL,'Three Columns','threeColumns','superTableBlockType:27','Width ratio for three columns',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"1-1-1\",\"default\":\"\"},{\"label\":\"2-6-2\",\"value\":\"2-6-2\",\"default\":\"\"},{\"label\":\"3-5-2\",\"value\":\"3-5-2\",\"default\":\"\"},{\"label\":\"2-5-3\",\"value\":\"2-5-3\",\"default\":\"\"}]}','2017-07-04 22:01:02','2017-07-04 22:01:02','b69095bd-7c83-4767-bf86-ef0f601ccddc'),
+	(117,NULL,'Four Columns','fourColumns','superTableBlockType:27','Width ratio for four columns',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"1-1-1-1\",\"default\":\"\"},{\"label\":\"2-3-3-2\",\"value\":\"2-3-3-2\",\"default\":\"\"},{\"label\":\"2-3-4-1\",\"value\":\"2-3-4-1\",\"default\":\"\"}]}','2017-07-04 22:01:02','2017-07-04 22:01:02','08902c0b-e264-425a-9ffb-be8daba56c77'),
+	(118,3,'Section Options','setSection','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"},\"new4\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:02','2017-07-04 22:01:02','1323fd69-d917-4d1a-a542-cf40d58cf832'),
+	(119,NULL,'Style','style','superTableBlockType:28','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-07-04 22:01:02','2017-07-04 22:01:02','27b2bb59-bfcc-417f-93d2-ed44dc5534d9'),
+	(120,NULL,'Full height','fullheight','superTableBlockType:28','Should the section be extended to the full viewport height?',0,'Lightswitch','{\"default\":\"\"}','2017-07-04 22:01:02','2017-07-04 22:01:02','4ce267b7-d600-4bce-85f9-09580316166e'),
+	(121,NULL,'Inner Container','innerContainer','superTableBlockType:28','Layout of the inner container',0,'Dropdown','{\"options\":[{\"label\":\"Default Page Width\",\"value\":\"default\",\"default\":1},{\"label\":\"Full Viewport\",\"value\":\"full\",\"default\":\"\"},{\"label\":\"Bigger 25%\",\"value\":\"bigger-25\",\"default\":\"\"},{\"label\":\"Bigger 45%\",\"value\":\"bigger-45\",\"default\":\"\"},{\"label\":\"Smaller 25%\",\"value\":\"smaller-25\",\"default\":\"\"},{\"label\":\"Smaller 50%\",\"value\":\"smaller-50\",\"default\":\"\"}]}','2017-07-04 22:01:02','2017-07-04 22:01:02','5bc45294-b689-4afb-a568-617f4bac1e0b'),
+	(122,NULL,'Anchor','anchor','superTableBlockType:28','Optional anchor for jump navigation without # (and without special characters)',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-07-04 22:01:02','2017-07-04 22:01:02','68aadb04-d414-48da-94b6-5e57b120e61f'),
+	(123,2,'Section Wrapper','objSection','global','Subsegment of a content module, when the page wrapper is removed the section can run over the full browser width.',0,'SuperTable_Label','{\"value\":\"\"}','2017-07-04 22:01:02','2017-07-04 22:01:02','70d3f103-37ba-484a-8595-769c9cef30a4'),
+	(124,4,'SEO','seo','global','',1,'Seomatic_Meta','{\"assetSources\":\"*\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoTitle\":\"\",\"seoTitleSourceChangeable\":\"1\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"body\",\"seoDescription\":\"\",\"seoDescriptionSourceChangeable\":\"1\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoKeywords\":\"\",\"seoKeywordsSourceChangeable\":\"1\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"featuredImage\",\"seoImageIdSourceChangeable\":\"1\",\"seoImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"twitterCardTypeChangeable\":\"1\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"featuredImage\",\"seoTwitterImageIdSourceChangeable\":\"1\",\"seoTwitterImageTransform\":\"\",\"openGraphType\":\"article\",\"openGraphTypeChangeable\":\"1\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"featuredImage\",\"seoFacebookImageIdSourceChangeable\":\"1\",\"seoFacebookImageTransform\":\"\",\"robots\":\"all\",\"robotsChangeable\":\"1\"}','2017-07-04 22:01:03','2017-07-04 22:16:37','8140b5df-b85c-4e96-ae65-9b501356b848'),
+	(125,2,'Slideout Box','objSlideOutBox','global','A content box that expands by click - intended to hide the user rather irrelevant content.',0,'SuperTable','{\"columns\":{\"126\":{\"width\":\"\"},\"127\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:03','2017-07-05 19:51:16','07b6b53f-6fce-4127-9ffb-98bf81fabc9c'),
+	(126,NULL,'Trigger','trigger','superTableBlockType:29','Activation link to open the box',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:03','2017-07-05 19:51:16','ad154e39-da3a-4f5d-a4dd-931f3373b907'),
+	(127,NULL,'Body','body','superTableBlockType:29','',1,'RichText','{\"configFile\":\"\",\"availableAssetSources\":\"*\",\"availableTransforms\":\"*\",\"cleanupHtml\":\"\",\"purifyHtml\":\"1\",\"purifierConfig\":\"\",\"columnType\":\"text\"}','2017-07-04 22:01:03','2017-07-05 19:51:16','e789c340-4efc-418f-8187-99559e44019c'),
+	(128,3,'Slideout Box Options','setSlideOutBox','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:03','2017-07-04 22:01:03','21188a91-9cf3-4e88-af0f-db7e04cd7101'),
+	(129,NULL,'Style','style','superTableBlockType:30','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-07-04 22:01:03','2017-07-04 22:01:03','2a350542-17ba-48e9-ab95-28076adab1fa'),
+	(130,3,'Slider Setup','setSliderSetup','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"},\"new4\":{\"width\":\"\"},\"new5\":{\"width\":\"\"},\"new6\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:03','2017-07-04 22:01:03','398c809e-81cb-4d5b-b5ea-43e765025712'),
+	(131,NULL,'Autoplay','autoplay','superTableBlockType:31','Speed of Autoplay mode',0,'Dropdown','{\"options\":[{\"label\":\"Deaktiviert\",\"value\":\"default\",\"default\":1},{\"label\":\"Slow\",\"value\":\"slow\",\"default\":\"\"},{\"label\":\"Medium\",\"value\":\"medium\",\"default\":\"\"},{\"label\":\"Fast\",\"value\":\"fast\",\"default\":\"\"}]}','2017-07-04 22:01:03','2017-07-04 22:01:03','2a92a1f1-6799-4048-8ef5-b466ed5b2de5'),
+	(132,NULL,'Animation Speed','speed','superTableBlockType:31','Setting the animation speed',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":\"\"},{\"label\":\"Slow\",\"value\":\"slow\",\"default\":\"\"},{\"label\":\"Medium\",\"value\":\"medium\",\"default\":\"\"},{\"label\":\"Fast\",\"value\":\"fast\",\"default\":\"\"}]}','2017-07-04 22:01:03','2017-07-04 22:01:03','5e362677-1433-4858-a2d9-20f3164ccfc7'),
+	(133,NULL,'Loop','loop','superTableBlockType:31','Should the slider run endlessly?',0,'Lightswitch','{\"default\":\"\"}','2017-07-04 22:01:03','2017-07-04 22:01:03','701f0935-d2a2-42df-bbb0-96c3e07862c4'),
+	(134,NULL,'Hide Navigation','navigation','superTableBlockType:31','Should a navigation be hidden?',0,'Lightswitch','{\"default\":\"\"}','2017-07-04 22:01:03','2017-07-04 22:01:03','80420691-60e7-4839-a590-c335f6ee2f6b'),
+	(135,NULL,'Hide Pagination','pagination','superTableBlockType:31','Should a pagination be hidden?',0,'Lightswitch','{\"default\":\"\"}','2017-07-04 22:01:03','2017-07-04 22:01:03','76abd0c2-f3ab-4e52-9f94-eb35bca5e519'),
+	(136,NULL,'Autoheight','autoHeight','superTableBlockType:31','With Autoheight, the height of each Slides is Dynamic',0,'Lightswitch','{\"default\":\"\"}','2017-07-04 22:01:03','2017-07-04 22:01:03','749bb452-a204-4d67-b017-3707ed9439ec'),
+	(137,3,'Slider Setup General','setSliderSetupGeneral','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"},\"new4\":{\"width\":\"\"},\"new5\":{\"width\":\"\"},\"new6\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:03','2017-07-04 22:01:03','53641b04-d761-4c15-8beb-e4d817f0f557'),
+	(138,NULL,'Slide Position','position','superTableBlockType:32','Position of the slides',0,'Dropdown','{\"options\":[{\"label\":\"Center\",\"value\":\"center\",\"default\":1},{\"label\":\"Left\",\"value\":\"left\",\"default\":\"\"},{\"label\":\"Right\",\"value\":\"right\",\"default\":\"\"}]}','2017-07-04 22:01:03','2017-07-04 22:01:03','c4ecc618-4306-4025-90a4-4ce6e767e100'),
+	(139,NULL,'Slides per View','slidesPerView','superTableBlockType:32','Number of visible slides',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Auto\",\"value\":\"auto\",\"default\":\"\"},{\"label\":2,\"value\":\"two\",\"default\":\"\"},{\"label\":3,\"value\":\"three\",\"default\":\"\"},{\"label\":4,\"value\":\"four\",\"default\":\"\"},{\"label\":5,\"value\":\"five\",\"default\":\"\"}]}','2017-07-04 22:01:03','2017-07-04 22:01:03','c933d90b-6426-4a50-852e-159324bceed4'),
+	(140,NULL,'Space Between','spaceBetween','superTableBlockType:32','Distances between the slides',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2017-07-04 22:01:03','2017-07-04 22:01:03','fee6151c-08c0-4f53-8f32-8fb6a2895f1c'),
+	(141,NULL,'Group Cell','groupCell','superTableBlockType:32','Slides can be grouped.',0,'Dropdown','{\"options\":[{\"label\":\"Nicht gruppiert\",\"value\":\"default\",\"default\":1},{\"label\":2,\"value\":\"\\\"2\\\"\",\"default\":\"\"},{\"label\":3,\"value\":\"\\\"3\\\"\",\"default\":\"\"},{\"label\":4,\"value\":\"\\\"4\\\"\",\"default\":\"\"},{\"label\":5,\"value\":\"\\\"5\\\"\",\"default\":\"\"},{\"label\":6,\"value\":\"\\\"6\\\"\",\"default\":\"\"}]}','2017-07-04 22:01:03','2017-07-04 22:01:03','8597e8bf-f91c-454f-b901-6a68b46a5725'),
+	(142,NULL,'Freescroll','freescroll','superTableBlockType:32','With Freescroll, the slider can be moved freely',0,'Lightswitch','{\"default\":\"\"}','2017-07-04 22:01:03','2017-07-04 22:01:03','83ad7b77-a6d5-4f67-9684-5a9734b19b25'),
+	(143,NULL,'Responsive','responsive','superTableBlockType:32','If multiple slides are displayed at the same time, you can reduce the number of columns by using Responsive with smaller viewport.',0,'Lightswitch','{\"default\":\"\"}','2017-07-04 22:01:03','2017-07-04 22:01:03','98b3818c-fb9f-42bb-b2cd-f2c03164b975'),
+	(144,6,'Social Networks','socialNetworks','global','Links to the social networks',0,'SuperTable','{\"columns\":{\"145\":{\"width\":\"\"},\"146\":{\"width\":\"\"},\"147\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":null,\"selectionLabel\":\"Add Network\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:03','2017-07-04 22:15:14','14aef1f3-0b25-45ac-8c5d-a31d87e291de'),
+	(145,NULL,'Icon','icon','superTableBlockType:33','Networktype',0,'Dropdown','{\"options\":[{\"label\":\"Facebook\",\"value\":\"facebook\",\"default\":\"\"},{\"label\":\"Twitter\",\"value\":\"twitter\",\"default\":\"\"},{\"label\":\"Googleplus\",\"value\":\"googleplus\",\"default\":\"\"},{\"label\":\"Pinterest\",\"value\":\"pinterest\",\"default\":\"\"},{\"label\":\"Instagram\",\"value\":\"instagram\",\"default\":\"\"},{\"label\":\"Vimeo\",\"value\":\"vimeo\",\"default\":\"\"},{\"label\":\"Youtube\",\"value\":\"youtube\",\"default\":\"\"}]}','2017-07-04 22:01:03','2017-07-04 22:15:15','7b06c10a-a312-4783-98e9-d0b5ee8eb473'),
+	(146,NULL,'Link','linkit','superTableBlockType:33','',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:03','2017-07-04 22:15:15','e2501c7a-2c39-4361-a9d7-2ebd19c782a8'),
+	(147,NULL,'Caption','caption','superTableBlockType:33','Caption of the popover',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:03','2017-07-04 22:15:15','9c1b3d35-2ae6-42fc-9137-6f3db749190f'),
+	(148,2,'Spacer','objSpacer','global','Element to expand the distance. A spacer is 20px',0,'Dropdown','{\"options\":[{\"label\":\"0.25 Spacer\",\"value\":\"--025\",\"default\":\"\"},{\"label\":\"0.50 Spacer\",\"value\":\"--050\",\"default\":1},{\"label\":\"0.75 Spacer\",\"value\":\"--075\",\"default\":\"\"},{\"label\":\"1 Spacer\",\"value\":\"--1\",\"default\":\"\"},{\"label\":\"2 Spacer\",\"value\":\"--2\",\"default\":\"\"},{\"label\":\"3 Spacer\",\"value\":\"--3\",\"default\":\"\"},{\"label\":\"4 Spacer\",\"value\":\"--4\",\"default\":\"\"},{\"label\":\"5 Spacer\",\"value\":\"--5\",\"default\":\"\"},{\"label\":\"6 Spacer\",\"value\":\"--6\",\"default\":\"\"},{\"label\":\"7 Spacer\",\"value\":\"--7\",\"default\":\"\"},{\"label\":\"8 Spacer\",\"value\":\"--8\",\"default\":\"\"},{\"label\":\"9 Spacer\",\"value\":\"--9\",\"default\":\"\"},{\"label\":\"10 Spacer\",\"value\":\"--10\",\"default\":\"\"}]}','2017-07-04 22:01:04','2017-07-04 22:01:04','ae6bca75-ac1a-43bc-a940-7f11b80ebaae'),
+	(149,2,'Tab','objTab','global','The individual tab, please enter the title of the tab',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:04','2017-07-05 19:51:34','441a062b-7717-419a-9665-d9cc3c180b91'),
+	(150,2,'Tab Wrapper','objTabWrapper','global','Wrapper of the Tab group',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:04','2017-07-04 22:01:04','dbb35d0d-a08f-4da8-988d-c8623152a650'),
+	(151,NULL,'Style','style','superTableBlockType:34','',0,'Dropdown','{\"options\":[{\"label\":\"Default\",\"value\":\"default\",\"default\":1},{\"label\":\"Style 1\",\"value\":\"style1\",\"default\":\"\"}]}','2017-07-04 22:01:04','2017-07-04 22:01:04','9dcba0c2-3169-400c-ab44-e1daf88c06af'),
+	(152,5,'Content Builder','contentBuilder','global','',0,'Neo','{\"maxBlocks\":null}','2017-07-04 22:01:04','2017-07-04 22:01:04','376e2ccb-c620-4eb6-bed2-bfd8726dd46d');
 
 /*!40000 ALTER TABLE `craft_fields` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1366,8 +1382,8 @@ LOCK TABLES `craft_globalsets` WRITE;
 
 INSERT INTO `craft_globalsets` (`id`, `name`, `handle`, `fieldLayoutId`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(5,'Footer','footer',75,'2017-06-27 01:06:47','2017-06-27 01:06:47','e420f0a8-b40c-49af-b8bb-7b4ea87dee9d'),
-	(6,'Main','main',76,'2017-06-27 01:06:47','2017-06-27 01:06:47','96d7c4c6-aefe-4f37-84c7-19d7083d467f');
+	(5,'Footer','footer',76,'2017-07-04 22:01:04','2017-07-04 22:01:04','33869bf0-4b69-494e-86d9-e8fda131c6f7'),
+	(6,'Main','main',77,'2017-07-04 22:01:04','2017-07-04 22:01:04','d3b07ddd-8e1b-465a-bcd0-65971b014ebf');
 
 /*!40000 ALTER TABLE `craft_globalsets` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1399,7 +1415,7 @@ LOCK TABLES `craft_info` WRITE;
 
 INSERT INTO `craft_info` (`id`, `version`, `schemaVersion`, `edition`, `siteName`, `siteUrl`, `timezone`, `on`, `maintenance`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'2.6.2984','2.6.10',0,'Ktest3','http://ktest3.local','UTC',1,0,'2017-06-27 01:02:14','2017-06-27 01:02:14','4754dd86-68a6-40ac-baa2-9fcfac384d62');
+	(1,'2.6.2986','2.6.10',2,'kittn','http://ktest10.local','UTC',1,0,'2017-07-04 21:44:58','2017-07-04 22:02:45','93fc1702-dfe7-473a-a405-2d9d312ddd7d');
 
 /*!40000 ALTER TABLE `craft_info` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1425,7 +1441,8 @@ LOCK TABLES `craft_locales` WRITE;
 
 INSERT INTO `craft_locales` (`locale`, `sortOrder`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	('de',1,'2017-06-27 01:02:15','2017-06-27 01:02:15','eced679d-9857-4510-aa11-6d993e08315f');
+	('de',1,'2017-07-04 21:44:58','2017-07-04 21:44:58','3e21bf5b-11eb-4122-a0e5-92f81108417e'),
+	('en',2,'2017-07-04 22:03:19','2017-07-04 22:03:19','52290675-308d-41c1-a0ae-06d4e87b5cc5');
 
 /*!40000 ALTER TABLE `craft_locales` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1511,81 +1528,81 @@ LOCK TABLES `craft_migrations` WRITE;
 
 INSERT INTO `craft_migrations` (`id`, `pluginId`, `version`, `applyTime`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,NULL,'m000000_000000_base','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','e75d75d0-8947-4e99-8e63-9f9ce55f1000'),
-	(2,NULL,'m140730_000001_add_filename_and_format_to_transformindex','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','5f77044a-c831-4b2c-8a73-9c0b6c7b64cf'),
-	(3,NULL,'m140815_000001_add_format_to_transforms','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','291b85f2-163e-4abb-bf67-f2fb59d3f09c'),
-	(4,NULL,'m140822_000001_allow_more_than_128_items_per_field','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','ec60289a-f06b-4224-ae8b-a911b6a732b8'),
-	(5,NULL,'m140829_000001_single_title_formats','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','f97b3b50-5986-43ae-8cfe-a5e6b5dfd866'),
-	(6,NULL,'m140831_000001_extended_cache_keys','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','fd0dea53-3089-45d6-89b3-aee84e75996d'),
-	(7,NULL,'m140922_000001_delete_orphaned_matrix_blocks','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','5f6a8f7d-ff26-411e-b073-2986fe2420ff'),
-	(8,NULL,'m141008_000001_elements_index_tune','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','cd743b2f-492a-4838-af7b-6493b56b6dda'),
-	(9,NULL,'m141009_000001_assets_source_handle','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','e3a63c5e-f7de-439c-a285-3b120d405ee9'),
-	(10,NULL,'m141024_000001_field_layout_tabs','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','2729300e-6bd3-4d0d-b97a-262478e8768e'),
-	(11,NULL,'m141030_000000_plugin_schema_versions','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','04f64877-d62f-492c-bbfb-f7d7ed71f6a1'),
-	(12,NULL,'m141030_000001_drop_structure_move_permission','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','866f5a2e-8e59-4b6b-a9a0-0ca80e995a9e'),
-	(13,NULL,'m141103_000001_tag_titles','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','0015669b-3eb7-4891-a13d-78f21001f207'),
-	(14,NULL,'m141109_000001_user_status_shuffle','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','76c96c94-df18-4a13-b7b6-e539b4eec53a'),
-	(15,NULL,'m141126_000001_user_week_start_day','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','34897976-4320-4772-9838-318a021caa04'),
-	(16,NULL,'m150210_000001_adjust_user_photo_size','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','6432f089-df76-4577-b455-5374fbbc5c98'),
-	(17,NULL,'m150724_000001_adjust_quality_settings','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','d35f4968-a563-4bff-bfc6-c330b1aa6262'),
-	(18,NULL,'m150827_000000_element_index_settings','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','03deb5f9-4909-454a-8f7a-04e7c04950ed'),
-	(19,NULL,'m150918_000001_add_colspan_to_widgets','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','f34919e7-e1cf-4ce6-8c87-5a4fc5dbedf8'),
-	(20,NULL,'m151007_000000_clear_asset_caches','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','a5002882-f84c-4605-91f7-aa8dba2b6adf'),
-	(21,NULL,'m151109_000000_text_url_formats','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','8989a072-67ba-42df-92c0-760c5970f0dd'),
-	(22,NULL,'m151110_000000_move_logo','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','5f900a49-e5de-40d5-9e20-bf50f663aee3'),
-	(23,NULL,'m151117_000000_adjust_image_widthheight','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','a340494d-63db-444a-adc8-5edfb8a3e18f'),
-	(24,NULL,'m151127_000000_clear_license_key_status','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','004cf3bc-0a7d-45cb-90ce-1a3ca701df08'),
-	(25,NULL,'m151127_000000_plugin_license_keys','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','31b73ee3-48e8-4269-ae4a-4a232150ba2b'),
-	(26,NULL,'m151130_000000_update_pt_widget_feeds','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','c5961d5b-f210-46c8-b88c-738d7621ed18'),
-	(27,NULL,'m160114_000000_asset_sources_public_url_default_true','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','a73d514b-9652-4bbf-af7e-c8fbbc7b15ec'),
-	(28,NULL,'m160223_000000_sortorder_to_smallint','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','04b51386-ef00-4f15-b457-1b3547758ba5'),
-	(29,NULL,'m160229_000000_set_default_entry_statuses','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','269b7d93-e568-467a-a30a-e2c2a8f29b43'),
-	(30,NULL,'m160304_000000_client_permissions','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','7605b953-2426-4361-a8ef-7b065b4326c1'),
-	(31,NULL,'m160322_000000_asset_filesize','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','a7dd028f-cad0-4b28-88f8-300c4e0eddbc'),
-	(32,NULL,'m160503_000000_orphaned_fieldlayouts','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','b1952c99-c277-49ef-b5b3-a2944a553847'),
-	(33,NULL,'m160510_000000_tasksettings','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','8af4e6db-7cfb-40b5-91eb-96681ad3751c'),
-	(34,NULL,'m160829_000000_pending_user_content_cleanup','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','c9974cac-c78b-4019-8d92-5db316bcc770'),
-	(35,NULL,'m160830_000000_asset_index_uri_increase','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','da9010d7-df87-46cd-ada2-ef211b963795'),
-	(36,NULL,'m160919_000000_usergroup_handle_title_unique','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','5b240055-ce55-418c-8196-bee34d0982aa'),
-	(37,NULL,'m161108_000000_new_version_format','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','5ad9188e-cccc-45d0-ac9d-f57e82a027d5'),
-	(38,NULL,'m161109_000000_index_shuffle','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','c2c5de31-cb41-4a73-8723-29fbd075a9ad'),
-	(39,NULL,'m170612_000000_route_index_shuffle','2017-06-27 01:02:15','2017-06-27 01:02:15','2017-06-27 01:02:15','7a21f85b-acf2-407d-87fe-9bb09bc5801f'),
-	(40,3,'m150901_144609_superTable_fixForContentTables','2017-06-27 01:02:42','2017-06-27 01:02:42','2017-06-27 01:02:42','46410e7c-3bf2-4b4d-8faf-a6d38f4f3746'),
-	(41,4,'m151225_000000_seomatic_addHumansField','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','eb02dcce-f4c5-4a26-9477-590e617bff87'),
-	(42,4,'m151226_000000_seomatic_addTwitterFacebookFields','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','ace8c21e-faa1-4072-a43d-58b91507d5bd'),
-	(43,4,'m160101_000000_seomatic_addRobotsFields','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','734e25ba-34e3-475e-8bf3-cb296b428bc2'),
-	(44,4,'m160111_000000_seomatic_addTitleFields','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','89feea84-4f63-4bee-a27c-23641c38854d'),
-	(45,4,'m160122_000000_seomatic_addTypeFields','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','bec16442-b136-4e51-82cd-3f27084fe6f0'),
-	(46,4,'m160123_000000_seomatic_addOpeningHours','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','a511fbba-9967-4e6a-97fb-e02a64b0103f'),
-	(47,4,'m160202_000000_seomatic_addSocialHandles','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','83ae824c-b8fe-4638-8869-9f2318c5be80'),
-	(48,4,'m160204_000000_seomatic_addGoogleAnalytics','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','046c2e48-63ca-4ce5-a60a-6671bd4a936d'),
-	(49,4,'m160205_000000_seomatic_addResturantMenu','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','70b1566d-dfcc-4db8-922e-44597854e578'),
-	(50,4,'m160206_000000_seomatic_addGoogleAnalyticsPlugins','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','a1625fb7-92fd-4259-8fc5-4493c29612eb'),
-	(51,4,'m160206_000000_seomatic_addGoogleAnalyticsSendPageView','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','6515c032-fc44-4eb6-b916-d2e36d3d0c9d'),
-	(52,4,'m160209_000000_seomatic_alterDescriptionsColumns','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','dd41cf46-0242-4525-886a-a634d37cd529'),
-	(53,4,'m160209_000001_seomatic_addRobotsTxt','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','d5eb9be9-6f8e-4025-bc41-fc1ae09d185f'),
-	(54,4,'m160227_000000_seomatic_addFacebookAppId','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','b9939721-d80e-47fb-85e0-f0aa6e4b9764'),
-	(55,4,'m160416_000000_seomatic_addContactPoints','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','ad6d00dd-e861-42ce-9c65-2ac776f6f5df'),
-	(56,4,'m160509_000000_seomatic_addSiteLinksBing','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','642fd5c7-da69-4e96-b898-083bddca532a'),
-	(57,4,'m160707_000000_seomatic_addGoogleTagManager','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','befca411-da19-43d8-9d67-ca0099ed5cbd'),
-	(58,4,'m160715_000000_seomatic_addSeoImageTransforms','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','14ba0ac7-5978-4e1c-920b-0dc85f0c8f15'),
-	(59,4,'m160723_000000_seomatic_addSeoMainEntityOfPage','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','84aa5bec-4b59-42c5-a3b7-9f7172f772fd'),
-	(60,4,'m160724_000000_seomatic_addSeoMainEntityCategory','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','28e2d3a6-71d9-4ffa-af4b-0bf748ccf35a'),
-	(61,4,'m160811_000000_seomatic_addVimeo','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','6c645357-3179-4a0c-b89d-9d0057c25524'),
-	(62,4,'m160904_000000_seomatic_addTwitterFacebookImages','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','79b29f30-67a7-4850-abf0-f670db7e7d64'),
-	(63,4,'m161220_000000_seomatic_addPriceRange','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','9cf9d485-822a-4325-a3be-152bdb87a9c5'),
-	(64,4,'m170212_000000_seomatic_addGoogleAnalyticsAnonymizeIp','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','1e2eae6e-ab63-4d49-ad73-e0833d6f6ab8'),
-	(65,4,'m170212_000000_seomatic_addWikipedia','2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','a0415ef0-466d-417f-b32d-64260b9ac30c'),
-	(66,5,'m160428_202308_Neo_UpdateBlockLevels','2017-06-27 01:02:51','2017-06-27 01:02:51','2017-06-27 01:02:51','e7806658-2bec-46a2-b953-99893070e1a6'),
-	(67,5,'m160515_005002_Neo_UpdateBlockStructure','2017-06-27 01:02:51','2017-06-27 01:02:51','2017-06-27 01:02:51','fba6c292-13f8-4d63-9ecd-ca71464eaaf6'),
-	(68,5,'m160605_191540_Neo_UpdateBlockStructureLocales','2017-06-27 01:02:51','2017-06-27 01:02:51','2017-06-27 01:02:51','cda3e4a1-2ae6-48bb-98c2-864b9d943e80'),
-	(69,5,'m161029_230849_Neo_AddMaxChildBlocksSetting','2017-06-27 01:02:51','2017-06-27 01:02:51','2017-06-27 01:02:51','75689307-91ed-4ee1-831c-45d33be23b13'),
-	(70,6,'m160208_010101_FruitLinkIt_UpdateExistingLinkItFields','2017-06-27 01:02:53','2017-06-27 01:02:53','2017-06-27 01:02:53','f50684f4-0a25-41c0-b788-38ebae04b5e6'),
-	(71,14,'m170614_141800_amCommand_defaultElementTypeSettings','2017-06-27 01:03:10','2017-06-27 01:03:10','2017-06-27 01:03:10','b2674131-59fd-482d-8028-d0d952742892'),
-	(72,15,'m150212_145000_AmNav_renamePagesToNodes','2017-06-27 01:03:12','2017-06-27 01:03:12','2017-06-27 01:03:12','8caf3984-d1b4-4f14-bb53-ca3bee9add55'),
-	(73,15,'m150217_112800_AmNav_expandPageData','2017-06-27 01:03:12','2017-06-27 01:03:12','2017-06-27 01:03:12','a695ade4-4f1c-4ef9-a879-db60b60bb5d5'),
-	(74,15,'m150403_093000_AmNav_nodesWithElements','2017-06-27 01:03:12','2017-06-27 01:03:12','2017-06-27 01:03:12','9a33bfed-0a8b-43fd-b826-cb31a8047433'),
-	(75,15,'m150512_105600_AmNav_addOptionalClass','2017-06-27 01:03:12','2017-06-27 01:03:12','2017-06-27 01:03:12','94a95bc4-e9b2-401e-96bc-7e1cadde658a');
+	(1,NULL,'m000000_000000_base','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','b8340055-792f-414a-b90c-01f1758677ab'),
+	(2,NULL,'m140730_000001_add_filename_and_format_to_transformindex','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','cedf91c0-1c50-4559-8174-15b2b0691415'),
+	(3,NULL,'m140815_000001_add_format_to_transforms','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','f8b50e7f-7676-4b0f-9769-b3681deafaad'),
+	(4,NULL,'m140822_000001_allow_more_than_128_items_per_field','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','d2ee5fac-cec7-404d-88cc-699a429c4a4f'),
+	(5,NULL,'m140829_000001_single_title_formats','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','8c7eb847-161e-4976-9cb5-030d5582fc96'),
+	(6,NULL,'m140831_000001_extended_cache_keys','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','a618faed-d39e-4152-b9ac-4b2daf3749ab'),
+	(7,NULL,'m140922_000001_delete_orphaned_matrix_blocks','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','e6ac79c0-1d8e-43d3-9f4d-3dd2999562aa'),
+	(8,NULL,'m141008_000001_elements_index_tune','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','a79b368b-e495-41e5-a85f-de794ef0ce49'),
+	(9,NULL,'m141009_000001_assets_source_handle','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','02494c0d-c3de-40db-8667-0b0224875730'),
+	(10,NULL,'m141024_000001_field_layout_tabs','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','03893599-29d3-4e5f-9ff1-a1c22c21ed5b'),
+	(11,NULL,'m141030_000000_plugin_schema_versions','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','f31716c7-0dae-4fef-ad39-361a7550f0aa'),
+	(12,NULL,'m141030_000001_drop_structure_move_permission','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','4b5b8ce3-3333-4d83-ac57-01d93b387eee'),
+	(13,NULL,'m141103_000001_tag_titles','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','9a254aea-5b1e-4e0c-8e91-2130b98f2dcc'),
+	(14,NULL,'m141109_000001_user_status_shuffle','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','1b25b357-8665-4dbf-93bf-8fdca84a8959'),
+	(15,NULL,'m141126_000001_user_week_start_day','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','0b2cab6f-bba4-4bf7-a9a0-83f30566275b'),
+	(16,NULL,'m150210_000001_adjust_user_photo_size','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','0fac2af0-6f19-4b41-8b82-769f70a0c47d'),
+	(17,NULL,'m150724_000001_adjust_quality_settings','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','d75ac48d-3e1d-4817-be60-7e820ee1521e'),
+	(18,NULL,'m150827_000000_element_index_settings','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','41360dcd-ee61-49f9-b5af-ede1756750a4'),
+	(19,NULL,'m150918_000001_add_colspan_to_widgets','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','28bb403b-d1f2-498e-88dc-95e88ad4f496'),
+	(20,NULL,'m151007_000000_clear_asset_caches','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','82769e18-e8b5-4155-ba54-8ab6d6638e22'),
+	(21,NULL,'m151109_000000_text_url_formats','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','1c8c9b53-d2dc-419e-8bcd-25f85949a8f6'),
+	(22,NULL,'m151110_000000_move_logo','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','fcd34ff4-f676-4a22-ac53-b94fb89dffe2'),
+	(23,NULL,'m151117_000000_adjust_image_widthheight','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','fb917586-0e66-4302-af06-75ffd95fa713'),
+	(24,NULL,'m151127_000000_clear_license_key_status','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','bb19f5f7-924b-484b-bdc9-afe3403ec539'),
+	(25,NULL,'m151127_000000_plugin_license_keys','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','a3a68499-5400-44e7-9dad-1096d50f94b1'),
+	(26,NULL,'m151130_000000_update_pt_widget_feeds','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','e6c6bdf6-f97b-4d4d-bb80-27cf6b7e2dcc'),
+	(27,NULL,'m160114_000000_asset_sources_public_url_default_true','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','67ae50dc-0852-4c47-ae6b-a410b054e310'),
+	(28,NULL,'m160223_000000_sortorder_to_smallint','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','7c42bc99-fb53-4d2d-bc11-7c3e48095dd9'),
+	(29,NULL,'m160229_000000_set_default_entry_statuses','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','95e8f27e-7189-4337-aa35-f731b2dbf244'),
+	(30,NULL,'m160304_000000_client_permissions','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','c1671c20-26a6-40cf-a466-6892db56b985'),
+	(31,NULL,'m160322_000000_asset_filesize','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','a701431e-4383-4e4b-b5b2-ad8bc5926b2a'),
+	(32,NULL,'m160503_000000_orphaned_fieldlayouts','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','4367be4c-2a0d-4847-a2ac-a932529ce6f3'),
+	(33,NULL,'m160510_000000_tasksettings','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','954a5cbd-2365-4cd1-8296-60d8ad29244f'),
+	(34,NULL,'m160829_000000_pending_user_content_cleanup','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','4f60b364-1513-4b8f-8c87-41ed95246a06'),
+	(35,NULL,'m160830_000000_asset_index_uri_increase','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','a24fd37e-d7b2-4fc5-aaa7-9489650cbfe1'),
+	(36,NULL,'m160919_000000_usergroup_handle_title_unique','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','a3d767f6-47ec-4544-ac84-788f3308f3b5'),
+	(37,NULL,'m161108_000000_new_version_format','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','89a3bdfa-104b-489f-aeba-919063603bd7'),
+	(38,NULL,'m161109_000000_index_shuffle','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','8c40673a-d076-41f2-916a-f6bc11d0a55e'),
+	(39,NULL,'m170612_000000_route_index_shuffle','2017-07-04 21:44:58','2017-07-04 21:44:58','2017-07-04 21:44:58','aa77ef66-6ab6-429c-9bed-264f9eebc1a2'),
+	(40,3,'m150901_144609_superTable_fixForContentTables','2017-07-04 21:59:47','2017-07-04 21:59:47','2017-07-04 21:59:47','d2c9ff38-d335-4354-81a9-82c4d8c62b9f'),
+	(41,4,'m151225_000000_seomatic_addHumansField','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','e27eb793-2e26-4056-812e-2abd90e775e7'),
+	(42,4,'m151226_000000_seomatic_addTwitterFacebookFields','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','d8122bbd-0b50-43cf-b160-cdcc8642be9a'),
+	(43,4,'m160101_000000_seomatic_addRobotsFields','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','7dc9938e-cc44-4967-8a6c-0d9c0d9bb2cc'),
+	(44,4,'m160111_000000_seomatic_addTitleFields','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','b3328adb-f637-47de-a693-ee8e83dff2a8'),
+	(45,4,'m160122_000000_seomatic_addTypeFields','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','32ed799f-226d-41df-9867-20d7b0831240'),
+	(46,4,'m160123_000000_seomatic_addOpeningHours','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','3bc8664e-16a8-4f36-b668-358446baabac'),
+	(47,4,'m160202_000000_seomatic_addSocialHandles','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','4f6c22f3-3fce-4a7b-a925-de254fbeba7d'),
+	(48,4,'m160204_000000_seomatic_addGoogleAnalytics','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','e4897218-d213-44d9-9a69-da23de4962d8'),
+	(49,4,'m160205_000000_seomatic_addResturantMenu','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','9509ca8c-ae83-4fe4-a46d-0ee7bcbe5962'),
+	(50,4,'m160206_000000_seomatic_addGoogleAnalyticsPlugins','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','feebebc6-659d-4fbf-9a88-017ca0776f7e'),
+	(51,4,'m160206_000000_seomatic_addGoogleAnalyticsSendPageView','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','f156459d-801d-4f14-b17e-73387cc67d43'),
+	(52,4,'m160209_000000_seomatic_alterDescriptionsColumns','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','9deac345-c605-4cfb-bb42-a63ca3360276'),
+	(53,4,'m160209_000001_seomatic_addRobotsTxt','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','f8eeda8e-3a08-4308-8feb-65c78e1e8d0e'),
+	(54,4,'m160227_000000_seomatic_addFacebookAppId','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','7ca79c74-ac95-4bd9-a1a5-3b59ac6117e1'),
+	(55,4,'m160416_000000_seomatic_addContactPoints','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','f530d3ea-a863-446f-a97f-d45cc71914e7'),
+	(56,4,'m160509_000000_seomatic_addSiteLinksBing','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','fa634ce4-c863-4428-8e0f-28d6b71d1db5'),
+	(57,4,'m160707_000000_seomatic_addGoogleTagManager','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','516c5426-8a06-4d32-b4c2-0af1c69fdc92'),
+	(58,4,'m160715_000000_seomatic_addSeoImageTransforms','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','54621984-ca1f-48ef-980a-3748b7862ce6'),
+	(59,4,'m160723_000000_seomatic_addSeoMainEntityOfPage','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','0425965a-fff9-4263-a694-2217464f002f'),
+	(60,4,'m160724_000000_seomatic_addSeoMainEntityCategory','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','568b460e-e1ec-439a-bb60-60459cc0ba74'),
+	(61,4,'m160811_000000_seomatic_addVimeo','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','9f8bf326-8076-48c7-ad8f-333863723208'),
+	(62,4,'m160904_000000_seomatic_addTwitterFacebookImages','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','5216f0dd-7359-46c3-82aa-27f8ca8235eb'),
+	(63,4,'m161220_000000_seomatic_addPriceRange','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','be25fda9-eda9-4c60-8272-812ff6715929'),
+	(64,4,'m170212_000000_seomatic_addGoogleAnalyticsAnonymizeIp','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','4c8cde8a-89b3-4477-8004-0ecb0ba66231'),
+	(65,4,'m170212_000000_seomatic_addWikipedia','2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 21:59:51','55b1ed8f-346d-4462-86c8-253f94ed5290'),
+	(66,5,'m160428_202308_Neo_UpdateBlockLevels','2017-07-04 22:00:00','2017-07-04 22:00:00','2017-07-04 22:00:00','86a43535-6659-450e-be59-2ffd99047d94'),
+	(67,5,'m160515_005002_Neo_UpdateBlockStructure','2017-07-04 22:00:00','2017-07-04 22:00:00','2017-07-04 22:00:00','236b5cf4-f881-4f17-bcaa-fb28084f0b2b'),
+	(68,5,'m160605_191540_Neo_UpdateBlockStructureLocales','2017-07-04 22:00:00','2017-07-04 22:00:00','2017-07-04 22:00:00','47e4f6ef-1462-4932-bda8-6e06df13bf40'),
+	(69,5,'m161029_230849_Neo_AddMaxChildBlocksSetting','2017-07-04 22:00:00','2017-07-04 22:00:00','2017-07-04 22:00:00','732bb4d6-bb78-46c5-b5bb-06eff6679887'),
+	(70,6,'m160208_010101_FruitLinkIt_UpdateExistingLinkItFields','2017-07-04 22:00:03','2017-07-04 22:00:03','2017-07-04 22:00:03','926c9b73-4bde-405a-bf76-c476ad5fe3c7'),
+	(71,13,'m170614_141800_amCommand_defaultElementTypeSettings','2017-07-04 22:00:14','2017-07-04 22:00:14','2017-07-04 22:00:14','a8805fea-13e1-4f0f-aa0e-e7fc7eb5f905'),
+	(72,14,'m150212_145000_AmNav_renamePagesToNodes','2017-07-04 22:00:16','2017-07-04 22:00:16','2017-07-04 22:00:16','4cd5b38f-ce87-4827-9990-3ac9ee6f3014'),
+	(73,14,'m150217_112800_AmNav_expandPageData','2017-07-04 22:00:16','2017-07-04 22:00:16','2017-07-04 22:00:16','3e4e49a3-9d96-4219-a381-519c154c7d9d'),
+	(74,14,'m150403_093000_AmNav_nodesWithElements','2017-07-04 22:00:16','2017-07-04 22:00:16','2017-07-04 22:00:16','01f202f3-8d84-4c71-967f-eed42a68b318'),
+	(75,14,'m150512_105600_AmNav_addOptionalClass','2017-07-04 22:00:16','2017-07-04 22:00:16','2017-07-04 22:00:16','9ea4a7ca-63ef-41c0-8933-a9ca47f59734');
 
 /*!40000 ALTER TABLE `craft_migrations` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1651,8 +1668,7 @@ LOCK TABLES `craft_neoblockstructures` WRITE;
 
 INSERT INTO `craft_neoblockstructures` (`id`, `structureId`, `ownerId`, `fieldId`, `ownerLocale`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,5,2,152,NULL,'2017-06-27 01:12:21','2017-06-27 01:12:21','2d21a288-0e34-404d-bf7c-1ece1a0f2b9e'),
-	(2,6,9,152,NULL,'2017-06-27 01:16:06','2017-06-27 01:16:06','3190428d-28ca-4db6-80c0-42b0a1ade4ce');
+	(1,5,2,152,NULL,'2017-07-05 21:33:19','2017-07-05 21:33:19','1459c611-1bf7-4f6b-b4ac-0651495836ad');
 
 /*!40000 ALTER TABLE `craft_neoblockstructures` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1691,29 +1707,29 @@ LOCK TABLES `craft_neoblocktypes` WRITE;
 
 INSERT INTO `craft_neoblocktypes` (`id`, `fieldId`, `fieldLayoutId`, `name`, `handle`, `maxBlocks`, `maxChildBlocks`, `childBlocks`, `topLevel`, `sortOrder`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,152,47,'Headline','objHeadline',NULL,NULL,'',1,2,'2017-06-27 01:06:47','2017-06-27 01:06:47','ab2f398d-2bd2-4f66-9979-896b5ac110c7'),
-	(2,152,48,'Richtext','objRichtext',NULL,NULL,'',1,3,'2017-06-27 01:06:47','2017-06-27 01:06:47','7e7142b1-ba62-4493-b9ef-017ab8376ddb'),
-	(3,152,49,'Markdown','objMarkdown',NULL,NULL,'',1,4,'2017-06-27 01:06:47','2017-06-27 01:06:47','f87d0307-1a09-4b09-b1d8-322ce00c17f3'),
-	(4,152,50,'Liste','objList',NULL,NULL,'',1,5,'2017-06-27 01:06:47','2017-06-27 01:06:47','60b1ccfa-ae47-456f-8b07-f38a586d29f3'),
-	(5,152,51,'Zitat','objQuote',NULL,NULL,'',1,6,'2017-06-27 01:06:47','2017-06-27 01:06:47','4c9bcc23-c5f0-4de5-aafa-2f3aa4674594'),
-	(6,152,52,'Media Image','objMediaImage',NULL,NULL,'',1,8,'2017-06-27 01:06:47','2017-06-27 01:06:47','590ac5cf-ac93-42fa-a0e4-96ab3cc0356c'),
-	(7,152,53,'Embed Content','objEmbedContent',NULL,NULL,'',1,9,'2017-06-27 01:06:47','2017-06-27 01:06:47','c040123b-1430-4256-a319-2dfc46ea4efc'),
-	(8,152,54,'Card','objCard',NULL,NULL,'',1,10,'2017-06-27 01:06:47','2017-06-27 01:06:47','1081fd68-3596-4236-b83f-64997107b1df'),
-	(9,152,55,'Galerie','objGallery',NULL,NULL,'',1,11,'2017-06-27 01:06:47','2017-06-27 01:06:47','b3c50671-a13f-4213-8367-77a614f5e91b'),
-	(10,152,56,'Image Slider','objImageSlider',NULL,NULL,'',1,12,'2017-06-27 01:06:47','2017-06-27 01:06:47','9b5be2b8-93f0-44a6-b82f-cf4da5519834'),
-	(11,152,57,'Card Slider','objCardSlider',NULL,NULL,'[\"objCard\"]',1,13,'2017-06-27 01:06:47','2017-06-27 01:06:47','10c45e24-7a3b-4274-b00c-75d308bb63fe'),
-	(12,152,58,'Button','objButton',NULL,NULL,'',1,15,'2017-06-27 01:06:47','2017-06-27 01:06:47','05cc241b-1dba-4bb1-bf55-d4872591019b'),
-	(13,152,59,'Slide Out Box','objSlideOutBox',NULL,NULL,'',1,16,'2017-06-27 01:06:47','2017-06-27 01:06:47','69285874-486f-4d13-b6fc-f6d168f5082c'),
-	(14,152,60,'Sprungnavigation','objJumpNavigation',NULL,NULL,'',1,17,'2017-06-27 01:06:47','2017-06-27 01:06:47','9603e361-a28f-4859-aafc-5edaf9bd410d'),
-	(15,152,61,'Anker','objAnchor',NULL,NULL,'',1,19,'2017-06-27 01:06:47','2017-06-27 01:06:47','346dabf5-4ce0-4fef-817d-04f29f5ba5e6'),
-	(16,152,62,'Trennlinie','objHorizontalRuler',NULL,NULL,'',1,20,'2017-06-27 01:06:47','2017-06-27 01:06:47','92342f25-087a-4243-8a08-705d67ca79df'),
-	(17,152,63,'Spacer','objSpacer',NULL,NULL,'',1,21,'2017-06-27 01:06:47','2017-06-27 01:06:47','91081dd2-b6ac-4cc1-809e-fd50ec9f6938'),
-	(18,152,64,'Section Wrapper','objSection',NULL,4,'[\"objSectionColumn\"]',1,23,'2017-06-27 01:06:47','2017-06-27 01:06:47','4a3c30be-370e-4bd5-bbc5-7568f4c05be1'),
-	(19,152,65,'Section Column','objSectionColumn',NULL,NULL,'[\"objHeadline\",\"objRichtext\",\"objMarkdown\",\"objList\",\"objQuote\",\"objMediaImage\",\"objEmbedContent\",\"objCard\",\"objGallery\",\"objImageSlider\",\"objCardSlider\",\"objButton\",\"objSlideOutBox\",\"objJumpNavigation\",\"objAnchor\",\"objHorizontalRuler\",\"objSpacer\",\"objAccordionWrapper\",\"objTabWrapper\"]',0,24,'2017-06-27 01:06:47','2017-06-27 01:06:47','8a8b2f1d-57f4-44d0-bb58-d3500cbbcd3e'),
-	(20,152,66,'Accordion Wrapper','objAccordionWrapper',NULL,NULL,'[\"objAccordion\"]',1,25,'2017-06-27 01:06:47','2017-06-27 01:06:47','f09346fe-ffbe-4aa4-9af2-13fbead55171'),
-	(21,152,67,'Accordion','objAccordion',NULL,NULL,'[\"objHeadline\",\"objRichtext\",\"objMarkdown\",\"objList\",\"objQuote\",\"objMediaImage\",\"objEmbedContent\",\"objGallery\",\"objImageSlider\",\"objCardSlider\",\"objButton\",\"objSlideOutBox\",\"objJumpNavigation\",\"objAnchor\",\"objHorizontalRuler\",\"objSpacer\"]',0,26,'2017-06-27 01:06:47','2017-06-27 01:06:47','0d3f9ea9-6c25-4345-ad0c-57778b041183'),
-	(22,152,68,'Tab Wrapper','objTabWrapper',NULL,NULL,'[\"objTab\"]',1,27,'2017-06-27 01:06:47','2017-06-27 01:06:47','9830dd13-126b-4ade-a6ce-bfccd83a2da1'),
-	(23,152,69,'Tab','objTab',NULL,NULL,'[\"objHeadline\",\"objRichtext\",\"objMarkdown\",\"objList\",\"objQuote\",\"objMediaImage\",\"objEmbedContent\",\"objGallery\",\"objImageSlider\",\"objCardSlider\",\"objButton\",\"objSlideOutBox\",\"objJumpNavigation\",\"objAnchor\",\"objHorizontalRuler\",\"objSpacer\"]',0,28,'2017-06-27 01:06:47','2017-06-27 01:06:47','642e538c-2a8f-48e1-8695-c9f876869639');
+	(1,152,47,'Headline','objHeadline',NULL,NULL,'',1,2,'2017-07-04 22:01:04','2017-07-04 22:01:04','f055bfc6-7e76-45b1-bde8-455d25b450ac'),
+	(2,152,48,'Richtext','objRichtext',NULL,NULL,'',1,3,'2017-07-04 22:01:04','2017-07-04 22:01:04','864e6620-9da7-43de-8bbb-a6a52590de1b'),
+	(3,152,49,'Markdown','objMarkdown',NULL,NULL,'',1,4,'2017-07-04 22:01:04','2017-07-04 22:01:04','b90d13dd-249d-40a6-ae80-41fb5cf10c4c'),
+	(4,152,50,'Liste','objList',NULL,NULL,'',1,5,'2017-07-04 22:01:04','2017-07-04 22:01:04','624a6762-32cd-46ff-8d6e-5c3f70336598'),
+	(5,152,51,'Zitat','objQuote',NULL,NULL,'',1,6,'2017-07-04 22:01:04','2017-07-04 22:01:04','9f474bf6-d89c-40aa-826f-c3d9062cee86'),
+	(6,152,52,'Media Image','objMediaImage',NULL,NULL,'',1,8,'2017-07-04 22:01:04','2017-07-04 22:01:04','649e5448-3894-4d87-8879-2514de51db39'),
+	(7,152,53,'Embed Content','objEmbedContent',NULL,NULL,'',1,9,'2017-07-04 22:01:04','2017-07-04 22:01:04','8fa6355a-5091-4a6f-bd58-36428f8f8acf'),
+	(8,152,54,'Card','objCard',NULL,NULL,'',1,10,'2017-07-04 22:01:04','2017-07-04 22:01:04','ba30a8cd-ee6d-449a-9cdc-f42a48a6f8f6'),
+	(9,152,55,'Galerie','objGallery',NULL,NULL,'',1,11,'2017-07-04 22:01:04','2017-07-04 22:01:04','c1247b4d-e62f-4137-abe8-67b4db67ba30'),
+	(10,152,56,'Image Slider','objImageSlider',NULL,NULL,'',1,12,'2017-07-04 22:01:04','2017-07-04 22:01:04','5c002005-57dd-477b-80c8-2b2ccb13787c'),
+	(11,152,57,'Card Slider','objCardSlider',NULL,NULL,'[\"objCard\"]',1,13,'2017-07-04 22:01:04','2017-07-04 22:01:04','2d3d3e22-d66f-4299-be00-38d169fa637b'),
+	(12,152,58,'Button','objButton',NULL,NULL,'',1,15,'2017-07-04 22:01:04','2017-07-04 22:01:04','eba3c8b7-e364-49c6-bdc3-876561d406e6'),
+	(13,152,59,'Slide Out Box','objSlideOutBox',NULL,NULL,'',1,16,'2017-07-04 22:01:04','2017-07-04 22:01:04','68d1330a-0deb-4364-9089-ec7e5c255216'),
+	(14,152,60,'Sprungnavigation','objJumpNavigation',NULL,NULL,'',1,17,'2017-07-04 22:01:04','2017-07-04 22:01:04','2649b185-9815-4617-8333-c922647fcf14'),
+	(15,152,61,'Anker','objAnchor',NULL,NULL,'',1,19,'2017-07-04 22:01:04','2017-07-04 22:01:04','95028e2c-fa1e-4ed6-9a6a-20c6c56d9c57'),
+	(16,152,62,'Trennlinie','objHorizontalRuler',NULL,NULL,'',1,20,'2017-07-04 22:01:04','2017-07-04 22:01:04','e5b8aaf1-9d2d-469b-a9d9-b7fa9d30d39d'),
+	(17,152,63,'Spacer','objSpacer',NULL,NULL,'',1,21,'2017-07-04 22:01:04','2017-07-04 22:01:04','dfd63527-b120-4624-aebb-2bf0410882b8'),
+	(18,152,64,'Section Wrapper','objSection',NULL,4,'[\"objSectionColumn\"]',1,23,'2017-07-04 22:01:04','2017-07-04 22:01:04','3f8b574c-98d5-4ab2-9cb7-d30cb3d32ece'),
+	(19,152,65,'Section Column','objSectionColumn',NULL,NULL,'[\"objHeadline\",\"objRichtext\",\"objMarkdown\",\"objList\",\"objQuote\",\"objMediaImage\",\"objEmbedContent\",\"objCard\",\"objGallery\",\"objImageSlider\",\"objCardSlider\",\"objButton\",\"objSlideOutBox\",\"objJumpNavigation\",\"objAnchor\",\"objHorizontalRuler\",\"objSpacer\",\"objAccordionWrapper\",\"objTabWrapper\"]',0,24,'2017-07-04 22:01:04','2017-07-04 22:01:04','8eb1e86a-7fda-4944-a3b6-f6c701d355a2'),
+	(20,152,66,'Accordion Wrapper','objAccordionWrapper',NULL,NULL,'[\"objAccordion\"]',1,25,'2017-07-04 22:01:04','2017-07-04 22:01:04','c4677ae2-9e9a-43f8-86c6-292c6b17b0d9'),
+	(21,152,67,'Accordion','objAccordion',NULL,NULL,'[\"objHeadline\",\"objRichtext\",\"objMarkdown\",\"objList\",\"objQuote\",\"objMediaImage\",\"objEmbedContent\",\"objGallery\",\"objImageSlider\",\"objCardSlider\",\"objButton\",\"objSlideOutBox\",\"objJumpNavigation\",\"objAnchor\",\"objHorizontalRuler\",\"objSpacer\"]',0,26,'2017-07-04 22:01:04','2017-07-04 22:01:04','e4de33bc-8df9-4525-8bf9-b5e0a093b403'),
+	(22,152,68,'Tab Wrapper','objTabWrapper',NULL,NULL,'[\"objTab\"]',1,27,'2017-07-04 22:01:04','2017-07-04 22:01:04','7206c647-813b-427a-823f-dec23a58f927'),
+	(23,152,69,'Tab','objTab',NULL,NULL,'[\"objHeadline\",\"objRichtext\",\"objMarkdown\",\"objList\",\"objQuote\",\"objMediaImage\",\"objEmbedContent\",\"objGallery\",\"objImageSlider\",\"objCardSlider\",\"objButton\",\"objSlideOutBox\",\"objJumpNavigation\",\"objAnchor\",\"objHorizontalRuler\",\"objSpacer\"]',0,28,'2017-07-04 22:01:04','2017-07-04 22:01:04','09d2f11f-de17-4648-932c-83417b833cd7');
 
 /*!40000 ALTER TABLE `craft_neoblocktypes` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1742,11 +1758,11 @@ LOCK TABLES `craft_neogroups` WRITE;
 
 INSERT INTO `craft_neogroups` (`id`, `fieldId`, `name`, `sortOrder`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,152,'Textmodule',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','a9c653ab-c215-4ca0-9cb9-198dcc0ec02c'),
-	(2,152,'Mediamodule',7,'2017-06-27 01:06:47','2017-06-27 01:06:47','12a09de3-ca66-4aba-835c-1f805328f9b7'),
-	(3,152,'Interaktiv',14,'2017-06-27 01:06:47','2017-06-27 01:06:47','f2225315-27c2-439a-a880-3a61a4139d89'),
-	(4,152,'Layout',18,'2017-06-27 01:06:47','2017-06-27 01:06:47','428172b1-5bf8-498a-a80c-49f38f6a4df6'),
-	(5,152,'Wrapper',22,'2017-06-27 01:06:47','2017-06-27 01:06:47','b5f037ab-2565-4496-a655-2c1fc47771b4');
+	(1,152,'Textmodule',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','327877bf-f6cd-4423-9e24-e4db23317937'),
+	(2,152,'Mediamodule',7,'2017-07-04 22:01:04','2017-07-04 22:01:04','052b41a7-3e73-4dd8-b779-a349d3ff4fba'),
+	(3,152,'Interaktiv',14,'2017-07-04 22:01:04','2017-07-04 22:01:04','0ea88f8d-7e40-4531-b676-a400d3c30893'),
+	(4,152,'Layout',18,'2017-07-04 22:01:04','2017-07-04 22:01:04','4f8dbd2c-214b-4441-bd2d-6fdc9dee5452'),
+	(5,152,'Wrapper',22,'2017-07-04 22:01:04','2017-07-04 22:01:04','270f7002-116a-4745-8028-1423bae5dfa2');
 
 /*!40000 ALTER TABLE `craft_neogroups` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1778,21 +1794,21 @@ LOCK TABLES `craft_plugins` WRITE;
 
 INSERT INTO `craft_plugins` (`id`, `class`, `version`, `schemaVersion`, `licenseKey`, `licenseKeyStatus`, `enabled`, `settings`, `installDate`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'VideoEmbedUtility','1.0.0',NULL,NULL,'unknown',1,NULL,'2017-06-27 01:02:37','2017-06-27 01:02:37','2017-06-27 01:02:37','2762b21b-f95a-4bd2-ad15-4f66c2b8d210'),
-	(2,'TheArchitect','1.6.0','1.6.0',NULL,'unknown',1,NULL,'2017-06-27 01:02:40','2017-06-27 01:02:40','2017-06-27 01:02:40','97a56b04-5c18-4fba-b094-2dbbf50947ea'),
-	(3,'SuperTable','1.0.5','1.0.0',NULL,'unknown',1,NULL,'2017-06-27 01:02:42','2017-06-27 01:02:42','2017-06-27 01:02:42','e0baec1e-ee9a-4d9d-9e14-d0ae54c49268'),
-	(4,'Seomatic','1.1.47','1.1.25',NULL,'unknown',1,NULL,'2017-06-27 01:02:43','2017-06-27 01:02:43','2017-06-27 01:02:43','fff06059-a4a2-4717-8454-5912b8ef82c5'),
-	(5,'Neo','1.4.1','1.4.1',NULL,'unknown',1,NULL,'2017-06-27 01:02:51','2017-06-27 01:02:51','2017-06-27 01:02:51','9932f6a4-008c-4681-a766-35018cf47b1c'),
-	(6,'FruitLinkIt','2.3.1','2.3.0',NULL,'unknown',1,NULL,'2017-06-27 01:02:53','2017-06-27 01:02:53','2017-06-27 01:02:53','4a1358ec-9c7e-405b-80f5-4eadaae02fbf'),
-	(7,'Kint','1.1.0','1.0.0',NULL,'unknown',1,NULL,'2017-06-27 01:02:55','2017-06-27 01:02:55','2017-06-27 01:02:55','4ee99306-9953-49a1-8f45-b422808efb18'),
-	(8,'Imager','1.5.3','1.0.0',NULL,'unknown',1,NULL,'2017-06-27 01:02:57','2017-06-27 01:02:57','2017-06-27 01:02:57','8c6994ed-e47f-4b6f-8ac5-2db2b19da9f9'),
-	(9,'GitPlugins','0.1.0',NULL,NULL,'unknown',1,NULL,'2017-06-27 01:02:58','2017-06-27 01:02:58','2017-06-27 01:02:58','374a4bb0-daf4-4445-aa33-cdfbc67f9703'),
-	(10,'FocalPointField','1.0.2',NULL,NULL,'unknown',1,NULL,'2017-06-27 01:03:01','2017-06-27 01:03:01','2017-06-27 01:03:01','127b8ce5-958f-455a-b91e-0432ff15517e'),
-	(11,'Doxter','1.3.0','1.0.0',NULL,'unknown',1,NULL,'2017-06-27 01:03:04','2017-06-27 01:03:04','2017-06-27 01:03:04','ae4f7eb3-575f-4457-8791-2e6ef96ac023'),
-	(12,'CpSortCols','1.1.1','1.0',NULL,'unknown',1,NULL,'2017-06-27 01:03:06','2017-06-27 01:03:06','2017-06-27 01:03:06','905a645d-4d18-4cd7-a528-99b6789f4df9'),
-	(13,'CpFieldLinks','1.2.2','1.0',NULL,'unknown',1,NULL,'2017-06-27 01:03:09','2017-06-27 01:03:09','2017-06-27 01:03:09','15c8de92-5289-40ee-9f6d-162e389803c5'),
-	(14,'AmCommand','2.0.2','2.0.1',NULL,'unknown',1,NULL,'2017-06-27 01:03:10','2017-06-27 01:03:10','2017-06-27 01:03:10','1b7ad04c-44d2-4597-8cb3-80fb9b3178ad'),
-	(15,'AmNav','1.7.1',NULL,NULL,'unknown',1,NULL,'2017-06-27 01:03:12','2017-06-27 01:03:12','2017-06-27 01:03:12','4f0f8f98-4024-4a7b-ab86-d38e67eff5f9');
+	(1,'VideoEmbedUtility','1.0.0',NULL,NULL,'unknown',1,NULL,'2017-07-04 21:59:41','2017-07-04 21:59:41','2017-07-04 22:02:39','31aff914-5d66-498e-8624-8db638cb587f'),
+	(2,'TheArchitect','1.6.0','1.6.0',NULL,'unknown',1,NULL,'2017-07-04 21:59:45','2017-07-04 21:59:45','2017-07-04 22:02:39','b1ab5a65-4a91-44db-9a2f-d0345a21f36d'),
+	(3,'SuperTable','1.0.5','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 21:59:47','2017-07-04 21:59:47','2017-07-04 22:02:39','e6518585-e7b6-4b4c-9aec-d8e6828f015e'),
+	(4,'Seomatic','1.1.47','1.1.25',NULL,'unknown',1,NULL,'2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 22:02:39','c4962d5a-4ee2-47be-8081-563112f7196a'),
+	(5,'Neo','1.4.1','1.4.1',NULL,'unknown',1,NULL,'2017-07-04 21:59:59','2017-07-04 21:59:59','2017-07-04 22:02:39','8c41f74e-116e-458f-a3ed-9cc0d6f5ca36'),
+	(6,'FruitLinkIt','2.3.1','2.3.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:03','2017-07-04 22:00:03','2017-07-04 22:02:39','504294b1-8dd4-4248-8074-d11406edf511'),
+	(7,'Kint','1.1.0','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:05','2017-07-04 22:00:05','2017-07-04 22:02:39','f2f131a6-6f87-4af9-af71-9c2379379854'),
+	(8,'Imager','1.5.3','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:07','2017-07-04 22:00:07','2017-07-04 22:02:39','5e3e3de6-61e4-403d-88a6-b43453cd9c0d'),
+	(9,'GitPlugins','0.1.0',NULL,NULL,'unknown',1,NULL,'2017-07-04 22:00:08','2017-07-04 22:00:08','2017-07-04 22:02:39','e2525eed-8362-4662-9443-b9c445e3e9b8'),
+	(10,'FocalPointField','1.0.2',NULL,NULL,'unknown',1,NULL,'2017-07-04 22:00:10','2017-07-04 22:00:10','2017-07-04 22:02:39','ec35c904-1c8a-4949-8b8e-558f3fe71d26'),
+	(11,'CpSortCols','1.1.1','1.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:11','2017-07-04 22:00:11','2017-07-04 22:02:39','2cd4639c-0835-499e-8bad-2cba17990a53'),
+	(12,'CpFieldLinks','1.2.2','1.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:13','2017-07-04 22:00:13','2017-07-04 22:02:39','c3d42938-cfa6-4fda-9015-7ee0e1ef6028'),
+	(13,'AmCommand','2.0.2','2.0.1',NULL,'unknown',1,NULL,'2017-07-04 22:00:14','2017-07-04 22:00:14','2017-07-04 22:02:39','3f58dc7b-4598-485d-90d0-06d1f8858913'),
+	(14,'AmNav','1.7.1',NULL,NULL,'unknown',1,NULL,'2017-07-04 22:00:16','2017-07-04 22:00:16','2017-07-04 22:02:39','97e2ac50-e4f9-4ba4-830c-528e327cbcb3'),
+	(15,'Doxter','1.3.0','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:18','2017-07-04 22:00:18','2017-07-04 22:02:39','ae688b87-4326-4d79-a318-70e2c2341473');
 
 /*!40000 ALTER TABLE `craft_plugins` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1844,16 +1860,6 @@ CREATE TABLE `craft_relations` (
   CONSTRAINT `craft_relations_targetId_fk` FOREIGN KEY (`targetId`) REFERENCES `craft_elements` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-LOCK TABLES `craft_relations` WRITE;
-/*!40000 ALTER TABLE `craft_relations` DISABLE KEYS */;
-
-INSERT INTO `craft_relations` (`id`, `fieldId`, `sourceId`, `sourceLocale`, `targetId`, `sortOrder`, `dateCreated`, `dateUpdated`, `uid`)
-VALUES
-	(1,63,8,NULL,7,1,'2017-06-27 01:12:21','2017-06-27 01:12:21','12c9c74c-4aaa-48f9-94e1-16e503f5cfbf'),
-	(2,42,9,NULL,7,1,'2017-06-27 01:16:06','2017-06-27 01:16:06','b1cd9991-87c5-48b5-9ef5-8a2e84e07602');
-
-/*!40000 ALTER TABLE `craft_relations` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Export von Tabelle craft_routes
@@ -1882,9 +1888,9 @@ LOCK TABLES `craft_routes` WRITE;
 
 INSERT INTO `craft_routes` (`id`, `locale`, `urlParts`, `urlPattern`, `template`, `sortOrder`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,NULL,'[\"rss\"]','rss','rss/blog.rss',1,'2017-06-27 01:06:47','2017-06-27 01:06:47','3c1172de-011d-45b0-b821-712a54751de9'),
-	(2,NULL,'[\"feed\"]','feed','rss/blog.rss',2,'2017-06-27 01:06:47','2017-06-27 01:06:47','1a9a1a8b-606e-432b-bbd5-d79c4cc85dd4'),
-	(3,NULL,'[\"rss\\/blog.rss\"]','rss\\/blog\\.rss','rss/blog.rss',3,'2017-06-27 01:06:47','2017-06-27 01:06:47','efba27f3-6a74-4c1c-9aaa-458d94db422f');
+	(1,NULL,'[\"rss\"]','rss','rss/blog.rss',1,'2017-07-04 22:01:04','2017-07-04 22:01:04','5a35020f-5e89-427f-adcc-44c2fd96fb27'),
+	(2,NULL,'[\"feed\"]','feed','rss/blog.rss',2,'2017-07-04 22:01:04','2017-07-04 22:01:04','48daf66b-33c0-494d-aa62-bb45b08d8f66'),
+	(3,NULL,'[\"rss\\/blog.rss\"]','rss\\/blog\\.rss','rss/blog.rss',3,'2017-07-04 22:01:04','2017-07-04 22:01:04','d24cf92c-17d0-4f17-91cd-4ef6e25f5e03');
 
 /*!40000 ALTER TABLE `craft_routes` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1910,51 +1916,79 @@ LOCK TABLES `craft_searchindex` WRITE;
 
 INSERT INTO `craft_searchindex` (`elementId`, `attribute`, `fieldId`, `locale`, `keywords`)
 VALUES
-	(1,'username',0,'de',' gisugosu '),
+	(1,'username',0,'de',' kittn '),
 	(1,'firstname',0,'de',''),
 	(1,'lastname',0,'de',''),
 	(1,'fullname',0,'de',''),
-	(1,'email',0,'de',' gisu2onic gmail com '),
+	(1,'email',0,'de',' hello kittn xyz '),
 	(1,'slug',0,'de',''),
 	(2,'slug',0,'de',' homepage '),
-	(2,'title',0,'de',' welcome to ktest3 local '),
-	(2,'field',1,'de',' it s true this site doesn t have a whole lot of content yet but don t worry our web developers have just installed the cms and they re setting things up for the content editors this very moment soon ktest3 local will be an oasis of fresh perspectives sharp analyses and astute opinions that will keep you coming back again and again '),
-	(7,'kind',0,'de',' image '),
-	(7,'slug',0,'de',' dsc 8059 '),
-	(7,'title',0,'de',' dsc 8059 '),
-	(2,'field',152,'de',''),
-	(2,'field',62,'de',' summer holiday dsc 8059 '),
-	(2,'field',124,'de',' 1 de 1 0 template creativework article welcome to ktest3 local welcome to ktest3 local summary_large_image article all field title field title custom title field field field '),
-	(8,'field',63,'de',' dsc 8059 '),
-	(7,'extension',0,'de',' jpg '),
-	(7,'filename',0,'de',' dsc_8059 jpg '),
+	(2,'title',0,'de',' home '),
+	(2,'field',1,'de',' it s true this site doesn t have a whole lot of content yet but don t worry our web developers have just installed the cms and they re setting things up for the content editors this very moment soon ktest10 local will be an oasis of fresh perspectives sharp analyses and astute opinions that will keep you coming back again and again '),
+	(7,'slug',0,'de',' carousel '),
+	(7,'title',0,'de',' carousel '),
+	(7,'field',137,'en',' 0 default 0 center three '),
+	(7,'field',130,'en',' default 0 default 0 0 1 '),
+	(7,'slug',0,'en',' carousel '),
+	(7,'title',0,'en',' carousel '),
+	(8,'field',138,'de',' center '),
+	(8,'field',139,'de',' three '),
+	(7,'field',130,'de',' default 0 default 0 0 1 '),
+	(7,'field',137,'de',' 0 default 0 center three '),
 	(4,'slug',0,'de',' 404 '),
 	(4,'title',0,'de',' 404 '),
 	(5,'field',31,'de',''),
 	(5,'slug',0,'de',''),
-	(6,'field',144,'de',' sdfsdf facebook dsfsdf '),
+	(6,'field',144,'de',''),
 	(6,'field',32,'de',''),
 	(6,'slug',0,'de',''),
-	(8,'field',64,'de',' summer holiday '),
-	(8,'field',65,'de',''),
+	(2,'field',152,'de',''),
+	(2,'field',62,'de',''),
+	(2,'field',124,'de',' 1 0 de 1 0 template creativework article home home summary_large_image article all home home field title field title custom title field field field '),
+	(4,'field',152,'de',''),
+	(4,'field',42,'de',''),
+	(4,'field',46,'de',''),
+	(4,'field',43,'de',''),
+	(5,'field',31,'en',''),
+	(6,'field',144,'en',''),
+	(6,'field',32,'en',''),
+	(8,'field',140,'de',''),
+	(8,'field',141,'de',' default '),
+	(8,'field',142,'de',' 0 '),
+	(8,'field',143,'de',' 0 '),
 	(8,'slug',0,'de',''),
-	(9,'field',152,'de',''),
-	(9,'field',42,'de',' dsc 8059 '),
-	(9,'field',46,'de',' 0 '),
-	(9,'field',43,'de',''),
-	(9,'field',124,'de',' 1 de 1 0 template creativework article just a test just a test summary_large_image article all 7 7 7 field title field title custom title field featuredimage field featuredimage field featuredimage '),
-	(9,'slug',0,'de',' just a test '),
-	(9,'title',0,'de',' just a test '),
-	(10,'field',47,'de',' 0 '),
-	(10,'field',48,'de',''),
+	(8,'field',138,'en',' center '),
+	(8,'field',139,'en',' three '),
+	(8,'field',140,'en',''),
+	(8,'field',141,'en',' default '),
+	(8,'field',142,'en',' 0 '),
+	(8,'field',143,'en',' 0 '),
+	(8,'slug',0,'en',''),
+	(9,'field',131,'de',' default '),
+	(9,'field',132,'de',' default '),
+	(9,'field',133,'de',' 1 '),
+	(9,'field',134,'de',' 0 '),
+	(9,'field',135,'de',' 0 '),
+	(9,'field',136,'de',' 0 '),
+	(9,'slug',0,'de',''),
+	(9,'field',131,'en',' default '),
+	(9,'field',132,'en',' default '),
+	(9,'field',133,'en',' 1 '),
+	(9,'field',134,'en',' 0 '),
+	(9,'field',135,'en',' 0 '),
+	(9,'field',136,'en',' 0 '),
+	(9,'slug',0,'en',''),
+	(10,'field',63,'de',''),
+	(10,'field',64,'de',''),
+	(10,'field',65,'de',''),
 	(10,'slug',0,'de',''),
-	(11,'field',44,'de',''),
-	(11,'field',45,'de',''),
-	(11,'slug',0,'de',''),
-	(12,'field',145,'de',' facebook '),
-	(12,'field',146,'de',' dsfsdf '),
-	(12,'field',147,'de',' sdfsdf '),
-	(12,'slug',0,'de','');
+	(4,'field',152,'en',''),
+	(4,'field',42,'en',''),
+	(4,'field',46,'en',''),
+	(4,'field',43,'en',''),
+	(2,'field',152,'en',''),
+	(2,'field',62,'en',''),
+	(2,'field',124,'en',' 1 0 de 1 0 template creativework article home home summary_large_image article all home home field title field title custom title field field field ');
 
 /*!40000 ALTER TABLE `craft_searchindex` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1989,11 +2023,11 @@ LOCK TABLES `craft_sections` WRITE;
 
 INSERT INTO `craft_sections` (`id`, `structureId`, `name`, `handle`, `type`, `hasUrls`, `template`, `enableVersioning`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,NULL,'Homepage','homepage','single',1,'index',1,'2017-06-27 01:02:20','2017-06-27 01:02:20','7bda7172-6fc8-4145-bffe-443e9416538f'),
-	(3,NULL,'404','error404','single',1,'404',1,'2017-06-27 01:04:54','2017-06-27 01:04:54','a24be880-d1a5-423f-8372-4b09f6ba8188'),
-	(4,NULL,'Blog Channel','blogChannel','channel',1,'general/entry',1,'2017-06-27 01:04:54','2017-06-27 01:04:54','2142228f-8743-4ada-8ddc-a2b429ccc9b5'),
-	(5,1,'Blog Pages','blogPages','structure',1,'general/pages',1,'2017-06-27 01:04:54','2017-06-27 01:04:54','b0bab96f-ec10-498b-a8c2-2c3e6ba7a037'),
-	(6,2,'Pages','pages','structure',1,'general/pages',1,'2017-06-27 01:04:54','2017-06-27 01:04:54','2825d981-70ed-45ea-ac34-8fb46982fcc7');
+	(1,NULL,'Homepage','homepage','single',1,'index',1,'2017-07-04 21:45:04','2017-07-05 21:34:42','39a063bd-43b9-4a3b-9df4-4df0eee46bda'),
+	(3,NULL,'404','error404','single',1,'404',1,'2017-07-04 22:00:57','2017-07-05 21:33:46','8e3e4de4-eaac-4c0f-ac0c-17e99279feca'),
+	(4,NULL,'Blog Channel','blogChannel','channel',1,'general/entry',1,'2017-07-04 22:00:57','2017-07-05 21:34:21','64bf6e27-f060-48bd-b397-a9e57e8ddde4'),
+	(5,1,'Blog Pages','blogPages','structure',1,'general/pages',1,'2017-07-04 22:00:57','2017-07-05 21:34:34','4cfccd56-9386-4528-b7fe-ef8ee6177bed'),
+	(6,2,'Pages','pages','structure',1,'general/pages',1,'2017-07-04 22:00:57','2017-07-05 21:35:00','e4067360-a2d3-44b2-83e3-cf62c26a3ff3');
 
 /*!40000 ALTER TABLE `craft_sections` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2026,11 +2060,16 @@ LOCK TABLES `craft_sections_i18n` WRITE;
 
 INSERT INTO `craft_sections_i18n` (`id`, `sectionId`, `locale`, `enabledByDefault`, `urlFormat`, `nestedUrlFormat`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,1,'de',1,'__home__',NULL,'2017-06-27 01:02:20','2017-06-27 01:02:20','2ee1fc81-57b9-42eb-b05f-74bd108dbfee'),
-	(3,3,'de',1,'404',NULL,'2017-06-27 01:04:54','2017-06-27 01:04:54','c216b6db-b5f3-48ae-8f87-d3a2f76a3065'),
-	(4,4,'de',1,'blog/e/{slug}',NULL,'2017-06-27 01:04:54','2017-06-27 01:04:54','2d5b8836-f42f-40fe-8003-207dd6d29a6f'),
-	(5,5,'de',1,'blog/{slug}','{parent.uri}/{slug}','2017-06-27 01:04:54','2017-06-27 01:04:54','776065bf-8610-4fb2-a1e4-d8b68c206865'),
-	(6,6,'de',1,'{slug}','{parent.uri}/{slug}','2017-06-27 01:04:54','2017-06-27 01:04:54','ca7825e7-7c01-42b5-a0f8-4a324e4b723e');
+	(1,1,'de',1,'__home__',NULL,'2017-07-04 21:45:04','2017-07-04 21:45:04','a432d965-ddad-4349-9a31-a84846da1625'),
+	(3,3,'de',1,'404',NULL,'2017-07-04 22:00:57','2017-07-04 22:00:57','27f1e3e0-a2dd-4635-9f38-710f7c0a485b'),
+	(4,4,'de',1,'blog/e/{slug}',NULL,'2017-07-04 22:00:57','2017-07-04 22:00:57','a9155ccf-a083-4c87-8fcf-3f172d2d76e6'),
+	(5,5,'de',1,'blog/{slug}','{parent.uri}/{slug}','2017-07-04 22:00:57','2017-07-04 22:00:57','b8461619-54ce-4dcb-a35f-d85ea1443bdc'),
+	(6,6,'de',1,'{slug}','{parent.uri}/{slug}','2017-07-04 22:00:57','2017-07-04 22:00:57','af506f6a-5db5-4a0d-9493-9f86f9bd268e'),
+	(7,3,'en',1,'404',NULL,'2017-07-05 21:33:46','2017-07-05 21:33:46','700ff25c-e595-42c0-84f8-131ef61854a4'),
+	(8,4,'en',1,'blog/e/{slug}',NULL,'2017-07-05 21:34:21','2017-07-05 21:34:21','2c019492-37da-493b-af6e-c694397108d8'),
+	(9,5,'en',1,'blog/{slug}','{parent.uri}/{slug}','2017-07-05 21:34:34','2017-07-05 21:34:34','b4710192-5508-4aa2-a084-e6d2a6aafacf'),
+	(10,1,'en',1,'__home__',NULL,'2017-07-05 21:34:42','2017-07-05 21:34:42','cae8ccf9-9c34-46fe-a730-e088f56bd19c'),
+	(11,6,'en',1,'{slug}','{parent.uri}/{slug}','2017-07-05 21:35:00','2017-07-05 21:35:00','76715fb5-b835-475f-a8f1-7b32e5272c5f');
 
 /*!40000 ALTER TABLE `craft_sections_i18n` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2207,7 +2246,7 @@ LOCK TABLES `craft_seomatic_settings` WRITE;
 
 INSERT INTO `craft_seomatic_settings` (`id`, `siteSeoImageId`, `siteSeoTwitterImageId`, `siteSeoFacebookImageId`, `genericOwnerImageId`, `genericCreatorImageId`, `locale`, `siteSeoName`, `siteSeoTitle`, `siteSeoTitleSeparator`, `siteSeoTitlePlacement`, `siteSeoDescription`, `siteSeoKeywords`, `siteSeoImageTransform`, `siteSeoFacebookImageTransform`, `siteSeoTwitterImageTransform`, `siteTwitterCardType`, `siteOpenGraphType`, `siteRobots`, `siteRobotsTxt`, `siteLinksSearchTargets`, `siteLinksQueryInput`, `googleSiteVerification`, `bingSiteVerification`, `googleAnalyticsUID`, `googleTagManagerID`, `googleAnalyticsSendPageview`, `googleAnalyticsAdvertising`, `googleAnalyticsEcommerce`, `googleAnalyticsEEcommerce`, `googleAnalyticsLinkAttribution`, `googleAnalyticsLinker`, `googleAnalyticsAnonymizeIp`, `siteOwnerType`, `siteOwnerSubType`, `siteOwnerSpecificType`, `genericOwnerName`, `genericOwnerAlternateName`, `genericOwnerDescription`, `genericOwnerUrl`, `genericOwnerTelephone`, `genericOwnerEmail`, `genericOwnerStreetAddress`, `genericOwnerAddressLocality`, `genericOwnerAddressRegion`, `genericOwnerPostalCode`, `genericOwnerAddressCountry`, `genericOwnerGeoLatitude`, `genericOwnerGeoLongitude`, `organizationOwnerDuns`, `organizationOwnerFounder`, `organizationOwnerFoundingDate`, `organizationOwnerFoundingLocation`, `organizationOwnerContactPoints`, `localBusinessPriceRange`, `localBusinessOwnerOpeningHours`, `corporationOwnerTickerSymbol`, `restaurantOwnerServesCuisine`, `restaurantOwnerMenuUrl`, `restaurantOwnerReservationsUrl`, `personOwnerGender`, `personOwnerBirthPlace`, `twitterHandle`, `facebookHandle`, `facebookProfileId`, `facebookAppId`, `linkedInHandle`, `googlePlusHandle`, `youtubeHandle`, `youtubeChannelHandle`, `instagramHandle`, `pinterestHandle`, `githubHandle`, `vimeoHandle`, `wikipediaUrl`, `siteCreatorType`, `siteCreatorSubType`, `siteCreatorSpecificType`, `genericCreatorName`, `genericCreatorAlternateName`, `genericCreatorDescription`, `genericCreatorUrl`, `genericCreatorTelephone`, `genericCreatorEmail`, `genericCreatorStreetAddress`, `genericCreatorAddressLocality`, `genericCreatorAddressRegion`, `genericCreatorPostalCode`, `genericCreatorAddressCountry`, `genericCreatorGeoLatitude`, `genericCreatorGeoLongitude`, `organizationCreatorDuns`, `organizationCreatorFounder`, `organizationCreatorFoundingDate`, `organizationCreatorFoundingLocation`, `organizationCreatorContactPoints`, `localBusinessCreatorOpeningHours`, `corporationCreatorTickerSymbol`, `restaurantCreatorServesCuisine`, `restaurantCreatorMenuUrl`, `restaurantCreatorReservationsUrl`, `personCreatorGender`, `personCreatorBirthPlace`, `genericCreatorHumansTxt`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,NULL,NULL,NULL,NULL,NULL,'de','Ktest3','This is the default global title of the site pages.','|','after','This is the default global natural language description of the content on the site pages.','default,global,comma-separated,keywords','','','','summary','website','','# robots.txt for {{ siteUrl }}\n\nSitemap: {{ siteUrl |trim(\'/\') }}/sitemap.xml\n\n# Don\'t allow web crawlers to index Craft\n\nUser-agent: *\nDisallow: /craft/\n','','','','','','',1,0,0,0,0,0,0,'Organization','Corporation','','Ktest3','','','http://ktest3.local/','','','','','','','','','','','','','','','$$$','','','','','','','','','','','','','','','','','','','','','Organization','Corporation','','','','','','','','','','','','','','','','','','','','','','','','','','','/* TEAM */\n\n{% if seomaticCreator.name is defined and seomaticCreator.name %}\nCreator: {{ seomaticCreator.name }}\n{% endif %}\n{% if seomaticCreator.url is defined and seomaticCreator.url %}\nURL: {{ seomaticCreator.url }}\n{% endif %}\n{% if seomaticCreator.description is defined and seomaticCreator.description %}\nDescription: {{ seomaticCreator.description }}\n{% endif %}\n\n/* THANKS */\n\nPixel & Tonic - https://pixelandtonic.com\n\n/* SITE */\n\nStandards: HTML5, CSS3\nComponents: Craft CMS, Yii, PHP, Javascript, SEOmatic','2017-06-27 01:09:11','2017-06-27 01:09:11','c64fe073-2c15-49d9-a7a7-b591dd9678d5');
+	(1,NULL,NULL,NULL,NULL,NULL,'de','kittn','This is the default global title of the site pages.','|','after','This is the default global natural language description of the content on the site pages.','default,global,comma-separated,keywords','','','','summary','website','','# robots.txt for {{ siteUrl }}\n\nSitemap: {{ siteUrl |trim(\'/\') }}/sitemap.xml\n\n# Don\'t allow web crawlers to index Craft\n\nUser-agent: *\nDisallow: /craft/\n','','','','','','',1,0,0,0,0,0,0,'Organization','Corporation','','kittn','','','http://ktest10.local/','','','','','','','','','','','','','','','$$$','','','','','','','','','','','','','','','','','','','','','Organization','Corporation','','','','','','','','','','','','','','','','','','','','','','','','','','','/* TEAM */\n\n{% if seomaticCreator.name is defined and seomaticCreator.name %}\nCreator: {{ seomaticCreator.name }}\n{% endif %}\n{% if seomaticCreator.url is defined and seomaticCreator.url %}\nURL: {{ seomaticCreator.url }}\n{% endif %}\n{% if seomaticCreator.description is defined and seomaticCreator.description %}\nDescription: {{ seomaticCreator.description }}\n{% endif %}\n\n/* THANKS */\n\nPixel & Tonic - https://pixelandtonic.com\n\n/* SITE */\n\nStandards: HTML5, CSS3\nComponents: Craft CMS, Yii, PHP, Javascript, SEOmatic','2017-07-04 22:02:15','2017-07-04 22:02:15','7a983667-bc4a-48c6-8344-d80ce65282a1');
 
 /*!40000 ALTER TABLE `craft_seomatic_settings` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2238,7 +2277,10 @@ LOCK TABLES `craft_sessions` WRITE;
 
 INSERT INTO `craft_sessions` (`id`, `userId`, `token`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,1,'3de01ce92f39ffa8bbc3b050b63380600545904aczozMjoiV0R+ZlJiNmljTENkXzBjY0h1ZU5oZFdWOGpYemp3VWkiOw==','2017-06-27 01:02:20','2017-06-27 01:02:20','c4c1e811-6c55-4a2c-b466-fff954b64594');
+	(1,1,'ebc01587f551d1b40543c89d8e7fd7b0147d820dczozMjoiNXg1cXUzQVlsZnZYMTJSYlNmVWZCdk5sVHhfT2VGZ2EiOw==','2017-07-04 21:45:04','2017-07-04 21:45:04','24831109-32ac-49eb-81a4-3003b7fb6f30'),
+	(2,1,'3afece416a28dc72aa034cb33770532a04c07a24czozMjoiVUhLa1Y1TktrN0ljWnU3UnNRT2VFT21PYWtYaW1TVU0iOw==','2017-07-05 07:22:24','2017-07-05 07:22:24','6b736c6e-94a1-4fd0-abe0-2bbef3b56d14'),
+	(3,1,'a1a82a43780294ec70ed0471be2ca06b0a1faad8czozMjoiNXlOSmJCUGtCenVGV2ZDUEhHYjI2TWVRcVNxSkp2ZFAiOw==','2017-07-05 19:34:12','2017-07-05 19:34:12','03601ba0-3473-48f3-be12-b03e6156aeba'),
+	(4,1,'726e3b309280cd986746a9bd0203b384177d14ffczozMjoiMEF3cU5MV3hCMGM3c1JWM0RXMG1lUWJveUR4Y0IwcWsiOw==','2017-07-05 21:25:33','2017-07-05 21:25:33','b156aa47-eed5-4ac4-a29c-780305f7127b');
 
 /*!40000 ALTER TABLE `craft_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2296,8 +2338,8 @@ LOCK TABLES `craft_structureelements` WRITE;
 
 INSERT INTO `craft_structureelements` (`id`, `structureId`, `elementId`, `root`, `lft`, `rgt`, `level`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,2,NULL,1,1,4,0,'2017-06-27 01:16:06','2017-06-27 01:16:06','036ec52a-8176-47c7-9209-5a5879add151'),
-	(2,2,9,1,2,3,1,'2017-06-27 01:16:06','2017-06-27 01:16:06','4b69a732-30d9-4165-8d29-4f78efe1c630');
+	(1,4,NULL,1,1,4,0,'2017-07-05 20:08:13','2017-07-05 20:08:13','be40d97b-dcc2-4e1c-9dc0-eff8ff1952c4'),
+	(2,4,7,1,2,3,1,'2017-07-05 20:08:13','2017-07-05 20:08:13','bbc7071a-770a-4985-96cf-91bb9d82d745');
 
 /*!40000 ALTER TABLE `craft_structureelements` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2322,12 +2364,11 @@ LOCK TABLES `craft_structures` WRITE;
 
 INSERT INTO `craft_structures` (`id`, `maxLevels`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,2,'2017-06-27 01:04:54','2017-06-27 01:04:54','4a351ee1-283d-4c51-9868-12b26d92a7c4'),
-	(2,2,'2017-06-27 01:04:54','2017-06-27 01:04:54','7005862a-d219-4868-979b-3df80651c646'),
-	(3,1,'2017-06-27 01:06:41','2017-06-27 01:06:47','8e2e4e82-329c-4f5f-b949-2f6a4a158c16'),
-	(4,1,'2017-06-27 01:06:41','2017-06-27 01:06:47','8438c6c7-f353-4ddf-b7d0-668d69af8e1c'),
-	(5,NULL,'2017-06-27 01:12:21','2017-06-27 01:12:21','28bc140d-e8dd-42da-80d7-aed5071c3552'),
-	(6,NULL,'2017-06-27 01:16:06','2017-06-27 01:16:06','10956a38-d506-4ee6-b748-f9374b60f93b');
+	(1,2,'2017-07-04 22:00:57','2017-07-05 21:34:34','01b2e0b4-a63b-46fe-b031-6cbf145b7612'),
+	(2,2,'2017-07-04 22:00:57','2017-07-05 21:35:00','99021280-ab9d-48a1-ab19-66b2e4b4a849'),
+	(3,1,'2017-07-04 22:00:58','2017-07-04 22:01:04','5888e673-481b-4448-b789-dfb4998de289'),
+	(4,1,'2017-07-04 22:00:58','2017-07-04 22:01:04','981a5add-ed47-44a8-9dd4-a69c0b2b8901'),
+	(5,NULL,'2017-07-05 21:33:19','2017-07-05 21:33:19','ac36a972-9856-4500-b251-7f2d6febda1b');
 
 /*!40000 ALTER TABLE `craft_structures` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2366,10 +2407,9 @@ LOCK TABLES `craft_supertableblocks` WRITE;
 
 INSERT INTO `craft_supertableblocks` (`id`, `ownerId`, `fieldId`, `typeId`, `sortOrder`, `ownerLocale`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(8,2,62,14,1,NULL,'2017-06-27 01:12:21','2017-06-27 01:12:21','d0275b1b-10e2-4d21-94cd-c3bcd0faa521'),
-	(10,9,46,10,1,NULL,'2017-06-27 01:16:06','2017-06-27 01:16:06','1191d2ab-b2dd-44f3-a803-e64c1b68b815'),
-	(11,9,43,9,1,NULL,'2017-06-27 01:16:06','2017-06-27 01:16:06','d010e910-b7f7-48d5-bfb1-559a35d1f4ee'),
-	(12,6,144,33,1,NULL,'2017-06-27 01:26:36','2017-06-27 01:26:36','a29f0129-b47c-4638-935e-8a00a5d44856');
+	(8,7,137,32,1,NULL,'2017-07-05 20:08:13','2017-07-05 20:08:13','578a121a-f99c-4780-99ac-80e025abb7e7'),
+	(9,7,130,31,1,NULL,'2017-07-05 20:08:13','2017-07-05 20:08:13','ae17fa21-26e7-409f-8fcf-f01dc17d450a'),
+	(10,2,62,14,1,NULL,'2017-07-05 21:33:19','2017-07-05 21:33:19','32cbc86d-b0cd-472a-9c06-b3f085a3c5a0');
 
 /*!40000 ALTER TABLE `craft_supertableblocks` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2399,40 +2439,40 @@ LOCK TABLES `craft_supertableblocktypes` WRITE;
 
 INSERT INTO `craft_supertableblocktypes` (`id`, `fieldId`, `fieldLayoutId`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,4,13,'2017-06-27 01:06:41','2017-06-27 01:06:41','8d2948e9-7be9-422d-af81-adf48fe323bc'),
-	(2,7,14,'2017-06-27 01:06:41','2017-06-27 01:06:41','eaa2cd16-ad99-47dc-8993-9a6288381476'),
-	(3,10,15,'2017-06-27 01:06:41','2017-06-27 01:06:41','a073e61c-883e-45d3-a2e3-4a42490aaab2'),
-	(4,15,16,'2017-06-27 01:06:41','2017-06-27 01:06:42','7d879e2a-2f33-460e-b176-ca06a9de8fbf'),
-	(5,22,17,'2017-06-27 01:06:42','2017-06-27 01:06:42','7c06b25a-a040-4035-bb17-2d93721407a7'),
-	(6,26,18,'2017-06-27 01:06:42','2017-06-27 01:06:42','4e702730-015b-4927-8885-561ae75d3675'),
-	(7,33,19,'2017-06-27 01:06:42','2017-06-27 01:06:42','78ba803a-b4b8-4740-be89-c7808262d2ed'),
-	(8,37,20,'2017-06-27 01:06:42','2017-06-27 01:06:42','670bdf27-2485-4578-8b67-e113e4ec8be9'),
-	(9,43,21,'2017-06-27 01:06:42','2017-06-27 01:06:42','54eb6c13-6d87-455d-89aa-417b39b640af'),
-	(10,46,22,'2017-06-27 01:06:43','2017-06-27 01:06:43','0d245a32-1897-4d36-8079-54c48d7310f7'),
-	(11,50,23,'2017-06-27 01:06:43','2017-06-27 01:06:43','f1b21941-1c0d-4f16-8a42-9f691914af10'),
-	(12,53,24,'2017-06-27 01:06:43','2017-06-27 01:06:43','93c4cab6-aa11-48a6-b313-ac1d4d4ac6d7'),
-	(13,58,25,'2017-06-27 01:06:43','2017-06-27 01:06:43','fdfcce67-71a6-4a61-8db3-a15c1f34159e'),
-	(14,62,26,'2017-06-27 01:06:43','2017-06-27 01:06:43','09dbac26-76d7-4d81-bb2f-cd9931ab33d1'),
-	(15,68,27,'2017-06-27 01:06:43','2017-06-27 01:06:43','2618214a-ed16-4cb1-9123-c1d81f12796b'),
-	(16,72,28,'2017-06-27 01:06:44','2017-06-27 01:06:44','bc63a6b8-6a94-4782-aae6-09ef1bbfa925'),
-	(17,75,29,'2017-06-27 01:06:44','2017-06-27 01:06:44','2de38a66-9ceb-4277-b2bb-1a4a3bb711a0'),
-	(18,79,30,'2017-06-27 01:06:44','2017-06-27 01:06:44','a027b234-9051-4b0e-9fe3-5d90922c40fc'),
-	(19,83,31,'2017-06-27 01:06:44','2017-06-27 01:06:44','5d21312f-86b2-4cc1-9f67-1d9b3853e80d'),
-	(20,86,32,'2017-06-27 01:06:44','2017-06-27 01:06:44','30a7f3f9-3180-44ad-85b2-0d25c13d01b4'),
-	(21,89,33,'2017-06-27 01:06:44','2017-06-27 01:06:44','2edb38c1-ace1-4cce-9e44-cba5ae7ce761'),
-	(22,93,34,'2017-06-27 01:06:44','2017-06-27 01:06:44','9c48cff8-aff6-4211-ae85-b3f9cc10ce4a'),
-	(23,96,35,'2017-06-27 01:06:45','2017-06-27 01:06:45','173d2ee9-7a68-40f2-ac3f-6f590b32338e'),
-	(24,99,36,'2017-06-27 01:06:45','2017-06-27 01:06:45','4e15dd32-864a-4ee5-af86-25581a29ea5b'),
-	(25,101,37,'2017-06-27 01:06:45','2017-06-27 01:06:45','58665042-3009-4995-b824-0c6feb3cd216'),
-	(26,110,38,'2017-06-27 01:06:45','2017-06-27 01:06:45','3085c185-e7fd-4ce1-a6e8-7410ea9cb3cc'),
-	(27,114,39,'2017-06-27 01:06:45','2017-06-27 01:06:45','f47156b8-5828-4568-b358-d3c8a343bbb7'),
-	(28,118,40,'2017-06-27 01:06:45','2017-06-27 01:06:45','c24b17b5-385e-4343-9c4d-93181258a5e2'),
-	(29,125,41,'2017-06-27 01:06:46','2017-06-27 01:06:46','f0693f5a-9418-4285-b217-c5adb7a5be35'),
-	(30,128,42,'2017-06-27 01:06:46','2017-06-27 01:06:46','0a3583a1-bc02-4bf4-aac6-45ba837ea803'),
-	(31,130,43,'2017-06-27 01:06:46','2017-06-27 01:06:46','f60bc5c7-1729-48e5-b59f-1ef35763af60'),
-	(32,137,44,'2017-06-27 01:06:46','2017-06-27 01:06:46','f6752274-b571-4fab-b1d9-91f4eafb8050'),
-	(33,144,45,'2017-06-27 01:06:46','2017-06-27 01:06:46','dac0e5e3-3040-4844-b057-8ab60873b69a'),
-	(34,150,46,'2017-06-27 01:06:47','2017-06-27 01:06:47','ff06ba88-980e-42ab-81ab-550fe9b5fec3');
+	(1,4,13,'2017-07-04 22:00:58','2017-07-04 22:00:58','87087b86-9e31-45de-a7d8-36047a21dfcc'),
+	(2,7,14,'2017-07-04 22:00:58','2017-07-04 22:00:58','0b38c886-08bb-483c-aa6d-6cd62acb239f'),
+	(3,10,90,'2017-07-04 22:00:58','2017-07-05 19:58:39','c51c8c65-6308-4478-8c1d-1e9d5a18262f'),
+	(4,15,83,'2017-07-04 22:00:58','2017-07-05 19:45:58','ad27d5ef-38e9-49da-a94c-878c0bde82f4'),
+	(5,22,17,'2017-07-04 22:00:58','2017-07-04 22:00:59','1924c9de-f5a8-415b-877b-670ed00fa955'),
+	(6,26,91,'2017-07-04 22:00:59','2017-07-05 19:59:30','e6bdfc8d-1552-473a-9645-4e8ca20a248a'),
+	(7,33,84,'2017-07-04 22:00:59','2017-07-05 19:46:27','f0dbfeea-051d-48f8-8b64-4c847f3d3c3a'),
+	(8,37,20,'2017-07-04 22:00:59','2017-07-04 22:00:59','441da27c-60b1-456a-9d64-6c1ce2751835'),
+	(9,43,81,'2017-07-04 22:00:59','2017-07-04 22:15:50','638d9577-386e-4f66-b583-5ea3ca47375e'),
+	(10,46,22,'2017-07-04 22:00:59','2017-07-04 22:00:59','864efaa4-6f60-404c-90df-691f667539c9'),
+	(11,50,85,'2017-07-04 22:01:00','2017-07-05 19:47:03','1bf6c16f-edc4-4e69-af38-a3fa3e7783d2'),
+	(12,53,92,'2017-07-04 22:01:00','2017-07-05 20:01:59','096cc3b9-6a2f-45f0-9c98-5d8836d6dd52'),
+	(13,58,25,'2017-07-04 22:01:00','2017-07-04 22:01:00','22f299b9-398d-4e44-a04e-12475d6f9a4f'),
+	(14,62,82,'2017-07-04 22:01:00','2017-07-04 22:16:21','1c871578-9766-4838-a980-999806c3a2f8'),
+	(15,68,93,'2017-07-04 22:01:00','2017-07-05 20:03:04','5e77554c-0f7c-4114-b9a4-6871d47afdf6'),
+	(16,72,86,'2017-07-04 22:01:00','2017-07-05 19:48:20','94e2ee42-07c1-4fa7-b727-78f0f0374d15'),
+	(17,75,29,'2017-07-04 22:01:01','2017-07-04 22:01:01','d3660777-06a4-4c15-8426-d4e81bc80e2c'),
+	(18,79,30,'2017-07-04 22:01:01','2017-07-04 22:01:01','7493a35c-fb7a-40d4-acc0-ae2ff7ad04b7'),
+	(19,83,31,'2017-07-04 22:01:01','2017-07-04 22:01:01','59169428-077b-44b8-bf63-d94bd59a15f5'),
+	(20,86,87,'2017-07-04 22:01:01','2017-07-05 19:49:41','a4cbb8ea-0bdc-4a47-a330-6fd873422380'),
+	(21,89,33,'2017-07-04 22:01:01','2017-07-04 22:01:01','4f608dbc-ee28-4d4d-bf74-f43f1f3f32ad'),
+	(22,93,88,'2017-07-04 22:01:01','2017-07-05 19:50:10','41f1eb64-1393-42e6-a6fa-a76ea602a4d7'),
+	(23,96,35,'2017-07-04 22:01:01','2017-07-04 22:01:01','f8617e35-50d5-44f5-afc8-47d0b76a5855'),
+	(24,99,36,'2017-07-04 22:01:02','2017-07-04 22:01:02','cc135771-c229-4d33-9203-91917c9045ff'),
+	(25,101,37,'2017-07-04 22:01:02','2017-07-04 22:01:02','1199a16c-7dd9-4c80-a73d-dffb16a6c028'),
+	(26,110,38,'2017-07-04 22:01:02','2017-07-04 22:01:02','543c6e52-a262-4a23-ab11-af1ac25356a4'),
+	(27,114,39,'2017-07-04 22:01:02','2017-07-04 22:01:02','10635624-07a3-4b94-921b-e54ec4b095ca'),
+	(28,118,40,'2017-07-04 22:01:02','2017-07-04 22:01:02','489841ab-1f50-4c7b-92ce-6434471ef571'),
+	(29,125,89,'2017-07-04 22:01:03','2017-07-05 19:51:16','5fc55232-4504-4b2a-a17b-2392ac4ccfaf'),
+	(30,128,42,'2017-07-04 22:01:03','2017-07-04 22:01:03','7d7c41f1-eafd-4de6-abe9-73fcf4d1eb2d'),
+	(31,130,43,'2017-07-04 22:01:03','2017-07-04 22:01:03','476a42c7-b98d-43aa-b67d-b5ae7dc4a9f6'),
+	(32,137,44,'2017-07-04 22:01:03','2017-07-04 22:01:03','ffdc1b66-edeb-4d0e-a030-1203d3ad9a97'),
+	(33,144,80,'2017-07-04 22:01:03','2017-07-04 22:15:15','b6a7ee09-5280-4f6e-a96d-f5d37385c2d9'),
+	(34,150,46,'2017-07-04 22:01:04','2017-07-04 22:01:04','15e40c0d-d083-4a76-b06a-11a96dc1974f');
 
 /*!40000 ALTER TABLE `craft_supertableblocktypes` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2459,15 +2499,6 @@ CREATE TABLE `craft_supertablecontent_featuredimagelabeling` (
   CONSTRAINT `craft_supertablecontent_featuredimagelabeling_locale_fk` FOREIGN KEY (`locale`) REFERENCES `craft_locales` (`locale`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-LOCK TABLES `craft_supertablecontent_featuredimagelabeling` WRITE;
-/*!40000 ALTER TABLE `craft_supertablecontent_featuredimagelabeling` DISABLE KEYS */;
-
-INSERT INTO `craft_supertablecontent_featuredimagelabeling` (`id`, `elementId`, `locale`, `field_headline`, `field_linkit`, `dateCreated`, `dateUpdated`, `uid`)
-VALUES
-	(1,11,'de','','','2017-06-27 01:16:06','2017-06-27 01:16:06','2d08183c-4fac-4d31-87d3-b569788d23a7');
-
-/*!40000 ALTER TABLE `craft_supertablecontent_featuredimagelabeling` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Export von Tabelle craft_supertablecontent_featuredimageoptions
@@ -2491,15 +2522,6 @@ CREATE TABLE `craft_supertablecontent_featuredimageoptions` (
   CONSTRAINT `craft_supertablecontent_featuredimageoptions_locale_fk` FOREIGN KEY (`locale`) REFERENCES `craft_locales` (`locale`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-LOCK TABLES `craft_supertablecontent_featuredimageoptions` WRITE;
-/*!40000 ALTER TABLE `craft_supertablecontent_featuredimageoptions` DISABLE KEYS */;
-
-INSERT INTO `craft_supertablecontent_featuredimageoptions` (`id`, `elementId`, `locale`, `field_fullbleed`, `field_ratio`, `dateCreated`, `dateUpdated`, `uid`)
-VALUES
-	(1,10,'de',0,'','2017-06-27 01:16:06','2017-06-27 01:16:06','faa2327e-824a-4c25-80aa-198018532467');
-
-/*!40000 ALTER TABLE `craft_supertablecontent_featuredimageoptions` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Export von Tabelle craft_supertablecontent_hero
@@ -2528,7 +2550,7 @@ LOCK TABLES `craft_supertablecontent_hero` WRITE;
 
 INSERT INTO `craft_supertablecontent_hero` (`id`, `elementId`, `locale`, `field_headline`, `field_linkit`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,8,'de','Summer Holiday','','2017-06-27 01:12:21','2017-06-27 01:12:21','044823b7-05f6-4047-97a0-508810515fc8');
+	(1,10,'de','','','2017-07-05 21:33:19','2017-07-05 21:33:19','bd458b46-f3ef-4779-860e-4766f5982daf');
 
 /*!40000 ALTER TABLE `craft_supertablecontent_hero` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -3213,6 +3235,16 @@ CREATE TABLE `craft_supertablecontent_setslidersetup` (
   CONSTRAINT `craft_supertablecontent_setslidersetup_locale_fk` FOREIGN KEY (`locale`) REFERENCES `craft_locales` (`locale`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+LOCK TABLES `craft_supertablecontent_setslidersetup` WRITE;
+/*!40000 ALTER TABLE `craft_supertablecontent_setslidersetup` DISABLE KEYS */;
+
+INSERT INTO `craft_supertablecontent_setslidersetup` (`id`, `elementId`, `locale`, `field_autoplay`, `field_speed`, `field_loop`, `field_navigation`, `field_pagination`, `field_autoHeight`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,9,'de','default','default',1,0,0,0,'2017-07-05 20:08:13','2017-07-05 20:08:13','ba85d6da-7389-4801-a614-c817da7f7793'),
+	(2,9,'en','default','default',1,0,0,0,'2017-07-05 20:08:13','2017-07-05 20:08:13','db74d5f3-1a98-463b-8f56-0364cb0b1333');
+
+/*!40000 ALTER TABLE `craft_supertablecontent_setslidersetup` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Export von Tabelle craft_supertablecontent_setslidersetupgeneral
@@ -3240,6 +3272,16 @@ CREATE TABLE `craft_supertablecontent_setslidersetupgeneral` (
   CONSTRAINT `craft_supertablecontent_setslidersetupgeneral_locale_fk` FOREIGN KEY (`locale`) REFERENCES `craft_locales` (`locale`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+LOCK TABLES `craft_supertablecontent_setslidersetupgeneral` WRITE;
+/*!40000 ALTER TABLE `craft_supertablecontent_setslidersetupgeneral` DISABLE KEYS */;
+
+INSERT INTO `craft_supertablecontent_setslidersetupgeneral` (`id`, `elementId`, `locale`, `field_position`, `field_slidesPerView`, `field_spaceBetween`, `field_groupCell`, `field_freescroll`, `field_responsive`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,8,'de','center','three','','default',0,0,'2017-07-05 20:08:13','2017-07-05 20:08:13','2dfa7d54-29c9-44c5-a2a5-be3cd728776a'),
+	(2,8,'en','center','three','','default',0,0,'2017-07-05 20:08:13','2017-07-05 20:08:13','716e2a86-f76a-4a0f-8d71-8dc6761b0dcd');
+
+/*!40000 ALTER TABLE `craft_supertablecontent_setslidersetupgeneral` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Export von Tabelle craft_supertablecontent_socialnetworks
@@ -3264,15 +3306,6 @@ CREATE TABLE `craft_supertablecontent_socialnetworks` (
   CONSTRAINT `craft_supertablecontent_socialnetworks_locale_fk` FOREIGN KEY (`locale`) REFERENCES `craft_locales` (`locale`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
-LOCK TABLES `craft_supertablecontent_socialnetworks` WRITE;
-/*!40000 ALTER TABLE `craft_supertablecontent_socialnetworks` DISABLE KEYS */;
-
-INSERT INTO `craft_supertablecontent_socialnetworks` (`id`, `elementId`, `locale`, `field_icon`, `field_linkit`, `field_caption`, `dateCreated`, `dateUpdated`, `uid`)
-VALUES
-	(1,12,'de','facebook','dsfsdf','sdfsdf','2017-06-27 01:26:36','2017-06-27 01:26:36','c4d44bbb-1679-475d-9a2c-3937083c9de6');
-
-/*!40000 ALTER TABLE `craft_supertablecontent_socialnetworks` ENABLE KEYS */;
-UNLOCK TABLES;
 
 
 # Export von Tabelle craft_systemsettings
@@ -3296,7 +3329,7 @@ LOCK TABLES `craft_systemsettings` WRITE;
 
 INSERT INTO `craft_systemsettings` (`id`, `category`, `settings`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'email','{\"protocol\":\"php\",\"emailAddress\":\"gisu2onic@gmail.com\",\"senderName\":\"Ktest3\"}','2017-06-27 01:02:20','2017-06-27 01:02:20','6b879a2c-93cd-4dba-9ae3-e98e669f6dec');
+	(1,'email','{\"protocol\":\"php\",\"emailAddress\":\"hello@kittn.xyz\",\"senderName\":\"kittn\"}','2017-07-04 21:45:04','2017-07-04 21:45:04','a4f5fd88-62e7-4bf3-bc2f-e2b6af93ef47');
 
 /*!40000 ALTER TABLE `craft_systemsettings` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -3327,7 +3360,7 @@ LOCK TABLES `craft_taggroups` WRITE;
 
 INSERT INTO `craft_taggroups` (`id`, `name`, `handle`, `fieldLayoutId`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'Default','default',1,'2017-06-27 01:02:20','2017-06-27 01:02:20','3dc1c01b-3405-4ae2-9a78-27cc0b1efa6d');
+	(1,'Default','default',1,'2017-07-04 21:45:04','2017-07-04 21:45:04','3bc69dbd-55f8-43f9-a0ec-b466f616e4bc');
 
 /*!40000 ALTER TABLE `craft_taggroups` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -3474,6 +3507,16 @@ CREATE TABLE `craft_usergroups` (
   UNIQUE KEY `craft_usergroups_handle_unq_idx` (`handle`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+LOCK TABLES `craft_usergroups` WRITE;
+/*!40000 ALTER TABLE `craft_usergroups` DISABLE KEYS */;
+
+INSERT INTO `craft_usergroups` (`id`, `name`, `handle`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,'Editor','editor','2017-07-04 22:10:26','2017-07-04 22:10:26','c3e4a84b-e6d6-4012-807b-689d16e2d41b'),
+	(2,'Writer','writer','2017-07-04 22:11:54','2017-07-04 22:11:54','7b078e83-712f-4ff3-afe4-5157c2d8149d');
+
+/*!40000 ALTER TABLE `craft_usergroups` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Export von Tabelle craft_usergroups_users
@@ -3512,6 +3555,74 @@ CREATE TABLE `craft_userpermissions` (
   UNIQUE KEY `craft_userpermissions_name_unq_idx` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+LOCK TABLES `craft_userpermissions` WRITE;
+/*!40000 ALTER TABLE `craft_userpermissions` DISABLE KEYS */;
+
+INSERT INTO `craft_userpermissions` (`id`, `name`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,'accesssitewhensystemisoff','2017-07-04 22:10:26','2017-07-04 22:10:26','162c2d0d-429e-4e90-9d04-d05ff4ac1106'),
+	(2,'accesscpwhensystemisoff','2017-07-04 22:10:26','2017-07-04 22:10:26','53da65c8-bdf1-43b5-99e9-e549db13e20e'),
+	(3,'accessplugin-amnav','2017-07-04 22:10:26','2017-07-04 22:10:26','00c16bd3-5bf9-4a46-85ec-8cd406cf20ae'),
+	(4,'accesscp','2017-07-04 22:10:26','2017-07-04 22:10:26','805eeb44-5fb4-4939-971d-4a54f1fcaa96'),
+	(5,'registerusers','2017-07-04 22:10:26','2017-07-04 22:10:26','0931440c-2864-4bf1-a362-15a748726fa2'),
+	(6,'assignuserpermissions','2017-07-04 22:10:26','2017-07-04 22:10:26','8b80ccf0-53b3-4c2c-b4b6-ae1c8a8cd98b'),
+	(7,'changeuseremails','2017-07-04 22:10:26','2017-07-04 22:10:26','e040ef07-96d5-438c-a305-98e040e46be8'),
+	(8,'administrateusers','2017-07-04 22:10:26','2017-07-04 22:10:26','372f54fb-3e88-45dd-954c-4b6cb89dd9d3'),
+	(9,'editusers','2017-07-04 22:10:26','2017-07-04 22:10:26','c6cfb403-f318-45ee-8f5c-dacf8a5ed6e2'),
+	(10,'deleteusers','2017-07-04 22:10:26','2017-07-04 22:10:26','fd279dcb-63c6-4df2-9826-c72956f1484d'),
+	(11,'publishentries:3','2017-07-04 22:10:26','2017-07-04 22:10:26','b28ca048-aaeb-44f3-81b9-20ab07fe8278'),
+	(12,'publishpeerentrydrafts:3','2017-07-04 22:10:26','2017-07-04 22:10:26','b38bbf31-c736-4b32-9d15-10b541f86c1f'),
+	(13,'deletepeerentrydrafts:3','2017-07-04 22:10:26','2017-07-04 22:10:26','71daf5d7-2a66-41c2-88d0-b9135a8ca704'),
+	(14,'editpeerentrydrafts:3','2017-07-04 22:10:26','2017-07-04 22:10:26','a56707ea-194c-4c2a-9822-b80ae553addb'),
+	(15,'editentries:3','2017-07-04 22:10:26','2017-07-04 22:10:26','972a3195-1bf4-4a4f-891c-36c33c8eb66c'),
+	(16,'createentries:4','2017-07-04 22:10:26','2017-07-04 22:10:26','5514f16e-ca44-4275-9506-0315c5e18a23'),
+	(17,'publishentries:4','2017-07-04 22:10:26','2017-07-04 22:10:26','866c9c8f-ffa8-4145-8b53-fa2f4b562d34'),
+	(18,'deleteentries:4','2017-07-04 22:10:26','2017-07-04 22:10:26','41cd1e9b-a31f-494d-bc65-cfdf6344739e'),
+	(19,'publishpeerentries:4','2017-07-04 22:10:26','2017-07-04 22:10:26','22d3e5fa-7218-4297-b4c5-3c661897e8eb'),
+	(20,'deletepeerentries:4','2017-07-04 22:10:26','2017-07-04 22:10:26','f807765b-47ad-4f37-9c8a-b613319b0d39'),
+	(21,'editpeerentries:4','2017-07-04 22:10:26','2017-07-04 22:10:26','56eaf0a1-e3e2-45fd-9216-dafb2362ffea'),
+	(22,'publishpeerentrydrafts:4','2017-07-04 22:10:26','2017-07-04 22:10:26','9a826773-c890-47fa-ae54-3db827816bae'),
+	(23,'deletepeerentrydrafts:4','2017-07-04 22:10:26','2017-07-04 22:10:26','d151bf99-4596-4794-92e7-38888c2eb32f'),
+	(24,'editpeerentrydrafts:4','2017-07-04 22:10:26','2017-07-04 22:10:26','ce844832-e666-4426-a624-55601fc2a0f0'),
+	(25,'editentries:4','2017-07-04 22:10:26','2017-07-04 22:10:26','473b5caf-c7df-491d-a2e4-c31ebad3af27'),
+	(26,'createentries:5','2017-07-04 22:10:26','2017-07-04 22:10:26','041250dd-e7e9-4bf3-8ce3-dd24714f2f9d'),
+	(27,'publishentries:5','2017-07-04 22:10:26','2017-07-04 22:10:26','5a4e6a42-1b5e-4281-984c-9c03e3ee4963'),
+	(28,'deleteentries:5','2017-07-04 22:10:26','2017-07-04 22:10:26','24b39e5e-cc93-4069-aa9a-bf2ded5b1001'),
+	(29,'publishpeerentries:5','2017-07-04 22:10:26','2017-07-04 22:10:26','36866616-f882-4791-a981-4eb3d100163d'),
+	(30,'deletepeerentries:5','2017-07-04 22:10:26','2017-07-04 22:10:26','52111c7a-aba6-41e0-a29b-f77b82c0f868'),
+	(31,'editpeerentries:5','2017-07-04 22:10:26','2017-07-04 22:10:26','d5754d79-7b05-448e-939a-d1157f90aac0'),
+	(32,'publishpeerentrydrafts:5','2017-07-04 22:10:26','2017-07-04 22:10:26','86af7990-fdd0-4df4-b5f8-7d9d0dd358d2'),
+	(33,'deletepeerentrydrafts:5','2017-07-04 22:10:26','2017-07-04 22:10:26','10fa308d-cfc9-4b36-b12b-ae0ee2d9829d'),
+	(34,'editpeerentrydrafts:5','2017-07-04 22:10:26','2017-07-04 22:10:26','49933e6c-1b9f-4144-81c5-cfeb08936ef0'),
+	(35,'editentries:5','2017-07-04 22:10:26','2017-07-04 22:10:26','4686f5b9-586f-4015-bb10-68ad9178e498'),
+	(36,'publishentries:1','2017-07-04 22:10:26','2017-07-04 22:10:26','0cff0523-b167-4845-ae88-64bf84c1afad'),
+	(37,'publishpeerentrydrafts:1','2017-07-04 22:10:26','2017-07-04 22:10:26','8f08f0ae-b20d-47a7-ba88-42ea797e8929'),
+	(38,'deletepeerentrydrafts:1','2017-07-04 22:10:26','2017-07-04 22:10:26','b13ec52f-45a9-4389-abac-a890d12fa28a'),
+	(39,'editpeerentrydrafts:1','2017-07-04 22:10:26','2017-07-04 22:10:26','ea4864d0-0698-4d6a-8a40-dbd3467416d8'),
+	(40,'editentries:1','2017-07-04 22:10:26','2017-07-04 22:10:26','4972dfff-271c-4a46-baed-50dc6d7bd626'),
+	(41,'createentries:6','2017-07-04 22:10:26','2017-07-04 22:10:26','d49c6395-ed64-47a4-8e63-ef04cd5d5fc1'),
+	(42,'publishentries:6','2017-07-04 22:10:26','2017-07-04 22:10:26','323564d9-af47-4287-83ef-9717f774c92b'),
+	(43,'deleteentries:6','2017-07-04 22:10:26','2017-07-04 22:10:26','a7d08405-5901-4859-86f2-b63fb9133030'),
+	(44,'publishpeerentries:6','2017-07-04 22:10:26','2017-07-04 22:10:26','bd36721f-f2d4-4eab-90ea-c041f7066b73'),
+	(45,'deletepeerentries:6','2017-07-04 22:10:26','2017-07-04 22:10:26','f91bcd75-9725-4d0a-967a-97cc667e5b20'),
+	(46,'editpeerentries:6','2017-07-04 22:10:26','2017-07-04 22:10:26','2a543c07-ee55-4199-bbb8-3a975895ec4f'),
+	(47,'publishpeerentrydrafts:6','2017-07-04 22:10:26','2017-07-04 22:10:26','ac4a7bc8-fa74-499f-babf-0b9e7dfb262f'),
+	(48,'deletepeerentrydrafts:6','2017-07-04 22:10:26','2017-07-04 22:10:26','2828d141-d39d-42db-b2e9-43c8a4f14f07'),
+	(49,'editpeerentrydrafts:6','2017-07-04 22:10:26','2017-07-04 22:10:26','1be83c93-6d08-4aaa-83dd-e82fbe8ad968'),
+	(50,'editentries:6','2017-07-04 22:10:26','2017-07-04 22:10:26','8097eb2a-3940-4cac-9475-4a5d2a44c514'),
+	(51,'editglobalset:5','2017-07-04 22:10:26','2017-07-04 22:10:26','63f54991-9b90-47f1-9a69-68e03863d01c'),
+	(52,'editglobalset:6','2017-07-04 22:10:26','2017-07-04 22:10:26','4f0097cd-fab8-4185-bc00-1afdf88139da'),
+	(53,'editcategories:1','2017-07-04 22:10:26','2017-07-04 22:10:26','362d3eec-7317-4f04-b526-41b4cb5c9555'),
+	(54,'editcategories:2','2017-07-04 22:10:26','2017-07-04 22:10:26','13667166-e597-4fbc-8cbc-1d828c0c4aa2'),
+	(55,'uploadtoassetsource:1','2017-07-04 22:10:26','2017-07-04 22:10:26','7cb5f8fe-d915-4b8b-84a5-361f0f9ea5de'),
+	(56,'createsubfoldersinassetsource:1','2017-07-04 22:10:26','2017-07-04 22:10:26','1ee01344-4bc3-432d-8fe8-7f75318a0eba'),
+	(57,'removefromassetsource:1','2017-07-04 22:10:26','2017-07-04 22:10:26','f76aa161-86e9-4db9-bac5-1ee521c1e2b6'),
+	(58,'viewassetsource:1','2017-07-04 22:10:26','2017-07-04 22:10:26','892674a3-8123-464d-b35e-426e9c10988e'),
+	(59,'editlocale:de','2017-07-04 22:11:54','2017-07-04 22:11:54','c7551611-9e76-4dbe-a413-e0c333409593'),
+	(60,'editlocale:en','2017-07-04 22:11:54','2017-07-04 22:11:54','0fa8d845-b630-4773-8c1a-a1bbfe9111c7');
+
+/*!40000 ALTER TABLE `craft_userpermissions` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Export von Tabelle craft_userpermissions_usergroups
@@ -3533,6 +3644,82 @@ CREATE TABLE `craft_userpermissions_usergroups` (
   CONSTRAINT `craft_userpermissions_usergroups_permissionId_fk` FOREIGN KEY (`permissionId`) REFERENCES `craft_userpermissions` (`id`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+LOCK TABLES `craft_userpermissions_usergroups` WRITE;
+/*!40000 ALTER TABLE `craft_userpermissions_usergroups` DISABLE KEYS */;
+
+INSERT INTO `craft_userpermissions_usergroups` (`id`, `permissionId`, `groupId`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,1,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','e612cacb-c5fa-4e99-8c1d-19b651fb3318'),
+	(2,2,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','48ec4616-ccf4-4fa7-81f2-a7536a6c3092'),
+	(3,3,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','d43e0049-fa7b-4f91-9a1b-fcbdc887dbfe'),
+	(4,4,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','2db296cc-ce30-4b57-9a69-0284b0293a84'),
+	(5,5,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','83f5461d-12e4-4c4d-b758-c71020e8bf5c'),
+	(6,6,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','fcf5d58f-9466-40e1-822c-eba6117c204d'),
+	(7,7,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','dce6b174-16f8-4051-8668-3455738c7c00'),
+	(8,8,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','f6c4b9e2-efd1-4ac2-a364-8c855159c0b5'),
+	(9,9,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','5d77658c-c175-40ac-af46-e9b70764f48e'),
+	(10,10,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','8d45fa49-18ad-44f6-ae8c-05b6ab73650b'),
+	(11,11,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','61c77c30-be28-4c1e-afaa-714197447dd7'),
+	(12,12,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','cc7d7b65-09a6-4399-8b7a-aba23df05e9a'),
+	(13,13,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','2c7603a1-2785-4358-b5c1-a6637134691e'),
+	(14,14,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','de295e45-fa6e-4ef7-8165-682cb86b879b'),
+	(15,15,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','ee8875ed-0746-45b9-8e8a-ac71fca0c850'),
+	(16,16,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','354358c4-16e3-4f45-9d71-8be14d97bc58'),
+	(17,17,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','6692015b-5297-4c95-a7f5-4785f43d76e5'),
+	(18,18,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','d442e950-dcca-4654-8688-7a32b080f996'),
+	(19,19,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','f6996955-1e6b-4114-b586-c820ffcc7110'),
+	(20,20,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','ce5f9083-d3d7-4405-9bcd-1816899ab8c0'),
+	(21,21,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','fc594225-0098-41f0-90b8-2ada2963fa06'),
+	(22,22,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','65642d7c-2f3a-4d79-b7c7-64f333b3389b'),
+	(23,23,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','be1d58b1-c8b9-4792-a57f-6544fba8b978'),
+	(24,24,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','9afab633-ab96-4faf-b3ab-7cd38d660019'),
+	(25,25,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','ea9d6a9e-3817-4cc8-a4ce-6b4c993778e8'),
+	(26,26,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','670a66ea-961f-4411-a6d6-928e9703e39d'),
+	(27,27,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','f4c2404e-b493-412a-9254-c6cfa9bbabf9'),
+	(28,28,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','c98f7be1-1f3e-466f-b67f-12b4ab691248'),
+	(29,29,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','1a6c7175-8f5d-4887-8a9b-723d86d5f09c'),
+	(30,30,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','169b6704-6c92-48ec-afbf-5b5467b1577b'),
+	(31,31,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','0b7c77cb-fd57-4d8f-83bb-55b05d70ac9a'),
+	(32,32,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','add19079-b9f3-4eed-9713-d1a61cdd925b'),
+	(33,33,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','01f6a803-30b6-49ab-8787-2c9581d7cf45'),
+	(34,34,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','d54baf26-3778-4a53-80ea-8a45a16074a1'),
+	(35,35,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','61b1684b-d7c3-4dab-bf3a-5c82114507b2'),
+	(36,36,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','43336345-c818-47a3-a6b9-c3ef49d96470'),
+	(37,37,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','c2b56c32-2f42-4c0a-bcdb-8a5ae486ec49'),
+	(38,38,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','1d800ebd-422e-4eaf-98cd-df9c3876467a'),
+	(39,39,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','234f6a03-0a88-4e26-be4e-95b6e0299c50'),
+	(40,40,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','f5a8b4ec-5589-4cb0-97ae-47d5cd5f9852'),
+	(41,41,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','f71c017e-e3df-46f7-b3a6-88f9fc94f1d4'),
+	(42,42,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','dc7b640d-c69f-4c9c-9c71-95342f997b83'),
+	(43,43,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','ec077ad5-4e07-451d-b87e-03c37df104dd'),
+	(44,44,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','6c742c92-1b63-48de-b885-dd2cbb459470'),
+	(45,45,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','2d333c97-e897-44df-9413-6d72ad790009'),
+	(46,46,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','3a13c818-774e-4fc0-98ad-87a1883a4708'),
+	(47,47,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','4676cc29-92d7-40a2-9ebf-01e8a53476e2'),
+	(48,48,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','667a163e-bfa0-4a32-a18f-83f241aa81f6'),
+	(49,49,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','9ceed6bb-6887-4178-9bef-aecd290e5fbd'),
+	(50,50,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','bc5ba851-8981-4976-af63-347b2b3dbe54'),
+	(51,51,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','5e826179-492c-4f30-97c7-4836581f91ae'),
+	(52,52,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','edaa2107-c3b5-4ffd-8b73-2a9cad11786a'),
+	(53,53,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','08baf390-5e39-48f6-bc01-f3cac56ee043'),
+	(54,54,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','3e4a92a1-fdba-4f4e-bbdb-404701eaa990'),
+	(55,55,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','54922479-5e5b-4593-980b-54c8d1918105'),
+	(56,56,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','3b1db554-a351-472c-92af-c83561365416'),
+	(57,57,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','e7b719e7-225f-4422-95c2-8a2ed6302b3e'),
+	(58,58,1,'2017-07-04 22:10:26','2017-07-04 22:10:26','f84e0b25-f8d7-4d7a-a0ec-9317bfa0f16f'),
+	(59,1,2,'2017-07-04 22:11:54','2017-07-04 22:11:54','de64e9fd-ab36-4759-b316-f90628314902'),
+	(60,4,2,'2017-07-04 22:11:54','2017-07-04 22:11:54','01946001-76fe-4b53-a25c-809ce7832526'),
+	(61,59,2,'2017-07-04 22:11:54','2017-07-04 22:11:54','6f047cfa-ae96-4db5-97b9-b89cc4f1fec1'),
+	(62,60,2,'2017-07-04 22:11:54','2017-07-04 22:11:54','01edaa55-1d3d-441d-8c8b-aa1a9d0e037a'),
+	(63,16,2,'2017-07-04 22:11:54','2017-07-04 22:11:54','e035f05f-35a0-4394-97aa-48eb41904285'),
+	(64,18,2,'2017-07-04 22:11:54','2017-07-04 22:11:54','d85cc31b-ce89-4bdc-940b-67c34b542467'),
+	(65,25,2,'2017-07-04 22:11:54','2017-07-04 22:11:54','33022fd1-b02e-43a0-a6fe-9d5d962c5baf'),
+	(66,55,2,'2017-07-04 22:11:54','2017-07-04 22:11:54','491ddabc-cf8d-4951-8ddc-400669f3a0d9'),
+	(67,57,2,'2017-07-04 22:11:54','2017-07-04 22:11:54','c4f2719f-af87-4a5e-8be2-233478cf5ecc'),
+	(68,58,2,'2017-07-04 22:11:54','2017-07-04 22:11:54','e0652c02-2e54-4d5f-97c5-532611901ae4');
+
+/*!40000 ALTER TABLE `craft_userpermissions_usergroups` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Export von Tabelle craft_userpermissions_users
@@ -3606,7 +3793,7 @@ LOCK TABLES `craft_users` WRITE;
 
 INSERT INTO `craft_users` (`id`, `username`, `photo`, `firstName`, `lastName`, `email`, `password`, `preferredLocale`, `weekStartDay`, `admin`, `client`, `locked`, `suspended`, `pending`, `archived`, `lastLoginDate`, `lastLoginAttemptIPAddress`, `invalidLoginWindowStart`, `invalidLoginCount`, `lastInvalidLoginDate`, `lockoutDate`, `verificationCode`, `verificationCodeIssuedDate`, `unverifiedEmail`, `passwordResetRequired`, `lastPasswordChangeDate`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'gisugosu',NULL,NULL,NULL,'gisu2onic@gmail.com','$2y$13$GNb9Bwlfg3FkkD2tVj9Ioelh7EacE0X4daApovn2zNwb8dXlqS3Qa',NULL,1,1,0,0,0,0,0,'2017-06-27 01:02:20','::1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'2017-06-27 01:02:17','2017-06-27 01:02:17','2017-06-27 01:02:20','ba8c5432-bfb8-48fa-9841-e3117c2da6ce');
+	(1,'kittn',NULL,'','','hello@kittn.xyz','$2y$13$b5zEYB6weNKXjk8TwldfSuy14CeZqCB/X0k.S3eDN1Ha.70f.cmJK','de',1,1,0,0,0,0,0,'2017-07-05 21:25:33','::1',NULL,NULL,'2017-07-05 21:25:17',NULL,NULL,NULL,NULL,0,'2017-07-04 21:45:00','2017-07-04 21:45:00','2017-07-05 21:25:33','230071a9-e155-4c49-8381-8aca584cd137');
 
 /*!40000 ALTER TABLE `craft_users` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -3638,10 +3825,10 @@ LOCK TABLES `craft_widgets` WRITE;
 
 INSERT INTO `craft_widgets` (`id`, `userId`, `type`, `sortOrder`, `colspan`, `settings`, `enabled`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,1,'RecentEntries',1,NULL,NULL,1,'2017-06-27 01:02:24','2017-06-27 01:02:24','aa9e32d6-5f20-4003-a812-a98478e7b053'),
-	(2,1,'GetHelp',2,NULL,NULL,1,'2017-06-27 01:02:24','2017-06-27 01:02:24','ca12ce83-187a-4111-882c-cb2aa014cd05'),
-	(3,1,'Updates',3,NULL,NULL,1,'2017-06-27 01:02:24','2017-06-27 01:02:24','2b268452-89f8-4f0d-ab58-c500e46ce53a'),
-	(4,1,'Feed',4,NULL,'{\"url\":\"https:\\/\\/craftcms.com\\/news.rss\",\"title\":\"Craft News\"}',1,'2017-06-27 01:02:24','2017-06-27 01:02:24','e30ae4f6-d2d5-48fa-8037-dc6d2dc8b92e');
+	(1,1,'RecentEntries',1,NULL,NULL,1,'2017-07-04 21:45:10','2017-07-04 21:45:10','130f7775-6125-4402-a643-ca2ea9dabb3b'),
+	(2,1,'GetHelp',2,NULL,NULL,1,'2017-07-04 21:45:10','2017-07-04 21:45:10','a5250333-cef7-4241-8f6c-534ba3ca1b86'),
+	(3,1,'Updates',3,NULL,NULL,1,'2017-07-04 21:45:10','2017-07-04 21:45:10','2713dc8d-a4e0-49b1-975d-4b326a174ade'),
+	(4,1,'Feed',4,NULL,'{\"url\":\"https:\\/\\/craftcms.com\\/news.rss\",\"title\":\"Craft News\"}',1,'2017-07-04 21:45:10','2017-07-04 21:45:10','c294d2fa-4e6d-4445-84f6-2a74873af193');
 
 /*!40000 ALTER TABLE `craft_widgets` ENABLE KEYS */;
 UNLOCK TABLES;

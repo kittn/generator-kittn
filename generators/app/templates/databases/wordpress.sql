@@ -1,16 +1,3 @@
-# ************************************************************
-# Sequel Pro SQL dump
-# Version 4541
-#
-# http://www.sequelpro.com/
-# https://github.com/sequelpro/sequelpro
-#
-# Host: localhost (MySQL 5.6.34)
-# Datenbank: wptest3
-# Erstellt am: 2017-07-02 22:04:04 +0000
-# ************************************************************
-
-
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -18,10 +5,6 @@
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-
-# Export von Tabelle wpkittn_commentmeta
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `wpkittn_commentmeta`;
 
@@ -34,11 +17,6 @@ CREATE TABLE `wpkittn_commentmeta` (
   KEY `comment_id` (`comment_id`),
   KEY `meta_key` (`meta_key`(191))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
-
-
-
-# Export von Tabelle wpkittn_comments
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `wpkittn_comments`;
 
@@ -76,10 +54,6 @@ VALUES
 /*!40000 ALTER TABLE `wpkittn_comments` ENABLE KEYS */;
 UNLOCK TABLES;
 
-
-# Export von Tabelle wpkittn_links
-# ------------------------------------------------------------
-
 DROP TABLE IF EXISTS `wpkittn_links`;
 
 CREATE TABLE `wpkittn_links` (
@@ -99,11 +73,6 @@ CREATE TABLE `wpkittn_links` (
   PRIMARY KEY (`link_id`),
   KEY `link_visible` (`link_visible`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
-
-
-
-# Export von Tabelle wpkittn_options
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `wpkittn_options`;
 
@@ -258,10 +227,6 @@ VALUES
 /*!40000 ALTER TABLE `wpkittn_options` ENABLE KEYS */;
 UNLOCK TABLES;
 
-
-# Export von Tabelle wpkittn_postmeta
-# ------------------------------------------------------------
-
 DROP TABLE IF EXISTS `wpkittn_postmeta`;
 
 CREATE TABLE `wpkittn_postmeta` (
@@ -283,10 +248,6 @@ VALUES
 
 /*!40000 ALTER TABLE `wpkittn_postmeta` ENABLE KEYS */;
 UNLOCK TABLES;
-
-
-# Export von Tabelle wpkittn_posts
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `wpkittn_posts`;
 
@@ -333,10 +294,6 @@ VALUES
 /*!40000 ALTER TABLE `wpkittn_posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
-
-# Export von Tabelle wpkittn_term_relationships
-# ------------------------------------------------------------
-
 DROP TABLE IF EXISTS `wpkittn_term_relationships`;
 
 CREATE TABLE `wpkittn_term_relationships` (
@@ -356,10 +313,6 @@ VALUES
 
 /*!40000 ALTER TABLE `wpkittn_term_relationships` ENABLE KEYS */;
 UNLOCK TABLES;
-
-
-# Export von Tabelle wpkittn_term_taxonomy
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `wpkittn_term_taxonomy`;
 
@@ -385,10 +338,6 @@ VALUES
 /*!40000 ALTER TABLE `wpkittn_term_taxonomy` ENABLE KEYS */;
 UNLOCK TABLES;
 
-
-# Export von Tabelle wpkittn_termmeta
-# ------------------------------------------------------------
-
 DROP TABLE IF EXISTS `wpkittn_termmeta`;
 
 CREATE TABLE `wpkittn_termmeta` (
@@ -400,11 +349,6 @@ CREATE TABLE `wpkittn_termmeta` (
   KEY `term_id` (`term_id`),
   KEY `meta_key` (`meta_key`(191))
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_520_ci;
-
-
-
-# Export von Tabelle wpkittn_terms
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `wpkittn_terms`;
 
@@ -427,10 +371,6 @@ VALUES
 
 /*!40000 ALTER TABLE `wpkittn_terms` ENABLE KEYS */;
 UNLOCK TABLES;
-
-
-# Export von Tabelle wpkittn_usermeta
-# ------------------------------------------------------------
 
 DROP TABLE IF EXISTS `wpkittn_usermeta`;
 
@@ -470,10 +410,6 @@ VALUES
 /*!40000 ALTER TABLE `wpkittn_usermeta` ENABLE KEYS */;
 UNLOCK TABLES;
 
-
-# Export von Tabelle wpkittn_users
-# ------------------------------------------------------------
-
 DROP TABLE IF EXISTS `wpkittn_users`;
 
 CREATE TABLE `wpkittn_users` (
@@ -502,8 +438,6 @@ VALUES
 
 /*!40000 ALTER TABLE `wpkittn_users` ENABLE KEYS */;
 UNLOCK TABLES;
-
-
 
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;

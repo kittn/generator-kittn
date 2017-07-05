@@ -6,7 +6,7 @@
 return array(
   // All environments
   '*' => array(
-    'tablePrefix' => 'craft',
+    'tablePrefix' => 'craftkittn',
     'server' => getenv('CRAFTENV_DB_HOST'),
     'database' => getenv('CRAFTENV_DB_NAME'),
     'user' => getenv('CRAFTENV_DB_USER'),
