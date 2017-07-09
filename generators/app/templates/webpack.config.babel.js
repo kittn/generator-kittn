@@ -12,7 +12,7 @@ const argv = yargs.argv
 const env = argv.env || 'development'
 const nodeEnv = process.env.NODE_ENV || 'production'
 
-const ROOT_PATH = path.resolve(__dirname)<% if (projectusage == 'craft') { %>
+const ROOT_PATH = path.resolve(__dirname)<% if (projectusage == 'craft' || projectusage == 'craftCB') { %>
 const PUBLIC_PATH = path.join(ROOT_PATH, `${kittnConf.dist.dist}/public/`)<% } else { %>
 const PUBLIC_PATH = path.join(ROOT_PATH, kittnConf.dist.dist)<% } %>
 const ASSETS_PATH = kittnConf.dist.webpackjsassets

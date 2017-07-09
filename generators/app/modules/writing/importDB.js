@@ -15,7 +15,7 @@ const importDB = () => {
           switch (context.props.projectusage) {
             case 'craft' :
               // Switch between regular DB File and ContentBuilder DB File
-              if (context.props.projectcraftbp) {
+              if (context.props.projectusage === 'craftCB') {
                 dbFile = 'craftCB.sql'
               } else {
                 dbFile = 'craft.sql'
@@ -24,7 +24,7 @@ const importDB = () => {
 
             case 'wordpress' :
               // Switch between regular DB File and ContentBuilder DB File
-              if (context.props.projectwordpressbp) {
+              if (context.props.projectusage === 'wordpressCB') {
                 dbFile = 'wordpressCB.sql'
               } else {
                 dbFile = 'wordpress.sql'

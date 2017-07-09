@@ -8,7 +8,7 @@ package-lock.json
 /src/bower
 /.idea
 /dist
-/doc<% if (projectusage == 'craft' ) { %>
+/doc<% if (projectusage == 'craft' || projectusage == 'craftCB') { %>
 /src/env/.env.php
 /craftscripts/.env.sh
 /src/structure/config/license.key

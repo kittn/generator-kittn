@@ -174,19 +174,20 @@ module.exports = class extends Generator {
                            |__|_ \\__||__|  |__| |___|  / 
                            \\/                   \\/  
            ${chalk.styles.yellow.close} ${chalk.styles.green.open}
-                              Now we are finished.
+                      Meeeeooowww! The Generator is finished.
           ${chalk.styles.green.close}
           
           ${chalk.styles.cyan.open}
           ${chalk.styles.bold.open}Next Steps: ${chalk.styles.bold.close}
-          ${this.props.projectwordpressbp ? ' - Copy your ACF5 Pro Plugin on src/structure/plugins/' : ''}
-          ${this.props.projectusage === 'craft' ? '- Setup User and Staff on craftscripts/env.sh' : ''}
-          - Setup your vHost on '${this.props.credentialdomain}' on '[projectFolder]/dist/${this.props.projectusage === 'craft' ? '/public/' : ''}'
-          - Activate 'npm run init' 
-          ${this.props.projectusage === 'craft' ? '- Go to /craftscripts/ and activate ./set_perms.sh' : ''}
-          ${this.props.projectusage === 'wordpress' || this.props.projectusage === 'craft' ? '- Import database.sql found on project root' : ''}
-          ${this.props.projectusage === 'wordpress' ? '- Login on the Backend with kittn / kittn. Make a new user' : ''}
-          ${this.props.projectusage === 'craft' ? '- Login on the Backend with kittn / kittnc. Make a new user' : ''}
+          ${this.props.projectusage.substring(0,4) === 'word' && this.commands.wp !== true ? `- Install Wordpress manually in the 'dist/' directory` : '' }${this.props.projectusage.substring(0,5) === 'craft' && this.commands.wget !== true ? `- Install Craft manually in the 'dist/' directory` : '' }
+          ${this.props.projectusage === 'wordpressCB' ? `- Copy your ACF5 Pro Plugin on 'src/structure/plugins/'` : ''}${this.props.projectusage === 'craft' || this.props.projectusage === 'craftCB' ? `- Setup User and Staff on 'craftscripts/.env.sh'` : ''}
+          - Initiate the project with 'npm run init' 
+          ${this.props.projectusage !== 'html' ? `- Setup your vHost on '${this.props.credentialdomain}' on '[projectRoot]/dist/${this.props.projectusage.substring(0,5) === 'craft' ? 'public/' : ''}'` : '' }
+          ${this.props.projectusage.substring(0,5) === 'craft' ? `- Execute './craftscripts/set_perms.sh'` : '' }
+          ${this.props.projectusage !== 'html' ? '- Import database.sql found on project root' : ''}
+            ${this.props.projectusage !== 'html' && this.props.projectcredential ? `=> 'mysql -u${this.props.credentialdbuser} -p${this.props.credentialdbpass} ${this.props.credentialdbdatabase} < database.sql'`: ''}
+          ${this.props.projectusage !== 'html' ? `- Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `kittnc` : `kittn` }'. After login, activate theme and create a new user` : ''}
+            ${this.props.projectcredential ? `=> Backend: http://${this.props.projectname}.local/${this.props.projectusage.substring(0,5) === 'craft' ? `admin` : `wp-admin` }` : ''}
           - Start the devtask with 'npm run dev'
           
           Happy Coding.

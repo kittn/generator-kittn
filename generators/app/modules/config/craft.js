@@ -2,7 +2,7 @@ const extend = require('deep-extend')
 
 function addCraftCofig (files = {}, context) {
   // If Craft
-  if (context.props.projectusage === 'craft') {
+  if (context.props.projectusage === 'craft' || context.props.projectusage === 'craftCB') {
     extend(files.pkg, {
       'dist': {
         'dist': 'dist/',

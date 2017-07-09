@@ -60,19 +60,17 @@ const projecttype = (context) => {
       },
       {
         conditions: {
-          projectusage: 'craft',
-          projectcraftbp: undefined
+          projectusage: 'craft'
         },
         src: 'databases/craft.sql',
         dest: 'database.sql'
       },
       {
         conditions: {
-          projectusage: 'craft',
-          projectcraftbp: true
+          projectusage: 'wordpress'
         },
-        src: 'databases/craftCB.sql',
-        dest: 'database.sql'
+        src: 'src/skeletons/wordpress/_htaccess',
+        dest: 'dist/.htaccess'
       },
       {
         conditions: {
@@ -115,18 +113,9 @@ const projecttype = (context) => {
       },
       {
         conditions: {
-          projectusage: 'wordpress',
-          projectwordpressbp: undefined
+          projectusage: 'wordpress'
         },
         src: 'databases/wordpress.sql',
-        dest: 'database.sql'
-      },
-      {
-        conditions: {
-          projectusage: 'wordpress',
-          projectwordpressbp: true
-        },
-        src: 'databases/wordpressCB.sql',
         dest: 'database.sql'
       }
     ],
@@ -186,22 +175,6 @@ const projecttype = (context) => {
         },
         src: 'src/skeletons/wordpress/structure/templates',
         dest: 'src/structure/templates/'
-      },
-      {
-        conditions: {
-          projectusage: 'wordpress',
-          projectwordpressbp: false
-        },
-        src: 'databases/wordpress.sql',
-        dest: 'src/.system/wordpress.sql'
-      },
-      {
-        conditions: {
-          projectusage: 'wordpress',
-          projectwordpressbp: true
-        },
-        src: 'databases/wordpressCB.sql',
-        dest: 'src/.system/wordpressCB.sql'
       },
       {
         conditions: {
