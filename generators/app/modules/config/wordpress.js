@@ -2,7 +2,7 @@ const extend = require('deep-extend')
 
 function addWordpressCofig (files = {}, context) {
   // If Wordpress
-  if (context.props.projectusage === 'wordpress') {
+  if (context.props.projectusage === 'wordpress' || context.props.projectusage === 'wordpressCB') {
     extend(files.pkg, {
       'dist': {
         'dist': 'dist/',

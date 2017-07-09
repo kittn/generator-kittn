@@ -1,14 +1,14 @@
 // Main JS File<% if (projectjquery === true) { %>
 import $ from 'jquery' // eslint-disable-line<% } %><% if ( projectjsframework === 'react' ) { %>
 import React from 'react'
-import ReactDOM from 'react-dom'<% } %><% if ( projectcontainerqueries === true || (typeof projectcraftbp !== 'undefined' && projectcraftbp === true) || (typeof projectwordpressbp !== 'undefined' && projectwordpressbp === true) )  { %>
+import ReactDOM from 'react-dom'<% } %><% if ((typeof projectcontainerqueries !== 'undefined' && projectcontainerqueries === true) || (typeof projectusage !== 'undefined' && projectusage === 'craftCB') || (typeof projectusage !== 'undefined' && projectusage === 'wordpressCB') )  { %>
 import cq from 'cq-prolyfill' // eslint-disable-line<% } %><% if ( projectjsframework === 'vue' ) { %>
 import Vue from 'vue'<% } %><% if (typeof projectvueplugins !== 'undefined' && projectvueplugins === true)  { %>
 import { sync } from 'vuex-router-sync'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import router from './router'
-import store from './store'<% } %><% if ( (typeof projectcraftbp !== 'undefined' && projectcraftbp === true) || (typeof projectwordpressbp !== 'undefined' && projectwordpressbp === true) ) { %>
+import store from './store'<% } %><% if ( (typeof projectusage !== 'undefined' && projectusage === 'craftCB') || (typeof projectusage !== 'undefined' && projectusage === 'wordpressCB') ) { %>
 import './partial/contentBuilder'<% } %>
 import lazySizes from 'lazysizes'
 import lazybgset from 'lazysizes/plugins/bgset/ls.bgset' // eslint-disable-line
@@ -51,7 +51,7 @@ window.lazySizesConfig.expand = 130
 lazySizesConfig.expFactor = 1.3
 
 // Lazy Sizes Init
-lazySizes.init()<% if ( projectcontainerqueries === true || (typeof projectcraftbp !== 'undefined' && projectcraftbp === true) || (typeof projectwordpressbp !== 'undefined' && projectwordpressbp === true) ) { %>
+lazySizes.init()<% if ((typeof projectcontainerqueries !== 'undefined' && projectcontainerqueries === true) || (typeof projectusage !== 'undefined' && projectusage === 'craftCB') || (typeof projectusage !== 'undefined' && projectusage === 'wordpressCB') ) { %>
 
 // Activate Container Queries
 cq({ postcss: true })<% } %>

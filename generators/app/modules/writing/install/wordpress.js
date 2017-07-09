@@ -2,7 +2,7 @@ const installWordpress = () => {
   return {
     install: (context) => {
       return new Promise((resolve, reject) => {
-        if (context.props.projectusage === 'wordpress' && context.props.projectwpcli === true) {
+        if (context.props.projectusage === 'wordpress' || context.props.projectusage === 'wordpressCB') {
           if (context.commands.wp) {
             context.spawnCommand('wp', ['core', 'download', '--path=dist', '--locale=de_DE']).on('close', () => {
               resolve()
