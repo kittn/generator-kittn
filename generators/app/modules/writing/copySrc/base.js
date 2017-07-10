@@ -10,6 +10,10 @@ const base = (context) => {
         dest: '.browserslistrc'
       },
       {
+        src: '_nvmrc',
+        dest: '.nvmrc'
+      },
+      {
         src: '_editorconfig',
         dest: '.editorconfig'
       },
