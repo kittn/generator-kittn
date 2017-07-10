@@ -63,7 +63,7 @@ let bundle = {
         include: LOADER_PATH,
         exclude: /node_modules/,
         use: 'vue-loader'
-      },<% } %>
+      }<% } %>
     ]
   },
   plugins: [
@@ -72,18 +72,19 @@ let bundle = {
         NODE_ENV: JSON.stringify(nodeEnv)
       }
     }),
+    new FriendlyErrorsPlugin(),
     new webpack.LoaderOptionsPlugin({
       options: {
         eslint: {
-          failOnError  : false,
+          failOnError: false,
           failOnWarning: false,
           configFile: env === 'development' ? './.eslintrc-dev.js' : './.eslintrc.js',
-          formatter    : require('eslint-formatter-pretty')
+          formatter: require('eslint-formatter-pretty')
         }<% if ( projectjsframework === 'vue' ) { %>,
         vue: {
           loaders: vueutils.cssLoaders({
             sourceMap: false,
-            extract: nodeEnv === 'production' ? true : false
+            extract: nodeEnv === 'production'
           })
         }<% } %>
       }
@@ -93,10 +94,10 @@ let bundle = {
       syntax: 'scss'
     })<% } %>
   ]
-};
+}
 <% if ( projectjsframework === 'vue' ) { %>
 // add extract plugin for vue
-if(nodeEnv === 'production') {
+if (nodeEnv === 'production') {
   bundle = merge(bundle, {
     plugins: [
       new ExtractTextPlugin('css/vue-styles.css')
