@@ -170,8 +170,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
       ]
     },
     {
-      when: function(answers) {
-        return answers.projectusage.substring(0,5) === 'craft' || answers.projectusage.substring(0,4) === 'word'
+      when: function (answers) {
+        return answers.projectusage.substring(0, 5) === 'craft' || answers.projectusage.substring(0, 4) === 'word'
       },
       type: 'confirm',
       name: 'projectcredential',

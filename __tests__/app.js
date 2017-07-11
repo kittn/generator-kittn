@@ -6,10 +6,9 @@ var helpers = require('yeoman-test')
 // Define some variables
 const project = {
   name: 'Kittn',
-  description: 'Kittn Generator Test',
   version: '0.0.1',
   proxy: 'kittn.local',
-  type: 'craftCMS'
+  projectusage: 'none'
 }
 const author = {
   name: 'Sascha Fuchs',
@@ -22,10 +21,10 @@ describe('generator-kittn:app', () => {
     return helpers.run(path.join(__dirname, '../generators/app'))
       .withPrompts({
         projectname: project.name,
-        projectdescription: project.description,
         projectauthor: author.name,
         projectmail: author.email,
-        projecturl: author.homepage
+        projecturl: author.homepage,
+        projectusage: project.projectusage
       })
   })
   // Test for Basic Files
@@ -33,8 +32,7 @@ describe('generator-kittn:app', () => {
     // Test package.json content
     it('fill package.json with correct Information', () => {
       assert.JSONFileContent('package.json', {
-        name: project.name,
-        description: project.description
+        name: project.name
         // author: {name: author.name, email: author.email, url: author.homepage}
       })
     })
