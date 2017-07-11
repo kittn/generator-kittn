@@ -2,6 +2,7 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const path = require('path')
 const yargs = require('yargs')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')<% if ( projectjsframework === 'vue' ) { %><% if (projectstylelint) { %>
 const StylelintPlugin = require('stylelint-webpack-plugin')<% } %>
@@ -95,14 +96,20 @@ let bundle = {
     })<% } %>
   ]
 }
-<% if ( projectjsframework === 'vue' ) { %>
+
 // add extract plugin for vue
 if (nodeEnv === 'production') {
   bundle = merge(bundle, {
-    plugins: [
-      new ExtractTextPlugin('css/vue-styles.css')
+    plugins: [<% if ( projectjsframework === 'vue' ) { %>
+      new ExtractTextPlugin('css/vue-styles.css'),<% } %>
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'disabled',
+        generateStatsFile: true,
+        statsFilename: `${ROOT_PATH}/stats.json`,
+        logLevel: 'info'
+      })
     ]
   })
-}<% } %>
+}
 
 module.exports = bundle

@@ -4,7 +4,8 @@ function addScriptDependencies (files = {}, context) {
   extend(files.pkg, {
     scripts: {
       'subtask:bundlewebpack': 'webpack --config webpack.config.babel.js -p --colors --env.bundle=production --env=production',
-      'scripts': 'gulp rebuild:js --env=init'
+      'scripts': 'gulp rebuild:js --env=init',
+      'webpack:analyze': 'webpack-bundle-analyzer stats.json dist/assets/'
     },
     devDependencies: {
       'babel-loader': '^6.2.10',
@@ -27,6 +28,7 @@ function addScriptDependencies (files = {}, context) {
       'extract-text-webpack-plugin': '2.1.0',
       'friendly-errors-webpack-plugin': '^1.6.1',
       'webpack': '^2.6.1',
+      'webpack-bundle-analyzer': '^2.8.2',
       'webpack-dev-middleware': '^1.10.0',
       'webpack-hot-middleware': '^2.18.0',
       'webpack-merge': '^2.6.1'
