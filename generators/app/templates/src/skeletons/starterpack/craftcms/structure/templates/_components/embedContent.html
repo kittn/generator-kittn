@@ -26,7 +26,14 @@
   <div class="{{ c }}{{ options.style != 'default' ? ' ' ~ c ~ '--s-' ~ options.style }}{{ ' ' ~ c ~ '--align-' ~ options.align }}" role="presentation">
     <div class="{{ c }}{{ options.responsive ? '__inner' : '__wrapper' }}"{% if options.responsive %} style="padding-bottom: {{ (ar|last)/(ar|first) * 100 }}%"{% endif %}>
       {% if data.embedUrl|length %}
-        {{ data.embedUrl|videoEmbed }}
+        {# If String has Instagram #}
+        {% if 'instagram' in data.embedUrl %}
+          {% set instaURL = data.embedUrl|split('?taken-by')|first %}
+          {% set instaAlt = ' from ' ~ data.embedUrl|split('?taken-by=')|last|split('&')|first %}
+          <img src="{{ instaURL }}media?size=m" alt="Instagram Image{{ instaAlt }}">
+        {% else %}
+          {{ data.embedUrl|videoEmbed }}
+        {% endif %}
       {% else %}
         {{ data.embed|raw }}
       {% endif %}
