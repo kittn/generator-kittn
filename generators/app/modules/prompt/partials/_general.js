@@ -454,16 +454,6 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
       }),
       default: false
     },
-    // {
-    //   type: 'input',
-    //   name: 'projectdescription',
-    //   message: message({
-    //     headline: 'Project Description',
-    //     description: 'Description of the project',
-    //     defaultValue: false
-    //   }),
-    //   store: true
-    // },
     {
       type: 'input',
       name: 'projectversion',
