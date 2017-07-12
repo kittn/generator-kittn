@@ -9,7 +9,7 @@
     <pubDate>{{ now.rss }}</pubDate>
     <lastBuildDate>{{ now.rss }}</lastBuildDate>
 
-    {% for entry in craft.entries.section('blog').find() %}
+    {% for entry in craft.entries.section('blogChannel').find() %}
       <item>
         <title>{{ entry.title }}</title>
         <link>{{ entry.url }}</link>
@@ -19,6 +19,18 @@
         <description>
           <![CDATA[
             {{ entry.body }}
+            {%- set thumb = {
+              mode: 'crop',
+              width: 1280,
+              height: 800,
+              quality: 80,
+              position: 'top-center'
+            } -%}
+
+            {% set image = entry.featuredImage.first() %}
+            {%- if image|length -%}
+            <img src="{{ image.getUrl(thumb) }}" width="{{ image.getWidth(thumb) }}" height="{{ image.getHeight(thumb) }}" alt="{{ entry.title }}">
+            {%- endif -%}
           ]]>
         </description>
       </item>
