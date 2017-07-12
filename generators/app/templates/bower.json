@@ -1,5 +1,0 @@
-{
-  "name": "<%= projectname %>",
-  "version": "<%= projectversion %>",
-  "dependencies": {}
-}
