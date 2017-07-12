@@ -18,14 +18,6 @@ const base = (context) => {
         dest: '.editorconfig'
       },
       {
-        src: '_bowerrc',
-        dest: '.bowerrc'
-      },
-      {
-        src: 'bower.json',
-        dest: 'bower.json'
-      },
-      {
         src: '_gitignore',
         dest: '.gitignore'
       },

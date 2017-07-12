@@ -27,7 +27,7 @@ function addScriptDependencies (files = {}, context) {
       'eslint-import-resolver-webpack': '^0.8.1',
       'extract-text-webpack-plugin': '2.1.0',
       'friendly-errors-webpack-plugin': '^1.6.1',
-      'webpack': '^2.6.1',
+      'webpack': '^3.2.0',
       'webpack-bundle-analyzer': '^2.8.2',
       'webpack-dev-middleware': '^1.10.0',
       'webpack-hot-middleware': '^2.18.0',
@@ -41,6 +41,24 @@ function addScriptDependencies (files = {}, context) {
       'svgxuse': '^1.2.1'
     }
   })
+
+  // Webpack Bundle analyzer
+  if (context.props.projectusage === 'craftCB' || context.props.projectusage === 'craft') {
+    extend(files.pkg, {
+      scripts: {
+        'webpack:analyze': 'webpack-bundle-analyzer stats.json dist/public/assets/'
+      }
+    })
+  }
+
+  // Webpack Bundle analyzer
+  if (context.props.projectusage === 'wordpress' || context.props.projectusage === 'wordpressCB') {
+    extend(files.pkg, {
+      scripts: {
+        'webpack:analyze': `webpack-bundle-analyzer stats.json dist/wp-content/themes/${context.props.projectname}/assets/`
+      }
+    })
+  }
 
   // Container-Queries
   if (context.props.projectcontainerqueries === true || context.props.projectusage === 'craftCB' || context.props.projectusage === 'wordpressCB') {
