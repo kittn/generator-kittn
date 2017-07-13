@@ -27,7 +27,7 @@
               position: 'top-center'
             } -%}
 
-            {% set image = entry.featuredImage.first() %}
+            {%- set image = entry.featuredImage.first() -%}
             {%- if image|length -%}
             <img src="{{ image.getUrl(thumb) }}" width="{{ image.getWidth(thumb) }}" height="{{ image.getHeight(thumb) }}" alt="{{ entry.title }}">
             {%- endif -%}
