@@ -53,10 +53,17 @@ class SeomaticService extends BaseApplicationComponent
 
 /* -- If Minify is installed, minify all the things */
 
-        if (craft()->plugins->getPlugin('Minify'))
-            $htmlText = craft()->minify->htmlMin($this->render($templatePath, $metaVars));
-        else
-            $htmlText = $this->render($templatePath, $metaVars);
+        try
+            {
+                if (craft()->plugins->getPlugin('Minify'))
+                    $htmlText = craft()->minify->htmlMin($this->render($templatePath, $metaVars));
+                else
+                    $htmlText = $this->render($templatePath, $metaVars);
+            } catch (\Exception $e) {
+                $htmlText = 'Error rendering template in renderSiteMeta(): ' . $e->getMessage();
+                SeomaticPlugin::log($htmlText, LogLevel::Error);
+            }
+
         if ($shouldCache)
             craft()->cache->set($cacheKey, $htmlText, null);
 
@@ -106,7 +113,12 @@ class SeomaticService extends BaseApplicationComponent
 
         if ($templatePath)
             {
-            $htmlText = craft()->templates->render($templatePath, $metaVars);
+                try {
+                        $htmlText = craft()->templates->render($templatePath, $metaVars);
+                } catch (\Exception $e) {
+                    $htmlText = 'Error rendering template in render(): ' . $e->getMessage();
+                    SeomaticPlugin::log($htmlText, LogLevel::Error);
+                }
             }
         else
             {
@@ -119,13 +131,17 @@ class SeomaticService extends BaseApplicationComponent
             $templateName = '_seo_meta';
             if ($isPreview)
                 $templateName = $templateName . 'Preview';
-            if ($metaVars)
-                {
-                $this->sanitizeMetaVars($metaVars);
-                $htmlText = craft()->templates->render($templateName, $metaVars);
+            try {
+                if ($metaVars) {
+                    $this->sanitizeMetaVars($metaVars);
+                    $htmlText = craft()->templates->render($templateName, $metaVars);
                 }
-            else
-                $htmlText = craft()->templates->render($templateName);
+                else
+                    $htmlText = craft()->templates->render($templateName);
+            } catch (\Exception $e) {
+                $htmlText = 'Error rendering template in render(): ' . $e->getMessage();
+                SeomaticPlugin::log($htmlText, LogLevel::Error);
+            }
 
             method_exists(craft()->templates, 'setTemplatesPath') ? craft()->templates->setTemplatesPath($oldPath) : craft()->path->setTemplatesPath($oldPath);
             }
@@ -176,10 +192,15 @@ class SeomaticService extends BaseApplicationComponent
 /* -- Render the core template */
 
         $templateName = 'json-ld/_json-ld';
-        if (craft()->plugins->getPlugin('Minify') && !$isPreview)
-            $htmlText = craft()->minify->jsMin($htmlText = craft()->templates->render($templateName, $vars));
-        else
-            $htmlText = craft()->templates->render($templateName, $vars);
+        try {
+            if (craft()->plugins->getPlugin('Minify') && !$isPreview)
+                $htmlText = craft()->minify->jsMin($htmlText = craft()->templates->render($templateName, $vars));
+            else
+                $htmlText = craft()->templates->render($templateName, $vars);
+        } catch (\Exception $e) {
+            $htmlText = 'Error rendering template in renderJSONLD(): ' . $e->getMessage();
+            SeomaticPlugin::log($htmlText, LogLevel::Error);
+        }
 
         method_exists(craft()->templates, 'setTemplatesPath') ? craft()->templates->setTemplatesPath($oldPath) : craft()->path->setTemplatesPath($oldPath);
 
@@ -199,7 +220,12 @@ class SeomaticService extends BaseApplicationComponent
 /* -- Render the SEOmatic display preview template */
 
         $this->sanitizeMetaVars($metaVars);
-        $htmlText = craft()->templates->render($templateName, $metaVars);
+        try {
+            $htmlText = craft()->templates->render($templateName, $metaVars);
+        } catch (\Exception $e) {
+            $htmlText = 'Error rendering template in renderDisplayPreview(): ' . $e->getMessage();
+            SeomaticPlugin::log($htmlText, LogLevel::Error);
+        }
 
         method_exists(craft()->templates, 'setTemplatesPath') ? craft()->templates->setTemplatesPath($oldPath) : craft()->path->setTemplatesPath($oldPath);
 
@@ -307,12 +333,17 @@ class SeomaticService extends BaseApplicationComponent
     /* -- Render the core template */
 
             $templateName = '_googleTagManager';
-            if (craft()->plugins->getPlugin('Minify') && !$isPreview)
-                $htmlText = craft()->minify->jsMin($htmlText = craft()->templates->render($templateName, $metaVars));
-            else
-                $htmlText = craft()->templates->render($templateName, $metaVars);
+            try {
+                if (craft()->plugins->getPlugin('Minify') && !$isPreview)
+                    $htmlText = craft()->minify->jsMin($htmlText = craft()->templates->render($templateName, $metaVars));
+                else
+                    $htmlText = craft()->templates->render($templateName, $metaVars);
 
-            method_exists(craft()->templates, 'setTemplatesPath') ? craft()->templates->setTemplatesPath($oldPath) : craft()->path->setTemplatesPath($oldPath);
+                method_exists(craft()->templates, 'setTemplatesPath') ? craft()->templates->setTemplatesPath($oldPath) : craft()->path->setTemplatesPath($oldPath);
+            } catch (\Exception $e) {
+                $htmlText = 'Error rendering template in renderGoogleTagManager(): ' . $e->getMessage();
+                SeomaticPlugin::log($htmlText, LogLevel::Error);
+            }
         }
         return $htmlText;
     } /* -- renderGoogleTagManager */
@@ -334,10 +365,15 @@ class SeomaticService extends BaseApplicationComponent
     /* -- Render the core template */
 
             $templateName = '_googleAnalytics';
-            if (craft()->plugins->getPlugin('Minify') && !$isPreview)
-                $htmlText = craft()->minify->jsMin($htmlText = craft()->templates->render($templateName, $metaVars));
-            else
-                $htmlText = craft()->templates->render($templateName, $metaVars);
+            try {
+                if (craft()->plugins->getPlugin('Minify') && !$isPreview)
+                    $htmlText = craft()->minify->jsMin($htmlText = craft()->templates->render($templateName, $metaVars));
+                else
+                    $htmlText = craft()->templates->render($templateName, $metaVars);
+            } catch (\Exception $e) {
+                $htmlText = 'Error rendering template in renderGoogleAnalytics(): ' . $e->getMessage();
+                SeomaticPlugin::log($htmlText, LogLevel::Error);
+            }
 
             method_exists(craft()->templates, 'setTemplatesPath') ? craft()->templates->setTemplatesPath($oldPath) : craft()->path->setTemplatesPath($oldPath);
         }
@@ -371,7 +407,12 @@ class SeomaticService extends BaseApplicationComponent
 
         if ($templatePath)
         {
-            $htmlText = craft()->templates->render($templatePath);
+            try {
+                $htmlText = craft()->templates->render($templatePath);
+            } catch (\Exception $e) {
+                $htmlText = 'Error rendering template in renderHumans(): ' . $e->getMessage();
+                SeomaticPlugin::log($htmlText, LogLevel::Error);
+            }
         }
         else
         {
@@ -384,7 +425,12 @@ class SeomaticService extends BaseApplicationComponent
             $templateName = '_humans';
             if ($isPreview)
                 $templateName = $templateName . 'Preview';
-            $htmlText = craft()->templates->render($templateName, $metaVars);
+            try {
+                $htmlText = craft()->templates->render($templateName, $metaVars);
+            } catch (\Exception $e) {
+                $htmlText = 'Error rendering template in renderHumans(): ' . $e->getMessage();
+                SeomaticPlugin::log($htmlText, LogLevel::Error);
+            }
 
             method_exists(craft()->templates, 'setTemplatesPath') ? craft()->templates->setTemplatesPath($oldPath) : craft()->path->setTemplatesPath($oldPath);
         }
@@ -408,7 +454,12 @@ class SeomaticService extends BaseApplicationComponent
 /* -- Render the user-defined Humans.txt template */
 
         $template = $creator['genericCreatorHumansTxt'];
-        $htmlText = craft()->templates->renderString($template, $metaVars);
+        try {
+            $htmlText = craft()->templates->renderString($template, $metaVars);
+        } catch (\Exception $e) {
+            $htmlText = 'Error rendering template in renderHumansTemplate(): ' . $e->getMessage();
+            SeomaticPlugin::log($htmlText, LogLevel::Error);
+        }
 
         return $htmlText;
     } /* -- renderHumansTemplate */
@@ -427,7 +478,12 @@ class SeomaticService extends BaseApplicationComponent
 
         if ($templatePath)
         {
-            $htmlText = craft()->templates->render($templatePath);
+            try {
+                $htmlText = craft()->templates->render($templatePath);
+            } catch (\Exception $e) {
+                $htmlText = 'Error rendering template in renderRobots(): ' . $e->getMessage();
+                SeomaticPlugin::log($htmlText, LogLevel::Error);
+            }
         }
         else
         {
@@ -440,7 +496,12 @@ class SeomaticService extends BaseApplicationComponent
             $templateName = '_robots';
             if ($isPreview)
                 $templateName = $templateName . 'Preview';
-            $htmlText = craft()->templates->render($templateName, $metaVars);
+            try {
+                $htmlText = craft()->templates->render($templateName, $metaVars);
+            } catch (\Exception $e) {
+                $htmlText = 'Error rendering template in renderRobots(): ' . $e->getMessage();
+                SeomaticPlugin::log($htmlText, LogLevel::Error);
+            }
 
             method_exists(craft()->templates, 'setTemplatesPath') ? craft()->templates->setTemplatesPath($oldPath) : craft()->path->setTemplatesPath($oldPath);
         }
@@ -464,7 +525,12 @@ class SeomaticService extends BaseApplicationComponent
 /* -- Render the user-defined robots.txt template */
 
         $template = $siteMeta['siteRobotsTxt'];
-        $htmlText = craft()->templates->renderString($template, $metaVars);
+        try {
+            $htmlText = craft()->templates->renderString($template, $metaVars);
+        } catch (\Exception $e) {
+            $htmlText = 'Error rendering template in renderRobotsTemplate(): ' . $e->getMessage();
+            SeomaticPlugin::log($htmlText, LogLevel::Error);
+        }
 
         return $htmlText;
     } /* -- renderRobotsTemplate */
@@ -492,7 +558,12 @@ class SeomaticService extends BaseApplicationComponent
             'metricsActionUrl' => $metricsActionUrl,
             );
 
-        $htmlText = craft()->templates->render('_seo_metrics_floater.twig', $vars);
+        try {
+            $htmlText = craft()->templates->render('_seo_metrics_floater.twig', $vars);
+        } catch (\Exception $e) {
+            $htmlText = 'Error rendering template in renderSeoMetrics(): ' . $e->getMessage();
+            SeomaticPlugin::log($htmlText, LogLevel::Error);
+        }
         craft()->templates->includeFootHtml($htmlText);
 
         method_exists(craft()->templates, 'setTemplatesPath') ? craft()->templates->setTemplatesPath($oldPath) : craft()->path->setTemplatesPath($oldPath);
@@ -517,7 +588,8 @@ class SeomaticService extends BaseApplicationComponent
                 $elemType == "Marketplace_Product" ||
                 $elemType == ElementType::Category)
 */
-            if (true)
+            if ((isset($element->content) && is_object($element->content)) &&
+                (isset($element->content->attributes)) && (is_object($element->content->attributes) || is_array($element->content->attributes)))
             {
                 $attributes = $element->content->attributes;
                 foreach ($attributes as $key => $value)
@@ -543,7 +615,7 @@ class SeomaticService extends BaseApplicationComponent
                                         foreach ($variants as $variant)
                                         {
                                             $commerceVariant = array(
-                                                'seoProductDescription' => $variant->getDescription(),
+                                                'seoProductDescription' => $variant->getDescription() . ' - ' . $element->title,
                                                 'seoProductPrice' => number_format($variant->getPrice(), 2, '.', ''),
                                                 'seoProductCurrency' => craft()->commerce_paymentCurrencies->getPrimaryPaymentCurrency(),
                                                 'seoProductSku' => $variant->getSku(),
@@ -554,7 +626,7 @@ class SeomaticService extends BaseApplicationComponent
                                     else
                                     {
                                         $commerceVariant = array(
-                                            'seoProductDescription' => $element->getDescription(),
+                                            'seoProductDescription' => $element->getDescription() . ' - ' . $element->title,
                                             'seoProductPrice' => number_format($element->getPrice(), 2, '.', ''),
                                             'seoProductCurrency' => craft()->commerce_paymentCurrencies->getPrimaryPaymentCurrency(),
                                             'seoProductSku' => $element->getSku(),
@@ -610,6 +682,7 @@ class SeomaticService extends BaseApplicationComponent
             switch ($srcField->elementType->classHandle)
             {
                 case "Neo":
+                case "Neo_Block":
                     $result= $this->extractTextFromNeo($srcField);
                     break;
                 case ElementType::MatrixBlock:
@@ -924,6 +997,7 @@ class SeomaticService extends BaseApplicationComponent
             array_push($sameAs, $helper['pinterestUrl']);
             array_push($sameAs, $helper['githubUrl']);
             array_push($sameAs, $helper['vimeoUrl']);
+            array_push($sameAs, $helper['wikipediaUrl']);
             $sameAs = array_filter($sameAs);
             $sameAs = array_values($sameAs);
             if (!empty($sameAs))
@@ -1027,6 +1101,12 @@ class SeomaticService extends BaseApplicationComponent
 
         if ($this->entryMeta)
             $meta = array_merge($meta, $this->entryMeta);
+
+/* -- If this is a 404, set the canonicalUrl to nothing */
+
+        if (http_response_code() == 404) {
+            $meta['canonicalUrl'] = "";
+        }
 
 /* -- Merge with the global override config settings */
 
@@ -1144,7 +1224,7 @@ class SeomaticService extends BaseApplicationComponent
         {
             if ($this->lastElement->uri != "__home__" && $element->uri)
             {
-                $path = parse_url($this->lastElement->url, PHP_URL_PATH);
+                $path = parse_url($this->lastElement->uri, PHP_URL_PATH);
                 $path = trim($path, "/");
                 $segments = explode("/", $path);
             }
@@ -1158,7 +1238,7 @@ class SeomaticService extends BaseApplicationComponent
             $element = craft()->elements->getElementByUri($uri);
             if ($element && $element->uri)
             {
-                $result[$element->title] = $this->getFullyQualifiedUrl($element->url);
+                $result[$element->title] = $this->getFullyQualifiedUrl($element->uri);
             }
             $uri .= "/";
         }
@@ -1420,6 +1500,7 @@ class SeomaticService extends BaseApplicationComponent
         $identity['googleAnalyticsEEcommerce'] = $settings['googleAnalyticsEEcommerce'];
         $identity['googleAnalyticsLinkAttribution'] = $settings['googleAnalyticsLinkAttribution'];
         $identity['googleAnalyticsLinker'] = $settings['googleAnalyticsLinker'];
+        $identity['googleAnalyticsAnonymizeIp'] = $settings['googleAnalyticsAnonymizeIp'];
         $identity['siteOwnerType'] = ucfirst($settings['siteOwnerType']);
         $identity['siteOwnerSubType'] = $settings['siteOwnerSubType'];
         $identity['siteOwnerSpecificType'] = $settings['siteOwnerSpecificType'];
@@ -1579,6 +1660,7 @@ class SeomaticService extends BaseApplicationComponent
         array_push($sameAs, $helper['pinterestUrl']);
         array_push($sameAs, $helper['githubUrl']);
         array_push($sameAs, $helper['vimeoUrl']);
+        array_push($sameAs, $helper['wikipediaUrl']);
         $sameAs = array_filter($sameAs);
         $sameAs = array_values($sameAs);
         if (!empty($sameAs))
@@ -1769,6 +1851,7 @@ class SeomaticService extends BaseApplicationComponent
         $social['pinterestHandle'] = $settings['pinterestHandle'];
         $social['githubHandle'] = $settings['githubHandle'];
         $social['vimeoHandle'] = $settings['vimeoHandle'];
+        $social['wikipediaUrl'] = $settings['wikipediaUrl'];
 
         $result = $social;
 
@@ -2200,8 +2283,18 @@ class SeomaticService extends BaseApplicationComponent
                     $mainEntityOfPageJSONLD['copyrightYear'] = $copyrightYear;
 
                     $mainEntityOfPageJSONLD['author'] = $identity;
-                    $mainEntityOfPageJSONLD['publisher'] = $identity;
                     $mainEntityOfPageJSONLD['copyrightHolder'] = $identity;
+                    $mainEntityOfPageJSONLD['publisher'] = $identity;
+                    // There are a number of properties that Google apparently doesn't like for 'publisher'
+                    if ($mainEntityOfPageJSONLD['publisher']['type'] !== "Person") {
+                        $mainEntityOfPageJSONLD['publisher']['type'] = "Organization";
+                    }
+                    unset($mainEntityOfPageJSONLD['publisher']['priceRange']);
+                    unset($mainEntityOfPageJSONLD['publisher']['tickerSymbol']);
+                    unset($mainEntityOfPageJSONLD['publisher']['openingHoursSpecification']);
+                    unset($mainEntityOfPageJSONLD['publisher']['servesCuisine']);
+                    unset($mainEntityOfPageJSONLD['publisher']['menu']);
+                    unset($mainEntityOfPageJSONLD['publisher']['acceptsReservations']);
                 }
                 break;
 
@@ -2677,6 +2770,12 @@ function parseAsTemplate($templateStr, $element)
         }
         else
             $helper['vimeoUrl'] = '';
+        if ($social['wikipediaUrl'])
+        {
+            $helper['wikipediaUrl'] = $social['wikipediaUrl'];
+        }
+        else
+            $helper['wikipediaUrl'] = '';
     } /* -- addSocialHelpers */
 
 /* --------------------------------------------------------------------------------
@@ -2698,6 +2797,7 @@ function parseAsTemplate($templateStr, $element)
         $helper['googleAnalyticsEEcommerce'] = $identity['googleAnalyticsEEcommerce'];
         $helper['googleAnalyticsLinkAttribution'] = $identity['googleAnalyticsLinkAttribution'];
         $helper['googleAnalyticsLinker'] = $identity['googleAnalyticsLinker'];
+        $helper['googleAnalyticsAnonymizeIp'] = $identity['googleAnalyticsAnonymizeIp'];
         $now = new DateTime;
         $period = ".";
         $name = $identity['genericOwnerName'];
@@ -2917,8 +3017,12 @@ public function getLocalizedUrls()
 
             foreach ($_rows as $row)
             {
-              $path = ($row['uri'] == '__home__') ? '' : $row['uri'];
-              $unsortedLocalizedUrls[$row['locale']] = UrlHelper::getSiteUrl($path, null, null, $row['locale'] );
+                $path = ($row['uri'] == '__home__') ? '' : $row['uri'];
+                $url = UrlHelper::getSiteUrl($path, null, null, $row['locale']);
+                if (craft()->config->get('addTrailingSlashesToUrls')) {
+                    $url = rtrim($url, '/') . '/';
+                }
+                $unsortedLocalizedUrls[$row['locale']] = $url;
             }
 
             $locales = craft()->i18n->getSiteLocales();
@@ -2978,6 +3082,13 @@ public function getFullyQualifiedUrl($url)
             $siteUrl = rtrim($siteUrl, '/');
         }
         $result = $siteUrl . $result;
+    }
+    // Add a trailing / if `addTrailingSlashesToUrls` is set, but only if there's on extension
+    if (craft()->config->get('addTrailingSlashesToUrls')) {
+        $path = parse_url($result, PHP_URL_PATH);
+        $pathExtension = pathinfo($path,PATHINFO_EXTENSION);
+        if (empty($pathExtension))
+            $result = rtrim($result, '/') . '/';
     }
 
     return $result;

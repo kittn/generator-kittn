@@ -1,0 +1,18 @@
+{#
+  Headline
+  ========
+  With Semantic Override
+
+  @param {string} data               = Headline Text
+  @param {object} options            = Setupobject
+  @param {string} options.semantic   = Tag
+  @param {string} options.override   = Semantic Override with Class (e.g. `.h4`)
+  @param {string} options.style      = Optional Styleclass
+#}
+
+{# Class Overwrite #}
+{% set c = name is defined and name != '' ? name : 'c-headline' %}
+
+{# Build Element Block #}
+<{{ options.semantic }} class="{{ c }}{{ options.style != 'default' ? ' ' ~ c ~ '--s-' ~ options.style }}{{ options.override != 'default' ? ' ' ~ options.override }}" role="heading" itemprop="name"><span>{{ data }}</span></{{ options.semantic }}>
+

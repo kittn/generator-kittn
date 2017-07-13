@@ -11,12 +11,13 @@
  * @param {bool}   $background = Background Option
  * @param {string} $tag        = Tag for Background Element (default: 'figure')
  * @param {string} $position   = Optional background position for background images
+ * @param {number} $offset     = Optional offset to reduce image sizes arrays
  */
-function macro_mediaImageSet($image,$classname,$format,$background = false, $tag = 'figure', $position = false) {
+function macro_mediaImageSet($image,$classname,$format,$background = false, $tag = 'figure', $position = false, $offset = 0) {
   // Getting defined Sizes
   global $CROPPED_FORMAT,$CROPPED_SIZES,$UNCROPPED_SIZES;
 
-  $imageset = '';
+  $imageset = array();
   $imagepre = '';
   $backgroundPosition = '';
   $imageformats = ['uncropped'];
@@ -39,13 +40,13 @@ function macro_mediaImageSet($image,$classname,$format,$background = false, $tag
     if (in_array($format, $imageformats)) {
       // Generate Image Set
       if ($format == 'uncropped') {
-        foreach ($UNCROPPED_SIZES as $key => $value) {
+        foreach (array_slice($UNCROPPED_SIZES, $offset) as $key => $value) {
           $imageset[] = $image['sizes']['rw_'.$key].' '.$value.'w';
         }
         // Define Preload Image
         $imagepre = $image['sizes']['rw_'.key(array_slice($UNCROPPED_SIZES, -1, true))];
       } else {
-        foreach ($CROPPED_SIZES as $key => $value) {
+        foreach (array_slice($CROPPED_SIZES, $offset) as $key => $value) {
           $imageset[] = $image['sizes'][$format.'_'.$key].' '.$value.'w';
         }
         // Define Preload Image

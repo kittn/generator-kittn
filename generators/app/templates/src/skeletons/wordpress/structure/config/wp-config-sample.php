@@ -9,7 +9,7 @@
 
 // Set your environment/url pairs
 $environments = array(
-  'local'       => 'local.domain',
+  'local'       => '<%= projectcredential ? credentialdomain : 'local.domain' %>',
   'stage'       => 'stage.domain'
 );
 
@@ -43,7 +43,7 @@ define('DB_CHARSET', 'utf8');
 define('DB_COLLATE', '');
 
 // WordPress Database Table prefix.
-$table_prefix  = 'wp_';
+$table_prefix  = 'wpkittn_';
 
 /**#@+
  * Authentication Unique Keys and Salts.

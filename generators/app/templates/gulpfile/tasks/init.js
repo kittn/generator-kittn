@@ -19,9 +19,9 @@ const initTask = (cb) => {
       'copy:fonts',
       'rebuild:js',
       'rebuild:images',
-      'copy:contentimages'<% if (projectusage === 'wordpress' ) { %>,
+      'copy:contentimages'<% if (projectusage == 'wordpress' || projectusage == 'wordpressCB') { %>,
       'copy:wpconfig',
-      'copy:wpplugins'<% } else if (projectusage === 'craft') { %>,
+      'copy:wpplugins'<% } else if (projectusage == 'craft' || projectusage == 'craftCB') { %>,
       'copy:craftindex',
       'copy:craftplugins',
       'copy:craftenv'<% } %>

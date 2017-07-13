@@ -1,0 +1,79 @@
+/*
+  featuredImage
+  =============
+  Featured Images are used for page teasers
+*/
+.c-featuredImage {
+  $api: (
+    breakpoint: 'm',
+    margin-bottom: s(1),
+    overlay: (
+      backgroung-color: false,
+      vertical-orient: center,
+      text-align: center
+    ),
+    headline: (
+      color: c('white')
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  margin-bottom: api(margin-bottom);
+  position: relative;
+
+  // ::::::::: TAGS
+  // ::::::::: CONTEXTUAL
+
+  // Reset bottom Margin from Button Elements
+  .c-button__element {
+    margin-bottom: 0;
+  }
+
+  // ::::::::: MODIFIER
+
+  // [root]--fullbleed
+  &--fullbleed {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    margin-left: -50vw;
+  }
+
+  // ::::::::: CHILDS
+
+  // [root]__overlay
+  &__overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: api(overlay, vertical-orient);
+    @if api(overlay, color) {
+      background-color: api(overlay, background-color);
+    }
+  }
+
+  // [root]__inner
+  &__inner {
+    @extend %e-container;
+    text-align: api(overlay, text-align);
+  }
+
+  // [root]__headline
+  &__headline {
+    color: api(headline, color);
+    text-transform: uppercase;
+    text-shadow: 0 0 40px rgba(0,0,0,.1);
+  }
+}

@@ -1,0 +1,32 @@
+/*
+  articleEntry
+  ============
+  An article styling
+*/
+.c-articleEntry {
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  @extend %e-container;
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__header
+  // &__header {}
+
+  // [root]__footer
+  // &__footer {}
+}

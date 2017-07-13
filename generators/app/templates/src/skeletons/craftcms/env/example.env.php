@@ -13,7 +13,7 @@ if (isset($_SERVER['HTTPS']) && (strcasecmp($_SERVER['HTTPS'], 'on') === 0 || $_
 }
 
 $craftenv_vars = array(
-   // The Craft environment we're running in ('local', 'staging', 'live', etc.).
+   // The Craft environment we're running in ('local', 'staging', 'productive', etc.).
   'CRAFT_ENVIRONMENT' => 'SETUP',
   'DB_HOST' => 'SETUP',
   'DB_NAME' => 'SETUP',

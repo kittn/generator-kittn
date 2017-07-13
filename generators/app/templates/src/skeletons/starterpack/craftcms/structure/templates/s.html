@@ -1,0 +1,46 @@
+{#
+ # Searchresult Page
+ # ------------
+ #}
+
+{# Subtemplate Setup #}
+{# `classToInner` Is an array in which all classes are listed from the outer container to the container of the content builder. Used for the section element. #}
+{% set _t = {
+  bodyclass: 'search',
+  sections: ['blogChannel'],
+  name: 'Search',
+  limit: 12,
+  classToInner: ['o-area__container']
+} %}
+
+{% extends '_layout/main-layout.html' %}
+
+{% block content %}
+  {# Search Query #}
+  {% set searches = craft.entries({
+    search: craft.request.getParam('q'),
+    section: _t.sections,
+    order: 'score',
+    limit: _t.limit
+  })%}
+
+<div class="o-area__container">
+  {% if searches|length %}
+    <h1>{{ 'Suche'|t }}</h1>
+    <p>{{ searches.total }} {{ 'Ergebnisse für'|t }} : <span class="h3"><b>{{ searches.search }}</b></span></p>
+
+    {# Generate the Search Results #}
+    {% paginate searches as search %}
+
+      {% include '_components/articleBoxes.html' with { data: search, type: '' } %}
+
+    {# Include Pagination #}
+    {{ _.pagination(paginate,craft,'',searches.search) }}
+
+  {% else %}
+    <h1>{{ _t.name }}</h1>
+    <p>{{ 'Leider keine Ergebnisse für'|t }} : <span class="h3"><b>{{ craft.request.getParam('q') }}</b></span>
+    </p>
+  {% endif %}
+</div>
+{% endblock %}

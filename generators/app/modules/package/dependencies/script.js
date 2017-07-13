@@ -4,7 +4,8 @@ function addScriptDependencies (files = {}, context) {
   extend(files.pkg, {
     scripts: {
       'subtask:bundlewebpack': 'webpack --config webpack.config.babel.js -p --colors --env.bundle=production --env=production',
-      'scripts': 'gulp rebuild:js --env=init'
+      'scripts': 'gulp rebuild:js --env=init',
+      'webpack:analyze': 'webpack-bundle-analyzer stats.json dist/assets/'
     },
     devDependencies: {
       'babel-loader': '^6.2.10',
@@ -26,7 +27,8 @@ function addScriptDependencies (files = {}, context) {
       'eslint-import-resolver-webpack': '^0.8.1',
       'extract-text-webpack-plugin': '2.1.0',
       'friendly-errors-webpack-plugin': '^1.6.1',
-      'webpack': '^2.6.1',
+      'webpack': '^3.2.0',
+      'webpack-bundle-analyzer': '^2.8.2',
       'webpack-dev-middleware': '^1.10.0',
       'webpack-hot-middleware': '^2.18.0',
       'webpack-merge': '^2.6.1'
@@ -40,8 +42,26 @@ function addScriptDependencies (files = {}, context) {
     }
   })
 
+  // Webpack Bundle analyzer
+  if (context.props.projectusage === 'craftCB' || context.props.projectusage === 'craft') {
+    extend(files.pkg, {
+      scripts: {
+        'webpack:analyze': 'webpack-bundle-analyzer stats.json dist/public/assets/'
+      }
+    })
+  }
+
+  // Webpack Bundle analyzer
+  if (context.props.projectusage === 'wordpress' || context.props.projectusage === 'wordpressCB') {
+    extend(files.pkg, {
+      scripts: {
+        'webpack:analyze': `webpack-bundle-analyzer stats.json dist/wp-content/themes/${context.props.projectname}/assets/`
+      }
+    })
+  }
+
   // Container-Queries
-  if (context.props.projectcontainerqueries === true) {
+  if (context.props.projectcontainerqueries === true || context.props.projectusage === 'craftCB' || context.props.projectusage === 'wordpressCB') {
     extend(files.pkg, {
       dependencies: {
         'cq-prolyfill': '^0.4.0'
@@ -75,11 +95,20 @@ function addScriptDependencies (files = {}, context) {
         'css-loader': '^0.26.1',
         'vue-loader': '^12.2.1',
         'sass-loader': '^5.0.1',
+        'stylelint-webpack-plugin': '^0.8.0',
         'vue-style-loader': '^2.0.0',
         'vue-template-compiler': '^2.1.10'
       },
       dependencies: {
         'vue': '^2.1.10'
+      }
+    })
+  }
+
+  if (context.props.projectjsframework === 'vue' && context.props.projectstylelint === true) {
+    extend(files.pkg, {
+      devDependencies: {
+        'stylelint-webpack-plugin': '^0.8.0'
       }
     })
   }

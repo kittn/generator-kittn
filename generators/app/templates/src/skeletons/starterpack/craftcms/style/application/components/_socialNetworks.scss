@@ -1,0 +1,64 @@
+/*
+  socialNetworks
+  ==============
+  Linkelement to the social networks
+*/
+.c-socialNetworks {
+  $api: (
+    breakpoint: 'm',
+    gutter: 2px,
+    link: (
+      size: 34px,
+      padding: 5px,
+      color: (
+        main: c('primary'),
+        alt: c('white')
+      )
+    ),
+    style: (
+      default: (
+        background: c('black-25') c('black-30'),
+        fill: c('primary') c('white')
+      )
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+  display: flex;
+  flex-wrap: wrap;
+  @include overlap(api(gutter));
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__link
+  &__link {
+    size: api(link, size);
+    padding: api(link, padding);
+    margin-left: api(gutter);
+    margin-right: api(gutter);
+    display: block;
+    background-color: apin(1, style, default, background);
+    transition: all 300ms ease-in-out;
+    fill: apin(1, style, default, fill);
+
+    &:hover {
+      background-color: apin(2, style, default, background);
+      border-color: apin(2, style, default, background);
+      fill: apin(2, style, default, fill);
+    }
+  }
+}

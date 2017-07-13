@@ -154,7 +154,7 @@
     "selector-id-pattern": "^[a-zA-Z]+$",
     "selector-max-compound-selectors": 5,
     "selector-max-specificity": "0,4,0",
-    "selector-no-id": true,
+    "selector-max-id": 0,
     "selector-no-qualifying-type": [
       true,
       {
@@ -170,7 +170,9 @@
     "selector-pseudo-element-colon-notation": "double",
     "selector-pseudo-element-no-unknown": true,
     "selector-type-case": "lower",
-    "selector-type-no-unknown": true,
+    "selector-type-no-unknown": [true, {
+      ignore: ["custom-elements", "default-namespace"]
+    }],
     "selector-max-empty-lines": 0,
     "selector-list-comma-newline-after": "always-multi-line",
     "selector-list-comma-newline-before": "never-multi-line",

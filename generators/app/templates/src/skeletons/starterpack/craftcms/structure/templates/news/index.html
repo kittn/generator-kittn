@@ -5,7 +5,7 @@
 
 {# Subtemplate Setup #}
 {# `classToInner` Is an array in which all classes are listed from the outer container to the container of the content builder. Used for the section element. #}
-{% set templateBriefing = {
+{% set _t = {
   bodyclass: 'news',
   section: 'news',
   name: 'News',
@@ -18,15 +18,15 @@
 {% block content %}
   <div class="o-area__container">
     {# Cache Entry #}
-    {% cache globally using key templateBriefing.section~'-archive-' ~ craft.request.path ~ (craft.request.getPageNum ? '/p' ~ craft.request.getPageNum : '') %}
-    <h1>{{ templateBriefing.name }}</h1>
+    {% cache globally using key _t.section~'-archive-' ~ craft.request.path ~ (craft.request.getPageNum ? '/p' ~ craft.request.getPageNum : '') %}
+    <h1>{{ _t.name }}</h1>
 
     {# Build Query #}
     {% set entries = craft.entries({
-      section: templateBriefing.section,
+      section: _t.section,
       sort: 'postDate',
       relatedTo: (category is defined ? category : false),
-      limit: templateBriefing.limit
+      limit: _t.limit
     }) %}
     {# Initiate the Pagination #}
     {% paginate entries as pageInfo, pageEntries %}

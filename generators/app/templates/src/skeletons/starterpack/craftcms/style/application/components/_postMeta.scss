@@ -1,0 +1,68 @@
+/*
+  postMeta
+  ========
+  Styling for Meta Informationblock like Avatar, Date, Author
+*/
+.c-postMeta {
+  $api: (
+    breakpoint: 'm',
+    font-size: rem(14),
+    avatar: (
+      size: 40px
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+
+  // ::::::::: TAGS
+
+  a {
+    color: c('black');
+
+    &:hover {
+      color: c('primary');
+    }
+  }
+
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__avatar
+  &__avatar {
+    size: api(avatar, size);
+    overflow: hidden;
+    background-color: c('black-90');
+
+    // [root]__avatar__image
+    &__image {
+      size: api(avatar, size);
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+    }
+  }
+
+  // [root]__details
+  &__details {
+    font-size: api(font-size);
+    padding-left: 10px;
+  }
+
+  // [root]__author
+  &__author {
+    font-weight: bold;
+  }
+}

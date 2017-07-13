@@ -4,10 +4,10 @@
 #}
 
 {# Class Overwrite #}
-{% set classname = name is defined and name != '' ? name : 'c-searchfield' %}
+{% set c = name is defined and name != '' ? name : 'c-searchfield' %}
 
 {# Build Element Block #}
-<form role="search" method="get" action="{{ url('search') }}" class="{{ classname }}">
-  <input type="search" placeholder="HIER DAS SUCHWORT EINGEBEN..." name="q" class="{{ classname }}__input" id="searchfield">
-  <input type="submit" value="Go" role="button" class="{{ classname }}__submit">
+<form role="search" method="get" action="{{ url('s') }}" class="{{ c }}">
+  <input type="search" placeholder="{{ 'Suche'|t }}..." name="q" class="{{ c ~ '__input' }}" id="searchfield">
+  <input type="submit" value="Go" role="button" class="{{ c ~ '__submit' }}">
 </form>

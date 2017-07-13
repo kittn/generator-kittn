@@ -2,6 +2,12 @@
 //          Base Setup
 // ------------------------------------------------------------
 
+// Activates the Responsive Fontsize Generator (Starting Fontsize)
+// Set on false
+//
+// @type {bool | number }                   - Set to false if you do not want responsive fontsizes
+$kittn-active-responsive-fonts: 85;
+
 // Map with all breakpoints and related behavior
 //
 // @type map
@@ -29,12 +35,12 @@ $kittn-breakpoint-map: (
   'm': (
     size: 768px,
     step: true,
-    fontsize: 85
+    fontsize: 90
   ),
   'ml': (
     size: 960px,
     step: true,
-    fontsize: 90
+    fontsize: 95
   ),
   'l': (
     size: 1180px,
@@ -43,10 +49,39 @@ $kittn-breakpoint-map: (
   )
 );
 
-// Define Pagesize
-$kittn-page-size: (
-  minsize: 320px,
-  maxsize: 1200px
+/// Specific variables for the template
+///
+/// @type map
+///
+/// @prop {map}    pagesize           - Pagesizes for the Container Module
+/// @prop {number} pagesize.min       - Minimal Pagesize
+/// @prop {number} pagesize.max       - Maximal Pagesize
+/// @prop {map}    header             - Headerstyle
+/// @prop {map}    header.breaksizes  - Header Breakpoints
+/// @prop {map}    header.height      - Header heights
+/// @prop {map}    footer             - Footerstyles
+/// @prop {map}    footer.breaksizes  - Footer Breakpoints
+/// @prop {number} footer.font-size   - Base footer fontsize in px
+$kittn-globals: (
+  pagesize: (
+    min: 320px,
+    max: 1200px
+  ),
+  header: (
+    breaksizes: (
+      one: 600px
+    ),
+    height: (
+      mobile: 50px,
+      desktop: 100px
+    )
+  ),
+  footer: (
+    breaksizes: (
+      one: 600px
+    ),
+    font-size: 14px
+  )
 );
 
 // Define the different fontfaces that are loaded locally
@@ -102,11 +137,6 @@ $kittn-typo: (
   base-size-px: 16px,
   line-height: 1.5
 );
-
-// Activates the Responsive Fontsize Generator
-//
-// @type Bool | Number
-$kittn-active-responsive-fonts: 80;
 
 // Default Margin for Typographic Elements (set on '0' when not needed)
 //

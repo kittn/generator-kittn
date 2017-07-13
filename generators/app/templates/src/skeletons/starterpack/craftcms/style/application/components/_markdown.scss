@@ -1,0 +1,26 @@
+/*
+  Markdown
+  ========
+  Basic Styles for Markdown Element
+*/
+.c-markdown {
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: MODIFIER
+
+  // [root]--s-style1
+  &--s-style1 {
+    font-size: 110%;
+    color: c('gray');
+  }
+}

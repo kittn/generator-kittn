@@ -100,6 +100,11 @@ function addBaseCofig (files = {}, context) {
       }
     },
     'src': {
+      'baseconf': {
+        'type': context.props.projectusage,
+        'methodology': context.props.projectcssstructure ? context.props.projectcssstructure : 'sassITCSS',
+        'structure': context.props.projectstructure ? context.props.projectstructure : 'uncompiled',
+      },
       'style': 'src/style/',
       'template': 'src/template/',
       'js': 'src/js/',
@@ -132,18 +137,11 @@ function addBaseCofig (files = {}, context) {
     let prefix = ''
 
     if (!context.props.credentialdomain.startsWith('http')) {
-      prefix = (typeof context.props.credentialprotocol !== 'undefined' && context.props.credentialprotocol === 'https') ? 'https://' : 'http://'
+      prefix = 'http://'
     }
     extend(files.pkg, {
       'browsersync': {
         'proxy': prefix + context.props.credentialdomain
-      }
-    })
-  }
-  if (typeof context.props.credentialprotocol !== 'undefined' && context.props.credentialprotocol === 'https') {
-    extend(files.pkg, {
-      'browsersync': {
-        'https': true
       }
     })
   }

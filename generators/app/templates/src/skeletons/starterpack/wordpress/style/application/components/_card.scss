@@ -1,0 +1,62 @@
+/*
+  Card
+  ====
+  Media and text content as card module
+*/
+.c-card {
+  // Component Config
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+
+  // ::::::::: CHILDS
+
+  // [root]__inner
+  // &__inner {}
+
+  // [root]__media
+  &__media {
+    img,
+    video {
+      display: block;
+    }
+  }
+
+  // [root]__copy
+  &__copy {
+    *:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // [root]__header
+  //&__header {}
+
+  // [root]__headline
+  &__headline {
+    margin-bottom: 0;
+  }
+
+  // [root]__subline
+  &__subline {
+    margin-bottom: 0;
+  }
+
+  // [root]__meta
+  //&__meta {}
+
+  // [root]__body
+  //&__body {}
+}

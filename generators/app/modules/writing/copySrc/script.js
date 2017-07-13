@@ -2,10 +2,6 @@ const script = (context) => {
   return {
     files: [
       {
-        src: '_kittnrc',
-        dest: '.kittnrc'
-      },
-      {
         src: '_eslintrc.js',
         dest: '.eslintrc.js'
       },
@@ -31,16 +27,16 @@ const script = (context) => {
         },
         src: 'src/skeletons/vue/app.vue',
         dest: 'src/js/app.vue'
-      }
-    ],
-    folders: [
+      },
       {
         conditions: {
           projectjsframework: 'vue'
         },
-        src: 'build',
-        dest: 'build/'
-      },
+        src: 'src/vue-utils.js',
+        dest: 'vue-utils.js'
+      }
+    ],
+    folders: [
       {
         conditions: {
           projectjsframework: 'vue'

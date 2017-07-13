@@ -18,20 +18,16 @@ const base = (context) => {
         dest: '.editorconfig'
       },
       {
-        src: '_bowerrc',
-        dest: '.bowerrc'
-      },
-      {
-        src: 'bower.json',
-        dest: 'bower.json'
-      },
-      {
         src: '_gitignore',
         dest: '.gitignore'
       },
       {
         src: 'src/.system_additions/htaccess',
         dest: 'src/.system/.htaccess'
+      },
+      {
+        src: 'README.md',
+        dest: 'README.md'
       }
     ],
     folders: [

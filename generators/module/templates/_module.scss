@@ -16,8 +16,13 @@
   @function api($keys...) {
     @return map-deep-get($api, $keys...);
   }
+  // For getting values from lists
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
 
   // ::::::::: BASE
+
   // ::::::::: TAGS
   // ::::::::: MODIFIER
   // ::::::::: CHILDS

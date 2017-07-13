@@ -1,0 +1,38 @@
+/*
+  Grid
+  ====
+  Grid Columns
+*/
+.o-grid {
+  // Component Config
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__row
+  //&__row {
+  //  @include break(api(breakpoint)) {
+  //    display: flex;
+  //  }
+  //}
+  //
+  //// [root]__grid-half
+  //&__halfcolumn {
+  //  @include break(api(breakpoint))  {
+  //    flex: 1;
+  //  }
+  //}
+}

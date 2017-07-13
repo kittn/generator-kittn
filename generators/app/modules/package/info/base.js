@@ -4,7 +4,7 @@ function addBaseSettings (files = {}, context) {
   extend(files.pkg, {
     title: 'SiteTitle',
     name: context.props.projectname,
-    description: context.props.projectdescription,
+    description: '',
     version: context.props.projectversion,
     license: 'MIT',
     repository: context.props.projecturl,

@@ -1,0 +1,66 @@
+/*
+  marker
+  =====
+  Used for Category and Tag Markers
+*/
+.c-marker {
+  $api: (
+    breakpoint: 'm',
+    font-size: 11px,
+    padding: 2px 4px,
+    border-size: 1px,
+    style: (
+      default: (
+        background: c('primary') c('white'),
+        color: c('white') c('primary'),
+        border-color: c('primary') null
+      )
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+  display: inline-block;
+
+  // ::::::::: TAGS
+  a {
+    transition: all 300ms ease-in;
+  }
+
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // // [root]__block
+  &__block {
+    display: inline-block;
+    font-size: api(font-size);
+    border: api(border-size) solid apin(1, style, default, border-color);
+    background-color: nth(api(style, default, background), 1);
+    color: nth(api(style, default, color), 1);
+    padding: api(padding);
+    text-transform: uppercase;
+    transition: all 300ms ease-in;
+
+    // [root]--otherStyles
+
+    // Hover Styles
+    @at-root a#{&} {
+      &:hover {
+        background-color: apin(2, style, default, background);
+        color: apin(2, style, default, color);
+        border-color: apin(2, style, default, border-color);
+      }
+    }
+  }
+}

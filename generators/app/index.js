@@ -20,6 +20,9 @@ const copySources = require('./modules/writing/copySources')
 // Add MySQL Database
 const addDB = require('./modules/writing/addDB')
 
+// Import MySQL Database
+// const importDB = require('./modules/writing/importDB')
+
 // Install CMS
 const installWordpress = require('./modules/writing/install/wordpress')
 const installCraft = require('./modules/writing/install/craft')
@@ -29,6 +32,8 @@ module.exports = class extends Generator {
   constructor (args, opts) {
     super(args, opts)
     this.pkg = pkg
+
+    this.devMode = opts.dev ? opts.dev : false
 
     this.promptsFunction = promptsFunction.bind(this)
 
@@ -40,6 +45,9 @@ module.exports = class extends Generator {
 
     // Add Database
     this.addDB = addDB.bind(this)
+
+    // Import Database
+    // this.importDB = importDB.bind(this)
 
     // Copy Sources
     this.copySources = copySources.bind(this)
@@ -100,7 +108,7 @@ module.exports = class extends Generator {
           '\n  ' + chalk.styles.cyan.close +
           '\n                                                       v.' + chalk.bold(this.pkg.version) +
           '\n  ' +
-          '\n   Authors: Sascha Fuchs (@gisugosu) ' +
+          '\n   Authors: Sascha Fuchs (@gisugosu) & Lars Eichler (@cinkon)' +
           '\n   URL    : http://kittn.de   ' +
           '\n '
     clear()
@@ -130,36 +138,95 @@ module.exports = class extends Generator {
     // Add Database if user wants to
     this.addDB().writing(this)
 
+    // Write Database if user wants to
+    // this.importDB().writing(this)
+
     // Copy Source Files and Folders
     this.copySources().writing(this)
 
     // Install CMS
-    this.installWordpress().install(this)
-    this.installCraft().install(this)
+    if (!this.devMode) {
+      this.installWordpress().install(this)
+      this.installCraft().install(this)
+    }
   }
 
   install () {
-    if (this.commands.yarn) {
-      this.yarnInstall()
-    } else {
-      this.npmInstall()
+    if (!this.devMode) {
+      if (this.commands.yarn) {
+        this.yarnInstall()
+      } else {
+        this.npmInstall()
+      }
     }
   }
 
   end () {
     clear()
-    const goodbye =
-            '\n ' + chalk.styles.yellow.open +
-            '\n                    __    .__  __    __ ' +
-            '\n                    |  | _|__|/  |__/  |_  ____ ' +
-            '\n                    |  |/ /  \\   __\\   __\\/    \\ ' +
-            '\n                    |    <|  ||  |  |  | |   |  \\ ' +
-            '\n                    |__|_ \\__||__|  |__| |___|  / ' +
-            '\n                    \\/                   \\/  ' +
-            '\n  ' + chalk.styles.yellow.close + chalk.styles.green.open +
-            '\n   Now we are finished. Make your last settings and start `npm run init`.' +
-            '\n      When npm is finished activate `npm run dev` and happy Coding.' +
-            '\n ' + chalk.styles.green.close
+    let goodbye =`
+          
+          
+          ${chalk.styles.yellow.open} 
+                     __    .__  __    __ 
+                     |  | _|__|/  |__/  |_  ____ 
+                     |  |/ /  \\   __\\   __\\/    \\ 
+                     |    <|  ||  |  |  | |   |  \\ 
+                     |__|_ \\__||__|  |__| |___|  / 
+                     \\/                   \\/  
+           ${chalk.styles.yellow.close} ${chalk.styles.green.open}
+                Meeeeooowww! The Generator is finished.
+          ${chalk.styles.green.close}
+          
+          ${chalk.styles.cyan.open}
+          ${chalk.styles.bold.open}Next Steps: ${chalk.styles.bold.close}`
+
+          goodbye += '\n\n'
+
+          if (this.props.projectusage.substring(0,4) === 'word' && this.commands.wp !== true) {
+            goodbye += `          - Install Wordpress manually in the 'dist/' directory` + '\n'
+          }
+
+          if (this.props.projectusage.substring(0,5) === 'craft' && this.commands.wget !== true) {
+            goodbye += `          - Install Craft manually in the 'dist/' directory` + '\n'
+          }
+
+          if (this.props.projectusage === 'wordpressCB') {
+            goodbye += `          - Copy your ACF5 Pro Plugin on 'src/structure/plugins/'` + '\n'
+          }
+
+          if (this.props.projectusage === 'craft' || this.props.projectusage === 'craftCB') {
+            goodbye += `          - Setup User and Staff on 'craftscripts/.env.sh'` + '\n'
+          }
+
+          goodbye += `          - Initiate the project with 'npm run init'` + '\n'
+
+          if (this.props.projectusage.substring(0,5) === 'craft') {
+            goodbye += `          - Execute './craftscripts/set_perms.sh'` + '\n'
+          }
+
+          if (this.props.projectusage !== 'html') {
+            goodbye += `          - Setup your vHost on '${this.props.credentialdomain}' on '[projectRoot]/dist/${this.props.projectusage.substring(0,5) === 'craft' ? 'public/' : ''}'` + '\n'
+            goodbye += `          - Import database.sql found on project root` + '\n'
+          }
+
+          if (this.props.projectusage !== 'html' && this.props.projectcredential) {
+            goodbye += `            => 'mysql -u${this.props.credentialdbuser} -p${this.props.credentialdbpass} ${this.props.credentialdbdatabase} < database.sql'` + '\n'
+          }
+
+          if (this.props.projectusage !== 'html') {
+            goodbye += `          - Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `kittnc` : `kittn` }'. After login, activate theme and create a new user` + '\n'
+          }
+
+          if (this.props.projectcredential) {
+            goodbye += `            => Backend: http://${this.props.projectname}.local/${this.props.projectusage.substring(0,5) === 'craft' ? `admin` : `wp-admin` }` + '\n'
+          }
+
+          goodbye += `          - Start the devtask with 'npm run dev'
+                
+          Happy Coding.
+          ${chalk.styles.cyan.close}`
+
+
     this.log(goodbye)
   }
 }

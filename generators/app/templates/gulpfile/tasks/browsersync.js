@@ -74,8 +74,8 @@ const browserSyncTask = () => {
       open: kc.browsersync.openbrowser,
       files: [
         kc.dist.js + '**/*.js',
-        kc.dist.css + '**/*.css',<% if (projectusage == 'craft' ) { %>
-        kc.dist.markup + 'templates/**/*.{php,html,twig}',<% } else if (projectusage == 'wordpress') { %>
+        kc.dist.css + '**/*.css',<% if (projectusage == 'craft' || projectusage == 'craftCB' ) { %>
+        kc.dist.markup + 'templates/**/*.{php,html,twig}',<% } else if (projectusage == 'wordpress' || projectusage == 'wordpressCB') { %>
         kc.dist.markup + '**/*.{php,html,png,txt,md}',<% } else { %>
         kc.dist.base + '**/*.{php,html}',<% } %>
         kc.dist.cssimg + '**/*.{jpg,gif,png,svg}'

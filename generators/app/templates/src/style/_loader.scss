@@ -16,8 +16,8 @@
 // Generators
 @import '../framework/generators/_import-generators'; // stylelint-disable-line
 // Partials
-<% if (projectnormalize !== false) { %>// <% } %>@import '../framework/partials/normalize';
-// @import '../framework/partials/_tables';
-// @import '../framework/partials/_print';
+<% if (typeof projectnormalize != 'undefined' && projectnormalize == false) { %>// <% } %>@import '../framework/partials/normalize';
+// @import '../framework/partials/tables';
+// @import '../framework/partials/print';
 // App
 @import 'application/application';

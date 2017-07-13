@@ -1,0 +1,67 @@
+/*
+  PageFooter
+  ==========
+  Footer Styling
+*/
+.c-pageFooter {
+  $api: (
+    breakpoint: 'm',
+    breaksizes: (
+      one: glob(footer, breaksizes, one)
+    ),
+    background: c('black-20'),
+    vertpadding: s(.5)
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  background-color: api(background);
+  padding-top: api(vertpadding);
+  padding-bottom: api(vertpadding);
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__inner
+  &__inner {
+    @extend %e-container;
+
+    @include break(api(breaksizes, one)) {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  // [root]__block
+  &__block {
+    // Margin only if element has Childs
+    &:not(:empty) {
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+  }
+
+  // [root]__copy
+  // &__copy {}
+
+  // [root]__social
+  // &__social {}
+
+  // [root]__nav
+  &__nav {
+    @include break(api(breaksizes, one)) {
+      flex: 1 1 auto;
+      text-align: right;
+      margin-right: s(1);
+    }
+  }
+}

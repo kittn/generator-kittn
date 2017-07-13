@@ -2,8 +2,10 @@ const webpack = require('webpack')
 const merge = require('webpack-merge')
 const path = require('path')
 const yargs = require('yargs')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')<% if ( projectjsframework === 'vue' ) { %>
+const ExtractTextPlugin = require('extract-text-webpack-plugin')<% if ( projectjsframework === 'vue' ) { %><% if (projectstylelint) { %>
+const StylelintPlugin = require('stylelint-webpack-plugin')<% } %>
 const vueutils = require('./build/vue-utils')<% } %>
 const kittnConf = require('./config.json')
 
@@ -11,7 +13,7 @@ const argv = yargs.argv
 const env = argv.env || 'development'
 const nodeEnv = process.env.NODE_ENV || 'production'
 
-const ROOT_PATH = path.resolve(__dirname)<% if (projectusage == 'craft') { %>
+const ROOT_PATH = path.resolve(__dirname)<% if (projectusage == 'craft' || projectusage == 'craftCB') { %>
 const PUBLIC_PATH = path.join(ROOT_PATH, `${kittnConf.dist.dist}/public/`)<% } else { %>
 const PUBLIC_PATH = path.join(ROOT_PATH, kittnConf.dist.dist)<% } %>
 const ASSETS_PATH = kittnConf.dist.webpackjsassets
@@ -62,7 +64,7 @@ let bundle = {
         include: LOADER_PATH,
         exclude: /node_modules/,
         use: 'vue-loader'
-      },<% } %>
+      }<% } %>
     ]
   },
   plugins: [
@@ -71,32 +73,43 @@ let bundle = {
         NODE_ENV: JSON.stringify(nodeEnv)
       }
     }),
+    new FriendlyErrorsPlugin(),
     new webpack.LoaderOptionsPlugin({
       options: {
         eslint: {
-          failOnError  : false,
+          failOnError: false,
           failOnWarning: false,
           configFile: env === 'development' ? './.eslintrc-dev.js' : './.eslintrc.js',
-          formatter    : require('eslint-formatter-pretty')
+          formatter: require('eslint-formatter-pretty')
         }<% if ( projectjsframework === 'vue' ) { %>,
         vue: {
           loaders: vueutils.cssLoaders({
             sourceMap: false,
-            extract: nodeEnv === 'production' ? true : false
+            extract: nodeEnv === 'production'
           })
         }<% } %>
       }
-    })
+    })<% if ( projectjsframework === 'vue' && projectstylelint) { %>,
+    new StylelintPlugin({
+      context: LOADER_PATH,
+      syntax: 'scss'
+    })<% } %>
   ]
-};
-<% if ( projectjsframework === 'vue' ) { %>
+}
+
 // add extract plugin for vue
-if(nodeEnv === 'production') {
+if (nodeEnv === 'production') {
   bundle = merge(bundle, {
-    plugins: [
-      new ExtractTextPlugin('css/vue-styles.css')
+    plugins: [<% if ( projectjsframework === 'vue' ) { %>
+      new ExtractTextPlugin('css/vue-styles.css'),<% } %>
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'disabled',
+        generateStatsFile: true,
+        statsFilename: `${ROOT_PATH}/stats.json`,
+        logLevel: 'info'
+      })
     ]
   })
-}<% } %>
+}
 
 module.exports = bundle

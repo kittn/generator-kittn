@@ -60,6 +60,20 @@ const projecttype = (context) => {
       },
       {
         conditions: {
+          projectusage: 'craft'
+        },
+        src: 'databases/craft.sql',
+        dest: 'database.sql'
+      },
+      {
+        conditions: {
+          projectusage: 'wordpress'
+        },
+        src: 'src/skeletons/wordpress/_htaccess',
+        dest: 'dist/.htaccess'
+      },
+      {
+        conditions: {
           projectusage: 'wordpress'
         },
         src: 'gulpfile_additions/copy-wpconfig.js',
@@ -96,6 +110,13 @@ const projecttype = (context) => {
         src: 'src/skeletons/wordpress/screenshot.png',
         dest: 'src/structure/screenshot.png',
         simplecopy: true
+      },
+      {
+        conditions: {
+          projectusage: 'wordpress'
+        },
+        src: 'databases/wordpress.sql',
+        dest: 'database.sql'
       }
     ],
     folders: [

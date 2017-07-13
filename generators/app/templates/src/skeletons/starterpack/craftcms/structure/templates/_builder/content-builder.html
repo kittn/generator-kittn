@@ -2,14 +2,17 @@
   Content Builder
   ===============
 #}
-{% if entry.contentBuilder.level(1)|length %}
-  {% for content in entry.contentBuilder.level(1) %}
+
+{% set cb = entry is defined ? entry.contentBuilder.level(1) : category.contentBuilder.level(1) %}
+
+{% if cb|length %}
+  {% for content in cb %}
     {% if content.type != 'objSection' %}
       {% include '_builder/_cb-objects' with { data: content } %}
 
     {% else %}
       {# Closing the outer Container that the Section can use the full width #}
-      {% set innerLayout = templateBriefing.classToInner is defined and templateBriefing.classToInner != '' ? templateBriefing.classToInner : [''] %}
+      {% set innerLayout = _t.classToInner is defined and _t.classToInner != '' ? _t.classToInner : [''] %}
 
       {# Closing outer Container based on the templateBriefing In #}
       {% for closeTag in innerLayout %}

@@ -1,0 +1,35 @@
+{#
+  Post Meta
+  =============
+  Module for display Meta Informations
+#}
+
+{% set c = 'c-postMeta' %}
+
+{# Since the meta information can differ, a different PostMetas switch condition is output here #}
+{% switch type %}
+  {% case 'blog' %}
+    <div class="{{ c }}" itemscope>
+      <div class="{{ c ~ '__avatar' }}">
+        {{ _.mediaImageSet(data.author.photoUrl,'nocrop', {
+          class: c ~'__avatar__image',
+          background: true,
+          sizes: [
+            { width: 320 },
+            { width: 150 },
+            { width: 30 }
+          ]
+        }) }}
+      </div>
+      <div class="{{ c ~ '__details'}}">
+        <div class="{{ c ~ '__author' }}">{{ data.author.name }}</div>
+        <time itemprop="datePublished" datetime="{{ data.postDate|date('Y-m-d') }}" class="{{ c ~ '__date'}}">
+          {{ _.langDate(data.postDate) }}
+        </time>
+      </div>
+    </div>
+
+{% default %}
+
+{% endswitch %}
+

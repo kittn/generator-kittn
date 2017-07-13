@@ -1,0 +1,113 @@
+/*
+  pagination
+  ==========
+  Pagination Styling
+*/
+.c-pagination {
+  // Component Config
+  $api: (
+    breakpoint: 'm',
+    font-size: rem(16),
+    size: 40px,
+    box: (
+      regular: (
+        border-color: c('black-85'),
+        background: c('black-90'),
+        color: c('black-50')
+      ),
+      hover: (
+        border-color: c('black-90'),
+        background: c('black-95'),
+        color: c('black-40')
+      ),
+      active: (
+        border-color: c('primary'),
+        background: c('primary'),
+        color: c('white')
+      )
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root,4);  // Rootname only
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+  margin-bottom: s(1);
+  text-align: center;
+
+  // ::::::::: TAGS
+
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+  //
+  // [root]__link
+  &__link {
+    font-size: api(font-size);
+    display: inline-block;
+    text-transform: uppercase;
+    transition: all 400ms ease-in;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid api(box, regular, border-color);
+    background-color: api(box, regular, background);
+    color: api(box, regular, color);
+    height: api(size);
+    min-width: api(size);
+    font-weight: bold;
+    line-height: api(size) - 2px;
+
+    @at-root a#{$root}__link {
+      &:hover {
+        border-color: api(box, hover, border-color);
+        background-color: api(box, hover, background);
+        color: api(box, hover, color);
+      }
+    }
+
+
+    // [root]---text
+    @at-root {
+      $e: #{&};
+      &---text {
+        // Extend with the Parent Element
+        @extend #{$e};
+        font-weight: normal;
+      }
+    }
+
+    // [root]---number
+    @at-root {
+      $e: #{&};
+      &---number {
+        // Extend with the Parent Element
+        @extend #{$e};
+        display: none;
+
+        @include break(api(breakpoint)) {
+          display: inline-block;
+        }
+      }
+    }
+
+    // [root]---current
+    @at-root {
+      $e: #{&};
+      &---current {
+        // Extend with the Parent Element
+        @extend #{$e};
+        border-color: api(box, active, border-color);
+        background-color: api(box, active, background);
+        color: api(box, active, color);
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="50px" height="50px" viewBox="0 0 50 50" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 43.1 (39012) - http://www.bohemiancoding.com/sketch -->
+    <title>icon-email</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="icon-email" fill-rule="nonzero" fill="#000000">
+            <g id="Mail-Icon" transform="translate(10.000000, 15.000000)">
+                <path d="M27.5,20 L2.5,20 C1.1,20 0,18.9 0,17.5 L0,2.5 C0,1.1 1.1,0 2.5,0 L27.5,0 C28.9,0 30,1.1 30,2.5 L30,17.5 C30,18.9 28.9,20 27.5,20 Z M2.5,1 C1.7,1 1,1.7 1,2.5 L1,17.5 C1,18.3 1.7,19 2.5,19 L27.5,19 C28.3,19 29,18.3 29,17.5 L29,2.5 C29,1.7 28.3,1 27.5,1 L2.5,1 Z" id="Shape"></path>
+                <path d="M14.7,11 C14,11 13.2,10.8 12.7,10.4 L3.2,3.9 C3,3.8 2.9,3.4 3.1,3.2 C3.2,3 3.5,2.9 3.8,3.1 L13.3,9.6 C14.1,10.2 15.4,10.2 16.2,9.6 L26.2,3.1 C26.4,2.9 26.7,3 26.9,3.2 C27.1,3.4 27,3.7 26.8,3.9 L16.8,10.4 C16.2,10.8 15.5,11 14.7,11 L14.7,11 Z" id="Shape"></path>
+                <path d="M3.5,17 C3.4,17 3.2,16.9 3.1,16.8 C2.9,16.6 2.9,16.3 3.2,16.1 L10.2,10.1 C10.4,9.9 10.7,9.9 10.9,10.2 C11.1,10.4 11.1,10.7 10.8,10.9 L3.8,16.9 C3.7,17 3.6,17 3.5,17 L3.5,17 Z" id="Shape"></path>
+                <path d="M26.5,17 C26.4,17 26.3,17 26.2,16.9 L19.2,10.9 C19,10.7 19,10.4 19.1,10.2 C19.2,10 19.6,10 19.8,10.1 L26.8,16.1 C27,16.3 27,16.6 26.9,16.8 C26.8,16.9 26.6,17 26.5,17 L26.5,17 Z" id="Shape"></path>
+            </g>
+        </g>
+    </g>
+</svg>

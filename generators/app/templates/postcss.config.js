@@ -1,6 +1,6 @@
 module.exports = (ctx) => ({
   parser: 'postcss-scss',
-  plugins: {<% if (projectnormalize === 'regular') { %>
+  plugins: {<% if (typeof projectnormalize !== 'undefined' && projectnormalize === 'regular') { %>
     'postcss-normalize': {},<% } %>
     'postcss-custom-selectors': {},
     'postcss-custom-media': {},
@@ -11,12 +11,12 @@ module.exports = (ctx) => ({
     'postcss-easings': {},
     'postcss-assets': {
       basePath: './',
-      loadPaths: [<% if (projectusage == 'html') { %>'dist/assets/img/'<% } if (projectusage == 'wordpress' ) { %>'dist/wp-content/themes/<%= projectname %>/assets/img/'<% } if (projectusage == 'craft' ) { %>'dist/public/assets/img/'<% } %>]
+      loadPaths: [<% if (projectusage == 'html') { %>'dist/assets/img/'<% } if (projectusage == 'wordpress' || projectusage == 'wordpressCB') { %>'dist/wp-content/themes/<%= projectname %>/assets/img/'<% } if (projectusage == 'craft' || projectusage == 'craftCB') { %>'dist/public/assets/img/'<% } %>]
     },
     'autoprefixer': {
       cascade: false
     },
-    'postcss-svg-fragments': {},
+    'postcss-svg': {},
     'postcss-short-size': {},
     'postcss-flexbugs-fixes': {},
     'cssnano': ctx.env !== 'production' ? false : {

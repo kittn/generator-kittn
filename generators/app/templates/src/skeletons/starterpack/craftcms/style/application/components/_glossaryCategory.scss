@@ -1,0 +1,85 @@
+/*
+  glossaryCategory
+  ================
+  Glossary Category Styling
+*/
+.c-glossaryCategory {
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  display: flex;
+  flex-wrap: wrap;
+  @include overlap(gap(1));
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+  // [root]__box
+  &__box {
+    margin-left: s(1);
+    margin-right: s(1);
+    width: 100%;
+    margin-bottom: s(2);
+
+    // Different Grid Dizes
+    @include break('s') {
+      width: calc(100% / 2 - #{gap(1) * 2px});
+    }
+
+    @include break('m') {
+      width: calc(100% / 3 - #{gap(1) * 2px});
+    }
+
+    @include break('l') {
+      width: calc(100% / 4 - #{gap(1) * 2px});
+    }
+
+  }
+
+  // [root]__heading
+  &__heading {
+    text-transform: uppercase;
+    @include fontsize(18);
+    line-height: 1;
+    margin-bottom: 5px;
+    color: c('black-20');
+    border-bottom: 1px solid c('black-90');
+
+    span {
+      size: 38px;
+      background-color: c('black-90');
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  // [root]__list
+  &__list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 0;
+    line-height: 1.6;
+
+    a {
+      color: c('black');
+      transition: color 300ms ease-in;
+      display: inline-block;
+
+      &:hover {
+        color: c('primary');
+      }
+    }
+  }
+}
