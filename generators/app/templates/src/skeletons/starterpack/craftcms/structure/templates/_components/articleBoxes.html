@@ -52,7 +52,7 @@
           {# Include CategoryMarker #}
           {% switch type %}
             {% case 'blog' %}
-              {% include '_components/categoryMarker.html' with { data: row.categorySelectBlog, type: type} %}
+              {% include '_components/marker.html' with { data: row.categorySelectBlog, type: type} %}
           {% endswitch %}
         </header>
       </div>
