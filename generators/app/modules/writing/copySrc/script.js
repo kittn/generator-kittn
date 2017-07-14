@@ -32,7 +32,7 @@ const script = (context) => {
         conditions: {
           projectjsframework: 'vue'
         },
-        src: 'src/vue-utils.js',
+        src: 'vue-utils.js',
         dest: 'vue-utils.js'
       }
     ],

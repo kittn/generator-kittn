@@ -13,9 +13,6 @@
     {% endif %}
   {% endif %}
   {% include '_parts/favicon' %}
-  <!--[if lt IE 9]>
-    <script src="{{ craft.config.rootUrl~'assets/js/html5shiv.js' }}"></script>
-  <![endif]-->
   {# Deactivate Progress Load on Livepreview #}
   {% if craft.request.isLivePreview != true and craft.config.environment == 'productive' %}
     <script>document.getElementsByTagName('html')[0].classList.add('plj')</script>

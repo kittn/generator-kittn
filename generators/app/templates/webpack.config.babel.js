@@ -6,16 +6,15 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')<% if ( projectjsframework === 'vue' ) { %><% if (projectstylelint) { %>
 const StylelintPlugin = require('stylelint-webpack-plugin')<% } %>
-const vueutils = require('./build/vue-utils')<% } %>
+const vueutils = require('./vue-utils')<% } %>
 const kittnConf = require('./config.json')
 
 const argv = yargs.argv
 const env = argv.env || 'development'
 const nodeEnv = process.env.NODE_ENV || 'production'
 
-const ROOT_PATH = path.resolve(__dirname)<% if (projectusage == 'craft' || projectusage == 'craftCB') { %>
-const PUBLIC_PATH = path.join(ROOT_PATH, `${kittnConf.dist.dist}/public/`)<% } else { %>
-const PUBLIC_PATH = path.join(ROOT_PATH, kittnConf.dist.dist)<% } %>
+const ROOT_PATH = path.resolve(__dirname)
+const PUBLIC_PATH = path.join(ROOT_PATH, kittnConf.dist.webpackpublic)
 const ASSETS_PATH = kittnConf.dist.webpackjsassets
 const LOADER_PATH = path.join(ROOT_PATH, kittnConf.src.js)
 const PRIMARY_FILE_NAME = 'main.js'

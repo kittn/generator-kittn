@@ -12,9 +12,6 @@
   <meta name="theme-color" content="<%= projectthemecolor %>">
   <meta name="msapplication-navbutton-color" content="<%= projectthemecolor %>">
   <?php wp_head(); ?>
-  <!--[if lt IE 9]>
-  <script src="<?php bloginfo('template_url'); ?>/assets/js/html5shiv.js"></script>
-  <![endif]-->
 </head>
 <body <?php body_class(); ?>>
   <div class="appWrapper">

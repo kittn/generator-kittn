@@ -15,9 +15,6 @@
   <link rel="stylesheet" href="<?= get_template_directory_uri(); ?>/assets/css/style.css">
   <link rel="shortcut icon" href="<?= get_template_directory_uri(); ?>/assets/system/favicon.png">
   <?php wp_head(); ?>
-  <!--[if lt IE 9]>
-  <script src="<?= get_template_directory_uri(); ?>/assets/js/html5shiv.js"></script>
-  <![endif]-->
   <?php if (WP_ENV != 'local') : ?>
     <script>document.getElementsByTagName('html')[0].classList.add('plj')</script>
   <?php endif; ?>
