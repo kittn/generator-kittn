@@ -89,14 +89,14 @@ function addScriptDependencies (files = {}, context) {
       devDependencies: {
         'babel-preset-es2015': '^6.24.1',
         'babel-preset-stage-2': '^6.24.1',
+        'css-loader': '^0.26.1',
         'eslint-config-vue': '^2.0.2',
         'eslint-plugin-html': '^3.0.0',
         'eslint-plugin-vue': '^2.0.1',
-        'css-loader': '^0.26.1',
-        'vue-loader': '^12.2.1',
         'sass-loader': '^5.0.1',
         'stylelint-webpack-plugin': '^0.8.0',
-        'vue-style-loader': '^2.0.0',
+        'vue-loader': '^13.0.2',
+        'vue-style-loader': '^3.0.0',
         'vue-template-compiler': '^2.1.10'
       },
       dependencies: {

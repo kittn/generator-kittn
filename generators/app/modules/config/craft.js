@@ -18,7 +18,8 @@ function addCraftCofig (files = {}, context) {
         'bitmaps': 'dist/public/assets/img/bitmaps/',
         'vectors': 'dist/public/assets/img/svgfiles/',
         'contentimage': 'dist/public/images/',
-        'webpackjsassets': 'assets/'
+        'webpackjsassets': 'assets/',
+        'webpackpublic': 'dist/public/'
       },
       'files': {
         'launch': [
