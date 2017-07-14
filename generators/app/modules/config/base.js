@@ -28,8 +28,7 @@ function addBaseCofig (files = {}, context) {
     },
     'files': {
       'jsCopy': [
-        'node_modules/lazysizes/plugins/respimg/ls.respimg.js',
-        'node_modules/html5shiv/dist/html5shiv.js'
+        'node_modules/lazysizes/plugins/respimg/ls.respimg.js'
       ],
       'jsCombine': {
         'files': [],
