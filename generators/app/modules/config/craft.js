@@ -8,6 +8,7 @@ function addCraftCofig (files = {}, context) {
         'dist': 'dist/',
         'base': 'dist/public/',
         'markup': 'dist/craft/',
+        'templates': 'dist/craft/templates',
         'assets': 'dist/public/assets/',
         'browserSyncDir': 'dist/public/',
         'css': 'dist/public/assets/css/',
