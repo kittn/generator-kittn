@@ -33,7 +33,7 @@ function addBaseDependencies (files = {}, context) {
       'gulp-plumber': '^1.1.0',
       'gulp.spritesmith': '^6.3.0',
       'gulp-svg-sprite': '^1.3.7',
-      'gulp-twig': '^1.0.0',
+      'gulp-twig': '^0.7.0',
       'gulp-uglify': '^3.0.0',
       'gulp-watch': '^4.3.11',
       'imagemin-jpeg-recompress': '^5.1.0',
