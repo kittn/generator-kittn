@@ -107,10 +107,10 @@ module.exports = class extends Generator {
              k:::::::::::k      i::::i      t:::::t            t:::::t          n::::n    n::::n
              k:::::::::::k      i::::i      t:::::t            t:::::t          n::::n    n::::n
              k::::::k:::::k     i::::i      t:::::t    tttttt  t:::::t    ttttttn::::n    n::::n
-            k::::::k k:::::k   i::::::i     t::::::tttt:::::t  t::::::tttt:::::tn::::n    n::::n
-            k::::::k  k:::::k  i::::::i     tt::::::::::::::t  tt::::::::::::::tn::::n    n::::n
-            k::::::k   k:::::k i::::::i       tt:::::::::::tt    tt:::::::::::ttn::::n    n::::n
-            kkkkkkkk    kkkkkkkiiiiiiii         ttttttttttt        ttttttttttt  nnnnnn    nnnnnn
+            k::::::k k:::::k    i::::i      t::::::tttt:::::t  t::::::tttt:::::tn::::n    n::::n
+            k::::::k  k:::::k   i::::i      tt::::::::::::::t  tt::::::::::::::tn::::n    n::::n
+            k::::::k   k:::::k  i::::i        tt:::::::::::tt    tt:::::::::::ttn::::n    n::::n
+            kkkkkkkk    kkkkkkk iiiiii          ttttttttttt        ttttttttttt  nnnnnn    nnnnnn
             ${chalk.styles.cyan.close}
                                                                                         ${chalk.bold.bgCyan(' v' + this.pkg.version + ' ')}
             ${chalk.styles.magenta.open}                                                             
