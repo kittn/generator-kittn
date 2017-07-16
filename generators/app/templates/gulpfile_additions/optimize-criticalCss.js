@@ -13,7 +13,7 @@ const criticalCss = () => {
       inline: kc.cssabove.inline,
       base: kc.dist.markup,
       src: item,
-      dest: <% if (projectcriticalinline === 'inline') { %>item<% } else { %>kc.templatePath.css + kc.cssabove.destFilename<% } %>,
+      dest: <% if (projectcritical !== 'undefined' && projectcriticalinline === 'inline') { %>item<% } else { %>kc.templatePath.css + kc.cssabove.destFilename<% } %>,
       minify: kc.cssabove.minify,
       width: kc.cssabove.width,
       height: kc.cssabove.height

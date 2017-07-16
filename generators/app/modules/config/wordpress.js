@@ -8,6 +8,7 @@ function addWordpressCofig (files = {}, context) {
         'dist': 'dist/',
         'base': `dist/wp-content/themes/${context.props.projectname}/`,
         'markup': `dist/wp-content/themes/${context.props.projectname}/`,
+        'templates': `dist/wp-content/themes/${context.props.projectname}/`,
         'assets': `dist/wp-content/themes/${context.props.projectname}/assets/`,
         'browserSyncDir': `dist/wp-content/themes/${context.props.projectname}/`,
         'css': `dist/wp-content/themes/${context.props.projectname}/assets/css/`,

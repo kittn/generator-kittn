@@ -81,32 +81,6 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
       default: 'twig',
       store: false
     },
-    // {
-    //   when: function(answers) {
-    //     return answers.projectusage.substring(0,4) === 'word' && context.commands.wp
-    //   },
-    //   type: 'confirm',
-    //   name: 'projectwpcli',
-    //   message: message({
-    //     headline: 'Wordpress Install',
-    //     description: 'Should the generator install WordPress for you?',
-    //     defaultValue: false
-    //   }),
-    //   default: true
-    // },
-    // {
-    //   when: function(answers) {
-    //     return answers.projectusage.substring(0,5) === 'craft' && context.commands.wget
-    //   },
-    //   type: 'confirm',
-    //   name: 'projectcraftcli',
-    //   message: message({
-    //     headline: 'Craft Install',
-    //     description: 'Should the generator install CraftCMS for you?',
-    //     defaultValue: false
-    //   }),
-    //   default: true
-    // },
     {
       when: function (answers) {
         return answers.projectusage === 'craft' || answers.projectusage === 'wordpress' || answers.projectusage === 'html'
@@ -264,7 +238,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         defaultValue: false
       }),
       store: true,
-      default: false
+      default: true
     },
     {
       type: 'input',
@@ -286,12 +260,12 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
       }),
       choices: [
         {
-          name: 'em',
-          value: 'em'
-        },
-        {
           name: 'px',
           value: 'px'
+        },
+        {
+          name: 'em',
+          value: 'em'
         }
       ]
     },
@@ -326,6 +300,9 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
       default: true
     },
     {
+      when: function (answers) {
+        return answers.projectusage === 'craft' || answers.projectusage.substring(0, 4) === 'word' || answers.projectusage === 'html'
+      },
       type: 'confirm',
       name: 'projectcritical',
       message: message({

@@ -92,25 +92,42 @@ module.exports = class extends Generator {
 
   prompting () {
     // Custom Greeting
-    var welcome =
-          '\n ' + chalk.styles.cyan.open +
-          '\n        ___                      ___         ___            ___      ' +
-          '\n       /\\__\\          ___       /\\  \\       /\\  \\          /\\__\\     ' +
-          '\n      /:/  /         /\\  \\      \\:\\  \\      \\:\\  \\        /::|  |    ' +
-          '\n     /:/__/          \\:\\  \\      \\:\\  \\      \\:\\  \\      /:|:|  |    ' +
-          '\n    /::\\__\\____      /::\\__\\     /::\\  \\     /::\\  \\    /:/|:|  |__  ' +
-          '\n   /:/\\:::::\\__\\  __/:/\\/__/    /:/\\:\\__\\   /:/\\:\\__\\  /:/ |:| /\\__\\ ' +
-          '\n   \\/_|:|~~|~    /\\/:/  /      /:/  \\/__/  /:/  \\/__/  \\/__|:|/:/  / ' +
-          '\n      |:|  |     \\::/__/      /:/  /      /:/  /           |:/:/  /  ' +
-          '\n      |:|  |      \\:\\__\\      \\/__/       \\/__/            |::/  /   ' +
-          '\n      |:|  |       \\/__/                                   /:/  /    ' +
-          '\n       \\|__|                                               \\/__/     ' +
-          '\n  ' + chalk.styles.cyan.close +
-          '\n                                                       v.' + chalk.bold(this.pkg.version) +
-          '\n  ' +
-          '\n   Authors: Sascha Fuchs (@gisugosu) & Lars Eichler (@cinkon)' +
-          '\n   URL    : http://kittn.de   ' +
-          '\n '
+    var welcome = `
+            ${chalk.styles.cyan.open} 
+                                       ..                                                                                   
+                                     .l0O:                                                                                  
+                                     :NMMO' .od'                                                                            
+                                     ,0WNd. :XNl                                                                            
+       ........                  .l:. .,'.   ,,.                                                                            
+      'kXXXXXX0;                 lNO' 'lxxxol:,.                                                                            
+      ,KMMMMMMN:                 .,''dXMMMMMMMNd.  .dOOOOOOk,           :kOOOOOOo.                                          
+      ,KMMMMMMN:                   'OWMMMMWX0xc'   ,KMMMMMMNc           oWMMMMMMO.                                          
+      ,KMMMMMMN:                   'dkxol:,..      ,KMMMMMMNc           oWMMMMMMO.                                          
+      ,KMMMMMMN:                                   ,KMMMMMMNc           oWMMMMMMO.                                          
+      ,KMMMMMMN:        ';::::::::'  .,;;;;;;,. .;;dXMMMMMMWk:;;;;;;;;;:OWMMMMMMKo;;;;;;.  .,;;;;;;,.  ..;cloolc;.          
+      ,KMMMMMMN:      'dXMMMMMMMNx'  ,KMMMMMWX;.dWWMMMMMMMMMMMWWWWWWWWWWMMMMMMMMMMMMWMMX:  ;XMMMMMMKc,oOXWMMMMMMWXOl.       
+      ,KMMMMMMN:    .oXMMMMMMMNk,    ,KMMMMMMX;.dMMMMMMMMMMMMMMMMMMMWWMMMMMMMMMMMMMMMMMN:  ;XMMMMMMWXNMMMMMMMMMMMMMWKl.     
+      ,KMMMMMMN:  .lKWMMMMMMNO;      ,KMMMMMMX: :xxONMMMMMMWKkxxxxxxxxxkKWMMMMMMNOxxxxxd'  ;XMMMMMMMMMMNKOkOKNMMMMMMMWx.    
+      ,KMMMMMMNc.lKWMMMMMMWO:.       ,KMMMMMMX:    ,KMMMMMMNc           oWMMMMMMO'         :XMMMMMMMMKo'.   .,kNMMMMMMWo    
+      ,KMMMMMMW00WMMMMMMW0c.         ,KMMMMMMX:    ,KMMMMMMNc           oWMMMMMMO.         ;XMMMMMMMO'        .xWMMMMMM0'   
+      ,KMMMMMMMMMMMMMMMNd.           ,KMMMMMMX:    ,KMMMMMMNc           oWMMMMMMO.         ;XMMMMMMNc          cNMMMMMMK,   
+      ,KMMMMMMMMMMMMMMMWx.           ,KMMMMMMX:    ,KMMMMMMNc           oWMMMMMMO.         ;XMMMMMMX;          :XMMMMMMK,   
+      ,KMMMMMMMMMMMMMMMMW0;          ,KMMMMMMX:    ,KMMMMMMNc           oWMMMMMMO.         ;XMMMMMMK;          :XMMMMMMK,   
+      ,KMMMMMMMMMWWMMMMMMMXl.        ,KMMMMMMX:    ,KMMMMMMNc           oWMMMMMMO'         ;XMMMMMMK;          :XMMMMMMK,   
+      ,KMMMMMMMWOcc0WMMMMMMWx.       ,KMMMMMMX:    ,KMMMMMMNl           oWMMMMMM0'         :XMMMMMMK;          :XMMMMMMK,   
+      ,KMMMMMMWd.  .xWMMMMMMW0;      ,KMMMMMMX:    .OMMMMMMMO'    .,:.  cNMMMMMMNo.   .:,  ;XMMMMMMK;          :XMMMMMMK,   
+      ,KMMMMMMN:    .oXMMMMMMMXl.    ,KMMMMMMX:     oWMMMMMMWXkxdx0NWx. '0MMMMMMMW0xxkKWXc ;XMMMMMMK;          :XMMMMMMK,   
+      ,KMMMMMMN:      ;0WMMMMMMWk'   ,KMMMMMMX:     .dNMMMMMMMMMMMMMMWk. ;0WMMMMMMMMMMMMMXlcXMMMMMMK;          :XMMMMMMK,   
+      ,KMMMMMMN:       .xWMMMMMMW0;  ,KMMMMMMX:      .:ONMMMMMMMMMMMWXd.  .oKWMMMMMMMMMMN0clXMMMMMMK,          :XMMMMMMK,   
+      .dOOOOOOx,        .ckOOOOOOkd' .dOOkkOOx'        .,lxOKKXKK0ko:.      .:ok0KKKKOxl,. 'xOOOOOOd.          'xOOOOOOd.   
+                                                            ......               ....                           ${chalk.bold.bgCyan(' v' + this.pkg.version + ' ')}         
+      ${chalk.styles.cyan.close}${chalk.styles.magenta.open}                                                             
+      ------------------------------------------- the revenge of the kittn ---------------------------------------------
+      ${chalk.styles.magenta.close}        
+      ${chalk.bold('Authors:')}${chalk.styles.yellow.open} Sascha Fuchs ${chalk.underline.green('@gisugosu')} & Lars Eichler ${chalk.underline.green('@cinkon')}${chalk.styles.yellow.close}
+      ${chalk.bold('URL:')}${chalk.styles.yellow.open} http://kittn.de${chalk.styles.yellow.close}
+            
+    `
     clear()
     this.log(welcome)
 
@@ -120,6 +137,7 @@ module.exports = class extends Generator {
       // To access props later use this.props.someAnswer;
       this.props = props
       this.props.saltKeys = this.saltKeys
+      this.props.projectcritical = this.props.projectcritical ? this.props.projectcritical : false
     })
   }
 
@@ -166,16 +184,36 @@ module.exports = class extends Generator {
     let goodbye =`
           
           
-          ${chalk.styles.yellow.open} 
-                     __    .__  __    __ 
-                     |  | _|__|/  |__/  |_  ____ 
-                     |  |/ /  \\   __\\   __\\/    \\ 
-                     |    <|  ||  |  |  | |   |  \\ 
-                     |__|_ \\__||__|  |__| |___|  / 
-                     \\/                   \\/  
-           ${chalk.styles.yellow.close} ${chalk.styles.green.open}
-                Meeeeooowww! The Generator is finished.
-          ${chalk.styles.green.close}
+              .                                                                                   
+            .o0kdl:,..                                                            ....            
+            ,KMMMXdc:cllc,.                    .,;ldxkOOkkxo;.          ..;clllccd0KK0;           
+            :NMMWX0o' .,lkOOd:.            .,oOXWWMMMMMMNk:,.       .:ok00kdc,':xXMMMX:           
+            cNNNXo,c:.    'lOXXkc.       'o0WMMMMMMMMMMMW0c.     .ckXNKx:.   .oxd0WWWK;           
+            cNk:do.          'o0NXx;...;xXMMMMMMMMMMMMMMMMW0l,':xKWXx:.      .' .dKd0K,           
+            :XO....            .cONWX0KWMMMMMMMMMMMMMMMMMMMMMWNWMKl.            ,x;'OO'           
+            ,KK,                 .xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMWd.             .. :Xx.           
+            .OWo                .cKMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXd'              .xNl            
+            .dW0'             .l0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXo.            cNK,            
+             :XWd.          .c0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKl.         ,KWd.            
+             .kMXc         ;OWMMMMMMMMMMMWXXWMMMMMMMWNXNMMMMMMMMMMMMMMWk,       'OW0,             
+              :XMK;      .dNMMMMMMMMMMMMNd'.cKMMMMMNx'.:KMMMMMMMMMMMMMMMXl.    'OWX:              
+               oNM0,    ,0WMMMMMMMMMMMMWx.   cNMMMMx.   cXMMMMMMMMMMMMMMMWk'  'kWNl               
+               .xWM0; .cXMMMMMMMMMMMMMMNc    '0MMMNc    'OMMMMMMMMMMMMMMMMMKocOWNl                
+                .kWMXO0NMMMMMMMMMMMMMMMX:    .OMMMNc    .OMMMMMMMMMMMMMMMMMMMMMNo.                
+                 .kWMMMMMMMMMMMMMMMMMMMNl    ,KMMMWo    '0MMMMMMMMMMMMMMMMMMMMWx.                 
+                  ;KMMMMMMMMMMMMMMMMMMMMO'  .dWMMMM0,  .dNMMMMMMMMMMMMMMMMMMMMWk'....             
+       .',;;;;;;,;lOKXNWMMMMMMMMMMMMMMMMWKxd0NWWWWWWKxdOWMMMMMMMMMMMMMMMMMWX0kxo:;;;;;;;;;;'.     
+    .:c:;,...      ...':oONMMMMMMMMMMNKOxolc:;;;,,;;;:cldk0NWMMMMMMMMMMNOl,.             .':lc.   
+   :xc.                  .;OWMMMMWXxc'.     .lddddddo'    .':dKWMMMMMMXl.                   .cx:  
+  :O:                      ,0MMMXo.         .lKWMMW0l.        .c0WMMMWd.                      lO, 
+  .xx.                      .kWWNd.............,dOko,............;0MMMWl                       ,Oc 
+  .xx.                      ,Oxc:,''''''''''''''''''''''''''''''',:lllkk'                  .   ,Oc 
+  l0;  ''           .'    ;Od.                                       .xk;   ';.           ;' .dO' 
+  .xO;,o'    .'     .xo.'oOl.                                         .lkd;cOl     .;.    :d:x0:  
+   .oOK0;    ;d.   .'kN0xl'                                             .cx0Xx;'...lk, ..'dXKd'   
+     .cdxddooOXOddddooc'.                                                  .,cloddxO0xddddo:.     
+        ..',,,,,'...                                                              ......   
+                               ${chalk.styles.yellow.open}Meeeeooowww! The Generator is finished.${chalk.styles.yellow.close}
           
           ${chalk.styles.cyan.open}
           ${chalk.styles.bold.open}Next Steps: ${chalk.styles.bold.close}`
@@ -214,7 +252,7 @@ module.exports = class extends Generator {
           }
 
           if (this.props.projectusage !== 'html') {
-            goodbye += `          - Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `kittnc` : `kittn` }'. After login, activate theme and create a new user` + '\n'
+            goodbye += `          - Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `superkittn` : `kittn` }'. After login, activate theme and create a new user` + '\n'
           }
 
           if (this.props.projectcredential) {
