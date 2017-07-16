@@ -120,7 +120,7 @@ module.exports = class extends Generator {
       ,KMMMMMMN:      ;0WMMMMMMWk'   ,KMMMMMMX:     .dNMMMMMMMMMMMMMMWk. ;0WMMMMMMMMMMMMMXlcXMMMMMMK;          :XMMMMMMK,   
       ,KMMMMMMN:       .xWMMMMMMW0;  ,KMMMMMMX:      .:ONMMMMMMMMMMMWXd.  .oKWMMMMMMMMMMN0clXMMMMMMK,          :XMMMMMMK,   
       .dOOOOOOx,        .ckOOOOOOkd' .dOOkkOOx'        .,lxOKKXKK0ko:.      .:ok0KKKKOxl,. 'xOOOOOOd.          'xOOOOOOd.   
-                                                            ......               ....                            ${chalk.bold.bgCyan(' v' + this.pkg.version + ' ')}         
+                                                            ......               ....                           ${chalk.bold.bgCyan(' v' + this.pkg.version + ' ')}         
       ${chalk.styles.cyan.close}${chalk.styles.magenta.open}                                                             
       ------------------------------------------- the revenge of the kittn ---------------------------------------------
       ${chalk.styles.magenta.close}        
@@ -184,16 +184,36 @@ module.exports = class extends Generator {
     let goodbye =`
           
           
-          ${chalk.styles.yellow.open} 
-                     __    .__  __    __ 
-                     |  | _|__|/  |__/  |_  ____ 
-                     |  |/ /  \\   __\\   __\\/    \\ 
-                     |    <|  ||  |  |  | |   |  \\ 
-                     |__|_ \\__||__|  |__| |___|  / 
-                     \\/                   \\/  
-           ${chalk.styles.yellow.close} ${chalk.styles.green.open}
-                Meeeeooowww! The Generator is finished.
-          ${chalk.styles.green.close}
+              .                                                                                   
+            .o0kdl:,..                                                            ....            
+            ,KMMMXdc:cllc,.                    .,;ldxkOOkkxo;.          ..;clllccd0KK0;           
+            :NMMWX0o' .,lkOOd:.            .,oOXWWMMMMMMNk:,.       .:ok00kdc,':xXMMMX:           
+            cNNNXo,c:.    'lOXXkc.       'o0WMMMMMMMMMMMW0c.     .ckXNKx:.   .oxd0WWWK;           
+            cNk:do.          'o0NXx;...;xXMMMMMMMMMMMMMMMMW0l,':xKWXx:.      .' .dKd0K,           
+            :XO....            .cONWX0KWMMMMMMMMMMMMMMMMMMMMMWNWMKl.            ,x;'OO'           
+            ,KK,                 .xWMMMMMMMMMMMMMMMMMMMMMMMMMMMMWd.             .. :Xx.           
+            .OWo                .cKMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXd'              .xNl            
+            .dW0'             .l0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXo.            cNK,            
+             :XWd.          .c0WMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKl.         ,KWd.            
+             .kMXc         ;OWMMMMMMMMMMMWXXWMMMMMMMWNXNMMMMMMMMMMMMMMWk,       'OW0,             
+              :XMK;      .dNMMMMMMMMMMMMNd'.cKMMMMMNx'.:KMMMMMMMMMMMMMMMXl.    'OWX:              
+               oNM0,    ,0WMMMMMMMMMMMMWx.   cNMMMMx.   cXMMMMMMMMMMMMMMMWk'  'kWNl               
+               .xWM0; .cXMMMMMMMMMMMMMMNc    '0MMMNc    'OMMMMMMMMMMMMMMMMMKocOWNl                
+                .kWMXO0NMMMMMMMMMMMMMMMX:    .OMMMNc    .OMMMMMMMMMMMMMMMMMMMMMNo.                
+                 .kWMMMMMMMMMMMMMMMMMMMNl    ,KMMMWo    '0MMMMMMMMMMMMMMMMMMMMWx.                 
+                  ;KMMMMMMMMMMMMMMMMMMMMO'  .dWMMMM0,  .dNMMMMMMMMMMMMMMMMMMMMWk'....             
+       .',;;;;;;,;lOKXNWMMMMMMMMMMMMMMMMWKxd0NWWWWWWKxdOWMMMMMMMMMMMMMMMMMWX0kxo:;;;;;;;;;;'.     
+    .:c:;,...      ...':oONMMMMMMMMMMNKOxolc:;;;,,;;;:cldk0NWMMMMMMMMMMNOl,.             .':lc.   
+   :xc.                  .;OWMMMMWXxc'.     .lddddddo'    .':dKWMMMMMMXl.                   .cx:  
+  :O:                      ,0MMMXo.         .lKWMMW0l.        .c0WMMMWd.                      lO, 
+  .xx.                      .kWWNd.............,dOko,............;0MMMWl                       ,Oc 
+  .xx.                      ,Oxc:,''''''''''''''''''''''''''''''',:lllkk'                  .   ,Oc 
+  l0;  ''           .'    ;Od.                                       .xk;   ';.           ;' .dO' 
+  .xO;,o'    .'     .xo.'oOl.                                         .lkd;cOl     .;.    :d:x0:  
+   .oOK0;    ;d.   .'kN0xl'                                             .cx0Xx;'...lk, ..'dXKd'   
+     .cdxddooOXOddddooc'.                                                  .,cloddxO0xddddo:.     
+        ..',,,,,'...                                                              ......   
+                               ${chalk.styles.yellow.open}Meeeeooowww! The Generator is finished.${chalk.styles.yellow.close}
           
           ${chalk.styles.cyan.open}
           ${chalk.styles.bold.open}Next Steps: ${chalk.styles.bold.close}`
