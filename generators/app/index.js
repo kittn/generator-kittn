@@ -112,13 +112,13 @@ module.exports = class extends Generator {
             k::::::k   k:::::k i::::::i       tt:::::::::::tt    tt:::::::::::ttn::::n    n::::n
             kkkkkkkk    kkkkkkkiiiiiiii         ttttttttttt        ttttttttttt  nnnnnn    nnnnnn
             ${chalk.styles.cyan.close}
-                                                                                        ${chalk.bold.bgYellow(' v' + this.pkg.version + ' ')}
-            ${chalk.styles.blue.open}                                                             
-                     --------------------------------------------------------------
-            ${chalk.styles.blue.close}     ${chalk.styles.yellow.open}   
-                     Authors: Sascha Fuchs (@gisugosu) & Lars Eichler (@cinkon)
-                     URL: http://kittn.de  
-            ${chalk.styles.yellow.close}
+                                                                                        ${chalk.bold.bgCyan(' v' + this.pkg.version + ' ')}
+            ${chalk.styles.magenta.open}                                                             
+                     ----------------- the revenge of the kittn -------------------
+            ${chalk.styles.magenta.close}        
+                     ${chalk.bold('Authors:')}${chalk.styles.yellow.open} Sascha Fuchs ${chalk.underline.green('@gisugosu')} & Lars Eichler ${chalk.underline.green('@cinkon')}${chalk.styles.yellow.close}
+                     ${chalk.bold('URL:')}${chalk.styles.yellow.open} http://kittn.de${chalk.styles.yellow.close}
+            
     `
     clear()
     this.log(welcome)
