@@ -94,30 +94,40 @@ module.exports = class extends Generator {
     // Custom Greeting
     var welcome = `
             ${chalk.styles.cyan.open} 
-    
-            kkkkkkkk             iiii          tttt               tttt                          
-            k::::::k            i::::i      ttt:::t            ttt:::t                          
-            k::::::k             iiii       t:::::t            t:::::t                          
-            k::::::k                        t:::::t            t:::::t                          
-             k:::::k    kkkkkkkiiiiiiittttttt:::::tttttttttttttt:::::ttttttt  nnnn  nnnnnnnn    
-             k:::::k   k:::::k i:::::it:::::::::::::::::tt:::::::::::::::::t  n:::nn::::::::nn  
-             k:::::k  k:::::k   i::::it:::::::::::::::::tt:::::::::::::::::t  n::::::::::::::nn 
-             k:::::k k:::::k    i::::itttttt:::::::tttttttttttt:::::::tttttt  nn:::::::::::::::n
-             k::::::k:::::k     i::::i      t:::::t            t:::::t          n:::::nnnn:::::n
-             k:::::::::::k      i::::i      t:::::t            t:::::t          n::::n    n::::n
-             k:::::::::::k      i::::i      t:::::t            t:::::t          n::::n    n::::n
-             k::::::k:::::k     i::::i      t:::::t    tttttt  t:::::t    ttttttn::::n    n::::n
-            k::::::k k:::::k    i::::i      t::::::tttt:::::t  t::::::tttt:::::tn::::n    n::::n
-            k::::::k  k:::::k   i::::i      tt::::::::::::::t  tt::::::::::::::tn::::n    n::::n
-            k::::::k   k:::::k  i::::i        tt:::::::::::tt    tt:::::::::::ttn::::n    n::::n
-            kkkkkkkk    kkkkkkk iiiiii          ttttttttttt        ttttttttttt  nnnnnn    nnnnnn
-            ${chalk.styles.cyan.close}
-                                                                                        ${chalk.bold.bgCyan(' v' + this.pkg.version + ' ')}
-            ${chalk.styles.magenta.open}                                                             
-                     ----------------- the revenge of the kittn -------------------
-            ${chalk.styles.magenta.close}        
-                     ${chalk.bold('Authors:')}${chalk.styles.yellow.open} Sascha Fuchs ${chalk.underline.green('@gisugosu')} & Lars Eichler ${chalk.underline.green('@cinkon')}${chalk.styles.yellow.close}
-                     ${chalk.bold('URL:')}${chalk.styles.yellow.open} http://kittn.de${chalk.styles.yellow.close}
+                                       ..                                                                                   
+                                     .l0O:                                                                                  
+                                     :NMMO' .od'                                                                            
+                                     ,0WNd. :XNl                                                                            
+       ........                  .l:. .,'.   ,,.                                                                            
+      'kXXXXXX0;                 lNO' 'lxxxol:,.                                                                            
+      ,KMMMMMMN:                 .,''dXMMMMMMMNd.  .dOOOOOOk,           :kOOOOOOo.                                          
+      ,KMMMMMMN:                   'OWMMMMWX0xc'   ,KMMMMMMNc           oWMMMMMMO.                                          
+      ,KMMMMMMN:                   'dkxol:,..      ,KMMMMMMNc           oWMMMMMMO.                                          
+      ,KMMMMMMN:                                   ,KMMMMMMNc           oWMMMMMMO.                                          
+      ,KMMMMMMN:        ';::::::::'  .,;;;;;;,. .;;dXMMMMMMWk:;;;;;;;;;:OWMMMMMMKo;;;;;;.  .,;;;;;;,.  ..;cloolc;.          
+      ,KMMMMMMN:      'dXMMMMMMMNx'  ,KMMMMMWX;.dWWMMMMMMMMMMMWWWWWWWWWWMMMMMMMMMMMMWMMX:  ;XMMMMMMKc,oOXWMMMMMMWXOl.       
+      ,KMMMMMMN:    .oXMMMMMMMNk,    ,KMMMMMMX;.dMMMMMMMMMMMMMMMMMMMWWMMMMMMMMMMMMMMMMMN:  ;XMMMMMMWXNMMMMMMMMMMMMMWKl.     
+      ,KMMMMMMN:  .lKWMMMMMMNO;      ,KMMMMMMX: :xxONMMMMMMWKkxxxxxxxxxkKWMMMMMMNOxxxxxd'  ;XMMMMMMMMMMNKOkOKNMMMMMMMWx.    
+      ,KMMMMMMNc.lKWMMMMMMWO:.       ,KMMMMMMX:    ,KMMMMMMNc           oWMMMMMMO'         :XMMMMMMMMKo'.   .,kNMMMMMMWo    
+      ,KMMMMMMW00WMMMMMMW0c.         ,KMMMMMMX:    ,KMMMMMMNc           oWMMMMMMO.         ;XMMMMMMMO'        .xWMMMMMM0'   
+      ,KMMMMMMMMMMMMMMMNd.           ,KMMMMMMX:    ,KMMMMMMNc           oWMMMMMMO.         ;XMMMMMMNc          cNMMMMMMK,   
+      ,KMMMMMMMMMMMMMMMWx.           ,KMMMMMMX:    ,KMMMMMMNc           oWMMMMMMO.         ;XMMMMMMX;          :XMMMMMMK,   
+      ,KMMMMMMMMMMMMMMMMW0;          ,KMMMMMMX:    ,KMMMMMMNc           oWMMMMMMO.         ;XMMMMMMK;          :XMMMMMMK,   
+      ,KMMMMMMMMMWWMMMMMMMXl.        ,KMMMMMMX:    ,KMMMMMMNc           oWMMMMMMO'         ;XMMMMMMK;          :XMMMMMMK,   
+      ,KMMMMMMMWOcc0WMMMMMMWx.       ,KMMMMMMX:    ,KMMMMMMNl           oWMMMMMM0'         :XMMMMMMK;          :XMMMMMMK,   
+      ,KMMMMMMWd.  .xWMMMMMMW0;      ,KMMMMMMX:    .OMMMMMMMO'    .,:.  cNMMMMMMNo.   .:,  ;XMMMMMMK;          :XMMMMMMK,   
+      ,KMMMMMMN:    .oXMMMMMMMXl.    ,KMMMMMMX:     oWMMMMMMWXkxdx0NWx. '0MMMMMMMW0xxkKWXc ;XMMMMMMK;          :XMMMMMMK,   
+      ,KMMMMMMN:      ;0WMMMMMMWk'   ,KMMMMMMX:     .dNMMMMMMMMMMMMMMWk. ;0WMMMMMMMMMMMMMXlcXMMMMMMK;          :XMMMMMMK,   
+      ,KMMMMMMN:       .xWMMMMMMW0;  ,KMMMMMMX:      .:ONMMMMMMMMMMMWXd.  .oKWMMMMMMMMMMN0clXMMMMMMK,          :XMMMMMMK,   
+      .dOOOOOOx,        .ckOOOOOOkd' .dOOkkOOx'        .,lxOKKXKK0ko:.      .:ok0KKKKOxl,. 'xOOOOOOd.          'xOOOOOOd.   
+                                                            ......               ....                                     
+      ${chalk.styles.cyan.close}
+                                                                                                               ${chalk.bold.bgCyan(' v' + this.pkg.version + ' ')}
+      ${chalk.styles.magenta.open}                                                             
+      ------------------------------------------- the revenge of the kittn ---------------------------------------------
+      ${chalk.styles.magenta.close}        
+      ${chalk.bold('Authors:')}${chalk.styles.yellow.open} Sascha Fuchs ${chalk.underline.green('@gisugosu')} & Lars Eichler ${chalk.underline.green('@cinkon')}${chalk.styles.yellow.close}
+      ${chalk.bold('URL:')}${chalk.styles.yellow.open} http://kittn.de${chalk.styles.yellow.close}
             
     `
     clear()
