@@ -214,7 +214,7 @@ module.exports = class extends Generator {
           }
 
           if (this.props.projectusage !== 'html') {
-            goodbye += `          - Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `kittnc` : `kittn` }'. After login, activate theme and create a new user` + '\n'
+            goodbye += `          - Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `superkittn` : `kittn` }'. After login, activate theme and create a new user` + '\n'
           }
 
           if (this.props.projectcredential) {

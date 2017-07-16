@@ -63,6 +63,23 @@ function addStyleDependencies (files = {}, context) {
     })
   }
 
+  /**
+   * For the Craft Contentbuilder ad some CriticalCSS Function
+   * @method if
+   * @param  {object} context The global context with prompts
+   */
+  if (context.props.projectusage === 'craftCB') {
+    extend(files.pkg, {
+      scripts: {
+        'critical': 'node nodescripts/critical.js'
+      },
+      devDependencies: {
+        'critical': '^0.8.1',
+        'fancy-log': '^1.3.0'
+      }
+    })
+  }
+
   if (context.props.projectnormalize === 'regular') {
     extend(files.pkg, {
       devDependencies: {

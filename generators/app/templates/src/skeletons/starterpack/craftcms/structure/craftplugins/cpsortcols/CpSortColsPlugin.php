@@ -14,7 +14,7 @@
 class CpSortColsPlugin extends BasePlugin
 {
 
-    protected   $_version = '1.1.1',
+    protected   $_version = '1.1.2',
                 $_schemaVersion = '1.0',
                 $_require = '2.5',
                 $_pluginName = 'CP Sortable Custom Columns',
@@ -130,7 +130,7 @@ class CpSortColsPlugin extends BasePlugin
 
         $request = craft()->request;
 
-        if (!$request->isCpRequest() || $request->isAjaxRequest() || craft()->isConsole() || !$this->isCraftRequiredVersion()) {
+        if (!$request->isCpRequest() || $request->isAjaxRequest() || !craft()->userSession->getUser() || craft()->isConsole() || !$this->isCraftRequiredVersion()) {
             return false;
         }
 

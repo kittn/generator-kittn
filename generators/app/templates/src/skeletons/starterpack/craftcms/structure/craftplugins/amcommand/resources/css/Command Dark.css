@@ -1,0 +1,78 @@
+.amcommand {
+    background: #333f4d;
+}
+
+.amcommand__tabs {
+    background: #333f4d;
+    color: #fff;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+
+/**
+ * Input
+ */
+.amcommand__search input[type=text] {
+    background: #333f4d;
+    border: 1px solid #fafafa;
+    color: #fff;
+}
+
+
+/**
+ * Loaders
+ */
+.amcommand__loader {
+    border-top: 3px solid rgba(255,255,255, 0.2);
+    border-right: 3px solid rgba(255,255,255, 0.2);
+    border-bottom: 3px solid rgba(255,255,255, 0.2);
+    border-left: 3px solid #FFFFFF;
+}
+
+
+/**
+ * Commands
+ */
+.amcommand__commands li:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.amcommand__commands li.focus {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.amcommand__name {
+    color: #d7d9db;
+}
+
+.amcommand__commands li.focus .amcommand__name {
+    color: #fff;
+}
+
+.amcommand__info {
+    color: #b9bfc6;
+}
+
+.amcommand__shortcut {
+    color: #d7d9db;
+}
+
+.amcommand__commands li.focus .amcommand__shortcut {
+    color: #fff;
+}
+
+.amcommand__icon {
+    color: #d7d9db;
+}
+
+.amcommand__commands li.focus .amcommand__icon {
+    color: #fff;
+}
+
+.amcommand__icon svg path {
+    fill: #d7d9db;
+}
+
+.amcommand__commands li.focus .amcommand__icon svg path {
+    fill: #fff;
+}

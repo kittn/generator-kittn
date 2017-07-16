@@ -7,11 +7,14 @@
 {# Include Macros for your #}
 {% import '_macros/my-macro.html' as _ %}
 
+{# Critical CSS activate it if you want it #}
+{% set criticalCSS = false %}
+
 <!DOCTYPE html>
 <html lang="{{ craft.config.currentLanguage[craft.locale] }}">
 
 {# Include the Document Header #}
-{% include '_parts/document-header.html' %}
+{% include '_parts/document-header.html' with { criticalCSS: criticalCSS } %}
 
 <body class="{{ craft.request.isLivePreview ? ' is-livepreview ' }}{{ _t is defined ? ' '~ _t.bodyclass ~ ' ' }}">
 

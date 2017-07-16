@@ -73,6 +73,10 @@ const styles = (context) => {
     ],
     folders: [
       {
+        src: 'nodescripts/',
+        dest: 'nodescripts/'
+      },
+      {
         src: 'src/framework',
         dest: 'src/framework/'
       },

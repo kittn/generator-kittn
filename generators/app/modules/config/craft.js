@@ -32,6 +32,43 @@ function addCraftCofig (files = {}, context) {
       }
     })
   }
+  if (context.props.projectusage === 'craftCB') {
+    extend(files.pkg, {
+      'cssabove': {
+        'width': '1200',
+        'height': '1024',
+        'minify': true,
+        'inline': false,
+        'url': context.props.credentialdomain !== 'undefined' ? context.props.credentialdomain : '',
+        'cssfile': context.props.projectcssfilename + '.css',
+        'ignore': [
+          'font-face'
+        ],
+        'sites': [
+          {
+            'url': '',
+            'folder': '',
+            'template': 'index'
+          },
+          {
+            'url': '/blog/hello-world',
+            'folder': 'general/',
+            'template': 'general/entry'
+          },
+          {
+            'url': '/blog',
+            'folder': 'general/',
+            'template': 'general/index'
+          },
+          {
+            'url': '/404',
+            'folder': '',
+            'template': '404'
+          }
+        ]
+      }
+    })
+  }
 }
 
 module.exports = addCraftCofig
