@@ -92,25 +92,34 @@ module.exports = class extends Generator {
 
   prompting () {
     // Custom Greeting
-    var welcome =
-          '\n ' + chalk.styles.cyan.open +
-          '\n        ___                      ___         ___            ___      ' +
-          '\n       /\\__\\          ___       /\\  \\       /\\  \\          /\\__\\     ' +
-          '\n      /:/  /         /\\  \\      \\:\\  \\      \\:\\  \\        /::|  |    ' +
-          '\n     /:/__/          \\:\\  \\      \\:\\  \\      \\:\\  \\      /:|:|  |    ' +
-          '\n    /::\\__\\____      /::\\__\\     /::\\  \\     /::\\  \\    /:/|:|  |__  ' +
-          '\n   /:/\\:::::\\__\\  __/:/\\/__/    /:/\\:\\__\\   /:/\\:\\__\\  /:/ |:| /\\__\\ ' +
-          '\n   \\/_|:|~~|~    /\\/:/  /      /:/  \\/__/  /:/  \\/__/  \\/__|:|/:/  / ' +
-          '\n      |:|  |     \\::/__/      /:/  /      /:/  /           |:/:/  /  ' +
-          '\n      |:|  |      \\:\\__\\      \\/__/       \\/__/            |::/  /   ' +
-          '\n      |:|  |       \\/__/                                   /:/  /    ' +
-          '\n       \\|__|                                               \\/__/     ' +
-          '\n  ' + chalk.styles.cyan.close +
-          '\n                                                       v.' + chalk.bold(this.pkg.version) +
-          '\n  ' +
-          '\n   Authors: Sascha Fuchs (@gisugosu) & Lars Eichler (@cinkon)' +
-          '\n   URL    : http://kittn.de   ' +
-          '\n '
+    var welcome = `
+            ${chalk.styles.cyan.open} 
+    
+            kkkkkkkk             iiii          tttt               tttt                          
+            k::::::k            i::::i      ttt:::t            ttt:::t                          
+            k::::::k             iiii       t:::::t            t:::::t                          
+            k::::::k                        t:::::t            t:::::t                          
+             k:::::k    kkkkkkkiiiiiiittttttt:::::tttttttttttttt:::::ttttttt  nnnn  nnnnnnnn    
+             k:::::k   k:::::k i:::::it:::::::::::::::::tt:::::::::::::::::t  n:::nn::::::::nn  
+             k:::::k  k:::::k   i::::it:::::::::::::::::tt:::::::::::::::::t  n::::::::::::::nn 
+             k:::::k k:::::k    i::::itttttt:::::::tttttttttttt:::::::tttttt  nn:::::::::::::::n
+             k::::::k:::::k     i::::i      t:::::t            t:::::t          n:::::nnnn:::::n
+             k:::::::::::k      i::::i      t:::::t            t:::::t          n::::n    n::::n
+             k:::::::::::k      i::::i      t:::::t            t:::::t          n::::n    n::::n
+             k::::::k:::::k     i::::i      t:::::t    tttttt  t:::::t    ttttttn::::n    n::::n
+            k::::::k k:::::k   i::::::i     t::::::tttt:::::t  t::::::tttt:::::tn::::n    n::::n
+            k::::::k  k:::::k  i::::::i     tt::::::::::::::t  tt::::::::::::::tn::::n    n::::n
+            k::::::k   k:::::k i::::::i       tt:::::::::::tt    tt:::::::::::ttn::::n    n::::n
+            kkkkkkkk    kkkkkkkiiiiiiii         ttttttttttt        ttttttttttt  nnnnnn    nnnnnn
+            ${chalk.styles.cyan.close}
+                                                                                        ${chalk.bold.bgYellow(' v' + this.pkg.version + ' ')}
+            ${chalk.styles.blue.open}                                                             
+                     --------------------------------------------------------------
+            ${chalk.styles.blue.close}     ${chalk.styles.yellow.open}   
+                     Authors: Sascha Fuchs (@gisugosu) & Lars Eichler (@cinkon)
+                     URL: http://kittn.de  
+            ${chalk.styles.yellow.close}
+    `
     clear()
     this.log(welcome)
 
