@@ -28,7 +28,8 @@ function addCraftCofig (files = {}, context) {
         ]
       },
       'src': {
-        'plugins': 'src/craftplugins/'
+        'plugins': 'src/craftplugins/',
+        'templates': 'src/structure/templates/'
       }
     })
   }
@@ -39,7 +40,7 @@ function addCraftCofig (files = {}, context) {
         'height': '1024',
         'minify': true,
         'inline': false,
-        'url': context.props.credentialdomain !== 'undefined' ? context.props.credentialdomain : '',
+        'url': context.props.credentialdomain !== 'undefined' ? `http://${context.props.credentialdomain}` : 'http://',
         'cssfile': context.props.projectcssfilename + '.css',
         'ignore': [
           'font-face'
@@ -47,22 +48,18 @@ function addCraftCofig (files = {}, context) {
         'sites': [
           {
             'url': '',
-            'folder': '',
             'template': 'index'
           },
           {
             'url': '/blog/hello-world',
-            'folder': 'general/',
             'template': 'general/entry'
           },
           {
             'url': '/blog',
-            'folder': 'general/',
             'template': 'general/index'
           },
           {
             'url': '/404',
-            'folder': '',
             'template': '404'
           }
         ]

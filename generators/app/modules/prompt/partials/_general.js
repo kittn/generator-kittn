@@ -238,7 +238,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         defaultValue: false
       }),
       store: true,
-      default: false
+      default: true
     },
     {
       type: 'input',
@@ -260,12 +260,12 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
       }),
       choices: [
         {
-          name: 'em',
-          value: 'em'
-        },
-        {
           name: 'px',
           value: 'px'
+        },
+        {
+          name: 'em',
+          value: 'em'
         }
       ]
     },

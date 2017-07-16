@@ -12,7 +12,7 @@ function processCriticalCss(element, i, callback) {
   const url = argv.url || kittn.cssabove.url
   const criticalSrc = `${url}${element.url}`
   const BASE_PATH = path.resolve(__dirname, '..')
-  const criticalDest = `${`${BASE_PATH}/${kittn.src.templates}${element.folder}${element.template}`}_critical.min.css`
+  const criticalDest = `${`${BASE_PATH}/${kittn.src.templates}${element.template}`}_critical.min.css`
   console.log(`-> Generating critical CSS: ${chalk.cyan(criticalSrc)} -> ${chalk.magenta(criticalDest)}`)
 
   critical.generate(

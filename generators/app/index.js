@@ -120,6 +120,7 @@ module.exports = class extends Generator {
       // To access props later use this.props.someAnswer;
       this.props = props
       this.props.saltKeys = this.saltKeys
+      this.props.projectcritical = false
     })
   }
 

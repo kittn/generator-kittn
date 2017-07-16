@@ -144,7 +144,7 @@ function addBaseCofig (files = {}, context) {
       }
     })
   }
-  if (context.props.projectcritical === true) {
+  if (context.props.projectcritical !== 'undefined' && context.props.projectcritical === true) {
     extend(files.pkg, {
       'cssabove': {
         'width': '1024',
