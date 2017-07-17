@@ -29,7 +29,7 @@ const buildTask = (cb) => {
     [
       'compiler:css',
       'compiler:html'
-    ]<% if (projectcritical === true) { %>,
+    ]<% if (projectcritical !== 'undefined' && projectcritical === true) { %>,
     [
       'optimize:criticalCss'
     ]<% } %>,

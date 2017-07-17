@@ -1,3 +1,16 @@
+# ************************************************************
+# Sequel Pro SQL dump
+# Version 4541
+#
+# http://www.sequelpro.com/
+# https://github.com/sequelpro/sequelpro
+#
+# Host: localhost (MySQL 5.6.34)
+# Datenbank: ulfblog
+# Erstellt am: 2017-07-16 14:13:56 +0000
+# ************************************************************
+
+
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
@@ -378,7 +391,7 @@ LOCK TABLES `craft_content` WRITE;
 
 INSERT INTO `craft_content` (`id`, `elementId`, `locale`, `title`, `field_body`, `field_objAccordion`, `field_objAnchor`, `field_objButton`, `field_objCardSlider`, `field_commentSwitch`, `field_copyright`, `field_disqusName`, `field_focalpoint`, `field_objHeadline`, `field_objHorizontalRuler`, `field_objList`, `field_objMarkdown`, `field_objRichtext`, `field_objSectionColumn`, `field_objSection`, `field_seo`, `field_objSpacer`, `field_objTab`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,1,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-04 21:45:00','2017-07-04 22:05:13','cbaf4989-9591-427d-8938-162b4d17915b'),
+	(1,1,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-04 21:45:00','2017-07-16 14:02:16','cbaf4989-9591-427d-8938-162b4d17915b'),
 	(2,2,'de','Home','<p>It’s true, this site doesn’t have a whole lot of content yet, but don’t worry. Our web developers have just installed the CMS, and they’re setting things up for the content editors this very moment. Soon Ktest10.local will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Home\",\"seoDescription\":\"Home\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"seoTitleUnparsed\":\"Home\",\"seoDescriptionUnparsed\":\"Home\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,'2017-07-04 21:45:04','2017-07-05 21:34:43','9fb54827-4097-4fa5-a8fd-1d35d9c8bd38'),
 	(4,4,'de','404',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-04 22:00:57','2017-07-05 21:33:48','0276ef36-ab9b-4ef1-a923-788dd824faf2'),
 	(5,5,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-04 22:01:04','2017-07-04 22:03:20','2403fbb2-6815-4688-9579-12f44c00389e'),
@@ -388,7 +401,9 @@ VALUES
 	(9,7,'de','Carousel',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-05 20:08:13','2017-07-05 20:08:13','261ced72-8fae-449e-b661-441803e6aed8'),
 	(10,7,'en','Carousel',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-05 20:08:13','2017-07-05 20:08:13','140b40f2-6bd4-44cf-b725-606af79ceab2'),
 	(11,4,'en','404',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'2017-07-05 21:33:48','2017-07-05 21:33:48','a6a1aa02-76c4-40ea-8709-e78a77f4fa97'),
-	(12,2,'en','Home','<p>It’s true, this site doesn’t have a whole lot of content yet, but don’t worry. Our web developers have just installed the CMS, and they’re setting things up for the content editors this very moment. Soon Ktest10.local will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Home\",\"seoDescription\":\"Home\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"seoTitleUnparsed\":\"Home\",\"seoDescriptionUnparsed\":\"Home\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,'2017-07-05 21:34:43','2017-07-05 21:34:43','a6ab581b-b6ea-4919-abac-ed9597442825');
+	(12,2,'en','Home','<p>It’s true, this site doesn’t have a whole lot of content yet, but don’t worry. Our web developers have just installed the CMS, and they’re setting things up for the content editors this very moment. Soon Ktest10.local will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Home\",\"seoDescription\":\"Home\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"seoTitleUnparsed\":\"Home\",\"seoDescriptionUnparsed\":\"Home\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,'2017-07-05 21:34:43','2017-07-05 21:34:43','a6ab581b-b6ea-4919-abac-ed9597442825'),
+	(13,11,'de','Hello World','<p>This is for SEO, OG and RSS Feed Content</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Hello World\",\"seoDescription\":\"This is for SEO, OG and RSS Feed Content\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"seoTitleUnparsed\":\"Hello World\",\"seoDescriptionUnparsed\":\"This is for SEO, OG and RSS Feed Content\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"body\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"featuredImage\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"featuredImage\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"featuredImage\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,'2017-07-16 14:05:54','2017-07-16 14:05:54','315cb79b-92ce-4a59-81b1-bcbf0c0cfa29'),
+	(14,11,'en','Hello World','<p>This is for SEO, OG and RSS Feed Content</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,'default',NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Hello World\",\"seoDescription\":\"This is for SEO, OG and RSS Feed Content\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"seoTitleUnparsed\":\"\",\"seoDescriptionUnparsed\":\"\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"body\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"featuredImage\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"featuredImage\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"featuredImage\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,'2017-07-16 14:05:54','2017-07-16 14:05:54','0972d0e1-a5c5-4af3-bd27-d1f0524cf107');
 
 /*!40000 ALTER TABLE `craft_content` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -473,7 +488,7 @@ LOCK TABLES `craft_elements` WRITE;
 
 INSERT INTO `craft_elements` (`id`, `type`, `enabled`, `archived`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'User',1,0,'2017-07-04 21:45:00','2017-07-04 22:05:13','c217e49e-c721-4924-9348-928638224692'),
+	(1,'User',1,0,'2017-07-04 21:45:00','2017-07-16 14:02:16','c217e49e-c721-4924-9348-928638224692'),
 	(2,'Entry',1,0,'2017-07-04 21:45:04','2017-07-05 21:34:43','e03cba08-abbf-4500-ba9c-502704e48f78'),
 	(4,'Entry',1,0,'2017-07-04 22:00:57','2017-07-05 21:33:47','cba1ee13-1a0f-4ba9-aefd-54b2c80a7e55'),
 	(5,'GlobalSet',1,0,'2017-07-04 22:01:04','2017-07-04 22:03:20','708ae318-3f09-49e3-9839-4e530ae511a9'),
@@ -481,7 +496,9 @@ VALUES
 	(7,'Category',1,0,'2017-07-05 20:08:13','2017-07-05 20:08:13','80dfd2d2-abac-4878-a8d5-2c6ced2f8f15'),
 	(8,'SuperTable_Block',1,0,'2017-07-05 20:08:13','2017-07-05 20:08:13','8c9f1d41-5281-4b17-8796-f85573c4fb9d'),
 	(9,'SuperTable_Block',1,0,'2017-07-05 20:08:13','2017-07-05 20:08:13','cba1a30c-9278-4d47-b32d-8e3ce1995823'),
-	(10,'SuperTable_Block',1,0,'2017-07-05 21:33:19','2017-07-05 21:33:19','7364e1ea-afed-4617-a0b6-edd67ffa7777');
+	(10,'SuperTable_Block',1,0,'2017-07-05 21:33:19','2017-07-05 21:33:19','7364e1ea-afed-4617-a0b6-edd67ffa7777'),
+	(11,'Entry',1,0,'2017-07-16 14:05:54','2017-07-16 14:05:54','7021e756-3fd2-46a0-ad2a-ee0309c9d166'),
+	(12,'SuperTable_Block',1,0,'2017-07-16 14:05:54','2017-07-16 14:05:54','d2e32ad1-b529-4c82-a358-bc90967809c8');
 
 /*!40000 ALTER TABLE `craft_elements` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -517,7 +534,7 @@ LOCK TABLES `craft_elements_i18n` WRITE;
 
 INSERT INTO `craft_elements_i18n` (`id`, `elementId`, `locale`, `slug`, `uri`, `enabled`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,1,'de','',NULL,1,'2017-07-04 21:45:00','2017-07-04 22:05:13','0cb638ff-c30e-4e0f-9e2d-ee6db00d3115'),
+	(1,1,'de','',NULL,1,'2017-07-04 21:45:00','2017-07-16 14:02:16','0cb638ff-c30e-4e0f-9e2d-ee6db00d3115'),
 	(2,2,'de','homepage','__home__',1,'2017-07-04 21:45:04','2017-07-05 21:34:43','974d33f2-d7ef-425f-959f-022b86c304c5'),
 	(4,4,'de','404','404',1,'2017-07-04 22:00:57','2017-07-05 21:33:48','8e3d67f1-9249-4c1f-a99b-9aa785e2b239'),
 	(5,5,'de','',NULL,1,'2017-07-04 22:01:04','2017-07-04 22:03:20','eab58c53-7331-412e-bdda-86dedb7ee256'),
@@ -532,7 +549,11 @@ VALUES
 	(14,9,'en','',NULL,1,'2017-07-05 20:08:13','2017-07-05 20:08:13','afb32c4b-ad18-481a-9eab-ab1416eb6855'),
 	(15,10,'de','',NULL,1,'2017-07-05 21:33:19','2017-07-05 21:33:19','2a645fcf-c92e-46fd-bb98-01bf9fa06b11'),
 	(16,4,'en','404','404',1,'2017-07-05 21:33:48','2017-07-05 21:33:48','7459f1b5-ce3f-454a-9f7f-b1687b2eea15'),
-	(17,2,'en','homepage','__home__',1,'2017-07-05 21:34:43','2017-07-05 21:34:43','3f9118d4-db28-4343-aa89-0908b07ec43f');
+	(17,2,'en','homepage','__home__',1,'2017-07-05 21:34:43','2017-07-05 21:34:43','3f9118d4-db28-4343-aa89-0908b07ec43f'),
+	(18,11,'de','hello-world','blog/e/hello-world',1,'2017-07-16 14:05:54','2017-07-16 14:05:54','f0544f07-10fc-4eed-98eb-699504007849'),
+	(19,11,'en','hello-world','blog/e/hello-world',1,'2017-07-16 14:05:54','2017-07-16 14:05:54','eef10dc6-05b4-403d-8d21-654b1df146f2'),
+	(20,12,'de','',NULL,1,'2017-07-16 14:05:54','2017-07-16 14:05:54','7049b39a-1368-46e1-9a78-a231b84adab9'),
+	(21,12,'en','',NULL,1,'2017-07-16 14:05:54','2017-07-16 14:05:54','512e3fb2-2182-4468-9256-301539afa596');
 
 /*!40000 ALTER TABLE `craft_elements_i18n` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -593,7 +614,8 @@ LOCK TABLES `craft_entries` WRITE;
 INSERT INTO `craft_entries` (`id`, `sectionId`, `typeId`, `authorId`, `postDate`, `expiryDate`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
 	(2,1,1,NULL,'2017-07-05 21:34:42',NULL,'2017-07-04 21:45:04','2017-07-05 21:34:42','a32f5949-bfff-425c-86c9-f54c7897194a'),
-	(4,3,3,NULL,'2017-07-05 21:33:46',NULL,'2017-07-04 22:00:57','2017-07-05 21:33:46','5dcf217a-74d9-4288-bdbf-dfc12a44beb5');
+	(4,3,3,NULL,'2017-07-05 21:33:46',NULL,'2017-07-04 22:00:57','2017-07-05 21:33:46','5dcf217a-74d9-4288-bdbf-dfc12a44beb5'),
+	(11,4,4,1,'2017-07-16 14:05:54',NULL,'2017-07-16 14:05:54','2017-07-16 14:05:54','4258708d-2789-49ce-9703-f1f03090fb32');
 
 /*!40000 ALTER TABLE `craft_entries` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -707,7 +729,8 @@ VALUES
 	(1,2,1,1,'de',1,NULL,'{\"typeId\":\"1\",\"authorId\":null,\"title\":\"Homepage\",\"slug\":\"homepage\",\"postDate\":1499204704,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":[]}','2017-07-04 21:45:04','2017-07-04 21:45:04','965e0e98-f141-4aec-8609-7432da3b9bbb'),
 	(2,2,1,1,'de',2,NULL,'{\"typeId\":null,\"authorId\":null,\"title\":\"Welcome to Ktest10.local!\",\"slug\":\"homepage\",\"postDate\":1499204704,\"expiryDate\":null,\"enabled\":\"1\",\"parentId\":null,\"fields\":{\"1\":\"<p>It\\u2019s true, this site doesn\\u2019t have a whole lot of content yet, but don\\u2019t worry. Our web developers have just installed the CMS, and they\\u2019re setting things up for the content editors this very moment. Soon Ktest10.local will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.<\\/p>\"}}','2017-07-04 21:45:04','2017-07-04 21:45:04','313a8fdb-8604-476e-a329-fd73002135fd'),
 	(4,4,3,1,'de',1,NULL,'{\"typeId\":\"3\",\"authorId\":null,\"title\":\"404\",\"slug\":\"404\",\"postDate\":1499205657,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":[]}','2017-07-04 22:00:57','2017-07-04 22:00:57','080283eb-ec61-454d-a304-325202f800b7'),
-	(5,2,1,1,'de',3,'','{\"typeId\":null,\"authorId\":null,\"title\":\"Home\",\"slug\":\"homepage\",\"postDate\":1499204704,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":{\"152\":\"\",\"62\":{\"new1\":{\"type\":\"14\",\"fields\":{\"photo\":\"\",\"headline\":\"\",\"linkit\":{\"type\":\"\",\"custom\":\"\",\"entry\":\"\",\"category\":\"\",\"customText\":\"\",\"target\":\"\"}}}},\"124\":{\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoTitleUnparsed\":\"\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoDescriptionUnparsed\":\"\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoKeywordsUnparsed\":\"\",\"seoImageIdSource\":\"field\",\"seoImageId\":\"\",\"seoImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageId\":\"\",\"seoTwitterImageTransform\":\"\",\"openGraphType\":\"article\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageId\":\"\",\"seoFacebookImageTransform\":\"\",\"robots\":\"all\"}}}','2017-07-05 21:33:19','2017-07-05 21:33:19','2bbf5018-03f0-48da-bc07-0cfe789d96b5');
+	(5,2,1,1,'de',3,'','{\"typeId\":null,\"authorId\":null,\"title\":\"Home\",\"slug\":\"homepage\",\"postDate\":1499204704,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":{\"152\":\"\",\"62\":{\"new1\":{\"type\":\"14\",\"fields\":{\"photo\":\"\",\"headline\":\"\",\"linkit\":{\"type\":\"\",\"custom\":\"\",\"entry\":\"\",\"category\":\"\",\"customText\":\"\",\"target\":\"\"}}}},\"124\":{\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoTitleUnparsed\":\"\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoDescriptionUnparsed\":\"\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoKeywordsUnparsed\":\"\",\"seoImageIdSource\":\"field\",\"seoImageId\":\"\",\"seoImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageId\":\"\",\"seoTwitterImageTransform\":\"\",\"openGraphType\":\"article\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageId\":\"\",\"seoFacebookImageTransform\":\"\",\"robots\":\"all\"}}}','2017-07-05 21:33:19','2017-07-05 21:33:19','2bbf5018-03f0-48da-bc07-0cfe789d96b5'),
+	(6,11,4,1,'de',1,'','{\"typeId\":null,\"authorId\":\"1\",\"title\":\"Hello World\",\"slug\":\"hello-world\",\"postDate\":1500213954,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":{\"1\":\"<p>This is for SEO, OG and RSS Feed Content<\\/p>\",\"29\":\"\",\"30\":\"\",\"152\":\"\",\"42\":\"\",\"46\":{\"new1\":{\"type\":\"10\",\"fields\":{\"fullbleed\":\"\",\"ratio\":\"\"}}},\"124\":{\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoTitleUnparsed\":\"\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"body\",\"seoDescriptionUnparsed\":\"\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoKeywordsUnparsed\":\"\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"featuredImage\",\"seoImageId\":\"\",\"seoImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"featuredImage\",\"seoTwitterImageId\":\"\",\"seoTwitterImageTransform\":\"\",\"openGraphType\":\"article\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"featuredImage\",\"seoFacebookImageId\":\"\",\"seoFacebookImageTransform\":\"\",\"robots\":\"all\"}}}','2017-07-16 14:05:54','2017-07-16 14:05:54','1aba8b7e-3eb9-437b-afa4-64d5062e18e7');
 
 /*!40000 ALTER TABLE `craft_entryversions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1415,7 +1438,7 @@ LOCK TABLES `craft_info` WRITE;
 
 INSERT INTO `craft_info` (`id`, `version`, `schemaVersion`, `edition`, `siteName`, `siteUrl`, `timezone`, `on`, `maintenance`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'2.6.2986','2.6.10',2,'kittn','http://ktest10.local','UTC',1,0,'2017-07-04 21:44:58','2017-07-04 22:02:45','93fc1702-dfe7-473a-a405-2d9d312ddd7d');
+	(1,'2.6.2987','2.6.10',2,'kittn','http://ktest10.local','UTC',1,0,'2017-07-04 21:44:58','2017-07-14 20:39:19','93fc1702-dfe7-473a-a405-2d9d312ddd7d');
 
 /*!40000 ALTER TABLE `craft_info` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1668,7 +1691,8 @@ LOCK TABLES `craft_neoblockstructures` WRITE;
 
 INSERT INTO `craft_neoblockstructures` (`id`, `structureId`, `ownerId`, `fieldId`, `ownerLocale`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,5,2,152,NULL,'2017-07-05 21:33:19','2017-07-05 21:33:19','1459c611-1bf7-4f6b-b4ac-0651495836ad');
+	(1,5,2,152,NULL,'2017-07-05 21:33:19','2017-07-05 21:33:19','1459c611-1bf7-4f6b-b4ac-0651495836ad'),
+	(2,6,11,152,NULL,'2017-07-16 14:05:54','2017-07-16 14:05:54','bbaf9aa4-4c2d-4bb9-97e2-bb037c4da963');
 
 /*!40000 ALTER TABLE `craft_neoblockstructures` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1794,21 +1818,23 @@ LOCK TABLES `craft_plugins` WRITE;
 
 INSERT INTO `craft_plugins` (`id`, `class`, `version`, `schemaVersion`, `licenseKey`, `licenseKeyStatus`, `enabled`, `settings`, `installDate`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'VideoEmbedUtility','1.0.0',NULL,NULL,'unknown',1,NULL,'2017-07-04 21:59:41','2017-07-04 21:59:41','2017-07-04 22:02:39','31aff914-5d66-498e-8624-8db638cb587f'),
-	(2,'TheArchitect','1.6.0','1.6.0',NULL,'unknown',1,NULL,'2017-07-04 21:59:45','2017-07-04 21:59:45','2017-07-04 22:02:39','b1ab5a65-4a91-44db-9a2f-d0345a21f36d'),
-	(3,'SuperTable','1.0.5','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 21:59:47','2017-07-04 21:59:47','2017-07-04 22:02:39','e6518585-e7b6-4b4c-9aec-d8e6828f015e'),
-	(4,'Seomatic','1.1.47','1.1.25',NULL,'unknown',1,NULL,'2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-04 22:02:39','c4962d5a-4ee2-47be-8081-563112f7196a'),
-	(5,'Neo','1.4.1','1.4.1',NULL,'unknown',1,NULL,'2017-07-04 21:59:59','2017-07-04 21:59:59','2017-07-04 22:02:39','8c41f74e-116e-458f-a3ed-9cc0d6f5ca36'),
-	(6,'FruitLinkIt','2.3.1','2.3.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:03','2017-07-04 22:00:03','2017-07-04 22:02:39','504294b1-8dd4-4248-8074-d11406edf511'),
-	(7,'Kint','1.1.0','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:05','2017-07-04 22:00:05','2017-07-04 22:02:39','f2f131a6-6f87-4af9-af71-9c2379379854'),
-	(8,'Imager','1.5.3','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:07','2017-07-04 22:00:07','2017-07-04 22:02:39','5e3e3de6-61e4-403d-88a6-b43453cd9c0d'),
-	(9,'GitPlugins','0.1.0',NULL,NULL,'unknown',1,NULL,'2017-07-04 22:00:08','2017-07-04 22:00:08','2017-07-04 22:02:39','e2525eed-8362-4662-9443-b9c445e3e9b8'),
-	(10,'FocalPointField','1.0.2',NULL,NULL,'unknown',1,NULL,'2017-07-04 22:00:10','2017-07-04 22:00:10','2017-07-04 22:02:39','ec35c904-1c8a-4949-8b8e-558f3fe71d26'),
-	(11,'CpSortCols','1.1.1','1.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:11','2017-07-04 22:00:11','2017-07-04 22:02:39','2cd4639c-0835-499e-8bad-2cba17990a53'),
-	(12,'CpFieldLinks','1.2.2','1.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:13','2017-07-04 22:00:13','2017-07-04 22:02:39','c3d42938-cfa6-4fda-9015-7ee0e1ef6028'),
-	(13,'AmCommand','2.0.2','2.0.1',NULL,'unknown',1,NULL,'2017-07-04 22:00:14','2017-07-04 22:00:14','2017-07-04 22:02:39','3f58dc7b-4598-485d-90d0-06d1f8858913'),
-	(14,'AmNav','1.7.1',NULL,NULL,'unknown',1,NULL,'2017-07-04 22:00:16','2017-07-04 22:00:16','2017-07-04 22:02:39','97e2ac50-e4f9-4ba4-830c-528e327cbcb3'),
-	(15,'Doxter','1.3.0','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:18','2017-07-04 22:00:18','2017-07-04 22:02:39','ae688b87-4326-4d79-a318-70e2c2341473');
+	(1,'VideoEmbedUtility','1.0.0',NULL,NULL,'unknown',1,NULL,'2017-07-04 21:59:41','2017-07-04 21:59:41','2017-07-16 14:06:51','31aff914-5d66-498e-8624-8db638cb587f'),
+	(2,'TheArchitect','1.6.0','1.6.0',NULL,'unknown',1,NULL,'2017-07-04 21:59:45','2017-07-04 21:59:45','2017-07-16 14:06:51','b1ab5a65-4a91-44db-9a2f-d0345a21f36d'),
+	(3,'SuperTable','1.0.5','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 21:59:47','2017-07-04 21:59:47','2017-07-16 14:06:51','e6518585-e7b6-4b4c-9aec-d8e6828f015e'),
+	(4,'Seomatic','1.1.47','1.1.25',NULL,'unknown',1,NULL,'2017-07-04 21:59:51','2017-07-04 21:59:51','2017-07-16 14:06:51','c4962d5a-4ee2-47be-8081-563112f7196a'),
+	(5,'Neo','1.4.1','1.4.1',NULL,'unknown',1,NULL,'2017-07-04 21:59:59','2017-07-04 21:59:59','2017-07-16 14:06:51','8c41f74e-116e-458f-a3ed-9cc0d6f5ca36'),
+	(6,'FruitLinkIt','2.3.1','2.3.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:03','2017-07-04 22:00:03','2017-07-16 14:06:51','504294b1-8dd4-4248-8074-d11406edf511'),
+	(7,'Kint','1.1.0','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:05','2017-07-04 22:00:05','2017-07-16 14:06:51','f2f131a6-6f87-4af9-af71-9c2379379854'),
+	(8,'Imager','1.5.3','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:07','2017-07-04 22:00:07','2017-07-16 14:06:51','5e3e3de6-61e4-403d-88a6-b43453cd9c0d'),
+	(9,'GitPlugins','0.1.0',NULL,NULL,'unknown',1,NULL,'2017-07-04 22:00:08','2017-07-04 22:00:08','2017-07-16 14:06:51','e2525eed-8362-4662-9443-b9c445e3e9b8'),
+	(10,'FocalPointField','1.0.2',NULL,NULL,'unknown',1,NULL,'2017-07-04 22:00:10','2017-07-04 22:00:10','2017-07-16 14:06:51','ec35c904-1c8a-4949-8b8e-558f3fe71d26'),
+	(11,'CpSortCols','1.1.1','1.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:11','2017-07-04 22:00:11','2017-07-16 14:06:51','2cd4639c-0835-499e-8bad-2cba17990a53'),
+	(12,'CpFieldLinks','1.2.2','1.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:13','2017-07-04 22:00:13','2017-07-16 14:06:51','c3d42938-cfa6-4fda-9015-7ee0e1ef6028'),
+	(13,'AmCommand','2.0.2','2.0.1',NULL,'unknown',1,NULL,'2017-07-04 22:00:14','2017-07-04 22:00:14','2017-07-16 14:06:51','3f58dc7b-4598-485d-90d0-06d1f8858913'),
+	(14,'AmNav','1.7.1',NULL,NULL,'unknown',1,NULL,'2017-07-04 22:00:16','2017-07-04 22:00:16','2017-07-16 14:06:51','97e2ac50-e4f9-4ba4-830c-528e327cbcb3'),
+	(15,'Doxter','1.3.0','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:18','2017-07-04 22:00:18','2017-07-16 14:06:51','ae688b87-4326-4d79-a318-70e2c2341473'),
+	(16,'CacheBuster','1.2.2',NULL,NULL,'unknown',1,NULL,'2017-07-16 10:44:47','2017-07-16 10:44:47','2017-07-16 14:06:51','4a1d2384-a561-4ba4-a3cb-e723bd5463ce'),
+	(17,'Cookies','1.0.4','1.0.0',NULL,'unknown',1,NULL,'2017-07-16 10:44:50','2017-07-16 10:44:50','2017-07-16 14:06:51','16d937e0-3a99-49ad-86c7-5eec44be75a8');
 
 /*!40000 ALTER TABLE `craft_plugins` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1988,7 +2014,31 @@ VALUES
 	(4,'field',43,'en',''),
 	(2,'field',152,'en',''),
 	(2,'field',62,'en',''),
-	(2,'field',124,'en',' 1 0 de 1 0 template creativework article home home summary_large_image article all home home field title field title custom title field field field ');
+	(2,'field',124,'en',' 1 0 de 1 0 template creativework article home home summary_large_image article all home home field title field title custom title field field field '),
+	(11,'field',1,'de',' this is for seo og and rss feed content '),
+	(11,'field',152,'de',''),
+	(11,'field',42,'de',''),
+	(11,'field',46,'de',' 0 '),
+	(11,'field',29,'de',''),
+	(11,'field',30,'de',' 0 '),
+	(11,'field',124,'de',' 1 de 1 0 template creativework article hello world this is for seo og and rss feed content summary_large_image article all field title field body custom title field featuredimage field featuredimage field featuredimage '),
+	(11,'slug',0,'de',' hello world '),
+	(11,'title',0,'de',' hello world '),
+	(11,'field',1,'en',' this is for seo og and rss feed content '),
+	(11,'field',152,'en',''),
+	(11,'field',42,'en',''),
+	(11,'field',46,'en',' 0 '),
+	(11,'field',29,'en',''),
+	(11,'field',30,'en',' 0 '),
+	(11,'field',124,'en',' 1 de 1 0 template creativework article hello world this is for seo og and rss feed content summary_large_image article all field title field body custom title field featuredimage field featuredimage field featuredimage '),
+	(11,'slug',0,'en',' hello world '),
+	(11,'title',0,'en',' hello world '),
+	(12,'field',47,'de',' 0 '),
+	(12,'field',48,'de',''),
+	(12,'slug',0,'de',''),
+	(12,'field',47,'en',' 0 '),
+	(12,'field',48,'en',''),
+	(12,'slug',0,'en','');
 
 /*!40000 ALTER TABLE `craft_searchindex` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2280,7 +2330,10 @@ VALUES
 	(1,1,'ebc01587f551d1b40543c89d8e7fd7b0147d820dczozMjoiNXg1cXUzQVlsZnZYMTJSYlNmVWZCdk5sVHhfT2VGZ2EiOw==','2017-07-04 21:45:04','2017-07-04 21:45:04','24831109-32ac-49eb-81a4-3003b7fb6f30'),
 	(2,1,'3afece416a28dc72aa034cb33770532a04c07a24czozMjoiVUhLa1Y1TktrN0ljWnU3UnNRT2VFT21PYWtYaW1TVU0iOw==','2017-07-05 07:22:24','2017-07-05 07:22:24','6b736c6e-94a1-4fd0-abe0-2bbef3b56d14'),
 	(3,1,'a1a82a43780294ec70ed0471be2ca06b0a1faad8czozMjoiNXlOSmJCUGtCenVGV2ZDUEhHYjI2TWVRcVNxSkp2ZFAiOw==','2017-07-05 19:34:12','2017-07-05 19:34:12','03601ba0-3473-48f3-be12-b03e6156aeba'),
-	(4,1,'726e3b309280cd986746a9bd0203b384177d14ffczozMjoiMEF3cU5MV3hCMGM3c1JWM0RXMG1lUWJveUR4Y0IwcWsiOw==','2017-07-05 21:25:33','2017-07-05 21:25:33','b156aa47-eed5-4ac4-a29c-780305f7127b');
+	(4,1,'726e3b309280cd986746a9bd0203b384177d14ffczozMjoiMEF3cU5MV3hCMGM3c1JWM0RXMG1lUWJveUR4Y0IwcWsiOw==','2017-07-05 21:25:33','2017-07-05 21:25:33','b156aa47-eed5-4ac4-a29c-780305f7127b'),
+	(5,1,'d5bad67e6dcdc3c2c6b54e9e78caad94ccf0b846czozMjoiMFlOdFAwRzc4MFZvZVB1X0hoZ3NPcWFTd0tJcHVpZjMiOw==','2017-07-14 20:39:30','2017-07-14 20:39:30','b7d7b278-0f63-4547-8bd5-4a56ffe5b299'),
+	(6,1,'d4ccf3155b209af2d53459d5a641f1fd37ef0f07czozMjoiMHZOb0dFY1pVbjdadVduRndMcVIyX250WWJDeUVGVlkiOw==','2017-07-16 10:44:30','2017-07-16 10:44:30','2d1137f5-ddfc-4d41-b147-00afbf84cabb'),
+	(7,1,'7b5a03d0f3cd5d229e911f16f728dcfa640174c3czozMjoiMHk4Z1V2SWxscGNTaHRmdXZQSGNINnBraEJRRUNlZzYiOw==','2017-07-16 14:00:44','2017-07-16 14:00:44','5551eca2-6331-4bd2-8f41-b52dc8d580d6');
 
 /*!40000 ALTER TABLE `craft_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2368,7 +2421,8 @@ VALUES
 	(2,2,'2017-07-04 22:00:57','2017-07-05 21:35:00','99021280-ab9d-48a1-ab19-66b2e4b4a849'),
 	(3,1,'2017-07-04 22:00:58','2017-07-04 22:01:04','5888e673-481b-4448-b789-dfb4998de289'),
 	(4,1,'2017-07-04 22:00:58','2017-07-04 22:01:04','981a5add-ed47-44a8-9dd4-a69c0b2b8901'),
-	(5,NULL,'2017-07-05 21:33:19','2017-07-05 21:33:19','ac36a972-9856-4500-b251-7f2d6febda1b');
+	(5,NULL,'2017-07-05 21:33:19','2017-07-05 21:33:19','ac36a972-9856-4500-b251-7f2d6febda1b'),
+	(6,NULL,'2017-07-16 14:05:54','2017-07-16 14:05:54','e4aecf6d-f90b-411f-a161-fdb38b9bc08d');
 
 /*!40000 ALTER TABLE `craft_structures` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2409,7 +2463,8 @@ INSERT INTO `craft_supertableblocks` (`id`, `ownerId`, `fieldId`, `typeId`, `sor
 VALUES
 	(8,7,137,32,1,NULL,'2017-07-05 20:08:13','2017-07-05 20:08:13','578a121a-f99c-4780-99ac-80e025abb7e7'),
 	(9,7,130,31,1,NULL,'2017-07-05 20:08:13','2017-07-05 20:08:13','ae17fa21-26e7-409f-8fcf-f01dc17d450a'),
-	(10,2,62,14,1,NULL,'2017-07-05 21:33:19','2017-07-05 21:33:19','32cbc86d-b0cd-472a-9c06-b3f085a3c5a0');
+	(10,2,62,14,1,NULL,'2017-07-05 21:33:19','2017-07-05 21:33:19','32cbc86d-b0cd-472a-9c06-b3f085a3c5a0'),
+	(12,11,46,10,1,NULL,'2017-07-16 14:05:54','2017-07-16 14:05:54','31311697-2f49-4387-8d1f-2646250a1341');
 
 /*!40000 ALTER TABLE `craft_supertableblocks` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2522,6 +2577,16 @@ CREATE TABLE `craft_supertablecontent_featuredimageoptions` (
   CONSTRAINT `craft_supertablecontent_featuredimageoptions_locale_fk` FOREIGN KEY (`locale`) REFERENCES `craft_locales` (`locale`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+LOCK TABLES `craft_supertablecontent_featuredimageoptions` WRITE;
+/*!40000 ALTER TABLE `craft_supertablecontent_featuredimageoptions` DISABLE KEYS */;
+
+INSERT INTO `craft_supertablecontent_featuredimageoptions` (`id`, `elementId`, `locale`, `field_fullbleed`, `field_ratio`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,12,'de',0,'','2017-07-16 14:05:54','2017-07-16 14:05:54','65323793-f359-4880-8bf4-617a47fa11e5'),
+	(2,12,'en',0,'','2017-07-16 14:05:54','2017-07-16 14:05:54','9b7d056a-7ba4-4f56-b3d0-1ef786c9e58d');
+
+/*!40000 ALTER TABLE `craft_supertablecontent_featuredimageoptions` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Export von Tabelle craft_supertablecontent_hero
@@ -3793,7 +3858,7 @@ LOCK TABLES `craft_users` WRITE;
 
 INSERT INTO `craft_users` (`id`, `username`, `photo`, `firstName`, `lastName`, `email`, `password`, `preferredLocale`, `weekStartDay`, `admin`, `client`, `locked`, `suspended`, `pending`, `archived`, `lastLoginDate`, `lastLoginAttemptIPAddress`, `invalidLoginWindowStart`, `invalidLoginCount`, `lastInvalidLoginDate`, `lockoutDate`, `verificationCode`, `verificationCodeIssuedDate`, `unverifiedEmail`, `passwordResetRequired`, `lastPasswordChangeDate`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'kittn',NULL,'','','hello@kittn.xyz','$2y$13$b5zEYB6weNKXjk8TwldfSuy14CeZqCB/X0k.S3eDN1Ha.70f.cmJK','de',1,1,0,0,0,0,0,'2017-07-05 21:25:33','::1',NULL,NULL,'2017-07-05 21:25:17',NULL,NULL,NULL,NULL,0,'2017-07-04 21:45:00','2017-07-04 21:45:00','2017-07-05 21:25:33','230071a9-e155-4c49-8381-8aca584cd137');
+	(1,'kittn',NULL,'','','hello@kittn.xyz','$2y$13$aEV9hEIztEmte9HtKEhP8OT0ZWQ3NCO7Y8AUVe8j7HWWMGChQF23G','de',1,1,0,0,0,0,0,'2017-07-16 14:00:44','::1',NULL,NULL,'2017-07-05 21:25:17',NULL,NULL,NULL,NULL,0,'2017-07-16 14:02:16','2017-07-04 21:45:00','2017-07-16 14:02:16','230071a9-e155-4c49-8381-8aca584cd137');
 
 /*!40000 ALTER TABLE `craft_users` ENABLE KEYS */;
 UNLOCK TABLES;

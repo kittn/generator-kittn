@@ -3,11 +3,16 @@
   <link rel="home" href="{{ siteUrl }}">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="{{ craft.config.rootUrl~'assets/css/style.css' }}">
+  {# CSS Loading Block #}
+  {% if criticalCSS and craft.request.isLivePreview != true and craft.config.environment != 'local' %}
+    {{ include('_parts/critical') }}
+  {% else %}
+    <link rel="stylesheet" href="{{ craft.config.rootUrl ~ 'assets/css/<%= projectcssfilename %>.css' }}">
+  {% endif %}
   {% if seomaticSiteMeta is defined %}
     {% hook 'seomaticRender' %}
   {% else %}
-    <title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+    <title>{{ title is defined ? title ~ ' - ' }}{{ siteName }}</title>
     {% if craft.config.environment != 'productive' %}
       <meta name="robots" content="noindex,nofollow">
     {% endif %}

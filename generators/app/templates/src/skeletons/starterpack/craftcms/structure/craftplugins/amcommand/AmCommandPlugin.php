@@ -21,7 +21,7 @@ class AmCommandPlugin extends BasePlugin
 
     public function getVersion()
     {
-        return '2.0.2';
+        return '2.1.1';
     }
 
     public function getSchemaVersion()
@@ -51,6 +51,121 @@ class AmCommandPlugin extends BasePlugin
     {
         // Settings
         $settings = $this->getSettings();
+
+        return craft()->templates->render('amcommand/settings', array(
+            'settings' => $settings,
+            'themes' => $this->_getThemes(),
+            'elementSearchElementTypes' => $this->_getElementSearchElementTypes($settings),
+        ));
+    }
+
+    /**
+     * Load command palette.
+     *
+     * @return void
+     */
+    public function init()
+    {
+        // We only want to see the command palette in the backend
+        // User has to be logged in (or it will also work on the login page)
+        // Make sure we only run our code once on pages like Entries, by using: craft()->request->isAjaxRequest
+        if (craft()->request->isCpRequest() && craft()->userSession->isLoggedIn() && ! craft()->request->isAjaxRequest()) {
+            // Gather commands
+            $settings = $this->getSettings();
+            $commands = craft()->amCommand->getCommands($settings);
+
+            // Get the HTML
+            $html = craft()->templates->render('amcommand/palette');
+            craft()->templates->includeFootHtml($html);
+
+            // Load javascript
+            $js = sprintf('new Craft.AmCommand(%s);', $commands);
+            craft()->templates->includeJs($js);
+            craft()->templates->includeJsResource('amcommand/js/AmCommand.min.js');
+            craft()->templates->includeJsResource('amcommand/js/fuzzy-min.js');
+            craft()->templates->includeTranslations('Command executed', 'Are you sure you want to execute this command?', 'There are no more commands available.');
+
+            // Load CSS
+            craft()->templates->includeCssResource('amcommand/css/Command.css');
+            $themeFile = $this->_getSelectedTheme($settings);
+            if ($themeFile) {
+                craft()->templates->includeCssResource('amcommand/css/' . $themeFile);
+            }
+        }
+    }
+
+    /**
+     * Plugin settings.
+     *
+     * @return array
+     */
+    protected function defineSettings()
+    {
+        return array(
+            'theme'                     => array(AttributeType::String, 'default' => ''),
+            'elementSearchElementTypes' => array(AttributeType::Mixed),
+        );
+    }
+
+    /**
+     * Get available themes.
+     * @return type
+     */
+    private function _getThemes()
+    {
+        // Gather themes
+        $themes = array();
+        $path = craft()->path->getPluginsPath().'amcommand/resources/css/';
+        if (IOHelper::folderExists($path)) {
+            $themeFiles = IOHelper::getFolderContents($path, false, '\.css$');
+
+            if (is_array($themeFiles)) {
+                foreach ($themeFiles as $file) {
+                    $fileName = IOHelper::getFileName($file);
+                    if ($fileName == 'Command.css') {
+                        continue; // Skip default
+                    }
+                    $themes[$fileName] = IOHelper::getFileName($file, false);
+                }
+            }
+        }
+        natsort($themes);
+
+        return array_merge(array('' => Craft::t('Default')), $themes);
+    }
+
+    /**
+     * Get selected theme.
+     *
+     * @param array $settings
+     *
+     * @return false|string
+     */
+    private function _getSelectedTheme($settings)
+    {
+        // Did we select one?
+        if (empty($settings->theme) || $settings->theme == 'Command.css') {
+            return false;
+        }
+
+        // Find theme
+        $path = craft()->path->getPluginsPath().'amcommand/resources/css/';
+        if (IOHelper::fileExists($path . $settings->theme)) {
+            return $settings->theme;
+        }
+
+        return false;
+    }
+
+    /**
+     * Get available element types that can be used for direct element searching.
+     *
+     * @param array $settings
+     *
+     * @return array
+     */
+    private function _getElementSearchElementTypes($settings)
+    {
         $elementSearchElementTypes = array();
         $defaultEnabledElementTypes = array(
             ElementType::Category,
@@ -79,49 +194,6 @@ class AmCommandPlugin extends BasePlugin
         // Sort by element type
         ksort($elementSearchElementTypes);
 
-        return craft()->templates->render('amcommand/settings', array(
-            'settings' => $settings,
-            'elementSearchElementTypes' => $elementSearchElementTypes,
-        ));
-    }
-
-    /**
-     * Load command palette.
-     *
-     * @return void
-     */
-    public function init()
-    {
-        // We only want to see the command palette in the backend
-        // User has to be logged in (or it will also work on the login page)
-        // Make sure we only run our code once on pages like Entries, by using: craft()->request->isAjaxRequest
-        if (craft()->request->isCpRequest() && craft()->userSession->isLoggedIn() && ! craft()->request->isAjaxRequest()) {
-            // Gather commands
-            $commands = craft()->amCommand->getCommands($this->getSettings());
-
-            // Get the HTML
-            $html = craft()->templates->render('amcommand/palette');
-            craft()->templates->includeFootHtml($html);
-
-            // Load javascript
-            $js = sprintf('new Craft.AmCommand(%s);', $commands);
-            craft()->templates->includeJs($js);
-            craft()->templates->includeJsResource('amcommand/js/AmCommand.min.js');
-            craft()->templates->includeJsResource('amcommand/js/fuzzy-min.js');
-            craft()->templates->includeCssResource('amcommand/css/AmCommand.css');
-            craft()->templates->includeTranslations('Command executed', 'Are you sure you want to execute this command?', 'There are no more commands available.');
-        }
-    }
-
-    /**
-     * Plugin settings.
-     *
-     * @return array
-     */
-    protected function defineSettings()
-    {
-        return array(
-            'elementSearchElementTypes' => array(AttributeType::Mixed),
-        );
+        return $elementSearchElementTypes;
     }
 }

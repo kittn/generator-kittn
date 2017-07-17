@@ -1543,7 +1543,7 @@ LOCK TABLES `craft_users` WRITE;
 
 INSERT INTO `craft_users` (`id`, `username`, `photo`, `firstName`, `lastName`, `email`, `password`, `preferredLocale`, `weekStartDay`, `admin`, `client`, `locked`, `suspended`, `pending`, `archived`, `lastLoginDate`, `lastLoginAttemptIPAddress`, `invalidLoginWindowStart`, `invalidLoginCount`, `lastInvalidLoginDate`, `lockoutDate`, `verificationCode`, `verificationCodeIssuedDate`, `unverifiedEmail`, `passwordResetRequired`, `lastPasswordChangeDate`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'kittn',NULL,NULL,NULL,'hello@kittn.xyz','$2y$13$b5zEYB6weNKXjk8TwldfSuy14CeZqCB/X0k.S3eDN1Ha.70f.cmJK',NULL,1,1,0,0,0,0,0,'2017-07-04 21:45:04','::1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'2017-07-04 21:45:00','2017-07-04 21:45:00','2017-07-04 21:45:04','230071a9-e155-4c49-8381-8aca584cd137');
+	(1,'kittn',NULL,NULL,NULL,'hello@kittn.xyz','$2y$13$aEV9hEIztEmte9HtKEhP8OT0ZWQ3NCO7Y8AUVe8j7HWWMGChQF23G',NULL,1,1,0,0,0,0,0,'2017-07-04 21:45:04','::1',NULL,NULL,NULL,NULL,NULL,NULL,NULL,0,'2017-07-04 21:45:00','2017-07-04 21:45:00','2017-07-04 21:45:04','230071a9-e155-4c49-8381-8aca584cd137');
 
 /*!40000 ALTER TABLE `craft_users` ENABLE KEYS */;
 UNLOCK TABLES;
