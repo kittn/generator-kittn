@@ -21,6 +21,7 @@ function processCriticalCss(element, i, callback) {
       dest: criticalDest,
       inline: kittn.cssabove.inline,
       ignore: kittn.cssabove.ignore,
+      include: kittn.cssabove.include,
       css: [
         kittn.dist.css + kittn.cssabove.cssfile
       ],
