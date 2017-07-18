@@ -92,8 +92,8 @@ module.exports = class extends Generator {
 
   prompting () {
     // Custom Greeting
-    var welcome = `
-            ${chalk.styles.cyan.open}
+    var welcome = chalk`
+            {cyan
                                        ..
                                      .l0O:
                                      :NMMO' .od'
@@ -120,12 +120,12 @@ module.exports = class extends Generator {
       ,KMMMMMMN:      ;0WMMMMMMWk'   ,KMMMMMMX:     .dNMMMMMMMMMMMMMMWk. ;0WMMMMMMMMMMMMMXlcXMMMMMMK;          :XMMMMMMK,
       ,KMMMMMMN:       .xWMMMMMMW0;  ,KMMMMMMX:      .:ONMMMMMMMMMMMWXd.  .oKWMMMMMMMMMMN0clXMMMMMMK,          :XMMMMMMK,
       .dOOOOOOx,        .ckOOOOOOkd' .dOOkkOOx'        .,lxOKKXKK0ko:.      .:ok0KKKKOxl,. 'xOOOOOOd.          'xOOOOOOd.
-                                                            ......               ....                           ${chalk.styles.white.open}${chalk.bold.bgCyan(' v' + this.pkg.version + ' ')}${chalk.styles.white.close}
-      ${chalk.styles.cyan.close}${chalk.styles.magenta.open}
+                                                            ......               ....                           }{white.bold.bgCyan v${this.pkg.version} }
+      {magenta
       ------------------------------------------- the revenge of the kittn ---------------------------------------------
-      ${chalk.styles.magenta.close}
-      ${chalk.bold('Authors:')}${chalk.styles.yellow.open} Sascha Fuchs${chalk.styles.yellow.close} ${chalk.underline.green('@gisugosu')} & ${chalk.styles.yellow.open}Lars Eichler${chalk.styles.yellow.close} ${chalk.underline.green('@cinkon')}
-      ${chalk.bold('URL:')}${chalk.styles.yellow.open} http://kittn.de${chalk.styles.yellow.close}
+      }
+      {bold Authors:} {yellow Sascha Fuchs} {underline.green @gisugosu} & {yellow Lars Eichler} {underline.green @cinkon}
+      {bold URL:} {yellow http://kittn.de}
 
     `
     clear()
@@ -181,7 +181,7 @@ module.exports = class extends Generator {
 
   end () {
     clear()
-    let goodbye =`
+    let goodbye = chalk`
 
 
               .
@@ -213,56 +213,55 @@ module.exports = class extends Generator {
    .oOK0;    ;d.   .'kN0xl'                                             .cx0Xx;'...lk, ..'dXKd'
      .cdxddooOXOddddooc'.                                                  .,cloddxO0xddddo:.
         ..',,,,,'...                                                              ......
-                               ${chalk.styles.yellow.open}Meeeeooowww! The Generator is finished.${chalk.styles.yellow.close}
+                               {yellow Meeeeooowww! The Generator is finished.}
 
-          ${chalk.styles.cyan.open}
-          ${chalk.styles.bold.open}Next Steps: ${chalk.styles.bold.close}`
+          {cyan.bold Next Steps:}`
 
           goodbye += '\n\n'
 
           if (this.props.projectusage.substring(0,4) === 'word' && this.commands.wp !== true) {
-            goodbye += `          - Install Wordpress manually in the 'dist/' directory` + '\n'
+            goodbye += chalk`{cyan          - Install Wordpress manually in the 'dist/' directory}` + '\n'
           }
 
           if (this.props.projectusage.substring(0,5) === 'craft' && this.commands.wget !== true) {
-            goodbye += `          - Install Craft manually in the 'dist/' directory` + '\n'
+            goodbye += chalk`{cyan          - Install Craft manually in the 'dist/' directory}` + '\n'
           }
 
           if (this.props.projectusage === 'wordpressCB') {
-            goodbye += `          - Copy your ACF5 Pro Plugin on 'src/structure/plugins/'` + '\n'
+            goodbye += chalk`{cyan          - Copy your ACF5 Pro Plugin on 'src/structure/plugins/'}` + '\n'
           }
 
           if (this.props.projectusage === 'craft' || this.props.projectusage === 'craftCB') {
-            goodbye += `          - Setup User and Staff on 'craftscripts/.env.sh'` + '\n'
+            goodbye += chalk`{cyan          - Setup User and Staff on 'craftscripts/.env.sh'}` + '\n'
           }
 
-          goodbye += `          - Initiate the project with 'npm run init'` + '\n'
+          goodbye += chalk`{cyan          - Initiate the project with 'npm run init'}` + '\n'
 
           if (this.props.projectusage.substring(0,5) === 'craft') {
-            goodbye += `          - Execute './craftscripts/set_perms.sh'` + '\n'
+            goodbye += chalk`{cyan          - Execute './craftscripts/set_perms.sh'}` + '\n'
           }
 
           if (this.props.projectusage !== 'html') {
-            goodbye += `          - Setup your vHost on '${this.props.credentialdomain}' on '[projectRoot]/dist/${this.props.projectusage.substring(0,5) === 'craft' ? 'public/' : ''}'` + '\n'
-            goodbye += `          - Import database.sql found on project root` + '\n'
+            goodbye += chalk`{cyan          - Setup your vHost on '${this.props.credentialdomain}' on '[projectRoot]/dist/${this.props.projectusage.substring(0,5) === 'craft' ? 'public/' : ''}'}` + '\n'
+            goodbye += chalk`{          - Import database.sql found on project root}` + '\n'
           }
 
           if (this.props.projectusage !== 'html' && this.props.projectcredential) {
-            goodbye += `            => 'mysql -u${this.props.credentialdbuser} -p${this.props.credentialdbpass} ${this.props.credentialdbdatabase} < database.sql'` + '\n'
+            goodbye += chalk`{cyan            => 'mysql -u${this.props.credentialdbuser} -p${this.props.credentialdbpass} ${this.props.credentialdbdatabase} < database.sql'}` + '\n'
           }
 
           if (this.props.projectusage !== 'html') {
-            goodbye += `          - Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `superkittn` : `kittn` }'. After login, activate theme and create a new user` + '\n'
+            goodbye += chalk`{cyan          - Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `superkittn` : `kittn` }'. After login, activate theme and create a new user}` + '\n'
           }
 
           if (this.props.projectcredential) {
-            goodbye += `            => Backend: ${this.props.credentialdomain}/${this.props.projectusage.substring(0,5) === 'craft' ? `admin` : `wp-admin` }` + '\n'
+            goodbye += chalk`{cyan            => Backend: ${this.props.credentialdomain}/${this.props.projectusage.substring(0,5) === 'craft' ? `admin` : `wp-admin` }}` + '\n'
           }
 
-          goodbye += `          - Start the devtask with 'npm run dev'
+          goodbye += chalk`{cyan          - Start the devtask with 'npm run dev'
 
           Happy Coding.
-          ${chalk.styles.cyan.close}`
+         }`
 
 
     this.log(goodbye)
