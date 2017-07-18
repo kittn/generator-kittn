@@ -94,15 +94,15 @@ module.exports = class extends Generator {
     // Custom Greeting
     var welcome = chalk`
             {cyan
-                                       ..
-                                     .l0O:
-                                     :NMMO' .od'
-                                     ,0WNd. :XNl
-       ........                  .l:. .,'.   ,,.
-      'kXXXXXX0;                 lNO' 'lxxxol:,.
-      ,KMMMMMMN:                 .,''dXMMMMMMMNd.  .dOOOOOOk,           :kOOOOOOo.
-      ,KMMMMMMN:                   'OWMMMMWX0xc'   ,KMMMMMMNc           oWMMMMMMO.
-      ,KMMMMMMN:                   'dkxol:,..      ,KMMMMMMNc           oWMMMMMMO.
+                                       {hex('#0097ef') ..}
+                                     {hex('#0097ef') .l0O:}
+                                     {hex('#0097ef') :NMMO' .od'}
+                                     {hex('#0097ef') ,0WNd. :XNl}
+       ........                  {hex('#0097ef') .l:. .,'.   ,,.}
+      'kXXXXXX0;                 {hex('#0097ef') lNO' 'lxxxol:,.}
+      ,KMMMMMMN:                 {hex('#0097ef') .,''dXMMMMMMMNd.}  .dOOOOOOk,           :kOOOOOOo.
+      ,KMMMMMMN:                   {hex('#0097ef') 'OWMMMMWX0xc'}   ,KMMMMMMNc           oWMMMMMMO.
+      ,KMMMMMMN:                   {hex('#0097ef') 'dkxol:,.. }     ,KMMMMMMNc           oWMMMMMMO.
       ,KMMMMMMN:                                   ,KMMMMMMNc           oWMMMMMMO.
       ,KMMMMMMN:        ';::::::::'  .,;;;;;;,. .;;dXMMMMMMWk:;;;;;;;;;:OWMMMMMMKo;;;;;;.  .,;;;;;;,.  ..;cloolc;.
       ,KMMMMMMN:      'dXMMMMMMMNx'  ,KMMMMMWX;.dWWMMMMMMMMMMMWWWWWWWWWWMMMMMMMMMMMMWMMX:  ;XMMMMMMKc,oOXWMMMMMMWXOl.
@@ -120,12 +120,13 @@ module.exports = class extends Generator {
       ,KMMMMMMN:      ;0WMMMMMMWk'   ,KMMMMMMX:     .dNMMMMMMMMMMMMMMWk. ;0WMMMMMMMMMMMMMXlcXMMMMMMK;          :XMMMMMMK,
       ,KMMMMMMN:       .xWMMMMMMW0;  ,KMMMMMMX:      .:ONMMMMMMMMMMMWXd.  .oKWMMMMMMMMMMN0clXMMMMMMK,          :XMMMMMMK,
       .dOOOOOOx,        .ckOOOOOOkd' .dOOkkOOx'        .,lxOKKXKK0ko:.      .:ok0KKKKOxl,. 'xOOOOOOd.          'xOOOOOOd.
-                                                            ......               ....                           }{white.bold.bgCyan v${this.pkg.version} }
-      {magenta
-      ------------------------------------------- the revenge of the kittn ---------------------------------------------
+                                                            ......               ....                           }
+                                                                                                                {white.bold.bgCyan  v${this.pkg.version} }{hex('#c9c9c9')
+      
+      ------------------------------------------- {hex('#00ffd8') the revenge of the kittn } ---------------------------------------------
       }
-      {bold Authors:} {yellow Sascha Fuchs} {underline.green @gisugosu} & {yellow Lars Eichler} {underline.green @cinkon}
-      {bold URL:} {yellow http://kittn.de}
+      {bold Authors:} {hex('#00ffd8') Sascha Fuchs} {underline.hex('#00a1ff') @gisugosu} & {hex('#00ffd8') Lars Eichler} {underline.hex('#00a1ff') @cinkon}
+      {bold URL:} {hex('#00ffd8') http://kittn.de}
 
     `
     clear()
