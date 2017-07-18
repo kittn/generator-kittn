@@ -30,8 +30,8 @@ LOCAL_ROOT_PATH="<%= projectpath %>/dist/"
 LOCAL_ASSETS_PATH=$LOCAL_ROOT_PATH"public/uploads/"
 
 # Local user & group that should own the Craft CMS install
-LOCAL_CHOWN_USER="admin"
-LOCAL_CHOWN_GROUP="apache"
+LOCAL_CHOWN_USER="<%= fileUser %>"
+LOCAL_CHOWN_GROUP="<%= fileGroup %>"
 
 # Local directories relative to LOCAL_ROOT_PATH that should be writeable by the $CHOWN_GROUP
 LOCAL_WRITEABLE_DIRS=(
@@ -39,6 +39,7 @@ LOCAL_WRITEABLE_DIRS=(
                 "${GLOBAL_CRAFT_PATH}config"
                 "${GLOBAL_CRAFT_PATH}app"
                 "public/assets"
+                "public/imager"
                 )
 
 # Local asset directories relative to LOCAL_ASSETS_PATH that should be synched with remote assets

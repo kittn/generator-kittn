@@ -42,6 +42,10 @@ function addCraftCofig (files = {}, context) {
         'inline': false,
         'url': context.props.credentialdomain !== 'undefined' ? `http://${context.props.credentialdomain}` : 'http://',
         'cssfile': context.props.projectcssfilename + '.css',
+        'include': [
+          '.plj',
+          '.c-progressLoader'
+        ],
         'ignore': [
           'font-face'
         ],

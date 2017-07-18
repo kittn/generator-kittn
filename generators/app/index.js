@@ -3,6 +3,7 @@ const chalk = require('chalk')
 const clear = require('clear-terminal')
 const random = require('randomstring')
 const commandExists = require('command-exists')
+const os = require('os')
 
 // Importing modules
 const promptsFunction = require('./modules/prompt')
@@ -94,15 +95,15 @@ module.exports = class extends Generator {
     // Custom Greeting
     var welcome = chalk`
             {cyan
-                                       ..
-                                     .l0O:
-                                     :NMMO' .od'
-                                     ,0WNd. :XNl
-       ........                  .l:. .,'.   ,,.
-      'kXXXXXX0;                 lNO' 'lxxxol:,.
-      ,KMMMMMMN:                 .,''dXMMMMMMMNd.  .dOOOOOOk,           :kOOOOOOo.
-      ,KMMMMMMN:                   'OWMMMMWX0xc'   ,KMMMMMMNc           oWMMMMMMO.
-      ,KMMMMMMN:                   'dkxol:,..      ,KMMMMMMNc           oWMMMMMMO.
+                                       {hex('#0097ef') ..}
+                                     {hex('#0097ef') .l0O:}
+                                     {hex('#0097ef') :NMMO' .od'}
+                                     {hex('#0097ef') ,0WNd. :XNl}
+       ........                  {hex('#0097ef') .l:. .,'.   ,,.}
+      'kXXXXXX0;                 {hex('#0097ef') lNO' 'lxxxol:,.}
+      ,KMMMMMMN:                 {hex('#0097ef') .,''dXMMMMMMMNd.}  .dOOOOOOk,           :kOOOOOOo.
+      ,KMMMMMMN:                   {hex('#0097ef') 'OWMMMMWX0xc'}   ,KMMMMMMNc           oWMMMMMMO.
+      ,KMMMMMMN:                   {hex('#0097ef') 'dkxol:,.. }     ,KMMMMMMNc           oWMMMMMMO.
       ,KMMMMMMN:                                   ,KMMMMMMNc           oWMMMMMMO.
       ,KMMMMMMN:        ';::::::::'  .,;;;;;;,. .;;dXMMMMMMWk:;;;;;;;;;:OWMMMMMMKo;;;;;;.  .,;;;;;;,.  ..;cloolc;.
       ,KMMMMMMN:      'dXMMMMMMMNx'  ,KMMMMMWX;.dWWMMMMMMMMMMMWWWWWWWWWWMMMMMMMMMMMMWMMX:  ;XMMMMMMKc,oOXWMMMMMMWXOl.
@@ -120,12 +121,13 @@ module.exports = class extends Generator {
       ,KMMMMMMN:      ;0WMMMMMMWk'   ,KMMMMMMX:     .dNMMMMMMMMMMMMMMWk. ;0WMMMMMMMMMMMMMXlcXMMMMMMK;          :XMMMMMMK,
       ,KMMMMMMN:       .xWMMMMMMW0;  ,KMMMMMMX:      .:ONMMMMMMMMMMMWXd.  .oKWMMMMMMMMMMN0clXMMMMMMK,          :XMMMMMMK,
       .dOOOOOOx,        .ckOOOOOOkd' .dOOkkOOx'        .,lxOKKXKK0ko:.      .:ok0KKKKOxl,. 'xOOOOOOd.          'xOOOOOOd.
-                                                            ......               ....                           }{white.bold.bgCyan v${this.pkg.version} }
-      {magenta
-      ------------------------------------------- the revenge of the kittn ---------------------------------------------
+                                                            ......               ....                           }
+                                                                                                                {white.bold.bgCyan  v${this.pkg.version} }{hex('#c9c9c9')
+      
+      ------------------------------------------- {hex('#00ffd8') the revenge of the kittn } ---------------------------------------------
       }
-      {bold Authors:} {yellow Sascha Fuchs} {underline.green @gisugosu} & {yellow Lars Eichler} {underline.green @cinkon}
-      {bold URL:} {yellow http://kittn.de}
+      {bold Authors:} {hex('#00ffd8') Sascha Fuchs} {underline.hex('#00a1ff') @gisugosu} & {hex('#00ffd8') Lars Eichler} {underline.hex('#00a1ff') @cinkon}
+      {bold URL:} {hex('#00ffd8') http://kittn.de}
 
     `
     clear()
@@ -138,6 +140,8 @@ module.exports = class extends Generator {
       this.props = props
       this.props.saltKeys = this.saltKeys
       this.props.projectcritical = this.props.projectcritical ? this.props.projectcritical : false
+      this.props.fileGroup = this.props.fileGroup ? this.props.fileGroup : false
+      this.props.fileUser = this.props.fileUser ? this.props.fileUser : false
     })
   }
 
@@ -215,53 +219,63 @@ module.exports = class extends Generator {
         ..',,,,,'...                                                              ......
                                {yellow Meeeeooowww! The Generator is finished.}
 
-          {cyan.bold Next Steps:}`
+     {cyan.bold Next Steps}`
 
-          goodbye += '\n\n'
+      goodbye += '\n\n'
 
-          if (this.props.projectusage.substring(0,4) === 'word' && this.commands.wp !== true) {
-            goodbye += chalk`{cyan          - Install Wordpress manually in the 'dist/' directory}` + '\n'
-          }
+      if (this.props.projectusage.substring(0,4) === 'word' && this.commands.wp !== true) {
+        goodbye += chalk`{cyan      - Install Wordpress manually in the 'dist/' directory}` + '\n'
+      }
 
-          if (this.props.projectusage.substring(0,5) === 'craft' && this.commands.wget !== true) {
-            goodbye += chalk`{cyan          - Install Craft manually in the 'dist/' directory}` + '\n'
-          }
+      if (this.props.projectusage.substring(0,5) === 'craft' && this.commands.wget !== true) {
+        goodbye += chalk`{cyan      - Install Craft manually in the 'dist/' directory}` + '\n'
+      }
 
-          if (this.props.projectusage === 'wordpressCB') {
-            goodbye += chalk`{cyan          - Copy your ACF5 Pro Plugin on 'src/structure/plugins/'}` + '\n'
-          }
+      if (this.props.projectusage === 'wordpressCB') {
+        goodbye += chalk`{cyan      - Copy your ACF5 Pro Plugin on 'src/structure/plugins/'}` + '\n'
+      }
 
-          if (this.props.projectusage === 'craft' || this.props.projectusage === 'craftCB') {
-            goodbye += chalk`{cyan          - Setup User and Staff on 'craftscripts/.env.sh'}` + '\n'
-          }
+      if (os.type() === 'Darwin') {
+        if (this.props.projectusage !== 'html' && this.props.projectcredential) {
+          goodbye += chalk`{cyan      - Use the './install.sh' Shellscript to skip the following steps.}` + '\n'
+        }
+      } else {
+        if (this.props.projectusage === 'craft' || this.props.projectusage === 'craftCB') {
+          goodbye += chalk`{cyan      - Setup User and Staff on 'craftscripts/.env.sh'}` + '\n'
+        }
 
-          goodbye += chalk`{cyan          - Initiate the project with 'npm run init'}` + '\n'
+        goodbye += chalk`{cyan      - Initiate the project with 'npm run init'}` + '\n'
 
-          if (this.props.projectusage.substring(0,5) === 'craft') {
-            goodbye += chalk`{cyan          - Execute './craftscripts/set_perms.sh'}` + '\n'
-          }
+        if (this.props.projectusage.substring(0,5) === 'craft') {
+          goodbye += chalk`{cyan      - Execute './craftscripts/set_perms.sh'}` + '\n'
+        }
 
-          if (this.props.projectusage !== 'html') {
-            goodbye += chalk`{cyan          - Setup your vHost on '${this.props.credentialdomain}' on '[projectRoot]/dist/${this.props.projectusage.substring(0,5) === 'craft' ? 'public/' : ''}'}` + '\n'
-            goodbye += chalk`{          - Import database.sql found on project root}` + '\n'
-          }
+        if (this.props.projectusage !== 'html') {
+          const folder = this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : ''
+          goodbye += chalk`{cyan      - Import database.sql found on project root}` + '\n'
+        }
 
-          if (this.props.projectusage !== 'html' && this.props.projectcredential) {
-            goodbye += chalk`{cyan            => 'mysql -u${this.props.credentialdbuser} -p${this.props.credentialdbpass} ${this.props.credentialdbdatabase} < database.sql'}` + '\n'
-          }
+        if (this.props.projectusage !== 'html' && this.props.projectcredential) {
+          goodbye += chalk`{cyan        => 'mysql -u${this.props.credentialdbuser} -p${this.props.credentialdbpass} ${this.props.credentialdbdatabase} < database.sql'}` + '\n\n'
+        }
+      }
 
-          if (this.props.projectusage !== 'html') {
-            goodbye += chalk`{cyan          - Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `superkittn` : `kittn` }'. After login, activate theme and create a new user}` + '\n'
-          }
+      if (this.props.projectusage !== 'html') {
+        const folder = this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : ''
+        goodbye += chalk`{hex('#009dff')      - Define vHost for '${this.props.credentialdomain}' on '[projectRoot]/dist/${folder}'}` + '\n'
+      }
 
-          if (this.props.projectcredential) {
-            goodbye += chalk`{cyan            => Backend: ${this.props.credentialdomain}/${this.props.projectusage.substring(0,5) === 'craft' ? `admin` : `wp-admin` }}` + '\n'
-          }
+      if (this.props.projectusage !== 'html') {
+        goodbye += chalk`{hex('#009dff')      - Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `superkittn` : `kittn` }'. After login, activate theme and create a new user}` + '\n'
+      }
 
-          goodbye += chalk`{cyan          - Start the devtask with 'npm run dev'
+      if (this.props.projectcredential) {
+        goodbye += chalk`{hex('#009dff')            => Backend: ${this.props.credentialdomain}/${this.props.projectusage.substring(0,5) === 'craft' ? `admin` : `wp-admin` }}` + '\n'
+      }
 
-          Happy Coding.
-         }`
+      goodbye += chalk`{hex('#009dff')      - Start the devtask with 'npm run dev'}
+
+     {hex('#94ff00').bold Happy Coding.}`
 
 
     this.log(goodbye)

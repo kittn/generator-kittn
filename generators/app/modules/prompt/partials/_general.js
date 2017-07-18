@@ -25,7 +25,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         }
         return true
       },
-      store: true
+      store: false
     },
     {
       type: 'list',
@@ -57,7 +57,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
           value: 'wordpressCB'
         }
       ],
-      store: true
+      store: false
     },
     {
       when: when('projectusage', 'html'),
@@ -79,7 +79,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         }
       ],
       default: 'twig',
-      store: true
+      store: false
     },
     {
       when: function (answers) {
@@ -161,6 +161,32 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
       store: true
     },
     {
+      when: function (answers) {
+        return answers.projectusage.substring(0, 5) === 'craft'
+      },
+      type: 'input',
+      name: 'fileUser',
+      message: message({
+        headline: 'Username on your Filesystem',
+        description: 'Needed for the Craftscripts.',
+        defaultValue: false
+      }),
+      store: true
+    },
+    {
+      when: function (answers) {
+        return answers.projectusage.substring(0, 5) === 'craft'
+      },
+      type: 'input',
+      name: 'fileGroup',
+      message: message({
+        headline: 'Groupname on your Filesystem',
+        description: 'Needed for the Craftscripts.',
+        defaultValue: false
+      }),
+      store: true
+    },
+    {
       when: when('projectcredential', true),
       type: 'input',
       name: 'credentialdomain',
@@ -169,7 +195,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         description: 'Domain without HTTP or HTTPS',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: function (props) { return props.projectname.toLowerCase() + '.local' }
     },
     {
@@ -217,7 +243,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         description: 'Database Name',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: function (props) { return props.projectname.toLowerCase() }
     },
     {
