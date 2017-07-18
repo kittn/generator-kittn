@@ -25,7 +25,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         }
         return true
       },
-      store: false
+      store: true
     },
     {
       type: 'list',
@@ -57,7 +57,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
           value: 'wordpressCB'
         }
       ],
-      store: false
+      store: true
     },
     {
       when: when('projectusage', 'html'),
@@ -79,7 +79,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         }
       ],
       default: 'twig',
-      store: false
+      store: true
     },
     {
       when: function (answers) {
@@ -104,7 +104,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
           name: 'No',
           value: false
         }
-      ]
+      ],
+      store: true
     },
     {
       when: function (answers) {
@@ -116,7 +117,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         headline: 'Use Container-Queries',
         description: 'Do you want to use container-queries (see https://github.com/ausi/cq-prolyfill)?'
       }),
-      default: false
+      default: false,
+      store: true
     },
     {
       when: function (answers) {
@@ -141,7 +143,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
           name: 'ITCSS',
           value: 'sassITCSS'
         }
-      ]
+      ],
+      store: true
     },
     {
       when: function (answers) {
@@ -155,7 +158,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         defaultValue: false
       }),
       default: true,
-      store: false
+      store: true
     },
     {
       when: when('projectcredential', true),
@@ -166,7 +169,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         description: 'Domain without HTTP or HTTPS',
         defaultValue: false
       }),
-      store: false,
+      store: true,
       default: function (props) { return props.projectname.toLowerCase() + '.local' }
     },
     {
@@ -214,7 +217,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         description: 'Database Name',
         defaultValue: false
       }),
-      store: false,
+      store: true,
       default: function (props) { return props.projectname.toLowerCase() }
     },
     {
@@ -226,7 +229,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         description: 'Do you want to create a new MySQL-Database?',
         defaultValue: false
       }),
-      default: true
+      default: true,
+      store: true
     },
     {
       when: when('credentialdbopen', true),
@@ -249,7 +253,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         defaultValue: 'Default: style'
       }),
       default: 'style',
-      store: false
+      store: true
     },
     {
       type: 'list',
@@ -267,7 +271,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
           name: 'em',
           value: 'em'
         }
-      ]
+      ],
+      store: true
     },
     {
       type: 'input',
@@ -297,7 +302,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         description: 'Do you want to ativate Stylelint?',
         defaultValue: true
       }),
-      default: true
+      default: true,
+      store: true
     },
     {
       when: function (answers) {
@@ -310,7 +316,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         description: 'Do you wan\'t to automatically create CriticalCSS (Above the fold)?',
         defaultValue: false
       }),
-      default: false
+      default: false,
+      store: true
     },
     {
       when: when('projectcritical', true),
@@ -329,7 +336,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
           name: 'Separate File',
           value: 'separate'
         }
-      ]
+      ],
+      store: true
     },
     {
       type: 'list',
@@ -353,7 +361,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         }
       ],
       default: false,
-      store: false
+      store: true
     },
     {
       type: 'list',
@@ -377,7 +385,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         }
       ],
       default: false,
-      store: false
+      store: true
     },
     {
       when: when('projectjsframework', 'vue'),
@@ -388,7 +396,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         description: 'Do you need basic Vue.js Plugins? (Axios, vuex...)',
         defaultValue: true
       }),
-      default: false
+      default: false,
+      store: true
     },
     {
       when: when('projectjsframework', 'vue'),
@@ -409,7 +418,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         }
       ],
       default: 'runtime',
-      store: false
+      store: true
     },
     {
       type: 'confirm',
@@ -419,7 +428,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         description: 'Would you like to build up your Pattern Library with Astrum?',
         defaultValue: false
       }),
-      default: false
+      default: false,
+      store: true
     },
     {
       type: 'confirm',
@@ -429,7 +439,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         description: 'Do you like to create the sass documentation?',
         defaultValue: false
       }),
-      default: false
+      default: false,
+      store: true
     },
     {
       type: 'input',
@@ -439,7 +450,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         description: 'The Version Number',
         defaultValue: false
       }),
-      default: '0.0.1'
+      default: '0.0.1',
+      store: true
     },
     {
       type: 'input',
@@ -457,7 +469,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         headline: 'Project Mail',
         description: 'Mailadress from the Author',
         defaultValue: false
-      })
+      }),
+      store: true
     },
     {
       type: 'input',
@@ -466,7 +479,8 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         headline: 'Project Repository URL',
         description: 'Web-Adress for the Repository',
         defaultValue: false
-      })
+      }),
+      store: true
     }
   ]
 }

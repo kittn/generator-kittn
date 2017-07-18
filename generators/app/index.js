@@ -120,11 +120,11 @@ module.exports = class extends Generator {
       ,KMMMMMMN:      ;0WMMMMMMWk'   ,KMMMMMMX:     .dNMMMMMMMMMMMMMMWk. ;0WMMMMMMMMMMMMMXlcXMMMMMMK;          :XMMMMMMK,
       ,KMMMMMMN:       .xWMMMMMMW0;  ,KMMMMMMX:      .:ONMMMMMMMMMMMWXd.  .oKWMMMMMMMMMMN0clXMMMMMMK,          :XMMMMMMK,
       .dOOOOOOx,        .ckOOOOOOkd' .dOOkkOOx'        .,lxOKKXKK0ko:.      .:ok0KKKKOxl,. 'xOOOOOOd.          'xOOOOOOd.
-                                                            ......               ....                           ${chalk.bold.bgCyan(' v' + this.pkg.version + ' ')}
+                                                            ......               ....                           ${chalk.styles.white.open}${chalk.bold.bgCyan(' v' + this.pkg.version + ' ')}${chalk.styles.white.close}
       ${chalk.styles.cyan.close}${chalk.styles.magenta.open}
       ------------------------------------------- the revenge of the kittn ---------------------------------------------
       ${chalk.styles.magenta.close}
-      ${chalk.bold('Authors:')}${chalk.styles.yellow.open} Sascha Fuchs ${chalk.underline.green('@gisugosu')} & Lars Eichler ${chalk.underline.green('@cinkon')}${chalk.styles.yellow.close}
+      ${chalk.bold('Authors:')}${chalk.styles.yellow.open} Sascha Fuchs${chalk.styles.yellow.close} ${chalk.underline.green('@gisugosu')} & ${chalk.styles.yellow.open}Lars Eichler${chalk.styles.yellow.close} ${chalk.underline.green('@cinkon')}
       ${chalk.bold('URL:')}${chalk.styles.yellow.open} http://kittn.de${chalk.styles.yellow.close}
 
     `
