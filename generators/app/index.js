@@ -242,8 +242,10 @@ module.exports = class extends Generator {
           }
 
           if (this.props.projectusage !== 'html') {
-            goodbye += chalk`{cyan          - Setup your vHost on '${this.props.credentialdomain}' on '[projectRoot]/dist/${this.props.projectusage.substring(0,5) === 'craft' ? 'public/' : ''}'}` + '\n'
-            goodbye += chalk`{          - Import database.sql found on project root}` + '\n'
+            const folder = this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : ''
+            const domain = this.props.credentialdomain ? this.props.credentialdomain : ''
+            goodbye += chalk`{cyan          - Setup your vHost on '${domain}' on '[projectRoot]/dist/${folder}'}` + '\n'
+            goodbye += chalk`{cyan          - Import database.sql found on project root}` + '\n'
           }
 
           if (this.props.projectusage !== 'html' && this.props.projectcredential) {
