@@ -3,6 +3,14 @@ const starterpackWordpress = (context) => {
     files: [
       {
         conditions: {
+          projectusage: 'wordpressCB',
+          projectcredential: true
+        },
+        src: 'install.sh',
+        dest: 'install.sh'
+      },
+      {
+        conditions: {
           projectusage: 'wordpressCB'
         },
         src: 'src/framework_additions/_normalize.scss',

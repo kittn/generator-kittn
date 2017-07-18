@@ -139,6 +139,8 @@ module.exports = class extends Generator {
       this.props = props
       this.props.saltKeys = this.saltKeys
       this.props.projectcritical = this.props.projectcritical ? this.props.projectcritical : false
+      this.props.fileGroup = this.props.fileGroup ? this.props.fileGroup : false
+      this.props.fileUser = this.props.fileUser ? this.props.fileUser : false
     })
   }
 
@@ -216,7 +218,7 @@ module.exports = class extends Generator {
         ..',,,,,'...                                                              ......
                                {yellow Meeeeooowww! The Generator is finished.}
 
-          {cyan.bold Next Steps:}`
+         {cyan.bold Next Steps:}`
 
           goodbye += '\n\n'
 
@@ -232,6 +234,10 @@ module.exports = class extends Generator {
             goodbye += chalk`{cyan          - Copy your ACF5 Pro Plugin on 'src/structure/plugins/'}` + '\n'
           }
 
+          if (this.props.projectusage !== 'html' && this.props.projectcredential) {
+            goodbye += chalk`{hex('#e9ff00').bold          As an OSX user you can also use the './install' Shellscript to skip the following steps.}` + '\n\n'
+          }
+
           if (this.props.projectusage === 'craft' || this.props.projectusage === 'craftCB') {
             goodbye += chalk`{cyan          - Setup User and Staff on 'craftscripts/.env.sh'}` + '\n'
           }
@@ -244,27 +250,29 @@ module.exports = class extends Generator {
 
           if (this.props.projectusage !== 'html') {
             const folder = this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : ''
-            const domain = this.props.credentialdomain ? this.props.credentialdomain : ''
-            goodbye += chalk`{cyan          - Setup your vHost on '${domain}' on '[projectRoot]/dist/${folder}'}` + '\n'
             goodbye += chalk`{cyan          - Import database.sql found on project root}` + '\n'
           }
 
           if (this.props.projectusage !== 'html' && this.props.projectcredential) {
-            goodbye += chalk`{cyan            => 'mysql -u${this.props.credentialdbuser} -p${this.props.credentialdbpass} ${this.props.credentialdbdatabase} < database.sql'}` + '\n'
+            goodbye += chalk`{cyan            => 'mysql -u${this.props.credentialdbuser} -p${this.props.credentialdbpass} ${this.props.credentialdbdatabase} < database.sql'}` + '\n\n'
           }
 
           if (this.props.projectusage !== 'html') {
-            goodbye += chalk`{cyan          - Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `superkittn` : `kittn` }'. After login, activate theme and create a new user}` + '\n'
+            const folder = this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : ''
+            goodbye += chalk`{hex('#009dff')          - Define your vHost on '${this.props.credentialdomain}' on '[projectRoot]/dist/${folder}'}` + '\n'
+          }
+
+          if (this.props.projectusage !== 'html') {
+            goodbye += chalk`{hex('#009dff')          - Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `superkittn` : `kittn` }'. After login, activate theme and create a new user}` + '\n'
           }
 
           if (this.props.projectcredential) {
-            goodbye += chalk`{cyan            => Backend: ${this.props.credentialdomain}/${this.props.projectusage.substring(0,5) === 'craft' ? `admin` : `wp-admin` }}` + '\n'
+            goodbye += chalk`{hex('#009dff')            => Backend: ${this.props.credentialdomain}/${this.props.projectusage.substring(0,5) === 'craft' ? `admin` : `wp-admin` }}` + '\n'
           }
 
-          goodbye += chalk`{cyan          - Start the devtask with 'npm run dev'
+          goodbye += chalk`{hex('#009dff')          - Start the devtask with 'npm run dev'}
 
-          Happy Coding.
-         }`
+        {hex('#94ff00').bold Happy Coding.}`
 
 
     this.log(goodbye)
