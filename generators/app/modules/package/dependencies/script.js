@@ -3,7 +3,7 @@ const extend = require('deep-extend')
 function addScriptDependencies (files = {}, context) {
   extend(files.pkg, {
     scripts: {
-      'subtask:bundlewebpack': 'webpack --config webpack.config.babel.js -p --colors --env.bundle=production --env=production',
+      'subtask:bundlewebpack': 'webpack --config=webpack/webpack.config.babel.js -p --colors --env.bundle=production --env=production',
       'scripts': 'gulp rebuild:js --env=init',
       'webpack:analyze': 'webpack-bundle-analyzer stats.json dist/assets/'
     },
@@ -27,11 +27,15 @@ function addScriptDependencies (files = {}, context) {
       'eslint-import-resolver-webpack': '^0.8.1',
       'extract-text-webpack-plugin': '2.1.0',
       'friendly-errors-webpack-plugin': '^1.6.1',
+      "html-webpack-plugin": "^2.29.0",
       'webpack': '^3.2.0',
       'webpack-bundle-analyzer': '^2.8.2',
+      "webpack-config-utils": "^2.3.0",
       'webpack-dev-middleware': '^1.10.0',
       'webpack-hot-middleware': '^2.18.0',
-      'webpack-merge': '^2.6.1'
+      'webpack-merge': '^2.6.1',
+      "webpack2-polyfill-plugin": "^0.0.2",
+      "write-file-webpack-plugin": "^4.1.0"
     },
     dependencies: {
       'babel-polyfill': '^6.23.0',

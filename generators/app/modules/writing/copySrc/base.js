@@ -28,6 +28,10 @@ const base = (context) => {
       {
         src: 'README.md',
         dest: 'README.md'
+      },
+      {
+        src: 'mhconfig.json',
+        dest: 'mhconfig.json'
       }
     ],
     folders: [
