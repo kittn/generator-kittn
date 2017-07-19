@@ -5,7 +5,7 @@ const message = ({
      description = 'description',
      defaultValue = 'Default:'
    }) => {
-  return `${chalk.green.underline.bold(`${headline}`)}
+  return `${chalk.cyan.underline.bold(`${headline}`)}
   ${description}${defaultValue ? `\n  ${chalk.underline.yellow.dim(defaultValue)}` : ''}`
 }
 
