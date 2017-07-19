@@ -4,6 +4,13 @@ const starterpackWordpress = (context) => {
       {
         conditions: {
           projectusage: 'wordpressCB',
+        },
+        src: '_stylelintrcCB',
+        dest: '.stylelintrc'
+      },
+      {
+        conditions: {
+          projectusage: 'wordpressCB',
           projectcredential: true
         },
         src: 'install.sh',
