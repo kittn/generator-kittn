@@ -20,8 +20,8 @@ const generalPrompts = (context) => {
         // Do async stuff
         if (input.indexOf(' ') >= 0 || /[~`!#$%^&*+=[\]\\';,/{}|\\":<>?]/g.test(input)) {
           // Pass the return value in the done callback
-          return `${chalk.styles.red.open}
-No whitespaces or special-chars allowed!${chalk.styles.red.close}`
+          return chalk`red
+{No whitespaces or special-chars allowed!}`
         }
         return true
       },
@@ -288,7 +288,7 @@ No whitespaces or special-chars allowed!${chalk.styles.red.close}`
         const hex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i
         if (!hex.test(input)) {
           // Pass the return value in the done callback
-          return `${chalk.styles.red.open} This is no valid HEX-Color${chalk.styles.red.close}`
+          return chalk`red {This is no valid HEX-Color}`
         }
         return true
       },

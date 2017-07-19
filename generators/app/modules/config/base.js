@@ -100,7 +100,7 @@ function addBaseCofig (files = {}, context) {
     },
     src: {
       baseconf: {
-        type': context.props.projectusage,
+        type: context.props.projectusage,
         methodology: context.props.projectcssstructure ? context.props.projectcssstructure : 'sassITCSS',
         structure: context.props.projectstructure ? context.props.projectstructure : 'uncompiled',
       },
