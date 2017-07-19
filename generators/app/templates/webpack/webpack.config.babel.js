@@ -8,7 +8,7 @@
 import webpack from 'webpack'
 import { getIfUtils, removeEmpty } from 'webpack-config-utils'
 import path from 'path'
-import config from '../mhconfig.json'
+import config from '../config.json'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import WriteFilePlugin from 'write-file-webpack-plugin'
@@ -28,8 +28,9 @@ const {
  | Setting some paths for our Application
  |--------------------------------------------------------------------------
  */
-const BASE_PATH = path.join(path.resolve(__dirname, '../'));
-const ASSETS_ROOT = path.resolve(BASE_PATH, config.distPaths.base);
+const BASE_PATH = path.join(path.resolve(__dirname, '../'))
+const ASSETS_ROOT = path.resolve(BASE_PATH, config.dist.base)
+const JS_ROOT = path.resolve(BASE_PATH, config.src.js)
 
 /*
  |--------------------------------------------------------------------------
@@ -37,7 +38,7 @@ const ASSETS_ROOT = path.resolve(BASE_PATH, config.distPaths.base);
  |--------------------------------------------------------------------------
  */
 
-const hot_client =
+const hotClient =
   'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true&overlay=true';
 
 /*
@@ -47,32 +48,30 @@ const hot_client =
  |--------------------------------------------------------------------------
  */
 
-const entry_points = {
-  main: './src/js/main.js'
-}
+const entryPoints = {}
 
 if (ifDevelopment()) {
-  Object.keys(entry_points).forEach(
-    entry => (entry_points[entry] = [hot_client].concat(entry_points[entry]))
+  Object.keys(config.src.jsEntryPoints).forEach(
+    entry => (entryPoints[entry] = [hotClient].concat(`${JS_ROOT}/${config.src.jsEntryPoints[entry]}`))
   )
 }
 
-function assetsPath(_path) {
+function assetsPath (_path) {
   return path.posix.join('assets/', _path)
 }
 
-let chunks = [];
+let chunks = []
 
-const chunks_inject = [
+const chunksInject = [
   {
-    filename: path.resolve(`${config.distPaths.views}/index_new.html`),
-    file: `${config.distPaths.views}/index.html`,
+    filename: path.resolve(`${config.dist.markup}/index_new.html`),
+    file: `${config.dist.markup}/index.html`,
     // file: false,
     inject: true
   }
 ]
 
-chunks_inject.forEach(chunk => {
+chunksInject.forEach(chunk => {
   const plugin = new HtmlWebpackPlugin({
     filename: chunk.filename,
     template: chunk.file,
@@ -96,7 +95,7 @@ export default {
   devtool: 'source-map',
   context: BASE_PATH,
   // entry is a function so that we can use environment variables
-  entry: removeEmpty(entry_points),
+  entry: removeEmpty(entryPoints),
   output: {
     path: ASSETS_ROOT,
     publicPath: '',
@@ -107,9 +106,9 @@ export default {
   },
   resolve: {
     extensions: ['.js', '.json', '.vue'],
-    modules: [resolve(config.srcPaths.base), resolve('node_modules')],
+    modules: [resolve(config.src.base), resolve('node_modules')],
     alias: {
-      src: resolve(config.srcPaths.base)
+      src: resolve(config.src.base)
     }
   },
   module: {
@@ -121,12 +120,12 @@ export default {
           formatter: require('eslint-friendly-formatter')
         },
         enforce: 'pre',
-        include: resolve(config.srcPaths.base)
+        include: resolve(config.src.base)
       },
       {
         test: /\.js$/,
         use: 'babel-loader',
-        include: resolve(config.srcPaths.base)
+        include: resolve(config.src.base)
       },
       // {
       //   test: /\.vue$/,
@@ -150,7 +149,7 @@ export default {
       },
       // {
       //   test: /\.scss$/,
-      //   include: resolve(config.srcPaths.css),
+      //   include: resolve(config.src.css),
       //   exclude: [resolve('node_modules'), resolve('dist/')],
       //   use: ExtractTextPlugin.extract({
       //     fallback: 'style-loader',
@@ -183,7 +182,7 @@ export default {
   },
   plugins: removeEmpty([
     new Webpack2Polyfill(),
-    // new CleanWebpackPlugin([config.distPaths.css, config.distPaths.js], {
+    // new CleanWebpackPlugin([config.dist.css, config.dist.js], {
     //   root: BASE_PATH,
     //   verbose: true
     // }),
