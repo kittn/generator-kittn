@@ -122,7 +122,7 @@ module.exports = class extends Generator {
       .dOOOOOOx,        .ckOOOOOOkd' .dOOkkOOx'        .,lxOKKXKK0ko:.      .:ok0KKKKOxl,. 'xOOOOOOd.          'xOOOOOOd.
                                                             ......               ....                           }
                                                                                                                 {white.bold.bgCyan  v${this.pkg.version} }{hex('#c9c9c9')
-      
+
       ------------------------------------------- {hex('#00ffd8') the revenge of the kittn } ---------------------------------------------
       }
       {bold Authors:} {hex('#00ffd8') Sascha Fuchs} {underline.hex('#00a1ff') @gisugosu} & {hex('#00ffd8') Lars Eichler} {underline.hex('#00a1ff') @cinkon}
@@ -265,7 +265,6 @@ module.exports = class extends Generator {
 
           Happy Coding.
          }`
-
 
     this.log(goodbye)
   }
