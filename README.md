@@ -60,12 +60,16 @@ Generate Favicons and the HTML Snippet (generated Files you will find in `src/.s
 ## New in 4.1.0
 Autoprefixer and Babel now use the browserslist-variable from the package.json.
 
-## Starterpacks
-To make it easier for you to work with Craft or Wordpress, we have also integrated Starterpacks. With the Starterpack you get a Contentbuilder (in the case of Wordpress you still need ACF 5 Pro) and the necessary templates, plugins (free), SCSS and JS files you need.
+## New in 5.1.0
+If you want to create modules or components, you can use the new file generator. This creates the necessary Sass, JS and Structure Files and assigns them to the respective directories. The Sassfile you then only to the Application.scss connect.
+In the root folder of your project, you call up the file generator:
 
-There is a rudimentary styling, not pretty but functional, as you will usually begin to adapt the existing elements to your project.
+```shell
+yo kittn:module
+```
 
-In order to activate the Starterpack, you have to decide for a `Wordpress` or `Craft` project and decide on the CSS methodology for `ITCSS`. Then you can install the Starterpack.
+## Contentbuilder
+To make it easier to work with Craft or Wordpress, we have built contentbuilders. You will get the necessary plugins, CSS, JS and the modules to build the site after the installation.
 
 Further steps in the documentation.
 
