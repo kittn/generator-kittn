@@ -123,7 +123,7 @@ module.exports = class extends Generator {
       .dOOOOOOx,        .ckOOOOOOkd' .dOOkkOOx'        .,lxOKKXKK0ko:.      .:ok0KKKKOxl,. 'xOOOOOOd.          'xOOOOOOd.
                                                             ......               ....                           }
                                                                                                                 {white.bold.bgCyan  v${this.pkg.version} }{hex('#c9c9c9')
-      
+
       ------------------------------------------- {hex('#00ffd8') the revenge of the kittn } ---------------------------------------------
       }
       {bold Authors:} {hex('#00ffd8') Sascha Fuchs} {underline.hex('#00a1ff') @gisugosu} & {hex('#00ffd8') Lars Eichler} {underline.hex('#00a1ff') @cinkon}
@@ -262,7 +262,8 @@ module.exports = class extends Generator {
 
       if (this.props.projectusage !== 'html') {
         const folder = this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : ''
-        goodbye += chalk`{hex('#009dff')      - Define vHost for '${this.props.credentialdomain}' on '[projectRoot]/dist/${folder}'}` + '\n'
+        const domain = this.props.credentialdomain ? this.props.credentialdomain : ''
+        goodbye += chalk`{hex('#009dff')      - Define vHost for '${domain}' on '[projectRoot]/dist/${folder}'}` + '\n'
       }
 
       if (this.props.projectusage !== 'html') {
