@@ -62,29 +62,6 @@ function assetsPath (_path) {
   return path.posix.join('assets/', _path)
 }
 
-let chunks = []
-
-const chunksInject = [
-  {
-    filename: path.resolve(`${config.dist.markup}/index_new.html`),
-    file: `${config.dist.markup}/index.html`,
-    inject: true
-  }
-]
-
-chunksInject.forEach(chunk => {
-  const plugin = new HtmlWebpackPlugin({
-    filename: chunk.filename,
-    template: chunk.file,
-    inject: chunk.inject,
-    minify: false,
-    // necessary to consistently work with multiple chunks via CommonsChunkPlugin
-    chunksSortMode: 'dependency'
-  })
-
-  chunks.push(plugin)
-})
-
 /*
  |--------------------------------------------------------------------------
  | return webpack config object
@@ -261,7 +238,6 @@ export default {
         assetsPath('css/[name].[chunkhash].css')
       )
     }),
-    ...chunks,
     new WriteFilePlugin({
       log: true,
       test: /^(?!.+(?:hot-update.(js|json))).+$/
