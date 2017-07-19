@@ -14,12 +14,12 @@ const script = (context) => {
         dest: '.babelrc'
       },
       {
-        src: 'webpack.config.babel.js',
-        dest: 'webpack.config.babel.js'
+        src: 'webpack/_babelrc',
+        dest: 'webpack/.babelrc'
       },
       {
-        src: 'webpack.dev.config.babel.js',
-        dest: 'webpack.dev.config.babel.js'
+        src: 'webpack/webpack.config.babel.js',
+        dest: 'webpack/webpack.config.babel.js'
       },
       {
         conditions: {

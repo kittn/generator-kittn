@@ -9,7 +9,7 @@ import browserSync from 'browser-sync'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackHotMiddleware from 'webpack-hot-middleware'
-import webpackSettings from '../../webpack/webpack.dev.config.babel'
+import webpackSettings from '../../webpack/webpack.config.babel'
 
 const bundler = webpack(webpackSettings)
 
