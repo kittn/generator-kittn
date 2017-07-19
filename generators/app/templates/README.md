@@ -15,7 +15,7 @@ $ npm install
 $ yarn
 ```
 
-This installes required node_modules.
+This install the required node_modules.
 Then run
 
 ```
