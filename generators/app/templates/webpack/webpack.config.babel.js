@@ -18,9 +18,7 @@ import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 const {
   ifProduction,
-  ifNotProduction,
-  ifDevelopment,
-  ifNotDevelopment
+  ifDevelopment
 } = getIfUtils(process.env.NODE_ENV)
 
 /*
@@ -31,6 +29,12 @@ const {
 const BASE_PATH = path.join(path.resolve(__dirname, '../'))
 const ASSETS_ROOT = path.resolve(BASE_PATH, config.dist.base)
 const JS_ROOT = path.resolve(BASE_PATH, config.src.js)
+const JS_DIST = path.resolve(BASE_PATH, config.dist.js)
+let outputPath = ASSETS_ROOT
+
+if (ifDevelopment()) {
+  outputPath = JS_DIST
+}
 
 /*
  |--------------------------------------------------------------------------
@@ -39,7 +43,7 @@ const JS_ROOT = path.resolve(BASE_PATH, config.src.js)
  */
 
 const hotClient =
-  'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true&overlay=true';
+  'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true&overlay=true'
 
 /*
  |--------------------------------------------------------------------------
@@ -50,11 +54,9 @@ const hotClient =
 
 const entryPoints = {}
 
-if (ifDevelopment()) {
-  Object.keys(config.src.jsEntryPoints).forEach(
-    entry => (entryPoints[entry] = [hotClient].concat(`${JS_ROOT}/${config.src.jsEntryPoints[entry]}`))
-  )
-}
+Object.keys(config.src.jsEntryPoints).forEach(
+  entry => (entryPoints[entry] = ifDevelopment() ? [hotClient].concat(`${JS_ROOT}/${config.src.jsEntryPoints[entry]}`) : `${JS_ROOT}/${config.src.jsEntryPoints[entry]}`)
+)
 
 function assetsPath (_path) {
   return path.posix.join('assets/', _path)
@@ -66,7 +68,6 @@ const chunksInject = [
   {
     filename: path.resolve(`${config.dist.markup}/index_new.html`),
     file: `${config.dist.markup}/index.html`,
-    // file: false,
     inject: true
   }
 ]
@@ -92,12 +93,12 @@ chunksInject.forEach(chunk => {
 
 export default {
   // we have to use source map for css source maps, slightly longer compile times
-  devtool: 'source-map',
+  // devtool: 'source-map',
   context: BASE_PATH,
   // entry is a function so that we can use environment variables
   entry: removeEmpty(entryPoints),
   output: {
-    path: ASSETS_ROOT,
+    path: outputPath,
     publicPath: '',
     filename: ifProduction(
       assetsPath('js/[name].js')
@@ -196,7 +197,7 @@ export default {
     ),
     ifDevelopment(new webpack.HotModuleReplacementPlugin()),
     ifDevelopment(new webpack.NamedModulesPlugin()),
-    // ifDevelopment(new webpack.NoEmitOnErrorsPlugin()),
+    ifDevelopment(new webpack.NoEmitOnErrorsPlugin()),
     ifDevelopment(new FriendlyErrorsWebpackPlugin()),
     ifProduction(
       new webpack.DefinePlugin({
