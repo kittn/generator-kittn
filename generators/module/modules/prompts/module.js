@@ -82,7 +82,7 @@ No whitespaces allowed!${chalk.styles.red.close}`
     type: 'confirm',
     name: 'disableGenerateJS',
     message: message({
-      headline: 'Generate Javascript',
+      headline: 'Javascript',
       description: 'Disable Javascript generation?',
       defaultValue: false
     }),

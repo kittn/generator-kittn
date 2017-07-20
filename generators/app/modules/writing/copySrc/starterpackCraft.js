@@ -4,6 +4,13 @@ const starterpackCraft = (context) => {
       {
         conditions: {
           projectusage: 'craftCB',
+        },
+        src: '_stylelintrcCB',
+        dest: '.stylelintrc'
+      },
+      {
+        conditions: {
+          projectusage: 'craftCB',
           projectcredential: true
         },
         src: 'install.sh',

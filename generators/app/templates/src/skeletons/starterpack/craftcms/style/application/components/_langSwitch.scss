@@ -1,0 +1,56 @@
+/*
+  langSwitch
+  =====
+  Description
+*/
+.c-langSwitch {
+  $api: (
+    breakpoint: 'm',
+    font-size: rem(14),
+    color: c('white'),
+    hover: c('primary')
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  font-size: api(font-size);
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: bold;
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__item
+  &__item {
+    display: inline-block;
+    color: api(color);
+    transition: all 300ms ease-in-out;
+
+    &:not(:last-child) {
+      margin-right: 1px;
+      padding-right: 5px;
+      border-right: 1px solid c('white');
+    }
+
+    &:hover {
+      color: api(hover);
+    }
+
+    // [root]--current
+    &--current {
+      &, &:hover {
+        color: api(hover);
+      }
+    }
+  }
+}
