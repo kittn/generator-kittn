@@ -21,12 +21,6 @@ function addWordpressCofig (files = {}, context) {
         'webpackjsassets': `wp-content/themes/${context.props.projectname}/assets/`,
         'webpackpublic': 'dist/'
       },
-      'files': {
-        'launch': [
-          {'src': 'facebook-og-image.jpg', 'dest': 'assets/img/system/'},
-          {'src': 'twitter-og-image.jpg', 'dest': 'assets/img/system/'}
-        ]
-      },
       'src': {
         'structure': 'src/structure/templates/',
         'config': 'src/structure/config/',
