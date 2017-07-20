@@ -36,6 +36,7 @@ function addBaseDependencies (files = {}, context) {
       'gulp-twig': '^0.7.0',
       'gulp-uglify': '^3.0.0',
       'gulp-watch': '^4.3.11',
+      'gulp-favicons': '2.1.5',
       'imagemin-jpeg-recompress': '^5.1.0',
       'imagemin-pngquant': '^5.0.1',
       'imagemin-svgo': '^5.2.2',
