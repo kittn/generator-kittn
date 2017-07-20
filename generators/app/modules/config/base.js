@@ -38,7 +38,9 @@ function addBaseCofig (files = {}, context) {
         'src/fonts/**'
       ],
       'launch': [
-        {'src': 'favicons/**', 'dest': 'assets/img/system/'}
+        {'src': 'favicons/**', 'dest': 'assets/img/system/'},
+        {'src': 'facebook-og-image.jpg', 'dest': 'assets/img/system/'},
+        {'src': 'twitter-og-image.jpg', 'dest': 'assets/img/system/'}
       ]
     },
     'modernizr': {
