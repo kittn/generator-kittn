@@ -25,6 +25,7 @@ function addBaseDependencies (files = {}, context) {
       'gulp-changed': '^3.1.0',
       'gulp-cheerio': '^0.6.2',
       'gulp-concat': '^2.6.1',
+      'gulp-favicons': '^2.2.7',
       'gulp-html-prettify': '^0.0.1',
       'gulp-if': '^2.0.2',
       'gulp-imagemin': '^3.3.0',
