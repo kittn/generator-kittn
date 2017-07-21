@@ -9,7 +9,7 @@
 {# Set up custom Markerstyle #}
 {% switch type %}
   {% case 'blog' %}
-    {% set cust = ' ' ~ c ~ '__block--primary' %}
+    {% set customStyle = ' ' ~ c ~ '__block--primary' %}
   {% default %}
     {% set customStyle = '' %}
 {% endswitch %}
