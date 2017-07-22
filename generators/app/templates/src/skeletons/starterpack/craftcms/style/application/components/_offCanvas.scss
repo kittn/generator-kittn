@@ -7,6 +7,7 @@
   $api: (
     breakpoint: 'm',
     background: rgba(c('black'), .98),
+    color: c('white'),
     trigger: (
       color: c('black-60'),
       activeColor: c('gray'),
@@ -115,5 +116,18 @@
     @at-root body.offcanvas-active {
       overflow: hidden;
     }
+  }
+
+  // [root]__inner
+  &__inner {
+    height: 100vh;
+  }
+
+  // [root]__scroll
+  &__scroll {
+    overflow-x: hidden;
+    overflow-y: auto;
+    @extend %e-container;
+    height: 100%;
   }
 }
