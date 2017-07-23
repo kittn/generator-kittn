@@ -1,7 +1,7 @@
 // More Information https://github.com/lancedikson/bowser
 import bowser from './bowser'
 
-const customOutput = false
+const customOutput = true
 const docHead = document.querySelector('html')
 const version = bowser.version.toLowerCase().replace(' ', '-').split('.', 1)[0]
 const name = bowser.name.toLowerCase().replace(' ', '-')
@@ -10,23 +10,23 @@ if (customOutput) {
   // Use the switch condition if you want to customize the output
   switch (bowser.name) {
     case 'Microsoft Edge':
-      docHead.classList.add('edge' + version)
+      docHead.classList.add('edge', 'edge-' + version)
       break
 
     case 'Internet Explorer':
-      docHead.classList.add('ie' + version)
+      docHead.classList.add('ie', 'ie-' + version)
       break
 
     case 'Firefox':
-      docHead.classList.add('firefox' + version)
+      docHead.classList.add('firefox', 'firefox-' + version)
       break
 
     case 'Safari':
-      docHead.classList.add('safari' + version)
+      docHead.classList.add('safari', 'safari-' + version)
       break
 
     case 'Chrome':
-      docHead.classList.add('chrome' + version)
+      docHead.classList.add('chrome', 'chrome-' + version)
       break
   }
 
@@ -41,10 +41,9 @@ if (customOutput) {
   ]
 
   if (oldSpecBrowser.includes(name + '-' + version)) {
-    docHead.classList.add('oldGridSpec')
+    docHead.classList.add('old-grid-spec')
   }
 } else {
   // Generate Classes based on Browser and BrowserVersion
-  docHead.classList.add(name)
-  docHead.classList.add(name + '-' + version)
+  docHead.classList.add(name, name + '-' + version)
 }
