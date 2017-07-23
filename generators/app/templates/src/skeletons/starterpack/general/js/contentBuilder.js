@@ -8,6 +8,7 @@ import offCanvasToggle from './offcanvas-trigger'
 import './init-heighttransition'
 import './init-autoscroll'
 import './flickity-package'
+// import './searchbar'
 
 // Init Photoswipe
 initPhotoSwipeFromDOM('.is-photoswipped')
