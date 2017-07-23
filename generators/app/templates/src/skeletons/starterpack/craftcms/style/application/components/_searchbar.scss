@@ -1,0 +1,104 @@
+/*
+  Searchbar
+  =========
+  Searchfield for the Topbar
+*/
+.c-searchbar {
+  // Component Config
+  $api: (
+    breakpoint: glob(header, breaksizes, one),
+    height: 60px,
+    background: c('black-05'),
+    icon: (
+      color: c('black'),
+      hover: c('primary'),
+      width: 24px
+    ),
+    input: (
+      height: 50px,
+      padding: 0,
+      color: c('black-50'),
+      font-size: rem(20)
+    )
+  );
+
+  // Build Root and Rootname
+  $root: #{&};
+  $rn: str_slice($root,4);  // Rootname only
+
+  // API Grabber
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // Base Style ----------------------------
+  position: absolute;
+  width: calc(100% - 40px);
+  height: api(height);
+  left: 20px;
+  z-index: -1;
+  top: 0 - api(height);
+  opacity: 1;
+  background-color: api(background);
+  transition: all 300ms ease-in-out;
+
+  &.is-open {
+    transform: translateY(api(height) + glob(header, height, mobile));
+    opacity: 1;
+  }
+
+  @include break(api(breakpoint)) {
+    display: block;
+  }
+
+  // Tags ----------------------------------
+
+  // Base Modifier -------------------------
+
+  // Childs --------------------------------
+
+  // [root]__trigger
+  &__trigger {
+    @include scale(50 50, false, w api(icon,width));
+    position: relative;
+    cursor: pointer;
+    top: 2px;
+
+    svg {
+      fill: api(icon,color);
+      transition: fill 300ms ease-in-out;
+    }
+
+    &.is-open,
+    &:hover {
+      svg {
+        fill: api(icon,hover);
+      }
+    }
+  }
+
+  // [root]__input
+  &__input {
+    color: api(input,color);
+    background-color: rgba(0,0,0,0);
+    border-radius: 0;
+    border: 0;
+    border-bottom: 1px solid c('black-50');
+    height: api(input,height);
+    line-height: 1;
+    padding-left: api(input,padding);
+    padding-right: api(input,padding);
+    width: 100%;
+    font-size: api(input,font-size);
+    transition: border-color 300ms ease-in-out;
+
+    &:focus {
+      border-color: c('primary');
+    }
+  }
+
+  // [root]__submit
+  &__submit {
+    display: none;
+  }
+}

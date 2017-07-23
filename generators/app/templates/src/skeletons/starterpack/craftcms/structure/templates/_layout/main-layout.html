@@ -18,13 +18,17 @@
 
 <body class="{{ craft.request.isLivePreview ? ' is-livepreview ' }}{{ _t is defined ? ' '~ _t.bodyclass ~ ' ' }}">
 
-  {% include '_components/progressloader.html' %}
+  {# Add Progressloader#}
+  {% include '_components/progressLoader.html' %}
+
+  {# Add OffCanvas Layer #}
+  {% include '_components/offCanvas.html' %}
 
   <div class="o-area__wrapper">
     {# Add Page Header #}
     {% include '_components/pageHeader.html' %}
 
-    <main class="o-area__main" role="main">{{ block('content') }}</main>
+    <main class="o-area__main">{{ block('content') }}</main>
 
     {# Add Page Footer #}
     {% include '_components/pageFooter.html' %}
