@@ -29,8 +29,22 @@ if (customOutput) {
       docHead.classList.add('chrome' + version)
       break
   }
+
+  // Generate Class for Browser with the old CSS Grid Spec
+  const oldSpecBrowser = [
+    'internet-explorer-10',
+    'internet-explorer-11',
+    'microsoft-edge-12',
+    'microsoft-edge-13',
+    'microsoft-edge-14',
+    'microsoft-edge-15'
+  ]
+
+  if (oldSpecBrowser.includes(name + '-' + version)) {
+    docHead.classList.add('oldGridSpec')
+  }
 } else {
   // Generate Classes based on Browser and BrowserVersion
   docHead.classList.add(name)
-  docHead.classList.add(name + '--' + version)
+  docHead.classList.add(name + '-' + version)
 }
