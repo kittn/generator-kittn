@@ -156,36 +156,21 @@
       // Convert Coordinate if Column Gap is active
       @if $columnGap {
         -ms-grid-column: $gridColumnStart + ($gridColumnStart - 1);
-
-        @if $gridColumnEnd - $gridColumnStart > 0 {
-          -ms-grid-column-span: $gridColumnEnd - $gridColumnStart + 1 + ($gridColumnEnd - $gridColumnStart);
-        }
+        -ms-grid-column-span: $gridColumnEnd - $gridColumnStart + 1 + ($gridColumnEnd - $gridColumnStart);
 
       } @else {
         -ms-grid-column: $gridColumnStart;
-
-        @if $gridColumnEnd - $gridColumnStart > 0 {
-          -ms-grid-column-span: $gridColumnEnd - $gridColumnStart + 1;
-        }
+        -ms-grid-column-span: $gridColumnEnd - $gridColumnStart + 1;
       }
 
       // Add Row Coordinates
-      @if nth($gridRows,1) > 1 or length($gridRowHeight) - 1 > 1 {
-        // Convert Coordinate if Row Gap is active
-        @if $rowGap {
-          -ms-grid-row: nth($gridRows,1) + (nth($gridRows,1) - 1);
+      @if $rowGap {
+        -ms-grid-row: nth($gridRows,1) + (nth($gridRows,1) - 1);
+        -ms-grid-row-span: length($gridRowHeight) - 1 + (length($gridRowHeight) - 2);
 
-          @if length($gridRowHeight) - 1 > 1 {
-            -ms-grid-row-span: length($gridRowHeight) - 1 + (length($gridRowHeight) - 2);
-          }
-
-        } @else {
-          -ms-grid-row: nth($gridRows,1);
-
-          @if length($gridRowHeight) - 1 > 1 {
-            -ms-grid-row-span: length($gridRowHeight) - 1;
-          }
-        }
+      } @else {
+        -ms-grid-row: nth($gridRows,1);
+        -ms-grid-row-span: length($gridRowHeight) - 1;
       }
     }
   }
