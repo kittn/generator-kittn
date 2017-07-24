@@ -100,12 +100,16 @@
   $matrix: ();
 
   @each $index, $row in $map {
+    $list: null;
+
     @for $i from 1 through length($row) {
-      $matrix: append($matrix, unquote(nth(($row), $i)), space);
+      $list: append($list, unquote(nth(($row), $i)), space);
     }
+
+    $matrix: append($matrix, quote($list), space);
   }
 
-  grid-template-areas: quote($matrix);
+  grid-template-areas: $matrix;
 }
 
 /// Generate Coordinates based on Grid Matrix and the selected area
@@ -152,36 +156,21 @@
       // Convert Coordinate if Column Gap is active
       @if $columnGap {
         -ms-grid-column: $gridColumnStart + ($gridColumnStart - 1);
-
-        @if $gridColumnEnd - $gridColumnStart > 0 {
-          -ms-grid-column-span: $gridColumnEnd - $gridColumnStart + 1 + ($gridColumnEnd - $gridColumnStart);
-        }
+        -ms-grid-column-span: $gridColumnEnd - $gridColumnStart + 1 + ($gridColumnEnd - $gridColumnStart);
 
       } @else {
         -ms-grid-column: $gridColumnStart;
-
-        @if $gridColumnEnd - $gridColumnStart > 0 {
-          -ms-grid-column-span: $gridColumnEnd - $gridColumnStart + 1;
-        }
+        -ms-grid-column-span: $gridColumnEnd - $gridColumnStart + 1;
       }
 
       // Add Row Coordinates
-      @if nth($gridRows,1) > 1 or length($gridRowHeight) - 1 > 1 {
-        // Convert Coordinate if Row Gap is active
-        @if $rowGap {
-          -ms-grid-row: nth($gridRows,1) + (nth($gridRows,1) - 1);
+      @if $rowGap {
+        -ms-grid-row: nth($gridRows,1) + (nth($gridRows,1) - 1);
+        -ms-grid-row-span: length($gridRowHeight) - 1 + (length($gridRowHeight) - 2);
 
-          @if length($gridRowHeight) - 1 > 1 {
-            -ms-grid-row-span: length($gridRowHeight) - 1 + (length($gridRowHeight) - 2);
-          }
-
-        } @else {
-          -ms-grid-row: nth($gridRows,1);
-
-          @if length($gridRowHeight) - 1 > 1 {
-            -ms-grid-row-span: length($gridRowHeight) - 1;
-          }
-        }
+      } @else {
+        -ms-grid-row: nth($gridRows,1);
+        -ms-grid-row-span: length($gridRowHeight) - 1;
       }
     }
   }
