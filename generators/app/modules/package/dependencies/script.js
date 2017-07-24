@@ -8,7 +8,7 @@ function addScriptDependencies (files = {}, context) {
       'webpack:analyze': 'webpack-bundle-analyzer stats.json dist/assets/'
     },
     devDependencies: {
-      'babel-loader': '^6.2.10',
+      'babel-loader': '^7.1.0',
       'babel-eslint': '^7.2.3',
       'babel-plugin-transform-runtime': '^6.22.0',
       'babel-plugin-syntax-dynamic-import': '^6.18.0',
@@ -25,7 +25,7 @@ function addScriptDependencies (files = {}, context) {
       'eslint-plugin-import': '^2.2.0',
       'eslint-plugin-jsx-a11y': '^4.0.0',
       'eslint-import-resolver-webpack': '^0.8.1',
-      'extract-text-webpack-plugin': '2.1.0',
+      'extract-text-webpack-plugin': '3.0.0',
       'friendly-errors-webpack-plugin': '^1.6.1',
       'webpack': '^3.2.0',
       'webpack-bundle-analyzer': '^2.8.2',
@@ -35,7 +35,6 @@ function addScriptDependencies (files = {}, context) {
     },
     dependencies: {
       'babel-polyfill': '^6.23.0',
-      'conditionizr': '^4.5.0',
       'lazysizes': '^3.0.0',
       'pyrsmk-toast': '^2.1.1',
       'svgxuse': '^1.2.1'
@@ -93,7 +92,7 @@ function addScriptDependencies (files = {}, context) {
         'eslint-config-vue': '^2.0.2',
         'eslint-plugin-html': '^3.0.0',
         'eslint-plugin-vue': '^2.0.1',
-        'sass-loader': '^5.0.1',
+        'sass-loader': '^6.0.6',
         'stylelint-webpack-plugin': '^0.8.0',
         'vue-loader': '^13.0.2',
         'vue-style-loader': '^3.0.0',

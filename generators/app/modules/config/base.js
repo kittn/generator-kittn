@@ -58,18 +58,6 @@ function addBaseCofig (files = {}, context) {
         'picture'
       ]
     },
-    'conditionizr': {
-      'filename': 'conditionizr.js',
-      'files': [
-        'node_modules/conditionizr/dist/conditionizr.js',
-        'node_modules/conditionizr/detects/chrome.js',
-        'node_modules/conditionizr/detects/safari.js',
-        'node_modules/conditionizr/detects/firefox.js',
-        'node_modules/conditionizr/detects/ie11.js',
-        'node_modules/conditionizr/detects/ie10.js',
-        'node_modules/conditionizr/detects/ie9.js'
-      ]
-    },
     'minify': {
       'images': {
         'optimizationLevel': 3,
