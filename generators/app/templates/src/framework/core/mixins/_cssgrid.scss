@@ -13,7 +13,7 @@
 ///
 /// @param   {list}    $boxes - List with box sizes
 /// @param   {string}  $gap - Optional column gap
-@function boxAndGap($boxes, $gap) {
+@function box-gap($boxes, $gap) {
   $box: ();
 
   @for $i from 1 through length($boxes) {
@@ -36,13 +36,13 @@
 /// @group core - cssgrid
 ///
 /// @param   {string}  $gap - Optional column gap
-/// @param   {list}    $columns - Columnsizes comma seperated
+/// @param   {list}    $columns - Columns sizes
 ///
-/// @require {function} strip-units - Strip Units Function
+/// @require {function} box-gap
 ///
 /// @example scss - scss
 ///   .test {
-///     @include grid-columns(10px, 250px, 1fr, 50px, 100px);
+///     @include grid-columns(10px 250px 1fr 50px 100px);
 ///   }
 @mixin grid-columns($gap, $columns) {
   /* autoprefixer: off */
@@ -53,7 +53,7 @@
   }
 
   .old-grid-spec & {
-    -ms-grid-columns: boxAndGap($columns, $gap);
+    -ms-grid-columns: box-gap($columns, $gap);
   }
 }
 
@@ -62,25 +62,24 @@
 /// @group core - cssgrid
 ///
 /// @param   {string}  $gap - Optional row gap
-/// @param   {list}    $rows - Rowsizes comma seperated
+/// @param   {list}    $rows - Rows sizes
 ///
-/// @require {function} strip-units - Strip Units Function
+/// @require {function} box-gap
 ///
 /// @example scss - scss
 ///   .test {
-///     @include grid-rows(10px, 1fr);
+///     @include grid-rows(10px 1fr);
 ///   }
 @mixin grid-rows($gap, $rows) {
   /* autoprefixer: off */
   grid-template-rows: $rows;
   /* autoprefixer: on */
   @if $gap > 0 {
-    grid-column-gap: $gap;
     grid-row-gap: $gap;
   }
 
   .old-grid-spec & {
-    -ms-grid-rows: boxAndGap($rows, $gap);
+    -ms-grid-rows: box-gap($rows, $gap);
   }
 }
 
