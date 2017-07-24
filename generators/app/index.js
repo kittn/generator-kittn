@@ -239,6 +239,11 @@ module.exports = class extends Generator {
         if (this.props.projectusage !== 'html' && this.props.projectcredential) {
           goodbye += chalk`{cyan      - Use the './install.sh' Shellscript to skip the following steps.}` + '\n'
         }
+
+        if (this.props.projectusage === 'html') {
+          goodbye += chalk`{cyan      - Initiate the project with 'npm run init'}` + '\n'
+        }
+
       } else {
         if (this.props.projectusage === 'craft' || this.props.projectusage === 'craftCB') {
           goodbye += chalk`{cyan      - Setup User and Staff on 'craftscripts/.env.sh'}` + '\n'
