@@ -171,7 +171,7 @@
           -ms-grid-row: nth($gridRows,1) + (nth($gridRows,1) - 1);
 
           @if length($gridRowHeight) - 1 > 1 {
-            -ms-grid-row-span: length($gridRowHeight) - 1 + (length($gridRowHeight));
+            -ms-grid-row-span: length($gridRowHeight) - 1 + (length($gridRowHeight) - 2);
           }
 
         } @else {
