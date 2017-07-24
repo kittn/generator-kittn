@@ -7,6 +7,7 @@
 //
 // ===================================================
 
+
 /// Add Gap between the boxes
 ///
 /// @group core - cssgrid
@@ -17,18 +18,18 @@
   $box: ();
 
   @for $i from 1 through length($boxes) {
-    $box: append($box, nth($boxes, $i), comma);
+    $box: append($box, nth($boxes, $i), space);
 
     // Adding Gap Between
     @if $gap > 0 {
       // Not last Loop
       @if $i != length($boxes) {
-        $box: append($box, $gap, comma);
+        $box: append($box, $gap, space);
       }
     }
   }
 
-  @return unquote(sl-to-string($box, ' '));
+  @return $box;
 }
 
 /// To build Grid Template Columns with optional gap
@@ -46,7 +47,7 @@
 ///   }
 @mixin grid-columns($gap, $columns) {
   /* autoprefixer: off */
-  grid-template-columns: unquote(sl-to-string($columns, ' '));
+  grid-template-columns: $columns;
   /* autoprefixer: on */
   @if $gap > 0 {
     grid-column-gap: $gap;
@@ -72,7 +73,7 @@
 ///   }
 @mixin grid-rows($gap, $rows) {
   /* autoprefixer: off */
-  grid-template-rows: unquote(sl-to-string($rows, ' '));
+  grid-template-rows: $rows;
   /* autoprefixer: on */
   @if $gap > 0 {
     grid-column-gap: $gap;
@@ -101,10 +102,12 @@
   $matrix: ();
 
   @each $index, $row in $map {
-    $matrix: append($matrix, sl-to-string($row, ' '), space);
+    //$matrix: append($matrix, sl-to-string($row, ' '), space);
+    @for $i from 1 through length($row) {
+      $matrix: append($matrix, unquote(nth(($row), $i)), space);
+    }
   }
-
-  grid-template-areas: $matrix;
+  grid-template-areas: quote($matrix);
 }
 
 /// Generate Coordinates based on Grid Matrix and the selected area
