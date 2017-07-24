@@ -7,7 +7,6 @@
 //
 // ===================================================
 
-
 /// Add Gap between the boxes
 ///
 /// @group core - cssgrid
@@ -102,11 +101,11 @@
   $matrix: ();
 
   @each $index, $row in $map {
-    //$matrix: append($matrix, sl-to-string($row, ' '), space);
     @for $i from 1 through length($row) {
       $matrix: append($matrix, unquote(nth(($row), $i)), space);
     }
   }
+
   grid-template-areas: quote($matrix);
 }
 
