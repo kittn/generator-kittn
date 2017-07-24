@@ -100,12 +100,16 @@
   $matrix: ();
 
   @each $index, $row in $map {
+    $list: null;
+
     @for $i from 1 through length($row) {
-      $matrix: append($matrix, unquote(nth(($row), $i)), space);
+      $list: append($list, unquote(nth(($row), $i)), space);
     }
+
+    $matrix: append($matrix, quote($list), space);
   }
 
-  grid-template-areas: quote($matrix);
+  grid-template-areas: $matrix;
 }
 
 /// Generate Coordinates based on Grid Matrix and the selected area
