@@ -16,7 +16,7 @@
   sectionHomeURL: templateHandle,
   bodyclass: templateHandle ~ ' entry',
   templatename: 'entry',
-  classToInner: ['c-articleEntry']
+  classToInner: ['c-articleEntry__inner']
 } %}
 
 {% extends '_layout/main-layout.html' %}
@@ -24,6 +24,7 @@
 {% block content %}
   {% cache globally using key craft.request.path %}
     <article class="c-articleEntry" role="article" itemscope itemtype="http://schema.org/Article">
+
       {# Include Featured Image #}
       {% include '_components/featuredImage.html' with { data: entry } %}
 
@@ -41,8 +42,10 @@
         {% endswitch %}
       </header>
 
-      {# Add Contentbuilder #}
-      {% include '_builder/content-builder.html' %}
+      <div class="c-articleEntry__inner">
+        {# Add Contentbuilder #}
+        {% include '_builder/content-builder.html' %}
+      </div>
 
       <footer class="c-articleEntry__footer">
         {# Include Share Bar #}
