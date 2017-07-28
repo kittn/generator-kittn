@@ -279,6 +279,10 @@ module.exports = class extends Generator {
         goodbye += chalk`{hex('#009dff')            => Backend: ${this.props.credentialdomain}/${this.props.projectusage.substring(0,5) === 'craft' ? `admin` : `wp-admin` }}` + '\n'
       }
 
+      if (this.props.projectusage === 'craftCB') {
+        goodbye += chalk`{cyan.bold      If you want to use the Craft Personal version, you must deactivate the localization before you switch.. }` + '\n'
+      }
+
       goodbye += chalk`{hex('#009dff')      - Start the devtask with 'npm run dev'}
 
      {hex('#94ff00').bold Happy Coding.}`

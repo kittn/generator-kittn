@@ -6,7 +6,7 @@
  */
 
 // Uncopped Image Sizes
-$UNCROPPED_SIZES = [
+$UNCROPPED_SIZES = array(
   'xlarge'  => '1900',
   'large'   => '1400',
   'wide'    => '1200',
@@ -15,24 +15,24 @@ $UNCROPPED_SIZES = [
   'medium'  => '480',
   'small'   => '320',
   'micro'   => '150'
-];
+);
 
 // Cropped Image Sizes
-$CROPPED_SIZES = [
+$CROPPED_SIZES = array(
   'xlarge' => '1900',
   'large'  => '1200',
   'medium' => '800',
   'small'  => '400',
   'mini'   => '100'
-];
+);
 
 // Different Formats with different ratios (insert the Result of Ratio hight/width)
-$CROPPED_FORMAT = [
+$CROPPED_FORMAT = array(
   'square'    => '1',      // 1:1
   'wide'      => '0.5625', // 16:9
   'extrawide' => '0.4761', // 21:10
   'rect'      => '0.75'    // 4:3
-];
+);
 
 // Basic Images Crops
 add_image_size('mini', 100);
