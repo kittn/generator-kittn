@@ -59,6 +59,21 @@
 
   // ::::::::: MODIFIER
   position: relative;
+  margin: 0 calc(-50vw + 50%);
+
+  .has-scrollbar & {
+    margin: 0 calc(-50vw + 50% + 8.5px);
+
+    .edge & {
+      margin: 0 calc(-50vw + 50% + 6px);
+    }
+  }
+
+  @supports (color: var(--scroll-bar)) {
+    .has-scrollbar & {
+      margin: 0 calc(-50vw + 50% + (var(--scroll-bar) / 2));
+    }
+  }
 
   // Fullheight
   &--fullheight {
@@ -90,13 +105,6 @@
   // [root]__container
   &__container {
     @extend %e-container;
-
-    // Container in Container, remove inner Gutter
-    .o-area__container &,
-    .c-articleEntry & { /* stylelint-disable-line */
-      padding-left: 0;
-      padding-right: 0;
-    }
 
     // Container Layouttypes
     // [root]--full
