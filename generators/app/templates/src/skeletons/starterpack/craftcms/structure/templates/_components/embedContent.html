@@ -30,7 +30,9 @@
         {% if 'instagram' in data.embedUrl %}
           {% set instaURL = data.embedUrl|split('?taken-by')|first %}
           {% set instaAlt = ' from ' ~ data.embedUrl|split('?taken-by=')|last|split('&')|first %}
-          <img src="{{ instaURL }}media?size=m" alt="Instagram Image{{ instaAlt }}">
+          <figure>
+            <img src="{{ instaURL }}media?size=l" alt="Instagram Image{{ instaAlt }}">
+          </figure>
         {% else %}
           {{ data.embedUrl|videoEmbed }}
         {% endif %}
