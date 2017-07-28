@@ -7,25 +7,6 @@
 
 {% if cb|length %}
   {% for content in cb %}
-    {% if content.type != 'objSection' %}
-      {% include '_builder/_cb-objects' with { data: content } %}
-
-    {% else %}
-      {# Closing the outer Container that the Section can use the full width #}
-      {% set innerLayout = _t.classToInner is defined and _t.classToInner != '' ? _t.classToInner : [''] %}
-
-      {# Closing outer Container based on the templateBriefing In #}
-      {% for closeTag in innerLayout %}
-        </div>
-      {% endfor %}
-
-        {# Insert ContentBuilder Modules that are non Sections #}
-        {% include '_builder/_cb-objects' with { data: content } %}
-
-      {# Reopen Containers #}
-      {% for openTag in innerLayout %}
-        <div class="{{ openTag }}">
-      {% endfor %}
-    {% endif %}
+    {% include '_builder/_cb-objects' with { data: content } %}
   {% endfor %}
 {% endif %}

@@ -11,12 +11,10 @@
 {% set templateHandle = sectionSelect.sec(entry) %}
 
 {# Subtemplate Setup #}
-{# `classToInner` Is an array in which all classes are listed from the outer container to the container of the content builder. Used for the section element. #}
 {% set _t = {
   sectionHomeURL: templateHandle,
   bodyclass: templateHandle ~ ' entry',
-  templatename: 'entry',
-  classToInner: ['c-articleEntry__inner']
+  templatename: 'entry'
 } %}
 
 {% extends '_layout/main-layout.html' %}
