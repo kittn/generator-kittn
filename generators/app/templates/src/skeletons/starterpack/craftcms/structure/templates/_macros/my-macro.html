@@ -262,48 +262,65 @@
 {% macro socialShare(networks, options) %}
   {# Array for Networks #}
   {% set net = {
-    'facebook': true,
-    'twitter': true,
-    'google-plus': true,
-    'pinterest': true,
-    'email': false,
-    'whatsapp': true
+  'facebook': true,
+  'twitter': true,
+  'google-plus': true,
+  'pinterest': true,
+  'email': false,
+  'whatsapp': false,
+  'linkedin': false,
+  'xing': false,
+  'buffer': false,
+  'reddit': false
   } %}
 
   {# Option Array #}
   {% set opt = {
-    'class': 'c-socialShare',
-    'modifier': '',
-    'request': craft.request.url,
-    'description': seomaticMeta.seoDescription,
-    'image': seomaticMeta.seoImage,
-    'title': seomaticMeta.seoTitle,
-    'icon': true,
-    'iconpath': '/assets/img/',
-    'iconname': 'symbol-sprite.svg',
-    'iconprefix': 'icon-',
-    'viewbox': '0 0 50 50'
+  'class': 'c-socialShare',
+  'modifier': '',
+  'request': craft.request.url,
+  'description': seomaticMeta.seoDescription,
+  'image': seomaticMeta.seoImage,
+  'title': seomaticMeta.seoTitle,
+  'icon': true,
+  'iconpath': '/assets/img/',
+  'iconname': 'symbol-sprite.svg',
+  'iconprefix': 'icon-',
+  'viewbox': '0 0 50 50'
   } %}
 
   {# Merge Options with Defaults #}
   {% set networks = networks ? net|merge(networks) : net %}
   {% set options = options ? opt|merge(options) : opt %}
 
-  {# Build Share URLs #}
-  {% set shareUrl = {
-    'facebook': 'http://www.facebook.com/sharer.php?u='~options.request,
-    'twitter': 'http://twitter.com/share?url='~options.request~'&amp;text='~options.description,
-    'google-plus': 'https://plus.google.com/share?url='~options.request,
-    'pinterest': '//pinterest.com/pin/create/link/?url='~options.request~'&amp;media='~options.image~'&amp;description='~options.description|e,
-    'email': 'mailto:?Subject='~options.title~'&Body=%20'~options.request,
-    'whatsapp': 'whatsapp://send?text='~options.request~' '~options.description
-  } %}
-
   {# Building Block - Modify structure if needed #}
   <nav role="navigation" class="{{ options.class }} {{ options.modifier is defined ? options.class ~ '--' ~ options.modifier }}">
     {% for key, network in networks if network != false %}
       {% if options.icon == true %}<div class="{{ options.class }}__box">{% endif %}
-      <a href="{{ shareUrl[key] }}" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+      {% switch key %}
+
+      {% case 'facebook' %}
+    <a href="http://www.facebook.com/sharer.php?u={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'facebookwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+      {% case 'twitter' %}
+      <a href="http://twitter.com/share?url={{ options.request }}&amp;text="{{ options.description }}" rel="nofollow" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+      {% case 'google-plus' %}
+    <a href="https://plus.google.com/share?url={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'googlepluswindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+      {% case 'pinterest' %}
+    <a href="//pinterest.com/pin/create/link/?url={{ options.request }}&amp;media={{ options.image }}&amp;description={{ options.description|e }}" rel="nofollow" onclick="window.open(this.href, 'pinterestwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+      {% case 'email' %}
+    <a href="mailto:?Subject={{ options.title }}&Body=%20{{ options.request }}" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+      {% case 'whatsapp' %}
+    <a href="whatsapp://send?text={{ options.request }} {{ options.description }}" rel="nofollow" onclick="window.open(this.href, 'linkedinwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+      {% case 'linkedin' %}
+    <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'linkedinwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+      {% case 'xing' %}
+    <a href="https://www.xing.com/spi/shares/new?url={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'linkedinwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+      {% case 'buffer' %}
+    <a href="https://bufferapp.com/add?url={{ options.request }}&text={{ options.title }}" rel="nofollow" onclick="window.open(this.href, 'bufferwindow','left=20,top=20,width=700,height=800,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+      {% case 'reddit' %}
+      <a href="http://reddit.com/submit?url={{ options.request }}&title={{ options.title }}" rel="nofollow" onclick="window.open(this.href, 'redditwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% endswitch %}
+
         {% if options.icon == true %}
           <svg class="{{ options.class }}__icon" viewBox="{{ options.viewbox }}">
             <use xlink:href="{{ options.iconpath }}{{ options.iconname }}#{{ options.iconprefix}}{{ key }}"></use>
