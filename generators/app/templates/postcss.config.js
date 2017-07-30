@@ -5,7 +5,9 @@ module.exports = (ctx) => ({
     'postcss-custom-selectors': {},
     'postcss-custom-media': {},
     'postcss-pseudo-class-any-link': {},
-    'postcss-custom-properties': {},
+    'postcss-custom-properties': {
+      warnings: false
+    },
     'postcss-calc': {},
     'postcss-aspect-ratio': {},
     'postcss-easings': {},
