@@ -7,10 +7,23 @@
 {% set c = 'c-langSwitch' %}
 
 <nav class="{{ c }}">
-  {% for locale in craft.i18n.getSiteLocales() %}
-    {% set locID = entry is defined ? entry.id : category.id %}
-    {% set localisedEntry = craft.entries.id(locID).locale(locale.id).first() %}
-    {% set linkUrl =  localisedEntry ? localisedEntry.getUrl() : craft.config.siteUrl[locale.id] %}
-    <a href="{{ linkUrl }}" class="{{ c ~ '__item' }}{{ craft.locale == locale.id ? ' ' ~ c ~ '__item--current' }}">{{ craft.config.currentLanguage[locale.id]|upper }}</a>
+  {% set locales = craft.config.locales %}
+  {% for locale in locales %}
+    {% set current = false %}
+    {# Check if locale equals the requested page locale #}
+    {% if locale == craft.locale %}
+      {% set current = true %}
+    {% endif %}
+
+    {% if entry is defined %}
+      {% set localeEntry = craft.entries.id(entry.id).locale(locale).first() %}
+      {% if localeEntry and localeEntry.locale == locale %}
+        <a href="{{ localeEntry.getUrl() }}" class="{{ c ~ '__item' }}{{ current ? ' ' ~ c ~ '__item--current' }}">{{ locale|upper }}</a>
+      {% else %}
+        <a href="{{ craft.config.siteUrl[locale] }}" class="{{ c ~ '__item' }}{{ current ? ' ' ~ c ~ '__item--current' }}">{{ locale|upper }}</a>
+      {% endif %}
+    {% else %}
+      <a href="{{ craft.config.siteUrl[locale] ~ craft.request.getPath() }}" class="{{ c ~ '__item' }}{{ current ? ' ' ~ c ~ '__item--current'}}">{{ locale|upper }}</a>
+    {% endif %}
   {% endfor %}
 </nav>

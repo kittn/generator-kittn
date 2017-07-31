@@ -24,6 +24,7 @@
     "at-rule-no-unknown": null,
     "at-rule-no-vendor-prefix": true,
     "scss/at-extend-no-missing-placeholder": null,
+    "scss/percent-placeholder-pattern": null,
     "block-closing-brace-empty-line-before": null,
     "block-closing-brace-newline-after": [
       "always",

@@ -29,6 +29,9 @@ return array(
       'baseUrl'  => getenv('CRAFTENV_BASE_URL'),
       'basePath' => getenv('CRAFTENV_BASE_PATH'),
     ),
+    'locales' => array(
+      'de', 'en'
+    ),
     'currentLanguage' => array(
       'de_de' => 'de',
       'de' => 'de',
