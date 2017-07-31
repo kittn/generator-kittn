@@ -76,7 +76,7 @@
     "order/declaration-block-order": null,
     "order/declaration-block-properties-alphabetical-order": null,
     "order/properties-alphabetical-order": null,
-    "declaration-block-properties-order": null,
+    "order/properties-order": null,
     "declaration-block-semicolon-newline-after": "always",
     "declaration-block-semicolon-newline-before": "never-multi-line",
     "declaration-block-semicolon-space-after": "always-single-line",
