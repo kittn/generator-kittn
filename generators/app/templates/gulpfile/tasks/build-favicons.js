@@ -18,7 +18,7 @@ const buildFaviconTask = () => {
       appDescription: pkg.description,
       developerName: pkg.author.name,
       developerURL: pkg.author.url,
-      background: '#fff',
+      background: kc.src.baseconf.themecolor,
       path: kc.dist.cssimgRoot + 'system/',
       url: '',
       display: 'standalone',
