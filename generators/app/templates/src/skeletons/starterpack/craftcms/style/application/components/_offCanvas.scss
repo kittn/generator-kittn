@@ -6,6 +6,8 @@
 .c-offCanvas {
   $api: (
     breakpoint: 'm',
+    background: rgba(c('black'), .98),
+    color: c('white'),
     trigger: (
       color: c('black-60'),
       activeColor: c('gray'),
@@ -28,7 +30,24 @@
   }
 
   // ::::::::: BASE
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  overflow: hidden;
+  height: 100vh;
+  transition: transform 400ms ease-in-out;
+  transform: translateY(-100vh);
+  background-color: api(background);
 
+  .offcanvas-active & {
+    transform: translateY(0);
+  }
+
+  @include break(api(breakpoint)) {
+    display: none;
+  }
 
   // ::::::::: TAGS
   // ::::::::: MODIFIER
@@ -97,5 +116,18 @@
     @at-root body.offcanvas-active {
       overflow: hidden;
     }
+  }
+
+  // [root]__inner
+  &__inner {
+    height: 100vh;
+  }
+
+  // [root]__scroll
+  &__scroll {
+    overflow-x: hidden;
+    overflow-y: auto;
+    @extend %e-container;
+    height: 100%;
   }
 }

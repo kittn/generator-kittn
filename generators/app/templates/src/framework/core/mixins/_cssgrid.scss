@@ -1,0 +1,177 @@
+// ===================================================
+// CSS Grid Layout Helper
+//
+// To convert some of the CSS Grid Spec 2 features to Spec 1
+//
+// Author: Sascha Fuchs
+//
+// ===================================================
+
+/// Add Gap between the boxes
+///
+/// @group core - cssgrid
+///
+/// @param   {list}    $boxes - List with box sizes
+/// @param   {string}  $gap - Optional column gap
+@function box-gap($boxes, $gap) {
+  $box: ();
+
+  @for $i from 1 through length($boxes) {
+    $box: append($box, nth($boxes, $i), space);
+
+    // Adding Gap Between
+    @if $gap > 0 {
+      // Not last Loop
+      @if $i != length($boxes) {
+        $box: append($box, $gap, space);
+      }
+    }
+  }
+
+  @return $box;
+}
+
+/// To build Grid Template Columns with optional gap
+///
+/// @group core - cssgrid
+///
+/// @param   {string}  $gap - Optional column gap
+/// @param   {list}    $columns - Columns sizes
+///
+/// @require {function} box-gap
+///
+/// @example scss - scss
+///   .test {
+///     @include grid-columns(10px 250px 1fr 50px 100px);
+///   }
+@mixin grid-columns($gap, $columns) {
+  /* autoprefixer: off */
+  grid-template-columns: $columns;
+  /* autoprefixer: on */
+  @if $gap > 0 {
+    grid-column-gap: $gap;
+  }
+
+  .old-grid-spec & {
+    -ms-grid-columns: box-gap($columns, $gap);
+  }
+}
+
+/// To build Grid Template Rows with optional gap
+///
+/// @group core - cssgrid
+///
+/// @param   {string}  $gap - Optional row gap
+/// @param   {list}    $rows - Rows sizes
+///
+/// @require {function} box-gap
+///
+/// @example scss - scss
+///   .test {
+///     @include grid-rows(10px 1fr);
+///   }
+@mixin grid-rows($gap, $rows) {
+  /* autoprefixer: off */
+  grid-template-rows: $rows;
+  /* autoprefixer: on */
+  @if $gap > 0 {
+    grid-row-gap: $gap;
+  }
+
+  .old-grid-spec & {
+    -ms-grid-rows: box-gap($rows, $gap);
+  }
+}
+
+/// Generate a Grid Template Area from a Grid Map
+///
+/// @group core - cssgrid
+///
+/// @param   {string}  $area - Name of the Area
+/// @param   {map}     $map - Map of your grid area matrix
+///
+/// @example scss - scss
+///    $gridAreaMap: (
+///      row1: ('logo', 'nav', 'nav', 'nav'),
+///      row2: ('logo', 'empty', 'search', 'search')
+///    );
+///    @include grid-matrix($gridAreaMap);
+@mixin grid-matrix($map) {
+  $matrix: ();
+
+  @each $index, $row in $map {
+    $list: null;
+
+    @for $i from 1 through length($row) {
+      $list: append($list, unquote(nth(($row), $i)), space);
+    }
+
+    $matrix: append($matrix, quote($list), space);
+  }
+
+  grid-template-areas: $matrix;
+}
+
+/// Generate Coordinates based on Grid Matrix and the selected area
+///
+/// @group core - cssgrid
+///
+/// @param   {string}  $area - Name of the Area
+/// @param   {map}     $map - Map of your grid area matrix
+/// @param   {bool}    $columnGap - If you use Gap for Columns
+/// @param   {bool}    $rowGap - If you use Gap for Rows
+///
+/// @example scss - scss
+///    $gridAreaMap: (
+///      row1: ('logo', 'nav', 'nav', 'nav'),
+///      row2: ('logo', 'empty', 'search', 'search')
+///    );
+///    @include grid-area(logo, $gridAreaMap, true);
+@mixin grid-area($area, $map, $columnGap: false, $rowGap: false) {
+  // Init Vars
+  $gridColumnStart: '';
+  $gridColumnEnd: '';
+  $gridRows: ();
+  $gridRowHeight: '';
+  $areaExists: 0;
+
+  // Output regular Area
+  grid-area: $area;
+
+  // Generate Old Spec Coordinates based on Area
+  .old-grid-spec & {
+    // Get Width element
+    @for $i from 1 through length($map) {
+      @if sl-contain(map-get($map,row#{$i}), $area) {
+        $areaExists: append($areaExists, 1);
+        $gridRowHeight: append($gridRowHeight, $i);
+        $gridColumnStart: index(map-get($map,row#{$i}), $area);
+        $gridColumnEnd: sl-last-index(map-get($map,row#{$i}), $area);
+        $gridRows: append($gridRows, $i);
+      }
+    }
+
+    // If Area exists in the Map
+    @if length($areaExists) > 1 {
+      // Convert Coordinate if Column Gap is active
+      @if $columnGap {
+        -ms-grid-column: $gridColumnStart + ($gridColumnStart - 1);
+        -ms-grid-column-span: $gridColumnEnd - $gridColumnStart + 1 + ($gridColumnEnd - $gridColumnStart);
+
+      } @else {
+        -ms-grid-column: $gridColumnStart;
+        -ms-grid-column-span: $gridColumnEnd - $gridColumnStart + 1;
+      }
+
+      // Add Row Coordinates
+      @if $rowGap {
+        -ms-grid-row: nth($gridRows,1) + (nth($gridRows,1) - 1);
+        -ms-grid-row-span: length($gridRowHeight) - 1 + (length($gridRowHeight) - 2);
+
+      } @else {
+        -ms-grid-row: nth($gridRows,1);
+        -ms-grid-row-span: length($gridRowHeight) - 1;
+      }
+    }
+  }
+}

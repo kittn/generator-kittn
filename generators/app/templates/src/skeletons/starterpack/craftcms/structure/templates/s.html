@@ -4,13 +4,11 @@
  #}
 
 {# Subtemplate Setup #}
-{# `classToInner` Is an array in which all classes are listed from the outer container to the container of the content builder. Used for the section element. #}
 {% set _t = {
   bodyclass: 'search',
   sections: ['blogChannel'],
   name: 'Search',
-  limit: 12,
-  classToInner: ['o-area__container']
+  limit: 12
 } %}
 
 {% extends '_layout/main-layout.html' %}

@@ -3,6 +3,14 @@ const projecttype = (context) => {
     files: [
       {
         conditions: {
+          projectusage: 'craft',
+          projectcredential: true
+        },
+        src: 'install.sh',
+        dest: 'install.sh'
+      },
+      {
+        conditions: {
           projectusage: 'craft'
         },
         src: 'gulpfile_additions/copy-craftenv.js',
@@ -64,6 +72,14 @@ const projecttype = (context) => {
         },
         src: 'databases/craft.sql',
         dest: 'database.sql'
+      },
+      {
+        conditions: {
+          projectusage: 'wordpress',
+          projectcredential: true
+        },
+        src: 'install.sh',
+        dest: 'install.sh'
       },
       {
         conditions: {

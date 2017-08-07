@@ -20,12 +20,12 @@ const generalPrompts = (context) => {
         // Do async stuff
         if (input.indexOf(' ') >= 0 || /[~`!#$%^&*+=[\]\\';,/{}|\\":<>?]/g.test(input)) {
           // Pass the return value in the done callback
-          return chalk`red
-{No whitespaces or special-chars allowed!}`
+          return chalk`{red
+No whitespaces or special-chars allowed!}`
         }
         return true
       },
-      store: true
+      store: false
     },
     {
       type: 'list',
@@ -57,7 +57,7 @@ const generalPrompts = (context) => {
           value: 'wordpressCB'
         }
       ],
-      store: true
+      store: false
     },
     {
       when: when('projectusage', 'html'),
@@ -79,7 +79,7 @@ const generalPrompts = (context) => {
         }
       ],
       default: 'twig',
-      store: true
+      store: false
     },
     {
       when: function (answers) {
@@ -161,6 +161,32 @@ const generalPrompts = (context) => {
       store: true
     },
     {
+      when: function (answers) {
+        return answers.projectusage.substring(0, 5) === 'craft'
+      },
+      type: 'input',
+      name: 'fileUser',
+      message: message({
+        headline: 'Username on your Filesystem',
+        description: 'Needed for the Craftscripts.',
+        defaultValue: false
+      }),
+      store: true
+    },
+    {
+      when: function (answers) {
+        return answers.projectusage.substring(0, 5) === 'craft'
+      },
+      type: 'input',
+      name: 'fileGroup',
+      message: message({
+        headline: 'Groupname on your Filesystem',
+        description: 'Needed for the Craftscripts.',
+        defaultValue: false
+      }),
+      store: true
+    },
+    {
       when: when('projectcredential', true),
       type: 'input',
       name: 'credentialdomain',
@@ -169,7 +195,7 @@ const generalPrompts = (context) => {
         description: 'Domain without HTTP or HTTPS',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: function (props) { return props.projectname.toLowerCase() + '.local' }
     },
     {
@@ -217,7 +243,7 @@ const generalPrompts = (context) => {
         description: 'Database Name',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: function (props) { return props.projectname.toLowerCase() }
     },
     {
@@ -288,7 +314,7 @@ const generalPrompts = (context) => {
         const hex = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i
         if (!hex.test(input)) {
           // Pass the return value in the done callback
-          return chalk`red {This is no valid HEX-Color}`
+          return chalk`{red This is no valid HEX-Color}`
         }
         return true
       },

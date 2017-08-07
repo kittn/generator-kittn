@@ -21,12 +21,6 @@ function addCraftCofig (files = {}, context) {
         'webpackjsassets': 'assets/',
         'webpackpublic': 'dist/public/'
       },
-      'files': {
-        'launch': [
-          {'src': 'facebook-og-image.jpg', 'dest': 'assets/img/system/'},
-          {'src': 'twitter-og-image.jpg', 'dest': 'assets/img/system/'}
-        ]
-      },
       'src': {
         'plugins': 'src/craftplugins/',
         'templates': 'src/structure/templates/'

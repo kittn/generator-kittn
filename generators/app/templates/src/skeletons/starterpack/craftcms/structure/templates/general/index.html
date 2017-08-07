@@ -11,13 +11,11 @@
 {% set templateHandle = sectionSelect.sec(entry) %}
 
 {# Subtemplate Setup #}
-{# `classToInner` Is an array in which all classes are listed from the outer container to the container of the content builder. Used for the section element. #}
 {% set _t = {
   sectionHomeURL: templateHandle,
   bodyclass: templateHandle,
   limit: 10,
-  templatename: 'index',
-  classToInner: ['o-area__container']
+  templatename: 'index'
 } %}
 
 {% extends '_layout/main-layout.html' %}
@@ -27,7 +25,7 @@
     <div class="o-area__container">
 
       {# Include Featured Image #}
-      {% include '_components/featuredImage.html' with { structure: _t.classToInner, data: entry } %}
+      {% include '_components/featuredImage.html' with { data: entry } %}
 
       {# Add Content Builder #}
       {% include '_builder/content-builder.html' %}

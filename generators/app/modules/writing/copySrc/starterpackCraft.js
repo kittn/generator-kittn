@@ -3,6 +3,21 @@ const starterpackCraft = (context) => {
     files: [
       {
         conditions: {
+          projectusage: 'craftCB',
+        },
+        src: '_stylelintrcCB',
+        dest: '.stylelintrc'
+      },
+      {
+        conditions: {
+          projectusage: 'craftCB',
+          projectcredential: true
+        },
+        src: 'install.sh',
+        dest: 'install.sh'
+      },
+      {
+        conditions: {
           projectusage: 'craftCB'
         },
         src: 'src/framework_additions/_normalize.scss',

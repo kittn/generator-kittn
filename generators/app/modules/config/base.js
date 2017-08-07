@@ -38,7 +38,9 @@ function addBaseCofig (files = {}, context) {
         'src/fonts/**'
       ],
       'launch': [
-        {'src': 'favicons/**', 'dest': 'assets/img/system/'}
+        {'src': 'favicons/**', 'dest': 'assets/img/system/'},
+        {'src': 'facebook-og-image.jpg', 'dest': 'assets/img/system/'},
+        {'src': 'twitter-og-image.jpg', 'dest': 'assets/img/system/'}
       ]
     },
     'modernizr': {
@@ -54,18 +56,6 @@ function addBaseCofig (files = {}, context) {
         'inlinesvg',
         'webgl',
         'picture'
-      ]
-    },
-    'conditionizr': {
-      'filename': 'conditionizr.js',
-      'files': [
-        'node_modules/conditionizr/dist/conditionizr.js',
-        'node_modules/conditionizr/detects/chrome.js',
-        'node_modules/conditionizr/detects/safari.js',
-        'node_modules/conditionizr/detects/firefox.js',
-        'node_modules/conditionizr/detects/ie11.js',
-        'node_modules/conditionizr/detects/ie10.js',
-        'node_modules/conditionizr/detects/ie9.js'
       ]
     },
     'minify': {
@@ -103,6 +93,7 @@ function addBaseCofig (files = {}, context) {
         type: context.props.projectusage,
         methodology: context.props.projectcssstructure ? context.props.projectcssstructure : 'sassITCSS',
         structure: context.props.projectstructure ? context.props.projectstructure : 'uncompiled',
+        'themeColor': context.props.projectthemecolor
       },
       base: 'src/',
       style: 'src/style/',

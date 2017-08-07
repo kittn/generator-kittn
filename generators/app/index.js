@@ -3,6 +3,7 @@ const chalk = require('chalk')
 const clear = require('clear-terminal')
 const random = require('randomstring')
 const commandExists = require('command-exists')
+const os = require('os')
 
 // Importing modules
 const promptsFunction = require('./modules/prompt')
@@ -139,6 +140,8 @@ module.exports = class extends Generator {
       this.props = props
       this.props.saltKeys = this.saltKeys
       this.props.projectcritical = this.props.projectcritical ? this.props.projectcritical : false
+      this.props.fileGroup = this.props.fileGroup ? this.props.fileGroup : false
+      this.props.fileUser = this.props.fileUser ? this.props.fileUser : false
     })
   }
 
@@ -216,55 +219,73 @@ module.exports = class extends Generator {
         ..',,,,,'...                                                              ......
                                {yellow Meeeeooowww! The Generator is finished.}
 
-          {cyan.bold Next Steps:}`
+     {cyan.bold Next Steps}`
 
-          goodbye += '\n\n'
+      goodbye += '\n\n'
 
-          if (this.props.projectusage.substring(0,4) === 'word' && this.commands.wp !== true) {
-            goodbye += chalk`{cyan          - Install Wordpress manually in the 'dist/' directory}` + '\n'
-          }
+      if (this.props.projectusage.substring(0,4) === 'word' && this.commands.wp !== true) {
+        goodbye += chalk`{cyan      - Install Wordpress manually in the 'dist/' directory}` + '\n'
+      }
 
-          if (this.props.projectusage.substring(0,5) === 'craft' && this.commands.wget !== true) {
-            goodbye += chalk`{cyan          - Install Craft manually in the 'dist/' directory}` + '\n'
-          }
+      if (this.props.projectusage.substring(0,5) === 'craft' && this.commands.wget !== true) {
+        goodbye += chalk`{cyan      - Install Craft manually in the 'dist/' directory}` + '\n'
+      }
 
-          if (this.props.projectusage === 'wordpressCB') {
-            goodbye += chalk`{cyan          - Copy your ACF5 Pro Plugin on 'src/structure/plugins/'}` + '\n'
-          }
+      if (this.props.projectusage === 'wordpressCB') {
+        goodbye += chalk`{cyan      - Copy your ACF5 Pro Plugin on 'src/structure/plugins/'}` + '\n'
+      }
 
-          if (this.props.projectusage === 'craft' || this.props.projectusage === 'craftCB') {
-            goodbye += chalk`{cyan          - Setup User and Staff on 'craftscripts/.env.sh'}` + '\n'
-          }
+      if (os.type() === 'Darwin') {
+        if (this.props.projectusage !== 'html' && this.props.projectcredential) {
+          goodbye += chalk`{cyan      - Use the './install.sh' Shellscript to skip the following steps.}` + '\n'
+        }
 
-          goodbye += chalk`{cyan          - Initiate the project with 'npm run init'}` + '\n'
+        if (this.props.projectusage === 'html') {
+          goodbye += chalk`{cyan      - Initiate the project with 'npm run init'}` + '\n'
+        }
 
-          if (this.props.projectusage.substring(0,5) === 'craft') {
-            goodbye += chalk`{cyan          - Execute './craftscripts/set_perms.sh'}` + '\n'
-          }
+      } else {
+        if (this.props.projectusage === 'craft' || this.props.projectusage === 'craftCB') {
+          goodbye += chalk`{cyan      - Setup User and Staff on 'craftscripts/.env.sh'}` + '\n'
+        }
 
-          if (this.props.projectusage !== 'html') {
-            const folder = this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : ''
-            const domain = this.props.credentialdomain ? this.props.credentialdomain : ''
-            goodbye += chalk`{cyan          - Setup your vHost on '${domain}' on '[projectRoot]/dist/${folder}'}` + '\n'
-            goodbye += chalk`{cyan          - Import database.sql found on project root}` + '\n'
-          }
+        goodbye += chalk`{cyan      - Initiate the project with 'npm run init'}` + '\n'
 
-          if (this.props.projectusage !== 'html' && this.props.projectcredential) {
-            goodbye += chalk`{cyan            => 'mysql -u${this.props.credentialdbuser} -p${this.props.credentialdbpass} ${this.props.credentialdbdatabase} < database.sql'}` + '\n'
-          }
+        if (this.props.projectusage.substring(0,5) === 'craft') {
+          goodbye += chalk`{cyan      - Execute './craftscripts/set_perms.sh'}` + '\n'
+        }
 
-          if (this.props.projectusage !== 'html') {
-            goodbye += chalk`{cyan          - Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `superkittn` : `kittn` }'. After login, activate theme and create a new user}` + '\n'
-          }
+        if (this.props.projectusage !== 'html') {
+          const folder = this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : ''
+          goodbye += chalk`{cyan      - Import database.sql found on project root}` + '\n'
+        }
 
-          if (this.props.projectcredential) {
-            goodbye += chalk`{cyan            => Backend: ${this.props.credentialdomain}/${this.props.projectusage.substring(0,5) === 'craft' ? `admin` : `wp-admin` }}` + '\n'
-          }
+        if (this.props.projectusage !== 'html' && this.props.projectcredential) {
+          goodbye += chalk`{cyan        => 'mysql -u${this.props.credentialdbuser} -p${this.props.credentialdbpass} ${this.props.credentialdbdatabase} < database.sql'}` + '\n\n'
+        }
+      }
 
-          goodbye += chalk`{cyan          - Start the devtask with 'npm run dev'
+      if (this.props.projectusage !== 'html') {
+        const folder = this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : ''
+        const domain = this.props.credentialdomain ? this.props.credentialdomain : ''
+        goodbye += chalk`{hex('#009dff')      - Define vHost for '${domain}' on '[projectRoot]/dist/${folder}'}` + '\n'
+      }
 
-          Happy Coding.
-         }`
+      if (this.props.projectusage !== 'html') {
+        goodbye += chalk`{hex('#009dff')      - Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `superkittn` : `kittn` }'. After login, activate theme and create a new user}` + '\n'
+      }
+
+      if (this.props.projectcredential) {
+        goodbye += chalk`{hex('#009dff')            => Backend: ${this.props.credentialdomain}/${this.props.projectusage.substring(0,5) === 'craft' ? `admin` : `wp-admin` }}` + '\n'
+      }
+
+      if (this.props.projectusage === 'craftCB') {
+        goodbye += chalk`{cyan.bold      If you want to use the Craft Personal version, you must deactivate the localization before you switch.. }` + '\n'
+      }
+
+      goodbye += chalk`{hex('#009dff')      - Start the devtask with 'npm run dev'}
+
+     {hex('#94ff00').bold Happy Coding.}`
 
     this.log(goodbye)
   }

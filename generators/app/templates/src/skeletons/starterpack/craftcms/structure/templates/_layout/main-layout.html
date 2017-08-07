@@ -18,7 +18,11 @@
 
 <body class="{{ craft.request.isLivePreview ? ' is-livepreview ' }}{{ _t is defined ? ' '~ _t.bodyclass ~ ' ' }}">
 
-  {% include '_components/progressloader.html' %}
+  {# Add Progressloader#}
+  {% include '_components/progressLoader.html' %}
+
+  {# Add OffCanvas Layer #}
+  {% include '_components/offCanvas.html' %}
 
   <div class="o-area__wrapper">
     {# Add Page Header #}

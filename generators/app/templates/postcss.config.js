@@ -5,7 +5,9 @@ module.exports = (ctx) => ({
     'postcss-custom-selectors': {},
     'postcss-custom-media': {},
     'postcss-pseudo-class-any-link': {},
-    'postcss-custom-properties': {},
+    'postcss-custom-properties': {
+      warnings: false
+    },
     'postcss-calc': {},
     'postcss-aspect-ratio': {},
     'postcss-easings': {},
@@ -14,7 +16,8 @@ module.exports = (ctx) => ({
       loadPaths: [<% if (projectusage == 'html') { %>'dist/assets/img/'<% } if (projectusage == 'wordpress' || projectusage == 'wordpressCB') { %>'dist/wp-content/themes/<%= projectname %>/assets/img/'<% } if (projectusage == 'craft' || projectusage == 'craftCB') { %>'dist/public/assets/img/'<% } %>]
     },
     'autoprefixer': {
-      cascade: false
+      cascade: false,
+      grid: true
     },
     'postcss-svg': {},
     'postcss-short-size': {},

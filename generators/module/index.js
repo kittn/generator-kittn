@@ -84,10 +84,12 @@ module.exports = class extends Generator {
           break
 
         case 'craft' :
+        case 'craftCB' :
           templatePath = json.src.structure !== undefined ? json.src.structure + 'templates/' : './src/structure'
           break
 
         case 'wordpress' :
+        case 'wordpressCB' :
           templatePath = json.src.structure !== undefined ? json.src.structure : './src/structure'
           break
       }
