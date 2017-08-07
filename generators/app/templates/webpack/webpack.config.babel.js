@@ -130,7 +130,7 @@ export default {
       },<% if ( projectjsframework === 'vue') { %>
       {
         test: /\.vue$/,
-        use: 'vue-loader',
+        loader: 'vue-loader',
         options: {
           loaders: {
             scss: ifProduction(
@@ -148,45 +148,10 @@ export default {
         test: /\.json$/,
         use: 'json-loader'
       }
-      // {
-      //   test: /\.scss$/,
-      //   include: resolve(config.src.css),
-      //   exclude: [resolve('node_modules'), resolve('dist/')],
-      //   use: ExtractTextPlugin.extract({
-      //     fallback: 'style-loader',
-      //     use: [
-      //       {
-      //         loader: 'css-loader',
-      //         options: {
-      //           autoprefixer: false,
-      //           sourceMap: true,
-      //           importLoaders: 3,
-      //           url: false
-      //         }
-      //       },
-      //       {
-      //         loader: 'postcss-loader',
-      //         options: {
-      //           sourceMap: true
-      //         }
-      //       },
-      //       {
-      //         loader: 'sass-loader',
-      //         options: {
-      //           sourceMap: true
-      //         }
-      //       }
-      //     ]
-      //   })
-      // }
     ]
   },
   plugins: removeEmpty([
     new Webpack2Polyfill(),
-    // new CleanWebpackPlugin([config.dist.css, config.dist.js], {
-    //   root: BASE_PATH,
-    //   verbose: true
-    // }),
     ifProduction(
       new BundleAnalyzerPlugin({
         analyzerMode: 'disabled',
@@ -212,25 +177,6 @@ export default {
         compress: {
           warnings: false
         }
-      })
-    ),
-    ifProduction(
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'vendor',
-        minChunks: function (module) {
-          // this assumes your vendor imports exist in the node_modules directory
-          return (
-            module.context && module.context.indexOf('node_modules') !== -1
-          )
-        }
-      })
-    ),
-    ifProduction(
-      // extract webpack runtime and module manifest to its own file in order to
-      // prevent vendor hash from being updated whenever app bundle is updated
-      new webpack.optimize.CommonsChunkPlugin({
-        name: 'manifest',
-        chunks: ['vendor']
       })
     ),
     ifProduction(
