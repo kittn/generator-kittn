@@ -127,7 +127,7 @@ export default {
         test: /\.js$/,
         use: 'babel-loader',
         include: resolve(config.src.base)
-      },
+      },<% if ( projectjsframework === 'vue') { %>
       {
         test: /\.vue$/,
         use: 'vue-loader',
@@ -142,7 +142,7 @@ export default {
             )
           }
         }
-      },
+      },<% } %>
 
       {
         test: /\.json$/,
