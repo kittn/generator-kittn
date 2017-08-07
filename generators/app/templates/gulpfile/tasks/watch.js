@@ -17,5 +17,5 @@ const watchTask = () => {
   gulp.watch([templateFiles()], ['compiler:html'])
 }
 
-gulp.task('watch', ['browser-sync'], watchTask)
+gulp.task('watch', watchTask)
 module.exports = watchTask
