@@ -5,7 +5,8 @@
 {% if environment == 'development' %}
   <meta name="robots" content="noindex,nofollow">
 {% endif %}
-<link rel="stylesheet" href="{{assetsCss}}<%= projectcssfilename %>.css">
+<link rel="stylesheet" href="{{assetsCss}}<%= projectcssfilename %>.css"><% if ( projectjsframework === 'vue') { %>
+<link rel="stylesheet" href="{{assetsCss}}vue-style.css"><% } %>
 <meta name="description" content="[Description]">
 <meta property="og:description" content="[Description]">
 <meta property="og:title" content="{{ siteTitle }}">

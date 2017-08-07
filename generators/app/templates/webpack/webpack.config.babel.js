@@ -13,7 +13,8 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import WriteFilePlugin from 'write-file-webpack-plugin'
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
-import Webpack2Polyfill from 'webpack2-polyfill-plugin'
+import Webpack2Polyfill from 'webpack2-polyfill-plugin'<% if ( projectjsframework === 'vue' && projectstylelint) { %>
+import StylelintPlugin from 'stylelint-webpack-plugin'<% } %>
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 const {
@@ -68,7 +69,7 @@ const chunksInject = [
   {
     filename: path.resolve(`${config.dist.markup}index.html`),
     file: null,
-    inject: true
+    inject: false
   }
 ]
 
@@ -127,26 +128,26 @@ export default {
         use: 'babel-loader',
         include: resolve(config.src.base)
       },
-      // {
-      //   test: /\.vue$/,
-      //   loader: 'vue-loader',
-      //   options: {
-      //     loaders: {
-      //       scss: ifProduction(
-      //         ExtractTextPlugin.extract({
-      //           use: 'css-loader!sass-loader',
-      //           fallback: 'vue-style-loader'
-      //         }),
-      //         'vue-style-loader!css-loader!sass-loader'
-      //       )
-      //     }
-      //   }
-      // },
+      {
+        test: /\.vue$/,
+        use: 'vue-loader',
+        options: {
+          loaders: {
+            scss: ifProduction(
+              ExtractTextPlugin.extract({
+                use: 'css-loader!postcss-loader!sass-loader',
+                fallback: 'vue-style-loader'
+              }),
+              'vue-style-loader!css-loader!postcss-loader!sass-loader'
+            )
+          }
+        }
+      },
 
       {
         test: /\.json$/,
         use: 'json-loader'
-      },
+      }
       // {
       //   test: /\.scss$/,
       //   include: resolve(config.src.css),
@@ -220,7 +221,7 @@ export default {
           // this assumes your vendor imports exist in the node_modules directory
           return (
             module.context && module.context.indexOf('node_modules') !== -1
-          );
+          )
         }
       })
     ),
@@ -255,11 +256,12 @@ export default {
       })
     ),
     new ExtractTextPlugin({
-      filename: ifDevelopment(
-        assetsPath('css/[name].css'),
-        assetsPath('css/[name].[chunkhash].css')
-      )
-    }),
+      filename: assetsPath('css/vue-style.css')
+    }),<% if ( projectjsframework === 'vue' && projectstylelint) { %>
+    new StylelintPlugin({
+      context: JS_ROOT,
+      syntax: 'scss'
+    }),<% } %>
     ...chunks,
     new WriteFilePlugin({
       log: true,
