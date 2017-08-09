@@ -122,7 +122,7 @@ export default {
   module: {
     rules: [
       {
-        test: /\.(js)$/,
+        test: /\.(js<% if ( projectjsframework === 'vue' ) { %>|vue<% } %>)$/,
         loader: 'eslint-loader',
         options: {
           formatter: require('eslint-friendly-formatter')
