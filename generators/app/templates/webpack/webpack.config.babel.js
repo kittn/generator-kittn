@@ -108,7 +108,9 @@ export default {
   resolve: {
     extensions: ['.js', '.json', '.vue'],
     modules: [resolve(config.src.base), resolve('node_modules')],
-    alias: {
+    alias: {<% if ( projectjsframework === 'vue' ) { %>
+      components: path.resolve(JS_ROOT, 'components/')<% if ( projectvueversion === 'standalone' ) { %>,
+      'vue$': 'vue/dist/vue.common.js',<% } } %>
       src: resolve(config.src.base)
     }
   },
