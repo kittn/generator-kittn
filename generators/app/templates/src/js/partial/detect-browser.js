@@ -1,5 +1,5 @@
 // More Information https://github.com/lancedikson/bowser
-import bowser from './bowser'
+import bowser from 'bowser'
 
 const customOutput = true
 const docHead = document.querySelector('html')
@@ -27,6 +27,10 @@ if (customOutput) {
 
     case 'Chrome':
       docHead.classList.add('chrome', 'chrome-' + version)
+      break
+
+    case 'Opera':
+      docHead.classList.add('opera', 'opera-' + version)
       break
   }
 
