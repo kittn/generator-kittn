@@ -1,5 +1,6 @@
 import transition from 'transition-to-from-auto'
 
+/* eslint-disable */
 // Trigger for the Slideout Box
 if (document.querySelector('.c-slideoutbox__trigger') !== null) {
   const items = document.querySelectorAll('.c-slideoutbox')
