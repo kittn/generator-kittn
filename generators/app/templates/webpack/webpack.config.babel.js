@@ -8,6 +8,7 @@
 import webpack from 'webpack'
 import { getIfUtils, removeEmpty } from 'webpack-config-utils'
 import path from 'path'
+import yargs from 'yargs'
 import config from '../config.json'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
@@ -31,7 +32,11 @@ const BASE_PATH = path.join(path.resolve(__dirname, '../'))
 const ASSETS_ROOT = path.resolve(BASE_PATH, config.dist.base)
 const JS_ROOT = path.resolve(BASE_PATH, config.src.js)
 const JS_DIST = path.resolve(BASE_PATH, config.dist.js)
+
 let outputPath = ASSETS_ROOT
+const argv = yargs.argv
+const env = argv.env || 'development'
+const nodeEnv = process.env.NODE_ENV || 'production'
 
 if (ifDevelopment()) {
   outputPath = JS_DIST
@@ -166,13 +171,11 @@ export default {
     ifDevelopment(new webpack.NamedModulesPlugin()),
     ifDevelopment(new webpack.NoEmitOnErrorsPlugin()),
     ifDevelopment(new FriendlyErrorsWebpackPlugin()),
-    ifProduction(
-      new webpack.DefinePlugin({
-        'process.env': {
-          NODE_ENV: '"production"'
-        }
-      })
-    ),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(nodeEnv)
+      }
+    }),
     ifProduction(
       new webpack.optimize.UglifyJsPlugin({
         sourceMap: true,
@@ -210,7 +213,7 @@ export default {
       context: JS_ROOT,
       syntax: 'scss'
     }),<% } %>
-    ...chunks,
+    // ...chunks,
     new WriteFilePlugin({
       log: true,
       test: /^(?!.+(?:hot-update.(js|json))).+$/
