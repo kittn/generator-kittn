@@ -98,7 +98,7 @@ chunksInject.forEach((chunk) => {
 
 export default {
   // we have to use source map for css source maps, slightly longer compile times
-  // devtool: 'source-map',
+  devtool: 'source-map',
   context: BASE_PATH,
   // entry is a function so that we can use environment variables
   entry: removeEmpty(entryPoints),
