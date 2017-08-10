@@ -18,10 +18,14 @@ import Webpack2Polyfill from 'webpack2-polyfill-plugin'<% if ( projectjsframewor
 import StylelintPlugin from 'stylelint-webpack-plugin'<% } %>
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
+const argv = yargs.argv
+const env = argv.env || 'development'
+const nodeEnv = process.env.NODE_ENV || 'production'
+
 const {
   ifProduction,
   ifDevelopment
-} = getIfUtils(process.env.NODE_ENV)
+} = getIfUtils(nodeEnv)
 
 /*
  |--------------------------------------------------------------------------
@@ -34,9 +38,6 @@ const JS_ROOT = path.resolve(BASE_PATH, config.src.js)
 const JS_DIST = path.resolve(BASE_PATH, config.dist.js)
 
 let outputPath = ASSETS_ROOT
-const argv = yargs.argv
-const env = argv.env || 'development'
-const nodeEnv = process.env.NODE_ENV || 'production'
 
 if (ifDevelopment()) {
   outputPath = JS_DIST
