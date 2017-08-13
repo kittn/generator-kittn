@@ -12,7 +12,8 @@ function addBaseDependencies (files = {}, context) {
       'htmlassets': 'gulp copy:contentimages --env=init',
       'init': 'gulp init --env=init && npm run subtask:bundlewebpack',
       'template': 'gulp compiler:html --env=init',
-      'uiimages': 'gulp rebuild:images --env=init'
+      'uiimages': 'gulp rebuild:images --env=init',
+      'fonts': 'gulp copy:fonts --env=init'
     },
     devDependencies: {
       'ansi-html': '^0.0.7',
