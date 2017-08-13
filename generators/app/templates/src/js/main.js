@@ -16,7 +16,7 @@ import 'babel-polyfill'
 import 'svgxuse' // eslint-disable-line
 import './partial/kittnad' // Small Advertising for Kittn :)
 import './partial/modernizer-loader'
-import './partial/detectBrowser'
+import './partial/detect-browser'
 import './partial/disable-pointerevents'<% if ( projectjsframework === 'vue') { %>
 import App from './app'<%}%><% if (typeof projectvueplugins !== 'undefined' && projectvueplugins === true)  { %>
 

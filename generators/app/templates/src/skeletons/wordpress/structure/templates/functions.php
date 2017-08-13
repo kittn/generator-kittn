@@ -21,6 +21,9 @@
   // Remove WP Generator
   require_once('_functions/removeWPGenerator.php');
 
+  // Remove Emojis JS
+  require_once('_functions/removeEmojis.php');
+
   // Post Thumbnail Support
   require_once('_functions/thumbnailSupport.php');
 

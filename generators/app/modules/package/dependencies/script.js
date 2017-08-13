@@ -35,6 +35,7 @@ function addScriptDependencies (files = {}, context) {
     },
     dependencies: {
       'babel-polyfill': '^6.23.0',
+      'bowser': '^1.7.1',
       'lazysizes': '^3.0.0',
       'pyrsmk-toast': '^2.1.1',
       'svgxuse': '^1.2.1'
