@@ -5,7 +5,7 @@ function addScriptDependencies (files = {}, context) {
     scripts: {
       'subtask:bundlewebpack': 'webpack --config=webpack/webpack.config.babel.js -p --colors --env.bundle=production --env=production',
       'scripts': 'gulp rebuild:js --env=init',
-      'webpack:analyze': 'webpack-bundle-analyzer stats.json dist/assets/'
+      'webpack:analyze': 'webpack-bundle-analyzer webpack/stats.json dist/assets/'
     },
     devDependencies: {
       'babel-loader': '^7.1.0',
