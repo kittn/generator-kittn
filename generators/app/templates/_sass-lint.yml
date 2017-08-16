@@ -50,6 +50,7 @@ rules:
         - justify-content
         - order
 
+        - size
         - width
         - min-width
         - max-width
