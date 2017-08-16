@@ -35,6 +35,7 @@ const browserSyncTask = () => {
       debugInfo: true,
       watchTask: true,
       proxy: bsProxy,
+      logFileChanges: false,
       middleware: [
         webpackDevMiddleware(bundler, {
           quiet: true,
