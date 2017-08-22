@@ -19,7 +19,6 @@ import StylelintPlugin from 'stylelint-webpack-plugin'<% } %>
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 
 const argv = yargs.argv
-const env = argv.env || 'development'
 const nodeEnv = process.env.NODE_ENV || 'production'
 
 const {
@@ -59,11 +58,12 @@ const hotClient =
  |--------------------------------------------------------------------------
  */
 
-const entryPoints = {}
+const entryPoints = config.src.jsEntryPoints
 
-Object.keys(config.src.jsEntryPoints).forEach(
-  entry => (entryPoints[entry] = ifDevelopment() ? [hotClient].concat(`${JS_ROOT}/${config.src.jsEntryPoints[entry]}`) : `${JS_ROOT}/${config.src.jsEntryPoints[entry]}`)
-)
+if (ifDevelopment()) {
+  Object.keys(entryPoints)
+    .forEach((entry) => entryPoints[entry] = [hotClient].concat(entryPoints[entry]))
+}
 
 function assetsPath (_path) {
   return path.posix.join('assets/', _path)
@@ -106,16 +106,14 @@ export default {
   output: {
     path: outputPath,
     publicPath: '',
-    filename: ifProduction(
-      assetsPath('js/[name].js')
-    ),
-    chunkFilename: assetsPath('js/[id].js')
+    filename: assetsPath('js/[name].js'),
+    chunkFilename: assetsPath('js/[name].js')
   },
   resolve: {
     extensions: ['.js', '.json', '.vue'],
     modules: [resolve(config.src.base), resolve('node_modules')],
     alias: {<% if ( projectjsframework === 'vue' ) { %>
-      components: path.resolve(JS_ROOT, 'components/')<% if ( projectvueversion === 'standalone' ) { %>,
+      components: path.resolve(JS_ROOT, 'components/'),<% if ( projectvueversion === 'standalone' ) { %>
       'vue$': 'vue/dist/vue.common.js',<% } } %>
       src: resolve(config.src.base)
     }
