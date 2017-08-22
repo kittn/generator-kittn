@@ -27,13 +27,6 @@ const script = (context) => {
         },
         src: 'src/skeletons/vue/app.vue',
         dest: 'src/js/app.vue'
-      },
-      {
-        conditions: {
-          projectjsframework: 'vue'
-        },
-        src: 'vue-utils.js',
-        dest: 'vue-utils.js'
       }
     ],
     folders: [
