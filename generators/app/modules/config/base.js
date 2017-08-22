@@ -121,7 +121,7 @@ function addBaseCofig (files = {}, context) {
       contentimage: 'src/images/htmlimages/',
       system: 'src/.system/',
       jsEntryPoints: {
-        main: 'main.js'
+        main: '../src/js/main.js'
       }
     }
   })

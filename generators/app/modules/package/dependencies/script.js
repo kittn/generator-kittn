@@ -50,7 +50,7 @@ function addScriptDependencies (files = {}, context) {
   if (context.props.projectusage === 'craftCB' || context.props.projectusage === 'craft') {
     extend(files.pkg, {
       scripts: {
-        'webpack:analyze': 'webpack-bundle-analyzer stats.json dist/public/assets/'
+        'webpack:analyze': 'webpack-bundle-analyzer webpack/stats.json dist/public/assets/'
       }
     })
   }
@@ -59,7 +59,7 @@ function addScriptDependencies (files = {}, context) {
   if (context.props.projectusage === 'wordpress' || context.props.projectusage === 'wordpressCB') {
     extend(files.pkg, {
       scripts: {
-        'webpack:analyze': `webpack-bundle-analyzer stats.json dist/wp-content/themes/${context.props.projectname}/assets/`
+        'webpack:analyze': `webpack-bundle-analyzer webpack/stats.json dist/wp-content/themes/${context.props.projectname}/assets/`
       }
     })
   }
@@ -97,9 +97,14 @@ function addScriptDependencies (files = {}, context) {
         'eslint-config-vue': '^2.0.2',
         'eslint-plugin-html': '^3.0.0',
         'eslint-plugin-vue': '^2.0.1',
+        'file-loader': '^0.11.2',
+        'json-loader': '^0.5.7',
+        'optimize-css-assets-webpack-plugin': '^3.1.1',
         'postcss-loader': '^2.0.6',
         'sass-loader': '^6.0.6',
+        'sass-resources-loader': '^1.3.0',
         'stylelint-webpack-plugin': '^0.8.0',
+        'svg-sprite-loader': '^3.2.4',
         'vue-loader': '^13.0.2',
         'vue-style-loader': '^3.0.0',
         'vue-template-compiler': '^2.1.10'
