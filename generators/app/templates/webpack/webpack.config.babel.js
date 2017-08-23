@@ -65,7 +65,7 @@ function resolve (dir) {
  |--------------------------------------------------------------------------
  */
 module.exports = {
-  devtool: '#cheap-module-eval-source-map',
+  devtool: ifProduction('#source-map', '#cheap-module-eval-source-map'),
   context: path.join(ROOT_PATH, 'src'),
   entry: removeEmpty(entryPoints),
   output: {
