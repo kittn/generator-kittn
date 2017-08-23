@@ -12,8 +12,10 @@ const defaultTask = (cb) => {
 
   runSequence(
     [
-      'browser-sync',
       'watch'
+    ],
+    [
+      'browser-sync'
     ],
     cb)
 }

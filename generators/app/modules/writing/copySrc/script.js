@@ -14,12 +14,12 @@ const script = (context) => {
         dest: '.babelrc'
       },
       {
-        src: 'webpack.config.babel.js',
-        dest: 'webpack.config.babel.js'
+        src: 'webpack/_babelrc',
+        dest: 'webpack/.babelrc'
       },
       {
-        src: 'webpack.dev.config.babel.js',
-        dest: 'webpack.dev.config.babel.js'
+        src: 'webpack/webpack.config.babel.js',
+        dest: 'webpack/webpack.config.babel.js'
       },
       {
         conditions: {
@@ -27,13 +27,6 @@ const script = (context) => {
         },
         src: 'src/skeletons/vue/app.vue',
         dest: 'src/js/app.vue'
-      },
-      {
-        conditions: {
-          projectjsframework: 'vue'
-        },
-        src: 'vue-utils.js',
-        dest: 'vue-utils.js'
       }
     ],
     folders: [

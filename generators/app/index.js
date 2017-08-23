@@ -290,7 +290,6 @@ module.exports = class extends Generator {
 
      {hex('#94ff00').bold Happy Coding.}`
 
-
     this.log(goodbye)
   }
 }
