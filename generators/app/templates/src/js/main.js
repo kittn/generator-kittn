@@ -54,4 +54,4 @@ lazySizesConfig.expFactor = 1.3
 lazySizes.init()<% if ((typeof projectcontainerqueries !== 'undefined' && projectcontainerqueries === true) || (typeof projectusage !== 'undefined' && projectusage === 'craftCB') || (typeof projectusage !== 'undefined' && projectusage === 'wordpressCB') ) { %>
 
 // Activate Container Queries
-cq({postcss: true})<% } %>
+cq({ postcss: true })<% } %>
