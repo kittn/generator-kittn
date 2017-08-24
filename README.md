@@ -75,12 +75,12 @@ Further steps in the documentation.
 
 ## Dependencies
 
-- Node >= 7.6
+- Node >= 8
 - Gulp 3.9.1
 - Yeoman 2.0.0
 - Git CLI
 - Wget 
-- WP CLI
+- [WP CLI](http://wp-cli.org/de/)
 - mysql CLI
 
 ## Special Thanks to

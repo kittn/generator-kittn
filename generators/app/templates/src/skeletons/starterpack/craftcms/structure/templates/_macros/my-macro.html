@@ -258,35 +258,36 @@
   @param {string} iconname    = Iconfile Name (Sprite)
   @param {string} iconprefix  = Prefix for icons
   @param {string} viewbox     = Viewbox Size
+  @param {object} data        = Additional Dataentry if use the share buttons outside from entry
 #}
-{% macro socialShare(networks, options) %}
+{% macro socialShare(networks, options, data) %}
   {# Array for Networks #}
   {% set net = {
-  'facebook': true,
-  'twitter': true,
-  'google-plus': true,
-  'pinterest': true,
-  'email': false,
-  'whatsapp': false,
-  'linkedin': false,
-  'xing': false,
-  'buffer': false,
-  'reddit': false
+    facebook: true,
+    twitter: true,
+    googleplus: true,
+    pinterest: true,
+    email: false,
+    whatsapp: false,
+    linkedin: false,
+    xing: false,
+    buffer: false,
+    reddit: false
   } %}
 
   {# Option Array #}
   {% set opt = {
-  'class': 'c-socialShare',
-  'modifier': '',
-  'request': craft.request.url,
-  'description': seomaticMeta.seoDescription,
-  'image': seomaticMeta.seoImage,
-  'title': seomaticMeta.seoTitle,
-  'icon': true,
-  'iconpath': '/assets/img/',
-  'iconname': 'symbol-sprite.svg',
-  'iconprefix': 'icon-',
-  'viewbox': '0 0 50 50'
+    class: 'c-socialShare',
+    modifier: '',
+    request: data is not null ? data.url : craft.request.url,
+    description: data is not null ? data.seo.seoDescription : seomaticMeta.seoDescription,
+    image: data is not null ? data.seo.seoImage : seomaticMeta.seoImage,
+    title: data is not null ? data.seo.seoTitle : seomaticMeta.seoTitle,
+    icon: true,
+    iconpath: '/assets/img/',
+    iconname: 'symbol-sprite.svg',
+    iconprefix: 'icon-',
+    viewbox: '0 0 50 50'
   } %}
 
   {# Merge Options with Defaults #}
@@ -302,7 +303,7 @@
       {% case 'facebook' %}
     <a href="http://www.facebook.com/sharer.php?u={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'facebookwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
       {% case 'twitter' %}
-      <a href="http://twitter.com/share?url={{ options.request }}&amp;text="{{ options.description }}" rel="nofollow" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+      <a href="http://twitter.com/share?url={{ options.request }}&amp;text={{ options.description }}" rel="nofollow" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
       {% case 'google-plus' %}
     <a href="https://plus.google.com/share?url={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'googlepluswindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
       {% case 'pinterest' %}

@@ -30,7 +30,7 @@ endswitch;
 ?>
 
 <?php // Build Element Block ?>
-<section class="<?= $classnameSection; ?><?= $fullheight; ?><?= $style != 'default' ? ' '.$classnameSection.'--s-'.$style : '' ?>"<?= $anchor;?>>
+<section class="<?= $classnameSection; ?><?= $fullheight; ?><?= $style ? ' '.$classnameSection.'--s-'.$style : '' ?>"<?= $anchor;?>>
 
   <?php if (get_sub_field('backgroundImage')) : ?>
     <div class="<?= $classnameSection; ?>__bg<?= get_sub_field('behavior') != 'default' ? ' '.$classnameSection.'__bg--'.get_sub_field('behavior') :  '' ?> <?= $classnameSection; ?>--p-<?= get_sub_field('align') ?><?= get_sub_field('adaptContainer') ? $backgroundContainer : '' ?>">

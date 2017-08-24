@@ -11,7 +11,7 @@ import gulpLoadPlugins from 'gulp-load-plugins'
 const $ = gulpLoadPlugins()
 
 const copyLaunchTask = () => {
-  kc.files.launch.forEach(function(item) {
+  kc.files.launch.forEach((item) => {
     gulp
       .src(kc.src.system + item.src)
       .pipe(global.checkChanged === true ? $.changed(kc.dist.base + item.dest) : gutil.noop())

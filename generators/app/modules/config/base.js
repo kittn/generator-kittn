@@ -88,37 +88,41 @@ function addBaseCofig (files = {}, context) {
         }
       }
     },
-    'src': {
-      'baseconf': {
-        'type': context.props.projectusage,
-        'methodology': context.props.projectcssstructure ? context.props.projectcssstructure : 'sassITCSS',
-        'structure': context.props.projectstructure ? context.props.projectstructure : 'uncompiled',
+    src: {
+      baseconf: {
+        type: context.props.projectusage,
+        methodology: context.props.projectcssstructure ? context.props.projectcssstructure : 'sassITCSS',
+        structure: context.props.projectstructure ? context.props.projectstructure : 'uncompiled',
+        'themeColor': context.props.projectthemecolor
       },
-      'style': 'src/style/',
-      'template': 'src/template/',
-      'js': 'src/js/',
-      'bower': 'src/bower/',
-      'scripts': 'src/scripts',
-      'structure': 'src/structure/',
-      'fonts': 'src/fonts/',
-      'images': {
-        'bitmapSprite': {
-          'files': 'src/images/bitmapSprite-assets/',
-          'name': 'sprite.png'
+      base: 'src/',
+      style: 'src/style/',
+      template: 'src/template/',
+      js: 'src/js/',
+      scripts: 'src/scripts',
+      structure: 'src/structure/',
+      fonts: 'src/fonts/',
+      images: {
+        bitmapSprite: {
+          files: 'src/images/bitmapSprite-assets/',
+          name: 'sprite.png'
         },
-        'vectorSprite': {
-          'files': 'src/images/vectorSprite-assets/',
-          'name': 'vector-sprite.svg',
-          'symbolName': 'symbol-sprite.svg',
-          'maxHeight': 30,
-          'maxWidth': 30,
-          'padding': 0
+        vectorSprite: {
+          files: 'src/images/vectorSprite-assets/',
+          name: 'vector-sprite.svg',
+          symbolName: 'symbol-sprite.svg',
+          maxHeight: 30,
+          maxWidth: 30,
+          padding: 0
         },
-        'bitmaps': 'src/images/bitmapSingle-assets/',
-        'vectors': 'src/images/vectorSingle-assets/'
+        bitmaps: 'src/images/bitmapSingle-assets/',
+        vectors: 'src/images/vectorSingle-assets/'
       },
-      'contentimage': 'src/images/htmlimages/',
-      'system': 'src/.system/'
+      contentimage: 'src/images/htmlimages/',
+      system: 'src/.system/',
+      jsEntryPoints: {
+        main: '../src/js/main.js'
+      }
     }
   })
 

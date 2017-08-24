@@ -105,7 +105,7 @@ No whitespaces or special-chars allowed!}`
           value: false
         }
       ],
-      store: true
+      store: false
     },
     {
       when: function (answers) {
@@ -118,7 +118,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Do you want to use container-queries (see https://github.com/ausi/cq-prolyfill)?'
       }),
       default: false,
-      store: true
+      store: false
     },
     {
       when: function (answers) {
@@ -144,7 +144,7 @@ No whitespaces or special-chars allowed!}`
           value: 'sassITCSS'
         }
       ],
-      store: true
+      store: false
     },
     {
       when: function (answers) {
@@ -158,7 +158,7 @@ No whitespaces or special-chars allowed!}`
         defaultValue: false
       }),
       default: true,
-      store: true
+      store: false
     },
     {
       when: function (answers) {
@@ -171,7 +171,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Needed for the Craftscripts.',
         defaultValue: false
       }),
-      store: true
+      store: false
     },
     {
       when: function (answers) {
@@ -184,7 +184,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Needed for the Craftscripts.',
         defaultValue: false
       }),
-      store: true
+      store: false
     },
     {
       when: when('projectcredential', true),
@@ -207,7 +207,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Database Server Host without ending slash',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: 'localhost'
     },
     {
@@ -219,7 +219,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Database User',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: 'root'
     },
     {
@@ -231,7 +231,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Database Password',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: 'root'
     },
     {
@@ -256,7 +256,7 @@ No whitespaces or special-chars allowed!}`
         defaultValue: false
       }),
       default: true,
-      store: true
+      store: false
     },
     {
       when: when('credentialdbopen', true),
@@ -267,7 +267,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Do you use MAMP?',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: true
     },
     {
@@ -279,7 +279,7 @@ No whitespaces or special-chars allowed!}`
         defaultValue: 'Default: style'
       }),
       default: 'style',
-      store: true
+      store: false
     },
     {
       type: 'list',
@@ -298,7 +298,7 @@ No whitespaces or special-chars allowed!}`
           value: 'em'
         }
       ],
-      store: true
+      store: false
     },
     {
       type: 'input',
@@ -318,7 +318,7 @@ No whitespaces or special-chars allowed!}`
         }
         return true
       },
-      store: true
+      store: false
     },
     {
       type: 'confirm',
@@ -329,7 +329,7 @@ No whitespaces or special-chars allowed!}`
         defaultValue: true
       }),
       default: true,
-      store: true
+      store: false
     },
     {
       when: function (answers) {
@@ -343,7 +343,7 @@ No whitespaces or special-chars allowed!}`
         defaultValue: false
       }),
       default: false,
-      store: true
+      store: false
     },
     {
       when: when('projectcritical', true),
@@ -363,7 +363,7 @@ No whitespaces or special-chars allowed!}`
           value: 'separate'
         }
       ],
-      store: true
+      store: false
     },
     {
       type: 'list',
@@ -387,7 +387,7 @@ No whitespaces or special-chars allowed!}`
         }
       ],
       default: false,
-      store: true
+      store: false
     },
     {
       type: 'list',
@@ -411,7 +411,7 @@ No whitespaces or special-chars allowed!}`
         }
       ],
       default: false,
-      store: true
+      store: false
     },
     {
       when: when('projectjsframework', 'vue'),
@@ -423,7 +423,7 @@ No whitespaces or special-chars allowed!}`
         defaultValue: true
       }),
       default: false,
-      store: true
+      store: false
     },
     {
       when: when('projectjsframework', 'vue'),
@@ -444,7 +444,7 @@ No whitespaces or special-chars allowed!}`
         }
       ],
       default: 'runtime',
-      store: true
+      store: false
     },
     {
       type: 'confirm',
@@ -455,7 +455,7 @@ No whitespaces or special-chars allowed!}`
         defaultValue: false
       }),
       default: false,
-      store: true
+      store: false
     },
     {
       type: 'confirm',
@@ -466,7 +466,7 @@ No whitespaces or special-chars allowed!}`
         defaultValue: false
       }),
       default: false,
-      store: true
+      store: false
     },
     {
       type: 'input',
@@ -477,7 +477,7 @@ No whitespaces or special-chars allowed!}`
         defaultValue: false
       }),
       default: '0.0.1',
-      store: true
+      store: false
     },
     {
       type: 'input',
@@ -496,7 +496,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Mailadress from the Author',
         defaultValue: false
       }),
-      store: true
+      store: false
     },
     {
       type: 'input',
@@ -506,7 +506,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Web-Adress for the Repository',
         defaultValue: false
       }),
-      store: true
+      store: false
     }
   ]
 }
