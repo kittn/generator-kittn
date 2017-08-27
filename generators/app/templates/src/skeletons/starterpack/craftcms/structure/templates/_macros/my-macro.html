@@ -300,27 +300,27 @@
       {% if options.icon == true %}<div class="{{ options.class }}__box">{% endif %}
       {% switch key %}
 
-      {% case 'facebook' %}
-    <a href="http://www.facebook.com/sharer.php?u={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'facebookwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
-      {% case 'twitter' %}
-      <a href="http://twitter.com/share?url={{ options.request }}&amp;text={{ options.description }}" rel="nofollow" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
-      {% case 'google-plus' %}
-    <a href="https://plus.google.com/share?url={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'googlepluswindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
-      {% case 'pinterest' %}
-    <a href="//pinterest.com/pin/create/link/?url={{ options.request }}&amp;media={{ options.image }}&amp;description={{ options.description|e }}" rel="nofollow" onclick="window.open(this.href, 'pinterestwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
-      {% case 'email' %}
-    <a href="mailto:?Subject={{ options.title }}&Body=%20{{ options.request }}" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
-      {% case 'whatsapp' %}
-    <a href="whatsapp://send?text={{ options.request }} {{ options.description }}" rel="nofollow" onclick="window.open(this.href, 'linkedinwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
-      {% case 'linkedin' %}
-    <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'linkedinwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
-      {% case 'xing' %}
-    <a href="https://www.xing.com/spi/shares/new?url={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'linkedinwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
-      {% case 'buffer' %}
-    <a href="https://bufferapp.com/add?url={{ options.request }}&text={{ options.title }}" rel="nofollow" onclick="window.open(this.href, 'bufferwindow','left=20,top=20,width=700,height=800,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
-      {% case 'reddit' %}
-      <a href="http://reddit.com/submit?url={{ options.request }}&title={{ options.title }}" rel="nofollow" onclick="window.open(this.href, 'redditwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
-        {% endswitch %}
+        {% case 'facebook' %}
+          <a href="http://www.facebook.com/sharer.php?u={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'facebookwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'twitter' %}
+          <a href="http://twitter.com/share?url={{ options.request }}&amp;text={{ options.description }}" rel="nofollow" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'googleplus' %}
+          <a href="https://plus.google.com/share?url={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'googlepluswindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'pinterest' %}
+          <a href="//pinterest.com/pin/create/link/?url={{ options.request }}&amp;media={{ options.image }}&amp;description={{ options.description|e }}" rel="nofollow" onclick="window.open(this.href, 'pinterestwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'email' %}
+          <a href="mailto:?Subject={{ options.title }}&Body=%20{{ options.request }}" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'whatsapp' %}
+          <a href="whatsapp://send?text={{ options.request }} {{ options.description }}" rel="nofollow" onclick="window.open(this.href, 'linkedinwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'linkedin' %}
+          <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'linkedinwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'xing' %}
+          <a href="https://www.xing.com/spi/shares/new?url={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'linkedinwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'buffer' %}
+          <a href="https://bufferapp.com/add?url={{ options.request }}&text={{ options.title }}" rel="nofollow" onclick="window.open(this.href, 'bufferwindow','left=20,top=20,width=700,height=800,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'reddit' %}
+          <a href="http://reddit.com/submit?url={{ options.request }}&title={{ options.title }}" rel="nofollow" onclick="window.open(this.href, 'redditwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+      {% endswitch %}
 
         {% if options.icon == true %}
           <svg class="{{ options.class }}__icon" viewBox="{{ options.viewbox }}">
