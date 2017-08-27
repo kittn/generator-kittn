@@ -80,6 +80,7 @@
     background: false,
     elementtype: 'figure',
     quality: 82,
+    userPhoto: false,
     position: false,
     sizes: [
       { width: 1900 },
@@ -98,7 +99,7 @@
   {# Check if Image is Available otherwise use a neutral Placeholder #}
   {% if photo %}
 
-    {% if photo.extension in ['svg', 'gif'] %}
+    {% if (options.userPhoto == false) and (photo.extension in ['svg', 'gif']) %}
       <img class="{{ options.class }} lazyload" data-sizes="auto" src="{{ photo.url }}" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
 
     {% else %}
