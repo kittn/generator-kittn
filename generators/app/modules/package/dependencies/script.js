@@ -130,7 +130,6 @@ function addScriptDependencies (files = {}, context) {
         dependencies: {
           'vue-router': '^2.2.0',
           'axios': '^0.15.3',
-          'vue-axios': '^1.2.2',
           'vuex': '^2.1.2',
           'vuex-router-sync': '^4.1.2'
         }

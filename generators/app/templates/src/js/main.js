@@ -5,8 +5,6 @@ import ReactDOM from 'react-dom'<% } %><% if ((typeof projectcontainerqueries !=
 import cq from 'cq-prolyfill' // eslint-disable-line<% } %><% if ( projectjsframework === 'vue' ) { %>
 import Vue from 'vue'<% } %><% if (typeof projectvueplugins !== 'undefined' && projectvueplugins === true)  { %>
 import { sync } from 'vuex-router-sync'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
 import router from './router'
 import store from './store'<% } %><% if ( (typeof projectusage !== 'undefined' && projectusage === 'craftCB') || (typeof projectusage !== 'undefined' && projectusage === 'wordpressCB') ) { %>
 import './partial/contentBuilder'<% } %>
@@ -21,10 +19,7 @@ import './partial/disable-pointerevents'<% if ( projectjsframework === 'vue') { 
 import App from './app'<%}%><% if (typeof projectvueplugins !== 'undefined' && projectvueplugins === true)  { %>
 
 // keep vue-router and vuex store in sync
-sync(store, router)
-
-// Adding Vue Plugins
-Vue.use(VueAxios, axios)<% } %><% if ( projectjsframework === 'vue' && projectvueplugins === false) { %>
+sync(store, router))<% } %><% if ( projectjsframework === 'vue' && projectvueplugins === false) { %>
 // Vue App
 /* eslint-disable no-new */
 new Vue({
@@ -54,4 +49,4 @@ lazySizesConfig.expFactor = 1.3
 lazySizes.init()<% if ((typeof projectcontainerqueries !== 'undefined' && projectcontainerqueries === true) || (typeof projectusage !== 'undefined' && projectusage === 'craftCB') || (typeof projectusage !== 'undefined' && projectusage === 'wordpressCB') ) { %>
 
 // Activate Container Queries
-cq({postcss: true})<% } %>
+cq({ postcss: true })<% } %>

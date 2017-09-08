@@ -207,6 +207,7 @@ module.exports = {
     }),
     new webpack.LoaderOptionsPlugin({
       options: {
+        context: LOADER_PATH,
         eslint: {
           failOnError: false,
           failOnWarning: false,
