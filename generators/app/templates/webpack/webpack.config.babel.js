@@ -112,52 +112,28 @@ module.exports = {
         loader: 'vue-loader',
         options: {
           loaders: {
-            scss: process.env.NODE_ENV !== 'development' ?
-              ExtractTextPlugin.extract({
-                use: [
-                  {
-                    loader: 'css-loader',
-                    options: { url: true }
-                  },
-                  {
-                    loader: 'postcss-loader'
-                  },
-                  {
-                    loader: 'sass-loader'
-                  },
-                  {
-                    loader: 'sass-resources-loader',
-                    options: {
-                      resources: [
-                        resolve(`${kittnConf.src.style}_app.scss`)
-                      ]
+            scss: [
+              { loader: 'vue-style-loader' },
+              {
+                loader: 'css-loader',
+                options: {
+                  url: true
+                }
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  config: {
+                    ctx: {
+                      normalize: false
                     }
                   }
-                ],
-                fallback: 'vue-style-loader'
-              }) : [
-                { loader: 'vue-style-loader' },
-                {
-                  loader: 'css-loader',
-                  options: {
-                    url: true
-                  }
-                },
-                {
-                  loader: 'postcss-loader'
-                },
-                {
-                  loader: 'sass-loader'
-                },
-                {
-                  loader: 'sass-resources-loader',
-                  options: {
-                    resources: [
-                      resolve(`${kittnConf.src.style}_app.scss`)
-                    ]
-                  }
                 }
-              ]
+              },
+              {
+                loader: 'sass-loader'
+              }
+            ]
           }
         }
       },
