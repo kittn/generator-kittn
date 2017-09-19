@@ -19,7 +19,7 @@ import './partial/disable-pointerevents'<% if ( projectjsframework === 'vue') { 
 import App from './app'<%}%><% if (typeof projectvueplugins !== 'undefined' && projectvueplugins === true)  { %>
 
 // keep vue-router and vuex store in sync
-sync(store, router))<% } %><% if ( projectjsframework === 'vue' && projectvueplugins === false) { %>
+sync(store, router)<% } %><% if ( projectjsframework === 'vue' && projectvueplugins === false) { %>
 // Vue App
 /* eslint-disable no-new */
 new Vue({
