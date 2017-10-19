@@ -60,7 +60,7 @@
       {% endfor %}
 
       {# List only if active categories in the group #}
-      {% if catCount > 0 %}
+      {#{% if catCount > 0 %}#}
         <div class="{{ c ~ '__box' }}">
           <h6 class="{{ c ~ '__heading' }}" role="heading"><span>{{ key }}</span></h6>
           <ul class="{{ c ~ '__list' }}">
@@ -75,7 +75,7 @@
             {% endfor %}
           </ul>
         </div>
-      {% endif %}
+      {#{% endif %}#}
     {% endif %}
   {% endfor %}
 </div>

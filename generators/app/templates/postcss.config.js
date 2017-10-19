@@ -1,7 +1,7 @@
-module.exports = (ctx) => ({
+module.exports = ({ file, options, env }) => ({
   parser: 'postcss-scss',
   plugins: {<% if (typeof projectnormalize !== 'undefined' && projectnormalize === 'regular') { %>
-    'postcss-normalize': {},<% } %>
+    'postcss-normalize': options.normalize !== false ? {} : false,<% } %>
     'postcss-custom-selectors': {},
     'postcss-custom-media': {},
     'postcss-pseudo-class-any-link': {},
@@ -22,7 +22,7 @@ module.exports = (ctx) => ({
     'postcss-svg': {},
     'postcss-short-size': {},
     'postcss-flexbugs-fixes': {},
-    'cssnano': ctx.env !== 'production' ? false : {
+    'cssnano': env !== 'production' ? false : {
       zindex: false,
       discardUnused: false,
       reduceIdents: false,
