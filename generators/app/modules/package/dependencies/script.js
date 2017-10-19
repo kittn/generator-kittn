@@ -110,7 +110,7 @@ function addScriptDependencies (files = {}, context) {
         'vue-template-compiler': '^2.1.10'
       },
       dependencies: {
-        'vue': '^2.4.0'
+        'vue': '^2.5.0'
       }
     })
   }
@@ -128,10 +128,10 @@ function addScriptDependencies (files = {}, context) {
     if (context.props.projectvueplugins === true) {
       extend(files.pkg, {
         dependencies: {
-          'vue-router': '^2.2.0',
+          'vue-router': '^3.0.1',
           'axios': '^0.15.3',
-          'vuex': '^2.1.2',
-          'vuex-router-sync': '^4.1.2'
+          'vuex': '^3.0.0',
+          'vuex-router-sync': '^5.0.0'
         }
       })
     }
