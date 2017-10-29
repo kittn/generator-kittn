@@ -93,7 +93,7 @@ module.exports = class extends Generator {
   }
 
   prompting () {
-    var welcomeHead = gradient.atlas(`
+    var welcomeHead = gradient.atlas.multiline(`
                                        ..
                                      .l0O:
                                      :NMMO' .od'
