@@ -14,7 +14,6 @@
     height: (
       mobile: glob(header, height, mobile),
       desktop: glob(header, height, desktop)
-
     )
   );
 
@@ -33,6 +32,8 @@
 
   // ::::::::: BASE
   background-color: api(background);
+  position: relative;
+  z-index: 100;
 
   // ::::::::: TAGS
   // ::::::::: MODIFIER
@@ -72,6 +73,16 @@
       flex: 1 1 auto;
       text-align: right;
       margin-right: s(1);
+    }
+  }
+
+  // [root]__search
+  &__search {
+    display: none;
+
+    @include break(api(breaksizes, one)) {
+      display: block;
+      margin-left: s(1);
     }
   }
 

@@ -9,8 +9,7 @@ import runSequence from 'run-sequence'
 const rebuildJsTask = (cb) => {
   runSequence (
     [
-      'build:modernizr',
-      'build:conditionizr'
+      'build:modernizr'
     ],
     [
       'copy:js'

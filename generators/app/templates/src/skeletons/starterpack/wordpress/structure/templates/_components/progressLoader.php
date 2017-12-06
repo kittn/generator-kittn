@@ -1,5 +1,5 @@
 <?php if (WP_ENV != 'local') : ?>
-  <div class="c-progressloader">
-    <div class="c-progressloader__loader"></div>
+  <div class="c-progressLoader">
+    <div class="c-progressLoader__loader"></div>
   </div>
 <?php endif; ?>

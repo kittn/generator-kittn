@@ -45,11 +45,13 @@ const filesModuleTpl = (context, destPath, pMeth, ptype, pCompiler) => {
       break
 
     case 'craft' :
+    case 'craftCB' :
       srcType = 'twig'
       destType = 'html'
       break
 
     case 'wordpress' :
+    case 'wordpressCB' :
       srcType = 'php'
       destType = 'php'
       break

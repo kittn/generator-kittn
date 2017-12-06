@@ -6,8 +6,6 @@
  */
 
 // Default Vars
-$templateNames = array('template--contentbuilder.php');
-$templateBoxes = array('full', 'bigger-25', 'bigger-45');
 $classnameSection = 'c-section';
 $style = get_sub_field('style');
 $fullheight = get_sub_field('fullheight') ? ' '.$classnameSection.'--fullheight' : '';
@@ -31,18 +29,8 @@ switch ($count) :
 endswitch;
 ?>
 
-<?php // Get Templatetype for build condition to close and open outer wrappers ?>
-<?php $templateType = basename(get_page_template()); ?>
-<?php // Closing outer Area first if Fullwidth ?>
-
-<?php if (in_array($templateType, $templateNames)) : ?>
-  <?php if(in_array(get_sub_field('innerContainer'), $templateBoxes)) : ?>
-    </div>
-  <?php endif; ?>
-<?php endif; ?>
-
 <?php // Build Element Block ?>
-<section class="<?= $classnameSection; ?><?= $fullheight; ?><?= $style != 'default' ? ' '.$classnameSection.'--s-'.$style : '' ?>"<?= $anchor;?>>
+<section class="<?= $classnameSection; ?><?= $fullheight; ?><?= $style ? ' '.$classnameSection.'--s-'.$style : '' ?>"<?= $anchor;?>>
 
   <?php if (get_sub_field('backgroundImage')) : ?>
     <div class="<?= $classnameSection; ?>__bg<?= get_sub_field('behavior') != 'default' ? ' '.$classnameSection.'__bg--'.get_sub_field('behavior') :  '' ?> <?= $classnameSection; ?>--p-<?= get_sub_field('align') ?><?= get_sub_field('adaptContainer') ? $backgroundContainer : '' ?>">
@@ -71,10 +59,3 @@ endswitch;
     </div>
   </div>
 </section>
-
-<?php // Opening outer Area again ?>
-<?php if (in_array($templateType, $templateNames)) : ?>
-  <?php if(in_array(get_sub_field('innerContainer'), $templateBoxes)) : ?>
-  <div class="o-area__container">
-  <?php endif; ?>
-<?php endif; ?>

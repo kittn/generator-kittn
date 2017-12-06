@@ -29,6 +29,9 @@ dist/
 build/
 doc/
 
+# Map-Files
+*.js.map
+
 # Sass-Files
 *.sassc
 .sass-cache

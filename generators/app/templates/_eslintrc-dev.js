@@ -23,7 +23,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       'webpack': {
-        'config': 'webpack.config.babel.js'
+        'config': 'webpack/webpack.config.babel.js'
       }
     }
   },<% if ( projectjsframework === 'vue' ) { %>

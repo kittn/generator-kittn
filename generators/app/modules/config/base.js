@@ -58,18 +58,6 @@ function addBaseCofig (files = {}, context) {
         'picture'
       ]
     },
-    'conditionizr': {
-      'filename': 'conditionizr.js',
-      'files': [
-        'node_modules/conditionizr/dist/conditionizr.js',
-        'node_modules/conditionizr/detects/chrome.js',
-        'node_modules/conditionizr/detects/safari.js',
-        'node_modules/conditionizr/detects/firefox.js',
-        'node_modules/conditionizr/detects/ie11.js',
-        'node_modules/conditionizr/detects/ie10.js',
-        'node_modules/conditionizr/detects/ie9.js'
-      ]
-    },
     'minify': {
       'images': {
         'optimizationLevel': 3,
@@ -100,37 +88,41 @@ function addBaseCofig (files = {}, context) {
         }
       }
     },
-    'src': {
-      'baseconf': {
-        'type': context.props.projectusage,
-        'methodology': context.props.projectcssstructure ? context.props.projectcssstructure : 'sassITCSS',
-        'structure': context.props.projectstructure ? context.props.projectstructure : 'uncompiled',
+    src: {
+      baseconf: {
+        type: context.props.projectusage,
+        methodology: context.props.projectcssstructure ? context.props.projectcssstructure : 'sassITCSS',
+        structure: context.props.projectstructure ? context.props.projectstructure : 'uncompiled',
+        'themeColor': context.props.projectthemecolor
       },
-      'style': 'src/style/',
-      'template': 'src/template/',
-      'js': 'src/js/',
-      'bower': 'src/bower/',
-      'scripts': 'src/scripts',
-      'structure': 'src/structure/',
-      'fonts': 'src/fonts/',
-      'images': {
-        'bitmapSprite': {
-          'files': 'src/images/bitmapSprite-assets/',
-          'name': 'sprite.png'
+      base: 'src/',
+      style: 'src/style/',
+      template: 'src/template/',
+      js: 'src/js/',
+      scripts: 'src/scripts',
+      structure: 'src/structure/',
+      fonts: 'src/fonts/',
+      images: {
+        bitmapSprite: {
+          files: 'src/images/bitmapSprite-assets/',
+          name: 'sprite.png'
         },
-        'vectorSprite': {
-          'files': 'src/images/vectorSprite-assets/',
-          'name': 'vector-sprite.svg',
-          'symbolName': 'symbol-sprite.svg',
-          'maxHeight': 30,
-          'maxWidth': 30,
-          'padding': 0
+        vectorSprite: {
+          files: 'src/images/vectorSprite-assets/',
+          name: 'vector-sprite.svg',
+          symbolName: 'symbol-sprite.svg',
+          maxHeight: 30,
+          maxWidth: 30,
+          padding: 0
         },
-        'bitmaps': 'src/images/bitmapSingle-assets/',
-        'vectors': 'src/images/vectorSingle-assets/'
+        bitmaps: 'src/images/bitmapSingle-assets/',
+        vectors: 'src/images/vectorSingle-assets/'
       },
-      'contentimage': 'src/images/htmlimages/',
-      'system': 'src/.system/'
+      contentimage: 'src/images/htmlimages/',
+      system: 'src/.system/',
+      jsEntryPoints: {
+        main: '../src/js/main.js'
+      }
     }
   })
 
