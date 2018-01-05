@@ -8,12 +8,13 @@ function addScriptDependencies (files = {}, context) {
       'webpack:analyze': 'webpack-bundle-analyzer webpack/stats.json dist/assets/'
     },
     devDependencies: {
-      'babel-loader': '^7.1.0',
+      '@babel/plugin-syntax-dynamic-import': '^7.0.0-beta.36',
+      '@babel/plugin-transform-runtime': '^7.0.0-beta.36',
+      '@babel/preset-env': '^7.0.0-beta.36',
+      '@babel/register': '^7.0.0-beta.36',
+      '@babel/polyfill': '^7.0.0-beta.36',
+      'babel-loader': '^8.0.0-beta.0',
       'babel-eslint': '^7.2.3',
-      'babel-plugin-transform-runtime': '^6.22.0',
-      'babel-plugin-syntax-dynamic-import': '^6.18.0',
-      'babel-preset-env': '^1.2.2',
-      'babel-register': '^6.22.0',
       'eslint': '^3.15.0',
       'eslint-config-standard': '^6.2.1',
       'eslint-plugin-promise': '^3.4.1',
@@ -38,7 +39,6 @@ function addScriptDependencies (files = {}, context) {
       'write-file-webpack-plugin': '^4.1.0'
     },
     dependencies: {
-      'babel-polyfill': '^6.23.0',
       'bowser': '^1.7.1',
       'lazysizes': '^3.0.0',
       'pyrsmk-toast': '^2.1.1',
@@ -78,7 +78,7 @@ function addScriptDependencies (files = {}, context) {
     extend(files.pkg, {
       devDependencies: {
         'eslint-plugin-react': '^6.9.0',
-        'babel-preset-react': '^6.24.1'
+        '@babel/preset-react': '^7.0.0-beta.36'
       },
       dependencies: {
         'react': '^15.5.4',
@@ -91,8 +91,6 @@ function addScriptDependencies (files = {}, context) {
   if (context.props.projectjsframework === 'vue') {
     extend(files.pkg, {
       devDependencies: {
-        'babel-preset-es2015': '^6.24.1',
-        'babel-preset-stage-2': '^6.24.1',
         'css-loader': '^0.26.1',
         'eslint-config-vue': '^2.0.2',
         'eslint-plugin-html': '^3.0.0',
