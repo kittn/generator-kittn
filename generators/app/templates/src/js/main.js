@@ -10,7 +10,7 @@ import store from './store'<% } %><% if ( (typeof projectusage !== 'undefined' &
 import './partial/contentBuilder'<% } %>
 import lazySizes from 'lazysizes'
 import lazybgset from 'lazysizes/plugins/bgset/ls.bgset' // eslint-disable-line
-import 'babel-polyfill'
+import '@babel/polyfill'
 import 'svgxuse' // eslint-disable-line
 import './partial/kittnad' // Small Advertising for Kittn :)
 import './partial/modernizer-loader'
