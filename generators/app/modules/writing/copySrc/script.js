@@ -14,10 +14,6 @@ const script = (context) => {
         dest: '.babelrc'
       },
       {
-        src: 'webpack/_babelrc',
-        dest: 'webpack/.babelrc'
-      },
-      {
         src: 'webpack/webpack.config.babel.js',
         dest: 'webpack/webpack.config.babel.js'
       },
