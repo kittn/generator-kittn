@@ -5,27 +5,26 @@ function addStyleDependencies (files = {}, context) {
     devDependencies: {
       'autoprefixer': '^7.1.1',
       'cssnano': '^3.10.0',
-      'gulp': '^3.9.1',
       'gulp-load-plugins': '^1.5.0',
-      'gulp-postcss': '^6.3.0',
+      'gulp-postcss': '^7.0.1',
       'gulp-sass': '^3.1.0',
-      'gulp-size': '^2.1.0',
+      'gulp-size': '^3.0.0',
       'gulp-sourcemaps': '^2.6.0',
       'gulp-util': '^3.0.8',
       'postcss-aspect-ratio': '^1.0.1',
-      'postcss-assets': '^4.1.0',
-      'postcss-calc': '^5.3.1',
+      'postcss-assets': '^5.0.0',
+      'postcss-calc': '^6.0.1',
       'postcss-custom-media': '^6.0.0',
-      'postcss-custom-properties': '^6.0.1',
+      'postcss-custom-properties': '^6.2.0',
       'postcss-custom-selectors': '^4.0.1',
       'postcss-easings': '^1.0.0',
-      'postcss-flexbugs-fixes': '^3.0.0',
+      'postcss-flexbugs-fixes': '^3.2.0',
       'postcss-pseudo-class-any-link': '^4.0.0',
       'postcss-short-size': '^3.0.0',
       'postcss-scss': '^1.0.1',
       'postcss-svg': '^2.1.0',
-      'rucksack-css': '^0.9.1',
-      'yargs': '^6.6.0'
+      'rucksack-css': '^1.0.2',
+      'yargs': '^10.0.3'
     }
   })
 
@@ -41,11 +40,11 @@ function addStyleDependencies (files = {}, context) {
       },
       devDependencies: {
         'gulp-stylelint': '^3.9.0',
-        'stylelint': '^7.10.1',
-        'stylelint-config-sass-guidelines': '^2.1.0',
+        'stylelint': '^8.4.0',
+        'stylelint-config-sass-guidelines': '^4.0.1',
         'stylelint-order': '^0.4.4',
-        'stylelint-scss': '^1.4.4',
-        'stylelint-selector-bem-pattern': '^1.0.0'
+        'stylelint-scss': '^2.2.0',
+        'stylelint-selector-bem-pattern': '^2.0.0'
       }
     })
   }
@@ -83,7 +82,7 @@ function addStyleDependencies (files = {}, context) {
   if (context.props.projectnormalize === 'regular') {
     extend(files.pkg, {
       devDependencies: {
-        'postcss-normalize': '^3.0.0'
+        'postcss-normalize': '^4.0.0'
       }
     })
   }
