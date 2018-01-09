@@ -8,10 +8,11 @@ import kc from '../../config.json'
 import gulp from 'gulp'
 import copyImages from '../lib/copyImages'
 
-const copyContentimagesTask = () => {
+const copyContentimagesTask = (cb) => {
   // Call the Function
-  copyImages(kc.src.contentimage,kc.dist.contentimage)
+  copyImages(kc.src.contentimage, kc.dist.contentimage)
+  cb()
 }
 
-gulp.task('copy:contentimages',copyContentimagesTask)
+gulp.task('copy:contentimages', copyContentimagesTask)
 module.exports = copyContentimagesTask

@@ -10,13 +10,15 @@ import gulpLoadPlugins from 'gulp-load-plugins'
 
 const $ = gulpLoadPlugins()
 
-const copyJsTask = () => {
-  kc.files.jsCopy.forEach(function(item) {
+const copyJsTask = (cb) => {
+  kc.files.jsCopy.forEach((item) => {
     gulp
       .src(item)
       .pipe(global.checkChanged === true ? $.changed(kc.dist.js) : gutil.noop())
       .pipe(gulp.dest(kc.dist.js))
   })
+
+  cb()
 }
 
 gulp.task('copy:js', copyJsTask)

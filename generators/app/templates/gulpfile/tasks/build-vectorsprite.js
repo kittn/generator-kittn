@@ -19,29 +19,29 @@ const buildVectorSpriteTask = () => {
     .pipe($.svgSprite(
       {
         shape: {
-          dimension : {  // Set maximum dimensions
-            maxWidth : kc.src.images.vectorSprite.maxWidth,
-            maxHeight : kc.src.images.vectorSprite.maxHeight
+          dimension: { // Set maximum dimensions
+            maxWidth: kc.src.images.vectorSprite.maxWidth,
+            maxHeight: kc.src.images.vectorSprite.maxHeight
           },
-          spacing : { // Add padding
-            padding : kc.src.images.vectorSprite.padding
+          spacing: { // Add padding
+            padding: kc.src.images.vectorSprite.padding
           },
-          dest : kc.dist.vectors
+          dest: kc.dist.vectors
         },
         mode: {
-          view: {  // Activate the «view» mode
+          view: { // Activate the «view» mode
             sprite: kc.dist.cssimg + kc.src.images.vectorSprite.name,
             dest: '.',
-            bust : false,
+            bust: false,
             prefix: '%%svg',
-            render : {
-              scss : {
+            render: {
+              scss: {
                 template: kc.src.system + 'tpl_svgsprite.scss',
-                dest: kc.src.style +'maps/_sprite-svg.scss'
+                dest: kc.src.style + 'maps/_sprite-svg.scss'
               }
             }
           },
-          symbol : {
+          symbol: {
             sprite: kc.src.images.vectorSprite.symbolName,
             dest: kc.dist.cssimg
           }

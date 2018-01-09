@@ -11,8 +11,9 @@ import minifyImages from '../lib/minifyImage'
 
 const $ = gulpLoadPlugins()
 
-const minifyInlineimagesTask = () => {
-  minifyImages(kc.dist.cssimg,kc.dist.cssimg)
+const minifyInlineimagesTask = (cb) => {
+  minifyImages(kc.dist.cssimg, kc.dist.cssimg)
+  cb()
 }
 
 gulp.task('minify:inlineimages', minifyInlineimagesTask)

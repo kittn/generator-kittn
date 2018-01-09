@@ -3,19 +3,14 @@
  * Copy to distribution
  */
 
-import gulp from 'gulp'
-import runSequence from 'run-sequence'
+import { series, task } from 'gulp'
 
-const rebuildJsTask = (cb) => {
-  runSequence (
-    [
-      'build:modernizr'
-    ],
-    [
-      'copy:js'
-    ],
-  cb)
+const rebuildJsTask = () => {
+  return series(
+    // 'build:modernizr',
+    'copy:js'
+  )
 }
 
-gulp.task('rebuild:js', rebuildJsTask)
+task('rebuild:js', rebuildJsTask())
 module.exports = rebuildJsTask

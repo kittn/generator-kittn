@@ -6,9 +6,10 @@ import kc from '../../config.json'
 import gulp from 'gulp'
 import copyImages from '../lib/copyImages'
 
-const copyBitmapsTask = () => {
+const copyBitmapsTask = (cb) => {
   // Call the Function
-  copyImages(kc.src.images.bitmaps,kc.dist.bitmaps)
+  copyImages(kc.src.images.bitmaps, kc.dist.bitmaps)
+  cb()
 }
 
 gulp.task('copy:bitmaps', copyBitmapsTask)

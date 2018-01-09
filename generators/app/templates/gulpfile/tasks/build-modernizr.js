@@ -14,7 +14,7 @@ const buildModernizrTask = () => {
     .src('node_modules/gulp-modernizr/build/modernizr-custom.js')
     .pipe($.modernizr({
       crawl: false,
-      options : kc.modernizr.options,
+      options: kc.modernizr.options,
       tests: kc.modernizr.tests
     }))
     .pipe(gulp.dest(kc.dist.js))

@@ -12,7 +12,7 @@ import svgo from 'imagemin-svgo'
 const $ = gulpLoadPlugins()
 
 const copyVectorsTask = () => {
-  gulp
+  return gulp
     .src(kc.src.images.vectors + '**/*.svg')
     .pipe(global.checkChanged === true ? $.changed(kc.dist.vectors) : gutil.noop())
     .pipe($.imagemin({

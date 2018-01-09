@@ -10,13 +10,15 @@ import gulpLoadPlugins from 'gulp-load-plugins'
 
 const $ = gulpLoadPlugins()
 
-const copyFontsTask = () => {
-  kc.files.fonts.forEach(function(item) {
+const copyFontsTask = (cb) => {
+  kc.files.fonts.forEach((item) => {
     gulp
       .src(item)
       .pipe(global.checkChanged === true ? $.changed(kc.dist.fonts) : gutil.noop())
       .pipe(gulp.dest(kc.dist.fonts))
   })
+
+  cb()
 }
 
 gulp.task('copy:fonts', copyFontsTask)

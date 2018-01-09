@@ -17,15 +17,15 @@ const args = yargs.argv
 const $ = gulpLoadPlugins()
 
 const versionBump = () => {
-  const type = args.type || 'patch';
-  const version = args.version;
-  const options = {};
+  const type = args.type || 'patch'
+  const version = args.version
+  const options = {}
 
   if (version) {
-    options.version = version;
+    options.version = version
 
   } else {
-    options.type = type;
+    options.type = type
   }
 
   return gulp.src(['./bower.json', './package.json'])

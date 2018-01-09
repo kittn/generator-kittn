@@ -19,5 +19,4 @@ const copyImages = (srcfiles, distfiles) => {
     .pipe(gulp.dest(distfiles))
 }
 
-module.exports = copyImages
-
+export default copyImages

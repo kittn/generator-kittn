@@ -13,4 +13,4 @@ const templateFiles = () => {
   }
 }
 
-module.exports = templateFiles
+export default templateFiles

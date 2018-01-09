@@ -21,7 +21,7 @@ function addBaseDependencies (files = {}, context) {
       '@babel/core': '^7.0.0-beta.36',
       'browser-sync': '^2.23.3',
       'cross-env': '^5.1.3',
-      'gulp': '^3.9.0',
+      'gulp': '^4.0.0',
       'gulp-bump': '^3.0.0',
       'gulp-changed': '^3.1.0',
       'gulp-cheerio': '^0.6.2',
@@ -42,7 +42,8 @@ function addBaseDependencies (files = {}, context) {
       'imagemin-pngquant': '^5.0.1',
       'imagemin-svgo': '^6.0.0',
       'require-dir': '^0.3.2',
-      'run-sequence': '^2.2.1'
+      'run-sequence': '^2.2.1',
+      'undertaker-forward-reference': '^1.0.2'
     }
   })
 }

@@ -6,25 +6,24 @@
  */
 
 import gulp from 'gulp'
-import runSequence from 'run-sequence'
+import FwdRef from 'undertaker-forward-reference'
 
-// Overwrite the Changed Check
-global.checkChanged = true
+gulp.registry(FwdRef())
 
-const publishTask = (cb) => {
+const publishTask = () => {
+  // Overwrite the Changed Check
+  global.checkChanged = true
 
-  runSequence(
-    [
-      'version:bump',
-    ],
-    [
+  return gulp.series(
+    'version:bump',
+    gulp.parallel(
       'minify:js',
       'minify:contentimages',
       'minify:inlineimages',
       'minify:css'
-    ],
-    cb)
+    )
+  )
 }
 
-gulp.task('publish', publishTask)
+gulp.task('publish', publishTask())
 module.exports = publishTask

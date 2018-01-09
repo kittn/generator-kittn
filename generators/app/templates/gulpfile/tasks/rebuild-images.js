@@ -4,22 +4,18 @@
  */
 
 import gulp from 'gulp'
-import runSequence from 'run-sequence'
 
-const rebuildImagesTask = (cb) => {
-  runSequence(
-    [
+const rebuildImagesTask = () => {
+  return gulp.series(
+    gulp.parallel(
       'copy:bitmaps',
       'copy:vectors',
       'build:bitmapSprite',
       'build:vectorSprite'
-    ],
-    [
-      'build:symbolCleanup'
-    ],
-    cb)
+    ),
+    'build:symbolCleanup'
+  )
 }
 
-gulp.task('rebuild:images', rebuildImagesTask)
+gulp.task('rebuild:images', rebuildImagesTask())
 module.exports = rebuildImagesTask
-

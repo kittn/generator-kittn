@@ -7,7 +7,7 @@ import kc from '../../config.json'
 import gulp from 'gulp'
 
 const copyAssets = () => {
-  gulp
+  return gulp
     .src(kc.dist.assets + '**/*')
     .pipe(gulp.dest('doc/pattern-library/assets/'))
 }

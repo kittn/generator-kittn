@@ -10,7 +10,7 @@ import gulpLoadPlugins from 'gulp-load-plugins'
 const $ = gulpLoadPlugins()
 
 const buildBitmapSpriteTaks = () => {
-  gulp
+  return gulp
     .src(kc.src.images.bitmapSprite.files + '**/*.png')
     .pipe($.if('*.png',
       $.spritesmith({
@@ -20,7 +20,7 @@ const buildBitmapSpriteTaks = () => {
         cssTemplate: kc.src.system + 'tpl_bitmapsprite.scss'
       })
     ))
-    .pipe($.if('*.png',gulp.dest(kc.dist.cssimg),gulp.dest(kc.src.style + 'maps/')))
+    .pipe($.if('*.png', gulp.dest(kc.dist.cssimg), gulp.dest(kc.src.style + 'maps/')))
 }
 
 gulp.task('build:bitmapSprite', buildBitmapSpriteTaks)

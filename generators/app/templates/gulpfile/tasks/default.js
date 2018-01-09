@@ -3,23 +3,19 @@
  * watch the working dirs - activates the compilers and refresh the browser
  */
 import gulp from 'gulp'
-import runSequence from 'run-sequence'
+import FwdRef from 'undertaker-forward-reference'
 
-const defaultTask = (cb) => {
+gulp.registry(FwdRef())
 
+const defaultTask = () => {
   // Overwrite Changed Checks
   global.checkChanged = true
 
-  runSequence(
-    [
-      'watch'
-    ],
-    [
-      'browser-sync'
-    ],
-    cb)
+  return gulp.series(
+    'watch',
+    'browser-sync'
+  )
 }
 
-
-gulp.task('default', defaultTask)
+gulp.task('default', defaultTask())
 module.exports = defaultTask

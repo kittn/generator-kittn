@@ -3,18 +3,18 @@
  */
 
 import gulp from 'gulp'
-import runSequence from 'run-sequence'
+import FwdRef from 'undertaker-forward-reference'
+
+gulp.registry(FwdRef())
 
 const initTask = (cb) => {
 
   // Overwrite the Changed Check
   global.checkChanged = false
 
-  runSequence(<% if (projectsassdocs === true) { %>
-    [
-      'sassdoc:generate'
-    ],<% } %>
-    [
+  return gulp.series(<% if (projectsassdocs === true) { %>
+    'sassdoc:generate',<% } %>
+    gulp.parallel(
       'copy:launch',
       'copy:fonts',
       'rebuild:js',
@@ -25,13 +25,13 @@ const initTask = (cb) => {
       'copy:craftindex',
       'copy:craftplugins',
       'copy:craftenv'<% } %>
-    ],
-    [
+    ),
+    gulp.parallel(
       'compiler:css',
       'compiler:html'
-    ],
-    cb)
+    )
+  )
 }
 
-gulp.task('init', initTask)
+gulp.task('init', initTask())
 module.exports = initTask

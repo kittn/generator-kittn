@@ -5,18 +5,18 @@
  */
 
 import gulp from 'gulp'
-import runSequence from 'run-sequence'
+import FwdRef from 'undertaker-forward-reference'
 
-const buildTask = (cb) => {
+gulp.registry(FwdRef())
+
+const buildTask = () => {
 
   // Overwrite the Changed Check
   global.checkChanged = true
 
-  runSequence(
-    [
-      'version:bump',
-    ],
-    [
+  return gulp.series(
+    'version:bump',
+    gulp.parallel(
       'copy:launch',
       'copy:fonts',
       'rebuild:js',
@@ -25,22 +25,23 @@ const buildTask = (cb) => {
       'copy:contentimages'<% if (projectusage == 'wordpress' || projectusage == 'wordpressCB' ) { %>,
       'copy:wpconfig',
       'copy:wpplugins'<% } %>
-    ],
-    [
+    ),
+    gulp.parallel(
       'compiler:css',
       'compiler:html'
-    ]<% if (projectcritical !== 'undefined' && projectcritical === true) { %>,
-    [
+    )<% if (projectcritical !== 'undefined' && projectcritical === true) { %>,
+    gulp.parallel(
       'optimize:criticalCss'
-    ]<% } %>,
-    [
+    )<% } %>,
+    gulp.parallel(
       'minify:js',
       'minify:contentimages',
       'minify:inlineimages',
       'minify:css'
-    ],
-    cb)
+    )
+  )
 }
 
-gulp.task('build', buildTask)
+gulp.task('build', buildTask())
+
 module.exports = buildTask
