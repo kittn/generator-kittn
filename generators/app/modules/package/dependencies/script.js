@@ -14,7 +14,7 @@ function addScriptDependencies (files = {}, context) {
       '@babel/register': '^7.0.0-beta.36',
       '@babel/polyfill': '^7.0.0-beta.36',
       'babel-loader': '^8.0.0-beta.0',
-      'babel-eslint': '^7.2.3',
+      'babel-eslint': '^8.2.1',
       'eslint': '^4.15.0',
       'eslint-config-standard': '^11.0.0-beta.0',
       'eslint-plugin-promise': '^3.4.1',

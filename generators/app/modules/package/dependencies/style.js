@@ -39,7 +39,7 @@ function addStyleDependencies (files = {}, context) {
         'stylelint': "stylelint 'src/style/**/**/*.scss'"
       },
       devDependencies: {
-        'gulp-stylelint': '^3.9.0',
+        'gulp-stylelint': '^6.0.0',
         'stylelint': '^8.4.0',
         'stylelint-config-sass-guidelines': '^4.0.1',
         'stylelint-order': '^0.4.4',
