@@ -422,7 +422,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Do you need basic Vue.js Plugins? (Axios, vuex...)',
         defaultValue: true
       }),
-      default: false,
+      default: true,
       store: false
     },
     {

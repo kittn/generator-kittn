@@ -38,6 +38,7 @@ const browserSyncTask = () => {
       middleware: [
         webpackDevMiddleware(bundler, {
           quiet: true,
+          logLevel: 'warn',
           publicPath: webpackSettings.output.publicPath,
           stats: { colors: true }
         }),
