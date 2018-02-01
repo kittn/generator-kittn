@@ -1,7 +1,7 @@
 module.exports = ({ file, options, env }) => ({
   parser: 'postcss-scss',
   plugins: {<% if (typeof projectnormalize !== 'undefined' && projectnormalize === 'regular') { %>
-    'postcss-normalize': options.normalize !== false ? {} : false,<% } %>
+    'postcss-normalize': options && options.normalize !== false ? {} : false,<% } %>
     'postcss-custom-selectors': {},
     'postcss-custom-media': {},
     'postcss-pseudo-class-any-link': {},
