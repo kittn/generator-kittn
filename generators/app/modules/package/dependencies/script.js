@@ -30,7 +30,8 @@ function addScriptDependencies (files = {}, context) {
       'extract-text-webpack-plugin': '^3.0.0',
       'friendly-errors-webpack-plugin': '^1.6.1',
       'html-webpack-plugin': '^2.29.0',
-      'webpack': '^3.7.0',
+      'webpack': '^4.0.0-beta.0',
+      'webpack-cli': '^2.0.4',
       'webpack-bundle-analyzer': '^2.8.2',
       'webpack-config-utils': '^2.3.0',
       'webpack-dev-middleware': '^2.0.4',
@@ -103,7 +104,7 @@ function addScriptDependencies (files = {}, context) {
         'sass-resources-loader': '^1.3.0',
         'stylelint-webpack-plugin': '^0.8.0',
         'svg-sprite-loader': '^3.2.4',
-        'vue-loader': '^13.3.0',
+        'vue-loader': '^14.1.0',
         'vue-style-loader': '^3.0.0',
         'vue-template-compiler': '^2.5.0'
       },
