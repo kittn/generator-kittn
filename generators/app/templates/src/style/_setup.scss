@@ -314,10 +314,48 @@ $kittn-color-map: (
     color: #eee
   ),
   'white': (
-    color: #fff
+    color: #fff,
+    5: darken(#fff, 5),
+    10: darken(#fff, 10),
+    15: darken(#fff, 15),
+    20: darken(#fff, 20),
+    25: darken(#fff, 25),
+    30: darken(#fff, 30),
+    35: darken(#fff, 35),
+    40: darken(#fff, 40),
+    45: darken(#fff, 45),
+    50: darken(#fff, 50),
+    55: darken(#fff, 55),
+    60: darken(#fff, 60),
+    65: darken(#fff, 65),
+    70: darken(#fff, 70),
+    75: darken(#fff, 75),
+    80: darken(#fff, 80),
+    85: darken(#fff, 85),
+    90: darken(#fff, 90),
+    95: darken(#fff, 95)
   ),
   'black': (
-    color: #000
+    color: #000,
+    5: lighten(#000, 5),
+    10: lighten(#000, 10),
+    15: lighten(#000, 15),
+    20: lighten(#000, 20),
+    25: lighten(#000, 25),
+    30: lighten(#000, 30),
+    35: lighten(#000, 35),
+    40: lighten(#000, 40),
+    45: lighten(#000, 45),
+    50: lighten(#000, 50),
+    55: lighten(#000, 55),
+    60: lighten(#000, 60),
+    65: lighten(#000, 65),
+    70: lighten(#000, 70),
+    75: lighten(#000, 75),
+    80: lighten(#000, 80),
+    85: lighten(#000, 85),
+    90: lighten(#000, 90),
+    95: lighten(#000, 95)
   ),
   'body': (
     color: #f8f8f8
@@ -335,30 +373,6 @@ $kittn-color-map: (
     color: #f8e64b
   )
 );
-
-$kittn-color-blacks: (
-  'black-05': (color: lighten(c('black'), 5)),
-  'black-10': (color: lighten(c('black'), 10)),
-  'black-15': (color: lighten(c('black'), 15)),
-  'black-20': (color: lighten(c('black'), 20)),
-  'black-25': (color: lighten(c('black'), 25)),
-  'black-30': (color: lighten(c('black'), 30)),
-  'black-35': (color: lighten(c('black'), 35)),
-  'black-40': (color: lighten(c('black'), 40)),
-  'black-45': (color: lighten(c('black'), 45)),
-  'black-50': (color: lighten(c('black'), 50)),
-  'black-55': (color: lighten(c('black'), 55)),
-  'black-60': (color: lighten(c('black'), 60)),
-  'black-65': (color: lighten(c('black'), 65)),
-  'black-70': (color: lighten(c('black'), 70)),
-  'black-75': (color: lighten(c('black'), 75)),
-  'black-80': (color: lighten(c('black'), 80)),
-  'black-85': (color: lighten(c('black'), 85)),
-  'black-90': (color: lighten(c('black'), 90)),
-  'black-95': (color: lighten(c('black'), 95))
-);
-
-$kittn-color-map: map-merge($kittn-color-map, $kittn-color-blacks);
 
 // Color definitions of HTML elements
 //
