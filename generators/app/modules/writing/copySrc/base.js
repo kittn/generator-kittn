@@ -26,6 +26,26 @@ const base = (context) => {
         dest: 'src/.system/.htaccess'
       },
       {
+        src: 'src/.system_additions/facebook-og-image.jpg',
+        dest: 'src/.system/facebook-og-image.jpg',
+        simplecopy: true
+      },
+      {
+        src: 'src/.system_additions/favicon.png',
+        dest: 'src/.system/favicon.png',
+        simplecopy: true
+      },
+      {
+        src: 'src/.system_additions/placeholder.png',
+        dest: 'src/.system/placeholder.png',
+        simplecopy: true
+      },
+      {
+        src: 'src/.system_additions/twitter-og-image.jpg',
+        dest: 'src/.system/twitter-og-image.jpg',
+        simplecopy: true
+      },
+      {
         src: 'README.md',
         dest: 'README.md'
       }
