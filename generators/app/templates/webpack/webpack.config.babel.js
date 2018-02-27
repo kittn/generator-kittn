@@ -5,9 +5,11 @@
  * @author   Lars Eichler <larseichler.le@gmail.com>
  */
 import path from 'path'
+import webpack from 'webpack'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'
 import StylelintPlugin from 'stylelint-webpack-plugin'
+import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
 import { getIfUtils, removeEmpty } from 'webpack-config-utils'
 const kittnConf = require('../config.json')
 
@@ -201,6 +203,18 @@ export default {
     ]
   },
   plugins: removeEmpty([<% if ( projectjsframework === 'vue' ) { %>
+    ifDevelopment(new webpack.HotModuleReplacementPlugin()),
+    ifProduction(
+      new CleanWebpackPlugin([
+        ASSETS_PATH + 'js/',
+        CSS_PATH
+      ],
+      {
+        root: PUBLIC_PATH,
+        beforeEmit: true,
+        exclude: ['ls.respimg.js', 'modernizr.js', 'style.css', 'style.css.map']
+      })
+    ),
     new ExtractTextPlugin({
       filename: ifDevelopment('css/[name].css', 'css/[name].[chunkhash].css'),
       allChunks: true
