@@ -4,16 +4,15 @@
  * @package  generator-kittn
  * @author   Lars Eichler <larseichler.le@gmail.com>
  */
-
-import webpack from 'webpack'
-import { getIfUtils, removeEmpty } from 'webpack-config-utils'
 import path from 'path'
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
-import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
-import Webpack2Polyfill from 'webpack2-polyfill-plugin'<% if ( projectjsframework === 'vue' && projectstylelint) { %>
-import StylelintPlugin from 'stylelint-webpack-plugin'<% } %><% if ( projectjsframework === 'vue' ) { %>
+import webpack from 'webpack'<% if ( projectjsframework === 'vue' ) { %>
+import CleanWebpackPlugin from 'clean-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'<% } %>
+import HtmlWebpackPlugin from 'html-webpack-plugin'<% } %><% if ( projectjsframework === 'vue' && projectstylelint) { %>
+import StylelintPlugin from 'stylelint-webpack-plugin'<% } %>
+import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+import { getIfUtils, removeEmpty } from 'webpack-config-utils'
 const kittnConf = require('../config.json')
 
 const nodeEnv = process.env.NODE_ENV || 'production'
@@ -30,7 +29,9 @@ const {
  */
 const ROOT_PATH = path.resolve(__dirname, '..')
 const PUBLIC_PATH = path.join(ROOT_PATH, kittnConf.dist.webpackpublic)
-const ASSETS_PATH = kittnConf.dist.webpackjsassets
+const ASSETS_PATH = kittnConf.dist.webpackassets
+const CSS_PATH = kittnConf.dist.webpackcssassets
+const CSS_ROOT = path.resolve(ROOT_PATH, kittnConf.src.style)
 const LOADER_PATH = path.join(ROOT_PATH, kittnConf.src.js)
 
 /*
@@ -59,18 +60,45 @@ function resolve (dir) {
   return path.join(__dirname, '..', dir)
 }
 
+const CSS_LOADERS = [
+  {
+    loader: 'css-loader',
+    options: {
+      autoprefixer: false,
+      sourceMap: true,
+      url: true
+    }
+  },
+  {
+    loader: 'postcss-loader',
+    options: {
+      sourceMap: true,
+      config: {
+        ctx: {
+          normalize: true
+        }
+      }
+    }
+  },
+  {
+    loader: 'sass-loader',
+    options: {
+      sourceMap: true
+    }
+  }
+]
+
 /*
  |--------------------------------------------------------------------------
- | return webpack config object
+ | Let the config begin
  |--------------------------------------------------------------------------
  */
-module.exports = {
-  devtool: ifProduction('#source-map', '#cheap-module-eval-source-map'),
-  context: path.join(ROOT_PATH, 'src'),
+export default {
   entry: removeEmpty(entryPoints),
+  mode: nodeEnv,
   output: {
     path: path.join(PUBLIC_PATH, ASSETS_PATH),
-    publicPath: '/' + ASSETS_PATH,
+    publicPath: ifDevelopment('/' + ASSETS_PATH, ASSETS_PATH),
     filename: 'js/[name].js',
     chunkFilename: 'js/[name].js'
   },
@@ -78,13 +106,14 @@ module.exports = {
     Modernizr: 'Modernizr'
   },
   resolve: {
-    extensions: [
-      '.vue',
+    extensions: [<% if ( projectjsframework === 'vue' ) { %>
+      '.vue',<% } %>
       '.js'
     ],
     modules: [resolve(kittnConf.src.base), resolve('node_modules')],
     alias: {<% if ( projectjsframework === 'vue' ) { %>
-      components: path.resolve(LOADER_PATH, 'components/'),<% if ( projectvueversion === 'standalone' ) { %>
+      components: path.resolve(LOADER_PATH, 'components/'),
+      store: path.resolve(LOADER_PATH, 'store'),<% if ( projectvueversion === 'standalone' ) { %>
       'vue$': 'vue/dist/vue.common.js',<% } } %>
       src: resolve(kittnConf.src.base)
     }
@@ -93,9 +122,10 @@ module.exports = {
     rules: [
       {
         enforce: 'pre',
-        test: /\.(js<% if ( projectjsframework === 'vue' ) { %>|vue<% } %>)$/,
+        test: /\.(js<% if ( projectjsframework === 'vue' ) { %>|vue<% } %>)$/,
         loader: 'eslint-loader',
         options: {
+          configFile: ifProduction('./.eslintrc.js', './.eslintrc-dev.js'),
           formatter: require('eslint-friendly-formatter')
         },
         exclude: /node_modules/,
@@ -106,64 +136,97 @@ module.exports = {
         use: 'babel-loader',
         include: resolve(kittnConf.src.base),
         exclude: /node_modules/
-      }<% if ( projectjsframework === 'vue') { %>,
+      },
       {
         test: /\.vue$/,
         loader: 'vue-loader',
         options: {
+          hot: true,
           loaders: {
-            scss: [
-              { loader: 'vue-style-loader' },
-              {
-                loader: 'css-loader',
-                options: {
-                  url: true
-                }
-              },
-              {
-                loader: 'postcss-loader',
-                options: {
-                  config: {
-                    ctx: {
-                      normalize: false
-                    }
-                  }
-                }
-              },
-              {
-                loader: 'sass-loader'
-              }
-            ]
+            scss: ifProduction(
+              ExtractTextPlugin.extract({
+                use: [...CSS_LOADERS],
+                fallback: 'vue-style-loader',
+              }),
+              [{ loader: 'vue-style-loader'}, ...CSS_LOADERS]
+            ),
           }
+        }
+      },<% if ( projectjsframework === 'vue' ) { %>
+      {
+        test: /\.css$/,
+        use: ifProduction(ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader'],
+        }), ['style-loader', 'css-loader'])
+      },
+      {
+        test: /\.scss$/,
+        include: resolve(kittnConf.src.style),
+        exclude: [resolve('node_modules'), resolve('public/')],
+        use: ifProduction(ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: CSS_LOADERS,
+        }), ['style-loader', ...CSS_LOADERS]),
+      },
+      {
+        test: /\.(png|jpe?g|gif)(\?\S*)?$/,
+        loader: 'url-loader',
+        options: {
+          fallback: 'file-loader'
         }
       },
       {
         test: /\.(eot|ttf|woff|woff2)(\?\S*)?$/,
         loader: 'file-loader',
-        query: process.env.NODE_ENV !== 'development' ? {
-          outputPath: '/',
-          name: 'assets/fonts/[name].[ext]'
-        } : {}
-      },
-      {
-        test: /\.(png|jpe?g|gif)(\?\S*)?$/,
-        loader: 'file-loader',
-        query: {
-          name: 'img/[name].[ext]?[hash]'
-        }
-      },
-      {
-        test: /\.json$/,
-        use: 'json-loader'
+        query: ifProduction({
+          outputPath: 'fonts/',
+          publicPath: kittnConf.dist.webpackFontsPath,
+          name: '[name].[ext]'
+        }, {
+          outputPath: 'fonts/',
+          publicPath: kittnConf.dist.webpackFontsPathDev,
+          name: '[name].[ext]'
+        })
       },
       {
         test: /\.svg$/,
-        loader: 'svg-sprite-loader'
+        loader: 'vue-svg-loader',
+        options: {
+          // optional [svgo](https://github.com/svg/svgo) options
+          svgo: {
+            plugins: [
+              { removeDoctype: true },
+              { removeComments: true }
+            ]
+          }
+        }
       }<% } %>
     ]
   },
-  plugins: removeEmpty([
-    new Webpack2Polyfill(),
+  plugins: removeEmpty([<% if ( projectjsframework === 'vue' ) { %>
+    ifDevelopment(new webpack.HotModuleReplacementPlugin()),
+    ifProduction(
+      new CleanWebpackPlugin([
+        ASSETS_PATH + 'js/',
+        CSS_PATH
+      ],
+      {
+        root: PUBLIC_PATH,
+        beforeEmit: true,
+        exclude: ['ls.respimg.js', 'modernizr.js', 'style.css', 'style.css.map']
+      })
+    ),
+    new ExtractTextPlugin({
+      filename: ifDevelopment('css/[name].css', 'css/[name].[chunkhash].css'),
+      allChunks: true
+    }),
+    ifProduction(
+      new StylelintPlugin({
+        context: LOADER_PATH,
+        syntax: 'scss'
+      })
+    ),<% } %>
     ifProduction(
       new BundleAnalyzerPlugin({
         analyzerMode: 'disabled',
@@ -171,43 +234,23 @@ module.exports = {
         statsFilename: `${ROOT_PATH}/webpack/stats.json`,
         logLevel: 'info'
       })
-    ),
-    ifDevelopment(new webpack.HotModuleReplacementPlugin()),
-    ifDevelopment(new webpack.NamedModulesPlugin()),
-    ifDevelopment(new webpack.NoEmitOnErrorsPlugin()),
-    ifDevelopment(new FriendlyErrorsWebpackPlugin()),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(nodeEnv)
-      }
-    }),
-    new webpack.LoaderOptionsPlugin({
-      options: {
-        context: LOADER_PATH,
-        eslint: {
-          failOnError: false,
-          failOnWarning: false,
-          configFile: ifProduction('./.eslintrc.js', './.eslintrc-dev.js'),
-          formatter: require('eslint-formatter-pretty')
-        }
-      }
-    }),<% if ( projectjsframework === 'vue' && projectstylelint) { %>
-    new StylelintPlugin({
-      context: LOADER_PATH,
-      syntax: 'scss'
-    }),<% } %>
-    ifProduction(new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    }))<% if ( projectjsframework === 'vue' ) { %>,
+    ),<% if ( projectjsframework === 'vue' ) { %>
     ifProduction(
-      new OptimizeCSSPlugin({
-        cssProcessorOptions: {
-          safe: true
-        }
-      }),
-    )<% } %>
+      new HtmlWebpackPlugin({
+        template: './dist/index.html',
+        filename: '../index.html',
+        inject: true,
+        hash: true,
+        minify: {
+          removeComments: true,
+          collapseWhitespace: true,
+          removeAttributeQuotes: false
+          // more options:
+          // https://github.com/kangax/html-minifier#options-quick-reference
+        },
+        // necessary to consistently work with multiple chunks via CommonsChunkPlugin
+        chunksSortMode: 'dependency'
+      })
+    ),<% } %>
   ])
 }

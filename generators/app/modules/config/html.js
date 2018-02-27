@@ -16,7 +16,8 @@ function addHTMLCofig (files = {}, context) {
         'bitmaps': 'dist/assets/img/bitmaps/',
         'vectors': 'dist/assets/img/svgfiles/',
         'contentimage': 'dist/images/',
-        'webpackjsassets': 'assets/',
+        'webpackassets': 'assets/',
+        'webpackcssassets': 'assets/css/',
         'webpackpublic': 'dist/'
       },
       'files': {

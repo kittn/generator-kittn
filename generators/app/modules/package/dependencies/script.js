@@ -3,7 +3,7 @@ const extend = require('deep-extend')
 function addScriptDependencies (files = {}, context) {
   extend(files.pkg, {
     scripts: {
-      'subtask:bundlewebpack': 'webpack --config=webpack/webpack.config.babel.js -p --colors --env.bundle=production --env=production',
+      'subtask:bundlewebpack': 'webpack --config=webpack/webpack.config.babel.js -p --colors --mode production',
       'scripts': 'gulp rebuild:js --env=init',
       'webpack:analyze': 'webpack-bundle-analyzer webpack/stats.json dist/assets/'
     },
@@ -15,27 +15,28 @@ function addScriptDependencies (files = {}, context) {
       '@babel/polyfill': '^7.0.0-beta.36',
       'babel-loader': '^8.0.0-beta.0',
       'babel-eslint': '^8.2.1',
+      'clean-webpack-plugin': '^0.1.18',
       'eslint': '^4.15.0',
       'eslint-config-standard': '^11.0.0-beta.0',
       'eslint-plugin-promise': '^3.4.1',
       'eslint-plugin-standard': '^3.0.1',
       'eslint-formatter-pretty': '^1.1.0',
       'eslint-friendly-formatter': '^3.0.0',
-      'eslint-loader': '^1.6.1',
+      'eslint-loader': '^2.0.0',
       'eslint-plugin-html': '^4.0.0',
       'eslint-plugin-import': '^2.2.0',
       'eslint-plugin-jsx-a11y': '^6.0.0',
       'eslint-plugin-node': '^5.2.1',
       'eslint-import-resolver-webpack': '^0.8.1',
-      'extract-text-webpack-plugin': '^3.0.0',
+      'extract-text-webpack-plugin': '^4.0.0-alpha.0',
       'friendly-errors-webpack-plugin': '^1.6.1',
-      'html-webpack-plugin': '^2.29.0',
-      'webpack': '^3.7.0',
+      'html-webpack-plugin': 'webpack-contrib/html-webpack-plugin',
+      'webpack': '^4.0.0',
+      'webpack-cli': '^2.0.4',
       'webpack-bundle-analyzer': '^2.8.2',
       'webpack-config-utils': '^2.3.0',
       'webpack-dev-middleware': '^2.0.4',
       'webpack-hot-middleware': '^2.18.0',
-      'webpack2-polyfill-plugin': '^0.0.2',
       'write-file-webpack-plugin': '^4.1.0'
     },
     dependencies: {
@@ -95,16 +96,18 @@ function addScriptDependencies (files = {}, context) {
         'eslint-config-vue': '^2.0.2',
         'eslint-plugin-html': '^4.0.0',
         'eslint-plugin-vue': '^4.0.0',
-        'file-loader': '^1.1.6',
+        'file-loader': '^1.1.10',
         'json-loader': '^0.5.7',
         'optimize-css-assets-webpack-plugin': '^3.1.1',
         'postcss-loader': '^2.0.6',
         'sass-loader': '^6.0.6',
         'sass-resources-loader': '^1.3.0',
-        'stylelint-webpack-plugin': '^0.8.0',
+        'stylelint-webpack-plugin': '^0.10.3',
         'svg-sprite-loader': '^3.2.4',
-        'vue-loader': '^13.3.0',
+        'url-loader': '^1.0.0-beta.0',
+        'vue-loader': '^14.1.0',
         'vue-style-loader': '^3.0.0',
+        'vue-svg-loader': '^0.3.0',
         'vue-template-compiler': '^2.5.0'
       },
       dependencies: {
@@ -116,7 +119,7 @@ function addScriptDependencies (files = {}, context) {
   if (context.props.projectjsframework === 'vue' && context.props.projectstylelint === true) {
     extend(files.pkg, {
       devDependencies: {
-        'stylelint-webpack-plugin': '^0.8.0'
+        'stylelint-webpack-plugin': '^0.10.3'
       }
     })
   }
