@@ -5,11 +5,13 @@
  * @author   Lars Eichler <larseichler.le@gmail.com>
  */
 import path from 'path'
-import webpack from 'webpack'
+import webpack from 'webpack'<% if ( projectjsframework === 'vue' ) { %>
+import CleanWebpackPlugin from 'clean-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import HtmlWebpackPlugin from 'html-webpack-plugin'
-import StylelintPlugin from 'stylelint-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'<% } %><% if ( projectjsframework === 'vue' && projectstylelint) { %>
+import StylelintPlugin from 'stylelint-webpack-plugin'<% } %>
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import { getIfUtils, removeEmpty } from 'webpack-config-utils'
 const kittnConf = require('../config.json')
 
@@ -219,10 +221,12 @@ export default {
       filename: ifDevelopment('css/[name].css', 'css/[name].[chunkhash].css'),
       allChunks: true
     }),
-    new StylelintPlugin({
-      context: LOADER_PATH,
-      syntax: 'scss'
-    }),<% } %>
+    ifProduction(
+      new StylelintPlugin({
+        context: LOADER_PATH,
+        syntax: 'scss'
+      })
+    ),<% } %>
     ifProduction(
       new BundleAnalyzerPlugin({
         analyzerMode: 'disabled',

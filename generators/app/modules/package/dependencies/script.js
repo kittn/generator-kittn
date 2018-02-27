@@ -29,14 +29,13 @@ function addScriptDependencies (files = {}, context) {
       'eslint-import-resolver-webpack': '^0.8.1',
       'extract-text-webpack-plugin': '^4.0.0-alpha.0',
       'friendly-errors-webpack-plugin': '^1.6.1',
-      'html-webpack-plugin': '"webpack-contrib/html-webpack-plugin',
+      'html-webpack-plugin': 'webpack-contrib/html-webpack-plugin',
       'webpack': '^4.0.0',
       'webpack-cli': '^2.0.4',
       'webpack-bundle-analyzer': '^2.8.2',
       'webpack-config-utils': '^2.3.0',
       'webpack-dev-middleware': '^2.0.4',
       'webpack-hot-middleware': '^2.18.0',
-      'webpack2-polyfill-plugin': '^0.0.2',
       'write-file-webpack-plugin': '^4.1.0'
     },
     dependencies: {
