@@ -2,6 +2,8 @@
 // Normalize
 // ===================================================
 
+<% if (typeof projectnormalize != 'undefined' && projectnormalize == 'regular') { %>@import-normalize;<% } %>
+
 /*
   Base Styles
 
