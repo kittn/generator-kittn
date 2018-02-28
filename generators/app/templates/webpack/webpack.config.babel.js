@@ -206,6 +206,9 @@ export default {
   },
   plugins: removeEmpty([<% if ( projectjsframework === 'vue' ) { %>
     ifDevelopment(new webpack.HotModuleReplacementPlugin()),
+    ifDevelopment(new webpack.NamedModulesPlugin()),
+    ifDevelopment(new webpack.NoEmitOnErrorsPlugin()),
+    ifDevelopment(new FriendlyErrorsWebpackPlugin()),
     ifProduction(
       new CleanWebpackPlugin([
         ASSETS_PATH + 'js/',
@@ -217,8 +220,9 @@ export default {
         exclude: ['ls.respimg.js', 'modernizr.js', 'style.css', 'style.css.map']
       })
     ),
-    new ExtractTextPlugin({
-      filename: ifDevelopment('css/[name].css', 'css/[name].[chunkhash].css'),
+    new ExtractTextPlugin({<% if ( projectjsframework === 'vue' ) { %>
+      filename: ifDevelopment('css/[name].css', 'css/[name].[chunkhash].css'),<% } else { %>
+      filename: 'css/[name].css',<% } %>
       allChunks: true
     }),
     ifProduction(
@@ -227,6 +231,11 @@ export default {
         syntax: 'scss'
       })
     ),<% } %>
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(nodeEnv)
+      }
+    }),
     ifProduction(
       new BundleAnalyzerPlugin({
         analyzerMode: 'disabled',
