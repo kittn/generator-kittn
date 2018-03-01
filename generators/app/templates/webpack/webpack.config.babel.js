@@ -11,6 +11,7 @@ import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import HtmlWebpackPlugin from 'html-webpack-plugin'<% } %><% if ( projectjsframework === 'vue' && projectstylelint) { %>
 import StylelintPlugin from 'stylelint-webpack-plugin'<% } %>
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
+import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import { getIfUtils, removeEmpty } from 'webpack-config-utils'
 const kittnConf = require('../config.json')
@@ -225,6 +226,13 @@ export default {
       filename: 'css/[name].css',<% } %>
       allChunks: true
     }),
+    ifProduction(
+      new OptimizeCSSPlugin({
+        cssProcessorOptions: {
+          safe: true
+        }
+      })
+    ),
     ifProduction(
       new StylelintPlugin({
         context: LOADER_PATH,
