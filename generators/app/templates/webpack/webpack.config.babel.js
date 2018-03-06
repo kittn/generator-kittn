@@ -137,7 +137,7 @@ export default {
         use: 'babel-loader',
         include: resolve(kittnConf.src.base),
         exclude: /node_modules/
-      },
+      },<% if ( projectjsframework === 'vue' ) { %>
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -153,7 +153,7 @@ export default {
             ),
           }
         }
-      },<% if ( projectjsframework === 'vue' ) { %>
+      },
       {
         test: /\.css$/,
         use: ifProduction(ExtractTextPlugin.extract({
