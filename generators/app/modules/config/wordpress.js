@@ -18,7 +18,8 @@ function addWordpressCofig (files = {}, context) {
         'bitmaps': `dist/wp-content/themes/${context.props.projectname}/assets/img/bitmaps/`,
         'vectors': `dist/wp-content/themes/${context.props.projectname}/assets/img/svgfiles/`,
         'contentimage': `dist/wp-content/themes/${context.props.projectname}/images/`,
-        'webpackjsassets': `wp-content/themes/${context.props.projectname}/assets/`,
+        'webpackassets': `wp-content/themes/${context.props.projectname}/assets/`,
+        'webpackcssassets': `wp-content/themes/${context.props.projectname}/assets/css/`,
         'webpackpublic': 'dist/'
       },
       'src': {
