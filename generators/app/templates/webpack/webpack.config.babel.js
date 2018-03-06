@@ -225,7 +225,7 @@ export default {
       filename: ifDevelopment('css/[name].css', 'css/[name].[chunkhash].css'),<% } else { %>
       filename: 'css/[name].css',<% } %>
       allChunks: true
-    }),<% } %>
+    }),
     ifProduction(
       new OptimizeCSSPlugin({
         cssProcessorOptions: {
@@ -251,7 +251,7 @@ export default {
         statsFilename: `${ROOT_PATH}/webpack/stats.json`,
         logLevel: 'info'
       })
-    ),<% if ( projectjsframework === 'vue' && projectusage === 'html' ) { %>
+    ),<% } %><% if ( projectjsframework === 'vue' && projectusage === 'html' ) { %>
     ifProduction(
       new HtmlWebpackPlugin({
         template: './dist/index.html',
