@@ -220,12 +220,12 @@ export default {
         beforeEmit: true,
         exclude: ['ls.respimg.js', 'modernizr.js', 'style.css', 'style.css.map']
       })
-    ),<% } %>
-    new ExtractTextPlugin({<% if ( projectjsframework === 'vue' && projectusage === 'html' ) { %>
+    ),<% } %><% if ( projectjsframework === 'vue') { %>
+    new ExtractTextPlugin({<% if ( projectusage === 'html' ) { %>
       filename: ifDevelopment('css/[name].css', 'css/[name].[chunkhash].css'),<% } else { %>
       filename: 'css/[name].css',<% } %>
       allChunks: true
-    }),
+    }),<% } %>
     ifProduction(
       new OptimizeCSSPlugin({
         cssProcessorOptions: {
