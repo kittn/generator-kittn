@@ -32,7 +32,7 @@ function addScriptDependencies (files = {}, context) {
       'friendly-errors-webpack-plugin': '^1.6.1',
       'html-webpack-plugin': '^3.0.0',
       'optimize-css-assets-webpack-plugin': '^3.2.0',
-      'webpack': '^4.0.1',
+      'webpack': '^4.1.0',
       'webpack-cli': '^2.0.4',
       'webpack-bundle-analyzer': '^2.8.2',
       'webpack-config-utils': '^2.3.0',
