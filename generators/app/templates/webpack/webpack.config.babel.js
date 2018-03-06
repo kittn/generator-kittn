@@ -205,7 +205,7 @@ export default {
       }<% } %>
     ]
   },
-  plugins: removeEmpty([<% if ( projectjsframework === 'vue' ) { %>
+  plugins: removeEmpty([
     ifDevelopment(new webpack.HotModuleReplacementPlugin()),
     ifDevelopment(new webpack.NamedModulesPlugin()),
     ifDevelopment(new webpack.NoEmitOnErrorsPlugin()),
@@ -238,7 +238,7 @@ export default {
         context: LOADER_PATH,
         syntax: 'scss'
       })
-    ),<% } %>
+    ),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(nodeEnv)
