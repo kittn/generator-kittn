@@ -98,6 +98,11 @@ class Imager_ImgixService extends BaseApplicationComponent
     {
         $r = [];
 
+        // Merge in default values
+        if (is_array(craft()->imager->getSetting('imgixDefaultParams', $transform))) {
+            $transform = array_merge(craft()->imager->getSetting('imgixDefaultParams', $transform), $transform);
+        }
+        
         // Directly translate some keys
         foreach (Imager_ImgixService::$transformKeyTranslate as $key => $val) {
             if (isset($transform[$key])) {
@@ -184,12 +189,7 @@ class Imager_ImgixService extends BaseApplicationComponent
 
             unset($transform['position']);
         }
-
-
-        // Unset stuff that's not supported by Imgix and has not yet been dealt with
-        unset($transform['effects']);
-        unset($transform['preeffects']);
-
+        
         // Add any explicitly set Imgix params
         if (isset($transform['imgixParams'])) {
             foreach ($transform['imgixParams'] as $key => $val) {
@@ -203,7 +203,7 @@ class Imager_ImgixService extends BaseApplicationComponent
         foreach ($transform as $key => $val) {
             $r[$key] = $val;
         }
-
+        
         // If allowUpscale is disabled, use max-w/-h instead of w/h
         if (!craft()->imager->getSetting('allowUpscale', $transform) && isset($r['fit'])) {
             if ($r['fit'] === 'crop') {
@@ -214,7 +214,31 @@ class Imager_ImgixService extends BaseApplicationComponent
                 $r['fit'] = 'max';
             }
         }
-
+        
+        // Unset stuff that's not supported by Imgix and has not yet been dealt with
+        unset(
+            $r['effects'], 
+            $r['preeffects'],
+            $r['allowUpscale'],
+            $r['cacheEnabled'],
+            $r['cacheDuration'],
+            $r['interlace'],
+            $r['resizeFilter'],
+            $r['smartResizeEnabled'],
+            $r['removeMetadata'],
+            $r['hashFilename'],
+            $r['hashRemoteUrl']
+        );
+        
+        // Remove any empty values in return array, since these will result in 
+        // an empty query string value that will give us trouble with Facebook (!).
+        foreach ($r as $key=>$val) {
+            if ($val==='') {
+                unset($r[$key]);
+            }
+        }
+        
+        
         return $r;
     }
 
@@ -265,20 +289,17 @@ class Imager_ImgixService extends BaseApplicationComponent
      */
     private function getQualityFromExtension($ext, $transform = null)
     {
-        if ($ext === 'jpg') {
-            return craft()->imager->getSetting('jpegQuality', $transform);
+        switch($ext) {
+            case 'png':
+                $pngCompression = craft()->imager->getSetting('pngCompressionLevel', $transform);
+                $pngQuality = max(100 - ($pngCompression * 10), 1);
+                return $pngQuality;
+                
+            case 'webp':
+                return craft()->imager->getSetting('webpQuality', $transform);
         }
-        if ($ext === 'png') {
-            $pngCompression = craft()->imager->getSetting('pngCompressionLevel', $transform);
-            $pngQuality = max(100 - ($pngCompression * 10), 1);
-
-            return $pngQuality;
-        }
-        if ($ext === 'webp') {
-            return craft()->imager->getSetting('webpQuality', $transform);
-        }
-
-        return '';
+        
+        return craft()->imager->getSetting('jpegQuality', $transform);
     }
 
     /**

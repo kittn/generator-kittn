@@ -324,6 +324,7 @@ You can also dynamically change any of these SEO Meta fields in your Twig templa
 * **SEO Description** - This should be between 70 and 160 characters (spaces included). Meta descriptions allow you to influence how your web pages are described and displayed in search results. Ensure that all of your web pages have a unique meta description that is explicit and contains your most important keywords.
 * **SEO Keywords** - Google ignores this tag; though other search engines do look at it. Utilize it carefully, as improper or spammy use most likely will hurt you, or even have your site marked as spam. Avoid overstuffing the keywords and do not include keywords that are not related to the specific page you place them on.
 * **SEO Image** - This is the image that will be used for display as the webpage brand for this entry, as well as on Twitter Cards and Facebook OpenGraph that link to this page, if they are not specified. The image must be in JPG, PNG, or GIF format.
+* **Canonical URL Override** - The canonical URL is automatically set to the entry's URL. This allows you to override the canonical URL if you need to; this can be a path or a fully qualified URL. Just leave it blank for the canonical URL to be set automatically.
 * **SEO Image Transform** - The image transform to apply to the Site SEO Image.
 * **Twitter Card Type** - With Twitter Cards, you can attach rich photos and information to Tweets that drive traffic to your website. Users who Tweet links to your content will have a “Card” added to the Tweet that’s visible to all of their followers.
 * **Twitter Card Image** - This is the image that will be used for display on Twitter Cards for tweets that link to this entry. If no image is specified here, the Site SEO Image will be used for Twitter Cards instead. The image must be in JPG, PNG, or GIF format.
@@ -475,6 +476,49 @@ Here's an example of how you might add a `startDate` to an `Event` schema type:
 
 Note that `Event` schema types require `startDate` and `location` to be set, which SEOmatic is unable to automatically fill in for you.  Additionally, you may want to add more information to any of the schema types used for Main Entity of Page to give search engines more information to add to their knowledge graph.
 
+### Gated or Subscription Content
+
+Google recommends the use of JSON-LD Structured Data for [Subscription and paywalled content](https://developers.google.com/search/docs/data-types/paywalled-content). This is strongly encouraged, so that you are not errantly punished for violating Google's [cloaking](https://support.google.com/webmasters/answer/66355) policies or [guidelines](https://support.google.com/webmasters/answer/35769).
+
+Whether your content is available only after a free registration process, or it's available only to people who subscribe to your website, it's recommended that you use this markup to help Google understand your content.
+
+SEOmatic makes it easy to add this to your `MainEntityOfPage` using markup such as this in your Twig template:
+
+```
+{% if seomaticMainEntityOfPage is defined %}
+    {% set seomaticMainEntityOfPage = seomaticMainEntityOfPage | merge({
+        'isAccessibleForFree': 'False',
+        'hasPart': {
+            'type': 'WebPageElement',
+            'isAccessibleForFree': 'False',
+            'cssSelector': '.paywall',
+        }
+    }) %}
+{% endif %}
+```
+
+Where the `.paywall` class is whatever your CSS selector is for blocking access to your content. If you have more then one, you'd do something like:
+
+```
+{% if seomaticMainEntityOfPage is defined %}
+    {% set seomaticMainEntityOfPage = seomaticMainEntityOfPage | merge({
+        'isAccessibleForFree': 'False',
+        'hasPart': [
+            {
+                'type': 'WebPageElement',
+                'isAccessibleForFree': 'False',
+                'cssSelector': '.paywall',
+            },
+            {
+                'type': 'WebPageElement',
+                'isAccessibleForFree': 'False',
+                'cssSelector': '#blocksContent',
+            }
+        ]
+    }) %}
+{% endif %}
+```
+For more information, see Googe's support article [Subscription and paywalled content](https://developers.google.com/search/docs/data-types/paywalled-content).
 ## Breadcrumbs Microdata
 
 ![Screenshot](resources/screenshots/seomatic06.png)
@@ -1184,6 +1228,39 @@ The `email` variable is ordinal-encoded to obfuscate it.  For instance, `info@ny
 
 ## SEOmatic Helper Twig Variables
 
+SEOmatic populates your templates with the following "helper" variables for that you can use in your templates:
+
+    seomaticHelper.twitterUrl
+    seomaticHelper.facebookUrl
+    seomaticHelper.googlePlusUrl
+    seomaticHelper.linkedInUrl
+    seomaticHelper.youtubeUrl,
+    seomaticHelper.youtubeChannelUrl
+    seomaticHelper.instagramUrl
+    seomaticHelper.pinterestUrl
+    seomaticHelper.githubUrl
+    seomaticHelper.vimeoUrl
+    seomaticHelper.wikipediaUrl
+    seomaticHelper.ownerGoogleSiteVerification
+    seomaticHelper.ownerBingSiteVerification
+    seomaticHelper.ownerGoogleAnalyticsUID
+    seomaticHelper.ownerGoogleTagManagerID
+    seomaticHelper.googleAnalyticsSendPageview
+    seomaticHelper.googleAnalyticsAdvertising
+    seomaticHelper.googleAnalyticsEcommerce
+    seomaticHelper.googleAnalyticsEEcommerce
+    seomaticHelper.googleAnalyticsLinkAttribution
+    seomaticHelper.googleAnalyticsLinker
+    seomaticHelper.googleAnalyticsAnonymizeIp
+    seomaticHelper.ownerCopyrightNotice
+    seomaticHelper.ownerAddressString
+    seomaticHelper.ownerAddressHtml
+    seomaticHelper.ownerMapUrl
+    seomaticHelper.creatorCopyrightNotice
+    seomaticHelper.creatorAddressString
+    seomaticHelper.creatorAddressHtml
+    seomaticHelper.creatorMapUrl
+
 ## Previewing your SEO Meta
 
 There's a lot going on here, so to make it all more easily understood, SEOmatic offers two ways to preview your SEO Meta.  You have to **Save** the settings first before you preview them; a "Live Preview" feature is on the wish list for future versions.
@@ -1368,7 +1445,7 @@ SEOmatic cascades Meta settings; if you have a Meta associated with the current 
 	<!-- Standard SEO -->
 	
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="referrer" content="always" />
+	<meta name="referrer" content="no-referrer-when-downgrade" />
 	<meta name="robots" content="all" /> <!-- {{ seomaticMeta.robots }} -->
 	<meta name="keywords" content="colossal, considerable, enormous, fat, full, gigantic, hefty, huge, immense, massive, sizable, substantial, tremendous" /> <!-- {{ seomaticMeta.seoKeywords }} -->
 	<meta name="description" content="Big Entity specializes in making the big stuff big, but we also know how to make the little stuff little!" /> <!-- {{ seomaticMeta.seoDescription }} -->

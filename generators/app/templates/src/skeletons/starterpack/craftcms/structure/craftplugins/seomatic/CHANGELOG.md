@@ -1,5 +1,61 @@
 # SEOmatic Changelog
 
+## 1.1.56 - 2017.11.10
+### Changed
+* Fixed a regression that would cause field sources to not appear in the SEOmatic FieldType
+
+## 1.1.55 - 2017.11.05
+### Added
+* Added the ability to disable locales via the `config.php` file, for multi-site reasons
+* Added paranoid checking for deleted source fields in the FieldType
+
+### Changed
+* Fixed an issue with the breadcrumbs potentially overlapping URLs improperly
+* Truncate locales to 5 characters, to handle custom locales
+
+## 1.1.54 - 2017.10.10
+### Changed
+* More intelligent handling of `addTrailingSlashesToUrls`
+
+## 1.1.53 - 2017.10.06
+### Changed
+* Fixed a regression with certain types of localized sites
+
+## 1.1.52 - 2017.10.02
+### Changed
+* Fixed breadcrumbs (and other URLs) for certain multi-locale setups
+* Fixed an issue with `hreflang='x-default'` with non-localized sites
+
+## 1.1.51 - 2017.09.21
+### Added
+* Added support for `hreflang="x-default"`
+* Added `availabilty` to the default `Offer` Product JSON-LD
+
+### Changed
+* Fixed an issue where you could not change the Open Graph or Twitter `title` from a Twig template
+* Handle localized elements for breadcrumbs
+
+## 1.1.50 - 2017.08.10
+### Added
+* Add the ability to override the canonicalUrl from an SEOmatic Meta FieldType
+
+### Changed
+* Updated the documentation
+
+## 1.1.49 - 2017.08.02
+### Changed
+* Don't render "article:tag" if there are no keywords
+* Fix issue when passing a string containing the "à" character to _cleanupText()
+* Changed `referrer` from `always` to `no-referrer-when-downgrade`
+* Fixed an issue where meta vars were not sanitized with a custom template passed via `seomaticTemplatePath`
+* Fixed a cosmetic bug where the SEOmatic FieldType settings didn't display the OpenGraph Image Source Changeable properly
+* Fixed an issue with template metas on Windows
+
+## 1.1.48 - 2017.06.18
+### Changed
+* Fixed an issue on old versions of PHP < PHP 5.4 with `http_response_code()`
+* Added a safer default `robots.txt` template
+
 ## 1.1.47 - 2017.06.08
 ### Changed
 * Fixed an issue with Live Preview and a previous or draft version of an entry

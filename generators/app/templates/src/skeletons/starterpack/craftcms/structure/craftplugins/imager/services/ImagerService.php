@@ -41,6 +41,7 @@ class ImagerService extends BaseApplicationComponent
       'instanceReuseEnabled' => 'REUSE',
       'watermark' => 'WM',
       'letterbox' => 'LB',
+      'frames' => 'FR',
     );
 
     // translate dictionary for resize method 
@@ -477,12 +478,41 @@ class ImagerService extends BaseApplicationComponent
                 // we need to create a new image instance with the target size, or letterboxing will be wrong.
                 $originalSize = $this->imageInstance->getSize();
                 $resizeSize = $this->getResizeSize($originalSize, $transform);
+                $layers = $this->imageInstance->layers();
                 $gif = $this->imagineInstance->create($resizeSize);
                 $gif->layers()->remove(0);
                 
-                // 
-                foreach ($this->imageInstance->layers() as $layer)
+                $startFrame = 0;
+                $endFrame = count($layers)-1; 
+                $interval = 1; 
+
+                if (isset($transform['frames'])) {
+                    $framesIntArr = explode('@', $transform['frames']);
+                    
+                    if (count($framesIntArr)>1) {
+                        $interval = $framesIntArr[1];
+                    }
+                    
+                    $framesArr = explode('-', $framesIntArr[0]);
+                    
+                    if (count($framesArr)>1) {
+                        $startFrame = $framesArr[0];
+                        if ($framesArr[1]!=='*') {
+                            $endFrame = $framesArr[1];
+                        }
+                    } else {
+                        $startFrame = $framesArr[0];
+                        $endFrame = $framesArr[0];
+                    }
+                    
+                    if ($endFrame>count($layers)-1) {
+                        $endFrame = count($layers)-1;
+                    }
+                } 
+                
+                for ($i=$startFrame; $i<=$endFrame; $i+=$interval)
                 {
+                    $layer = $layers[$i];
                     $this->_transformLayer($layer, $transform, $sourceExtension, $targetExtension);
     				$gif->layers()->add($layer);
                 }
@@ -550,7 +580,7 @@ class ImagerService extends BaseApplicationComponent
 
                 // Upload to AWS if enabled
                 if ($this->getSetting('awsEnabled')) {
-                    craft()->imager_aws->uploadToAWS($targetFilePath);
+                    craft()->imager_aws->uploadToAWS($targetFilePath, $this->_checkIsFinalVersion($transform));
 
                     // Invalidate cloudfront distribution if enabled
                     if ($this->getSetting('cloudfrontInvalidateEnabled')) {
@@ -561,7 +591,7 @@ class ImagerService extends BaseApplicationComponent
 
                 // if GCS is enabled, upload file
                 if (craft()->imager->getSetting('gcsEnabled')) {
-                    craft()->imager_gcs->uploadToGCS($targetFilePath);
+                    craft()->imager_gcs->uploadToGCS($targetFilePath, $this->_checkIsFinalVersion($transform));
                 }
             }
         }
@@ -760,7 +790,18 @@ class ImagerService extends BaseApplicationComponent
             if ($k == 'effects' || $k == 'preEffects') {
                 $effectString = '';
                 foreach ($v as $eff => $param) {
-                    $effectString .= '_' . $eff . '-' . (is_array($param) ? implode("-", $param) : $param);
+                    if (is_array($param)) {
+                        if (is_array($param[0])) {
+                            $effectString .= '_' . $eff;
+                            foreach ($param as $paramArr) {
+                                $effectString .= '-' . implode('-', $paramArr);
+                            }
+                        } else {
+                            $effectString .= '_' . $eff . '-' . implode('-', $param);
+                        }
+                    } else {
+                        $effectString .= '_' . $eff . '-' . $param;
+                    }
                 }
 
                 $r .= '_' . (isset(ImagerService::$transformKeyTranslate[$k]) ? ImagerService::$transformKeyTranslate[$k] : $k) . $effectString;
@@ -823,7 +864,11 @@ class ImagerService extends BaseApplicationComponent
         if (!$this->getSetting('allowUpscale', $transform)) {
             list($width, $height) = $this->_enforceMaxSize($width, $height, $originalSize, true);
         }
-
+        
+        // ensure that size is larger than 0
+        if ($width<=0) { $width = 1; }
+        if ($height<=0) { $height = 1; }
+        
         return new \Imagine\Image\Box($width, $height);
     }
 
@@ -861,8 +906,11 @@ class ImagerService extends BaseApplicationComponent
                     }
 
                 } else {
-
-                    if ($transformAspect > $aspect) { // use height as guide
+                    
+                    if ($transformAspect === $aspect) {
+                        $height = (int)$transform['height'];
+                        $width = (int)$transform['width'];
+                    } elseif ($transformAspect > $aspect) { // use height as guide
                         $height = (int)$transform['height'];
                         $width = ceil($originalSize->getWidth() * ($height / $originalSize->getHeight()));
                     } else { // use width
@@ -1186,8 +1234,14 @@ class ImagerService extends BaseApplicationComponent
                 $instance = $imageInstance->getImagick();
 
                 $instance->setImageFormat('webp');
-                $instance->setImageAlphaChannel(\Imagick::ALPHACHANNEL_ACTIVATE);
-                $instance->setBackgroundColor(new \ImagickPixel('transparent'));
+                
+                $hasTransparency = $instance->getImageAlphaChannel();
+
+                if($hasTransparency){
+                    $instance->setImageAlphaChannel(\Imagick::ALPHACHANNEL_ACTIVATE);
+                    $instance->setBackgroundColor(new \ImagickPixel('transparent'));
+                }
+                
                 $instance->setImageCompressionQuality($saveOptions['webp_quality']);
 
                 $imagickOptions = $saveOptions['webp_imagick_options'];
@@ -1282,11 +1336,11 @@ class ImagerService extends BaseApplicationComponent
              * For GD we only apply effects that exists in Imagine
              */
             if ($this->imageDriver === 'gd') {
-                if ($effect == 'grayscale' || $effect == 'greyscale') { 
+                if (($effect == 'grayscale' || $effect == 'greyscale') && $value) { 
                     $imageInstance->effects()->grayscale();
                 }
 
-                if ($effect == 'negative') {
+                if ($effect == 'negative' && $value) {
                     $imageInstance->effects()->negative();
                 }
 
@@ -1294,7 +1348,7 @@ class ImagerService extends BaseApplicationComponent
                     $imageInstance->effects()->blur(is_int($value) || is_float($value) ? $value : 1);
                 }
 
-                if ($effect == 'sharpen') {
+                if ($effect == 'sharpen' && $value) {
                     $imageInstance->effects()->sharpen();
                 }
 
@@ -1315,11 +1369,18 @@ class ImagerService extends BaseApplicationComponent
             if ($this->imageDriver == 'imagick') {
                 $imagickInstance = $imageInstance->getImagick();
                 
-                if ($effect === 'grayscale' || $effect === 'greyscale') {
+                if (($effect === 'grayscale' || $effect === 'greyscale') && $value) {
+                    $hasTransparency = $imagickInstance->getImageAlphaChannel();
+
                     $imagickInstance->setImageType(\Imagick::IMGTYPE_GRAYSCALE);
+                    
+                    if($hasTransparency){
+                        $imagickInstance->setImageAlphaChannel(\Imagick::ALPHACHANNEL_ACTIVATE);
+                        $imagickInstance->setBackgroundColor(new \ImagickPixel('transparent'));
+                    }                
                 }
 
-                if ($effect === 'negative') {
+                if ($effect === 'negative' && $value) {
                     $imagickInstance->negateImage(false, \Imagick::CHANNEL_ALL);
                 }
 
@@ -1327,7 +1388,7 @@ class ImagerService extends BaseApplicationComponent
                     $imagickInstance->gaussianBlurImage(0, is_int($value) || is_float($value) ? $value : 1);
                 }
 
-                if ($effect === 'sharpen') {
+                if ($effect === 'sharpen' && $value) {
                     $imagickInstance->sharpenImage(2, 1);
                 }
 
@@ -1416,6 +1477,22 @@ class ImagerService extends BaseApplicationComponent
                     $imagickInstance->clutImage($clut);
                 }
 
+                // levels
+                if ($effect == 'levels' && is_array($value)) {
+                    if (is_array($value[0])) {
+                        foreach ($value as $val) {
+                            if (count($val)>=3) {
+                                $this->_applyLevels($imagickInstance, $val);
+                            }
+                        }
+                    } else {
+                        if (count($value)>=3) {
+                            $this->_applyLevels($imagickInstance, $value);
+                        }
+                    }
+                    
+                }
+
                 // quantize
                 if ($effect == 'quantize' && (is_array($value) || is_int($value))) {
                     if (is_array($value) && count($value) === 3) {
@@ -1474,6 +1551,28 @@ class ImagerService extends BaseApplicationComponent
 
     }
 
+    private function _applyLevels($imagickInstance, $value) {
+        $quantum = $imagickInstance->getQuantum();
+        $blackLevel = ($value[0]/255)*$quantum;
+        $whiteLevel = ($value[2]/255)*$quantum;
+        $channel = \Imagick::CHANNEL_ALL;
+        
+        if (count($value)>3) {
+            switch ($value[3]) {
+                case 'red':
+                    $channel = \Imagick::CHANNEL_RED;
+                    break;
+                case 'blue':
+                    $channel = \Imagick::CHANNEL_BLUE;
+                    break;
+                case 'green':
+                    $channel = \Imagick::CHANNEL_GREEN;
+                    break;
+            }
+        }
+        
+        $imagickInstance->levelImage($blackLevel, $value[1], $whiteLevel, $channel);
+    }
 
     /**
      * Color blend filter, more advanced version of colorize.
@@ -1501,15 +1600,24 @@ class ImagerService extends BaseApplicationComponent
         $temporary->setImageFormat('png32');
         $temporary->drawImage($draw);
 
-        $alphaChannel = clone $imagickInstance;
-        $alphaChannel->setImageAlphaChannel(\Imagick::ALPHACHANNEL_EXTRACT);
-        $alphaChannel->negateImage(false, \Imagick::CHANNEL_ALL);
-        $imagickInstance->setImageClipMask($alphaChannel);
+        if (method_exists($imagickInstance, 'setImageClipMask')) { // ImageMagick < 7
+            $alphaChannel = clone $imagickInstance;
+            $alphaChannel->setImageAlphaChannel(\Imagick::ALPHACHANNEL_EXTRACT);
+            $alphaChannel->negateImage(false, \Imagick::CHANNEL_ALL);
+            $imagickInstance->setImageClipMask($alphaChannel);
+        } else {
+            // need to figure out how to add support for maintaining opacity in ImageMagick 7
+        }
 
         $clone = clone $imagickInstance;
         $clone->compositeImage($temporary, $composite_flag, 0, 0);
-        $clone->setImageOpacity($alpha);
 
+        if (method_exists($clone, 'setImageAlpha')) { // ImageMagick >= 7
+            $clone->setImageAlpha($alpha);
+        } else {
+            $clone->setImageOpacity($alpha);
+        }
+        
         $imagickInstance->compositeImage($clone, \Imagick::COMPOSITE_DEFAULT, 0, 0);
     }
 
@@ -1955,6 +2063,24 @@ class ImagerService extends BaseApplicationComponent
         return $new_arr;
     }
 
+    /**
+     * Check if current file is the final version
+     *
+     * @param $transform
+     * @return bool
+     */
+    private function _checkIsFinalVersion($transform)
+    {
+        if ($this->getSetting('optimizeType', $transform) == 'task')
+        {
+            if ($this->getSetting('jpegoptimEnabled', $transform) || $this->getSetting('jpegtranEnabled', $transform) || $this->getSetting('mozjpegEnabled', $transform) || $this->getSetting('optipngEnabled', $transform) || $this->getSetting('pngquantEnabled', $transform) || $this->getSetting('gifsicleEnabled', $transform) || $this->getSetting('tinyPngEnabled', $transform))
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     /**
      * Fixes slashes in path

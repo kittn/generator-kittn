@@ -1,5 +1,91 @@
 [
     {
+        "version": "1.1.56",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-11-10T11:00:00-11:00",
+        "notes": [
+            "[Fixed] Fixed a regression that would cause field sources to not appear in the SEOmatic FieldType"
+        ]
+    },
+    {
+        "version": "1.1.55",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-11-05T11:00:00-11:00",
+        "notes": [
+            "[Improved] Added the ability to disable locales via the `config.php` file, for multi-site reasons",
+            "[Improved] Added paranoid checking for deleted source fields in the FieldType",
+            "[Fixed] Fixed an issue with the breadcrumbs potentially overlapping URLs improperly",
+            "[Fixed] Truncate locales to 5 characters, to handle custom locales"
+        ]
+    },
+    {
+        "version": "1.1.54",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-10-10T11:00:00-11:00",
+        "notes": [
+            "[Improved] More intelligent handling of `addTrailingSlashesToUrls`"
+        ]
+    },
+    {
+        "version": "1.1.53",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-10-06T11:00:00-11:00",
+        "notes": [
+            "[Fixed] Fixed a regression with certain types of localized sites"
+        ]
+    },
+    {
+        "version": "1.1.52",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-10-02T11:00:00-11:00",
+        "notes": [
+            "[Fixed] Fixed breadcrumbs (and other URLs) for certain multi-locale setups",
+            "[Fixed] Fixed an issue with `hreflang='x-default'` with non-localized sites"
+        ]
+    },
+    {
+        "version": "1.1.51",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-09-21T11:00:00-11:00",
+        "notes": [
+            "[Fixed] Handle localized elements for breadcrumbs",
+            "[Added] Added support for `hreflang='x-default'`",
+            "[Fixed] Fixed an issue where you could not change the Open Graph or Twitter `title` from a Twig template",
+            "[Added] Added `availabilty` to the default `Offer` Product JSON-LD"
+        ]
+    },
+    {
+        "version": "1.1.50",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-08-10T11:00:00-11:00",
+        "notes": [
+            "[Added] Add the ability to override the canonicalUrl from an SEOmatic Meta FieldType",
+            "[Improved] Updated the documentation"
+        ]
+    },
+    {
+        "version": "1.1.49",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-08-02T11:00:00-11:00",
+        "notes": [
+            "[Improved] Don't render `article:tag` if there are no keywords",
+            "[Improved] Changed `referrer` from `always` to `no-referrer-when-downgrade`",
+            "[Fixed] Fix issue when passing a string containing the `à` character to _cleanupText()",
+            "[Fixed] Fixed an issue where meta vars were not sanitized with a custom template passed via `seomaticTemplatePath`",
+            "[Fixed] Fixed a cosmetic bug where the SEOmatic FieldType settings didn't display the 'OpenGraph Image Source Changeable' properly",
+            "[Fixed] Fixed an issue with template metas on Windows"
+        ]
+    },
+    {
+        "version": "1.1.48",
+        "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
+        "date": "2017-06-18T11:00:00-11:00",
+        "notes": [
+            "[Fixed] Fixed an issue on old versions of PHP < PHP 5.4 with `http_response_code()`",
+            "[Improved] Added a safer default `robots.txt` template"
+        ]
+    },
+    {
         "version": "1.1.47",
         "downloadUrl": "https://github.com/nystudio107/seomatic/archive/master.zip",
         "date": "2017-06-08T11:00:00-11:00",
@@ -600,7 +686,8 @@
             "[Improved] Converted all of the .html template files over to .twig",
             "[Added] Expanded the JSON-LD parser to support ordinal arrays of associative arrays",
             "[Fixed] Fixed an issue with the cannonical URL and some localized sites",
-            "[Improved] Updated the README.md"        ]
+            "[Improved] Updated the README.md"
+        ]
     },
     {
         "version": "1.0.12",
