@@ -375,3 +375,10 @@
     {{mydate | date("d. F Y") }}
   {% endif %}
 {% endmacro %}
+
+{#
+  Styling Classes
+#}
+{% macro styleClasses(data) %}
+{% if data is not empty %}{% for class in data %}{{- ' ' ~ class.styleClasses.classname -}}{% endfor %}{% endif %}
+{% endmacro %}

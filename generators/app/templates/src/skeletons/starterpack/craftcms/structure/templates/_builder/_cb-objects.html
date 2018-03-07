@@ -164,27 +164,13 @@
       name: ''
     } %}
 
+  {# Grid #}
+  {% case 'objGrid' %}
+    {% include '_components/grid.html' with {
+      data: data.objGrid,
+      options: data.setGridOptions,
+      background: data.setGridSectionBackground,
+      name: ''
+    } %}
+
 {% endswitch %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

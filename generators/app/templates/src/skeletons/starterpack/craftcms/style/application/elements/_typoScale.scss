@@ -1,0 +1,32 @@
+/*
+  Typo Scale
+  =========
+  Generate Scaling Classes
+*/
+.e-ts {
+  // Component Config
+  $api: (
+    breakpoint: 'm',
+    sizes: (
+      'lead': 120,
+      'small': 80
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  // [root]--text
+  @each $key, $size in api(sizes) {
+    &--#{$key} {
+      font-size: $size + 0%;
+    }
+  }
+}

@@ -12,7 +12,6 @@
 
 {# Class Overwrite #}
 {% set c = name is defined and name != '' ? name : 'c-headline' %}
-
 {# Build Element Block #}
-<{{ options.semantic }} class="{{ c }}{{ options.style != 'default' ? ' ' ~ c ~ '--s-' ~ options.style }}{{ options.override != 'default' ? ' ' ~ options.override }}" role="heading" itemprop="name"><span>{{ data }}</span></{{ options.semantic }}>
+<{{ options.semantic }} class="{{ c }}{{ _.styleClasses(options.styleClasses) }}{{ options.override != 'default' ? ' ' ~ options.override }}" role="heading" itemprop="name"><span>{{ data }}</span></{{ options.semantic }}>
 

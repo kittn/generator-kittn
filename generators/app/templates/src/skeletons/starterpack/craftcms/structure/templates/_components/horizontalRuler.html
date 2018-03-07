@@ -11,4 +11,4 @@
 {% set c = name is defined and name != '' ? name : 'c-horizontalruler' %}
 
 {# Build Element Block #}
-<hr class="{{ c }}{{ data != 'default' ? '---'~data }}" role="separator">
+<hr class="{{ c }}{{ _.styleClasses(data) }}" role="separator">

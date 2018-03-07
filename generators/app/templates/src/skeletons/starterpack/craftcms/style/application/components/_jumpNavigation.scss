@@ -61,7 +61,7 @@
     }
 
     // Style Modifier
-    #{$root}--s-style1 & {
+    #{$root}--s-button & {
       background-color: lighten(c('primary'), 20);
       color: darken(c('primary'), 20);
       @include padding(10 10);

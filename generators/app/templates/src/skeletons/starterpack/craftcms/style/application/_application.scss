@@ -8,6 +8,11 @@
 
 // 4. Elements
 @import 'elements/container';
+@import 'elements/color';
+@import 'elements/textAlign';
+@import 'elements/typoScale';
+@import 'elements/verticalAlign';
+@import 'elements/wrapper';
 
 // 5. Objects
 @import 'objects/grid';
@@ -32,6 +37,7 @@
 @import 'components/accordion';
 @import 'components/tab';
 @import 'components/section';
+@import 'components/grid';
 
 // 6.2 Regular Components
 @import 'components/progressLoader';

@@ -1,0 +1,38 @@
+/*
+  Vertical Align
+  ==============
+  Position texts or other elements (inline block)
+*/
+.e-va {
+  // Component Config
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  // [root]--top
+  &--top {
+    align-self: flex-start;
+    align-self: start;
+  }
+
+  // [root]--bottom
+  &--bottom {
+    align-self: flex-end;
+    align-self: end;
+  }
+
+  // [root]--center
+  &--center {
+    align-self: center;
+  }
+}

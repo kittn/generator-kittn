@@ -46,6 +46,12 @@
           'cl-2-3-3-2': 20% 30% 30% 20%
         )
       )
+    ),
+    sizes: (
+      'bigger-25': 1.25,
+      'bigger-45': 1.45,
+      'smaller-25': .75,
+      'smaller-50': .5
     )
   );
 
@@ -98,9 +104,6 @@
     }
   }
 
-  // Column Style Modifier
-  //&--s-style1 {}
-
   // ::::::::: CHILDS
 
   // [root]__container
@@ -116,21 +119,11 @@
       padding-right: 0;
     }
 
-    // [root]--bigger-45
-    &--bigger-45 {
-      max-width: glob(pagesize, max) * 1.45;
-    }
-    // [root]--bigger-25
-    &--bigger-25 {
-      max-width: glob(pagesize, max) * 1.25;
-    }
-    // [root]--smaller-25
-    &--smaller-25 {
-      max-width: glob(pagesize, max) * .75;
-    }
-    // [root]--smaller-50
-    &--smaller-50 {
-      max-width: glob(pagesize, max) * .5;
+    // Generate Container Sizes
+    @each $sizeName, $containerSize in api(sizes) {
+      &--#{$sizeName} {
+        max-width: glob(pagesize, max) * $containerSize;
+      }
     }
   }
 
@@ -192,39 +185,39 @@
     /* stylelint-enable */
   }
 
-  // Inner Column
-  &__inner {
-    flex: 1 1 auto;
-    position: relative;
-    height: auto;
-    width: 100%;
-
-    // Column inner Align
-    &--align-left {
-      text-align: left;
-    }
-
-    &--align-center {
-      text-align: center;
-    }
-
-    &--align-right {
-      text-align: right;
-    }
-
-    // Column inner VerticalAlign
-    &--valign-top {
-      align-self: flex-start;
-    }
-
-    &--valign-middle {
-      align-self: center;
-    }
-
-    &--valign-bottom {
-      align-self: flex-end;
-    }
-  }
+  // Inner Column Decrepated
+  //&__inner {
+  //  flex: 1 1 auto;
+  //  position: relative;
+  //  height: auto;
+  //  width: 100%;
+  //
+  //  // Column inner Align
+  //  &--align-left {
+  //    text-align: left;
+  //  }
+  //
+  //  &--align-center {
+  //    text-align: center;
+  //  }
+  //
+  //  &--align-right {
+  //    text-align: right;
+  //  }
+  //
+  //  // Column inner VerticalAlign
+  //  &--valign-top {
+  //    align-self: flex-start;
+  //  }
+  //
+  //  &--valign-middle {
+  //    align-self: center;
+  //  }
+  //
+  //  &--valign-bottom {
+  //    align-self: flex-end;
+  //  }
+  //}
 
   // [root]__bg
   &__bg {
@@ -241,51 +234,31 @@
       max-width: glob(pagesize, max);
     }
 
-    // [root]--bigger-45
-    &--size-bigger-45 {
-      max-width: glob(pagesize, max) * 1.45;
-    }
-
-    // [root]--bigger-25
-    &--size-bigger-25 {
-      max-width: glob(pagesize, max) * 1.25;
-    }
-
-    // [root]--smaller-25
-    &--size-smaller-25 {
-      max-width: glob(pagesize, max) * .75;
-    }
-
-    // [root]--smaller-50
-    &--size-smaller-50 {
-      max-width: glob(pagesize, max) * .5;
-    }
-
-    // [root]--behavior1
-    &--behavior1 {
-      display: none;
-
-      @include break(600px) {
-        display: block;
+    // Generate Container Sizes
+    @each $sizeName, $containerSize in api(sizes) {
+      &--#{$sizeName} {
+        max-width: glob(pagesize, max) * $containerSize;
       }
     }
 
     // [root]__bg__container
     &__container {
-      size: 100%;
+      height: 100%;
 
       // [root]__bg__container--size
-      &--size-default {
+      &--default {
         width: 100%;
       }
 
-      // [root]__bg__container--size
-      &--size-half {
+      // [root]--halfLeft
+      &--halfLeft {
         width: 50%;
+      }
 
-        #{$root}--p-right & {
-          margin-left: 50%;
-        }
+      // [root]--halfRight
+      &--halfRight {
+        width: 50%;
+        margin-left: 50%;
       }
     }
 

@@ -1,0 +1,47 @@
+/*
+  Colors
+  =========
+  Generate Color Classes
+*/
+.e-c {
+  // Component Config
+  $api: (
+    breakpoint: 'm',
+    colors: (
+      'primary'
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  // [root]--text
+  &__text {
+    @each $color in api(colors) {
+      @each $key, $c in map-deep-get($kittn-color-map, $color) {
+        &--#{$color}#{if($key != 'color', '-#{$key}', '')} {
+          color: c('#{$color}', $key);
+        }
+      }
+    }
+  }
+
+  // [root]--background
+  &__background {
+
+    @each $color in api(colors) {
+      @each $key, $c in map-deep-get($kittn-color-map, $color) {
+        &--#{$color}#{if($key != 'color', '-#{$key}', '')} {
+          background-color: c('#{$color}', $key);
+        }
+      }
+    }
+  }
+}

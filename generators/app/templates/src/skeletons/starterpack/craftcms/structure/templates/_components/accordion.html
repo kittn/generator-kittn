@@ -26,7 +26,7 @@
 {% set c = name is defined and name != '' ? name : 'c-accordion' %}
 
 {# Build Element Block #}
-<div class="{{ c }}{{ data.style ? ' ' ~ c ~ '--s-' ~ data.style : ' ' ~ c ~ '--s-default' }}" role="tablist">
+<div class="{{ c }}{{ _.styleClasses(options.styleClasses) }}" role="tablist">
   {# Loop through #}
   {% switch content.type.handle %}
     {% case 'objSection' %}
