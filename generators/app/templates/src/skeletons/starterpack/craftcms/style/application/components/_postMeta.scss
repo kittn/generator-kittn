@@ -44,7 +44,7 @@
   &__avatar {
     size: api(avatar, size);
     overflow: hidden;
-    background-color: c('black-90');
+    background-color: c('black', 90);
 
     // [root]__avatar__image
     &__image {
