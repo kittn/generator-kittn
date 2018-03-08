@@ -20,7 +20,7 @@
     $box: append($box, nth($boxes, $i), space);
 
     // Adding Gap Between
-    @if $gap > 0 {
+    @if $gap != false and $gap > 0 {
       // Not last Loop
       @if $i != length($boxes) {
         $box: append($box, $gap, space);
@@ -45,10 +45,8 @@
 ///     @include grid-columns(10px 250px 1fr 50px 100px);
 ///   }
 @mixin grid-columns($gap, $columns) {
-  /* autoprefixer: off */
   grid-template-columns: $columns;
-  /* autoprefixer: on */
-  @if $gap > 0 {
+  @if $gap != false and $gap > 0 {
     grid-column-gap: $gap;
   }
 
@@ -71,10 +69,9 @@
 ///     @include grid-rows(10px 1fr);
 ///   }
 @mixin grid-rows($gap, $rows) {
-  /* autoprefixer: off */
   grid-template-rows: $rows;
-  /* autoprefixer: on */
-  @if $gap > 0 {
+
+  @if $gap != false and $gap > 0 {
     grid-row-gap: $gap;
   }
 
@@ -154,23 +151,125 @@
     // If Area exists in the Map
     @if length($areaExists) > 1 {
       // Convert Coordinate if Column Gap is active
-      @if $columnGap {
+      @if $columnGap and $columnGap > 0 {
         -ms-grid-column: $gridColumnStart + ($gridColumnStart - 1);
         -ms-grid-column-span: $gridColumnEnd - $gridColumnStart + 1 + ($gridColumnEnd - $gridColumnStart);
-
       } @else {
         -ms-grid-column: $gridColumnStart;
         -ms-grid-column-span: $gridColumnEnd - $gridColumnStart + 1;
       }
 
       // Add Row Coordinates
-      @if $rowGap {
+      @if $rowGap and $rowGap > 0 {
         -ms-grid-row: nth($gridRows,1) + (nth($gridRows,1) - 1);
         -ms-grid-row-span: length($gridRowHeight) - 1 + (length($gridRowHeight) - 2);
 
       } @else {
         -ms-grid-row: nth($gridRows,1);
         -ms-grid-row-span: length($gridRowHeight) - 1;
+      }
+    }
+  }
+}
+
+// To use the three Generators you have to write down the Grid in the Component Map like this...
+//grid: (
+//  associated: (
+//    info: '__mail' false,
+//    social: '.c-socialNetworks' true,
+//    adress: '.c-officeAdresses' true,
+//    copyright: '.c-copyright' true,
+//    nav: '.c-footernav' true
+//  ),
+//  sets: (
+//    set1: (
+//      breakpoint: false,
+//      column-gap: 0,
+//      row-gap: 40px,
+//      columns: 1fr,
+//      rows: 1fr 1fr 1fr 1fr 1fr,
+//      areas: (
+//        row1: ('info'),
+//        row2: ('social'),
+//        row3: ('adress'),
+//        row4: ('copyright'),
+//        row5: ('nav')
+//      )
+//    ),
+//    set2: (
+//      breakpoint: "m",
+//      column-gap: 0,
+//      row-gap: 0,
+//      columns: 1fr 1fr 1fr,
+//      rows: 1fr 1fr 1fr 1fr,
+//      areas: (
+//        row1: ('info', 'info', 'info'),
+//        row2: ('social', 'social', 'social'),
+//        row3: ('adress', 'adress', 'adress'),
+//        row4: ('copyright', 'nav', 'nav')
+//      )
+//    )
+//  ),
+//)
+
+/// Associate area-names with classes and generate the styling based on the breakpoints
+///
+/// @group core - cssgrid
+///
+/// @param   {string}  $area - Name of the Area
+/// @param   {map}     $map - Map of your grid area matrix
+@mixin _grid-association($area, $map) {
+  @each $key, $setup in $map {
+
+    @if map-get($setup, breakpoint) == false {
+      @include grid-area($area, map-deep-get($setup, areas), map-get($setup, column-gap), map-get($setup, row-gap));
+    } @else {
+      @include break(map-get($setup, breakpoint)) {
+        @include grid-area($area, map-deep-get($setup, areas), map-get($setup, column-gap), map-get($setup, row-gap));
+      }
+    }
+  }
+}
+
+/// Generate the Grid Wrapper
+///
+/// @group core - cssgrid
+///
+/// @param   {map}     $map - Map of your grid area matrix
+@mixin grid-wrapper($map) {
+  display: -ms-grid;
+  display: grid;
+  @each $key, $setup in $map {
+    @if map-get($setup, breakpoint) == false {
+      @include grid-matrix(map-deep-get($setup, areas));
+      @include grid-columns(map-get($setup, column-gap), map-get($setup, columns));
+      @include grid-rows(map-get($setup, row-gap), map-get($setup, rows));
+    } @else {
+      @include break(map-get($setup, breakpoint)) {
+        @include grid-matrix(map-deep-get($setup, areas));
+        @include grid-columns(map-get($setup, column-gap), map-get($setup, columns));
+        @include grid-rows(map-get($setup, row-gap), map-get($setup, rows));
+      }
+    }
+  }
+}
+
+/// Build the Sets
+///
+/// @group core - cssgrid
+///
+/// @param   {string}  $area - Name of the Area
+/// @param   {map}     $map - Map of your grid area matrix
+@mixin grid-connector($associated, $sets, $root) {
+  @each $key, $assoc in $associated {
+    @if nth($assoc, 2) {
+      #{nth($assoc, 1)} {
+        @include _grid-association($key, $sets);
+      }
+    } @else {
+      // Internal Classes
+      @at-root #{$root}#{nth($assoc, 1)} {
+        @include _grid-association($key, $sets);
       }
     }
   }
