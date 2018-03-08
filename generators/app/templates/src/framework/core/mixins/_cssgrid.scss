@@ -174,22 +174,6 @@
   }
 }
 
-
-@mixin _grid-area-connection($map, $root, $setup, $areapost: true) {
-  @each $key, $assoc in $map {
-    @if nth($assoc, 2) {
-      #{nth($assoc, 1)} {
-        @include grid-area($key, map-deep-get($setup, areas), map-get($setup, column-gap), map-get($setup, row-gap), $areapost);
-      }
-    } @else {
-      // Internal Classes
-      @at-root #{$root}#{nth($assoc, 1)} {
-        @include grid-area($key, map-deep-get($setup, areas), map-get($setup, column-gap), map-get($setup, row-gap), $areapost);
-      }
-    }
-  }
-}
-
 // To use the three Generators you have to write down the Grid in the Component Map like this...
 //grid: (
 //  associated: (
@@ -229,6 +213,67 @@
 //    )
 //  ),
 //)
+
+/// Associate area-names with classes and generate the styling based on the breakpoints
+///
+/// @group core - cssgrid
+///
+/// @param   {string}  $area - Name of the Area
+/// @param   {map}     $map - Map of your grid area matrix
+@mixin _grid-area-connection($map, $root, $setup, $areapost: true) {
+  @each $key, $assoc in $map {
+    @if nth($assoc, 2) {
+      #{nth($assoc, 1)} {
+        @include grid-area($key, map-deep-get($setup, areas), map-get($setup, column-gap), map-get($setup, row-gap), $areapost);
+      }
+    } @else {
+      // Internal Classes
+      @at-root #{$root}#{nth($assoc, 1)} {
+        @include grid-area($key, map-deep-get($setup, areas), map-get($setup, column-gap), map-get($setup, row-gap), $areapost);
+      }
+    }
+  }
+}
+
+// To use the three Generators you have to write down the Grid in the Component Map like this...
+//  grid: (
+//    associated: (
+//      box0: '__box0' false,
+//      box1: '.c-box1' true,
+//      box2: '.c-box2' true,
+//      box3: '.c-box3' true,
+//      box3: '.c-box4' true
+//    ),
+//    sets: (
+//      set1: (
+//        breakpoint: false,
+//        column-gap: false,
+//        row-gap: 30px,
+//        columns: 1fr,
+//        rows: auto auto auto auto auto,
+//        areas: (
+//          row1: (box1),
+//          row2: (box2),
+//          row3: (box3),
+//          row4: (box4),
+//          row5: (box0)
+//        )
+//      ),
+//      set2: (
+//        breakpoint: "m",
+//        column-gap: false,
+//        row-gap: 60px,
+//        columns: 1fr 1fr 1fr,
+//        rows: auto auto auto auto,
+//        areas: (
+//          row1: (box1 box1 box1),
+//          row2: (box2 box2 box2),
+//          row3: (box3 box3 box3),
+//          row4: (box4 box0 box0)
+//        )
+//      )
+//    )
+//  )...
 
 /// Associate area-names with classes and generate the styling based on the breakpoints
 ///
