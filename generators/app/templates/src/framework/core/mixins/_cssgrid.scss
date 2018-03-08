@@ -124,7 +124,7 @@
 ///      row2: ('logo', 'empty', 'search', 'search')
 ///    );
 ///    @include grid-area(logo, $gridAreaMap, true);
-@mixin grid-area($area, $map, $columnGap: false, $rowGap: false) {
+@mixin grid-area($area, $map, $columnGap: false, $rowGap: false, $areapost: true) {
   // Init Vars
   $gridColumnStart: '';
   $gridColumnEnd: '';
@@ -132,8 +132,10 @@
   $gridRowHeight: '';
   $areaExists: 0;
 
-  // Output regular Area
-  grid-area: $area;
+  @if $areapost {
+    // Output regular Area
+    grid-area: $area;
+  }
 
   // Generate Old Spec Coordinates based on Area
   .old-grid-spec & {
@@ -167,6 +169,22 @@
       } @else {
         -ms-grid-row: nth($gridRows,1);
         -ms-grid-row-span: length($gridRowHeight) - 1;
+      }
+    }
+  }
+}
+
+
+@mixin _grid-area-connection($map, $root, $setup, $areapost: true) {
+  @each $key, $assoc in $map {
+    @if nth($assoc, 2) {
+      #{nth($assoc, 1)} {
+        @include grid-area($key, map-deep-get($setup, areas), map-get($setup, column-gap), map-get($setup, row-gap), $areapost);
+      }
+    } @else {
+      // Internal Classes
+      @at-root #{$root}#{nth($assoc, 1)} {
+        @include grid-area($key, map-deep-get($setup, areas), map-get($setup, column-gap), map-get($setup, row-gap), $areapost);
       }
     }
   }
@@ -218,58 +236,30 @@
 ///
 /// @param   {string}  $area - Name of the Area
 /// @param   {map}     $map - Map of your grid area matrix
-@mixin _grid-association($area, $map) {
-  @each $key, $setup in $map {
-
-    @if map-get($setup, breakpoint) == false {
-      @include grid-area($area, map-deep-get($setup, areas), map-get($setup, column-gap), map-get($setup, row-gap));
-    } @else {
-      @include break(map-get($setup, breakpoint)) {
-        @include grid-area($area, map-deep-get($setup, areas), map-get($setup, column-gap), map-get($setup, row-gap));
-      }
-    }
-  }
-}
-
-/// Generate the Grid Wrapper
-///
-/// @group core - cssgrid
-///
-/// @param   {map}     $map - Map of your grid area matrix
-@mixin grid-wrapper($map) {
+@mixin cssgrid-generator($map, $root) {
   display: -ms-grid;
   display: grid;
-  @each $key, $setup in $map {
+
+  // Build Styling outside Breakpoint
+  @each $key, $setup in map-get($map, sets) {
     @if map-get($setup, breakpoint) == false {
+      // Base Wrapper Style
       @include grid-matrix(map-deep-get($setup, areas));
       @include grid-columns(map-get($setup, column-gap), map-get($setup, columns));
       @include grid-rows(map-get($setup, row-gap), map-get($setup, rows));
+
+      // Base Areas Connections
+      @include _grid-area-connection(map-get($map, associated), $root, $setup);
+
     } @else {
+      // Generate Styles inside Breakpoints
       @include break(map-get($setup, breakpoint)) {
         @include grid-matrix(map-deep-get($setup, areas));
         @include grid-columns(map-get($setup, column-gap), map-get($setup, columns));
         @include grid-rows(map-get($setup, row-gap), map-get($setup, rows));
-      }
-    }
-  }
-}
 
-/// Build the Sets
-///
-/// @group core - cssgrid
-///
-/// @param   {string}  $area - Name of the Area
-/// @param   {map}     $map - Map of your grid area matrix
-@mixin grid-connector($associated, $sets, $root) {
-  @each $key, $assoc in $associated {
-    @if nth($assoc, 2) {
-      #{nth($assoc, 1)} {
-        @include _grid-association($key, $sets);
-      }
-    } @else {
-      // Internal Classes
-      @at-root #{$root}#{nth($assoc, 1)} {
-        @include _grid-association($key, $sets);
+        // Base Areas Connections
+        @include _grid-area-connection(map-get($map, associated), $root, $setup, false);
       }
     }
   }
