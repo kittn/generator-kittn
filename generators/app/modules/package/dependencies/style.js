@@ -3,14 +3,8 @@ const extend = require('deep-extend')
 function addStyleDependencies (files = {}, context) {
   extend(files.pkg, {
     devDependencies: {
-      'autoprefixer': '^7.1.1',
+      'autoprefixer': '^8.1.0',
       'cssnano': '^3.10.0',
-      'gulp-load-plugins': '^1.5.0',
-      'gulp-postcss': '^7.0.1',
-      'gulp-sass': '^3.1.0',
-      'gulp-size': '^3.0.0',
-      'gulp-sourcemaps': '^2.6.0',
-      'gulp-util': '^3.0.8',
       'postcss-aspect-ratio': '^1.0.1',
       'postcss-assets': '^5.0.0',
       'postcss-calc': '^6.0.1',
@@ -23,10 +17,23 @@ function addStyleDependencies (files = {}, context) {
       'postcss-short-size': '^3.0.0',
       'postcss-scss': '^1.0.1',
       'postcss-svg': '^2.1.0',
-      'rucksack-css': '^1.0.2',
-      'yargs': '^10.0.3'
+      'rucksack-css': '^1.0.2'
     }
   })
+
+  if (context.props.projectusage !== 'vueapp') {
+    extend(files.pkg, {
+      devDependencies: {
+        'gulp-load-plugins': '^1.5.0',
+        'gulp-postcss': '^7.0.1',
+        'gulp-sass': '^3.1.0',
+        'gulp-size': '^3.0.0',
+        'gulp-sourcemaps': '^2.6.0',
+        'gulp-util': '^3.0.8',
+        'yargs': '^10.0.3',
+      }
+    })
+  }
 
   /**
    * If User wants stylelint
@@ -39,14 +46,21 @@ function addStyleDependencies (files = {}, context) {
         'stylelint': "stylelint 'src/style/**/**/*.scss'"
       },
       devDependencies: {
-        'gulp-stylelint': '^6.0.0',
-        'stylelint': '^8.4.0',
+        'stylelint': '^9.1.0',
         'stylelint-config-sass-guidelines': '^4.0.1',
         'stylelint-order': '^0.4.4',
         'stylelint-scss': '^2.2.0',
         'stylelint-selector-bem-pattern': '^2.0.0'
       }
     })
+
+    if (context.props.projectusage !== 'vueapp') {
+      extend(files.pkg, {
+        devDependencies: {
+          'gulp-stylelint': '^6.0.0',
+        }
+      })
+    }
   }
 
   /**

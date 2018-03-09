@@ -5,10 +5,10 @@
  * @author   Lars Eichler <larseichler.le@gmail.com>
  */
 import path from 'path'
-import webpack from 'webpack'<% if ( projectjsframework === 'vue' ) { %>
+import webpack from 'webpack'<% if ( projectusage === 'vueapp' || projectusage === 'html' || projectjsframework === 'vue' ) { %>
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import HtmlWebpackPlugin from 'html-webpack-plugin'<% if ( projectusage === 'html' && projectstructure === 'uncompiled' ) { %>
+import HtmlWebpackPlugin from 'html-webpack-plugin'<% if ( projectusage === 'vueapp' ||   (projectusage === 'html' && projectstructure === 'uncompiled') ) { %>
 import WriteFilePlugin from 'write-file-webpack-plugin'<% } %><% if ( projectstylelint ) { %>
 import StylelintPlugin from 'stylelint-webpack-plugin'<% } %><% } %>
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
@@ -32,7 +32,6 @@ const {
 const ROOT_PATH = path.resolve(__dirname, '..')
 const PUBLIC_PATH = path.join(ROOT_PATH, kittnConf.dist.webpackpublic)
 const ASSETS_PATH = kittnConf.dist.webpackassets
-const CSS_PATH = kittnConf.dist.webpackcssassets
 const CSS_ROOT = path.resolve(ROOT_PATH, kittnConf.src.style)
 const LOADER_PATH = path.join(ROOT_PATH, kittnConf.src.js)
 
@@ -101,21 +100,21 @@ export default {
   output: {
     path: path.join(PUBLIC_PATH, ASSETS_PATH),
     publicPath: ifDevelopment('/' + ASSETS_PATH, ASSETS_PATH),
-    filename: 'js/[name].js',
-    chunkFilename: 'js/[name].js'
+    filename: 'js/[name].<% if ( projectusage === 'vueapp') { %>[hash].<% } %>js',
+    chunkFilename: 'js/[name].<% if ( projectusage === 'vueapp') { %>[hash].<% } %>js'
   },
   externals: {
     Modernizr: 'Modernizr'
   },
   resolve: {
-    extensions: [<% if ( projectjsframework === 'vue' ) { %>
+    extensions: [<% if ( projectusage === 'vueapp' || projectjsframework === 'vue' ) { %>
       '.vue',<% } %>
       '.js'
     ],
     modules: [resolve(kittnConf.src.base), resolve('node_modules')],
-    alias: {<% if ( projectjsframework === 'vue' ) { %>
+    alias: {<% if ( projectusage === 'vueapp' || projectjsframework === 'vue' ) { %>
       components: path.resolve(LOADER_PATH, 'components/'),
-      store: path.resolve(LOADER_PATH, 'store'),<% if ( projectvueversion === 'standalone' ) { %>
+      store: path.resolve(LOADER_PATH, 'store'),<% if ( locals.projectvueversion && projectvueversion === 'standalone' ) { %>
       'vue$': 'vue/dist/vue.common.js',<% } } %>
       src: resolve(kittnConf.src.base)
     }
@@ -124,7 +123,7 @@ export default {
     rules: [
       {
         enforce: 'pre',
-        test: /\.(js<% if ( projectjsframework === 'vue' ) { %>|vue<% } %>)$/,
+        test: /\.(js<% if ( projectusage === 'vueapp' || projectjsframework === 'vue' ) { %>|vue<% } %>)$/,
         loader: 'eslint-loader',
         options: {
           configFile: ifProduction('./.eslintrc.js', './.eslintrc-dev.js'),
@@ -138,7 +137,7 @@ export default {
         use: 'babel-loader',
         include: resolve(kittnConf.src.base),
         exclude: /node_modules/
-      },<% if ( projectjsframework === 'vue' ) { %>
+      },<% if ( projectusage === 'vueapp' || projectjsframework === 'vue' ) { %>
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -181,15 +180,11 @@ export default {
       {
         test: /\.(eot|ttf|woff|woff2)(\?\S*)?$/,
         loader: 'file-loader',
-        query: ifProduction({
+        query: {
           outputPath: 'fonts/',
-          publicPath: kittnConf.dist.webpackFontsPath,
+          publicPath: ASSETS_PATH + 'fonts/',
           name: '[name].[ext]'
-        }, {
-          outputPath: 'fonts/',
-          publicPath: kittnConf.dist.webpackFontsPathDev,
-          name: '[name].[ext]'
-        })
+        }
       },
       {
         test: /\.svg$/,
@@ -210,19 +205,19 @@ export default {
     ifDevelopment(new webpack.HotModuleReplacementPlugin()),
     ifDevelopment(new webpack.NamedModulesPlugin()),
     ifDevelopment(new webpack.NoEmitOnErrorsPlugin()),
-    ifDevelopment(new FriendlyErrorsWebpackPlugin()),<% if (projectusage === 'html') { %>
+    ifDevelopment(new FriendlyErrorsWebpackPlugin()),<% if (projectusage === 'vueapp' || projectusage === 'html') { %>
     ifProduction(
       new CleanWebpackPlugin([
         ASSETS_PATH + 'js/',
-        CSS_PATH
+        ASSETS_PATH + 'css/'
       ],
       {
         root: PUBLIC_PATH,
         beforeEmit: true,
         exclude: ['ls.respimg.js', 'modernizr.js', 'style.css', 'style.css.map']
       })
-    ),<% } %><% if ( projectjsframework === 'vue') { %>
-    new ExtractTextPlugin({<% if ( projectusage === 'html' ) { %>
+    ),<% } %><% if ( projectusage === 'vueapp' || projectjsframework === 'vue' ) { %>
+    new ExtractTextPlugin({<% if ( projectusage === 'html' || projectusage === 'vueapp' ) { %>
       filename: ifDevelopment('css/[name].css', 'css/[name].[chunkhash].css'),<% } else { %>
       filename: 'css/[name].css',<% } %>
       allChunks: true
@@ -252,13 +247,13 @@ export default {
         statsFilename: `${ROOT_PATH}/webpack/stats.json`,
         logLevel: 'info'
       })
-    ),<% } %><% if ( projectjsframework === 'vue' && projectusage === 'html' ) { %><% if ( projectstructure === 'twig' ) { %>
+    ),<% } %><% if ( projectusage === 'vueapp' || (projectjsframework === 'vue' && projectusage === 'html') ) { %><% if ( locals.projectstructure && projectstructure === 'twig' ) { %>
     ifProduction(<% } %>
       new HtmlWebpackPlugin({
         filename: path.resolve(`${kittnConf.dist.markup}/index.html`),
-        template: <% if ( projectstructure === 'twig' ) { %>kittnConf.dist.markup + 'index.html'<% } else { %>kittnConf.src.structure + 'index.html'<% } %>,
+        template: <% if ( locals.projectstructure && projectstructure === 'twig' ) { %>kittnConf.dist.markup + 'index.html'<% } else { %>kittnConf.src.structure + 'index.html'<% } %>,
         inject: true,
-        hash: true,
+        hash: <% if ( projectusage === 'vueapp') { %>false<% } else { %>true<% } %>,
         minify: {
           removeComments: true,
           collapseWhitespace: true,
@@ -268,8 +263,8 @@ export default {
         },
         // necessary to consistently work with multiple chunks via CommonsChunkPlugin
         chunksSortMode: 'dependency'
-      })<% if ( projectstructure === 'twig' ) { %>
-    ),<% } %><% } %><% if ( projectjsframework === 'vue' && projectusage === 'html' && projectstructure === 'uncompiled' ) { %>,
+      })<% if ( locals.projectstructure && projectstructure === 'twig' ) { %>
+    ),<% } %><% } %><% if ( projectusage === 'vueapp' || (projectjsframework === 'vue' && projectusage === 'html' && projectstructure === 'uncompiled') ) { %>,
     new WriteFilePlugin({
       log: false,
       test: /^(?!.+(?:hot-update.(js|json))).+$/

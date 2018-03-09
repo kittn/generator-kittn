@@ -2,8 +2,18 @@ const styles = (context) => {
   return {
     files: [
       {
+        notConditions: {
+          projectcssfilename: undefined
+        },
         src: 'src/style/style.scss',
         dest: `src/style/${context.props.projectcssfilename}.scss`
+      },
+      {
+        conditions: {
+          projectcssfilename: undefined
+        },
+        src: 'src/style/style.scss',
+        dest: `src/style/style.scss`
       },
       {
         src: 'src/style/_loader.scss',
@@ -25,15 +35,17 @@ const styles = (context) => {
         dest: 'src/framework/partials/_normalize.scss'
       },
       {
-        conditions: {
-          projectnormalize: 'regular'
+        orConditions: {
+          projectnormalize: 'regular',
+          projectusage: 'vueapp'
         },
         src: 'src/framework_additions/_normalize-slim.scss',
         dest: 'src/framework/partials/_normalize.scss'
       },
       {
-        conditions: {
-          projectcssstructure: 'sassAtomic'
+        orConditions: {
+          projectcssstructure: 'sassAtomic',
+          projectusage: 'vueapp'
         },
         src: 'src/skeletons/style/_application_atomic.scss',
         dest: 'src/style/application/_application.scss'
@@ -60,8 +72,9 @@ const styles = (context) => {
         dest: 'gulpfile/tasks/optimize-criticalCss.js'
       },
       {
-        conditions: {
-          projectstylelint: true
+        orConditions: {
+          projectstylelint: true,
+          projectusage: 'vueapp'
         },
         src: '_stylelintrc',
         dest: '.stylelintrc'
@@ -73,6 +86,9 @@ const styles = (context) => {
     ],
     folders: [
       {
+        conditions: {
+          projectcritical: true
+        },
         src: 'nodescripts/',
         dest: 'nodescripts/'
       },
@@ -89,8 +105,9 @@ const styles = (context) => {
         dest: 'src/style/vendor/'
       },
       {
-        conditions: {
-          projectcssstructure: 'sassAtomic'
+        orConditions: {
+          projectcssstructure: 'sassAtomic',
+          projectusage: 'vueapp'
         },
         src: 'src/skeletons/style/atomic',
         dest: 'src/style/application/'

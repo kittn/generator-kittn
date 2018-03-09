@@ -24,7 +24,8 @@ function addBaseCofig (files = {}, context) {
     'browsersync': {
       'openbrowser': true,
       'https': false,
-      'proxy': false
+      'proxy': false,
+      'port': 3000
     },
     'files': {
       'jsCopy': [

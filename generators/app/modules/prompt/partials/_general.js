@@ -41,6 +41,10 @@ No whitespaces or special-chars allowed!}`
           value: 'html'
         },
         {
+          name: 'Build a pure Vue.js App',
+          value: 'vueapp'
+        },
+        {
           name: 'Create a website using CraftCMS',
           value: 'craft'
         },
@@ -272,6 +276,9 @@ No whitespaces or special-chars allowed!}`
     },
     {
       type: 'input',
+      when: function (answers) {
+        return answers.projectusage !== 'vueapp'
+      },
       name: 'projectcssfilename',
       message: message({
         headline: 'CSS Filename',
@@ -321,6 +328,9 @@ No whitespaces or special-chars allowed!}`
       store: false
     },
     {
+      when: function (answers) {
+        return answers.projectusage !== 'vueapp'
+      },
       type: 'confirm',
       name: 'projectstylelint',
       message: message({
@@ -367,6 +377,9 @@ No whitespaces or special-chars allowed!}`
     },
     {
       type: 'list',
+      when: function (answers) {
+        return answers.projectusage !== 'vueapp'
+      },
       name: 'projectjquery',
       message: message({
         headline: 'jQuery',
@@ -391,6 +404,9 @@ No whitespaces or special-chars allowed!}`
     },
     {
       type: 'list',
+      when: function (answers) {
+        return answers.projectusage !== 'vueapp'
+      },
       name: 'projectjsframework',
       message: message({
         headline: 'JS Frameworks',
@@ -447,6 +463,9 @@ No whitespaces or special-chars allowed!}`
       store: false
     },
     {
+      when: function (answers) {
+        return answers.projectusage !== 'vueapp'
+      },
       type: 'confirm',
       name: 'projectastrum',
       message: message({
@@ -458,6 +477,9 @@ No whitespaces or special-chars allowed!}`
       store: false
     },
     {
+      when: function (answers) {
+        return answers.projectusage !== 'vueapp'
+      },
       type: 'confirm',
       name: 'projectsassdocs',
       message: message({

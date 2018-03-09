@@ -1,6 +1,6 @@
 {
   "presets": [
-    ["@babel/preset-env"<% if ( projectjsframework === 'react' ) { %>, "@babel/preset-react"<% } %>]
+    ["@babel/preset-env"<% if ( locals.projectjsframework && projectjsframework === 'react' ) { %>, "@babel/preset-react"<% } %>]
   ],
   "plugins": [
     "@babel/plugin-syntax-dynamic-import"
