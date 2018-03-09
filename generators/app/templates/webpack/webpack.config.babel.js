@@ -8,8 +8,9 @@ import path from 'path'
 import webpack from 'webpack'<% if ( projectjsframework === 'vue' ) { %>
 import CleanWebpackPlugin from 'clean-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
-import HtmlWebpackPlugin from 'html-webpack-plugin'<% } %><% if ( projectjsframework === 'vue' && projectstylelint) { %>
-import StylelintPlugin from 'stylelint-webpack-plugin'<% } %>
+import HtmlWebpackPlugin from 'html-webpack-plugin'<% if ( projectusage === 'html' && projectstructure === 'uncompiled' ) { %>
+import WriteFilePlugin from 'write-file-webpack-plugin'<% } %><% if ( projectstylelint ) { %>
+import StylelintPlugin from 'stylelint-webpack-plugin'<% } %><% } %>
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
 import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
@@ -251,11 +252,11 @@ export default {
         statsFilename: `${ROOT_PATH}/webpack/stats.json`,
         logLevel: 'info'
       })
-    ),<% } %><% if ( projectjsframework === 'vue' && projectusage === 'html' ) { %>
-    ifProduction(
+    ),<% } %><% if ( projectjsframework === 'vue' && projectusage === 'html' ) { %><% if ( projectstructure === 'twig' ) { %>
+    ifProduction(<% } %>
       new HtmlWebpackPlugin({
-        template: './dist/index.html',
-        filename: '../index.html',
+        filename: path.resolve(`${kittnConf.dist.markup}/index.html`),
+        template: <% if ( projectstructure === 'twig' ) { %>kittnConf.dist.markup + 'index.html'<% } else { %>kittnConf.src.structure + 'index.html'<% } %>,
         inject: true,
         hash: true,
         minify: {
@@ -267,7 +268,11 @@ export default {
         },
         // necessary to consistently work with multiple chunks via CommonsChunkPlugin
         chunksSortMode: 'dependency'
-      })
-    ),<% } %>
+      })<% if ( projectstructure === 'twig' ) { %>
+    ),<% } %><% } %><% if ( projectjsframework === 'vue' && projectusage === 'html' && projectstructure === 'uncompiled' ) { %>,
+    new WriteFilePlugin({
+      log: false,
+      test: /^(?!.+(?:hot-update.(js|json))).+$/
+    })<% } %>
   ])
 }
