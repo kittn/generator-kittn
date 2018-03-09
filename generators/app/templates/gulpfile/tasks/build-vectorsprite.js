@@ -13,9 +13,11 @@ const $ = gulpLoadPlugins()
 const buildVectorSpriteTask = () => {
   return gulp
     .src(kc.src.images.vectorSprite.files + '**/*.svg')
-    .pipe($.imagemin({
-      svgoPlugins: kc.minify.images.svgoPlugins
-    }))
+    .pipe($.imagemin([
+      $.imagemin.svgo({
+        plugins: kc.minify.images.svgoPlugins
+      })
+    ]))
     .pipe($.svgSprite(
       {
         shape: {

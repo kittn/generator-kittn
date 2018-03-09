@@ -8,7 +8,7 @@
     breakpoint: 'm',
     font-size: glob(footer, font-size),
     color: (
-      regular: c('black-70'),
+      regular: c('black', 70),
       hover: c('primary')
     )
   );

@@ -73,6 +73,7 @@
       }
     ],
     "declaration-block-no-shorthand-property-overrides": true,
+    "order/order": null,
     "order/declaration-block-order": null,
     "order/declaration-block-properties-alphabetical-order": null,
     "order/properties-alphabetical-order": null,

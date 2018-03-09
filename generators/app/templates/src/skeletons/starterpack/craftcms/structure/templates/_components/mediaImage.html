@@ -28,7 +28,7 @@
 {% endif %}
 
 {# Build Element Block #}
-<figure class="{{ c }}{{ height }}{{ options.style != 'default' ? ' ' ~ c ~ '--s-' ~ options.style }}" role="group" itemscope itemtype="http://schema.org/ImageObject">
+<figure class="{{ c }}{{ height }}{{ _.styleClasses(options.styleClasses) }}" role="group" itemscope itemtype="http://schema.org/ImageObject">
   {{ _.mediaImageSet(data.photo.first(), options.ratio, {
     class: c ~ '__image'
   }) }}

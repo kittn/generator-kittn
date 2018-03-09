@@ -14,11 +14,8 @@
 {# Class Overwrite #}
 {% set c = name is defined and name != '' ? name : 'c-slideoutbox' %}
 
-{# Set Style #}
-{% set style = options.style != 'default' ? ' ' ~ c ~ '--s-' ~ options.style : '' %}
-
 {# Build Element Block #}
-<div class="{{ c }}{{ style }}" role="tablist">
+<div class="{{ c }}{{ _.styleClasses(options.styleClasses) }}" role="tablist">
   <div class="{{ c ~ '__head' }}" role="tab">
     <div class="{{ c ~ '__trigger' }}">{{ data.trigger }}</div>
   </div>

@@ -137,7 +137,7 @@ export default {
         use: 'babel-loader',
         include: resolve(kittnConf.src.base),
         exclude: /node_modules/
-      },
+      },<% if ( projectjsframework === 'vue' ) { %>
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -153,7 +153,7 @@ export default {
             ),
           }
         }
-      },<% if ( projectjsframework === 'vue' ) { %>
+      },
       {
         test: /\.css$/,
         use: ifProduction(ExtractTextPlugin.extract({
@@ -205,11 +205,11 @@ export default {
       }<% } %>
     ]
   },
-  plugins: removeEmpty([<% if ( projectjsframework === 'vue' ) { %>
+  plugins: removeEmpty([
     ifDevelopment(new webpack.HotModuleReplacementPlugin()),
     ifDevelopment(new webpack.NamedModulesPlugin()),
     ifDevelopment(new webpack.NoEmitOnErrorsPlugin()),
-    ifDevelopment(new FriendlyErrorsWebpackPlugin()),
+    ifDevelopment(new FriendlyErrorsWebpackPlugin()),<% if (projectusage === 'html') { %>
     ifProduction(
       new CleanWebpackPlugin([
         ASSETS_PATH + 'js/',
@@ -220,8 +220,8 @@ export default {
         beforeEmit: true,
         exclude: ['ls.respimg.js', 'modernizr.js', 'style.css', 'style.css.map']
       })
-    ),
-    new ExtractTextPlugin({<% if ( projectjsframework === 'vue' ) { %>
+    ),<% } %><% if ( projectjsframework === 'vue') { %>
+    new ExtractTextPlugin({<% if ( projectusage === 'html' ) { %>
       filename: ifDevelopment('css/[name].css', 'css/[name].[chunkhash].css'),<% } else { %>
       filename: 'css/[name].css',<% } %>
       allChunks: true
@@ -238,7 +238,7 @@ export default {
         context: LOADER_PATH,
         syntax: 'scss'
       })
-    ),<% } %>
+    ),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(nodeEnv)
@@ -251,7 +251,7 @@ export default {
         statsFilename: `${ROOT_PATH}/webpack/stats.json`,
         logLevel: 'info'
       })
-    ),<% if ( projectjsframework === 'vue' ) { %>
+    ),<% } %><% if ( projectjsframework === 'vue' && projectusage === 'html' ) { %>
     ifProduction(
       new HtmlWebpackPlugin({
         template: './dist/index.html',

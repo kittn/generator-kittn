@@ -53,12 +53,12 @@
     @include fontsize(18);
     line-height: 1;
     margin-bottom: 5px;
-    color: c('black-20');
-    border-bottom: 1px solid c('black-90');
+    color: c('black', 20);
+    border-bottom: 1px solid c('black', 90);
 
     span {
       size: 38px;
-      background-color: c('black-90');
+      background-color: c('black', 90);
       display: flex;
       justify-content: center;
       align-items: center;

@@ -19,7 +19,7 @@
 {% set navstyle = options.layout != 'default' ?  ' ' ~ c ~ '--l-' ~ options.layout : '' %}
 
 {# Build Element Block #}
-<nav class="{{ c }}{{ options.style != 'default' ? ' ' ~ c ~ '--s-' ~ options.style }}{{ navstyle }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+<nav class="{{ c }}{{ _.styleClasses(options.styleClasses) }}{{ navstyle }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
   {% for link in data %}
     <a itemprop="url" role="button" href="#{{ link.anchor|lower }}" class="{{ c ~ '__link' }} js-smooth-scroll">{{ link.linkname }}</a>
   {% endfor %}

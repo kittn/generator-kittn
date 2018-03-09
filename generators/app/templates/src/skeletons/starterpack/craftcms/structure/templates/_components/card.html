@@ -13,7 +13,7 @@
 {% set cardurl = data.cardlink.url is defined ? data.cardlink.url : '' %}
 
 {# Build Element Block #}
-<div class="{{ c }}{{ options.style != 'default' ? ' ' ~ c ~ '--s-'~options.style }}" role="group" itemscope itemtype="http://schema.org/MediaObject">
+<div class="{{ c }}{{ _.styleClasses(options.styleClasses) }}" role="group" itemscope itemtype="http://schema.org/MediaObject">
   <div class="{{ c ~ '__inner' }}">
     {% if data.photo|length  %}
       <figure class="{{ c ~ '__media' }}">

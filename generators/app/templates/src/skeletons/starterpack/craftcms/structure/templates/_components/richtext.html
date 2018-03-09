@@ -12,6 +12,6 @@
 {% set c = name is defined and name != '' ? name : 'c-richtext' %}
 
 {# Build Element Block #}
-<div class="{{ c }}{{ options.style != 'default' ? ' ' ~ c ~ '--s-' ~ options.style }}">
+<div class="{{ c }}{{ _.styleClasses(options.styleClasses) }}">
   {{ data }}
 </div>

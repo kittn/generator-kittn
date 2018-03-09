@@ -5,7 +5,7 @@
 <!-- Standard SEO -->
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="referrer" content="always" />
+<meta name="referrer" content="no-referrer-when-downgrade" />
 {% if seomaticMeta.robots is defined and seomaticMeta.robots %}
 <meta name="robots" content="{{ seomaticMeta.robots |raw }}" />
 {% endif %}
@@ -20,6 +20,11 @@
 <link rel="canonical" href="{{ seomaticMeta.canonicalUrl }}" />
 {% endif %}
 {% set localizedUrls = getLocalizedUrls() %}
+{% if localizedUrls |length > 0 %}
+<link rel="alternate" href="{{ localizedUrls |first }}" hreflang="x-default" />
+{% else %}
+<link rel="alternate" href="{{ seomaticMeta.canonicalUrl }}" hreflang="x-default" />
+{% endif %}
 {% if localizedUrls |length > 1 %}
 {% for key, value in localizedUrls %}
 <link rel="alternate" hreflang="{{ key |lower |replace ('_', '-') }}" href="{{ value }}" />

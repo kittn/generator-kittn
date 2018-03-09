@@ -1,0 +1,32 @@
+/*
+  Wrapper
+  =========
+  Wrapper Styles
+*/
+.e-w {
+  // Component Config
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  // [root]--fullheight
+  &--fullheight {
+    height: 100vh;
+  }
+
+  // [root]--fullwidth
+  &--fullwidth {
+    width: 100%;
+    display: block;
+  }
+}

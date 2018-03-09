@@ -27,7 +27,7 @@
 
   &, a {
     @include fontsize(50);
-    color: c('black-30');
+    color: c('black', 30);
     line-height: 1;
     font-weight: bold; /* stylelint-disable */
   }

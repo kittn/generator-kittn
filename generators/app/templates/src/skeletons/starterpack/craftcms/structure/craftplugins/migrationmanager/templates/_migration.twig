@@ -1,0 +1,39 @@
+<?php
+
+namespace Craft;
+
+/**
+ * Generated migration
+ */
+class {{ className }} extends BaseMigration
+{
+    /**
+    Migration manifest:
+    {% for key, value in manifest %}
+
+    {{ key|upper }}
+    {% for item in value %}
+    - {{ item }}
+    {% endfor %}
+    {% endfor %}
+
+    */
+	/**
+	 * Any migration code in here is wrapped inside of a transaction.
+	 * Returning false will rollback the migration
+	 *
+	 * @return bool
+	 */
+	public function safeUp()
+	{
+	    {% spaceless %}
+	    {% if empty %}
+        //add your custom migration code, see the EXAMPLES.md for examples
+        return true;
+        {% else %}
+        $json = '{{ migration|raw }}';
+        return craft()->migrationManager_migrations->import($json);
+        {% endif %}
+        {% endspaceless %}
+    }
+}

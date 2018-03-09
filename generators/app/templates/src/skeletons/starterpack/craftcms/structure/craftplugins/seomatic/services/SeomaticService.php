@@ -114,7 +114,13 @@ class SeomaticService extends BaseApplicationComponent
         if ($templatePath)
             {
                 try {
+                    if ($metaVars) {
+                        $this->sanitizeMetaVars($metaVars);
                         $htmlText = craft()->templates->render($templatePath, $metaVars);
+                    }
+                    else
+                        $htmlText = craft()->templates->render($templatePath);
+
                 } catch (\Exception $e) {
                     $htmlText = 'Error rendering template in render(): ' . $e->getMessage();
                     SeomaticPlugin::log($htmlText, LogLevel::Error);
@@ -614,22 +620,34 @@ class SeomaticService extends BaseApplicationComponent
 
                                         foreach ($variants as $variant)
                                         {
+                                            if ($variant->getIsAvailable()) {
+                                                $availability = "http://schema.org/InStock";
+                                            } else {
+                                                $availability = "http://schema.org/OutOfStock";
+                                            }
                                             $commerceVariant = array(
                                                 'seoProductDescription' => $variant->getDescription() . ' - ' . $element->title,
                                                 'seoProductPrice' => number_format($variant->getPrice(), 2, '.', ''),
                                                 'seoProductCurrency' => craft()->commerce_paymentCurrencies->getPrimaryPaymentCurrency(),
                                                 'seoProductSku' => $variant->getSku(),
+                                                'seoProductAvailability' => $availability,
                                             );
                                             $commerceVariants[] = $commerceVariant;
                                         }
                                     }
                                     else
                                     {
+                                        if ($element->getIsAvailable()) {
+                                            $availability = "http://schema.org/InStock";
+                                        } else {
+                                            $availability = "http://schema.org/OutOfStock";
+                                        }
                                         $commerceVariant = array(
                                             'seoProductDescription' => $element->getDescription() . ' - ' . $element->title,
                                             'seoProductPrice' => number_format($element->getPrice(), 2, '.', ''),
                                             'seoProductCurrency' => craft()->commerce_paymentCurrencies->getPrimaryPaymentCurrency(),
                                             'seoProductSku' => $element->getSku(),
+                                            'seoProductAvailability' => $availability,
                                         );
                                         $commerceVariants[] = $commerceVariant;
                                     }
@@ -816,6 +834,9 @@ class SeomaticService extends BaseApplicationComponent
                 $meta['seoFacebookImageId'] = $meta['seoImageId'];
 
             $meta['canonicalUrl'] =  $this->getFullyQualifiedUrl($entryMetaUrl);
+            if (!empty($entryMeta->canonicalUrlOverride)) {
+                $meta['canonicalUrl'] =  $this->getFullyQualifiedUrl($entryMeta->canonicalUrlOverride);
+            }
 
             $meta['twitterCardType'] = $entryMeta->twitterCardType;
             if (!$meta['twitterCardType'])
@@ -941,7 +962,7 @@ class SeomaticService extends BaseApplicationComponent
             if ($locale == "en")
                 $openGraph['locale'] = 'en_US';
             else
-                $openGraph['locale'] = $locale;
+                $openGraph['locale'] = substr($locale, 0, 5);
             if (strlen($openGraph['locale']) == 2)
                 $openGraph['locale'] = $openGraph['locale'] . "_" . strtoupper($openGraph['locale']);
 
@@ -1012,7 +1033,8 @@ class SeomaticService extends BaseApplicationComponent
                 $openGraphArticle = array();
                 $openGraphArticle['author'] = $helper['facebookUrl'];
                 $openGraphArticle['publisher'] = $helper['facebookUrl'];
-                $openGraphArticle['tag'] = array_map('trim', explode(',', $meta['seoKeywords']));
+                if ($meta['seoKeywords'])
+                    $openGraphArticle['tag'] = array_map('trim', explode(',', $meta['seoKeywords']));
 
     /* -- If an element was injected into the current template, scrape it for attribuates */
 
@@ -1104,8 +1126,10 @@ class SeomaticService extends BaseApplicationComponent
 
 /* -- If this is a 404, set the canonicalUrl to nothing */
 
-        if (http_response_code() == 404) {
-            $meta['canonicalUrl'] = "";
+        if (function_exists('http_response_code')) {
+            if (http_response_code() == 404) {
+                $meta['canonicalUrl'] = "";
+            }
         }
 
 /* -- Merge with the global override config settings */
@@ -1205,7 +1229,7 @@ class SeomaticService extends BaseApplicationComponent
         $result = array();
         $element = null;
 
-        $element = craft()->elements->getElementByUri("__home__");
+        $element = craft()->elements->getElementByUri("__home__", craft()->language, true);
         if ($element)
         {
             $result[$element->title] = $this->getFullyQualifiedUrl($element->url);
@@ -1235,7 +1259,7 @@ class SeomaticService extends BaseApplicationComponent
         foreach ($segments as $segment)
         {
             $uri .= $segment;
-            $element = craft()->elements->getElementByUri($uri);
+            $element = craft()->elements->getElementByUri($uri, craft()->language, true);
             if ($element && $element->uri)
             {
                 $result[$element->title] = $this->getFullyQualifiedUrl($element->uri);
@@ -2273,7 +2297,7 @@ class SeomaticService extends BaseApplicationComponent
             {
                 case "CreativeWork":
                 {
-                    $mainEntityOfPageJSONLD['inLanguage'] = craft()->language;
+                    $mainEntityOfPageJSONLD['inLanguage'] = substr(craft()->language, 0, 5);
                     $mainEntityOfPageJSONLD['headline'] = $title;
                     if (isset($meta['seoKeywords']))
                         $mainEntityOfPageJSONLD['keywords'] = $meta['seoKeywords'];
@@ -2362,6 +2386,7 @@ class SeomaticService extends BaseApplicationComponent
                 "priceCurrency" =>  $variant['seoProductCurrency'],
                 "offeredBy" =>  $identity,
                 "seller" =>  $identity,
+                "availability" =>  $variant['seoProductAvailability'],
             );
             $offer = array_filter($offer);
             $productJSONLD['offers'] = $offer;
@@ -2922,10 +2947,21 @@ function parseAsTemplate($templateStr, $element)
         if ($seomaticSiteMeta['siteSeoTitlePlacement'] == "after")
             $titleSuffix = " " . $seomaticSiteMeta['siteSeoTitleSeparator'] . " " . $seomaticSiteMeta['siteSeoName'];
 
+        if (isset($seomaticMeta['twitter']['title'])) {
+            $title = $seomaticMeta['twitter']['title'];
+        } else {
+            $title = $seomaticMeta['seoTitle'];
+        }
         if (isset($seomaticMeta['twitter']))
-            $seomaticMeta['twitter']['title'] = $titlePrefix . $seomaticMeta['seoTitle'] . $titleSuffix;
+            $seomaticMeta['twitter']['title'] = $titlePrefix . $title . $titleSuffix;
+
+        if (isset($seomaticMeta['og']['title'])) {
+            $title = $seomaticMeta['og']['title'];
+        } else {
+            $title = $seomaticMeta['seoTitle'];
+        }
         if (isset($seomaticMeta['og']))
-            $seomaticMeta['og']['title'] = $titlePrefix . $seomaticMeta['seoTitle'] . $titleSuffix;
+            $seomaticMeta['og']['title'] = $titlePrefix . $title . $titleSuffix;
 
 /* -- Truncate seoTitle, seoDescription, and seoKeywords to recommended values */
 
@@ -3002,6 +3038,7 @@ public function getLocalizedUrls()
 {
     $localizedUrls = array();
     $requestUri = craft()->request->getRequestUri();
+    $excludeLocales = craft()->config->get("excludeLocales", "seomatic");
     if (craft()->isLocalized())
     {
         $element = craft()->urlManager->getMatchedElement();
@@ -3029,8 +3066,10 @@ public function getLocalizedUrls()
             foreach ($locales as $locale)
             {
                 $localeId = $locale->getId();
-                if (isset($unsortedLocalizedUrls[$localeId]))
-                    $localizedUrls[$localeId] = $unsortedLocalizedUrls[$localeId];
+                if (!in_array($localeId, $excludeLocales)) {
+                    if (isset($unsortedLocalizedUrls[$localeId]))
+                        $localizedUrls[$localeId] = $unsortedLocalizedUrls[$localeId];
+                }
             }
         }
         else
@@ -3039,8 +3078,9 @@ public function getLocalizedUrls()
             foreach ($locales as $locale)
             {
                 $localeId = $locale->getId();
-                $localizedUrls[$localeId] = UrlHelper::getSiteUrl($requestUri, null, null, $localeId);
-
+                if (!in_array($localeId, $excludeLocales)) {
+                    $localizedUrls[$localeId] = UrlHelper::getSiteUrl($requestUri, null, null, $localeId);
+                }
             }
         }
     }
@@ -3056,7 +3096,6 @@ public function getFullyQualifiedUrl($url)
     $result = $url;
     if (!isset($result) || $result == "")
         return $result;
-    $srcUrlParts = parse_url($result);
     if (UrlHelper::isAbsoluteUrl($url) || UrlHelper::isProtocolRelativeUrl($url))
     {
 /* -- The URL is already a fully qualfied URL, do nothing */
@@ -3064,26 +3103,25 @@ public function getFullyQualifiedUrl($url)
     else
     {
         $siteUrlOverride = craft()->config->get("siteUrlOverride", "seomatic");
-        if ($siteUrlOverride)
+        if ($siteUrlOverride) {
             $siteUrl = $siteUrlOverride;
-        else
-            $siteUrl = craft()->getSiteUrl();
-
-        $urlParts = parse_url($siteUrl);
-        $port = "";
-        if (isset($urlParts['port']))
-            $port = ":" . $urlParts['port'];
-        if (isset($urlParts['scheme']) && isset($urlParts['host']))
-            $siteUrl = $urlParts['scheme'] . "://" . $urlParts['host'] . $port . "/";
-        else
-            $siteUrl = "/";
-        if (($siteUrl[strlen($siteUrl) -1] == '/') && ($result[0] == '/'))
-        {
-            $siteUrl = rtrim($siteUrl, '/');
+            if (($siteUrl[strlen($siteUrl) -1] == '/') && ($result[0] == '/')) {
+                $siteUrl = rtrim($siteUrl, '/');
+            }
+            $result = $siteUrl . $result;
+        } else {
+            $siteUrl = UrlHelper::getSiteUrl('', null, null, craft()->language);
+            // Do this to prevent duplicate locales in the URL, e.g.: https://example.com/en/en/
+            $siteUrl = rtrim($siteUrl, '/') . '/';
+            $result = $this->replaceOverlap($siteUrl, $url);
+            if ($result === false) {
+                $result = UrlHelper::getSiteUrl($url, null, null, craft()->language);
+            }
         }
-        $result = $siteUrl . $result;
     }
-    // Add a trailing / if `addTrailingSlashesToUrls` is set, but only if there's on extension
+
+    $result = rtrim($result, '/');
+    // Add a trailing / if `addTrailingSlashesToUrls` is set, but only if there's one extension
     if (craft()->config->get('addTrailingSlashesToUrls')) {
         $path = parse_url($result, PHP_URL_PATH);
         $pathExtension = pathinfo($path,PATHINFO_EXTENSION);
@@ -3212,9 +3250,62 @@ public function getFullyQualifiedUrl($url)
         }
     } /* -- sanitizeArray */
 
-/* --------------------------------------------------------------------------------
-    Cleanup text before extracting keywords/summary
--------------------------------------------------------------------------------- */
+    /**
+     * As per https://stackoverflow.com/questions/2945446/built-in-function-to-combine-overlapping-string-sequences-in-php
+     * @param $str1
+     * @param $str2
+     *
+     * @return array|bool
+     */
+    private function findOverlap($str1, $str2){
+        $return = array();
+        $sl1 = strlen($str1);
+        $sl2 = strlen($str2);
+        $max = $sl1>$sl2?$sl2:$sl1;
+        $i=1;
+        while($i<=$max){
+            $s1 = substr($str1, -$i);
+            $s2 = substr($str2, 0, $i);
+            if($s1 == $s2){
+                $return[] = $s1;
+            }
+            $i++;
+        }
+        if(!empty($return)){
+            return $return;
+        }
+        return false;
+    }
+
+    /**
+     * As per: https://stackoverflow.com/questions/2945446/built-in-function-to-combine-overlapping-string-sequences-in-php
+     * @param        $str1
+     * @param        $str2
+     * @param string $length
+     *
+     * @return bool|string
+     */
+    private function replaceOverlap($str1, $str2, $length = "long"){
+        if($overlap = $this->findOverlap($str1, $str2)){
+            switch($length){
+                case "short":
+                    $overlap = $overlap[0];
+                    break;
+                case "long":
+                default:
+                    $overlap = $overlap[count($overlap)-1];
+                    break;
+            }
+            $str1 = substr($str1, 0, -strlen($overlap));
+            $str2 = substr($str2, strlen($overlap));
+            return $str1.$overlap.$str2;
+        }
+        return false;
+    }
+
+    /* --------------------------------------------------------------------------------
+        Cleanup text before extracting keywords/summary
+    -------------------------------------------------------------------------------- */
 
     private function _cleanupText($text = null)
     {
@@ -3235,7 +3326,7 @@ public function getFullyQualifiedUrl($url)
 
 /* -- remove excess whitespace */
 
-        $text = preg_replace('/\s{2,}/', ' ', $text);
+        $text = preg_replace('/\s{2,}/u', ' ', $text);
 
         $text = html_entity_decode($text);
         return $text;

@@ -25,7 +25,19 @@ yarn-error.log*
 .env.*
 
 # Build generated
-dist/
+<% if (projectusage == 'craft' || projectusage == 'craftCB') { %>
+/dist/.env.php
+/dist/public/
+/dist/craft/app/
+/dist/craft/config/
+/dist/craft/storage/
+/dist/craft/templates/
+/dist/craft/translations/
+/dist/craft/.htaccess
+/dist/craft/web.config
+/src/craftplugins/
+/src/structure/config/license.key<% } else { %>
+dist/<% } %>
 build/
 doc/
 
@@ -35,10 +47,7 @@ doc/
 # Sass-Files
 *.sassc
 .sass-cache
-*.css.map<% if (projectusage == 'craft' || projectusage == 'craftCB') { %>
-
-# Craft
-/src/structure/config/license.key<% } %>
+*.css.map
 
 ### SublimeText ###
 # cache files for sublime text

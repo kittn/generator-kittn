@@ -101,7 +101,7 @@
 {% endif %}
 
 {# Build Element Block #}
-<figure class="{{ c }} js-imageSlider {{ c ~ '--card' }}{{ options.style != 'default' ? ' ' ~ c ~ '--s-'~options.style }}"
+<figure class="{{ c }} js-imageSlider {{ c ~ '--card' }}{{ _.styleClasses(options.styleClasses) }}"
         itemscope itemtype="http://schema.org/ImageGallery" role="presentation"
         data-flickity='{
           "accessibility": false,

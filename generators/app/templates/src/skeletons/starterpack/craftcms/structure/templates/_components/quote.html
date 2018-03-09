@@ -15,7 +15,7 @@
 {% set c = name is defined and name != '' ? name : 'c-quote' %}
 
 {# Build Element Block #}
-<blockquote class="{{ c }}{{ options.style != 'default' ? ' ' ~ c ~ '--s-' ~ options.style }}">
+<blockquote class="{{ c }}{{ _.styleClasses(options.styleClasses) }}">
   {{ data.copy|md }}
   {% if data.source %}<cite class="{{ c ~ '__cite' }}">{{ data.source|raw }}</cite>{% endif %}
 </blockquote>

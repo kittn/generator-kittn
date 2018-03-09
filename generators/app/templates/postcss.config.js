@@ -17,7 +17,7 @@ module.exports = ({ file, options, env }) => ({
     },
     'autoprefixer': {
       cascade: false,
-      grid: true
+      grid: false
     },
     'postcss-svg': {},
     'postcss-short-size': {},

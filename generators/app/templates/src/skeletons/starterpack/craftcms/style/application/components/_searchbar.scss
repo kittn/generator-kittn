@@ -8,7 +8,7 @@
   $api: (
     breakpoint: glob(header, breaksizes, one),
     height: 60px,
-    background: c('black-05'),
+    background: c('black', 05),
     icon: (
       color: c('black'),
       hover: c('primary'),
@@ -17,7 +17,7 @@
     input: (
       height: 50px,
       padding: 0,
-      color: c('black-50'),
+      color: c('black', 50),
       font-size: rem(20)
     )
   );
@@ -83,7 +83,7 @@
     background-color: rgba(0,0,0,0);
     border-radius: 0;
     border: 0;
-    border-bottom: 1px solid c('black-50');
+    border-bottom: 1px solid c('black', 50);
     height: api(input,height);
     line-height: 1;
     padding-left: api(input,padding);

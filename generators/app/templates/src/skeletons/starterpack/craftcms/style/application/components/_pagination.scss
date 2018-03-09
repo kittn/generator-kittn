@@ -11,14 +11,14 @@
     size: 40px,
     box: (
       regular: (
-        border-color: c('black-85'),
-        background: c('black-90'),
-        color: c('black-50')
+        border-color: c('black', 85),
+        background: c('black', 90),
+        color: c('black', 50)
       ),
       hover: (
-        border-color: c('black-90'),
-        background: c('black-95'),
-        color: c('black-40')
+        border-color: c('black', 90),
+        background: c('black', 95),
+        color: c('black', 40)
       ),
       active: (
         border-color: c('primary'),

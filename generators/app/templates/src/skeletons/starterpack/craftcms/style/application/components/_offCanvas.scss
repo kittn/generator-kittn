@@ -9,7 +9,7 @@
     background: rgba(c('black'), .98),
     color: c('white'),
     trigger: (
-      color: c('black-60'),
+      color: c('black', 60),
       activeColor: c('gray'),
       height: 3px,
       width: 25px

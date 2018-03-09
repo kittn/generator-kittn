@@ -7,8 +7,8 @@
   $api: (
     breakpoint: 'm',
     style1: (
-      border: 5px solid c('black-80'),
-      color: c('black-40')
+      border: 5px solid c('black', 80),
+      color: c('black', 40)
     )
   );
 
@@ -35,7 +35,7 @@
   }
 
   // [root]--s-style1
-  &--s-style1 {
+  &--s-lined {
     border-left: api(style1, border);
     padding-left: s(1);
     color: api(style1, color);

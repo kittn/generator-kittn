@@ -23,7 +23,7 @@
 
 {# Build Element Block #}
 {% if data.embedUrl|length or data.embed|length %}
-  <div class="{{ c }}{{ options.style != 'default' ? ' ' ~ c ~ '--s-' ~ options.style }}{{ ' ' ~ c ~ '--align-' ~ options.align }}" role="presentation">
+  <div class="{{ c }}{{ _.styleClasses(options.styleClasses) }}" role="presentation">
     <div class="{{ c }}{{ options.responsive ? '__inner' : '__wrapper' }}"{% if options.responsive %} style="padding-bottom: {{ (ar|last)/(ar|first) * 100 }}%"{% endif %}>
       {% if data.embedUrl|length %}
         {# If String has Instagram #}

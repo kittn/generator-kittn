@@ -11,7 +11,7 @@ const $ = gulpLoadPlugins()
 
 const buildSymbolCleanupTask = () => {
   return gulp
-    .src([kc.dist.cssimg + kc.src.images.vectorSprite.symbolName, kc.dist.vectors + '**'], { base: './' })
+    .src([kc.dist.cssimg + kc.src.images.vectorSprite.symbolName], { base: './' })
     .pipe($.cheerio({
       run: function ($) {
         $('[fill^="#"]').removeAttr('fill')

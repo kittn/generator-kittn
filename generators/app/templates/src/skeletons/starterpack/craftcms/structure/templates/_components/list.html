@@ -25,7 +25,7 @@
 {% endif %}
 
 {# Build Element Block #}
-<{{ list }} class="{{ c }}{{ style }}" role="list">
+<{{ list }} class="{{ c }}{{ style }}{{ _.styleClasses(options.styleClasses) }}" role="list">
   {% for entry in data %}
     <li class="{{ c ~ '__entry' }}">{{ entry.entry|raw }}</li>
   {% endfor %}
