@@ -138,7 +138,8 @@ const projecttype = (context) => {
     folders: [
       {
         conditions: {
-          projectusage: 'html'
+          projectusage: 'html',
+          projectstructure: 'twig'
         },
         src: 'src/skeletons/twig',
         dest: 'src/template/'

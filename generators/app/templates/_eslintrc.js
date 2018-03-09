@@ -2,8 +2,8 @@
 
 module.exports = {
   root: true,
-  parser: 'babel-eslint',
   parserOptions: {
+    parser: 'babel-eslint',
     sourceType: 'module'
   },
   env: {
@@ -15,7 +15,7 @@ module.exports = {
   extends: [
     // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
     'standard',<% if ( projectjsframework === 'vue' ) { %>
-    'vue',<% } %>
+    'plugin:vue/base',<% } %>
     'plugin:import/errors',
     'plugin:import/warnings'
   ],
@@ -35,6 +35,7 @@ module.exports = {
     'import/extensions': ['error', 'always', {
       'js': 'never'<% if ( projectjsframework === 'vue' ) { %>,
       'vue': 'never'<% } %>
-    }]
+    }],
+    'object-curly-spacing': 0
   }
 }
