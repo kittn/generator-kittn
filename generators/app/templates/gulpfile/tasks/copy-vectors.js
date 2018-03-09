@@ -15,9 +15,11 @@ const copyVectorsTask = () => {
   gulp
     .src(kc.src.images.vectors + '**/*.svg')
     .pipe(global.checkChanged === true ? $.changed(kc.dist.vectors) : gutil.noop())
-    .pipe($.imagemin({
-      svgoPlugins: kc.minify.images.svgoPlugins
-    }))
+    .pipe($.imagemin([
+      $.imagemin.svgo({
+        plugins: kc.minify.images.svgoPlugins
+      })
+    ]))
     .pipe(gulp.dest(kc.dist.vectors))
 }
 
