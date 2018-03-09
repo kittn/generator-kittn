@@ -96,7 +96,7 @@ function addScriptDependencies (files = {}, context) {
         'css-loader': '^0.26.1',
         'eslint-config-vue': '^2.0.2',
         'eslint-plugin-html': '^4.0.0',
-        'eslint-plugin-vue': '^4.0.0',
+        'eslint-plugin-vue': '^4.3.0',
         'file-loader': '^1.1.10',
         'json-loader': '^0.5.7',
         'optimize-css-assets-webpack-plugin': '^3.1.1',
