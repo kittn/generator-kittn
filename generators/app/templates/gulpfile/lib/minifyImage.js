@@ -13,22 +13,14 @@ const $ = gulpLoadPlugins()
 
 const minifyImages = (srcfiles, distfiles) => {
   gulp.src(['!' + srcfiles + 'system/**', srcfiles + '/**', '!' + srcfiles + kc.src.images.vectorSprite.symbolName])
-    .pipe(
-      $.imagemin({
-        optimizationLevel: kc.minify.images.optimizationLevel,
-        use: [
-          pngquant(kc.minify.images.pngquant),
-          jpegCompress({
-            loops: 3,
-            min: 75,
-            max: 95
-          })
-        ],
-        svgoPlugins: kc.minify.images.svgoPlugins,
-        progressive: kc.minify.images.progressive,
-        interlaced: kc.minify.images.interlaced
+    .pipe($.imagemin([
+      $.imagemin.gifsicle({interlaced: kc.minify.images.interlaced}),
+      $.imagemin.jpegtran({progressive: kc.minify.images.progressive}),
+      $.imagemin.optipng({optimizationLevel: kc.minify.images.optimizationLevel}),
+      $.imagemin.svgo({
+        plugins: kc.minify.images.svgoPlugins
       })
-    )
+    ]))
     .pipe(gulp.dest(distfiles))
 }
 
