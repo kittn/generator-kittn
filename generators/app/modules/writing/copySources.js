@@ -36,6 +36,28 @@ const checkCondition = (data, context) => {
     if (!error) {
       copyAction(data, context)
     }
+  } else if (data.orConditions) {
+    let error = true
+    for (const cond in data.orConditions) {
+      if (data.orConditions[cond] === context.props[cond]) {
+        error = false
+      }
+    }
+
+    if (!error) {
+      copyAction(data, context)
+    }
+  } else if (data.notConditions) {
+    let error = false
+    for (const cond in data.notConditions) {
+      if (data.notConditions[cond] === context.props[cond]) {
+        error = true
+      }
+    }
+
+    if (!error) {
+      copyAction(data, context)
+    }
   } else {
     copyAction(data, context)
   }

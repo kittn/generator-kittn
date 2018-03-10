@@ -24,7 +24,8 @@ function addBaseCofig (files = {}, context) {
     'browsersync': {
       'openbrowser': true,
       'https': false,
-      'proxy': false
+      'proxy': false,
+      'port': 3000
     },
     'files': {
       'jsCopy': [
@@ -103,6 +104,7 @@ function addBaseCofig (files = {}, context) {
       structure: 'src/structure/',
       fonts: 'src/fonts/',
       images: {
+        base: 'src/images/',
         bitmapSprite: {
           files: 'src/images/bitmapSprite-assets/',
           name: 'sprite.png'

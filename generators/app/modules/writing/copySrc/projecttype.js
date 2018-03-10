@@ -194,8 +194,9 @@ const projecttype = (context) => {
         dest: 'src/structure/templates/'
       },
       {
-        conditions: {
-          projectstructure: 'uncompiled'
+        orConditions: {
+          projectstructure: 'uncompiled',
+          projectusage: 'webpackApp'
         },
         src: 'src/skeletons/simplestructure',
         dest: 'src/structure/'

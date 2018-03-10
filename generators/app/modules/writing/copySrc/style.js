@@ -2,8 +2,18 @@ const styles = (context) => {
   return {
     files: [
       {
+        notConditions: {
+          projectcssfilename: undefined
+        },
         src: 'src/style/style.scss',
         dest: `src/style/${context.props.projectcssfilename}.scss`
+      },
+      {
+        conditions: {
+          projectcssfilename: undefined
+        },
+        src: 'src/style/style.scss',
+        dest: `src/style/style.scss`
       },
       {
         src: 'src/style/_loader.scss',
@@ -73,6 +83,9 @@ const styles = (context) => {
     ],
     folders: [
       {
+        conditions: {
+          projectcritical: true
+        },
         src: 'nodescripts/',
         dest: 'nodescripts/'
       },
