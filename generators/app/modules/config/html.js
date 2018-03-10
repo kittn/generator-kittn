@@ -1,7 +1,7 @@
 const extend = require('deep-extend')
 
 function addHTMLCofig (files = {}, context) {
-  if (context.props.projectusage === 'html') {
+  if (context.props.projectusage === 'html' || context.props.projectusage === 'webpackApp') {
     extend(files.pkg, {
       'dist': {
         'dist': 'dist/',
@@ -17,7 +17,6 @@ function addHTMLCofig (files = {}, context) {
         'vectors': 'dist/assets/img/svgfiles/',
         'contentimage': 'dist/images/',
         'webpackassets': 'assets/',
-        'webpackcssassets': 'assets/css/',
         'webpackpublic': 'dist/'
       },
       'files': {

@@ -14,28 +14,50 @@ const script = (context) => {
         dest: '.babelrc'
       },
       {
-        src: 'webpack/webpack.config.babel.js',
-        dest: 'webpack/webpack.config.babel.js'
+        src: 'webpack/webpack.config.base.babel.js',
+        dest: 'webpack/webpack.config.base.babel.js'
       },
       {
-        conditions: {
-          projectjsframework: 'vue'
+        src: 'webpack/webpack.dev.babel.js',
+        dest: 'webpack/webpack.dev.babel.js'
+      },
+      {
+        src: 'webpack/webpack.prod.babel.js',
+        dest: 'webpack/webpack.prod.babel.js'
+      },
+      {
+        src: 'webpack/utils.js',
+        dest: 'webpack/utils.js'
+      },
+      {
+        orConditions: {
+          projectjsframework: 'vue',
+          projectusage: 'webpackApp'
         },
         src: 'src/skeletons/vue/app.vue',
         dest: 'src/js/app.vue'
+      },
+      {
+        conditions: {
+          projectusage: 'webpackApp'
+        },
+        src: 'webpack/webpack.dev.babel.js',
+        dest: 'webpack/webpack.dev.babel.js'
       }
     ],
     folders: [
       {
-        conditions: {
-          projectjsframework: 'vue'
+        orConditions: {
+          projectjsframework: 'vue',
+          projectusage: 'webpackApp'
         },
         src: 'src/skeletons/vue/components',
         dest: 'src/js/components/'
       },
       {
-        conditions: {
-          projectjsframework: 'vue'
+        orConditions: {
+          projectjsframework: 'vue',
+          projectusage: 'webpackApp'
         },
         src: 'src/skeletons/vue/shared',
         dest: 'src/js/shared/'
@@ -50,8 +72,22 @@ const script = (context) => {
       },
       {
         conditions: {
+          projectusage: 'webpackApp'
+        },
+        src: 'src/skeletons/vue/store',
+        dest: 'src/js/store/'
+      },
+      {
+        conditions: {
           projectjsframework: 'vue',
           projectvueplugins: true
+        },
+        src: 'src/skeletons/vue/router',
+        dest: 'src/js/router/'
+      },
+      {
+        conditions: {
+          projectusage: 'webpackApp'
         },
         src: 'src/skeletons/vue/router',
         dest: 'src/js/router/'

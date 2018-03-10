@@ -14,7 +14,7 @@ module.exports = {
   },
   extends: [
     // https://github.com/feross/standard/blob/master/RULES.md#javascript-standard-style
-    'standard',<% if ( projectjsframework === 'vue' ) { %>
+    'standard',<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
     'plugin:vue/base',<% } %>
     'plugin:import/errors',
     'plugin:import/warnings'
@@ -23,17 +23,17 @@ module.exports = {
   settings: {
     'import/resolver': {
       'webpack': {
-        'config': 'webpack/webpack.config.babel.js'
+        'config': 'webpack/webpack.config.base.babel.js'
       }
     }
-  },<% if ( projectjsframework === 'vue' ) { %>
+  },<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
   plugins: [
     'html'
   ],<% } %>
   rules: {
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
-      'js': 'never'<% if ( projectjsframework === 'vue' ) { %>,
+      'js': 'never'<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>,
       'vue': 'never'<% } %>
     }],
     'arrow-parens': 1,
