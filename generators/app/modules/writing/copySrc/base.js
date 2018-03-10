@@ -23,14 +23,14 @@ const base = (context) => {
       },
       {
         notConditions: {
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'src/.system_additions/htaccess',
         dest: 'src/.system/.htaccess'
       },
       {
         notConditions: {
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'src/.system_additions/facebook-og-image.jpg',
         dest: 'src/.system/facebook-og-image.jpg',
@@ -38,7 +38,7 @@ const base = (context) => {
       },
       {
         notConditions: {
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'src/.system_additions/favicon.png',
         dest: 'src/.system/favicon.png',
@@ -46,7 +46,7 @@ const base = (context) => {
       },
       {
         notConditions: {
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'src/.system_additions/placeholder.png',
         dest: 'src/.system/placeholder.png',
@@ -54,7 +54,7 @@ const base = (context) => {
       },
       {
         notConditions: {
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'src/.system_additions/twitter-og-image.jpg',
         dest: 'src/.system/twitter-og-image.jpg',
@@ -68,30 +68,30 @@ const base = (context) => {
     folders: [
       {
         notConditions: {
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'gulpfile',
         dest: 'gulpfile/'
       },
       {
         notConditions: {
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'src/.system',
         dest: 'src/.system/'
       },
       {
         notConditions: {
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'src/images',
         dest: 'src/images/'
       },
       {
         conditions: {
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
-        src: 'src/images_vueapp',
+        src: 'src/images_webpackApp',
         dest: 'src/images/'
       },
       {

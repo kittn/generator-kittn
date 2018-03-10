@@ -142,9 +142,11 @@ module.exports = class extends Generator {
       // To access props later use this.props.someAnswer;
       this.props = props
       this.props.saltKeys = this.saltKeys
-      this.props.projectcritical = this.props.projectcritical ? this.props.projectcritical : false
-      this.props.fileGroup = this.props.fileGroup ? this.props.fileGroup : false
-      this.props.fileUser = this.props.fileUser ? this.props.fileUser : false
+      this.props.projectcritical = this.props.projectcritical || false
+      this.props.fileGroup = this.props.fileGroup || false
+      this.props.fileUser = this.props.fileUser || false
+      this.props.projectnormalize = this.props.projectnormalize || 'regular'
+      this.props.projectjsframework = this.props.projectjsframework || false
     })
   }
 

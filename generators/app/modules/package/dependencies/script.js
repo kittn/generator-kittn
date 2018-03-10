@@ -3,7 +3,6 @@ const extend = require('deep-extend')
 function addScriptDependencies (files = {}, context) {
   extend(files.pkg, {
     scripts: {
-      'subtask:bundlewebpack': 'webpack --config=webpack/webpack.config.babel.js -p --colors --mode production',
       'webpack:analyze': 'webpack-bundle-analyzer webpack/stats.json dist/assets/'
     },
     devDependencies: {
@@ -46,9 +45,10 @@ function addScriptDependencies (files = {}, context) {
     }
   })
 
-  if (context.props.projectusage !== 'vueapp') {
+  if (context.props.projectusage !== 'webpackApp') {
     extend(files.pkg, {
       scripts: {
+        'subtask:bundlewebpack': 'cross-env NODE_ENV=production webpack --config=webpack/webpack.prod.babel.js -p --colors --mode production',
         'scripts': 'gulp rebuild:js --env=init'
       },
       dependencies: {
@@ -99,7 +99,7 @@ function addScriptDependencies (files = {}, context) {
   }
 
   // Vue
-  if (context.props.projectjsframework === 'vue' || context.props.projectusage === 'vueapp') {
+  if (context.props.projectjsframework === 'vue' || context.props.projectusage === 'webpackApp') {
     extend(files.pkg, {
       devDependencies: {
         'css-loader': '^0.26.1',
@@ -107,7 +107,6 @@ function addScriptDependencies (files = {}, context) {
         'eslint-plugin-html': '^4.0.0',
         'eslint-plugin-vue': '^4.3.0',
         'file-loader': '^1.1.10',
-        'json-loader': '^0.5.7',
         'optimize-css-assets-webpack-plugin': '^3.1.1',
         'postcss-loader': '^2.0.6',
         'sass-loader': '^6.0.6',
@@ -126,10 +125,11 @@ function addScriptDependencies (files = {}, context) {
       }
     })
 
-    if (context.props.projectusage === 'vueapp') {
+    if (context.props.projectusage === 'webpackApp') {
       extend(files.pkg, {
         scripts: {
-          'dev': 'webpack-dev-server --config=webpack/webpack.dev.babel.js --mode development',
+          'build': 'cross-env NODE_ENV=production webpack --config=webpack/webpack.prod.babel.js -p --colors --mode production',
+          'dev': 'cross-env NODE_ENV=development webpack-dev-server --config=webpack/webpack.dev.babel.js --mode development',
         },
         devDependencies: {
           'node-sass': '^4.7.2',
@@ -150,7 +150,7 @@ function addScriptDependencies (files = {}, context) {
   }
 
   // Vue Plugins
-  if (context.props.projectusage === 'vueapp' || (typeof context.props.projectvueplugins !== 'undefined' && context.props.projectvueplugins === true)) {
+  if (context.props.projectusage === 'webpackApp' || (typeof context.props.projectvueplugins !== 'undefined' && context.props.projectvueplugins === true)) {
     extend(files.pkg, {
       dependencies: {
         'vue-router': '^3.0.1',

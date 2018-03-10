@@ -41,8 +41,8 @@ No whitespaces or special-chars allowed!}`
           value: 'html'
         },
         {
-          name: 'Build a pure Vue.js App',
-          value: 'vueapp'
+          name: 'Build an App (Webpack only, no Gulp)',
+          value: 'webpackApp'
         },
         {
           name: 'Create a website using CraftCMS',
@@ -126,7 +126,7 @@ No whitespaces or special-chars allowed!}`
     },
     {
       when: function (answers) {
-        return answers.projectusage === 'craft' || answers.projectusage === 'wordpress' || answers.projectusage === 'html'
+        return answers.projectusage === 'craft' || answers.projectusage === 'wordpress' || answers.projectusage === 'html' || answers.projectusage === 'webpackApp'
       },
       type: 'list',
       name: 'projectcssstructure',
@@ -277,7 +277,7 @@ No whitespaces or special-chars allowed!}`
     {
       type: 'input',
       when: function (answers) {
-        return answers.projectusage !== 'vueapp'
+        return answers.projectusage !== 'webpackApp'
       },
       name: 'projectcssfilename',
       message: message({
@@ -328,9 +328,6 @@ No whitespaces or special-chars allowed!}`
       store: false
     },
     {
-      when: function (answers) {
-        return answers.projectusage !== 'vueapp'
-      },
       type: 'confirm',
       name: 'projectstylelint',
       message: message({
@@ -378,7 +375,7 @@ No whitespaces or special-chars allowed!}`
     {
       type: 'list',
       when: function (answers) {
-        return answers.projectusage !== 'vueapp'
+        return answers.projectusage !== 'webpackApp'
       },
       name: 'projectjquery',
       message: message({
@@ -405,7 +402,7 @@ No whitespaces or special-chars allowed!}`
     {
       type: 'list',
       when: function (answers) {
-        return answers.projectusage !== 'vueapp'
+        return answers.projectusage !== 'webpackApp'
       },
       name: 'projectjsframework',
       message: message({
@@ -464,7 +461,7 @@ No whitespaces or special-chars allowed!}`
     },
     {
       when: function (answers) {
-        return answers.projectusage !== 'vueapp'
+        return answers.projectusage !== 'webpackApp'
       },
       type: 'confirm',
       name: 'projectastrum',
@@ -478,7 +475,7 @@ No whitespaces or special-chars allowed!}`
     },
     {
       when: function (answers) {
-        return answers.projectusage !== 'vueapp'
+        return answers.projectusage !== 'webpackApp'
       },
       type: 'confirm',
       name: 'projectsassdocs',

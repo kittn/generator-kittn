@@ -14,20 +14,32 @@ const script = (context) => {
         dest: '.babelrc'
       },
       {
-        src: 'webpack/webpack.config.babel.js',
-        dest: 'webpack/webpack.config.babel.js'
+        src: 'webpack/webpack.config.base.babel.js',
+        dest: 'webpack/webpack.config.base.babel.js'
+      },
+      {
+        src: 'webpack/webpack.dev.babel.js',
+        dest: 'webpack/webpack.dev.babel.js'
+      },
+      {
+        src: 'webpack/webpack.prod.babel.js',
+        dest: 'webpack/webpack.prod.babel.js'
+      },
+      {
+        src: 'webpack/utils.js',
+        dest: 'webpack/utils.js'
       },
       {
         orConditions: {
           projectjsframework: 'vue',
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'src/skeletons/vue/app.vue',
         dest: 'src/js/app.vue'
       },
       {
         conditions: {
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'webpack/webpack.dev.babel.js',
         dest: 'webpack/webpack.dev.babel.js'
@@ -37,7 +49,7 @@ const script = (context) => {
       {
         orConditions: {
           projectjsframework: 'vue',
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'src/skeletons/vue/components',
         dest: 'src/js/components/'
@@ -45,7 +57,7 @@ const script = (context) => {
       {
         orConditions: {
           projectjsframework: 'vue',
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'src/skeletons/vue/shared',
         dest: 'src/js/shared/'
@@ -60,7 +72,7 @@ const script = (context) => {
       },
       {
         conditions: {
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'src/skeletons/vue/store',
         dest: 'src/js/store/'
@@ -75,7 +87,7 @@ const script = (context) => {
       },
       {
         conditions: {
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'src/skeletons/vue/router',
         dest: 'src/js/router/'

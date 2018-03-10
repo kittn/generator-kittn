@@ -35,17 +35,15 @@ const styles = (context) => {
         dest: 'src/framework/partials/_normalize.scss'
       },
       {
-        orConditions: {
-          projectnormalize: 'regular',
-          projectusage: 'vueapp'
+        conditions: {
+          projectnormalize: 'regular'
         },
         src: 'src/framework_additions/_normalize-slim.scss',
         dest: 'src/framework/partials/_normalize.scss'
       },
       {
-        orConditions: {
-          projectcssstructure: 'sassAtomic',
-          projectusage: 'vueapp'
+        conditions: {
+          projectcssstructure: 'sassAtomic'
         },
         src: 'src/skeletons/style/_application_atomic.scss',
         dest: 'src/style/application/_application.scss'
@@ -72,9 +70,8 @@ const styles = (context) => {
         dest: 'gulpfile/tasks/optimize-criticalCss.js'
       },
       {
-        orConditions: {
-          projectstylelint: true,
-          projectusage: 'vueapp'
+        conditions: {
+          projectstylelint: true
         },
         src: '_stylelintrc',
         dest: '.stylelintrc'
@@ -105,9 +102,8 @@ const styles = (context) => {
         dest: 'src/style/vendor/'
       },
       {
-        orConditions: {
-          projectcssstructure: 'sassAtomic',
-          projectusage: 'vueapp'
+        conditions: {
+          projectcssstructure: 'sassAtomic'
         },
         src: 'src/skeletons/style/atomic',
         dest: 'src/style/application/'

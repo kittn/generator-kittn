@@ -15,7 +15,7 @@ function addBaseDependencies (files = {}, context) {
     }
   })
 
-  if (context.props.projectusage !== 'vueapp') {
+  if (context.props.projectusage !== 'webpackApp') {
     extend(files.pkg, {
       scripts: {
         'subtask:buildgulp': 'gulp build --env=production',

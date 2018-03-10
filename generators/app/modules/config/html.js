@@ -1,7 +1,7 @@
 const extend = require('deep-extend')
 
 function addHTMLCofig (files = {}, context) {
-  if (context.props.projectusage === 'html' || context.props.projectusage === 'vueapp') {
+  if (context.props.projectusage === 'html' || context.props.projectusage === 'webpackApp') {
     extend(files.pkg, {
       'dist': {
         'dist': 'dist/',

@@ -104,6 +104,7 @@ function addBaseCofig (files = {}, context) {
       structure: 'src/structure/',
       fonts: 'src/fonts/',
       images: {
+        base: 'src/images/',
         bitmapSprite: {
           files: 'src/images/bitmapSprite-assets/',
           name: 'sprite.png'

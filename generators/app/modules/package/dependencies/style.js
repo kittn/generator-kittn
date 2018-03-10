@@ -21,7 +21,7 @@ function addStyleDependencies (files = {}, context) {
     }
   })
 
-  if (context.props.projectusage !== 'vueapp') {
+  if (context.props.projectusage !== 'webpackApp') {
     extend(files.pkg, {
       devDependencies: {
         'gulp-load-plugins': '^1.5.0',
@@ -54,7 +54,7 @@ function addStyleDependencies (files = {}, context) {
       }
     })
 
-    if (context.props.projectusage !== 'vueapp') {
+    if (context.props.projectusage !== 'webpackApp') {
       extend(files.pkg, {
         devDependencies: {
           'gulp-stylelint': '^6.0.0',
@@ -92,6 +92,8 @@ function addStyleDependencies (files = {}, context) {
       }
     })
   }
+
+  console.log(context.props.projectnormalize)
 
   if (context.props.projectnormalize === 'regular') {
     extend(files.pkg, {

@@ -196,7 +196,7 @@ const projecttype = (context) => {
       {
         orConditions: {
           projectstructure: 'uncompiled',
-          projectusage: 'vueapp'
+          projectusage: 'webpackApp'
         },
         src: 'src/skeletons/simplestructure',
         dest: 'src/structure/'
