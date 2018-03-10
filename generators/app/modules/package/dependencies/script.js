@@ -36,7 +36,7 @@ function addScriptDependencies (files = {}, context) {
       'webpack-config-utils': '^2.3.0',
       'webpack-dev-middleware': '^3.0.0',
       'webpack-hot-middleware': '^2.18.0',
-      'write-file-webpack-plugin': '^4.2.0'
+      'webpack-merge': '^4.1.2'
     },
     dependencies: {
       'bowser': '^1.9.1',
@@ -45,10 +45,18 @@ function addScriptDependencies (files = {}, context) {
     }
   })
 
+  if ((context.props.projectusage === 'html' && context.props.projectstructure === 'uncompiled') || context.props.projectusage === 'webpackApp') {
+    extend(files.pkg, {
+      devDependencies: {
+        'write-file-webpack-plugin': '^4.2.0'
+      }
+    })
+  }
+
   if (context.props.projectusage !== 'webpackApp') {
     extend(files.pkg, {
       scripts: {
-        'subtask:bundlewebpack': 'cross-env NODE_ENV=production webpack --config=webpack/webpack.prod.babel.js -p --colors --mode production',
+        'subtask:bundlewebpack': 'cross-env NODE_ENV=production webpack --config=webpack/webpack.prod.babel.js -p --colors --mode=production',
         'scripts': 'gulp rebuild:js --env=init'
       },
       dependencies: {
@@ -134,7 +142,6 @@ function addScriptDependencies (files = {}, context) {
         devDependencies: {
           'node-sass': '^4.7.2',
           'portfinder': '^1.0.13',
-          'webpack-merge': '^4.1.2',
           'webpack-dev-server': '^3.1.0'
         }
       })

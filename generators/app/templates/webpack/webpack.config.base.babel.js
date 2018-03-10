@@ -6,10 +6,9 @@
  */
 import path from 'path'
 import webpack from 'webpack'<% if ( projectusage === 'webpackApp' || projectusage === 'html' || projectjsframework === 'vue' ) { %>
-import HtmlWebpackPlugin from 'html-webpack-plugin'<% if ( projectusage !== 'webpackApp' ) { %>
+import HtmlWebpackPlugin from 'html-webpack-plugin'<% if ( projectusage === 'html' && projectstructure === 'uncompiled' ) { %>
 import WriteFilePlugin from 'write-file-webpack-plugin'<% } %>
-import ExtractTextPlugin from 'extract-text-webpack-plugin'<% if ( projectstylelint ) { %>
-import StylelintPlugin from 'stylelint-webpack-plugin'<% } %><% } %>
+import ExtractTextPlugin from 'extract-text-webpack-plugin'<% } %>
 const utils = require('./utils')
 
 const nodeEnv = process.env.NODE_ENV || 'production'
@@ -163,7 +162,7 @@ export default {
       'process.env': {
         NODE_ENV: JSON.stringify(nodeEnv)
       }
-    }),<% if ( projectusage === 'webpackApp' || (projectjsframework === 'vue' && projectusage === 'html') ) { %><% if ( locals.projectstructure && projectstructure === 'twig' ) { %>
+    }),<% if ( projectusage === 'webpackApp' || projectusage === 'html' ) { %><% if ( locals.projectstructure && projectstructure === 'twig' ) { %>
     ifProduction(<% } %>
       new HtmlWebpackPlugin({
         filename: 'index.html',
@@ -177,7 +176,7 @@ export default {
         },
         chunksSortMode: 'dependency'
       })<% if ( locals.projectstructure && projectstructure === 'twig' ) { %>
-    ),<% } %><% } %><% if ( projectusage !== 'webpackApp' || (projectjsframework === 'vue' && projectusage === 'html' && projectstructure === 'uncompiled') ) { %>,
+    )<% } %><% } %><% if ( projectusage === 'html' && projectstructure === 'uncompiled' ) { %>,
     new WriteFilePlugin({
       log: false,
       test: /^(?!.+(?:hot-update.(js|json))).+$/

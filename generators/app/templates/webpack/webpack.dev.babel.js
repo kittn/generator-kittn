@@ -2,8 +2,8 @@ const merge = require('webpack-merge')
 const path = require('path')<% if ( projectusage === 'webpackApp' ) { %>
 const portfinder = require('portfinder')<% } %>
 import webpack from 'webpack'
-import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
-import WriteFilePlugin from 'write-file-webpack-plugin'<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
+import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'<% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp' ) { %>
+//import WriteFilePlugin from 'write-file-webpack-plugin'<% } %><% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
 import ExtractTextPlugin from 'extract-text-webpack-plugin'<% } %>
 import utils from './utils'
 const baseWebpackConfig = require('./webpack.config.base.babel.js')
@@ -30,7 +30,8 @@ Object.keys(entries).forEach((entry) => entries[entry] = [hotClient].concat(entr
 const HOST = 'localhost'
 const PORT = utils.kittnConf.browsersync.port<% } %>
 
-const devWebpackConfig = merge(baseWebpackConfig.default, {
+const devWebpackConfig = merge(baseWebpackConfig.default, {<% if (projectusage !== 'webpackApp' ) { %>
+  mode: 'development',<% } %>
   entry: utils.removeEmpty(entries),
   output: {
     publicPath: '/',

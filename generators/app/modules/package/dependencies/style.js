@@ -93,8 +93,6 @@ function addStyleDependencies (files = {}, context) {
     })
   }
 
-  console.log(context.props.projectnormalize)
-
   if (context.props.projectnormalize === 'regular') {
     extend(files.pkg, {
       devDependencies: {

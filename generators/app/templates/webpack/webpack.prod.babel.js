@@ -1,9 +1,9 @@
 const merge = require('webpack-merge')
 import path from 'path'<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %><% if ( projectusage === 'webpackApp' ) { %>
 import CleanWebpackPlugin from 'clean-webpack-plugin'<% } %>
-import ExtractTextPlugin from 'extract-text-webpack-plugin'<% if ( projectstylelint ) { %>
+import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'<% } %><% if ( projectstylelint && (projectusage === 'webpackApp' || projectjsframework === 'vue') ) { %>
 import StylelintPlugin from 'stylelint-webpack-plugin'<% } %>
-import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'<% } %>
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 const utils = require('./utils')
 const baseWebpackConfig = require('./webpack.config.base.babel.js')
@@ -29,7 +29,7 @@ const prodWebpackConfig = merge(baseWebpackConfig.default, {
         beforeEmit: true,
         exclude: ['ls.respimg.js', 'modernizr.js']
       }
-    ),<% } %><% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %><% if ( projectstylelint ) { %>
+    ),<% } %><% if ( projectstylelint && (projectusage === 'webpackApp' || projectjsframework === 'vue') ) { %>
     // Doesn't work yet in dev-mode with webpack 4
     // See: https://github.com/JaKXz/stylelint-webpack-plugin/issues/137
     new StylelintPlugin({
@@ -39,7 +39,7 @@ const prodWebpackConfig = merge(baseWebpackConfig.default, {
     new StylelintPlugin({
       context: utils.paths.CSS_ROOT,
       syntax: 'scss'
-    }),<% } %><% } %>
+    }),<% } %><% } %><% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].<% if ( projectusage === 'webpackApp' ) { %>[chunkhash].<% } %>css'),
       allChunks: true
