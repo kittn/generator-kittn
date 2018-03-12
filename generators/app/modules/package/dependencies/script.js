@@ -118,7 +118,6 @@ function addScriptDependencies (files = {}, context) {
         'optimize-css-assets-webpack-plugin': '^3.1.1',
         'postcss-loader': '^2.0.6',
         'sass-loader': '^6.0.6',
-        'sass-resources-loader': '^1.3.0',
         'stylelint-webpack-plugin': '^0.10.3',
         'svgo': '^1.0.5',
         'svgo-loader': '^2.1.0',
