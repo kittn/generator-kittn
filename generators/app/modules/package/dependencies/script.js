@@ -120,12 +120,14 @@ function addScriptDependencies (files = {}, context) {
         'sass-loader': '^6.0.6',
         'sass-resources-loader': '^1.3.0',
         'stylelint-webpack-plugin': '^0.10.3',
-        'svg-sprite-loader': '^3.2.4',
+        'svgo': '^1.0.5',
+        'svgo-loader': '^2.1.0',
+        'svg-fill-loader': '^0.0.8',
+        'svg-sprite-loader': '^3.7.0',
         'style-loader': '^0.20.3',
         'url-loader': '^1.0.0',
         'vue-loader': '^14.1.0',
         'vue-style-loader': '^4.0.0',
-        'vue-svg-loader': '^0.3.0',
         'vue-template-compiler': '^2.5.0'
       },
       dependencies: {
