@@ -8,7 +8,8 @@ import path from 'path'
 import webpack from 'webpack'<% if ( projectusage === 'webpackApp' || projectusage === 'html' || projectjsframework === 'vue' ) { %>
 import HtmlWebpackPlugin from 'html-webpack-plugin'<% if ( projectusage === 'html' && projectstructure === 'uncompiled' ) { %>
 import WriteFilePlugin from 'write-file-webpack-plugin'<% } %>
-import ExtractTextPlugin from 'extract-text-webpack-plugin'<% } %>
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')<% } %>
 const utils = require('./utils')
 
 const nodeEnv = process.env.NODE_ENV || 'production'
@@ -69,7 +70,9 @@ export default {
     modules: [utils.resolve(utils.kittnConf.src.base), utils.resolve('node_modules')],
     alias: {<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
       components: path.resolve(utils.paths.LOADER_PATH, 'components/'),<% if ( projectusage === 'webpackApp' ) { %>
-      icons: path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),<% } %>
+      bitmaps: path.resolve(utils.paths.SRC_ROOT, 'images/bitmaps/'),
+      icons: path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
+      iconsSingle: path.resolve(utils.paths.SRC_ROOT, 'images/vectorsSingle/'),<% } %>
       store: path.resolve(utils.paths.LOADER_PATH, 'store'),<% if ( locals.projectvueversion && projectvueversion === 'standalone' ) { %>
       'vue$': 'vue/dist/vue.common.js',<% } } %>
       src: utils.resolve(utils.kittnConf.src.base)
@@ -127,11 +130,20 @@ export default {
         }), ['style-loader', ...CSS_LOADERS]),
       },
       {
-        test: /\.(png|jpe?g|gif)(\?\S*)?$/,
-        loader: 'url-loader',
-        options: {
-          fallback: 'file-loader'
-        }
+        test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
+        exclude: path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 8192,
+              fallback: 'file-loader',
+              outputPath: utils.assetsPath('img/'),
+              publicPath: utils.assetsPath('img/'),
+              name: '[name].[ext]'
+            }
+          }
+        ]
       },
       {
         test: /\.(eot|ttf|woff|woff2)(\?\S*)?$/,
@@ -144,16 +156,19 @@ export default {
       },
       {
         test: /\.svg$/,
-        loader: 'vue-svg-loader',
-        options: {
-          // optional [svgo](https://github.com/svg/svgo) options
-          svgo: {
-            plugins: [
-              { removeDoctype: true },
-              { removeComments: true }
-            ]
-          }
-        }
+        include: path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
+        use: [
+          {
+            loader: 'svg-sprite-loader',
+            options: {
+              esModule: false,
+              extract: true,
+              spriteFilename: ifDevelopment(utils.assetsPath('img/sprite.svg'), utils.assetsPath('img/sprite.[hash].svg'))
+            },
+          },
+          'svg-fill-loader',
+          'svgo-loader'
+        ]
       }<% } %>
     ]
   },
@@ -162,7 +177,8 @@ export default {
       'process.env': {
         NODE_ENV: JSON.stringify(nodeEnv)
       }
-    }),<% if ( projectusage === 'webpackApp' || projectusage === 'html' ) { %><% if ( locals.projectstructure && projectstructure === 'twig' ) { %>
+    }),<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
+    new SpriteLoaderPlugin({ plainSprite: true }),<% } %><% if ( projectusage === 'webpackApp' || projectusage === 'html' ) { %><% if ( locals.projectstructure && projectstructure === 'twig' ) { %>
     ifProduction(<% } %>
       new HtmlWebpackPlugin({
         filename: 'index.html',
