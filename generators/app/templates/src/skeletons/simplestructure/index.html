@@ -23,7 +23,8 @@
   <body>
     <h1>Hello World</h1>
     <div id="app"></div>
-    <script src="./assets/js/modernizr.js"></script><% if ( projectusage !== 'webpackApp' && projectjsframework !== 'vue' && projectusage === 'html' ) { %>
+    <% if ( projectusage !== 'webpackApp' && projectjsframework !== 'vue' && projectusage === 'html' ) { %>
+    <script src="./assets/js/modernizr.js"></script>
     <script src="./assets/js/main.js"></script><% } %>
   </body>
 </html>

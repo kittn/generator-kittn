@@ -3,19 +3,7 @@ const extend = require('deep-extend')
 function addBaseCofig (files = {}, context) {
   extend(files.pkg, {
     'dist': {
-      'cssimgRoot': '/assets/img/'
-    },
-    'templatePath': {
-      'root': './',
-      'css': 'assets/css/',
-      'js': 'assets/js/',
-      'fonts': 'assets/fonts/',
-      'cssimage': 'assets/img/',
-      'contentimage': 'images/'
-    },
-    'css': {
-      'spacer': '20px',
-      'baseFontSize': '16px'
+      'img': 'dist/assets/img/'
     },
     'template': {
       'globalTitle': context.props.projectname,
@@ -23,26 +11,7 @@ function addBaseCofig (files = {}, context) {
     },
     'browsersync': {
       'openbrowser': true,
-      'https': false,
-      'proxy': false,
       'port': 3000
-    },
-    'files': {
-      'jsCopy': [
-        'node_modules/lazysizes/plugins/respimg/ls.respimg.js'
-      ],
-      'jsCombine': {
-        'files': [],
-        'filename': 'scripts.js'
-      },
-      'fonts': [
-        'src/fonts/**'
-      ],
-      'launch': [
-        {'src': 'favicons/**', 'dest': 'assets/img/system/'},
-        {'src': 'facebook-og-image.jpg', 'dest': 'assets/img/system/'},
-        {'src': 'twitter-og-image.jpg', 'dest': 'assets/img/system/'}
-      ]
     },
     'modernizr': {
       'options': [
@@ -61,11 +30,6 @@ function addBaseCofig (files = {}, context) {
     },
     'minify': {
       'images': {
-        'optimizationLevel': 3,
-        'pngquant': {
-          'quality': '75-88',
-          'speed': 4
-        },
         'svgoPlugins': [
           {'cleanupIDs': false},
           {'removeComments': true},
@@ -79,14 +43,7 @@ function addBaseCofig (files = {}, context) {
           {'collapseGroups': true},
           {'removeUselessStrokeAndFill': true},
           {'convertStyleToAttrs': true}
-        ],
-        'progressive': true,
-        'interlaced': true
-      },
-      'javascript': {
-        'options': {
-          'mangle': false
-        }
+        ]
       }
     },
     src: {
@@ -127,6 +84,63 @@ function addBaseCofig (files = {}, context) {
       }
     }
   })
+
+  if (context.props.projectusage !== 'webpackApp') {
+    extend(files.pkg, {
+      'dist': {
+        'cssimgRoot': '/assets/img/'
+      },
+      'templatePath': {
+        'root': './',
+        'css': 'assets/css/',
+        'js': 'assets/js/',
+        'fonts': 'assets/fonts/',
+        'cssimage': 'assets/img/',
+        'contentimage': 'images/'
+      },
+      'css': {
+        'spacer': '20px',
+        'baseFontSize': '16px'
+      },
+      'browsersync': {
+        'https': false,
+        'proxy': false,
+      },
+      'files': {
+        'jsCopy': [
+          'node_modules/lazysizes/plugins/respimg/ls.respimg.js'
+        ],
+        'jsCombine': {
+          'files': [],
+          'filename': 'scripts.js'
+        },
+        'fonts': [
+          'src/fonts/**'
+        ],
+        'launch': [
+          {'src': 'favicons/**', 'dest': 'assets/img/system/'},
+          {'src': 'facebook-og-image.jpg', 'dest': 'assets/img/system/'},
+          {'src': 'twitter-og-image.jpg', 'dest': 'assets/img/system/'}
+        ]
+      },
+      'minify': {
+        'images': {
+          'optimizationLevel': 3,
+          'pngquant': {
+            'quality': '75-88',
+            'speed': 4
+          },
+          'progressive': true,
+          'interlaced': true
+        },
+        'javascript': {
+          'options': {
+            'mangle': false
+          }
+        }
+      },
+    })
+  }
 
   if (typeof context.props.projectcredential !== 'undefined' && context.props.projectcredential) {
     let prefix = ''
