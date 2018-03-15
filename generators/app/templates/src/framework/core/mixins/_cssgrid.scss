@@ -235,6 +235,15 @@
   }
 }
 
+@mixin _grid-connect($setup, $map, $root, $areapost) {
+  @include grid-matrix(map-deep-get($setup, areas));
+  @include grid-columns(map-get($setup, column-gap), map-get($setup, columns));
+  @include grid-rows(map-get($setup, row-gap), map-get($setup, rows));
+
+  // Base Areas Connections
+  @include _grid-area-connection(map-get($map, associated), $root, $setup, $areapost);
+}
+
 // To use the three Generators you have to write down the Grid in the Component Map like this...
 //  grid: (
 //    associated: (
@@ -281,7 +290,7 @@
 ///
 /// @param   {string}  $area - Name of the Area
 /// @param   {map}     $map - Map of your grid area matrix
-@mixin cssgrid-generator($map, $root) {
+@mixin cssgrid-generator($map, $root, $cq: false) {
   display: -ms-grid;
   display: grid;
 
@@ -289,22 +298,18 @@
   @each $key, $setup in map-get($map, sets) {
     @if map-get($setup, breakpoint) == false {
       // Base Wrapper Style
-      @include grid-matrix(map-deep-get($setup, areas));
-      @include grid-columns(map-get($setup, column-gap), map-get($setup, columns));
-      @include grid-rows(map-get($setup, row-gap), map-get($setup, rows));
-
-      // Base Areas Connections
-      @include _grid-area-connection(map-get($map, associated), $root, $setup);
-
+      @include _grid-connect($setup, $map, $root, true);
     } @else {
       // Generate Styles inside Breakpoints
-      @include break(map-get($setup, breakpoint)) {
-        @include grid-matrix(map-deep-get($setup, areas));
-        @include grid-columns(map-get($setup, column-gap), map-get($setup, columns));
-        @include grid-rows(map-get($setup, row-gap), map-get($setup, rows));
-
-        // Base Areas Connections
-        @include _grid-area-connection(map-get($map, associated), $root, $setup, false);
+      @if $cq {
+        #{$root}#{cq(map-get($setup, breakpoint))} & {
+          @include _grid-connect($setup, $map, $root, false);
+        }
+      } @else {
+        // Generate Styles inside Breakpoints
+        @include break(map-get($setup, breakpoint)) {
+          @include _grid-connect($setup, $map, $root, false);
+        }
       }
     }
   }
