@@ -6,7 +6,25 @@
 .e-w {
   // Component Config
   $api: (
-    breakpoint: 'm'
+    breakpoint: 'm',
+    spacer: (
+      vertical: (
+        flex: (
+          '1to3': 20px 60px
+        ),
+        static: (
+          1: 20px
+        )
+      ),
+      horizontal: (
+        flex: (
+          '1to3': 20px 60px
+        ),
+        static: (
+          1: 20px
+        )
+      )
+    )
   );
 
   // ::::::::: ROOT SELECTOR
@@ -21,12 +39,65 @@
   // ::::::::: BASE
   // [root]--fullheight
   &--fullheight {
-    height: 100vh;
+    min-height: 100vh;
   }
 
   // [root]--fullwidth
-  &--fullwidth {
+  &--fullwidth#{$root}--fullwidth {
     width: 100%;
     display: block;
+  }
+
+  // [root]--fullbleed
+  &--fullbleed#{$root}--fullbleed {
+    position: relative;
+    margin: 0 calc(-50vw + 50%);
+
+    // Change Position if the Borwser has Scrollbars active
+    .has-scrollbar & {
+      margin: 0 calc(-50vw + 50% + 8.5px);
+
+      .edge & {
+        margin: 0 calc(-50vw + 50% + 6px);
+      }
+    }
+
+    @supports (color: var(--scroll-bar)) {
+      .has-scrollbar & {
+        margin: 0 calc(-50vw + 50% + (var(--scroll-bar) / 2));
+      }
+    }
+  }
+
+  // [root]__spacer
+  &__vSpacer {
+    @each $key, $size in api(spacer, vertical, flex) {
+      &--flex-#{$key} {
+        @include f(nth($size, 1), nth($size, 2), padding-top padding-bottom);
+      }
+    }
+
+    @each $key, $size in api(spacer, vertical, static) {
+      &--#{$key} {
+        padding-top: $size;
+        padding-bottom: $size;
+      }
+    }
+  }
+
+  // [root]__horzspacer
+  &__hSpacer {
+    @each $key, $size in api(spacer, horizontal, flex) {
+      &--flex-#{$key} {
+        @include f(nth($size, 1), nth($size, 2), padding-top padding-bottom);
+      }
+    }
+
+    @each $key, $size in api(spacer, horizontal, static) {
+      &--#{$key} {
+        padding-left: $size;
+        padding-right: $size;
+      }
+    }
   }
 }

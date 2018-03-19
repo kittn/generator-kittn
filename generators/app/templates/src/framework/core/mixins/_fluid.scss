@@ -2,6 +2,25 @@
 // Fluidtype
 // ===================================================
 
+/// Function for Fluid attributes
+///
+/// @group core - fluid
+///
+/// @param   {list}  $min - Min Fontsize in px
+/// @param   {list}  $max - Max Fontsize in px
+/// @param   {list}  $minVW - Min Viewport Width in px
+/// @param   {list}  $maxVW - Max Viewport Width in px
+///
+/// @require {function} strip-units - Strip Units Function
+///
+/// @example scss - scss
+///   .test {
+///     font-size: fluid(18px, 24px, 320, 500);
+///   }
+@function fluid($min, $max, $minVW, $maxVW) {
+  @return calc(#{$min} + #{strip-units($max) - strip-units($min)} * ((100vw - #{$minVW}) / #{strip-units($maxVW) - strip-units($minVW)}));
+}
+
 /// Mixin for Fluid attributes
 ///
 /// @group core - fluid
@@ -25,7 +44,7 @@
 
   @media screen and (min-width: em($min-vw)) {
     @each $property in $properties {
-      #{$property}: calc(#{$min-value} + #{strip-units($max-value) - strip-units($min-value)} * ((100vw - #{$min-vw}) / #{strip-units($max-vw) - strip-units($min-vw)}));
+      #{$property}: fluid($min-value, $max-value, $min-vw, $max-vw);
     }
   }
 

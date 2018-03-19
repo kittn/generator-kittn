@@ -1,0 +1,3 @@
+/* Fix for Live Preview z-index issue */
+.ace_gutter { z-index: 1 !important;}
+.ace_cursor-layer { z-index: 1 !important;}

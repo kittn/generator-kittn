@@ -20,8 +20,7 @@ const buildTask = (cb) => {
       'copy:launch',
       'copy:fonts',
       'rebuild:js',
-      'rebuild:images',<% if (projectusage == 'craft' || projectusage == 'craftCB' ) { %>
-      'copy:craftplugins',<% } %>
+      'rebuild:images',
       'copy:contentimages'<% if (projectusage == 'wordpress' || projectusage == 'wordpressCB' ) { %>,
       'copy:wpconfig',
       'copy:wpplugins'<% } %>

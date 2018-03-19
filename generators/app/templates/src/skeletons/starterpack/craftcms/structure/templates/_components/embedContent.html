@@ -26,16 +26,7 @@
   <div class="{{ c }}{{ _.styleClasses(options.styleClasses) }}" role="presentation">
     <div class="{{ c }}{{ options.responsive ? '__inner' : '__wrapper' }}"{% if options.responsive %} style="padding-bottom: {{ (ar|last)/(ar|first) * 100 }}%"{% endif %}>
       {% if data.embedUrl|length %}
-        {# If String has Instagram #}
-        {% if 'instagram' in data.embedUrl %}
-          {% set instaURL = data.embedUrl|split('?taken-by')|first %}
-          {% set instaAlt = ' from ' ~ data.embedUrl|split('?taken-by=')|last|split('&')|first %}
-          <figure>
-            <img src="{{ instaURL }}media?size=l" alt="Instagram Image{{ instaAlt }}">
-          </figure>
-        {% else %}
-          {{ data.embedUrl|videoEmbed }}
-        {% endif %}
+        {{ data.embedUrl|videoEmbed }}
       {% else %}
         {{ data.embed|raw }}
       {% endif %}

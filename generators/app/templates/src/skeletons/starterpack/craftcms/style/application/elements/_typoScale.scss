@@ -8,8 +8,13 @@
   $api: (
     breakpoint: 'm',
     sizes: (
-      'lead': 120,
-      'small': 80
+      flex: (
+        '50to80': 50px 80px
+      ),
+      static: (
+        'lead': 120,
+        'small': 80
+      )
     )
   );
 
@@ -24,9 +29,17 @@
 
   // ::::::::: BASE
   // [root]--text
-  @each $key, $size in api(sizes) {
+  @each $key, $size in api(sizes, static) {
     &--#{$key} {
       font-size: $size + 0%;
     }
   }
+
+  @each $key, $size in api(sizes, flex) {
+    &__flex--#{$key} {
+      @include f(nth($size, 1), nth($size, 2));
+    }
+  }
+
+
 }

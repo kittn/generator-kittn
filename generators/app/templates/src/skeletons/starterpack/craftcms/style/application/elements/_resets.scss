@@ -1,0 +1,74 @@
+/*
+  resets
+  =====
+  Resets styling
+*/
+.e-r {
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  // For getting values from lists
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__margin
+  &__margin {
+    // [root]--top
+    &--top#{$root}__margin--top {
+      margin-top: 0;
+    }
+
+    // [root]--bottom
+    &--bottom#{$root}__margin--bottom {
+      margin-bottom: 0;
+    }
+
+    // [root]--side
+    &--side#{$root}__margin--side {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    // [root]--last
+    &--last {
+      *:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  // [root]__padding
+  &__padding {
+    // [root]--top
+    &--top#{$root}__padding--top {
+      padding-top: 0;
+    }
+
+    // [root]--bottom
+    &--bottom#{$root}__padding--bottom {
+      padding-bottom: 0;
+    }
+
+    // [root]--side
+    &--side#{$root}__padding--side {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
