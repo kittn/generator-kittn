@@ -1,10 +1,10 @@
-const merge = require('webpack-merge')
-import path from 'path'<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %><% if ( projectusage === 'webpackApp' ) { %>
+<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %><% if ( projectusage === 'webpackApp' ) { %>
 import CleanWebpackPlugin from 'clean-webpack-plugin'<% } %>
 import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'<% } %><% if ( projectstylelint && (projectusage === 'webpackApp' || projectjsframework === 'vue') ) { %>
 import StylelintPlugin from 'stylelint-webpack-plugin'<% } %>
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+const merge = require('webpack-merge')
 const utils = require('./utils')
 const baseWebpackConfig = require('./webpack.config.base.babel.js')
 

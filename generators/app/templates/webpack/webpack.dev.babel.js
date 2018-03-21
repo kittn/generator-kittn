@@ -49,6 +49,8 @@ const devWebpackConfig = merge(baseWebpackConfig.default, {<% if (projectusage !
     host: HOST,
     port: PORT,
     proxy: {},
+    quiet: true,
+    stats: { colors: true },
     contentBase: path.join(__dirname, `../${utils.kittnConf.src.base}`),
     publicPath: '/',
     open: utils.kittnConf.browsersync.openbrowser,

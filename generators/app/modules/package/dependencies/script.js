@@ -6,11 +6,12 @@ function addScriptDependencies (files = {}, context) {
       'webpack:analyze': 'webpack-bundle-analyzer webpack/stats.json dist/assets/'
     },
     devDependencies: {
-      '@babel/plugin-syntax-dynamic-import': '^7.0.0-beta.36',
-      '@babel/plugin-transform-runtime': '^7.0.0-beta.36',
-      '@babel/preset-env': '^7.0.0-beta.36',
-      '@babel/register': '^7.0.0-beta.36',
-      '@babel/polyfill': '^7.0.0-beta.36',
+      '@babel/plugin-proposal-object-rest-spread': '^7.0.0-beta.40',
+      '@babel/plugin-syntax-dynamic-import': '^7.0.0-beta.40',
+      '@babel/plugin-transform-runtime': '^7.0.0-beta.40',
+      '@babel/preset-env': '^7.0.0-beta.40',
+      '@babel/register': '^7.0.0-beta.40',
+      '@babel/polyfill': '^7.0.0-beta.40',
       'babel-loader': '^8.0.0-beta.0',
       'babel-eslint': '^8.2.1',
       'clean-webpack-plugin': '^0.1.18',
@@ -97,7 +98,7 @@ function addScriptDependencies (files = {}, context) {
     extend(files.pkg, {
       devDependencies: {
         'eslint-plugin-react': '^6.9.0',
-        '@babel/preset-react': '^7.0.0-beta.36'
+        '@babel/preset-react': '^7.0.0-beta.40'
       },
       dependencies: {
         'react': '^15.5.4',
@@ -138,7 +139,7 @@ function addScriptDependencies (files = {}, context) {
       extend(files.pkg, {
         scripts: {
           'build': 'cross-env NODE_ENV=production webpack --config=webpack/webpack.prod.babel.js -p --colors --mode production',
-          'dev': 'cross-env NODE_ENV=development webpack-dev-server --config=webpack/webpack.dev.babel.js --mode development',
+          'dev': 'cross-env NODE_ENV=development webpack-dev-server --config=webpack/webpack.dev.babel.js --mode development'
         },
         devDependencies: {
           'node-sass': '^4.7.2',
