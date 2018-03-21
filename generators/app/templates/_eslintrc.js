@@ -26,10 +26,7 @@ module.exports = {
         'config': 'webpack/webpack.prod.babel.js'
       }
     }
-  },<% if ( projectusage !== 'webpackApp' || projectjsframework === 'vue' ) { %>
-  plugins: [
-    'html'
-  ],<% } %>
+  },
   rules: {
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
