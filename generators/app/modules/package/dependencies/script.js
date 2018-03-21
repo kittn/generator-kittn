@@ -119,7 +119,6 @@ function addScriptDependencies (files = {}, context) {
         'optimize-css-assets-webpack-plugin': '^3.1.1',
         'postcss-loader': '^2.0.6',
         'sass-loader': '^6.0.6',
-        'stylelint-webpack-plugin': '^0.10.3',
         'svgo': '^1.0.5',
         'svgo-loader': '^2.1.0',
         'svg-fill-loader': '^0.0.8',
@@ -150,10 +149,12 @@ function addScriptDependencies (files = {}, context) {
     }
   }
 
-  if (context.props.projectjsframework === 'vue' && context.props.projectstylelint === true) {
+  if ((context.props.projectjsframework === 'vue' || context.props.projectusage === 'webpackApp') && context.props.projectstylelint === true) {
     extend(files.pkg, {
       devDependencies: {
-        'stylelint-webpack-plugin': '^0.10.3'
+        'easy-stylelint-plugin': '^0.0.9',
+        'stylelint': '^9.1.3'
+        // 'stylelint-webpack-plugin': '^0.10.3'
       }
     })
   }
