@@ -26,7 +26,7 @@ module.exports = {
         'config': 'webpack/webpack.config.base.babel.js'
       }
     }
-  },<% if ( projectusage !== 'webpackApp' && projectjsframework === 'vue' ) { %>
+  },<% if ( projectusage !== 'webpackApp' || projectjsframework === 'vue' ) { %>
   plugins: [
     'html'
   ],<% } %>
