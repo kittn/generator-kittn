@@ -15,6 +15,7 @@ const baseWebpackConfig = require('./webpack.config.base.babel.js')
 const prodWebpackConfig = merge(baseWebpackConfig.default, {
   output: {
     filename: utils.assetsPath('js/[name].<% if ( projectusage === 'webpackApp' ) { %>[hash].<% } %>js'),
+    chunkFilename: utils.assetsPath('js/chunks/[name].[hash].js'),
     publicPath: './'
   },
   plugins: [<% if ( projectusage === 'webpackApp' ) { %>
