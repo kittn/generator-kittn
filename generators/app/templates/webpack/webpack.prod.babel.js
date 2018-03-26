@@ -2,7 +2,8 @@ const merge = require('webpack-merge')
 import path from 'path'<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %><% if ( projectusage === 'webpackApp' ) { %>
 import CleanWebpackPlugin from 'clean-webpack-plugin'<% } %>
 import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'<% } %>
+import ExtractTextPlugin from 'extract-text-webpack-plugin'<% } %><% if (projectusage === 'craft' || projectusage === 'craftCB') { %>
+import HtmlWebpackPlugin from 'html-webpack-plugin'<% } %>
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 const utils = require('./utils')
 const baseWebpackConfig = require('./webpack.config.base.babel.js')
@@ -38,6 +39,18 @@ const prodWebpackConfig = merge(baseWebpackConfig.default, {
       cssProcessorOptions: {
         safe: true
       }
+    }),<% } %><% if (projectusage === 'craft' || projectusage === 'craftCB') { %>
+    new HtmlWebpackPlugin({
+      filename: path.resolve(`${utils.kittnConf.dist.templates}/_parts/document-footer.html`),
+      template: utils.kittnConf.src.templates + '_parts/document-footer.html',
+      inject: false,
+      hash: false,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: false
+      },
+      chunksSortMode: 'dependency'
     }),<% } %>
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',

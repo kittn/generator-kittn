@@ -46,7 +46,7 @@ function addScriptDependencies (files = {}, context) {
     }
   })
 
-  if ((context.props.projectusage === 'html' && context.props.projectstructure === 'uncompiled') || context.props.projectusage === 'webpackApp') {
+  if ((context.props.projectusage === 'html' && context.props.projectstructure === 'uncompiled') || context.props.projectusage === 'webpackApp' || (context.props.projectusage === 'craft' || context.props.projectusage === 'craftCB')) {
     extend(files.pkg, {
       devDependencies: {
         'write-file-webpack-plugin': '^4.2.0'
