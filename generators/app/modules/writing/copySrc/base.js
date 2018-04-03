@@ -61,6 +61,21 @@ const base = (context) => {
         simplecopy: true
       },
       {
+        conditions: {
+          projectprettier: true
+        },
+        src: '_prettierignore',
+        dest: '.prettierignore'
+      },
+      {
+        conditions: {
+          projectprettier: true
+        },
+        src: 'prettier.config.js',
+        dest: 'prettier.config.js',
+        simplecopy: true
+      },
+      {
         src: 'README.md',
         dest: 'README.md'
       }

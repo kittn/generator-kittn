@@ -6,43 +6,42 @@ function addScriptDependencies (files = {}, context) {
       'webpack:analyze': 'webpack-bundle-analyzer webpack/stats.json dist/assets/'
     },
     devDependencies: {
-      '@babel/plugin-proposal-object-rest-spread': '^7.0.0-beta.40',
-      '@babel/plugin-syntax-dynamic-import': '^7.0.0-beta.40',
-      '@babel/plugin-transform-runtime': '^7.0.0-beta.40',
-      '@babel/preset-env': '^7.0.0-beta.40',
-      '@babel/register': '^7.0.0-beta.40',
-      '@babel/polyfill': '^7.0.0-beta.40',
+      '@babel/plugin-proposal-object-rest-spread': '^7.0.0-beta.44',
+      '@babel/plugin-syntax-dynamic-import': '^7.0.0-beta.44',
+      '@babel/plugin-transform-runtime': '^7.0.0-beta.44',
+      '@babel/preset-env': '^7.0.0-beta.44',
+      '@babel/register': '^7.0.0-beta.44',
+      '@babel/polyfill': '^7.0.0-beta.44',
       'babel-loader': '^8.0.0-beta.0',
       'babel-eslint': '^8.2.1',
-      'clean-webpack-plugin': '^0.1.18',
-      'eslint': '^4.15.0',
+      'clean-webpack-plugin': '^0.1.19',
+      'eslint': '^4.19.1',
       'eslint-config-standard': '^11.0.0',
-      'eslint-plugin-promise': '^3.4.1',
+      'eslint-plugin-promise': '^3.7.0',
       'eslint-plugin-standard': '^3.0.1',
-      'eslint-formatter-pretty': '^1.1.0',
-      'eslint-friendly-formatter': '^3.0.0',
+      'eslint-formatter-pretty': '^1.3.0',
+      'eslint-friendly-formatter': '^4.0.0',
       'eslint-loader': '^2.0.0',
-      'eslint-plugin-html': '^4.0.0',
-      'eslint-plugin-import': '^2.2.0',
-      'eslint-plugin-jsx-a11y': '^6.0.0',
-      'eslint-plugin-node': '^5.2.1',
-      'eslint-import-resolver-webpack': '^0.8.1',
+      'eslint-plugin-import': '^2.10.0',
+      'eslint-plugin-jsx-a11y': '^6.0.3',
+      'eslint-plugin-node': '^6.0.1',
+      'eslint-import-resolver-webpack': '^0.9.0',
       'extract-text-webpack-plugin': '^4.0.0-beta.0',
       'friendly-errors-webpack-plugin': '^1.6.1',
-      'html-webpack-plugin': '^3.0.0',
-      'optimize-css-assets-webpack-plugin': '^3.2.0',
-      'webpack': '^4.1.0',
-      'webpack-cli': '^2.0.4',
+      'html-webpack-plugin': '^3.1.0',
+      'optimize-css-assets-webpack-plugin': '^4.0.0',
+      'webpack': '^4.4.1',
+      'webpack-cli': '^2.0.13',
       'webpack-bundle-analyzer': '^2.8.2',
       'webpack-config-utils': '^2.3.0',
-      'webpack-dev-middleware': '^3.0.0',
-      'webpack-hot-middleware': '^2.18.0',
+      'webpack-dev-middleware': '^3.1.0',
+      'webpack-hot-middleware': '^2.21.2',
       'webpack-merge': '^4.1.2'
     },
     dependencies: {
-      'bowser': '^1.9.1',
-      'pyrsmk-toast': '^2.1.1',
-      'svgxuse': '^1.2.1'
+      'bowser': '^1.9.3',
+      'pyrsmk-toast': '^2.2.0',
+      'svgxuse': '^1.2.6'
     }
   })
 
@@ -61,7 +60,7 @@ function addScriptDependencies (files = {}, context) {
         'scripts': 'gulp rebuild:js --env=init'
       },
       dependencies: {
-        'lazysizes': '^3.0.0'
+        'lazysizes': '^4.0.2'
       }
     })
   }
@@ -98,7 +97,7 @@ function addScriptDependencies (files = {}, context) {
     extend(files.pkg, {
       devDependencies: {
         'eslint-plugin-react': '^6.9.0',
-        '@babel/preset-react': '^7.0.0-beta.40'
+        '@babel/preset-react': '^7.0.0-beta.44'
       },
       dependencies: {
         'react': '^15.5.4',
@@ -111,26 +110,24 @@ function addScriptDependencies (files = {}, context) {
   if (context.props.projectjsframework === 'vue' || context.props.projectusage === 'webpackApp') {
     extend(files.pkg, {
       devDependencies: {
-        'css-loader': '^0.26.1',
+        'css-loader': '^0.28.11',
         'eslint-config-vue': '^2.0.2',
-        'eslint-plugin-html': '^4.0.0',
-        'eslint-plugin-vue': '^4.3.0',
-        'file-loader': '^1.1.10',
-        'optimize-css-assets-webpack-plugin': '^3.1.1',
-        'postcss-loader': '^2.0.6',
-        'sass-loader': '^6.0.6',
+        'eslint-plugin-vue': '^4.4.0',
+        'file-loader': '^1.1.11',
+        'postcss-loader': '^2.1.3',
+        'sass-loader': '^6.0.7',
         'svgo': '^1.0.5',
         'svgo-loader': '^2.1.0',
         'svg-fill-loader': '^0.0.8',
         'svg-sprite-loader': '^3.7.0',
         'style-loader': '^0.20.3',
         'url-loader': '^1.0.0',
-        'vue-loader': '^14.1.0',
-        'vue-style-loader': '^4.0.0',
-        'vue-template-compiler': '^2.5.0'
+        'vue-loader': '^14.2.2',
+        'vue-style-loader': '^4.1.0',
+        'vue-template-compiler': '^2.5.16'
       },
       dependencies: {
-        'vue': '^2.5.0'
+        'vue': '^2.5.16'
       }
     })
 
@@ -153,7 +150,7 @@ function addScriptDependencies (files = {}, context) {
     extend(files.pkg, {
       devDependencies: {
         'easy-stylelint-plugin': '^0.0.9',
-        'stylelint': '^9.1.3'
+        'stylelint': '^9.2.0'
         // 'stylelint-webpack-plugin': '^0.10.3'
       }
     })
@@ -164,8 +161,8 @@ function addScriptDependencies (files = {}, context) {
     extend(files.pkg, {
       dependencies: {
         'vue-router': '^3.0.1',
-        'axios': '^0.15.3',
-        'vuex': '^3.0.0',
+        'axios': '^0.18.0',
+        'vuex': '^3.0.1',
         'vuex-router-sync': '^5.0.0'
       }
     })

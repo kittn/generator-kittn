@@ -3,10 +3,10 @@ const starterpackWordpress = (context) => {
     files: [
       {
         conditions: {
-          projectusage: 'wordpressCB',
+          projectusage: 'wordpressCB'
         },
-        src: '_stylelintrcCB',
-        dest: '.stylelintrc'
+        src: 'stylelint.configCB.js',
+        dest: 'stylelint.config.js'
       },
       {
         conditions: {
@@ -25,7 +25,7 @@ const starterpackWordpress = (context) => {
       },
       {
         conditions: {
-          projectusage: 'wordpressCB',
+          projectusage: 'wordpressCB'
         },
         src: 'databases/wordpressCB.sql',
         dest: 'database.sql'

@@ -4,6 +4,7 @@ module.exports = {
   root: true,
   parserOptions: {
     parser: 'babel-eslint',
+    ecmaVersion: 2017,
     sourceType: 'module'
   },
   env: {
@@ -17,7 +18,8 @@ module.exports = {
     'standard',<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
     'plugin:vue/base',<% } %>
     'plugin:import/errors',
-    'plugin:import/warnings'
+    'plugin:import/warnings'<% if ( projectprettier === true ) { %>,
+    'plugin:prettier/recommended'<% } %>
   ],
   // check if imports actually resolve
   settings: {

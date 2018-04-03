@@ -11,8 +11,8 @@ import WriteFilePlugin from 'write-file-webpack-plugin'<% } %><% if ( projectsty
 // Use easy-stylelint-plugin until stylelint-webpack-plugin is webpack 4 ready
 // See: https://github.com/JaKXz/stylelint-webpack-plugin/issues/137
 import EasyStylelintPlugin from 'easy-stylelint-plugin'<% } %>
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')<% } %>
+import ExtractTextPlugin from 'extract-text-webpack-plugin'<% if ( projectusage === 'webpackApp' ||projectjsframework === 'vue') { %>
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')<% } %><% } %>
 const utils = require('./utils')
 
 const nodeEnv = process.env.NODE_ENV || 'production'

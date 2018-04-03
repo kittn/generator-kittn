@@ -339,6 +339,17 @@ No whitespaces or special-chars allowed!}`
       store: false
     },
     {
+      type: 'confirm',
+      name: 'projectprettier',
+      message: message({
+        headline: 'Add Prettier',
+        description: 'Do you want to use Prettier for automated Code-Formatting? (See prettier.io)',
+        defaultValue: true
+      }),
+      default: true,
+      store: false
+    },
+    {
       when: function (answers) {
         return answers.projectusage === 'craft' || answers.projectusage.substring(0, 4) === 'word' || answers.projectusage === 'html'
       },

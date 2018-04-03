@@ -73,12 +73,8 @@ const styles = (context) => {
         conditions: {
           projectstylelint: true
         },
-        src: '_stylelintrc',
-        dest: '.stylelintrc'
-      },
-      {
-        src: '_sass-lint.yml',
-        dest: '.sass-lint.yml'
+        src: 'stylelint.config.js',
+        dest: 'stylelint.config.js'
       }
     ],
     folders: [

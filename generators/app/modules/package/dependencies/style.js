@@ -3,20 +3,20 @@ const extend = require('deep-extend')
 function addStyleDependencies (files = {}, context) {
   extend(files.pkg, {
     devDependencies: {
-      'autoprefixer': '^8.1.0',
+      'autoprefixer': '^8.2.0',
       'cssnano': '^3.10.0',
       'postcss-aspect-ratio': '^1.0.1',
       'postcss-assets': '^5.0.0',
       'postcss-calc': '^6.0.1',
       'postcss-custom-media': '^6.0.0',
-      'postcss-custom-properties': '^6.2.0',
+      'postcss-custom-properties': '^7.0.0',
       'postcss-custom-selectors': '^4.0.1',
       'postcss-easings': '^1.0.0',
-      'postcss-flexbugs-fixes': '^3.2.0',
+      'postcss-flexbugs-fixes': '^3.3.0',
       'postcss-pseudo-class-any-link': '^4.0.0',
       'postcss-short-size': '^3.0.0',
-      'postcss-scss': '^1.0.1',
-      'postcss-svg': '^2.1.0',
+      'postcss-scss': '^1.0.5',
+      'postcss-svg': '^2.4.0',
       'rucksack-css': '^1.0.2'
     }
   })
@@ -26,11 +26,11 @@ function addStyleDependencies (files = {}, context) {
       devDependencies: {
         'gulp-load-plugins': '^1.5.0',
         'gulp-postcss': '^7.0.1',
-        'gulp-sass': '^3.1.0',
+        'gulp-sass': '^3.2.1',
         'gulp-size': '^3.0.0',
-        'gulp-sourcemaps': '^2.6.0',
+        'gulp-sourcemaps': '^2.6.4',
         'gulp-util': '^3.0.8',
-        'yargs': '^10.0.3',
+        'yargs': '^10.0.3'
       }
     })
   }
@@ -46,10 +46,10 @@ function addStyleDependencies (files = {}, context) {
         'stylelint': "stylelint 'src/style/**/**/*.scss'"
       },
       devDependencies: {
-        'stylelint': '^9.1.0',
-        'stylelint-config-sass-guidelines': '^4.0.1',
-        'stylelint-order': '^0.4.4',
-        'stylelint-scss': '^2.2.0',
+        'stylelint': '^9.2.0',
+        'stylelint-config-sass-guidelines': '^5.0.0',
+        'stylelint-order': '^0.8.1',
+        'stylelint-scss': '^3.0.0',
         'stylelint-selector-bem-pattern': '^2.0.0'
       }
     })
@@ -57,7 +57,7 @@ function addStyleDependencies (files = {}, context) {
     if (context.props.projectusage !== 'webpackApp') {
       extend(files.pkg, {
         devDependencies: {
-          'gulp-stylelint': '^6.0.0',
+          'gulp-stylelint': '^7.0.0'
         }
       })
     }
