@@ -43,10 +43,10 @@ module.exports = {
     'indent': 1,
     'no-console': 1,
     'no-new': 1,
-    'object-curly-spacing': 0,
+    'object-curly-spacing': 'always',
     'arrow-body-style': [2, 'as-needed'],
     'no-param-reassign': [2, { 'props' : false }],
     'func-names': 1,
-    'space-before-function-paren': 1
+    'space-before-function-paren': <% if ( projectprettier === true ) { %>0<% } else { %>1<% } %>
   }
 }

@@ -1,4 +1,4 @@
-const font = {
+<% if (projectstylelint === 'strict') { %>const font = {
   order: 'flexible',
   properties: [
     'font'
@@ -248,7 +248,7 @@ const transform = {
   ]
 }
 
-module.exports = {
+<% } %>module.exports = {
   'plugins': [
     'stylelint-order',
     'stylelint-scss',
@@ -374,7 +374,7 @@ module.exports = {
     'no-unknown-animations': true,
     'number-leading-zero': 'never',
     'number-max-precision': 6,
-    'number-no-trailing-zeros': true,
+    'number-no-trailing-zeros': true,<% if (projectstylelint === 'strict') { %>
 
     'order/order': [
       'dollar-variables',
@@ -406,7 +406,7 @@ module.exports = {
       print,
       aural,
       scrollbar
-    ],
+    ],<% } %>
     'order/properties-alphabetical-order': null,
 
     'property-case': 'lower',

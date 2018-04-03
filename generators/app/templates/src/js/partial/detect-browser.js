@@ -3,7 +3,10 @@ import bowser from 'bowser'
 
 const customOutput = true
 const docHead = document.querySelector('html')
-const version = bowser.version.toLowerCase().replace(' ', '-').split('.', 1)[0]
+const version = bowser.version
+  .toLowerCase()
+  .replace(' ', '-')
+  .split('.', 1)[0]
 const name = bowser.name.toLowerCase().replace(' ', '-')
 
 if (customOutput) {

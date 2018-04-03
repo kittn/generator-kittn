@@ -328,13 +328,26 @@ No whitespaces or special-chars allowed!}`
       store: false
     },
     {
-      type: 'confirm',
+      type: 'list',
       name: 'projectstylelint',
       message: message({
         headline: 'Activate Stylelint',
-        description: 'Do you want to ativate Stylelint?',
-        defaultValue: true
+        description: 'Do you want to ativate Stylelint?'
       }),
+      choices: [
+        {
+          name: 'No',
+          value: false
+        },
+        {
+          name: 'Yes',
+          value: true
+        },
+        {
+          name: 'Yes (strict, with property-order-linting)',
+          value: 'strict'
+        }
+      ],
       default: true,
       store: false
     },

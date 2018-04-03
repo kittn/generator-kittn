@@ -43,6 +43,13 @@ const script = (context) => {
         },
         src: 'webpack/webpack.dev.babel.js',
         dest: 'webpack/webpack.dev.babel.js'
+      },
+      {
+        conditions: {
+          projecttypescript: true
+        },
+        src: 'tsconfig.json',
+        dest: 'tsconfig.json'
       }
     ],
     folders: [

@@ -35,6 +35,7 @@ module.exports = {
       'js': 'never'<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>,
       'vue': 'never'<% } %>
     }],
-    'object-curly-spacing': 0
+    'object-curly-spacing': 'always',
+    'space-before-function-paren': <% if ( projectprettier === true ) { %>0<% } else { %>1<% } %>
   }
 }
