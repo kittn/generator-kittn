@@ -33,6 +33,7 @@ const PORT = utils.kittnConf.browsersync.port<% } %>
 
 const devWebpackConfig = merge(baseWebpackConfig.default, {<% if (projectusage !== 'webpackApp' ) { %>
   mode: 'development',<% } %>
+  devtool: 'cheap-module-eval-source-map',
   entry: utils.removeEmpty(entries),
   output: {
     publicPath: '/',

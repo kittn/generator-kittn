@@ -156,6 +156,15 @@ function addScriptDependencies (files = {}, context) {
     })
   }
 
+  if (context.props.projecttypescript === true) {
+    extend(files.pkg, {
+      devDependencies: {
+        'ts-loader': '^4.1.0',
+        'typescript': '^2.8.1'
+      }
+    })
+  }
+
   // Vue Plugins
   if (context.props.projectusage === 'webpackApp' || (typeof context.props.projectvueplugins !== 'undefined' && context.props.projectvueplugins === true)) {
     extend(files.pkg, {

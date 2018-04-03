@@ -68,7 +68,9 @@ export default {
   resolve: {
     extensions: [<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
       '.vue',<% } %>
-      '.js'
+      '.js'<% if ( projecttypescript ) { %>,
+      '.ts',
+      '.tsx'<% } %>
     ],
     modules: [utils.resolve(utils.kittnConf.src.base), utils.resolve('node_modules')],
     alias: {<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
@@ -172,7 +174,11 @@ export default {
           'svg-fill-loader',
           'svgo-loader'
         ]
-      }<% } %>
+      }<% } %><% if ( projecttypescript ) { %>,
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader'
+      },<% } %>
     ]
   },
   plugins: utils.removeEmpty([

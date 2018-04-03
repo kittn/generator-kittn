@@ -471,6 +471,17 @@ No whitespaces or special-chars allowed!}`
       store: false
     },
     {
+      type: 'confirm',
+      name: 'projecttypescript',
+      message: message({
+        headline: 'TypeScript Support',
+        description: 'Do you want to use Typescript?',
+        defaultValue: true
+      }),
+      default: false,
+      store: false
+    },
+    {
       when: function (answers) {
         return answers.projectusage !== 'webpackApp'
       },
