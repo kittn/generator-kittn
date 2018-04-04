@@ -4,6 +4,7 @@ module.exports = {
   root: true,
   parserOptions: {
     parser: 'babel-eslint',
+    ecmaVersion: 2017,
     sourceType: 'module'
   },
   env: {
@@ -17,7 +18,8 @@ module.exports = {
     'standard',<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
     'plugin:vue/base',<% } %>
     'plugin:import/errors',
-    'plugin:import/warnings'
+    'plugin:import/warnings'<% if ( projectprettier === true ) { %>,
+    'plugin:prettier/recommended'<% } %>
   ],
   // check if imports actually resolve
   settings: {
@@ -26,16 +28,14 @@ module.exports = {
         'config': 'webpack/webpack.prod.babel.js'
       }
     }
-  },<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
-  plugins: [
-    'html'
-  ],<% } %>
+  },
   rules: {
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       'js': 'never'<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>,
       'vue': 'never'<% } %>
     }],
-    'object-curly-spacing': 0
+    'object-curly-spacing': 0,
+    'space-before-function-paren': <% if ( projectprettier === true ) { %>0<% } else { %>1<% } %>
   }
 }

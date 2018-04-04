@@ -1,0 +1,98 @@
+{% import "_includes/forms" as forms %}
+
+{{ forms.selectField({
+    label: "Mode"|t,
+    instructions: "Select your desired mode.",
+    id: 'mode',
+    name: 'mode',
+    options: {
+        css: "CSS",
+        html: "HTML",
+        javascript: "JavaScript",
+        markdown: "Markdown",
+        twig: "Twig"
+    },
+    value: settings.mode
+}) }}
+
+{{ forms.selectField({
+    label: "Theme"|t,
+    instructions: "Select your desired theme.",
+    id: 'theme',
+    name: 'theme',
+    options: {
+        ambiance: "Ambiance"|t,
+        chaos: "Chaos"|t,
+        chrome: "Chrome"|t,
+        clouds_midnight: "Clouds Midnight"|t,
+        clouds: "Clouds"|t,
+        cobalt: "Cobalt"|t,
+        crimson_editor: "Crimson Editor"|t,
+        dawn: "Dawn"|t,
+        dreamweaver: "Dreamweaver"|t,
+        eclipse: "Eclipse"|t,
+        github: "Github"|t,
+        idle_fingers: "Idle Fingers"|t,
+        katzenmilch: "Katzenmilch"|t,
+        kr_theme: "kR"|t,
+        kuroir: "Kuroir"|t,
+        merbivore_soft: "Merbivore Soft"|t,
+        merbivore: "Merbivore"|t,
+        mono_industrial: "Mono Industrial"|t,
+        monokai: "Monokai"|t,
+        pastel_on_dark: "Pastel on Dark"|t,
+        solarized_dark: "Solarized Dark"|t,
+        solarized_light: "Solarized Light"|t,
+        terminal: "Terminal"|t,
+        textmate: "Textmate"|t,
+        tomorrow_night_blue: "Tomorrow Night Blue"|t,
+        tomorrow_night_bright: "Tomorrow Night Bright"|t,
+        tomorrow_night_eighties: "Tomorrow Night Eighties"|t,
+        tomorrow_night: "Tomorrow Night"|t,
+        tomorrow: "Tomorrow"|t,
+        twilight: "Twilight"|t,
+        vibrant_ink: "Vibrant Ink"|t,
+        xcode: "Xcode"|t
+    },
+    value: settings.theme
+}) }}
+
+
+{{ forms.textField({
+    label: "Height"|t,
+    instructions: "The initial height of the editor (in rows).",
+    id: 'minLines',
+    name: 'minLines',
+    value: settings.minLines,
+    size: 2,
+    errors: settings.getErrors('minLines')
+}) }}
+
+
+{{ forms.checkboxField({
+    label: "Automatically increase editor height to fit contents?"|t,
+    id: 'maxLines',
+    name: 'maxLines',
+    checked: settings.maxLines
+}) }}
+
+{{ forms.checkboxField({
+    label: "Use tabs instead of spaces?"|t,
+    id: 'useTabs',
+    name: 'useTabs',
+    checked: settings.useTabs,
+    toggle: 'tabSizeContainer'
+}) }}
+
+
+<div id="tabSizeContainer"{% if not settings.useTabs %} class="hidden"{% endif %}>
+    {{ forms.textField({
+    label: "Tab Size"|t,
+    instructions: "Set your desired tab width.",
+    id: 'tabSize',
+    name: 'tabSize',
+    value: settings.tabSize,
+    size: 2,
+    errors: settings.getErrors('tabSize')
+    }) }}
+</div>

@@ -1,0 +1,37 @@
+/*
+  inlineSvg
+  =================
+  Description
+*/
+.c-inlineSvg {
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  // For getting values from lists
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__caption
+  &__caption {
+    padding-top: 5px;
+    font-size: 90%;
+    color: c('gray');
+    text-align: center;
+  }
+}

@@ -3,10 +3,10 @@ const starterpackCraft = (context) => {
     files: [
       {
         conditions: {
-          projectusage: 'craftCB',
+          projectusage: 'craftCB'
         },
-        src: '_stylelintrcCB',
-        dest: '.stylelintrc'
+        src: 'stylelint.configCB.js',
+        dest: 'stylelint.config.js'
       },
       {
         conditions: {

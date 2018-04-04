@@ -44,7 +44,7 @@ const offCanvasToggle = (button) => {
   // Close Offcanvas if clicked outside
   // =======================================
   const bodyClickFn = (evt) => {
-    if (!hasParentClass(evt.target, 'e-offcanvas')) {
+    if (!hasParentClass(evt.target, 'c-offCanvas')) {
       // Toggle the ToggleClass
       resetMenu()
       document.removeEventListener(eventtype, bodyClickFn)

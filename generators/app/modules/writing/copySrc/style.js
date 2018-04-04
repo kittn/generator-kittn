@@ -1,4 +1,4 @@
-const styles = (context) => {
+const styles = context => {
   return {
     files: [
       {
@@ -70,15 +70,16 @@ const styles = (context) => {
         dest: 'gulpfile/tasks/optimize-criticalCss.js'
       },
       {
-        conditions: {
-          projectstylelint: true
-        },
-        src: '_stylelintrc',
-        dest: '.stylelintrc'
-      },
-      {
-        src: '_sass-lint.yml',
-        dest: '.sass-lint.yml'
+        orConditions: [
+          {
+            projectstylelint: true
+          },
+          {
+            projectstylelint: 'strict'
+          }
+        ],
+        src: 'stylelint.config.js',
+        dest: 'stylelint.config.js'
       }
     ],
     folders: [
@@ -117,6 +118,6 @@ const styles = (context) => {
       }
     ]
   }
-}
+};
 
 module.exports = styles

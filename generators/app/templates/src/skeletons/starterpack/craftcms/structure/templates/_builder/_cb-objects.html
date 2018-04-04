@@ -173,4 +173,26 @@
       name: ''
     } %}
 
+  {# Inline SVG #}
+  {% case 'objInlineSvg' %}
+    {% include '_components/inlineSvg.html' with {
+      data: data.objInlineSvg,
+      options: data.setInlineSvgOptions,
+      name: ''
+    } %}
+
+  {% case 'objGeneric' %}
+    {% include '_components/generic.html' with {
+      data: data.objGeneric
+    } %}
+
+  {# Instagram #}
+  {% case 'objInstagram' %}
+    {% include '_components/instagram.html' with {
+      data: data.objInstagram,
+      options: data.setInstagramOptions,
+      name: ''
+    } %}
+
+
 {% endswitch %}

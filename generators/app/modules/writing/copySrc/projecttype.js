@@ -1,4 +1,4 @@
-const projecttype = (context) => {
+const projecttype = context => {
   return {
     files: [
       {
@@ -194,15 +194,19 @@ const projecttype = (context) => {
         dest: 'src/structure/templates/'
       },
       {
-        orConditions: {
-          projectstructure: 'uncompiled',
-          projectusage: 'webpackApp'
-        },
+        orConditions: [
+          {
+            projectstructure: 'uncompiled'
+          },
+          {
+            projectusage: 'webpackApp'
+          }
+        ],
         src: 'src/skeletons/simplestructure',
         dest: 'src/structure/'
       }
     ]
   }
-}
+};
 
 module.exports = projecttype

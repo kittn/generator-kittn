@@ -11,11 +11,15 @@
 @import 'elements/color';
 @import 'elements/textAlign';
 @import 'elements/typoScale';
+@import 'elements/typoLayout';
 @import 'elements/verticalAlign';
 @import 'elements/wrapper';
+@import 'elements/resets';
+
+// 4.1 Layouts
+@import 'layouts/fb-equalColumn';
 
 // 5. Objects
-@import 'objects/grid';
 @import 'objects/area';
 
 // 6.1. ContentBuilder Components
@@ -38,6 +42,8 @@
 @import 'components/tab';
 @import 'components/section';
 @import 'components/grid';
+@import 'components/inlineSvg';
+@import 'components/instagram';
 
 // 6.2 Regular Components
 @import 'components/progressLoader';

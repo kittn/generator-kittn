@@ -64,23 +64,6 @@
   }
 
   // ::::::::: MODIFIER
-  position: relative;
-  margin: 0 calc(-50vw + 50%);
-
-  // Change Position if the Borwser has Scrollbars active
-  .has-scrollbar & {
-    margin: 0 calc(-50vw + 50% + 8.5px);
-
-    .edge & {
-      margin: 0 calc(-50vw + 50% + 6px);
-    }
-  }
-
-  @supports (color: var(--scroll-bar)) {
-    .has-scrollbar & {
-      margin: 0 calc(-50vw + 50% + (var(--scroll-bar) / 2));
-    }
-  }
 
   // Fullheight
   &--fullheight {

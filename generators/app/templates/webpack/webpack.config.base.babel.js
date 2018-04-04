@@ -7,9 +7,12 @@
 import path from 'path'
 import webpack from 'webpack'<% if ( projectusage === 'webpackApp' || projectusage === 'html' || projectjsframework === 'vue' ) { %>
 import HtmlWebpackPlugin from 'html-webpack-plugin'<% if ( projectusage === 'html' && projectstructure === 'uncompiled' ) { %>
-import WriteFilePlugin from 'write-file-webpack-plugin'<% } %>
-import ExtractTextPlugin from 'extract-text-webpack-plugin'
-const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')<% } %>
+import WriteFilePlugin from 'write-file-webpack-plugin'<% } %><% if ( projectstylelint && (projectusage === 'webpackApp' || projectjsframework === 'vue') ) { %>
+// Use easy-stylelint-plugin until stylelint-webpack-plugin is webpack 4 ready
+// See: https://github.com/JaKXz/stylelint-webpack-plugin/issues/137
+import EasyStylelintPlugin from 'easy-stylelint-plugin'<% } %>
+import ExtractTextPlugin from 'extract-text-webpack-plugin'<% if ( projectusage === 'webpackApp' ||projectjsframework === 'vue') { %>
+const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')<% } %><% } %>
 const utils = require('./utils')
 
 const nodeEnv = process.env.NODE_ENV || 'production'
@@ -65,7 +68,9 @@ export default {
   resolve: {
     extensions: [<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
       '.vue',<% } %>
-      '.js'
+      '.js'<% if ( projecttypescript ) { %>,
+      '.ts',
+      '.tsx'<% } %>
     ],
     modules: [utils.resolve(utils.kittnConf.src.base), utils.resolve('node_modules')],
     alias: {<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
@@ -96,7 +101,7 @@ export default {
         use: 'babel-loader',
         include: utils.resolve(utils.kittnConf.src.base),
         exclude: /node_modules/
-      },<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
+      }<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>,
       {
         test: /\.vue$/,
         loader: 'vue-loader',
@@ -169,7 +174,11 @@ export default {
           'svg-fill-loader',
           'svgo-loader'
         ]
-      }<% } %>
+      }<% } %><% if ( projecttypescript ) { %>,
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader'
+      },<% } %>
     ]
   },
   plugins: utils.removeEmpty([
@@ -178,7 +187,15 @@ export default {
         NODE_ENV: JSON.stringify(nodeEnv)
       }
     }),<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
-    new SpriteLoaderPlugin({ plainSprite: true }),<% } %><% if ( projectusage === 'webpackApp' || projectusage === 'html' ) { %><% if ( locals.projectstructure && projectstructure === 'twig' ) { %>
+    new SpriteLoaderPlugin({ plainSprite: true }),<% } %><% if ( projectusage === 'webpackApp' || projectusage === 'html' ) { %><% if ( projectstylelint && (projectusage === 'webpackApp' || projectjsframework === 'vue') ) { %>
+      // Doesn't work yet in dev-mode with webpack 4
+      // See: https://github.com/JaKXz/stylelint-webpack-plugin/issues/137
+      new EasyStylelintPlugin({
+        context: utils.paths.LOADER_PATH
+      }),<% if ( projectusage === 'webpackApp' ) { %>
+      new EasyStylelintPlugin({
+        context: utils.paths.CSS_ROOT
+      }),<% } %><% } %><% if ( locals.projectstructure && projectstructure === 'twig' ) { %>
     ifProduction(<% } %>
       new HtmlWebpackPlugin({
         filename: 'index.html',

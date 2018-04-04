@@ -1,0 +1,39 @@
+{#
+  inlineSvg
+  =================
+  Description
+
+  @param {string} name            = Classname
+#}
+
+{# Set Class #}
+{% set c = name is defined and name != '' ? name : 'c-inlineSvg' %}
+
+{# Module defaults #}
+{% set defaults = {
+  name: 'inlineSvg'
+} %}
+
+{% set m = m is defined ? defaults|merge(m) : defaults %}
+
+{# Build Element Block #}
+
+{# Test if SVG #}
+{% if data.svg.first().extension in ['svg'] %}
+  <figure class="{{ c }}{{ _.styleClasses(options.styleClasses) }}">
+    {# Inline Style #}
+    {% if options.cssCode %}
+      <style>
+        {{ options.cssCode | raw }}
+      </style>
+    {% endif %}
+
+    {{ craft.inlin.er(data.svg.first().url, true) | raw }}
+
+    {% if data.caption %}
+      <figcaption class="{{ c ~ '__caption' }}" itemprop="caption description">
+        {{ data.caption }}
+      </figcaption>
+    {% endif %}
+  </figure>
+{% endif %}

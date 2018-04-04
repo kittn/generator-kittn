@@ -328,11 +328,35 @@ No whitespaces or special-chars allowed!}`
       store: false
     },
     {
-      type: 'confirm',
+      type: 'list',
       name: 'projectstylelint',
       message: message({
         headline: 'Activate Stylelint',
-        description: 'Do you want to ativate Stylelint?',
+        description: 'Do you want to ativate Stylelint?'
+      }),
+      choices: [
+        {
+          name: 'No',
+          value: false
+        },
+        {
+          name: 'Yes',
+          value: true
+        },
+        {
+          name: 'Yes (strict, with property-order-linting)',
+          value: 'strict'
+        }
+      ],
+      default: true,
+      store: false
+    },
+    {
+      type: 'confirm',
+      name: 'projectprettier',
+      message: message({
+        headline: 'Add Prettier',
+        description: 'Do you want to use Prettier for automated Code-Formatting? (See prettier.io)',
         defaultValue: true
       }),
       default: true,
@@ -457,6 +481,17 @@ No whitespaces or special-chars allowed!}`
         }
       ],
       default: 'runtime',
+      store: false
+    },
+    {
+      type: 'confirm',
+      name: 'projecttypescript',
+      message: message({
+        headline: 'TypeScript Support',
+        description: 'Do you want to use Typescript?',
+        defaultValue: true
+      }),
+      default: false,
       store: false
     },
     {

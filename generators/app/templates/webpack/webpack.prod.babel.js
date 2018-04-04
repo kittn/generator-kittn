@@ -2,8 +2,8 @@ const merge = require('webpack-merge')
 import path from 'path'<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %><% if ( projectusage === 'webpackApp' ) { %>
 import CleanWebpackPlugin from 'clean-webpack-plugin'<% } %>
 import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
-import ExtractTextPlugin from 'extract-text-webpack-plugin'<% } %><% if ( projectstylelint && (projectusage === 'webpackApp' || projectjsframework === 'vue') ) { %>
-import StylelintPlugin from 'stylelint-webpack-plugin'<% } %>
+import ExtractTextPlugin from 'extract-text-webpack-plugin'<% } %><% if (projectusage === 'craft' || projectusage === 'craftCB') { %>
+import HtmlWebpackPlugin from 'html-webpack-plugin'<% } %>
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 const utils = require('./utils')
 const baseWebpackConfig = require('./webpack.config.base.babel.js')
@@ -14,8 +14,10 @@ const baseWebpackConfig = require('./webpack.config.base.babel.js')
  |--------------------------------------------------------------------------
  */
 const prodWebpackConfig = merge(baseWebpackConfig.default, {
+  devtool: '',
   output: {
     filename: utils.assetsPath('js/[name].<% if ( projectusage === 'webpackApp' ) { %>[hash].<% } %>js'),
+    chunkFilename: utils.assetsPath('js/chunks/[name].[hash].js'),
     publicPath: './'
   },
   plugins: [<% if ( projectusage === 'webpackApp' ) { %>
@@ -29,17 +31,7 @@ const prodWebpackConfig = merge(baseWebpackConfig.default, {
         beforeEmit: true,
         exclude: ['ls.respimg.js', 'modernizr.js']
       }
-    ),<% } %><% if ( projectstylelint && (projectusage === 'webpackApp' || projectjsframework === 'vue') ) { %>
-    // Doesn't work yet in dev-mode with webpack 4
-    // See: https://github.com/JaKXz/stylelint-webpack-plugin/issues/137
-    new StylelintPlugin({
-      context: utils.paths.LOADER_PATH,
-      syntax: 'scss'
-    }),<% if ( projectusage === 'webpackApp' ) { %>
-    new StylelintPlugin({
-      context: utils.paths.CSS_ROOT,
-      syntax: 'scss'
-    }),<% } %><% } %><% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
+    ),<% } %><% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].<% if ( projectusage === 'webpackApp' ) { %>[chunkhash].<% } %>css'),
       allChunks: true
@@ -48,6 +40,18 @@ const prodWebpackConfig = merge(baseWebpackConfig.default, {
       cssProcessorOptions: {
         safe: true
       }
+    }),<% } %><% if (projectusage === 'craft' || projectusage === 'craftCB') { %>
+    new HtmlWebpackPlugin({
+      filename: path.resolve(`${utils.kittnConf.dist.templates}/_parts/document-footer.html`),
+      template: utils.kittnConf.src.templates + '_parts/document-footer.html',
+      inject: false,
+      hash: false,
+      minify: {
+        removeComments: true,
+        collapseWhitespace: true,
+        removeAttributeQuotes: false
+      },
+      chunksSortMode: 'dependency'
     }),<% } %>
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',

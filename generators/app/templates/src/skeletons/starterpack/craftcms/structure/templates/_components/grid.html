@@ -28,7 +28,7 @@
 {% endif %}
 
 {# Build Element Block #}
-<div class="{{ c }}{{ _.styleClasses(options.styleClasses) }}"{{ options.anchor != '' ? ' id=' ~ options.anchor|lower }}>
+<div class="{{ c }}{{ _.styleClasses(options.styleClasses) }} e-w--fullbleed"{{ options.anchor != '' ? ' id=' ~ options.anchor|lower }}>
   {# Background Container #}
   {% if background.backgroundImage is defined and background.backgroundImage|length %}
     {% set bgAlign, bgSize = '', '' %}

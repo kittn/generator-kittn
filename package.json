@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "5.7.1",
+  "version": "5.8.0",
   "description": "Kittn Scaffolding and Frontend Toolchain",
   "main": "generators/app/index.js",
   "repository": "kittn/generator-kittn",
@@ -21,9 +21,6 @@
   "engines": {
     "node": ">=7.6.0"
   },
-  "scripts": {
-    "test": "jest"
-  },
   "keywords": [
     "yeoman-generator",
     "postcss",
@@ -38,32 +35,30 @@
     "twig"
   ],
   "dependencies": {
-    "chalk": "^2.0.1",
+    "chalk": "^2.3.2",
     "clear-terminal": "^0.0.2",
     "command-exists": "^1.2.2",
     "deep-extend": "^0.5.0",
     "fs-extra": "^5.0.0",
-    "gradient-string": "^1.0.0",
-    "jsonschema": "^1.1.1",
+    "gradient-string": "^1.1.0",
+    "jsonschema": "^1.2.3",
     "mkdirp": "^0.5.1",
-    "mysql": "^2.13.0",
+    "mysql": "^2.15.0",
     "randomstring": "^1.1.5",
-    "sort-package-json": "^1.6.1",
-    "yeoman-generator": "^2.0.2",
-    "yosay": "^2.0.0"
+    "sort-package-json": "^1.11.0",
+    "yeoman-generator": "^2.0.3",
+    "yosay": "^2.0.2"
   },
   "devDependencies": {
-    "eslint": "^4.15.0",
-    "eslint-config-standard": "^11.0.0-beta.0",
-    "eslint-config-xo-space": "^0.16.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-node": "^5.0.0",
-    "eslint-plugin-promise": "^3.5.0",
+    "eslint": "^4.19.1",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-config-xo-space": "^0.18.0",
+    "eslint-plugin-import": "^2.10.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
-    "jest": "^22.0.0",
-    "jest-cli": "^22.0.0",
-    "nsp": "^3.1.0",
-    "yeoman-assert": "^3.0.0",
+    "nsp": "^3.2.1",
+    "yeoman-assert": "^3.1.1",
     "yeoman-test": "^1.7.0"
   },
   "jest": {
@@ -72,7 +67,6 @@
   "eslintConfig": {
     "extends": "standard",
     "env": {
-      "jest": true,
       "node": true
     }
   },

@@ -42,7 +42,7 @@
 {% set sectionStyleClasses = '' %}
 
 {# Build Element Block #}
-<section class="{{ c }}{{ _.styleClasses(options.styleClasses) }}"{{ options.anchor != '' ? 'id=' ~ options.anchor|lower }}>
+<section class="{{ c }}{{ _.styleClasses(options.styleClasses) }} e-w--fullbleed"{{ options.anchor != '' ? 'id=' ~ options.anchor|lower }}>
   {# Background Container #}
   {% if background.backgroundImage is defined and background.backgroundImage|length %}
     {% set bgAlign, bgSize = '', '' %}

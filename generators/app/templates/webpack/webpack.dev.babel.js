@@ -3,7 +3,8 @@ const path = require('path')<% if ( projectusage === 'webpackApp' ) { %>
 const portfinder = require('portfinder')<% } %>
 import webpack from 'webpack'
 import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'<% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp' ) { %>
-//import WriteFilePlugin from 'write-file-webpack-plugin'<% } %><% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
+//import WriteFilePlugin from 'write-file-webpack-plugin'<% } %><% if (projectusage === 'craft' || projectusage === 'craftCB') { %>
+import WriteFilePlugin from 'write-file-webpack-plugin'<% } %><% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
 import ExtractTextPlugin from 'extract-text-webpack-plugin'<% } %>
 import utils from './utils'
 const baseWebpackConfig = require('./webpack.config.base.babel.js')
@@ -32,6 +33,7 @@ const PORT = utils.kittnConf.browsersync.port<% } %>
 
 const devWebpackConfig = merge(baseWebpackConfig.default, {<% if (projectusage !== 'webpackApp' ) { %>
   mode: 'development',<% } %>
+  devtool: 'cheap-module-eval-source-map',
   entry: utils.removeEmpty(entries),
   output: {
     publicPath: '/',
@@ -49,6 +51,8 @@ const devWebpackConfig = merge(baseWebpackConfig.default, {<% if (projectusage !
     host: HOST,
     port: PORT,
     proxy: {},
+    quiet: true,
+    stats: { colors: true },
     contentBase: path.join(__dirname, `../${utils.kittnConf.src.base}`),
     publicPath: '/',
     open: utils.kittnConf.browsersync.openbrowser,
@@ -62,12 +66,16 @@ const devWebpackConfig = merge(baseWebpackConfig.default, {<% if (projectusage !
     new ExtractTextPlugin({
       filename: utils.assetsPath('css/[name].css'),
       allChunks: true
-    }),<% } %>
+    }),<% } %><% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp' ) { %>
     // only needed if you want to write the files to your harddrive in dev-mode
     // new WriteFilePlugin({
     //   log: false,
     //   test: /^(?!.+(?:hot-update.(js|json))).+$/
-    // })
+    // })<% } %><% if (projectusage === 'craft' || projectusage === 'craftCB') { %>
+    new WriteFilePlugin({
+      log: false,
+      test: /^(?!.+(?:hot-update.(js|json))).+$/
+    })<% } %>
   ]
 })<% if ( projectusage === 'webpackApp' ) { %>
 
