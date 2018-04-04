@@ -3,7 +3,8 @@ const extend = require('deep-extend')
 function addScriptDependencies (files = {}, context) {
   extend(files.pkg, {
     scripts: {
-      'webpack:analyze': 'webpack-bundle-analyzer webpack/stats.json dist/assets/'
+      'webpack:analyze':
+        'webpack-bundle-analyzer webpack/stats.json dist/assets/'
     },
     devDependencies: {
       '@babel/plugin-proposal-class-properties': '^7.0.0-beta.44',
@@ -16,7 +17,7 @@ function addScriptDependencies (files = {}, context) {
       'babel-loader': '^8.0.0-beta.0',
       'babel-eslint': '^8.2.1',
       'clean-webpack-plugin': '^0.1.19',
-      'eslint': '^4.19.1',
+      eslint: '^4.19.1',
       'eslint-config-standard': '^11.0.0',
       'eslint-plugin-promise': '^3.7.0',
       'eslint-plugin-standard': '^3.0.1',
@@ -31,7 +32,7 @@ function addScriptDependencies (files = {}, context) {
       'friendly-errors-webpack-plugin': '^1.6.1',
       'html-webpack-plugin': '^3.1.0',
       'optimize-css-assets-webpack-plugin': '^4.0.0',
-      'webpack': '^4.4.1',
+      webpack: '^4.4.1',
       'webpack-cli': '^2.0.13',
       'webpack-bundle-analyzer': '^2.8.2',
       'webpack-config-utils': '^2.3.0',
@@ -40,13 +41,19 @@ function addScriptDependencies (files = {}, context) {
       'webpack-merge': '^4.1.2'
     },
     dependencies: {
-      'bowser': '^1.9.3',
+      bowser: '^1.9.3',
       'pyrsmk-toast': '^2.2.0',
-      'svgxuse': '^1.2.6'
+      svgxuse: '^1.2.6'
     }
   })
 
-  if ((context.props.projectusage === 'html' && context.props.projectstructure === 'uncompiled') || context.props.projectusage === 'webpackApp' || (context.props.projectusage === 'craft' || context.props.projectusage === 'craftCB')) {
+  if (
+    (context.props.projectusage === 'html' &&
+      context.props.projectstructure === 'uncompiled') ||
+    context.props.projectusage === 'webpackApp' ||
+    (context.props.projectusage === 'craft' ||
+      context.props.projectusage === 'craftCB')
+  ) {
     extend(files.pkg, {
       devDependencies: {
         'write-file-webpack-plugin': '^4.2.0'
@@ -57,35 +64,49 @@ function addScriptDependencies (files = {}, context) {
   if (context.props.projectusage !== 'webpackApp') {
     extend(files.pkg, {
       scripts: {
-        'subtask:bundlewebpack': 'cross-env NODE_ENV=production webpack --config=webpack/webpack.prod.babel.js -p --colors --mode=production',
-        'scripts': 'gulp rebuild:js --env=init'
+        'subtask:bundlewebpack':
+          'cross-env NODE_ENV=production webpack --config=webpack/webpack.prod.babel.js -p --colors --mode=production',
+        scripts: 'gulp rebuild:js --env=init'
       },
       dependencies: {
-        'lazysizes': '^4.0.2'
+        lazysizes: '^4.0.2'
       }
     })
   }
 
   // Webpack Bundle analyzer
-  if (context.props.projectusage === 'craftCB' || context.props.projectusage === 'craft') {
+  if (
+    context.props.projectusage === 'craftCB' ||
+    context.props.projectusage === 'craft'
+  ) {
     extend(files.pkg, {
       scripts: {
-        'webpack:analyze': 'webpack-bundle-analyzer webpack/stats.json dist/public/assets/'
+        'webpack:analyze':
+          'webpack-bundle-analyzer webpack/stats.json dist/public/assets/'
       }
     })
   }
 
   // Webpack Bundle analyzer
-  if (context.props.projectusage === 'wordpress' || context.props.projectusage === 'wordpressCB') {
+  if (
+    context.props.projectusage === 'wordpress' ||
+    context.props.projectusage === 'wordpressCB'
+  ) {
     extend(files.pkg, {
       scripts: {
-        'webpack:analyze': `webpack-bundle-analyzer webpack/stats.json dist/wp-content/themes/${context.props.projectname}/assets/`
+        'webpack:analyze': `webpack-bundle-analyzer webpack/stats.json dist/wp-content/themes/${
+          context.props.projectname
+        }/assets/`
       }
     })
   }
 
   // Container-Queries
-  if (context.props.projectcontainerqueries === true || context.props.projectusage === 'craftCB' || context.props.projectusage === 'wordpressCB') {
+  if (
+    context.props.projectcontainerqueries === true ||
+    context.props.projectusage === 'craftCB' ||
+    context.props.projectusage === 'wordpressCB'
+  ) {
     extend(files.pkg, {
       dependencies: {
         'cq-prolyfill': '^0.4.0'
@@ -101,14 +122,17 @@ function addScriptDependencies (files = {}, context) {
         '@babel/preset-react': '^7.0.0-beta.44'
       },
       dependencies: {
-        'react': '^15.5.4',
+        react: '^15.5.4',
         'react-dom': '^15.5.4'
       }
     })
   }
 
   // Vue
-  if (context.props.projectjsframework === 'vue' || context.props.projectusage === 'webpackApp') {
+  if (
+    context.props.projectjsframework === 'vue' ||
+    context.props.projectusage === 'webpackApp'
+  ) {
     extend(files.pkg, {
       devDependencies: {
         'css-loader': '^0.28.11',
@@ -117,7 +141,7 @@ function addScriptDependencies (files = {}, context) {
         'file-loader': '^1.1.11',
         'postcss-loader': '^2.1.3',
         'sass-loader': '^6.0.7',
-        'svgo': '^1.0.5',
+        svgo: '^1.0.5',
         'svgo-loader': '^2.1.0',
         'svg-fill-loader': '^0.0.8',
         'svg-sprite-loader': '^3.7.0',
@@ -128,30 +152,37 @@ function addScriptDependencies (files = {}, context) {
         'vue-template-compiler': '^2.5.16'
       },
       dependencies: {
-        'vue': '^2.5.16'
+        vue: '^2.5.16'
       }
     })
 
     if (context.props.projectusage === 'webpackApp') {
       extend(files.pkg, {
         scripts: {
-          'build': 'cross-env NODE_ENV=production webpack --config=webpack/webpack.prod.babel.js -p --colors --mode production',
-          'dev': 'cross-env NODE_ENV=development webpack-dev-server --config=webpack/webpack.dev.babel.js --mode development'
+          build:
+            'cross-env NODE_ENV=production webpack --config=webpack/webpack.prod.babel.js -p --colors --mode production',
+          dev:
+            'cross-env NODE_ENV=development webpack-dev-server --config=webpack/webpack.dev.babel.js --mode development'
         },
         devDependencies: {
           'node-sass': '^4.7.2',
-          'portfinder': '^1.0.13',
+          portfinder: '^1.0.13',
           'webpack-dev-server': '^3.1.0'
         }
       })
     }
   }
 
-  if ((context.props.projectjsframework === 'vue' || context.props.projectusage === 'webpackApp') && context.props.projectstylelint === true) {
+  if (
+    (context.props.projectjsframework === 'vue' ||
+      context.props.projectusage === 'webpackApp') &&
+    (context.props.projectstylelint === true ||
+      context.props.projectstylelint === 'strict')
+  ) {
     extend(files.pkg, {
       devDependencies: {
         'easy-stylelint-plugin': '^0.0.9',
-        'stylelint': '^9.2.0'
+        stylelint: '^9.2.0'
         // 'stylelint-webpack-plugin': '^0.10.3'
       }
     })
@@ -161,18 +192,22 @@ function addScriptDependencies (files = {}, context) {
     extend(files.pkg, {
       devDependencies: {
         'ts-loader': '^4.1.0',
-        'typescript': '^2.8.1'
+        typescript: '^2.8.1'
       }
     })
   }
 
   // Vue Plugins
-  if (context.props.projectusage === 'webpackApp' || (typeof context.props.projectvueplugins !== 'undefined' && context.props.projectvueplugins === true)) {
+  if (
+    context.props.projectusage === 'webpackApp' ||
+    (typeof context.props.projectvueplugins !== 'undefined' &&
+      context.props.projectvueplugins === true)
+  ) {
     extend(files.pkg, {
       dependencies: {
         'vue-router': '^3.0.1',
-        'axios': '^0.18.0',
-        'vuex': '^3.0.1',
+        axios: '^0.18.0',
+        vuex: '^3.0.1',
         'vuex-router-sync': '^5.0.0'
       }
     })

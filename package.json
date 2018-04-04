@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "5.8.0",
+  "version": "5.8.1",
   "description": "Kittn Scaffolding and Frontend Toolchain",
   "main": "generators/app/index.js",
   "repository": "kittn/generator-kittn",
@@ -15,9 +15,7 @@
       "email": "martinherweg.com@gmail.com"
     }
   ],
-  "files": [
-    "generators"
-  ],
+  "files": ["generators"],
   "engines": {
     "node": ">=7.6.0"
   },
