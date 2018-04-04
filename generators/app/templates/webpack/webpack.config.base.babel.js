@@ -101,7 +101,7 @@ export default {
         use: 'babel-loader',
         include: utils.resolve(utils.kittnConf.src.base),
         exclude: /node_modules/
-      },<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
+      }<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>,
       {
         test: /\.vue$/,
         loader: 'vue-loader',

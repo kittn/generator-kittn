@@ -1,4 +1,4 @@
-const script = (context) => {
+const script = context => {
   return {
     files: [
       {
@@ -30,10 +30,14 @@ const script = (context) => {
         dest: 'webpack/utils.js'
       },
       {
-        orConditions: {
-          projectjsframework: 'vue',
-          projectusage: 'webpackApp'
-        },
+        orConditions: [
+          {
+            projectjsframework: 'vue'
+          },
+          {
+            projectusage: 'webpackApp'
+          }
+        ],
         src: 'src/skeletons/vue/app.vue',
         dest: 'src/js/app.vue'
       },
@@ -54,18 +58,26 @@ const script = (context) => {
     ],
     folders: [
       {
-        orConditions: {
-          projectjsframework: 'vue',
-          projectusage: 'webpackApp'
-        },
+        orConditions: [
+          {
+            projectjsframework: 'vue'
+          },
+          {
+            projectusage: 'webpackApp'
+          }
+        ],
         src: 'src/skeletons/vue/components',
         dest: 'src/js/components/'
       },
       {
-        orConditions: {
-          projectjsframework: 'vue',
-          projectusage: 'webpackApp'
-        },
+        orConditions: [
+          {
+            projectjsframework: 'vue'
+          },
+          {
+            projectusage: 'webpackApp'
+          }
+        ],
         src: 'src/skeletons/vue/shared',
         dest: 'src/js/shared/'
       },
@@ -105,6 +117,6 @@ const script = (context) => {
       }
     ]
   }
-}
+};
 
 module.exports = script

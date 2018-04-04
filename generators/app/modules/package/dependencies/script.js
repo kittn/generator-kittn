@@ -6,6 +6,7 @@ function addScriptDependencies (files = {}, context) {
       'webpack:analyze': 'webpack-bundle-analyzer webpack/stats.json dist/assets/'
     },
     devDependencies: {
+      '@babel/plugin-proposal-class-properties': '^7.0.0-beta.44',
       '@babel/plugin-proposal-object-rest-spread': '^7.0.0-beta.44',
       '@babel/plugin-syntax-dynamic-import': '^7.0.0-beta.44',
       '@babel/plugin-transform-runtime': '^7.0.0-beta.44',

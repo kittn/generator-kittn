@@ -38,9 +38,12 @@ const checkCondition = (data, context) => {
     }
   } else if (data.orConditions) {
     let error = true
-    for (const cond in data.orConditions) {
-      if (data.orConditions[cond] === context.props[cond]) {
-        error = false
+    for (const cond of data.orConditions) {
+      for (const con in cond) {
+        console.log(con, cond[con])
+        if (cond[con] === context.props[con]) {
+          error = false
+        }
       }
     }
 
@@ -75,7 +78,7 @@ const processConfig = (cfg, context) => {
 
 const copySources = () => {
   return {
-    writing: (context) => {
+    writing: context => {
       return new Promise((resolve, reject) => {
         // Base Config
         const baseConfig = base(context)
@@ -109,6 +112,6 @@ const copySources = () => {
       })
     }
   }
-}
+};
 
 module.exports = copySources
