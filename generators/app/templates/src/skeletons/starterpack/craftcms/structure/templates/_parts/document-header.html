@@ -22,5 +22,6 @@
   {# Deactivate Progress Load on Livepreview #}
   {% if craft.request.isLivePreview != true and craft.config.environment == 'productive' %}
     <script>document.getElementsByTagName('html')[0].classList.add('plj')</script>
+    {#<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="UID" type="text/javascript" async></script>#}
   {% endif %}
 </head>

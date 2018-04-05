@@ -1,6 +1,6 @@
 {# CRITICAL CSS #}
 {% set cacheVal = getCookie('critical-css') %}
-{% if not cacheVal or craft.config.devMode %}
+{% if not cacheVal or not craft.config.devMode %}
   {{ setCookie('critical-css', now | date_modify("+7 days").timestamp ) }}
   {%- if _t.templatename is defined and _t.templatename is not null -%}
     <style>

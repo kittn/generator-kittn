@@ -217,6 +217,73 @@
 {% endmacro %}
 
 {#
+  Breadcrumb Macro
+  ==================
+
+  @param {object} breadCrumLinks = Links as object
+  @param {string} seperator      = Seperatorsign
+  @param {string} class          = Optional Classname
+#}
+{% macro breadcrumb(breadCrumbLinks, separator, class) %}
+  {% set listItems = [] %}
+  {% set classname = class | default('c-breadcrumb') %}
+
+  {# -- Check if breadCrumbLink is an Array -- #}
+  {% if breadCrumbLinks is iterable %}
+
+    {# -- Loop over the breadCrumbLinks -- #}
+    {% for item in breadCrumbLinks %}
+      {# -- Set link var -- #}
+      {% set link = '' %}
+
+      {# -- Check if item Title is existing -- #}
+      {% if item.title ?? null %}
+
+        {# -- Set Separator -- #}
+        {% set separator = separator | default(' / ') %}
+        {% if loop.last %}
+
+          {# -- If loop last we need no separator -- #}
+          {% set separator = '' %}
+        {% endif %}
+
+        {# -- Check if item Link is existing and item linked is true -- #}
+        {% if item.link ?? null and item.linked %}
+
+          {# -- Set Link Markup -- #}
+          {% set link %}
+            {% spaceless %}
+            <a href="{{ item.link }}" class="{{ classname ~ '__link' }}">
+              {{- item.title -}}
+              </a>{{- separator | raw -}}
+            {% endspaceless %}
+          {% endset %}
+        {% else %}
+
+          {# -- Set Plain Text Markup -- #}
+          {% set link = '<span class="' ~ classname ~ '__nonLink">' ~ item.title ~ separator ~ '</span>' %}
+        {% endif %}
+      {% endif %}
+
+      {# -- Merge all Items into listItems -- #}
+      {% set listItems = listItems | merge([link]) %}
+    {% endfor %}
+  {% endif %}
+
+  {# -- Set Output Markup -- #}
+  {% set output %}
+    <nav class="{{ classname ~ '__wrapper' }}">
+      {% for item in listItems %}
+        {{ item | raw }}
+      {% endfor %}
+    </nav>
+  {% endset %}
+
+  {# -- Output -- #}
+  {% return output %}
+{% endmacro %}
+
+{#
   Site Navigation
   ===============
 #}
