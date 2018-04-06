@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.6.35)
 # Datenbank: kittncb
-# Erstellt am: 2018-03-19 19:13:41 +0000
+# Erstellt am: 2018-04-06 15:25:16 +0000
 # ************************************************************
 
 
@@ -1914,7 +1914,7 @@ LOCK TABLES `craft_info` WRITE;
 
 INSERT INTO `craft_info` (`id`, `version`, `schemaVersion`, `edition`, `siteName`, `siteUrl`, `timezone`, `on`, `maintenance`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'2.6.3012','2.6.13',2,'kittn','http://ktest10.local','UTC',1,0,'2017-07-04 21:44:58','2018-03-07 13:34:53','93fc1702-dfe7-473a-a405-2d9d312ddd7d');
+	(1,'2.6.3014','2.6.13',2,'kittn','http://ktest10.local','UTC',1,0,'2017-07-04 21:44:58','2018-04-06 15:21:40','93fc1702-dfe7-473a-a405-2d9d312ddd7d');
 
 /*!40000 ALTER TABLE `craft_info` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2311,26 +2311,27 @@ LOCK TABLES `craft_plugins` WRITE;
 
 INSERT INTO `craft_plugins` (`id`, `class`, `version`, `schemaVersion`, `licenseKey`, `licenseKeyStatus`, `enabled`, `settings`, `installDate`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'VideoEmbedUtility','1.0.0',NULL,NULL,'unknown',1,NULL,'2017-07-04 21:59:41','2017-07-04 21:59:41','2018-03-07 13:44:26','31aff914-5d66-498e-8624-8db638cb587f'),
-	(3,'SuperTable','1.0.6','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 21:59:47','2017-07-04 21:59:47','2018-03-07 13:44:26','e6518585-e7b6-4b4c-9aec-d8e6828f015e'),
-	(4,'Seomatic','1.1.56','1.1.25',NULL,'unknown',1,NULL,'2017-07-04 21:59:51','2017-07-04 21:59:51','2018-03-07 13:44:26','c4962d5a-4ee2-47be-8081-563112f7196a'),
-	(5,'Neo','1.4.1','1.4.1',NULL,'unknown',1,NULL,'2017-07-04 21:59:59','2017-07-04 21:59:59','2018-03-07 13:44:26','8c41f74e-116e-458f-a3ed-9cc0d6f5ca36'),
-	(6,'FruitLinkIt','2.3.1','2.3.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:03','2017-07-04 22:00:03','2018-03-07 13:44:26','504294b1-8dd4-4248-8074-d11406edf511'),
-	(7,'Kint','1.1.0','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:05','2017-07-04 22:00:05','2018-03-07 13:44:26','f2f131a6-6f87-4af9-af71-9c2379379854'),
-	(8,'Imager','1.6.4','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:07','2017-07-04 22:00:07','2018-03-07 13:44:26','5e3e3de6-61e4-403d-88a6-b43453cd9c0d'),
-	(10,'FocalPointField','1.0.2',NULL,NULL,'unknown',1,NULL,'2017-07-04 22:00:10','2017-07-04 22:00:10','2018-03-07 13:44:26','ec35c904-1c8a-4949-8b8e-558f3fe71d26'),
-	(11,'CpSortCols','1.1.2','1.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:11','2017-07-04 22:00:11','2018-03-07 13:44:26','2cd4639c-0835-499e-8bad-2cba17990a53'),
-	(12,'CpFieldLinks','1.2.2','1.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:13','2017-07-04 22:00:13','2018-03-07 13:44:26','c3d42938-cfa6-4fda-9015-7ee0e1ef6028'),
-	(13,'AmCommand','2.2.0','2.0.1',NULL,'unknown',1,NULL,'2017-07-04 22:00:14','2017-07-04 22:00:14','2018-03-07 13:44:26','3f58dc7b-4598-485d-90d0-06d1f8858913'),
-	(14,'AmNav','1.7.1',NULL,NULL,'unknown',1,NULL,'2017-07-04 22:00:16','2017-07-04 22:00:16','2018-03-07 13:44:26','97e2ac50-e4f9-4ba4-830c-528e327cbcb3'),
-	(15,'Doxter','1.3.0','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:18','2017-07-04 22:00:18','2018-03-07 13:44:26','ae688b87-4326-4d79-a318-70e2c2341473'),
-	(16,'CacheBuster','1.2.2',NULL,NULL,'unknown',1,NULL,'2017-07-16 10:44:47','2017-07-16 10:44:47','2018-03-07 13:44:26','4a1d2384-a561-4ba4-a3cb-e723bd5463ce'),
-	(17,'Cookies','1.0.4','1.0.0',NULL,'unknown',1,NULL,'2017-07-16 10:44:50','2017-07-16 10:44:50','2018-03-07 13:44:26','16d937e0-3a99-49ad-86c7-5eec44be75a8'),
-	(18,'Lj_DynamicFields','0.6',NULL,NULL,'unknown',1,NULL,'2018-03-07 10:14:12','2018-03-07 10:14:12','2018-03-07 13:44:26','06dd6872-c2fc-4324-8e79-cfaa675f4186'),
-	(20,'MigrationManager','1.0.8.7',NULL,NULL,'unknown',1,NULL,'2018-03-07 13:27:31','2018-03-07 13:27:31','2018-03-07 13:44:26','9909151b-63f6-4d8c-bb4f-6ec464252056'),
-	(21,'AceFreely','1.0',NULL,NULL,'unknown',1,NULL,'2018-03-17 14:53:27','2018-03-17 14:53:27','2018-03-17 14:53:27','186624f0-4cce-4170-bc1c-68a0dd1e130f'),
-	(22,'Inlin','1.1',NULL,NULL,'unknown',1,NULL,'2018-03-17 14:53:31','2018-03-17 14:53:31','2018-03-17 14:53:31','54647329-19bf-47a3-a445-cf4a953a564a'),
-	(23,'TheArchitect','1.6.0','1.6.0',NULL,'unknown',1,NULL,'2018-03-17 14:53:50','2018-03-17 14:53:50','2018-03-17 14:53:50','69cec1d5-fcf5-4358-92c7-7a9d18fc910d');
+	(1,'VideoEmbedUtility','1.0.0',NULL,NULL,'unknown',1,NULL,'2017-07-04 21:59:41','2017-07-04 21:59:41','2018-04-06 15:22:23','31aff914-5d66-498e-8624-8db638cb587f'),
+	(3,'SuperTable','1.0.6','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 21:59:47','2017-07-04 21:59:47','2018-04-06 15:22:23','e6518585-e7b6-4b4c-9aec-d8e6828f015e'),
+	(4,'Seomatic','1.1.56','1.1.25',NULL,'unknown',1,NULL,'2017-07-04 21:59:51','2017-07-04 21:59:51','2018-04-06 15:22:23','c4962d5a-4ee2-47be-8081-563112f7196a'),
+	(5,'Neo','1.4.1','1.4.1',NULL,'unknown',1,NULL,'2017-07-04 21:59:59','2017-07-04 21:59:59','2018-04-06 15:22:23','8c41f74e-116e-458f-a3ed-9cc0d6f5ca36'),
+	(6,'FruitLinkIt','2.3.1','2.3.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:03','2017-07-04 22:00:03','2018-04-06 15:22:23','504294b1-8dd4-4248-8074-d11406edf511'),
+	(7,'Kint','1.1.0','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:05','2017-07-04 22:00:05','2018-04-06 15:22:23','f2f131a6-6f87-4af9-af71-9c2379379854'),
+	(8,'Imager','1.6.4','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:07','2017-07-04 22:00:07','2018-04-06 15:22:23','5e3e3de6-61e4-403d-88a6-b43453cd9c0d'),
+	(10,'FocalPointField','1.0.2',NULL,NULL,'unknown',1,NULL,'2017-07-04 22:00:10','2017-07-04 22:00:10','2018-04-06 15:22:23','ec35c904-1c8a-4949-8b8e-558f3fe71d26'),
+	(11,'CpSortCols','1.1.2','1.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:11','2017-07-04 22:00:11','2018-04-06 15:22:23','2cd4639c-0835-499e-8bad-2cba17990a53'),
+	(12,'CpFieldLinks','1.2.2','1.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:13','2017-07-04 22:00:13','2018-04-06 15:22:23','c3d42938-cfa6-4fda-9015-7ee0e1ef6028'),
+	(13,'AmCommand','2.2.0','2.0.1',NULL,'unknown',1,NULL,'2017-07-04 22:00:14','2017-07-04 22:00:14','2018-04-06 15:22:23','3f58dc7b-4598-485d-90d0-06d1f8858913'),
+	(14,'AmNav','1.8.0','1.7.4',NULL,'unknown',1,NULL,'2017-07-04 22:00:16','2017-07-04 22:00:16','2018-04-06 15:22:23','97e2ac50-e4f9-4ba4-830c-528e327cbcb3'),
+	(15,'Doxter','1.3.0','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:18','2017-07-04 22:00:18','2018-04-06 15:22:23','ae688b87-4326-4d79-a318-70e2c2341473'),
+	(16,'CacheBuster','1.2.2',NULL,NULL,'unknown',1,NULL,'2017-07-16 10:44:47','2017-07-16 10:44:47','2018-04-06 15:22:23','4a1d2384-a561-4ba4-a3cb-e723bd5463ce'),
+	(17,'Cookies','1.0.4','1.0.0',NULL,'unknown',1,NULL,'2017-07-16 10:44:50','2017-07-16 10:44:50','2018-04-06 15:22:23','16d937e0-3a99-49ad-86c7-5eec44be75a8'),
+	(18,'Lj_DynamicFields','0.6',NULL,NULL,'unknown',1,NULL,'2018-03-07 10:14:12','2018-03-07 10:14:12','2018-04-06 15:22:23','06dd6872-c2fc-4324-8e79-cfaa675f4186'),
+	(20,'MigrationManager','1.0.8.7',NULL,NULL,'unknown',1,NULL,'2018-03-07 13:27:31','2018-03-07 13:27:31','2018-04-06 15:22:23','9909151b-63f6-4d8c-bb4f-6ec464252056'),
+	(21,'AceFreely','1.0',NULL,NULL,'unknown',1,NULL,'2018-03-17 14:53:27','2018-03-17 14:53:27','2018-04-06 15:22:23','186624f0-4cce-4170-bc1c-68a0dd1e130f'),
+	(22,'Inlin','1.1',NULL,NULL,'unknown',1,NULL,'2018-03-17 14:53:31','2018-03-17 14:53:31','2018-04-06 15:22:23','54647329-19bf-47a3-a445-cf4a953a564a'),
+	(23,'TheArchitect','1.6.0','1.6.0',NULL,'unknown',1,NULL,'2018-03-17 14:53:50','2018-03-17 14:53:50','2018-04-06 15:22:23','69cec1d5-fcf5-4358-92c7-7a9d18fc910d'),
+	(24,'MnTwigPerversion','1.3.0','1.0.0',NULL,'unknown',1,NULL,'2018-04-06 15:24:44','2018-04-06 15:24:44','2018-04-06 15:24:44','5d68166b-1984-4e48-9694-fa3593c1d798');
 
 /*!40000 ALTER TABLE `craft_plugins` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -3357,7 +3358,8 @@ VALUES
 	(9,1,'7e09d4d20149957e2aae6432b83d0badf9941a67czozMjoiMlhRVmlwTmtndTMyNHZ0WjM2SEtlNG90RTNfQjdNWU0iOw==','2018-03-18 20:44:09','2018-03-18 20:44:09','3ba9f9b7-b305-4907-ba0e-d72b124e6ef1'),
 	(10,1,'292fb616efe2b1cc4b6dd4bcbd9dadeb8ab8b166czozMjoiYTRzM3d3RnVBRnljeWFJT05LV3Y0RWt+TWVZQzVjbjYiOw==','2018-03-19 09:39:25','2018-03-19 09:39:25','44e923b7-47be-4a3f-a6ba-05b74f334a6c'),
 	(11,1,'01386edc664d0b2f0d1a7a2b935473a0191db71eczozMjoia3hKMUY5NVNfSTZVR1BYVThFSVJYWDVTZ3lRRFlXMGEiOw==','2018-03-19 14:35:30','2018-03-19 14:35:30','5887a402-986d-41f7-a167-b073ed8ea221'),
-	(12,1,'c8149a66560b9e3fb2d46262063de19be36cadd7czozMjoidF9OeG9YNTZNbUlydU9PN0owNWFuRnozMHhFeUlJQXciOw==','2018-03-19 16:09:49','2018-03-19 16:09:49','30e42c22-a58d-4e44-9217-ad00bb858038');
+	(12,1,'c8149a66560b9e3fb2d46262063de19be36cadd7czozMjoidF9OeG9YNTZNbUlydU9PN0owNWFuRnozMHhFeUlJQXciOw==','2018-03-19 16:09:49','2018-03-19 16:09:49','30e42c22-a58d-4e44-9217-ad00bb858038'),
+	(13,1,'3e821e6a6dd187678df0ce4697fcb0e825facd6dczozMjoiZ1VJTko5ZzhRSG0zZ2hrUWNhQ1ZId1VkMExjdzVIakUiOw==','2018-04-06 15:22:19','2018-04-06 15:22:19','f48a7993-5ccb-466e-8b97-14dd71f3f4d7');
 
 /*!40000 ALTER TABLE `craft_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -5293,7 +5295,7 @@ LOCK TABLES `craft_users` WRITE;
 
 INSERT INTO `craft_users` (`id`, `username`, `photo`, `firstName`, `lastName`, `email`, `password`, `preferredLocale`, `weekStartDay`, `admin`, `client`, `locked`, `suspended`, `pending`, `archived`, `lastLoginDate`, `lastLoginAttemptIPAddress`, `invalidLoginWindowStart`, `invalidLoginCount`, `lastInvalidLoginDate`, `lockoutDate`, `verificationCode`, `verificationCodeIssuedDate`, `unverifiedEmail`, `passwordResetRequired`, `lastPasswordChangeDate`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'kittn',NULL,'','','hello@kittn.xyz','$2y$13$aEV9hEIztEmte9HtKEhP8OT0ZWQ3NCO7Y8AUVe8j7HWWMGChQF23G','de',1,1,0,0,0,0,0,'2018-03-19 16:09:49','::1',NULL,NULL,'2018-03-18 20:43:57',NULL,NULL,NULL,NULL,0,'2017-07-16 14:02:16','2017-07-04 21:45:00','2018-03-19 16:09:49','230071a9-e155-4c49-8381-8aca584cd137');
+	(1,'kittn',NULL,'','','hello@kittn.xyz','$2y$13$aEV9hEIztEmte9HtKEhP8OT0ZWQ3NCO7Y8AUVe8j7HWWMGChQF23G','de',1,1,0,0,0,0,0,'2018-04-06 15:22:19','::1',NULL,NULL,'2018-03-18 20:43:57',NULL,NULL,NULL,NULL,0,'2017-07-16 14:02:16','2017-07-04 21:45:00','2018-04-06 15:22:19','230071a9-e155-4c49-8381-8aca584cd137');
 
 /*!40000 ALTER TABLE `craft_users` ENABLE KEYS */;
 UNLOCK TABLES;
