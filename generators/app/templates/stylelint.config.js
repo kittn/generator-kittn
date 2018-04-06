@@ -1,19 +1,14 @@
 <% if (projectstylelint === 'strict') { %>const font = {
-  order: 'flexible',
-  properties: [
-    'font'
-  ]
+  properties: ['font', 'font-family', 'font-size', 'line-height', 'font-weight', 'font-style']
 }
 
 const text = {
-  order: 'flexible',
   properties: [
     'break',
     'column',
     'columns',
     'hyphens',
     'letter-spacing',
-    'line-height',
     'tab-size',
     'text',
     'white-space',
@@ -23,8 +18,8 @@ const text = {
 }
 
 const color = {
-  order: 'flexible',
   properties: [
+    'opacity',
     'background',
     'box-decoration-break',
     'box-shadow',
@@ -32,35 +27,23 @@ const color = {
     'filter',
     'layer',
     'mask',
-    'mix-blend-mode',
-    'opacity'
+    'mix-blend-mode'
   ]
 }
 
 const scrollbar = {
-  order: 'flexible',
-  properties: [
-    'scrollbar'
-  ]
+  properties: ['scrollbar']
 }
 
 const outline = {
-  order: 'flexible',
-  properties: [
-    'outline'
-  ]
+  properties: ['outline']
 }
 
 const list = {
-  order: 'flexible',
-  properties: [
-    'list-style',
-    'marker-offset'
-  ]
+  properties: ['list-style', 'marker-offset']
 }
 
 const tables = {
-  order: 'flexible',
   properties: [
     'border-collapse',
     'border-spacing',
@@ -72,93 +55,63 @@ const tables = {
 }
 
 const classification = {
-  order: 'flexible',
-  properties: [
-    'clear',
-    'content',
-    'display',
-    'float',
-    'isolation',
-    'position',
-    'visibility'
-  ]
+  properties: ['content', 'clear', 'display', 'float', 'isolation', 'visibility']
 }
 
 const dimensions = {
-  order: 'flexible',
   properties: [
     'block-size',
     'box-sizing',
     'size',
     'width',
-    'height',
-    'inline-size',
-    'max-height',
-    'max-width',
-    'min-height',
     'min-width',
+    'max-width',
+    'height',
+    'min-height',
+    'max-height',
+    'inline-size',
     'object'
   ]
 }
 
 const positioning = {
-  order: 'flexible',
   properties: [
+    'position',
+    'top',
+    'right',
+    'bottom',
+    'left',
+    'z-index',
+    'flex',
+    'flex-wrap',
+    'flex-direction',
+    'justify-content',
     'align-content',
     'align-items',
     'align-self',
-    'bottom',
-    'clip',
-    'flex',
     'grid',
-    'justify-content',
-    'left',
     'offset',
     'order',
     'overflow',
-    'position',
-    'right',
     'text-overflow',
-    'top',
-    'vertical-align',
-    'z-index'
+    'clip',
+    'vertical-align'
   ]
 }
 
 const margins = {
-  order: 'flexible',
-  properties: [
-    'margin',
-    'margin-top',
-    'margin-right',
-    'margin-bottom',
-    'margin-left'
-  ]
+  properties: ['margin', 'margin-top', 'margin-right', 'margin-bottom', 'margin-left']
 }
 
 const padding = {
-  order: 'flexible',
-  properties: [
-    'padding',
-    'padding-top',
-    'padding-right',
-    'padding-bottom',
-    'padding-left'
-  ]
+  properties: ['padding', 'padding-top', 'padding-right', 'padding-bottom', 'padding-left']
 }
 
 const border = {
-  order: 'flexible',
-  properties: [
-    'border-color',
-    'border-style',
-    'border-width',
-    'border'
-  ]
+  properties: ['border-color', 'border-style', 'border-width', 'border']
 }
 
 const dynamic = {
-  order: 'flexible',
   properties: [
     'accelerator',
     'behavior',
@@ -173,17 +126,10 @@ const dynamic = {
 }
 
 const generated = {
-  order: 'flexible',
-  properties: [
-    'counter',
-    'fallback',
-    'include',
-    'quotes'
-  ]
+  properties: ['counter', 'fallback', 'include', 'quotes']
 }
 
 const international = {
-  order: 'flexible',
   properties: [
     'direction',
     'ime-mode',
@@ -201,19 +147,10 @@ const international = {
 }
 
 const print = {
-  order: 'flexible',
-  properties: [
-    'marks',
-    'orphans',
-    'page-break',
-    'page',
-    'size',
-    'widows'
-  ]
+  properties: ['marks', 'orphans', 'page-break', 'page', 'size', 'widows']
 }
 
 const aural = {
-  order: 'flexible',
   properties: [
     'azimut',
     'cue',
@@ -231,21 +168,11 @@ const aural = {
 }
 
 const animation = {
-  order: 'flexible',
-  properties: [
-    'animation',
-    'transition',
-    'will-change'
-  ]
+  properties: ['animation', 'transition', 'will-change']
 }
 
 const transform = {
-  order: 'flexible',
-  properties: [
-    'transform',
-    'backface-visibility',
-    'perspective'
-  ]
+  properties: ['transform', 'backface-visibility', 'perspective']
 }
 
 <% } %>module.exports = {
@@ -372,13 +299,18 @@ const transform = {
     'no-invalid-double-slash-comments': true,
     'no-missing-end-of-source-newline': true,
     'no-unknown-animations': true,
-    'number-leading-zero': 'never',
+    'number-leading-zero': <% if ( projectprettier === true ) { %>'always'<% } else { %>'never'<% } %>,
     'number-max-precision': 6,
     'number-no-trailing-zeros': true,<% if (projectstylelint === 'strict') { %>
 
     'order/order': [
       'dollar-variables',
       'at-variables',
+      // @include rule
+      {
+        type: 'at-rule',
+        name: 'include'
+      },
       'declarations',
       'custom-properties',
       'less-mixins',
