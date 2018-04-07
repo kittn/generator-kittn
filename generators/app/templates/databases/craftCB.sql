@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.6.35)
 # Datenbank: kittncb
-# Erstellt am: 2018-04-06 15:25:16 +0000
+# Erstellt am: 2018-04-07 10:46:23 +0000
 # ************************************************************
 
 
@@ -1269,9 +1269,6 @@ VALUES
 	(258,109,128,206,0,3,'2018-03-07 10:06:05','2018-03-07 10:06:05','55bd5b4c-2b9b-4005-a7be-7270b41ef39d'),
 	(259,110,129,208,0,1,'2018-03-07 10:06:05','2018-03-07 10:06:05','fab8a11d-27a5-4487-9d26-e11c6b805f07'),
 	(260,110,129,209,0,2,'2018-03-07 10:06:05','2018-03-07 10:06:05','431b349c-bf77-481b-8078-68034a4bb231'),
-	(261,111,130,211,0,1,'2018-03-07 10:06:05','2018-03-07 10:06:05','a1922e33-e46f-4390-a6c9-aa25bbd18523'),
-	(262,111,130,212,0,2,'2018-03-07 10:06:05','2018-03-07 10:06:05','0ca7e294-0350-4e5d-9e21-67c6f543ccb5'),
-	(263,111,130,213,0,3,'2018-03-07 10:06:05','2018-03-07 10:06:05','c580e301-20d3-4333-8c56-08a6451e7c21'),
 	(264,112,131,215,0,1,'2018-03-07 10:06:05','2018-03-07 10:06:05','1f03e51a-0785-48ff-924b-99c1476dff6c'),
 	(265,113,132,217,0,1,'2018-03-07 10:06:05','2018-03-07 10:06:05','62795f46-17ab-4a7a-9868-122d51e7c195'),
 	(266,114,133,219,0,1,'2018-03-07 10:06:06','2018-03-07 10:06:06','3f47f21c-e4bd-48ff-8432-53b528a9621d'),
@@ -1379,7 +1376,11 @@ VALUES
 	(538,249,346,269,0,5,'2018-03-19 18:20:52','2018-03-19 18:20:52','05b2889e-164c-46e2-b653-fe10b7736198'),
 	(539,250,347,34,0,1,'2018-03-19 18:25:46','2018-03-19 18:25:46','446e5a94-086e-4f0c-bf5b-29218870c92d'),
 	(540,250,347,35,0,2,'2018-03-19 18:25:46','2018-03-19 18:25:46','da825781-ad2d-46b3-87b3-c5b7dd53e848'),
-	(541,250,347,36,0,3,'2018-03-19 18:25:46','2018-03-19 18:25:46','cf0bd815-8d32-49ef-ba7f-631ab71f14bd');
+	(541,250,347,36,0,3,'2018-03-19 18:25:46','2018-03-19 18:25:46','cf0bd815-8d32-49ef-ba7f-631ab71f14bd'),
+	(542,251,348,211,0,1,'2018-04-07 10:44:38','2018-04-07 10:44:38','9bd871bc-501b-4e6e-a718-6cd320d47993'),
+	(543,251,348,212,0,2,'2018-04-07 10:44:38','2018-04-07 10:44:38','8e06fd0c-bd1f-4d68-8e1e-c82c9e0f4df6'),
+	(544,251,348,213,0,3,'2018-04-07 10:44:38','2018-04-07 10:44:38','d687a00c-a01f-4dbd-8ae0-d8adecbe8674'),
+	(545,251,348,270,0,4,'2018-04-07 10:44:38','2018-04-07 10:44:38','e8fa95a7-6437-4886-a2b3-ee39f467e514');
 
 /*!40000 ALTER TABLE `craft_fieldlayoutfields` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1437,7 +1438,6 @@ VALUES
 	(108,'SuperTable_Block','2018-03-07 10:06:05','2018-03-07 10:06:05','3888bd51-f884-4deb-800d-121f52fb7277'),
 	(109,'SuperTable_Block','2018-03-07 10:06:05','2018-03-07 10:06:05','bef9c5e6-900e-489b-acac-47c2f15692ab'),
 	(110,'SuperTable_Block','2018-03-07 10:06:05','2018-03-07 10:06:05','dec61cf0-6021-4e0d-a60f-d3aea3ce0804'),
-	(111,'SuperTable_Block','2018-03-07 10:06:05','2018-03-07 10:06:05','b0ebebd5-1cc1-4aef-8abb-f2a21ef9e839'),
 	(112,'SuperTable_Block','2018-03-07 10:06:05','2018-03-07 10:06:05','7a4c8074-4190-46e6-baef-ad03c12d7f03'),
 	(113,'SuperTable_Block','2018-03-07 10:06:05','2018-03-07 10:06:05','c7935034-2fe2-4172-b812-d9243c29ce9b'),
 	(114,'SuperTable_Block','2018-03-07 10:06:06','2018-03-07 10:06:06','39089800-2e96-4330-8271-3ce449a2d884'),
@@ -1487,7 +1487,8 @@ VALUES
 	(244,'Neo_Block','2018-03-19 17:21:29','2018-03-19 17:21:29','d699a2dd-17df-437d-bda0-efc791b2ab4d'),
 	(245,'Neo_Block','2018-03-19 17:21:29','2018-03-19 17:21:29','9f827871-cf7e-48ff-885a-fa04ece6e447'),
 	(249,'SuperTable_Block','2018-03-19 18:20:52','2018-03-19 18:20:52','bab06159-9c67-4141-bc7e-60a48cb5574d'),
-	(250,'SuperTable_Block','2018-03-19 18:25:46','2018-03-19 18:25:46','06c2984f-fa53-4e67-b1c4-5a7ffe1893f4');
+	(250,'SuperTable_Block','2018-03-19 18:25:46','2018-03-19 18:25:46','06c2984f-fa53-4e67-b1c4-5a7ffe1893f4'),
+	(251,'SuperTable_Block','2018-04-07 10:44:38','2018-04-07 10:44:38','f38b3afd-c8c3-4fa9-9e4c-7dc708e574be');
 
 /*!40000 ALTER TABLE `craft_fieldlayouts` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1560,7 +1561,6 @@ VALUES
 	(127,108,'Content',1,'2018-03-07 10:06:05','2018-03-07 10:06:05','c734720f-31e0-40a5-bca4-f8b9bf99ba5d'),
 	(128,109,'Content',1,'2018-03-07 10:06:05','2018-03-07 10:06:05','8dde699f-d1e6-4b0e-bb2b-45d6be2d3d12'),
 	(129,110,'Content',1,'2018-03-07 10:06:05','2018-03-07 10:06:05','f83a6ca4-36d2-40e0-a2da-120f14a3aaa6'),
-	(130,111,'Content',1,'2018-03-07 10:06:05','2018-03-07 10:06:05','b65ca812-fab5-45da-b5cf-ca8e91df0333'),
 	(131,112,'Content',1,'2018-03-07 10:06:05','2018-03-07 10:06:05','d64c0c7e-effb-4aaf-a5b4-e0c9c4fd1034'),
 	(132,113,'Content',1,'2018-03-07 10:06:05','2018-03-07 10:06:05','bee3f34a-901f-4b1d-84ef-db700791017b'),
 	(133,114,'Content',1,'2018-03-07 10:06:06','2018-03-07 10:06:06','a8302353-807b-46cb-aa1d-5576dadbc711'),
@@ -1631,7 +1631,8 @@ VALUES
 	(341,245,'Main',1,'2018-03-19 17:21:29','2018-03-19 17:21:29','4d1dbcfc-9e88-4db7-9c2d-1dc17ede0d0c'),
 	(342,245,'Options',2,'2018-03-19 17:21:29','2018-03-19 17:21:29','bdf59031-4f1f-411d-8be4-38acd6fe5546'),
 	(346,249,'Content',1,'2018-03-19 18:20:52','2018-03-19 18:20:52','48ff31f9-a185-458f-90a6-2fb0c98115e7'),
-	(347,250,'Content',1,'2018-03-19 18:25:46','2018-03-19 18:25:46','3261fd70-89d3-4788-b8ca-f6416b563653');
+	(347,250,'Content',1,'2018-03-19 18:25:46','2018-03-19 18:25:46','3261fd70-89d3-4788-b8ca-f6416b563653'),
+	(348,251,'Content',1,'2018-04-07 10:44:38','2018-04-07 10:44:38','4b98144e-db5f-468b-ad5f-63551d338ff8');
 
 /*!40000 ALTER TABLE `craft_fieldlayouttabs` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1790,10 +1791,10 @@ VALUES
 	(207,3,'Markdown Options','setMarkdown','global','Markdown Optionen',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-03-07 10:06:05','2018-03-07 10:06:05','e4ebd227-2f3a-42c0-8d22-d4dbe1c77c10'),
 	(208,NULL,'Styling','styleClasses','superTableBlockType:48','',0,'Categories','{\"source\":\"group:4\",\"targetLocale\":\"\",\"limit\":\"\",\"selectionLabel\":\"Use Style\"}','2018-03-07 10:06:05','2018-03-07 10:06:05','1a0da661-1262-4984-b91b-10f180b74340'),
 	(209,NULL,'Add Anchor','addAnchor','superTableBlockType:48','Should the headings h1 - h3 be equipped with an anchor?',0,'Lightswitch','{\"default\":\"\"}','2018-03-07 10:06:05','2018-03-07 10:06:05','d17456af-bb2d-4d54-9890-d66bd0f63932'),
-	(210,3,'Media Image Options','setMediaImage','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"140px\"},\"new3\":{\"width\":\"140px\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-03-07 10:06:05','2018-03-07 10:06:05','7847f3f8-06ba-49e8-bbf6-1a7f4b095c78'),
-	(211,NULL,'Styling','styleClasses','superTableBlockType:49','',0,'Categories','{\"source\":\"group:4\",\"targetLocale\":\"\",\"limit\":\"\",\"selectionLabel\":\"Use Style\"}','2018-03-07 10:06:05','2018-03-07 10:06:05','c2ee22ed-f916-40d4-be23-9d6f1a9782ac'),
-	(212,NULL,'Ratio','ratio','superTableBlockType:49','Size ratio of the image',0,'PlainText','{\"placeholder\":\"16:9\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2018-03-07 10:06:05','2018-03-07 10:06:05','84edaf35-5da6-43eb-9d72-cab057763a79'),
-	(213,NULL,'Hight Restriction','heightrestriction','superTableBlockType:49','If it is a picture in the portrait format, it can be that it is longer than the viewport is high. The height limit limits the height to maximum viewport height - you no longer have to scroll around the entire image.',0,'Lightswitch','{\"default\":\"\"}','2018-03-07 10:06:05','2018-03-07 10:06:05','c6d0b918-3bf4-4b13-bff6-1bbee4be5764'),
+	(210,3,'Media Image Options','setMediaImage','global','',0,'SuperTable','{\"columns\":{\"211\":{\"width\":\"\"},\"212\":{\"width\":\"\"},\"213\":{\"width\":\"\"},\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-03-07 10:06:05','2018-04-07 10:44:38','7847f3f8-06ba-49e8-bbf6-1a7f4b095c78'),
+	(211,NULL,'Styling','styleClasses','superTableBlockType:49','',0,'Categories','{\"source\":\"group:4\",\"targetLocale\":\"\",\"limit\":\"\",\"selectionLabel\":\"Use Style\"}','2018-03-07 10:06:05','2018-04-07 10:44:38','c2ee22ed-f916-40d4-be23-9d6f1a9782ac'),
+	(212,NULL,'Ratio','ratio','superTableBlockType:49','Size ratio of the image',0,'PlainText','{\"placeholder\":\"16:9\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-03-07 10:06:05','2018-04-07 10:44:38','84edaf35-5da6-43eb-9d72-cab057763a79'),
+	(213,NULL,'Hight Restriction','heightrestriction','superTableBlockType:49','If it is a picture in the portrait format, it can be that it is longer than the viewport is high. The height limit limits the height to maximum viewport height - you no longer have to scroll around the entire image.',0,'Lightswitch','{\"default\":\"\"}','2018-03-07 10:06:05','2018-04-07 10:44:38','c6d0b918-3bf4-4b13-bff6-1bbee4be5764'),
 	(214,3,'Quote Options','setQuote','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-03-07 10:06:05','2018-03-07 10:06:05','30b38f3a-b5d4-4a5c-847c-d60d19487c55'),
 	(215,NULL,'Styling','styleClasses','superTableBlockType:50','',0,'Categories','{\"source\":\"group:4\",\"targetLocale\":\"\",\"limit\":\"\",\"selectionLabel\":\"Use Style \"}','2018-03-07 10:06:05','2018-03-07 10:06:05','afe03f60-3c37-4611-86a6-f475b1e196a5'),
 	(216,3,'Richtext Options','setRichtext','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-03-07 10:06:05','2018-03-07 10:06:05','5fe2501b-67ca-49f2-9a40-aaf51b05a9e6'),
@@ -1849,7 +1850,8 @@ VALUES
 	(266,NULL,'Size','size','superTableBlockType:63','Retrieval size of the image',0,'Dropdown','{\"options\":[{\"label\":\"Large\",\"value\":\"l\",\"default\":\"1\"},{\"label\":\"Medium\",\"value\":\"m\",\"default\":\"\"},{\"label\":\"Thumbnail\",\"value\":\"t\",\"default\":\"\"}]}','2018-03-19 17:20:15','2018-03-19 18:20:52','85fece87-49fc-4b3b-a668-c2e714487e34'),
 	(267,NULL,'Linkable','linkable','superTableBlockType:63','Should the image be linked to the original post?',0,'Lightswitch','{\"default\":\"\"}','2018-03-19 17:20:15','2018-03-19 18:20:52','906b60ba-bd06-4426-a8ed-9a0539e3d79f'),
 	(268,NULL,'Ratio','ratio','superTableBlockType:63','',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-03-19 17:20:15','2018-03-19 18:20:52','b626d1b5-1b3c-4d2a-aee8-5efe9f1d0db5'),
-	(269,NULL,'Position','position','superTableBlockType:63','CSS background position of the image, is only relevant if you have used a ratio',0,'PlainText','{\"placeholder\":\"10% 50%\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-03-19 18:06:03','2018-03-19 18:20:52','af35dd73-735f-4831-b6c8-7b5f30a801c1');
+	(269,NULL,'Position','position','superTableBlockType:63','CSS background position of the image, is only relevant if you have used a ratio',0,'PlainText','{\"placeholder\":\"10% 50%\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-03-19 18:06:03','2018-03-19 18:20:52','af35dd73-735f-4831-b6c8-7b5f30a801c1'),
+	(270,NULL,'Imgix Parameter','imgixParam','superTableBlockType:49','Addtional Imgix Params in JSON Format (https://docs.imgix.com/apis/url)',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-07 10:44:38','2018-04-07 10:44:38','951a273a-9db3-4d99-b29e-9df29edfc6f1');
 
 /*!40000 ALTER TABLE `craft_fields` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -3359,7 +3361,8 @@ VALUES
 	(10,1,'292fb616efe2b1cc4b6dd4bcbd9dadeb8ab8b166czozMjoiYTRzM3d3RnVBRnljeWFJT05LV3Y0RWt+TWVZQzVjbjYiOw==','2018-03-19 09:39:25','2018-03-19 09:39:25','44e923b7-47be-4a3f-a6ba-05b74f334a6c'),
 	(11,1,'01386edc664d0b2f0d1a7a2b935473a0191db71eczozMjoia3hKMUY5NVNfSTZVR1BYVThFSVJYWDVTZ3lRRFlXMGEiOw==','2018-03-19 14:35:30','2018-03-19 14:35:30','5887a402-986d-41f7-a167-b073ed8ea221'),
 	(12,1,'c8149a66560b9e3fb2d46262063de19be36cadd7czozMjoidF9OeG9YNTZNbUlydU9PN0owNWFuRnozMHhFeUlJQXciOw==','2018-03-19 16:09:49','2018-03-19 16:09:49','30e42c22-a58d-4e44-9217-ad00bb858038'),
-	(13,1,'3e821e6a6dd187678df0ce4697fcb0e825facd6dczozMjoiZ1VJTko5ZzhRSG0zZ2hrUWNhQ1ZId1VkMExjdzVIakUiOw==','2018-04-06 15:22:19','2018-04-06 15:22:19','f48a7993-5ccb-466e-8b97-14dd71f3f4d7');
+	(13,1,'3e821e6a6dd187678df0ce4697fcb0e825facd6dczozMjoiZ1VJTko5ZzhRSG0zZ2hrUWNhQ1ZId1VkMExjdzVIakUiOw==','2018-04-06 15:22:19','2018-04-06 15:22:19','f48a7993-5ccb-466e-8b97-14dd71f3f4d7'),
+	(14,1,'4e196249f165a572d92f97d984abad68208f0862czozMjoiMmxWV3VJQVNIRUxTbjlDVVhWejVYbkxtUW9UODhOc1EiOw==','2018-04-07 10:42:21','2018-04-07 10:42:21','2eeb034e-be7d-4434-ab8d-8fc8dbd662e7');
 
 /*!40000 ALTER TABLE `craft_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -3639,7 +3642,7 @@ VALUES
 	(46,200,108,'2018-03-07 10:06:05','2018-03-07 10:06:05','1c947149-150b-4e33-b1c8-e0fe7898bcb1'),
 	(47,203,109,'2018-03-07 10:06:05','2018-03-07 10:06:05','1915dd04-7ec3-41c6-8f02-cf4667b9c49b'),
 	(48,207,110,'2018-03-07 10:06:05','2018-03-07 10:06:05','a476115e-cb11-4572-8c2b-d18f9ddc5c00'),
-	(49,210,111,'2018-03-07 10:06:05','2018-03-07 10:06:05','36c9ee28-a0c8-4687-9da6-f4a9e38496fa'),
+	(49,210,251,'2018-03-07 10:06:05','2018-04-07 10:44:38','36c9ee28-a0c8-4687-9da6-f4a9e38496fa'),
 	(50,214,112,'2018-03-07 10:06:05','2018-03-07 10:06:05','80b66a35-4c14-4eb2-bb26-a0c84a441d68'),
 	(51,216,113,'2018-03-07 10:06:05','2018-03-07 10:06:05','f892964e-985e-4679-bb7d-8044a295bf79'),
 	(52,218,114,'2018-03-07 10:06:06','2018-03-07 10:06:06','26aee02d-713a-4b4c-be99-3eccba4d471b'),
@@ -4473,6 +4476,7 @@ CREATE TABLE `craft_supertablecontent_setmediaimage` (
   `locale` char(12) COLLATE utf8_unicode_ci NOT NULL,
   `field_ratio` text COLLATE utf8_unicode_ci,
   `field_heightrestriction` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `field_imgixParam` text COLLATE utf8_unicode_ci,
   `dateCreated` datetime NOT NULL,
   `dateUpdated` datetime NOT NULL,
   `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
@@ -5295,7 +5299,7 @@ LOCK TABLES `craft_users` WRITE;
 
 INSERT INTO `craft_users` (`id`, `username`, `photo`, `firstName`, `lastName`, `email`, `password`, `preferredLocale`, `weekStartDay`, `admin`, `client`, `locked`, `suspended`, `pending`, `archived`, `lastLoginDate`, `lastLoginAttemptIPAddress`, `invalidLoginWindowStart`, `invalidLoginCount`, `lastInvalidLoginDate`, `lockoutDate`, `verificationCode`, `verificationCodeIssuedDate`, `unverifiedEmail`, `passwordResetRequired`, `lastPasswordChangeDate`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'kittn',NULL,'','','hello@kittn.xyz','$2y$13$aEV9hEIztEmte9HtKEhP8OT0ZWQ3NCO7Y8AUVe8j7HWWMGChQF23G','de',1,1,0,0,0,0,0,'2018-04-06 15:22:19','::1',NULL,NULL,'2018-03-18 20:43:57',NULL,NULL,NULL,NULL,0,'2017-07-16 14:02:16','2017-07-04 21:45:00','2018-04-06 15:22:19','230071a9-e155-4c49-8381-8aca584cd137');
+	(1,'kittn',NULL,'','','hello@kittn.xyz','$2y$13$aEV9hEIztEmte9HtKEhP8OT0ZWQ3NCO7Y8AUVe8j7HWWMGChQF23G','de',1,1,0,0,0,0,0,'2018-04-07 10:42:21','::1',NULL,NULL,'2018-03-18 20:43:57',NULL,NULL,NULL,NULL,0,'2017-07-16 14:02:16','2017-07-04 21:45:00','2018-04-07 10:42:21','230071a9-e155-4c49-8381-8aca584cd137');
 
 /*!40000 ALTER TABLE `craft_users` ENABLE KEYS */;
 UNLOCK TABLES;

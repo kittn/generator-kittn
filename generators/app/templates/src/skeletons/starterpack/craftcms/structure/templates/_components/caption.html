@@ -1,0 +1,24 @@
+{#
+  caption
+  =================
+  Description
+
+  @param {string} name            = Classname
+#}
+
+{# Set Class #}
+{% set c = name is defined and name != '' ? name : 'c-caption' %}
+
+{# Module defaults #}
+{% set defaults = {
+  name: 'caption'
+} %}
+
+{% set m = m is defined ? defaults|merge(m) : defaults %}
+
+{# Build Element Block #}
+<div class="{{ c }}" itemprop="caption description">
+  {% if layout == 'align' %}<div class="{{ c ~ '__wrapper' }}">{% endif %}
+    {{ caption }}
+    {% if layout == 'align' %}</div>{% endif %}
+</div>

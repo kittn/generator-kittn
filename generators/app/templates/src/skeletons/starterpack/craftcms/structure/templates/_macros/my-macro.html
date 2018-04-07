@@ -82,6 +82,7 @@
     quality: 82,
     userPhoto: false,
     position: false,
+    imgixEnabled: craft.imager.imgixEnabled is defined and not null ? craft.imager.imgixEnabled : null,
     sizes: [
       { width: 1900 },
       { width: 1200 },
@@ -90,7 +91,13 @@
       { width: 320 },
       { width: 150 },
       { width: 30 }
-    ]
+    ],
+    imgix: {
+      fit: 'facearea',
+      crop: 'edges',
+      auto: 'format,compress',
+      imgixParams: {}
+    }
   } %}
 
   {# Merging Arrays  #}
@@ -109,13 +116,21 @@
         {% set focusPosition = photo.focalpoint is defined ? photo.focalpoint : '50% 50%' %}
         {% set globalModifier = { jpegQuality: options.quality, ratio: ratio|first/ratio|last , mode: 'crop', position: focusPosition } %}
 
+        {% if options.imgixEnabled == 1 %}
+          {% set globalModifier = globalModifier|merge(options.imgix) %}
+        {% endif %}
+
       {% else %}
         {% set globalModifier = { jpegQuality: options.quality } %}
         {% set focusPosition = photo.focalpoint is defined ? photo.focalpoint : '50% 50%' %}
+        {% if options.imgixEnabled == 1 %}
+          {% set globalModifier = globalModifier|merge(options.imgix) %}
+        {% endif %}
       {% endif %}
 
       {# Build the Image Set #}
       {% set photos = craft.imager.transformImage(photo, options.sizes, globalModifier) %}
+
 
       {# Output as <img> or Background #}
       {% if (options.background) %}

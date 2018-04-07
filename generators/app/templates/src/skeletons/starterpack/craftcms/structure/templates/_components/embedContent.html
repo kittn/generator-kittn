@@ -32,7 +32,7 @@
       {% endif %}
     </div>
     {% if data.caption %}
-      <div class="{{ c ~ '__caption' }}">{{ data.caption }}</div>
+      {% include '_components/caption.html' with { caption: data.caption, layout: 'align' } %}
     {% endif %}
   </div>
 {% endif %}

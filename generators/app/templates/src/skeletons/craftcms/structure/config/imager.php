@@ -14,6 +14,13 @@ return array(
 //  'awsSecretAccessKey' => 'YOURKEY',
 //  'awsBucket' => 'YOURBUCKET',
 //  'awsFolder' => 'YOURBUCKETFOLDER',
+//  'imgixEnabled' => true,
+//  'imgixDomains' => ['UID.imgix.net'],
+//  'imgixUseHttps' => true,
+//  'imgixSignKey' => 'SECRET',
+//  'imgixSourceIsWebProxy' => false,
+//  'imgixShardStrategy' => 'cycle',
+//  'imgixGetExternalImageDimensions' => true,
   'interlace' => true, // false, true ('line'), 'none', 'line', 'plane', 'partition'x
   'instanceReuseEnabled' => false,
   'allowUpscale' => false
