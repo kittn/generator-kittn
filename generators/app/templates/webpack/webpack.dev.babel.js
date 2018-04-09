@@ -8,7 +8,7 @@ import WriteFilePlugin from 'write-file-webpack-plugin'<% } %><% if ( projectusa
 import ExtractTextPlugin from 'extract-text-webpack-plugin'<% } %>
 import utils from './utils'
 const baseWebpackConfig = require('./webpack.config.base.babel.js')
-
+<% if ( projectusage !== 'webpackApp' ) { %>
 /*
  |--------------------------------------------------------------------------
  | Hot Middleware Client
@@ -17,7 +17,7 @@ const baseWebpackConfig = require('./webpack.config.base.babel.js')
 
 const hotClient =
 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true&overlay=true'
-
+<% } %>
 
 /*
  |--------------------------------------------------------------------------
@@ -25,9 +25,9 @@ const hotClient =
  | Admin Javascript and FrontEnd JavaScript
  |--------------------------------------------------------------------------
  */
-let entries = utils.entryPoints
+let entries = utils.entryPoints<% if ( projectusage !== 'webpackApp' ) { %>
 Object.keys(entries).forEach((entry) => entries[entry] = [hotClient].concat(entries[entry]))<% if ( projectusage === 'webpackApp' ) { %>
-
+<% } %>
 const HOST = 'localhost'
 const PORT = utils.kittnConf.browsersync.port<% } %>
 
@@ -50,7 +50,11 @@ const devWebpackConfig = merge(baseWebpackConfig.default, {<% if (projectusage !
     compress: true,
     host: HOST,
     port: PORT,
-    proxy: {},
+    proxy: [
+      {
+        path: /\/(?!__webpack_hmr).+/
+      }
+    ],
     quiet: true,
     stats: { colors: true },
     contentBase: path.join(__dirname, `../${utils.kittnConf.src.base}`),
