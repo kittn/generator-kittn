@@ -3,7 +3,7 @@ const message = require('../helpers/message')
 const when = require('../helpers/when')
 const whenExtra = require('../helpers/whenExtra')
 
-const generalPrompts = (context) => {
+const generalPrompts = context => {
   return [
     {
       type: 'input',
@@ -14,18 +14,27 @@ const generalPrompts = (context) => {
         defaultValue: false
       }),
       default () {
-        return process.cwd().replace('\\', '/').split('/').pop(-1).toLowerCase().replace(/[^a-zA-Z0-9]/g, '')
+        return process
+          .cwd()
+          .replace('\\', '/')
+          .split('/')
+          .pop(-1)
+          .toLowerCase()
+          .replace(/[^a-zA-Z0-9]/g, '')
       },
       validate (input) {
         // Do async stuff
-        if (input.indexOf(' ') >= 0 || /[~`!#$%^&*+=[\]\\';,/{}|\\":<>?]/g.test(input)) {
+        if (
+          input.indexOf(' ') >= 0 ||
+          /[~`!#$%^&*+=[\]\\';,/{}|\\":<>?]/g.test(input)
+        ) {
           // Pass the return value in the done callback
           return chalk`{red
 No whitespaces or special-chars allowed!}`
         }
         return true
       },
-      store: false
+      store: true
     },
     {
       type: 'list',
@@ -61,7 +70,7 @@ No whitespaces or special-chars allowed!}`
           value: 'wordpressCB'
         }
       ],
-      store: false
+      store: true
     },
     {
       when: when('projectusage', 'html'),
@@ -69,7 +78,8 @@ No whitespaces or special-chars allowed!}`
       name: 'projectstructure',
       message: message({
         headline: 'HTML Compiler',
-        description: 'If you want to generate your HTML with Twig or do not use a compiler \n\xa0 (files like html, php, txt, etc. are only copied when the process is running)?',
+        description:
+          'If you want to generate your HTML with Twig or do not use a compiler \n\xa0 (files like html, php, txt, etc. are only copied when the process is running)?',
         defaultValue: false
       }),
       choices: [
@@ -83,11 +93,15 @@ No whitespaces or special-chars allowed!}`
         }
       ],
       default: 'twig',
-      store: false
+      store: true
     },
     {
       when: function (answers) {
-        return answers.projectusage === 'craft' || answers.projectusage === 'wordpress' || answers.projectusage === 'html'
+        return (
+          answers.projectusage === 'craft' ||
+          answers.projectusage === 'wordpress' ||
+          answers.projectusage === 'html'
+        )
       },
       type: 'list',
       name: 'projectnormalize',
@@ -109,24 +123,34 @@ No whitespaces or special-chars allowed!}`
           value: false
         }
       ],
-      store: false
+      store: true
     },
     {
       when: function (answers) {
-        return answers.projectusage === 'craft' || answers.projectusage === 'wordpress' || answers.projectusage === 'html'
+        return (
+          answers.projectusage === 'craft' ||
+          answers.projectusage === 'wordpress' ||
+          answers.projectusage === 'html'
+        )
       },
       type: 'confirm',
       name: 'projectcontainerqueries',
       message: message({
         headline: 'Use Container-Queries',
-        description: 'Do you want to use container-queries (see https://github.com/ausi/cq-prolyfill)?'
+        description:
+          'Do you want to use container-queries (see https://github.com/ausi/cq-prolyfill)?'
       }),
       default: false,
-      store: false
+      store: true
     },
     {
       when: function (answers) {
-        return answers.projectusage === 'craft' || answers.projectusage === 'wordpress' || answers.projectusage === 'html' || answers.projectusage === 'webpackApp'
+        return (
+          answers.projectusage === 'craft' ||
+          answers.projectusage === 'wordpress' ||
+          answers.projectusage === 'html' ||
+          answers.projectusage === 'webpackApp'
+        )
       },
       type: 'list',
       name: 'projectcssstructure',
@@ -148,25 +172,29 @@ No whitespaces or special-chars allowed!}`
           value: 'sassITCSS'
         }
       ],
-      store: false
+      store: true
     },
     {
       when: function (answers) {
-        return answers.projectusage.substring(0, 5) === 'craft' || answers.projectusage.substring(0, 4) === 'word'
+        return (
+          answers.projectusage.substring(0, 5) === 'craft' ||
+          answers.projectusage.substring(0, 4) === 'word'
+        )
       },
       type: 'confirm',
       name: 'projectcredential',
       message: message({
         headline: 'Local Environment Credentials',
-        description: 'Want to enter your URL and Database Credentials for your local Environment?',
+        description:
+          'Want to enter your URL and Database Credentials for your local Environment?',
         defaultValue: false
       }),
       default: true,
-      store: false
+      store: true
     },
     {
       when: function (answers) {
-        return answers.projectusage.substring(0, 5) === 'craft'
+        return answers.projectusage.substring(0, 5) === 'craft';
       },
       type: 'input',
       name: 'fileUser',
@@ -175,11 +203,11 @@ No whitespaces or special-chars allowed!}`
         description: 'Needed for the Craftscripts.',
         defaultValue: false
       }),
-      store: false
+      store: true
     },
     {
       when: function (answers) {
-        return answers.projectusage.substring(0, 5) === 'craft'
+        return answers.projectusage.substring(0, 5) === 'craft';
       },
       type: 'input',
       name: 'fileGroup',
@@ -188,7 +216,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Needed for the Craftscripts.',
         defaultValue: false
       }),
-      store: false
+      store: true
     },
     {
       when: when('projectcredential', true),
@@ -199,8 +227,10 @@ No whitespaces or special-chars allowed!}`
         description: 'Domain without HTTP or HTTPS',
         defaultValue: false
       }),
-      store: false,
-      default: function (props) { return props.projectname.toLowerCase() + '.local' }
+      store: true,
+      default: function (props) {
+        return props.projectname.toLowerCase() + '.local';
+      }
     },
     {
       when: when('projectcredential', true),
@@ -211,7 +241,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Database Server Host without ending slash',
         defaultValue: false
       }),
-      store: false,
+      store: true,
       default: 'localhost'
     },
     {
@@ -223,7 +253,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Database User',
         defaultValue: false
       }),
-      store: false,
+      store: true,
       default: 'root'
     },
     {
@@ -235,7 +265,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Database Password',
         defaultValue: false
       }),
-      store: false,
+      store: true,
       default: 'root'
     },
     {
@@ -247,8 +277,10 @@ No whitespaces or special-chars allowed!}`
         description: 'Database Name',
         defaultValue: false
       }),
-      store: false,
-      default: function (props) { return props.projectname.toLowerCase() }
+      store: true,
+      default: function (props) {
+        return props.projectname.toLowerCase()
+      }
     },
     {
       when: whenExtra('projectcredential', true, context.commands.mysql),
@@ -260,7 +292,7 @@ No whitespaces or special-chars allowed!}`
         defaultValue: false
       }),
       default: true,
-      store: false
+      store: true
     },
     {
       when: when('credentialdbopen', true),
@@ -271,13 +303,13 @@ No whitespaces or special-chars allowed!}`
         description: 'Do you use MAMP?',
         defaultValue: false
       }),
-      store: false,
+      store: true,
       default: true
     },
     {
       type: 'input',
       when: function (answers) {
-        return answers.projectusage !== 'webpackApp'
+        return answers.projectusage !== 'webpackApp';
       },
       name: 'projectcssfilename',
       message: message({
@@ -286,7 +318,7 @@ No whitespaces or special-chars allowed!}`
         defaultValue: 'Default: style'
       }),
       default: 'style',
-      store: false
+      store: true
     },
     {
       type: 'list',
@@ -305,7 +337,7 @@ No whitespaces or special-chars allowed!}`
           value: 'em'
         }
       ],
-      store: false
+      store: true
     },
     {
       type: 'input',
@@ -325,7 +357,7 @@ No whitespaces or special-chars allowed!}`
         }
         return true
       },
-      store: false
+      store: true
     },
     {
       type: 'list',
@@ -349,32 +381,38 @@ No whitespaces or special-chars allowed!}`
         }
       ],
       default: true,
-      store: false
+      store: true
     },
     {
       type: 'confirm',
       name: 'projectprettier',
       message: message({
         headline: 'Add Prettier',
-        description: 'Do you want to use Prettier for automated Code-Formatting? (See prettier.io)',
+        description:
+          'Do you want to use Prettier for automated Code-Formatting? (See prettier.io)',
         defaultValue: true
       }),
       default: true,
-      store: false
+      store: true
     },
     {
       when: function (answers) {
-        return answers.projectusage === 'craft' || answers.projectusage.substring(0, 4) === 'word' || answers.projectusage === 'html'
+        return (
+          answers.projectusage === 'craft' ||
+          answers.projectusage.substring(0, 4) === 'word' ||
+          answers.projectusage === 'html'
+        )
       },
       type: 'confirm',
       name: 'projectcritical',
       message: message({
         headline: 'CriticalCSS',
-        description: 'Do you wan\'t to automatically create CriticalCSS (Above the fold)?',
+        description:
+          "Do you wan't to automatically create CriticalCSS (Above the fold)?",
         defaultValue: false
       }),
       default: false,
-      store: false
+      store: true
     },
     {
       when: when('projectcritical', true),
@@ -382,7 +420,8 @@ No whitespaces or special-chars allowed!}`
       name: 'projectcriticalinline',
       message: message({
         headline: 'Inline CriticalCSS',
-        description: 'Shall the CSS be injected in the index.html-File, or as separate CSS-File?'
+        description:
+          'Shall the CSS be injected in the index.html-File, or as separate CSS-File?'
       }),
       choices: [
         {
@@ -394,12 +433,12 @@ No whitespaces or special-chars allowed!}`
           value: 'separate'
         }
       ],
-      store: false
+      store: true
     },
     {
       type: 'list',
       when: function (answers) {
-        return answers.projectusage !== 'webpackApp'
+        return answers.projectusage !== 'webpackApp';
       },
       name: 'projectjquery',
       message: message({
@@ -421,12 +460,12 @@ No whitespaces or special-chars allowed!}`
         }
       ],
       default: false,
-      store: false
+      store: true
     },
     {
       type: 'list',
       when: function (answers) {
-        return answers.projectusage !== 'webpackApp'
+        return answers.projectusage !== 'webpackApp';
       },
       name: 'projectjsframework',
       message: message({
@@ -448,7 +487,7 @@ No whitespaces or special-chars allowed!}`
         }
       ],
       default: false,
-      store: false
+      store: true
     },
     {
       when: when('projectjsframework', 'vue'),
@@ -460,7 +499,7 @@ No whitespaces or special-chars allowed!}`
         defaultValue: true
       }),
       default: true,
-      store: false
+      store: true
     },
     {
       when: when('projectjsframework', 'vue'),
@@ -468,7 +507,8 @@ No whitespaces or special-chars allowed!}`
       name: 'projectvueversion',
       message: message({
         headline: 'Vue.js Runtime',
-        description: 'Vue Version. When you only use .vue Files Runtime is perfect,\n\xa0 if you need parsing from .html Files you need the Standalone Version.'
+        description:
+          'Vue Version. When you only use .vue Files Runtime is perfect,\n\xa0 if you need parsing from .html Files you need the Standalone Version.'
       }),
       choices: [
         {
@@ -481,7 +521,7 @@ No whitespaces or special-chars allowed!}`
         }
       ],
       default: 'runtime',
-      store: false
+      store: true
     },
     {
       type: 'confirm',
@@ -492,25 +532,26 @@ No whitespaces or special-chars allowed!}`
         defaultValue: true
       }),
       default: false,
-      store: false
+      store: true
     },
     {
       when: function (answers) {
-        return answers.projectusage !== 'webpackApp'
+        return answers.projectusage !== 'webpackApp';
       },
       type: 'confirm',
       name: 'projectastrum',
       message: message({
         headline: 'Astrum Pattern Lib',
-        description: 'Would you like to build up your Pattern Library with Astrum?',
+        description:
+          'Would you like to build up your Pattern Library with Astrum?',
         defaultValue: false
       }),
       default: false,
-      store: false
+      store: true
     },
     {
       when: function (answers) {
-        return answers.projectusage !== 'webpackApp'
+        return answers.projectusage !== 'webpackApp';
       },
       type: 'confirm',
       name: 'projectsassdocs',
@@ -520,7 +561,7 @@ No whitespaces or special-chars allowed!}`
         defaultValue: false
       }),
       default: false,
-      store: false
+      store: true
     },
     {
       type: 'input',
@@ -531,7 +572,7 @@ No whitespaces or special-chars allowed!}`
         defaultValue: false
       }),
       default: '0.0.1',
-      store: false
+      store: true
     },
     {
       type: 'input',
@@ -550,7 +591,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Mailadress from the Author',
         defaultValue: false
       }),
-      store: false
+      store: true
     },
     {
       type: 'input',
@@ -560,9 +601,9 @@ No whitespaces or special-chars allowed!}`
         description: 'Web-Adress for the Repository',
         defaultValue: false
       }),
-      store: false
+      store: true
     }
   ]
-}
+};
 
 module.exports = generalPrompts

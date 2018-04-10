@@ -1,4 +1,4 @@
-const base = (context) => {
+const base = context => {
   return {
     files: [
       {
@@ -61,16 +61,10 @@ const base = (context) => {
         simplecopy: true
       },
       {
-        conditions: {
-          projectprettier: true
-        },
         src: '_prettierignore',
         dest: '.prettierignore'
       },
       {
-        conditions: {
-          projectprettier: true
-        },
         src: 'prettier.config.js',
         dest: 'prettier.config.js',
         simplecopy: true
@@ -119,6 +113,6 @@ const base = (context) => {
       }
     ]
   }
-}
+};
 
 module.exports = base

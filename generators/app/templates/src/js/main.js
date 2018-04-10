@@ -13,7 +13,9 @@ import lazybgset from 'lazysizes/plugins/bgset/ls.bgset' // eslint-disable-line<
 import '@babel/polyfill'
 import 'svgxuse' // eslint-disable-line
 import './partial/kittnad' // Small Advertising for Kittn :)
-import './partial/modernizer-loader'
+if (window.HTMLPictureElement) {
+  import('lazysizes/plugins/respimg/ls.respimg.js' /* webpackChunkName: "picturePolyfill" */)
+}
 import './partial/detect-browser'
 import './partial/disable-pointerevents'<% if (projectusage === 'webpackApp' || (typeof projectjsframework !== 'undefined' && projectjsframework === 'vue')) { %>
 import App from './app'<%}%><% if (projectusage === 'webpackApp' || (typeof projectvueplugins !== 'undefined' && projectvueplugins === true))  { %>
