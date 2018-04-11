@@ -11,7 +11,7 @@ import webpack from 'webpack'
   import CleanWebpackPlugin from 'clean-webpack-plugin'
 <% } %>
 
-<% if ( projectusage === 'webpackApp' || projectusage === 'html' || projectjsframework === 'vue' ) { %>
+<% if ( projectusage === 'webpackApp' || projectusage === 'html' || projectjsframework === 'vue' || projectusage === 'craft' || projectusage === 'craftCB' ) { %>
   import HtmlWebpackPlugin from 'html-webpack-plugin'
   <% if ( projectusage === 'html' && projectstructure === 'uncompiled' ) { %>
     import WriteFilePlugin from 'write-file-webpack-plugin'

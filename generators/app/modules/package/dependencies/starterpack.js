@@ -12,6 +12,19 @@ function addStarterpackDependencies (files = {}, context) {
       }
     })
   }
+  // TailwindCSS
+  if (
+    context.props.projecttailwind === 'hybrid' ||
+    context.props.projecttailwind === 'yes'
+  ) {
+    extend(files.pkg, {
+      devDependencies: {
+        'tailwindcss': '^0.5.2',
+        'gulp-purgecss': '^0.21.0'
+      }
+    })
+  }
+
 }
 
 module.exports = addStarterpackDependencies

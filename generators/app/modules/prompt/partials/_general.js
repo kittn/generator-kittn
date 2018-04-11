@@ -34,7 +34,7 @@ No whitespaces or special-chars allowed!}`
         }
         return true
       },
-      store: true
+      store: false
     },
     {
       type: 'list',
@@ -181,6 +181,31 @@ No whitespaces or special-chars allowed!}`
           answers.projectusage.substring(0, 4) === 'word'
         )
       },
+      type: 'list',
+      name: 'projecttailwind',
+      message: message({
+        headline: 'Tailwind CSS',
+        description: 'Do you want to use TailwindCSS?'
+      }),
+      choices: [
+        {
+          name: 'No',
+          value: 'no'
+        },
+        {
+          name: 'Yes (in a Hybrid Mode with Sass)',
+          value: 'hybrid'
+        }
+      ],
+      store: true
+    },
+    {
+      when: function (answers) {
+        return (
+          answers.projectusage.substring(0, 5) === 'craft' ||
+          answers.projectusage.substring(0, 4) === 'word'
+        )
+      },
       type: 'confirm',
       name: 'projectcredential',
       message: message({
@@ -194,7 +219,7 @@ No whitespaces or special-chars allowed!}`
     },
     {
       when: function (answers) {
-        return answers.projectusage.substring(0, 5) === 'craft';
+        return answers.projectusage.substring(0, 5) === 'craft'
       },
       type: 'input',
       name: 'fileUser',
@@ -207,7 +232,7 @@ No whitespaces or special-chars allowed!}`
     },
     {
       when: function (answers) {
-        return answers.projectusage.substring(0, 5) === 'craft';
+        return answers.projectusage.substring(0, 5) === 'craft'
       },
       type: 'input',
       name: 'fileGroup',
@@ -227,9 +252,9 @@ No whitespaces or special-chars allowed!}`
         description: 'Domain without HTTP or HTTPS',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: function (props) {
-        return props.projectname.toLowerCase() + '.local';
+        return props.projectname.toLowerCase() + '.local'
       }
     },
     {
@@ -241,7 +266,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Database Server Host without ending slash',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: 'localhost'
     },
     {
@@ -253,7 +278,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Database User',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: 'root'
     },
     {
@@ -265,7 +290,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Database Password',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: 'root'
     },
     {
@@ -277,7 +302,7 @@ No whitespaces or special-chars allowed!}`
         description: 'Database Name',
         defaultValue: false
       }),
-      store: true,
+      store: false,
       default: function (props) {
         return props.projectname.toLowerCase()
       }
@@ -390,9 +415,9 @@ No whitespaces or special-chars allowed!}`
         headline: 'Add Prettier',
         description:
           'Do you want to use Prettier for automated Code-Formatting? (See prettier.io)',
-        defaultValue: true
+        defaultValue: false
       }),
-      default: true,
+      default: false,
       store: true
     },
     {
@@ -438,7 +463,7 @@ No whitespaces or special-chars allowed!}`
     {
       type: 'list',
       when: function (answers) {
-        return answers.projectusage !== 'webpackApp';
+        return answers.projectusage !== 'webpackApp'
       },
       name: 'projectjquery',
       message: message({
@@ -465,7 +490,7 @@ No whitespaces or special-chars allowed!}`
     {
       type: 'list',
       when: function (answers) {
-        return answers.projectusage !== 'webpackApp';
+        return answers.projectusage !== 'webpackApp'
       },
       name: 'projectjsframework',
       message: message({
@@ -536,7 +561,7 @@ No whitespaces or special-chars allowed!}`
     },
     {
       when: function (answers) {
-        return answers.projectusage !== 'webpackApp';
+        return answers.projectusage !== 'webpackApp'
       },
       type: 'confirm',
       name: 'projectastrum',
@@ -551,7 +576,7 @@ No whitespaces or special-chars allowed!}`
     },
     {
       when: function (answers) {
-        return answers.projectusage !== 'webpackApp';
+        return answers.projectusage !== 'webpackApp'
       },
       type: 'confirm',
       name: 'projectsassdocs',

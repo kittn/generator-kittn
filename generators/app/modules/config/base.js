@@ -10,7 +10,7 @@ function addBaseCofig (files = {}, context) {
       compiler: false
     },
     browsersync: {
-      openbrowser: true,
+      openbrowser: false,
       port: 3000
     },
     modernizr: {

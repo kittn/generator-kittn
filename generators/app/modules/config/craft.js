@@ -25,6 +25,11 @@ function addCraftCofig (files = {}, context) {
       'src': {
         'plugins': 'src/craftplugins/',
         'templates': 'src/structure/templates/'
+      },
+      'minify': {
+        'purgeCSS': [
+          'dist/craft/templates/**/*.{html,twig}'
+        ]
       }
     })
   }

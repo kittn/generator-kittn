@@ -55,6 +55,14 @@
     </FilesMatch>
 </IfModule>
 
+# Allow cross-origin access for REST
+<IfModule mod_headers.c>
+    Header add Content-Type "application/json"
+    Header add Access-Control-Allow-Methods "GET,HEAD,POST,PUT,DELETE,OPTIONS"
+    Header add Access-Control-Allow-Headers "Auth-Token,Content-Type"
+    Header add Access-Control-Allow-Origin "*"
+</IfModule>
+
 # ----------------------------------------------------------------------
 # | Cross-origin resource timing                                       |
 # ----------------------------------------------------------------------

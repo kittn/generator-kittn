@@ -72,6 +72,22 @@ const base = context => {
       {
         src: 'README.md',
         dest: 'README.md'
+      },
+      {
+        conditions: {
+          projecttailwind: 'hybrid'
+        },
+        src: 'purgecss.pattern.js',
+        dest: 'purgecss.pattern.js',
+        simplecopy: true
+      },
+      {
+        conditions: {
+          projecttailwind: 'hybrid'
+        },
+        src: 'tailwind.js',
+        dest: 'tailwind.js',
+        simplecopy: true
       }
     ],
     folders: [
@@ -110,9 +126,15 @@ const base = context => {
       {
         src: 'src/fonts',
         dest: 'src/fonts/'
+      },{
+        conditions: {
+          projecttailwind: 'hybrid'
+        },
+        src: 'tailwind',
+        dest: 'tailwind/'
       }
     ]
   }
-};
+}
 
 module.exports = base

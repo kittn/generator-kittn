@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.6.35)
 # Datenbank: kittncb
-# Erstellt am: 2018-04-07 10:46:23 +0000
+# Erstellt am: 2018-04-11 23:05:17 +0000
 # ************************************************************
 
 
@@ -1916,7 +1916,7 @@ LOCK TABLES `craft_info` WRITE;
 
 INSERT INTO `craft_info` (`id`, `version`, `schemaVersion`, `edition`, `siteName`, `siteUrl`, `timezone`, `on`, `maintenance`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'2.6.3014','2.6.13',2,'kittn','http://ktest10.local','UTC',1,0,'2017-07-04 21:44:58','2018-04-06 15:21:40','93fc1702-dfe7-473a-a405-2d9d312ddd7d');
+	(1,'2.6.3015','2.6.14',2,'kittn','http://ktest10.local','UTC',1,0,'2017-07-04 21:44:58','2018-04-11 23:04:35','93fc1702-dfe7-473a-a405-2d9d312ddd7d');
 
 /*!40000 ALTER TABLE `craft_info` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2106,7 +2106,8 @@ VALUES
 	(75,14,'m150512_105600_AmNav_addOptionalClass','2017-07-04 22:00:16','2017-07-04 22:00:16','2017-07-04 22:00:16','9ea4a7ca-63ef-41c0-8933-a9ca47f59734'),
 	(76,NULL,'m171107_000000_assign_group_permissions','2018-03-07 09:33:05','2018-03-07 09:33:05','2018-03-07 09:33:05','a09af626-bd01-445c-8fb3-fd88084b926f'),
 	(77,NULL,'m171117_000001_templatecache_index_tune','2018-03-07 09:33:05','2018-03-07 09:33:05','2018-03-07 09:33:05','a935d6a9-a30c-46c0-8953-31e1ef123db0'),
-	(78,NULL,'m171204_000001_templatecache_index_tune_deux','2018-03-07 09:33:05','2018-03-07 09:33:05','2018-03-07 09:33:05','bf3b22bf-2660-42da-95b1-7af324e9da14');
+	(78,NULL,'m171204_000001_templatecache_index_tune_deux','2018-03-07 09:33:05','2018-03-07 09:33:05','2018-03-07 09:33:05','bf3b22bf-2660-42da-95b1-7af324e9da14'),
+	(79,NULL,'m180406_000000_pro_upgrade','2018-04-11 23:04:35','2018-04-11 23:04:35','2018-04-11 23:04:35','3c2b2add-5a2e-4a98-8786-39da1c038109');
 
 /*!40000 ALTER TABLE `craft_migrations` ENABLE KEYS */;
 UNLOCK TABLES;

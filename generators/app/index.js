@@ -189,7 +189,7 @@ module.exports = class extends Generator {
   install () {
     if (!this.devMode) {
       if (this.commands.yarn) {
-        this.yarnInstall().then(() => {})
+        this.yarnInstall()
       } else {
         this.npmInstall()
       }
@@ -197,8 +197,8 @@ module.exports = class extends Generator {
   }
 
   end () {
-    // Prettify Source Files
-    this.spawnCommand('npm', ['run', 'prettify'])
+    // Prettify Source Files - make it optional
+    this.spawnCommand('npm', ['run'])
 
     clear()
     let goodbye = chalk`

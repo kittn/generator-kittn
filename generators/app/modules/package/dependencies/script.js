@@ -17,7 +17,7 @@ function addScriptDependencies (files = {}, context) {
       'babel-loader': '^8.0.0-beta.0',
       'babel-eslint': '^8.2.1',
       'clean-webpack-plugin': '^0.1.19',
-      eslint: '^4.19.1',
+      'eslint': '^4.19.1',
       'eslint-config-standard': '^11.0.0',
       'eslint-plugin-promise': '^3.7.0',
       'eslint-plugin-standard': '^3.0.1',
@@ -32,7 +32,7 @@ function addScriptDependencies (files = {}, context) {
       'friendly-errors-webpack-plugin': '^1.6.1',
       'html-webpack-plugin': '^3.1.0',
       'optimize-css-assets-webpack-plugin': '^4.0.0',
-      webpack: '^4.4.1',
+      'webpack': '^4.4.1',
       'webpack-cli': '^2.0.13',
       'webpack-bundle-analyzer': '^2.8.2',
       'webpack-config-utils': '^2.3.0',
@@ -41,9 +41,9 @@ function addScriptDependencies (files = {}, context) {
       'webpack-merge': '^4.1.2'
     },
     dependencies: {
-      bowser: '^1.9.3',
+      'bowser': '^1.9.3',
       'pyrsmk-toast': '^2.2.0',
-      svgxuse: '^1.2.6'
+      'svgxuse': '^1.2.6'
     }
   })
 

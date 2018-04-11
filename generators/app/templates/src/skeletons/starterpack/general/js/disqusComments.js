@@ -2,7 +2,7 @@
  * Disqus Loader
  * @param element (string) =
  */
-export default function(element) {
+export default function (element) {
   const trigger = document.querySelector(element)
 
   if (trigger !== null) {
