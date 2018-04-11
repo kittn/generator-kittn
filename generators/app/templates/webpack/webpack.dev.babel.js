@@ -49,6 +49,7 @@ const devWebpackConfig = merge(baseWebpackConfig.default, {
   devtool: 'eval-source-map',
   entry: utils.removeEmpty(entries),
   output: {
+    publicPath: '/',
     filename: utils.assetsPath('js/[name].js'),
     chunkFilename: utils.assetsPath('js/chunks/[name].js')
   },
