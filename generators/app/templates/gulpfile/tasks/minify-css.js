@@ -3,12 +3,12 @@
  * @description Compress CSS Files in distribution
  */
 
-import kc from '../../config.json'<% if (projecttailwind == 'hybrid') { %>
+import kc from '../../config.json'<% if (typeof projecttailwind !== 'undefined' && projecttailwind === 'hybrid') { %>
 import purgeConfig from '../../purgecss.pattern'<% } %>
 import gulp from 'gulp'
 import gulpLoadPlugins from 'gulp-load-plugins'
 
-const $ = gulpLoadPlugins()<% if (projecttailwind == 'hybrid') { %>
+const $ = gulpLoadPlugins()<% if (typeof projecttailwind !== 'undefined' && projecttailwind === 'hybrid') { %>
 
 class TailwindExtractor {
   static extract(content) {
@@ -18,7 +18,7 @@ class TailwindExtractor {
 
 const minifyCssTask = () => {
   return gulp
-    .src(kc.dist.css + '*.css')<% if (projecttailwind == 'hybrid') { %>
+    .src(kc.dist.css + '*.css')<% if (typeof projecttailwind !== 'undefined' && projecttailwind === 'hybrid') { %>
     .pipe($.purgecss({
       extractors: [{
         extractor: TailwindExtractor,

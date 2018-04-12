@@ -197,9 +197,6 @@ module.exports = class extends Generator {
   }
 
   end () {
-    // Prettify Source Files - make it optional
-    this.spawnCommand('npm', ['run'])
-
     clear()
     let goodbye = chalk`
 

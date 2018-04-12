@@ -3,10 +3,10 @@ const extend = require('deep-extend')
 function addBaseDependencies (files = {}, context) {
   extend(files.pkg, {
     scripts: {
-      'build': 'cross-env NODE_ENV=production npm run subtask:bundlewebpack',
-      'deploy': 'npm run build',
-      'dev': 'cross-env NODE_ENV=development gulp',
-      'init': 'npm run build'
+      build: 'cross-env NODE_ENV=production npm run subtask:bundlewebpack',
+      deploy: 'npm run build',
+      dev: 'cross-env NODE_ENV=development gulp',
+      init: 'npm run build'
     },
     devDependencies: {
       '@babel/cli': '^7.0.0-beta.44',
@@ -19,17 +19,16 @@ function addBaseDependencies (files = {}, context) {
     extend(files.pkg, {
       scripts: {
         'subtask:buildgulp': 'gulp build --env=production',
-        'assets': 'gulp copy:assets --env=init',
-        'build': 'cross-env NODE_ENV=production npm run subtask:buildgulp && cross-env NODE_ENV=production npm run subtask:bundlewebpack',
-        'deploy': 'npm run build',
-        'dev': 'cross-env NODE_ENV=development gulp',
-        'favicon': 'gulp build:favicon --env=init',
-        'htmlassets': 'gulp copy:contentimages --env=init',
-        'init': 'cross-env NODE_ENV=production gulp init --env=init && cross-env NODE_ENV=production  npm run subtask:bundlewebpack',
-        'template': 'gulp compiler:html --env=init',
-        'uiimages': 'gulp rebuild:images --env=init',
-        'fonts': 'gulp copy:fonts --env=init',
-        'prettify': 'prettier prettier --loglevel=warn --write "{webpack,src}/**/*.{js,scss}"'
+        assets: 'gulp copy:assets --env=init',
+        build: 'cross-env NODE_ENV=production npm run subtask:buildgulp && cross-env NODE_ENV=production npm run subtask:bundlewebpack',
+        deploy: 'npm run build',
+        dev: 'cross-env NODE_ENV=development gulp',
+        favicon: 'gulp build:favicon --env=init',
+        htmlassets: 'gulp copy:contentimages --env=init',
+        init: 'cross-env NODE_ENV=production gulp init --env=init && cross-env NODE_ENV=production  npm run subtask:bundlewebpack',
+        template: 'gulp compiler:html --env=init',
+        uiimages: 'gulp rebuild:images --env=init',
+        fonts: 'gulp copy:fonts --env=init'
       },
       devDependencies: {
         'ansi-html': '^0.0.7',
@@ -55,7 +54,17 @@ function addBaseDependencies (files = {}, context) {
         'imagemin-pngquant': '^5.1.0',
         'imagemin-svgo': '^6.0.0',
         'require-dir': '^0.3.2',
-        'run-sequence': '^2.2.1',
+        'run-sequence': '^2.2.1'
+      }
+    })
+  }
+
+  if (context.props.projectprettier === true) {
+    extend(files.pkg, {
+      scripts: {
+        prettify: 'prettier prettier --loglevel=warn --write "{webpack,src}/**/*.{js,scss}"'
+      },
+      devDependencies: {
         'eslint-config-prettier': '^2.9.0',
         'eslint-plugin-prettier': '^2.6.0',
         'prettier': '^1.11.1'

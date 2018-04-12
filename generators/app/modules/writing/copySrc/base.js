@@ -61,10 +61,16 @@ const base = context => {
         simplecopy: true
       },
       {
+        conditions: {
+          projectprettier: true
+        },
         src: '_prettierignore',
         dest: '.prettierignore'
       },
       {
+        conditions: {
+          projectprettier: true
+        },
         src: 'prettier.config.js',
         dest: 'prettier.config.js',
         simplecopy: true
@@ -126,7 +132,8 @@ const base = context => {
       {
         src: 'src/fonts',
         dest: 'src/fonts/'
-      },{
+      },
+      {
         conditions: {
           projecttailwind: 'hybrid'
         },
@@ -135,6 +142,6 @@ const base = context => {
       }
     ]
   }
-}
+};
 
 module.exports = base

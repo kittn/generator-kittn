@@ -135,10 +135,10 @@ function addBaseCofig (files = {}, context) {
     typeof context.props.projectcredential !== 'undefined' &&
     context.props.projectcredential
   ) {
-    let prefix = '';
+    let prefix = ''
 
     if (!context.props.credentialdomain.startsWith('http')) {
-      prefix = 'http://';
+      prefix = 'http://'
     }
     extend(files.pkg, {
       browsersync: {

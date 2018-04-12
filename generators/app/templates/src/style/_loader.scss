@@ -16,8 +16,8 @@
 // Generators
 @import '../framework/generators/_import-generators'; // stylelint-disable-line
 // Partials
-<% if (typeof projectnormalize != 'undefined' && projectnormalize == false) { %>// <% } %>@import '../framework/partials/normalize';
-<% if (projecttailwind != 'undefined' && projecttailwind == 'hybrid') { %>
+<% if (typeof projectnormalize !== 'undefined' && projectnormalize === false) { %>// <% } %>@import '../framework/partials/normalize';
+<% if (typeof projecttailwind !== 'undefined' && projecttailwind === 'hybrid') { %>
 @tailwind components;
 @tailwind utilities;<% } %>
 // @import '../framework/partials/tables';
