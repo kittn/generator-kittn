@@ -304,16 +304,25 @@ const transform = {
     'number-no-trailing-zeros': true,<% if (projectstylelint === 'strict') { %>
 
     'order/order': [
+      'custom-properties',
       'dollar-variables',
       'at-variables',
-      // @include rule
       {
         type: 'at-rule',
-        name: 'include'
+        name: 'include',
+        hasBlock: false
       },
       'declarations',
-      'custom-properties',
-      'less-mixins',
+      {
+        type: 'at-rule',
+        name: 'include',
+        hasBlock: true
+      },
+      {
+        type: 'at-rule',
+        name: 'media',
+        hasBlock: true
+      },
       'rules',
       'at-rules'
     ],
