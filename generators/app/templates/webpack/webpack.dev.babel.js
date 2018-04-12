@@ -1,14 +1,21 @@
-const merge = require('webpack-merge')
-const path = require('path')<% if ( projectusage === 'webpackApp' ) { %>
-const portfinder = require('portfinder')<% } %>
+
 import webpack from 'webpack'
-import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'<% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp' ) { %>
-//import WriteFilePlugin from 'write-file-webpack-plugin'<% } %><% if (projectusage === 'craft' || projectusage === 'craftCB') { %>
-import WriteFilePlugin from 'write-file-webpack-plugin'<% } %><% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
-import ExtractTextPlugin from 'extract-text-webpack-plugin'<% } %>
+import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
+<% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp' ) { %>
+  // import WriteFilePlugin from 'write-file-webpack-plugin'
+<% } %>
+<% if (projectusage === 'craft' || projectusage === 'craftCB') { %>
+  import WriteFilePlugin from 'write-file-webpack-plugin'
+<% } %>
 import utils from './utils'
 const baseWebpackConfig = require('./webpack.config.base.babel.js')
+const merge = require('webpack-merge')
+<% if ( projectusage === 'webpackApp' ) { %>
+  const path = require('path')
+  const portfinder = require('portfinder')
+<% } %>
 
+<% if ( projectusage !== 'webpackApp' ) { %>
 /*
  |--------------------------------------------------------------------------
  | Hot Middleware Client
@@ -17,7 +24,7 @@ const baseWebpackConfig = require('./webpack.config.base.babel.js')
 
 const hotClient =
 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true&overlay=true'
-
+<% } %>
 
 /*
  |--------------------------------------------------------------------------
@@ -26,56 +33,71 @@ const hotClient =
  |--------------------------------------------------------------------------
  */
 let entries = utils.entryPoints
-Object.keys(entries).forEach((entry) => entries[entry] = [hotClient].concat(entries[entry]))<% if ( projectusage === 'webpackApp' ) { %>
+<% if ( projectusage !== 'webpackApp' ) { %>
+  Object.keys(entries).forEach((entry) => entries[entry] = [hotClient].concat(entries[entry]))
+<% } %>
 
-const HOST = 'localhost'
-const PORT = utils.kittnConf.browsersync.port<% } %>
+<% if ( projectusage === 'webpackApp' ) { %>
+  const HOST = 'localhost'
+  const PORT = utils.kittnConf.browsersync.port
+<% } %>
 
-const devWebpackConfig = merge(baseWebpackConfig.default, {<% if (projectusage !== 'webpackApp' ) { %>
-  mode: 'development',<% } %>
-  devtool: 'cheap-module-eval-source-map',
+const devWebpackConfig = merge(baseWebpackConfig.default, {
+  <% if (projectusage !== 'webpackApp' ) { %>
+    mode: 'development',
+  <% } %>
+  devtool: 'eval-source-map',
   entry: utils.removeEmpty(entries),
   output: {
     publicPath: '/',
     filename: utils.assetsPath('js/[name].js'),
-  },<% if ( projectusage === 'webpackApp' ) { %>
-  devServer: {
-    clientLogLevel: 'warning',
-    historyApiFallback: {
-      rewrites: [
-        { from: /.*/, to: path.posix.join(utils.kittnConf.dist.markup, 'index.html') },
+    chunkFilename: utils.assetsPath('js/chunks/[name].js')
+  },
+
+  <% if ( projectusage === 'webpackApp' ) { %>
+    devServer: {
+      clientLogLevel: 'warning',
+      historyApiFallback: {
+        rewrites: [
+          { from: /.*/, to: path.posix.join(utils.kittnConf.dist.markup, 'index.html') },
+        ],
+      },
+      hot: true,
+      compress: true,
+      host: HOST,
+      port: PORT,
+      proxy: [
+        {
+          path: /\/(?!__webpack_hmr).+/
+        }
       ],
+      quiet: true,
+      stats: { colors: true },
+      contentBase: path.join(__dirname, `../${utils.kittnConf.src.base}`),
+      publicPath: '/',
+      open: utils.kittnConf.browsersync.openbrowser,
+      overlay: true
     },
-    hot: true,
-    compress: true,
-    host: HOST,
-    port: PORT,
-    proxy: {},
-    quiet: true,
-    stats: { colors: true },
-    contentBase: path.join(__dirname, `../${utils.kittnConf.src.base}`),
-    publicPath: '/',
-    open: utils.kittnConf.browsersync.openbrowser,
-    overlay: true
-  },<% } %>
+  <% } %>
   plugins: [<% if ( projectusage !== 'webpackApp' ) { %>
     new FriendlyErrorsWebpackPlugin(),<% } %>
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
-    new webpack.NoEmitOnErrorsPlugin(),<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
-    new ExtractTextPlugin({
-      filename: utils.assetsPath('css/[name].css'),
-      allChunks: true
-    }),<% } %><% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp' ) { %>
-    // only needed if you want to write the files to your harddrive in dev-mode
-    // new WriteFilePlugin({
-    //   log: false,
-    //   test: /^(?!.+(?:hot-update.(js|json))).+$/
-    // })<% } %><% if (projectusage === 'craft' || projectusage === 'craftCB') { %>
-    new WriteFilePlugin({
-      log: false,
-      test: /^(?!.+(?:hot-update.(js|json))).+$/
-    })<% } %>
+    new webpack.NoEmitOnErrorsPlugin(),
+    <% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp' ) { %>
+      // only needed if you want to write the files to your harddrive in dev-mode
+      // new WriteFilePlugin({
+      //   log: false,
+      //   test: /^(?!.+(?:hot-update.(js|json))).+$/
+      // })
+    <% } %>
+
+    <% if (projectusage === 'craft' || projectusage === 'craftCB') { %>
+      new WriteFilePlugin({
+        log: false,
+        test: /^(?!.+(?:hot-update.(js|json))).+$/
+      })
+    <% } %>
   ]
 })<% if ( projectusage === 'webpackApp' ) { %>
 

@@ -1,0 +1,45 @@
+/*
+  caption
+  =================
+  Description
+*/
+.c-caption {
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  // For getting values from lists
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+  padding-top: 5px;
+  font-size: 90%;
+  color: c('gray');
+  text-align: center;
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+  // [root]__wrapper
+  &__wrapper {
+    @extend %e-container;
+    text-align: left;
+    padding-left: 0;
+    padding-right: 0;
+
+    .e-w--fullbleed & {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+  }
+}

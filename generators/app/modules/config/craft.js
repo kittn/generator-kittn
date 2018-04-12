@@ -25,6 +25,11 @@ function addCraftCofig (files = {}, context) {
       'src': {
         'plugins': 'src/craftplugins/',
         'templates': 'src/structure/templates/'
+      },
+      'minify': {
+        'purgeCSS': [
+          'dist/craft/templates/**/*.{html,twig}'
+        ]
       }
     })
   }
@@ -38,11 +43,15 @@ function addCraftCofig (files = {}, context) {
         'url': context.props.credentialdomain !== 'undefined' ? `http://${context.props.credentialdomain}` : 'http://',
         'cssfile': context.props.projectcssfilename + '.css',
         'include': [
-          '.plj',
-          '.c-progressLoader'
+          '.plj .c-progressLoader',
+          '.plj .c-progressLoader--complete .c-progressLoader',
+          '.plj .o-area__wrapper',
+          '.plj .is-livepreview .o-area__wrapper',
+          '.plj .c-progressLoader__loader',
+          '.plj .c-progressLoader__loader.c-progressLoader--bar--complete'
         ],
         'ignore': [
-          'font-face'
+          '@font-face'
         ],
         'sites': [
           {

@@ -72,24 +72,28 @@ module.exports = class extends Generator {
     var saltKeys = []
 
     for (var i = 0; i < 8; i++) {
-      saltKeys.push(random.generate({
-        length: 64,
-        charset: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!§$%/()=_;:,.^'
-      }))
+      saltKeys.push(
+        random.generate({
+          length: 64,
+          charset:
+            'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!§$%/()=_;:,.^'
+        })
+      )
     }
     this.saltKeys = saltKeys
   }
 
-    // Initializing
+  // Initializing
   async initializing () {
-    await Promise.all(Object.keys(this.commands)
-      .map(command => {
+    await Promise.all(
+      Object.keys(this.commands).map(command => {
         return commandExists(command)
           .then(commandResult => {
             this.commands[commandResult] = true
           })
-          .catch((error) => {})
-      }))
+          .catch(error => {})
+      })
+    )
   }
 
   prompting () {
@@ -124,7 +128,11 @@ module.exports = class extends Generator {
 
     // Custom Greeting
     var welcome = chalk`
-                                                                                                                {white.bold.bgCyan  v${this.pkg.version} }{hex('#c9c9c9')
+                                                                                                                {white.bold.bgCyan  v${
+  this
+    .pkg
+    .version
+} }{hex('#c9c9c9')
 
       ------------------------------------------- {hex('#00ffd8') the revenge of the kittn } ---------------------------------------------
       }
@@ -145,7 +153,7 @@ module.exports = class extends Generator {
       this.props.projectcritical = this.props.projectcritical || false
       this.props.fileGroup = this.props.fileGroup || false
       this.props.fileUser = this.props.fileUser || false
-      this.props.projectnormalize = this.props.projectnormalize || 'regular'
+      this.props.projectnormalize = this.props.projectnormalize || 'regular';
       this.props.projectjsframework = this.props.projectjsframework || false
     })
   }
@@ -226,75 +234,134 @@ module.exports = class extends Generator {
 
      {cyan.bold Next Steps}`
 
-      goodbye += '\n\n'
+    goodbye += '\n\n';
 
-      if (this.props.projectusage.substring(0,4) === 'word' && this.commands.wp !== true) {
-        goodbye += chalk`{cyan      - Install Wordpress manually in the 'dist/' directory}` + '\n'
+    if (
+      this.props.projectusage.substring(0, 4) === 'word' &&
+      this.commands.wp !== true
+    ) {
+      goodbye +=
+        chalk`{cyan      - Install Wordpress manually in the 'dist/' directory}` +
+        '\n';
+    }
+
+    if (
+      this.props.projectusage.substring(0, 5) === 'craft' &&
+      this.commands.wget !== true
+    ) {
+      goodbye +=
+        chalk`{cyan      - Install Craft manually in the 'dist/' directory}` +
+        '\n';
+    }
+
+    if (this.props.projectusage === 'wordpressCB') {
+      goodbye +=
+        chalk`{cyan      - Copy your ACF5 Pro Plugin on 'src/structure/plugins/'}` +
+        '\n';
+    }
+
+    if (os.type() === 'Darwin') {
+      if (this.props.projectusage !== 'html' && this.props.projectcredential) {
+        goodbye +=
+          chalk`{cyan      - Use the './install.sh' Shellscript to skip the following steps.}` +
+          '\n';
       }
 
-      if (this.props.projectusage.substring(0,5) === 'craft' && this.commands.wget !== true) {
-        goodbye += chalk`{cyan      - Install Craft manually in the 'dist/' directory}` + '\n'
+      if (this.props.projectusage === 'html') {
+        goodbye +=
+          chalk`{cyan      - Initiate the project with 'npm run init'}` + '\n';
+      }
+    } else {
+      if (
+        this.props.projectusage === 'craft' ||
+        this.props.projectusage === 'craftCB'
+      ) {
+        goodbye +=
+          chalk`{cyan      - Setup User and Staff on 'craftscripts/.env.sh'}` +
+          '\n';
       }
 
-      if (this.props.projectusage === 'wordpressCB') {
-        goodbye += chalk`{cyan      - Copy your ACF5 Pro Plugin on 'src/structure/plugins/'}` + '\n'
+      if (this.props.projectusage !== 'webpackApp') {
+        goodbye +=
+          chalk`{cyan      - Initiate the project with 'npm run init'}` + '\n';
       }
 
-      if (os.type() === 'Darwin') {
-        if (this.props.projectusage !== 'html' && this.props.projectcredential) {
-          goodbye += chalk`{cyan      - Use the './install.sh' Shellscript to skip the following steps.}` + '\n'
-        }
-
-        if (this.props.projectusage === 'html') {
-          goodbye += chalk`{cyan      - Initiate the project with 'npm run init'}` + '\n'
-        }
-
-      } else {
-        if (this.props.projectusage === 'craft' || this.props.projectusage === 'craftCB') {
-          goodbye += chalk`{cyan      - Setup User and Staff on 'craftscripts/.env.sh'}` + '\n'
-        }
-
-        if (this.props.projectusage !== 'webpackApp') {
-          goodbye += chalk`{cyan      - Initiate the project with 'npm run init'}` + '\n'
-        }
-
-        if (this.props.projectusage.substring(0,5) === 'craft') {
-          goodbye += chalk`{cyan      - Execute './craftscripts/set_perms.sh'}` + '\n'
-        }
-
-        if (this.props.projectusage !== 'html' && this.props.projectusage !== 'webpackApp') {
-          const folder = this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : ''
-          goodbye += chalk`{cyan      - Import database.sql found on project root}` + '\n'
-        }
-
-        if (this.props.projectusage !== 'html' && this.props.projectusage !== 'webpackApp' && this.props.projectcredential) {
-          goodbye += chalk`{cyan        => 'mysql -u${this.props.credentialdbuser} -p${this.props.credentialdbpass} ${this.props.credentialdbdatabase} < database.sql'}` + '\n\n'
-        }
+      if (this.props.projectusage.substring(0, 5) === 'craft') {
+        goodbye +=
+          chalk`{cyan      - Execute './craftscripts/set_perms.sh'}` + '\n';
       }
 
-      if (this.props.projectusage !== 'html' && this.props.projectusage !== 'webpackApp') {
-        const folder = this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : ''
-        const domain = this.props.credentialdomain ? this.props.credentialdomain : ''
-        goodbye += chalk`{hex('#009dff')      - Define vHost for '${domain}' on '[projectRoot]/dist/${folder}'}` + '\n'
+      if (
+        this.props.projectusage !== 'html' &&
+        this.props.projectusage !== 'webpackApp'
+      ) {
+        const folder =
+          this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : '';
+        goodbye +=
+          chalk`{cyan      - Import database.sql found on project root}` + '\n';
       }
 
-      if (this.props.projectusage !== 'html' && this.props.projectusage !== 'webpackApp') {
-        goodbye += chalk`{hex('#009dff')      - Log into the backend with 'kittn' / '${this.props.projectusage.substring(0,5) === 'craft' ? `superkittn` : `kittn` }'. After login, activate theme and create a new user}` + '\n'
+      if (
+        this.props.projectusage !== 'html' &&
+        this.props.projectusage !== 'webpackApp' &&
+        this.props.projectcredential
+      ) {
+        goodbye +=
+          chalk`{cyan        => 'mysql -u${this.props.credentialdbuser} -p${
+            this.props.credentialdbpass
+          } ${this.props.credentialdbdatabase} < database.sql'}` + '\n\n';
       }
+    }
 
-      if (this.props.projectcredential) {
-        goodbye += chalk`{hex('#009dff')            => Backend: ${this.props.credentialdomain}/${this.props.projectusage.substring(0,5) === 'craft' ? `admin` : `wp-admin` }}` + '\n'
-      }
+    if (
+      this.props.projectusage !== 'html' &&
+      this.props.projectusage !== 'webpackApp'
+    ) {
+      const folder =
+        this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : '';
+      const domain = this.props.credentialdomain
+        ? this.props.credentialdomain
+        : '';
+      goodbye +=
+        chalk`{hex('#009dff')      - Define vHost for '${domain}' on '[projectRoot]/dist/${folder}'}` +
+        '\n';
+    }
 
-      if (this.props.projectusage === 'craftCB') {
-        goodbye += chalk`{cyan.bold      If you want to use the Craft Personal version, you must deactivate the localization before you switch.. }` + '\n'
-      }
+    if (
+      this.props.projectusage !== 'html' &&
+      this.props.projectusage !== 'webpackApp'
+    ) {
+      goodbye +=
+        chalk`{hex('#009dff')      - Log into the backend with 'kittn' / '${
+          this.props.projectusage.substring(0, 5) === 'craft'
+            ? `superkittn`
+            : `kittn`
+        }'. After login, activate theme and create a new user}` + '\n';
+    }
 
-      if (this.props.projectusage === 'webpackApp') {
-          goodbye += chalk`{cyan      - Build your App with 'npm run build'}` + '\n'
-      }
+    if (this.props.projectcredential) {
+      goodbye +=
+        chalk`{hex('#009dff')            => Backend: ${
+          this.props.credentialdomain
+        }/${
+          this.props.projectusage.substring(0, 5) === 'craft'
+            ? `admin`
+            : `wp-admin`
+        }}` + '\n';
+    }
 
-      goodbye += chalk`{hex('#009dff')      - Start the devtask with 'npm run dev'}
+    if (this.props.projectusage === 'craftCB') {
+      goodbye +=
+        chalk`{cyan.bold      If you want to use the Craft Personal version, you must deactivate the localization before you switch.. }` +
+        '\n';
+    }
+
+    if (this.props.projectusage === 'webpackApp') {
+      goodbye +=
+        chalk`{cyan      - Build your App with 'npm run build'}` + '\n';
+    }
+
+    goodbye += chalk`{hex('#009dff')      - Start the devtask with 'npm run dev'}
 
      {hex('#94ff00').bold Happy Coding.}`
 

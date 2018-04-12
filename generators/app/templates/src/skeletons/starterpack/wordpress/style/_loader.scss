@@ -20,6 +20,8 @@
 // @import '../framework/partials/_print';
 // Vendor
 @import 'vendor/photoswipe';
-@import 'vendor/flickity';
+@import 'vendor/flickity';<% if (projecttailwind != 'undefined' && projecttailwind == 'hybrid') { %>
+@tailwind components;
+@tailwind utilities;<% } %>
 // App
 @import 'application/application';

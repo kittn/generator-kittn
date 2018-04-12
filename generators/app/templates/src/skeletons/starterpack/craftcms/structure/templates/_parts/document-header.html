@@ -10,7 +10,7 @@
   {% else %}
     <link rel="stylesheet" href="{{ craft.config.rootUrl ~ 'assets/css/<%= projectcssfilename %>.css' }}">
   {% endif %}
-  {% if seomaticSiteMeta is defined %}
+  {% if seomaticSiteMeta is defined and craft.config.environment != 'local' %}
     {% hook 'seomaticRender' %}
   {% else %}
     <title>{{ title is defined ? title ~ ' - ' }}{{ siteName }}</title>
@@ -18,9 +18,12 @@
       <meta name="robots" content="noindex,nofollow">
     {% endif %}
   {% endif %}
-  {% include '_parts/favicon' %}
+  {% if craft.config.environment != 'local' %}
+    {% include '_parts/favicon' %}
+  {% endif %}
   {# Deactivate Progress Load on Livepreview #}
   {% if craft.request.isLivePreview != true and craft.config.environment == 'productive' %}
     <script>document.getElementsByTagName('html')[0].classList.add('plj')</script>
+    {#<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="UID" type="text/javascript" async></script>#}
   {% endif %}
 </head>

@@ -1,6 +1,4 @@
-
 {% includeJsFile craft.config.rootUrl~'assets/js/modernizr.js' %}
 <%% for (var chunk in htmlWebpackPlugin.files.chunks) { if (!chunk.match(/font/)) { %>
   {% includeJsFile craft.config.rootUrl~'<%%= htmlWebpackPlugin.files.chunks[chunk].entry %>' %}
 <%% }} %>
-

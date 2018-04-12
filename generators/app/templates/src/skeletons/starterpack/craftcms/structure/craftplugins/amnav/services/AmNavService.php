@@ -354,6 +354,17 @@ class AmNavService extends BaseApplicationComponent
     }
 
     /**
+     * Get breadcrumbs without HTML.
+     *
+     * @return array
+     */
+    public function getBreadcrumbsRaw()
+    {
+        // Return the active URI elements
+        return $this->_getActiveElements();
+    }
+
+    /**
      * Set parameters for the navigation HTML output.
      *
      * @param array $params
@@ -425,6 +436,8 @@ class AmNavService extends BaseApplicationComponent
         $this->_activeNodeIdsForLevel[ $this->_navigation->handle ] = array();
 
         foreach ($nodes as $node) {
+            if ($node['elementType'] == 'Asset') { continue; }
+
             $url = ! empty($node['elementId']) ? $node['elementUrl'] : $node['url'];
             $url = str_replace('{siteUrl}', '', $url);
             $url = str_replace('__home__', '', $url);
@@ -494,47 +507,42 @@ class AmNavService extends BaseApplicationComponent
     }
 
     /**
-     * Get active entries based on URI.
+     * Get active elements based on URI.
      *
      * @return array
      */
-    private function _getActiveEntries()
+    private function _getActiveElements()
     {
-        $entries = array();
+        $elements = array();
         $segments = craft()->request->getSegments();
 
         // Add homepage
-        $criteria = craft()->elements->getCriteria(ElementType::Entry);
-        $criteria->uri = '__home__';
-        $entry = $criteria->first();
-        if ($entry) {
-            $entries[] = $entry;
+        $element = craft()->elements->getElementByUri('__home__');
+        if ($element) {
+            $elements[] = $element;
         }
 
-        // Find other entries
+        // Find other elements
         if (count($segments)) {
             $count = 0; // Start at second
             $segmentString = $segments[0]; // Add first
             while ($count < count($segments)) {
-                // Get entry
-                $criteria = craft()->elements->getCriteria(ElementType::Entry);
-                $criteria->uri = $segmentString;
-                $criteria->status = null;
-                $entry = $criteria->first();
+                // Get element
+                $element = craft()->elements->getElementByUri($segmentString);
 
-                // Add entry to active entries
-                if ($entry) {
-                    $entries[] = $entry;
+                // Add element to active elements
+                if ($element) {
+                    $elements[] = $element;
                 }
 
-                // Search for next possible entry
+                // Search for next possible element
                 $count ++;
                 if (isset($segments[$count])) {
                     $segmentString .= '/' . $segments[$count];
                 }
             }
         }
-        return $entries;
+        return $elements;
     }
 
     /**
@@ -705,45 +713,73 @@ class AmNavService extends BaseApplicationComponent
      */
     private function _buildBreadcrumbsHtml()
     {
-        // Get active entries
-        $activeEntries = $this->_getActiveEntries();
+        // Get active elements
+        $nodes = $this->_getActiveElements();
+
+        // Do we have custom nodes?
+        $customNodes = $this->_getParam('customNodes', false);
+        if ($customNodes && is_array($customNodes) && count($customNodes)) {
+            $nodes = array_merge($nodes, $customNodes);
+        }
 
         // Create breadcrumbs
-        $length = count($activeEntries);
-        $breadcrumbs = "\n" . sprintf('< %1$s%2$s%3$s xmlns:v="http://rdf.data-vocabulary.org/#">',
+        $length = count($nodes);
+        $breadcrumbs = "\n" . sprintf('<%1$s%2$s%3$s xmlns:v="http://rdf.data-vocabulary.org/#">',
             $this->_getParam('wrapper', 'ol'),
             $this->_getParam('id', false) ? ' id="' . $this->_getParam('id', '') . '"' : '',
             $this->_getParam('class', false) ? ' class="' . $this->_getParam('class', '') . '"' : ''
         );
-        foreach ($activeEntries as $index => $entry) {
+
+        // Before text
+        if ($this->_getParam('beforeText', false)) {
+            $breadcrumbs .= sprintf("\n" . '<li%1$s><span>%2$s</span></li>',
+                $this->_getParam('classDefault', false) ? ' class="' . $this->_getParam('classDefault', '') . '"' : '',
+                $this->_getParam('beforeText', '')
+            );
+        }
+
+        foreach ($nodes as $index => $node) {
+            $nodeTitle = is_array($node) ? (isset($node['title']) ? $node['title'] : Craft::t('Unknown')) : $node->__toString();
+            $nodeUrl = is_array($node) ? (isset($node['url']) ? $node['url'] : '') : $node->url;
+
+            // Gather node classes
+            $childClasses = array();
+            if ($this->_getParam('classDefault', false)) {
+                $childClasses[] = $this->_getParam('classDefault', '');
+            }
+
             // First
             if ($index == 0) {
-                $breadcrumbs .= sprintf("\n" . '<li typeof="v:Breadcrumb"><a href="%1$s" title="%2$s" rel="v:url" property="v:title">%2$s</a></li>',
-                    $entry->url,
-                    $this->_getParam('renameHome', $entry->title)
+                $childClasses[] = $this->_getParam('classFirst', 'first');
+                $breadcrumbs .= sprintf("\n" . '<li%1$s typeof="v:Breadcrumb"><a href="%2$s" title="%3$s" rel="v:url" property="v:title">%3$s</a></li>',
+                    $childClasses ? ' class="' . implode(' ', $childClasses) . '"' : '',
+                    $nodeUrl,
+                    $this->_getParam('renameHome', $nodeTitle)
                 );
             }
             // Last
             elseif ($index == $length - 1)
             {
+                $childClasses[] = $this->_getParam('classLast', 'last');
                 $breadcrumb = sprintf('<span property="v:title">%1$s</span>',
-                    $entry->title
+                    $nodeTitle
                 );
                 if ($this->_getParam('lastIsLink', false)) {
                     $breadcrumb = sprintf('<a href="%1$s" title="%2$s" rel="v:url" property="v:title">%2$s</a>',
-                        $entry->url,
-                        $entry->title
+                        $nodeUrl,
+                        $nodeTitle
                     );
                 }
-                $breadcrumbs .= sprintf("\n" . '<li class="%1$s" typeof="v:Breadcrumb">%2$s</li>',
-                    $this->_getParam('classLast', 'last'),
+                $breadcrumbs .= sprintf("\n" . '<li%1$s typeof="v:Breadcrumb">%2$s</li>',
+                    $childClasses ? ' class="' . implode(' ', $childClasses) . '"' : '',
                     $breadcrumb
                 );
             }
             else {
-                $breadcrumbs .= sprintf("\n" . '<li typeof="v:Breadcrumb"><a href="%1$s" title="%2$s" rel="v:url" property="v:title">%2$s</a></li>',
-                    $entry->url,
-                    $entry->title
+                $breadcrumbs .= sprintf("\n" . '<li%1$s typeof="v:Breadcrumb"><a href="%2$s" title="%3$s" rel="v:url" property="v:title">%3$s</a></li>',
+                    $childClasses ? ' class="' . implode(' ', $childClasses) . '"' : '',
+                    $nodeUrl,
+                    $nodeTitle
                 );
             }
         }

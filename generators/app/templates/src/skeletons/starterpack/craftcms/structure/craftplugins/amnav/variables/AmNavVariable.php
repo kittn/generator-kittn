@@ -121,15 +121,30 @@ class AmNavVariable
      * Params possibilities:
      * - id             ID for the breadcrumbs wrapper.
      * - class          Class name for the breadcrumbs wrapper.
+     * - classDefault   Default class name for every breadcrumb.
+     * - classFirst     Class name for the first breadcrumb.
      * - classLast      Class name for the last breadcrumb.
      * - wrapper        Wrapper element without the < and >.
+     * - beforeText     Text before the first item, like 'You are here:'.
      * - renameHome     Change the title of the home entry.
      * - lastIsLink     Whether the last breadcrumb should be a link.
+     * - customNodes    Add custom nodes after the elements are handled.
+     *                  [ { title: 'A title', url: 'an url' }, { title: 'A title', url: 'an url' } ]
      *
      * @return string
      */
     public function getBreadcrumbs($params = array())
     {
         return craft()->amNav->getBreadcrumbs($params);
+    }
+
+    /**
+     * Get a breadcrumbs without any HTML.
+     *
+     * @return array
+     */
+    public function getBreadcrumbsRaw()
+    {
+        return craft()->amNav->getBreadcrumbsRaw();
     }
 }

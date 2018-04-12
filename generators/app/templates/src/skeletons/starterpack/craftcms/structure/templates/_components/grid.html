@@ -68,9 +68,9 @@
 
       {# If the old revision is used, a class name is used instead of the grid area name #}
       {% if gridOldRevision %}
-        {% set gridBoxName = ' ' ~ gridLayoutClass ~ '__' ~ column.setGridBoxOptions.boxName %}
+        {% set gridBoxName = column.setGridBoxOptions.boxName != '' ? ' ' ~ gridLayoutClass ~ '__' ~ column.setGridBoxOptions.boxName : ' ' ~ gridLayoutClass ~ '__box' %}
       {% else %}
-        {% set gridBoxName = ' style=grid-area:'~ column.setGridBoxOptions.boxName %}
+        {% set gridBoxName = column.setGridBoxOptions.boxName ? ' style=grid-area:'~ column.setGridBoxOptions.boxName %}
       {% endif %}
 
       <div class="{{ c }}__box{{ gridOldRevision ? gridBoxName : '' }}{{ _.styleClasses(column.setGridBoxOptions.styleClasses) }}"{{ gridOldRevision != true ? gridBoxName }}>

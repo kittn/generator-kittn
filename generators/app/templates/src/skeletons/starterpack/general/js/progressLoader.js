@@ -2,14 +2,13 @@
  * Progress Loader Elements
  * @type {{body: *, holder: Element}}
  */
-const pelements = {
+const ple = {
   body: document.getElementsByTagName('body')[0],
-  holder: document.querySelector('.canvas'),
+  html: document.getElementsByTagName('html')[0],
   barOuter: document.querySelector('.c-progressLoader'),
   barInner: document.querySelector('.c-progressLoader__loader'),
   states: {
     loading: 'c-progressLoader--load',
-    interact: 'c-progressLoader--interact',
     complete: 'c-progressLoader--complete'
   },
   barstates: {
@@ -23,18 +22,9 @@ const pelements = {
  */
 const stateLoading = () => {
   // Give Body a initial Load Class
-  pelements.body.className += ' ' + pelements.states.loading
-
+  ple.body.classList.add(ple.states.loading)
   // Activate the Bar Element with adding a Class
-  pelements.barInner.className += ' ' + pelements.barstates.loading
-}
-
-/**
- * Interactive State Function
- */
-const stateInteractive = () => {
-  pelements.body.classList.remove(pelements.states.loading)
-  pelements.body.className += ' ' + pelements.states.interact
+  ple.barInner.classList.add(ple.barstates.loading)
 }
 
 /**
@@ -42,34 +32,42 @@ const stateInteractive = () => {
  */
 const stateComplete = () => {
   // Change Classes for the Progressbar
-  pelements.barInner.classList.remove(pelements.barstates.loading)
-  pelements.barInner.className += ' ' + pelements.barstates.complete
+  ple.barInner.classList.remove(ple.barstates.loading)
+  ple.barInner.classList.add(ple.barstates.complete)
 
   // After a small Timeout toggle the Body Class
   setTimeout(() => {
-    pelements.body.classList.remove(pelements.states.interact)
-    pelements.body.className += ' ' + pelements.states.complete
-  }, 300)
+    ple.body.classList.add(ple.states.complete)
+  }, 700)
 }
 
+const onLoad = (loading, loaded) => {
+  if (document.readyState === 'complete') {
+    return loaded()
+  }
+  loading()
+  if (window.addEventListener) {
+    window.addEventListener('load', loaded, false)
+  } else if (window.attachEvent) {
+    window.attachEvent('onload', loaded)
+  }
+}
 /**
  * Progress Loader
  */
 const progressLoader = () => {
   // Disable Progressloader on Craft Livepreview
-  if (!pelements.body.classList.contains('is-livepreview') && document.getElementsByTagName('html')[0].classList.contains('plj')) {
-    // Inital State
-    stateLoading()
-
-    // Interactive State
-    stateInteractive()
-
-    // Check Statechange to complete
-    document.onreadystatechange = () => {
-      if (document.readyState === 'complete') {
-        stateComplete()
+  if (!ple.body.classList.contains('is-livepreview') && ple.html.classList.contains('plj')) {
+    onLoad(
+      () => {
+        stateLoading()
+      },
+      () => {
+        setTimeout(() => {
+          stateComplete()
+        }, 0)
       }
-    }
+    )
   }
 }
 

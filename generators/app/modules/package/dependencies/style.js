@@ -4,7 +4,7 @@ function addStyleDependencies (files = {}, context) {
   extend(files.pkg, {
     devDependencies: {
       'autoprefixer': '^8.2.0',
-      'cssnano': '^3.10.0',
+      'cssnano': '^4.0.0-rc.2',
       'postcss-aspect-ratio': '^1.0.1',
       'postcss-assets': '^5.0.0',
       'postcss-calc': '^6.0.1',
@@ -40,13 +40,16 @@ function addStyleDependencies (files = {}, context) {
    * @method if
    * @param  {object} context The global context with prompts
    */
-  if (context.props.projectstylelint === true) {
+  if (
+    context.props.projectstylelint === true ||
+    context.props.projectstylelint === 'strict'
+  ) {
     extend(files.pkg, {
       scripts: {
-        'stylelint': "stylelint 'src/style/**/**/*.scss'"
+        stylelint: "stylelint 'src/style/**/**/*.scss'"
       },
       devDependencies: {
-        'stylelint': '^9.2.0',
+        stylelint: '^9.2.0',
         'stylelint-config-sass-guidelines': '^5.0.0',
         'stylelint-order': '^0.8.1',
         'stylelint-scss': '^3.0.0',
@@ -71,7 +74,7 @@ function addStyleDependencies (files = {}, context) {
   if (context.props.projectcritical === true) {
     extend(files.pkg, {
       devDependencies: {
-        'critical': '^0.8.1'
+        critical: '^0.8.1'
       }
     })
   }
@@ -84,10 +87,10 @@ function addStyleDependencies (files = {}, context) {
   if (context.props.projectusage === 'craftCB') {
     extend(files.pkg, {
       scripts: {
-        'critical': 'node nodescripts/critical.js'
+        critical: 'node nodescripts/critical.js'
       },
       devDependencies: {
-        'critical': '^0.8.1',
+        critical: '^0.8.1',
         'fancy-log': '^1.3.0'
       }
     })

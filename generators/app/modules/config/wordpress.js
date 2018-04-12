@@ -26,6 +26,15 @@ function addWordpressCofig (files = {}, context) {
         'structure': 'src/structure/templates/',
         'config': 'src/structure/config/',
         'plugins': 'src/structure/plugins/'
+      },
+      'minify': {
+        'purgeCSS': [
+          `dist/wp-content/themes/${context.props.projectname}/*.php`,
+          `dist/wp-content/themes/${context.props.projectname}/_components/*.php`,
+          `dist/wp-content/themes/${context.props.projectname}/_objects/*.php`,
+          `dist/wp-content/themes/${context.props.projectname}/_parts/*.php`,
+          `dist/wp-content/themes/${context.props.projectname}/_trumps/*.php`
+        ]
       }
     })
   }

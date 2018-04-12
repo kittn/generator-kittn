@@ -27,8 +27,6 @@
     </div>
     {% if options.linkable %}</a>{% endif %}
   {% if data.caption %}
-    <figcaption class="{{ c ~ '__caption' }}" itemprop="caption description">
-      {{ data.caption }}
-    </figcaption>
+    {% include '_components/caption.html' with { caption: data.caption, layout: 'align' } %}
   {% endif %}
 </figure>
