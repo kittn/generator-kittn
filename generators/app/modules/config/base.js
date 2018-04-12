@@ -13,10 +13,6 @@ function addBaseCofig (files = {}, context) {
       openbrowser: false,
       port: 3000
     },
-    modernizr: {
-      options: ['setClasses', 'addTest', 'testAllProps', 'fnBind'],
-      tests: ['flexbox', 'touch', 'inlinesvg', 'webgl', 'picture']
-    },
     minify: {
       images: {
         svgoPlugins: [

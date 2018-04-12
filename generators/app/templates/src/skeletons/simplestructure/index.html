@@ -1,11 +1,15 @@
 <!doctype html>
 <html lang="de">
-  <head>
-    <meta charset="utf-8">
-    <title><%= projectname %></title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="[Description]">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><% if (projectusage !== 'webpackApp') { %>
+
+<head>
+  <meta charset="utf-8">
+  <title>
+    <%= projectname %>
+  </title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="[Description]">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <% if (projectusage !== 'webpackApp') { %>
     <link rel="stylesheet" href="./assets/css/<%= projectcssfilename %>.css">
     <meta property="og:description" content="[Description]">
     <meta property="og:title" content="<%= projectname %>">
@@ -15,16 +19,19 @@
     <meta name="twitter:description" content="[Description]">
     <meta name="twitter:title" content="<%= projectname %>">
     <meta name="twitter:image:src" content="./assets/system/twitter-og-image.jpg">
-    <meta name="twitter:card" content="summary_large_image"><% } %>
-    <!-- Browser Tab Bar Color -->
-    <meta name="theme-color" content="<%= projectthemecolor %>">
-    <meta name="msapplication-navbutton-color" content="<%= projectthemecolor %>">
-  </head>
-  <body>
-    <h1>Hello World</h1>
-    <div id="app"></div>
-    <% if ( projectusage !== 'webpackApp' && projectjsframework !== 'vue' && projectusage === 'html' ) { %>
-    <script src="./assets/js/modernizr.js"></script>
-    <script src="./assets/js/main.js"></script><% } %>
-  </body>
+    <meta name="twitter:card" content="summary_large_image">
+    <% } %>
+      <!-- Browser Tab Bar Color -->
+      <meta name="theme-color" content="<%= projectthemecolor %>">
+      <meta name="msapplication-navbutton-color" content="<%= projectthemecolor %>">
+</head>
+
+<body>
+  <h1>Hello World</h1>
+  <div id="app"></div>
+  <% if ( projectusage !== 'webpackApp' && projectjsframework !== 'vue' && projectusage === 'html' ) { %>
+    <script src="./assets/js/main.js"></script>
+    <% } %>
+</body>
+
 </html>

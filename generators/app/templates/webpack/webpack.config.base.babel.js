@@ -75,9 +75,6 @@ export default {
   output: {
     path: utils.paths.PUBLIC_PATH
   },
-  externals: {
-    Modernizr: 'Modernizr'
-  },
   resolve: {
     extensions: [
       <% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>

@@ -29,8 +29,8 @@ const prodWebpackConfig = merge(baseWebpackConfig.default, {
         ],
         {
           root: utils.paths.PUBLIC_PATH,
-          beforeEmit: true,
-          exclude: ['ls.respimg.js', 'modernizr.js'<% if ( projectusage !== 'webpackApp') { %>, 'style.css', 'style.css.map'<% } %>]
+          beforeEmit: true<% if ( projectusage !== 'webpackApp') { %>,
+          exclude: ['style.css', 'style.css.map']<% } %>
         }
       ),
     <% } %>
