@@ -69,6 +69,13 @@
     }
   }
 
+  // Extend fullbleed as Support Class
+  @at-root {
+    .fullbleed {
+      @extend .e-w--fullbleed;
+    }
+  }
+
   // [root]__spacer
   &__vSpacer {
     @each $key, $size in api(spacer, vertical, flex) {

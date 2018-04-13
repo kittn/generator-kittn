@@ -469,6 +469,7 @@ module.exports = {
   maxWidth: {
     '50chr': '50chr',
     '70chr': '70chr',
+    '1200': '1200px',
     'half': '50%',
     'full': '100%'
   },
@@ -490,6 +491,7 @@ module.exports = {
   maxHeight: {
     'full': '100%',
     'half': '50vh',
+    '320': '320px',
     'screen': '80vh',
     'fullscreen': '100vh'
   },
@@ -794,28 +796,6 @@ module.exports = {
 
     function ({ e, addUtilities, config }) {
       // Place for custom utilities and components
-    },
-
-    function ({ addComponents }) {
-      const fullBleed = {
-        '.fullbleed': {
-          position: 'relative',
-          margin: '0 calc(-50vw + 50%)'
-        },
-        '.has-scrollbar .fullbleed': {
-          margin: '0 calc(-50vw + 50% + 8.5px)'
-        },
-        '.edge .has-scrollbar .fullbleed': {
-          margin: '0 calc(-50vw + 50% + 6px)'
-        },
-        '@supports (color: var(--scroll-bar))': {
-          '.has-scrollbar .fullbleed': {
-            margin: '0 calc(-50vw + 50% + var(--scroll-bar) / 2)'
-          }
-        }
-      }
-
-      addComponents(fullBleed)
     }
   ],
 
