@@ -55,17 +55,17 @@
     {% endif %}
 
     {# Build Block #}
-    <figure class="{{ c }}{{ fi_fullbleed ? ' ' ~ c ~ '--fullbleed' }}" role="group" itemscope itemtype="http://schema.org/ImageObject">
+    <figure class="c-featuredImage{{ fi_fullbleed ? ' c-featuredImage--fullbleed' }}" role="group" itemscope itemtype="http://schema.org/ImageObject">
       {# Insert Image #}
       {{ _.mediaImageSet(image, fi_ratio, {
-        class: c ~ '__image'
+        class: 'c-featuredImage__image'
       }) }}
 
       {# Add Optional Overlay #}
       {% if fi_labeling %}
-        <div class="{{ c ~ '__overlay' }}">
-          <div class="{{ c ~ '__inner' }}">
-            {% if fi_headline %}<h2 class="{{ c ~ '__headline' }}" role="heading">{{ fi_headline }}</h2>{% endif %}
+        <div class="c-featuredImage__overlay">
+          <div class="c-featuredImage__inner">
+            {% if fi_headline %}<h2 class="c-featuredImage__headline" role="heading">{{ fi_headline }}</h2>{% endif %}
             {% if fi_link_url %}
               {% include '_components/button' with {
                 data: {

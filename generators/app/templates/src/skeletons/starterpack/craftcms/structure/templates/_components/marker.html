@@ -9,15 +9,15 @@
 {# Set up custom Markerstyle #}
 {% switch type %}
   {% case 'blog' %}
-    {% set customStyle = ' ' ~ c ~ '__block--primary' %}
+    {% set customStyle = ' c-marker__block--primary' %}
   {% default %}
     {% set customStyle = '' %}
 {% endswitch %}
 
 {% if data | length %}
-  <div class="{{ c }}">
+  <div class="c-marker">
     {% for row in data %}
-      <a href="{{ row.url }}" class="{{ c ~ '__block'}}{{ customStyle }}">{{ row.title }}</a>
+      <a href="{{ row.url }}" class="c-marker__block{{ customStyle }}">{{ row.title }}</a>
     {% endfor %}
   </div>
 {% endif %}
