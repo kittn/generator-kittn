@@ -3,7 +3,8 @@
   =========
   Container Element
 */
-%e-container {
+%e-container,
+.container {
   // Component Config
   $api: (
     breakpoint: 'm'

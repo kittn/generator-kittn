@@ -17,8 +17,8 @@
 {% set m = m is defined ? defaults|merge(m) : defaults %}
 
 {# Build Element Block #}
-<div class="{{ c }}" itemprop="caption description">
-  {% if layout == 'align' %}<div class="{{ c ~ '__wrapper' }}">{% endif %}
+<div class="c-caption" itemprop="caption description">
+  {% if layout == 'align' %}<div class="c-caption__wrapper">{% endif %}
     {{ caption }}
     {% if layout == 'align' %}</div>{% endif %}
 </div>

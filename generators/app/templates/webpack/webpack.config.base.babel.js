@@ -256,7 +256,7 @@ export default {
         template: utils.kittnConf.src.templates + '_parts/document-footer.html',<% } else { %>
         filename: 'index.html',
         template: <% if ( locals.projectstructure && projectstructure === 'twig' ) { %>utils.kittnConf.dist.markup + 'index.html'<% } else { %>utils.kittnConf.src.structure + 'index.html'<% } %>,<% } %>
-        inject: true,
+        inject: <% if ( projectusage === 'craft' || projectusage === 'craftCB' ) { %>false<% } else { %>true<% } %>,
         hash: <% if ( projectusage === 'webpackApp' || projectusage === 'craft' || projectusage === 'craftCB' ) { %>false<% } else { %>true<% } %>,
         minify: {
           removeComments: true,
