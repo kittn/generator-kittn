@@ -5,5 +5,6 @@ module.exports = {
   singleQuote: true,
   trailingComma: 'none',
   bracketSpacing: true,
-  arrowParens: 'always'
+  arrowParens: 'always',
+  proseWrap: 'never'
 }

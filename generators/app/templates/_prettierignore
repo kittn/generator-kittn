@@ -1,1 +1,1 @@
-src/style/_setup.scss
+src/style/**/*.scss

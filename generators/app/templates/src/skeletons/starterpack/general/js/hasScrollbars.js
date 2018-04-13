@@ -2,7 +2,7 @@
  * Check if Browser have scrollbars, in this case the width from the Scrollbar is written as CSS Var in the body tag
  * @type {Element}
  */
-function handleWindow () {
+function handleWindow() {
   const body = document.querySelector('body')
 
   if (window.innerWidth > body.clientWidth + 5) {
