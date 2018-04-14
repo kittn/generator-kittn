@@ -31,6 +31,27 @@
   @return $box;
 }
 
+/// Add Gap between the boxes with Repeating Mode
+///
+/// @group core - cssgrid
+///
+/// @param   {number}  $boxes - Number of used boxes
+/// @param   {string}  $size - Box Size
+/// @param   {string}  $gap - Optional column gap
+@function box-gap-repeat($boxes, $size, $gap) {
+  $box: ();
+
+  @for $i from 1 through $boxes {
+    $box: append($box, $size, space);
+
+    @if $i != $boxes {
+      $box: append($box, $gap, space);
+    }
+  }
+
+  @return $box;
+}
+
 /// To build Grid Template Columns with optional gap
 ///
 /// @group core - cssgrid
@@ -52,6 +73,32 @@
 
   .old-grid-spec & {
     -ms-grid-columns: box-gap($columns, $gap);
+  }
+}
+
+/// For builing repeating columns
+///
+/// @group core - cssgrid
+///
+/// @param   {string}  $gap - Optional column gap
+/// @param   {number}  $columns - Number of Columns
+/// @param   {number}  $size - Columns sizes
+///
+/// @require {function} box-gap
+///
+/// @example scss - scss
+///   .test {
+///     @include grid-column-repeat(20px, 10, 1fr);
+///   }
+@mixin grid-column-repeat($gap, $columns, $size) {
+  @if $gap != false and $gap > 0 {
+    grid-column-gap: $gap;
+  }
+
+  grid-template-columns: repeat($columns, $size);
+
+  .old-grid-spec & {
+    -ms-grid-columns: box-gap-repeat($columns, $size, $gap);
   }
 }
 
@@ -77,6 +124,32 @@
 
   .old-grid-spec & {
     -ms-grid-rows: box-gap($rows, $gap);
+  }
+}
+
+/// For builing repeating rows
+///
+/// @group core - cssgrid
+///
+/// @param   {string}  $gap - Optional column gap
+/// @param   {number}  $columns - Number of Columns
+/// @param   {number}  $size - Columns sizes
+///
+/// @require {function} box-gap
+///
+/// @example scss - scss
+///   .test {
+///     @include grid-row-repeat(40px, 4, 1fr);
+///   }
+@mixin grid-row-repeat($gap, $rows, $size) {
+  @if $gap != false and $gap > 0 {
+    grid-row-gap: $gap;
+  }
+
+  grid-template-rows: repeat($rows, $size);
+
+  .old-grid-spec & {
+    -ms-grid-rows: box-gap-repeat($rows, $size, $gap);
   }
 }
 
