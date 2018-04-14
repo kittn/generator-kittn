@@ -7,6 +7,21 @@
 //
 // ===================================================
 
+@mixin grid-display() {
+  display: -ms-grid;
+  display: grid;
+}
+
+@mixin grid-display-fallback() {
+  .new-grid-spec & {
+    display: grid;
+  }
+  .old-grid-spec & {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
 /// Add Gap between the boxes
 ///
 /// @group core - cssgrid
@@ -126,6 +141,7 @@
     -ms-grid-rows: box-gap($rows, $gap);
   }
 }
+
 
 /// For builing repeating rows
 ///
@@ -364,8 +380,7 @@
 /// @param   {string}  $area - Name of the Area
 /// @param   {map}     $map - Map of your grid area matrix
 @mixin cssgrid-generator($map, $root, $cq: false) {
-  display: -ms-grid;
-  display: grid;
+  @include grid-display();
 
   // Build Styling outside Breakpoint
   @each $key, $setup in map-get($map, sets) {
@@ -383,6 +398,51 @@
         @include break(map-get($setup, breakpoint)) {
           @include _grid-connect($setup, $map, $root, false);
         }
+      }
+    }
+  }
+}
+
+/// A simple CSS Repeating Grid with a Flexbox Fallback
+///
+/// @group core - cssgrid
+///
+/// @param   {number}  $xGap - Horizontal Gap
+/// @param   {number}  $yGap - Vertical Gap
+/// @param   {number}  $columns - Number of Columns in a row
+/// @param   {number}  $width - Column size [default: 1fr]
+/// @param   {number}  $height - Columns sizes [default: false]
+/// @param   {string}  $child - Childname or type [default: '.box']
+///
+/// @require {function} box-gap
+///
+/// @example scss - scss
+///   .test {
+///     @include cssgrid-simple(20px, 40px, 4, 1fr, $height: false, $child: 'div');
+///   }
+@mixin cssgrid-simple($xGap, $yGap, $columns, $width: 1fr, $height: false, $child: '.box') {
+  .new-grid-spec & {
+    grid-row-gap: if($yGap != false and $yGap > 0, $yGap, null);
+    grid-column-gap: if($xGap != false and $xGap > 0, $xGap, null);
+    grid-template-columns: repeat($columns, $width);
+    grid-template-rows: if($height, repeat(1, $height), null);
+  }
+
+  .old-grid-spec & {
+    margin-bottom: if($yGap != false and $yGap > 0, 0 - $yGap, null);
+    @if $xGap != false and $xGap > 0 {
+      @include overlap($xGap / 2);
+    }
+
+    #{$child} {
+      @if $xGap != false and $xGap > 0 {
+        margin-left: $xGap / 2;
+        margin-right: $xGap / 2;
+        margin-bottom: if($yGap != false and $yGap > 0, $yGap, null);
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: calc(#{100 / $columns + 0%} - #{$xGap});
+        height: if($height, $height, null);
       }
     }
   }
