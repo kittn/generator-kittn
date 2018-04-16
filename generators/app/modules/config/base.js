@@ -69,7 +69,7 @@ function addBaseCofig (files = {}, context) {
       contentimage: 'src/images/htmlimages/',
       system: 'src/.system/',
       jsEntryPoints: {
-        main: ['@babel/polyfill', './src/js/main.js']
+        main: './src/js/main.js'
       }
     }
   })
