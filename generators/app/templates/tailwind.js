@@ -766,24 +766,6 @@ module.exports = {
   */
 
   plugins: [
-    require('./tailwind/transition')({
-      transitionDuration: {
-        'fast': '300ms',
-        'default': '500ms',
-        'slow': '800ms'
-      },
-      transitionTiming: {
-        'default': 'linear',
-        'ease-in': 'ease-in',
-        'ease-in-out': 'ease-in-out'
-      },
-      transitionProperty: {
-        'all': 'all',
-        'opacity': 'opacity',
-        'color': 'color',
-        'background-color': 'background-color'
-      }
-    }),
     require('./tailwind/ratio')({
       ratios: {
         'square': [1, 1],
@@ -794,8 +776,17 @@ module.exports = {
       variants: ['responsive']
     }),
 
-    function ({ e, addUtilities, config }) {
+    function ({ addUtilities, e }) {
       // Place for custom utilities and components
+      const newUtilities = {
+        '.trans-a300ms': {
+          transition: 'all 300ms ease-in-out'
+        },
+        '.trans-c300ms': {
+          transition: 'color 300ms ease-in-out'
+        }
+      }
+      addUtilities(newUtilities)
     }
   ],
 

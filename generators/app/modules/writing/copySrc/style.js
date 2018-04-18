@@ -13,7 +13,7 @@ const styles = context => {
           projectcssfilename: undefined
         },
         src: 'src/style/style.scss',
-        dest: `src/style/style.scss`
+        dest: 'src/style/style.scss'
       },
       {
         src: 'src/style/_loader.scss',
@@ -63,9 +63,14 @@ const styles = context => {
         dest: 'src/style/application/_application.scss'
       },
       {
-        conditions: {
-          projectcritical: true
-        },
+        orConditions: [
+          {
+            projectcritical: true
+          },
+          {
+            projectusage: 'craftCB'
+          }
+        ],
         src: 'gulpfile_additions/optimize-criticalCss.js',
         dest: 'gulpfile/tasks/optimize-criticalCss.js'
       },
@@ -84,9 +89,14 @@ const styles = context => {
     ],
     folders: [
       {
-        conditions: {
-          projectcritical: true
-        },
+        orConditions: [
+          {
+            projectcritical: true
+          },
+          {
+            projectusage: 'craftCB'
+          }
+        ],
         src: 'nodescripts/',
         dest: 'nodescripts/'
       },
