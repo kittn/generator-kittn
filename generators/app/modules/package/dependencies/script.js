@@ -32,9 +32,9 @@ function addScriptDependencies (files = {}, context) {
       'friendly-errors-webpack-plugin': '^1.6.1',
       'html-webpack-plugin': '^3.1.0',
       'optimize-css-assets-webpack-plugin': '^4.0.0',
-      'webpack': '^4.4.1',
+      'webpack': '^4.6.0',
       'webpack-cli': '^2.0.13',
-      'webpack-bundle-analyzer': '^2.8.2',
+      'webpack-bundle-analyzer': '^2.11.1',
       'webpack-config-utils': '^2.3.0',
       'webpack-dev-middleware': '^3.1.0',
       'webpack-hot-middleware': '^2.21.2',
@@ -140,7 +140,7 @@ function addScriptDependencies (files = {}, context) {
         'eslint-plugin-vue': '^4.4.0',
         'file-loader': '^1.1.11',
         'postcss-loader': '^2.1.3',
-        'sass-loader': '^6.0.7',
+        'sass-loader': '^7.0.1',
         svgo: '^1.0.5',
         'svgo-loader': '^2.1.0',
         'svg-fill-loader': '^0.0.8',
@@ -191,7 +191,7 @@ function addScriptDependencies (files = {}, context) {
   if (context.props.projecttypescript === true) {
     extend(files.pkg, {
       devDependencies: {
-        'ts-loader': '^4.1.0',
+        'ts-loader': '^4.2.0',
         typescript: '^2.8.1'
       }
     })

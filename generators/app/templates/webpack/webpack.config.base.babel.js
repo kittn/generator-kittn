@@ -59,7 +59,8 @@ const CSS_LOADERS = [
   },
   {
     loader: 'sass-loader',
-    options: {
+    options: {<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
+      includePaths: [utils.resolve(utils.kittnConf.src.style)],<% } %>
       sourceMap: true
     }
   }
