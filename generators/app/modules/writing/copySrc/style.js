@@ -63,14 +63,9 @@ const styles = context => {
         dest: 'src/style/application/_application.scss'
       },
       {
-        orConditions: [
-          {
-            projectcritical: true
-          },
-          {
-            projectusage: 'craftCB'
-          }
-        ],
+        conditions: {
+          projectcritical: true
+        },
         src: 'gulpfile_additions/optimize-criticalCss.js',
         dest: 'gulpfile/tasks/optimize-criticalCss.js'
       },
