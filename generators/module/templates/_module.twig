@@ -17,6 +17,6 @@
 {% set m = m is defined ? defaults|merge(m) : defaults %}
 
 {# Build Element Block #}
-<div class="{{ c }}">
+<div class="<%= moduleType %>-<%= moduleName %>">
   {{ m.name }}
 </div>
