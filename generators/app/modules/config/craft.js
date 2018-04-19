@@ -28,7 +28,8 @@ function addCraftCofig (files = {}, context) {
       },
       'minify': {
         'purgeCSS': [
-          'src/structure/templates/**/*.{html,twig}'
+          'src/structure/templates/**/*.{html,twig}',
+          'src/js/**/*.vue'
         ]
       }
     })
