@@ -17,33 +17,38 @@
 @import 'elements/resets';
 
 // 4.1 Layouts
-@import 'layouts/fb-equalColumn';
+@import 'objects/layout-2to4Grid';
+@import 'objects/layout-2ColGrid';
+@import 'objects/layout-3ColGrid';
+@import 'objects/layout-4ColGrid';
 
 // 5. Objects
 @import 'objects/area';
+@import 'objects/offCanvasTrigger';
 
 // 6.1. ContentBuilder Components
-@import 'components/headline';
-@import 'components/richtext';
-@import 'components/markdown';
-@import 'components/list';
-@import 'components/quote';
-@import 'components/horizontalRuler';
-@import 'components/mediaImage';
-@import 'components/embedContent';
-@import 'components/button';
-@import 'components/gallery';
-@import 'components/slideOutBox';
-@import 'components/card';
-@import 'components/jumpNavigation';
-@import 'components/spacer';
-@import 'components/slider';
-@import 'components/accordion';
-@import 'components/tab';
-@import 'components/section';
-@import 'components/grid';
-@import 'components/inlineSvg';
-@import 'components/instagram';
+@import 'cbmodules/headline';
+@import 'cbmodules/richtext';
+@import 'cbmodules/markdown';
+@import 'cbmodules/list';
+@import 'cbmodules/quote';
+@import 'cbmodules/horizontalRuler';
+@import 'cbmodules/mediaImage';
+@import 'cbmodules/embedContent';
+@import 'cbmodules/button';
+@import 'cbmodules/gallery';
+@import 'cbmodules/slideOutBox';
+@import 'cbmodules/card';
+@import 'cbmodules/jumpNavigation';
+@import 'cbmodules/spacer';
+@import 'cbmodules/slider';
+@import 'cbmodules/accordion';
+@import 'cbmodules/tab';
+@import 'cbmodules/section';
+@import 'cbmodules/grid';
+@import 'cbmodules/inlineSvg';
+@import 'cbmodules/instagram';
+@import 'cbmodules/video';
 
 // 6.2 Regular Components
 @import 'components/progressLoader';

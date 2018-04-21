@@ -3,7 +3,7 @@
  */
 import progressLoader from './progressLoader'
 import initPhotoSwipeFromDOM from './init-photoswipe' // eslint-disable-line
-import disqusLoader from './disqusComments'
+// import disqusLoader from './disqusComments'
 import offCanvasToggle from './offcanvas-trigger'
 import './hasScrollbars'
 import './init-heighttransition'
@@ -18,7 +18,12 @@ initPhotoSwipeFromDOM('.is-photoswipped')
 progressLoader()
 
 // Activate Disqus Button
-disqusLoader('.c-disqusComments__button')
+// disqusLoader('.c-disqusComments__button')
 
 // Add Offcanvas Trigger
-offCanvasToggle('.c-offCanvas__trigger')
+offCanvasToggle('o-offCanvasTrigger', 'c-offCanvas__close')
+
+/* eslint-disable */
+const videoEnded = () => {
+  video.load()
+}

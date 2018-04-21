@@ -1,0 +1,26 @@
+{#
+  inlineSvg
+  =================
+  Description
+
+  @param {string} name            = Classname
+#}
+
+{# Build Element Block #}
+{# Test if SVG #}
+{% if data.svg.first().extension in ['svg'] %}
+  <figure class="c-inlineSvg{{ _.styleClasses(options) }}">
+    {# Inline Style #}
+    {% if options.cssCode %}
+      <style>
+        {{ options.cssCode | raw }}
+      </style>
+    {% endif %}
+    {# Yield SVG Code Inline #}
+    {{ craft.inlin.er(data.svg.first().url, true) | raw }}
+
+    {% if data.caption %}
+      {% include '_components/caption.html' with { caption: data.caption, layout: 'align' } %}
+    {% endif %}
+  </figure>
+{% endif %}

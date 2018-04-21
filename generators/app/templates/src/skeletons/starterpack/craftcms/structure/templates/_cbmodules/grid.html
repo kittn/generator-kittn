@@ -1,0 +1,93 @@
+{#
+  grid
+  =================
+  Add a CSS Grid Layout Container
+
+  @param {string} name            = Classname
+#}
+
+{% set gridLayoutClass, gridOldRevision, gridInlined, gridInlineStyle, gridLayoutType = '', '', '', '', '' %}
+
+{# Pick Grid Setup from the Grid Setup Category #}
+{% if options.setupChoice is not empty %}
+  {% set gridSetup = options.setupChoice.first() %}
+  {% set gridLayoutClass = ' ' ~ gridSetup.setGridSetup.gridClassName %}
+  {% set gridLayoutType = gridSetup.setGridSetup.gridType %}
+  {% set gridOldRevision = gridSetup.setGridSetup.oldSpec %}
+  {% set gridInlined = gridSetup.setGridSetup.inlinedStyle %}
+  {% set gridInlineStyle = gridSetup.setGridSetup.style %}
+{% endif %}
+
+{# Build Element Block #}
+<div class="c-grid{{ _.styleClasses(options) }} fullbleed"{{ options.anchor != '' ? ' id=' ~ options.anchor|lower }}>
+  {# Background Container #}
+  {% if background.backgroundImage is defined and background.backgroundImage|length %}
+    {% set bgAlign, bgSize = '', '' %}
+
+    {# Pick BG Size #}
+    {% if background.width != 'default' %}
+      {% set bgAlign = background.width == 'halfLeft' ? ' c-grid__bg--left' : ' c-grid__bg--right' %}
+    {% endif %}
+
+    <div class="c-grid__bg{{ _.styleClasses(options.background) }}{{ background.adaptContainer ? ' c-grid__bg--size-' ~ options.innerContainer }}">
+      <div class="c-grid__bg__container c-grid__bg__container--{{  background.width }}">
+        <div
+          {{ _.mediaImageSet(background.backgroundImage.first(), background.ratio, {
+            class: 'c-grid__bg__background',
+            elementtype: false,
+            background: true,
+            position: background.position ? background.position : false
+          }) }}
+        ></div>
+      </div>
+    </div>
+  {% endif %}
+
+  {# Inner Container #}
+  {% if content.children | length > 0 %}
+    <div class="c-grid__container{{ options.innerContainer != 'default' ? ' c-grid__container--' ~ options.innerContainer }}{{ gridLayoutClass }}">
+
+      {# is no setupClass defined use the InlineGrid Style from the Category #}
+      {% if gridInlined %}
+        <style>
+          {{ gridInlineStyle|raw }}
+        </style>
+      {% endif %}
+
+      {# Insert Grid Boxes #}
+      {% for key, column in content.children %}
+        {% set boxName = column.setGridBoxOptions.boxName %}
+        {% set gridArea = '' %}
+        {% set gridBoxClassName = '' %}
+
+        {% if gridLayoutType == 'cssgrid' %}
+          {% if gridOldRevision  %}
+            {% if boxName != '' %}
+              {% set gridBoxClassName = gridLayoutClass ~ '__' ~ boxName  %}
+            {% else %}
+              {% set gridBoxClassName = gridLayoutClass ~ '__box-' ~ key %}
+            {% endif %}
+
+          {% else %}
+            {% set gridBoxClassName = gridLayoutClass ~ '__box' %}
+            {% set gridArea = boxName != '' ? ' style=grid-area:'~boxName : ' style=grid-area:box-'~key %}
+          {% endif %}
+        {% else %}
+          {% set gridBoxClassName = gridLayoutClass ~ '__box' %}
+        {% endif %}
+
+        {# Refine Classname #}
+        {% set gridBoxClassName = gridBoxClassName |replace({' ':''}) %}
+        {% set gridBoxClassName = ' ' ~ gridBoxClassName %}
+
+        <div class="c-grid__box{{- gridBoxClassName }}{{ _.styleClasses(column.setGridBoxOptions) }}"{{ gridArea }}>
+          {% if column.children|length > 0 %}
+            {% for child in column.children %}
+              {% include '_builder/_cb-objects' with { data: child } %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

@@ -1,0 +1,29 @@
+{#
+  List
+  ====
+  Creates a list of freely selectable bullets and individual styling
+
+  @param {string} name                   = Classname
+  @param {object} data                   = Listobject
+  @param {string} data.entry             = Listentries
+  @param {object} options                = Optionsobject
+  @param {string} options.listtype       = Type of list [ul, ol]
+  @param {string} options.bullet         = Type of Bullet, for `ul` [circle, square, custom]
+#}
+
+{# Define the Listtype with Bulletstyle #}
+{% if options.listtype == 'ul' %}
+  {% set list = 'ul' %}
+  {% set style = ' c-list--' ~ options.bullet %}
+
+{% else %}
+  {% set list = 'ol' %}
+  {% set style = ' c-list--ordered' %}
+{% endif %}
+
+{# Build Element Block #}
+<{{ list }} class="c-list{{ style }}{{ _.styleClasses(options) }}" role="list">
+  {% for entry in data %}
+    <li class="c-list__entry">{{ entry.entry|raw }}</li>
+  {% endfor %}
+</{{ list }}>

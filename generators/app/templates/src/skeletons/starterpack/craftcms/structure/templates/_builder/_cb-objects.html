@@ -7,192 +7,97 @@
 {% switch data.type %}
   {# Headline Module #}
   {% case 'objHeadline' %}
-    {% include '_components/headline' with {
-      data: data.objHeadline,
-      options: data.setHeadline
-    } %}
+    {% include '_cbmodules/headline' with { data: data.objHeadline, options: data.setHeadline } %}
 
   {# Richtext Module #}
   {% case 'objRichtext' %}
-    {% include '_components/richtext' with {
-      data: data.objRichtext,
-      options: data.setRichtext
-    } %}
+    {% include '_cbmodules/richtext' with { data: data.objRichtext, options: data.setRichtext  } %}
 
   {# Markdown Module #}
   {% case 'objMarkdown' %}
-    {% include '_components/markdown' with {
-      data: data.objMarkdown,
-      options: data.setMarkdown
-    } %}
+    {% include '_cbmodules/markdown' with { data: data.objMarkdown, options: data.setMarkdown } %}
 
   {# List Module #}
   {% case 'objList' %}
-    {% include '_components/list' with {
-      data: data.objList,
-      options: data.setList,
-      name: ''
-    } %}
+    {% include '_cbmodules/list' with { data: data.objList, options: data.setList } %}
 
   {# Horizontal Ruler #}
   {% case 'objHorizontalRuler' %}
-    {% include '_components/horizontalRuler' with {
-      data: data.objHorizontalRuler,
-      name: ''
-    } %}
+    {% include '_cbmodules/horizontalRuler' with { data: data.objHorizontalRuler } %}
 
   {# Quote Module #}
   {% case 'objQuote' %}
-    {% include '_components/quote' with {
-      data: data.objQuote,
-      options: data.setQuote,
-      name: ''
-    } %}
+    {% include '_cbmodules/quote' with { data: data.objQuote, options: data.setQuote } %}
 
   {# Media Image Module #}
   {% case 'objMediaImage' %}
-    {% include '_components/mediaImage' with {
-      data: data.objMediaImage,
-      options: data.setMediaImage,
-      name: ''
-    } %}
+    {% include '_cbmodules/mediaImage' with { data: data.objMediaImage, options: data.setMediaImage } %}
 
   {# Embed Module #}
   {% case 'objEmbedContent' %}
-    {% include '_components/embedContent' with {
-      data: data.objEmbedContent,
-      options: data.setEmbedContent,
-      name: ''
-    } %}
+    {% include '_cbmodules/embedContent' with { data: data.objEmbedContent, options: data.setEmbedContent } %}
 
   {# Button Module #}
   {% case 'objButton' %}
-    {% include '_components/button' with {
-      data: data.objButton,
-      options: data.setButton,
-      name: ''
-    } %}
+    {% include '_cbmodules/button' with { data: data.objButton, options: data.setButton } %}
 
   {# Gallery #}
   {% case 'objGallery' %}
-    {% include '_components/gallery' with {
-      data: data.objGallery,
-      options: data.setGallery,
-      name: ''
-    } %}
+    {% include '_cbmodules/gallery' with { data: data.objGallery, options: data.setGallery } %}
 
   {# SlideOut Box #}
   {% case 'objSlideOutBox' %}
-    {% include '_components/slideOutBox' with {
-      data: data.objSlideOutBox,
-      options: data.setSlideOutBox,
-      name: ''
-    } %}
+    {% include '_cbmodules/slideOutBox' with { data: data.objSlideOutBox, options: data.setSlideOutBox } %}
 
   {# Card #}
   {% case 'objCard' %}
-    {% include '_components/card' with {
-      data: data.objCard,
-      options: data.setCard,
-      name: ''
-    } %}
+    {% include '_cbmodules/card' with { data: data.objCard, options: data.setCard } %}
 
   {# Anchor #}
   {% case 'objAnchor' %}
-    {% include '_components/anchor' with {
-      data: data.objAnchor,
-      options: data.setAnchor,
-      name: ''
-    } %}
+    {% include '_cbmodules/anchor' with { data: data.objAnchor, options: data.setAnchor } %}
 
   {# JumpNavigation #}
   {% case 'objJumpNavigation' %}
-    {% include '_components/jumpNavigation' with {
-      data: data.objJumpNavigation,
-      options: data.setJumpNavigation,
-      name: ''
-    } %}
+    {% include '_cbmodules/jumpNavigation' with {  data: data.objJumpNavigation, options: data.setJumpNavigation } %}
 
   {# Spacer #}
   {% case 'objSpacer' %}
-    {% include '_components/spacer' with {
-      data: data.objSpacer,
-      name: ''
-    } %}
+    {% include '_cbmodules/spacer' with { data: data.objSpacer } %}
 
   {# Image Slider Module #}
   {% case 'objImageSlider' %}
-    {% include '_components/imageSlider' with {
-      data: data.objImageSlider,
-      options: data.setImageSlider,
-      setup: data.setSliderSetup,
-      general: data.setSliderSetupGeneral,
-      name: ''
-    } %}
+    {% include '_cbmodules/imageSlider' with { data: data.objImageSlider, options: data.setImageSlider, setup: data.setSliderSetup,  general: data.setSliderSetupGeneral } %}
 
   {# Text Slider Module #}
   {% case 'objCardSlider' %}
-    {% include '_components/cardSlider' with {
-      data: data.objCardSlider,
-      options: data.setCardSlider,
-      setup: data.setSliderSetup,
-      general: data.setSliderSetupGeneral,
-      name: ''
-    } %}
+    {% include '_cbmodules/cardSlider' with { data: data.objCardSlider, options: data.setCardSlider, setup: data.setSliderSetup, general: data.setSliderSetupGeneral } %}
 
   {# Accordions #}
   {% case 'objAccordionWrapper' %}
-    {% include '_components/accordion' with {
-      data: data.objAccordionWrapper,
-      name: ''
-    } %}
+    {% include '_cbmodules/accordion' with { data: data.objAccordionWrapper } %}
 
   {# Tabs #}
   {% case 'objTabWrapper' %}
-    {% include '_components/tab' with {
-      data: data.objTabWrapper,
-      name: ''
-    } %}
-
-  {# Section #}
-  {% case 'objSection' %}
-    {% include '_components/section' with {
-      data: data.objSection,
-      options: data.setSection,
-      layout: data.setSectionLayout,
-      background: data.setSectionBackground,
-      name: ''
-    } %}
+    {% include '_cbmodules/tab' with { data: data.objTabWrapper } %}
 
   {# Grid #}
   {% case 'objGrid' %}
-    {% include '_components/grid.html' with {
-      data: data.objGrid,
-      options: data.setGridOptions,
-      background: data.setGridSectionBackground,
-      name: ''
-    } %}
+    {% include '_cbmodules/grid.html' with { data: data.objGrid, options: data.setGridOptions, background: data.setGridSectionBackground } %}
 
   {# Inline SVG #}
   {% case 'objInlineSvg' %}
-    {% include '_components/inlineSvg.html' with {
-      data: data.objInlineSvg,
-      options: data.setInlineSvgOptions,
-      name: ''
-    } %}
+    {% include '_cbmodules/inlineSvg.html' with { data: data.objInlineSvg, options: data.setInlineSvgOptions } %}
 
   {% case 'objGeneric' %}
-    {% include '_components/generic.html' with {
-      data: data.objGeneric
-    } %}
+    {% include '_cbmodules/generic.html' with { data: data.objGeneric } %}
 
   {# Instagram #}
   {% case 'objInstagram' %}
-    {% include '_components/instagram.html' with {
-      data: data.objInstagram,
-      options: data.setInstagramOptions,
-      name: ''
-    } %}
+    {% include '_cbmodules/instagram.html' with { data: data.objInstagram, options: data.setInstagramOptions } %}
 
+  {# Video #}
+  {% case 'objVideo' %}
+    {% include '_cbmodules/video.html' with { data: data.objVideo, options: data.setVideo } %}
 
 {% endswitch %}

@@ -4,8 +4,6 @@
   Categories in the glossary style
 #}
 
-{% set c = 'c-glossaryCategory' %}
-
 {# Get all Keys #}
 {% set catKeys = {} %}
 {% set collectedCat = craft.categories.group(data).order('title asc') %}
@@ -21,25 +19,23 @@
 
   {# Compare if first letter is in the Object #}
   {% if catKeys[cats_key] is not defined %}
-
     {# Remove double entries #}
     {% if cats_key not in catKeys %}
       {% set catKeys = catKeys|merge({(cats_key):[]})%}
     {% endif %}
-
   {% endif %}
 {% endfor %}
 
-<div class="{{ c }}">
+<div class="c-glossaryCategory">
   {% for key in catKeys|keys %}
 
     {% if key == '#' %}
       {# Group all categories starting with a number #}
       {% set catGroupByLetter = collectedCat.search('title:1* OR title:2* OR title:3* OR title:4* OR title:5* OR title:6* OR title:7* OR title:8* OR title:9* OR title:0*' ).order('title asc').limit(null) %}
 
-      <div class="{{ c ~ '__box' }}">
-        <h6 class="{{ c ~ '__heading' }}" role="heading"><span>{{ key }}</span></h6>
-        <ul class="{{ c ~ '__list' }}">
+      <div class="c-glossaryCategory__box">
+        <h6 class="c-glossaryCategory__heading" role="heading"><span>{{ key }}</span></h6>
+        <ul class="c-glossaryCategory__list">
           {% for cat in catGroupByLetter %}
             {% set childCount = craft.entries.relatedTo(cat).total() %}
 
@@ -61,9 +57,9 @@
 
       {# List only if active categories in the group #}
       {% if catCount > 0 %}
-        <div class="{{ c ~ '__box' }}">
-          <h6 class="{{ c ~ '__heading' }}" role="heading"><span>{{ key }}</span></h6>
-          <ul class="{{ c ~ '__list' }}">
+        <div class="c-glossaryCategory__box">
+          <h6 class="c-glossaryCategory__heading" role="heading"><span>{{ key }}</span></h6>
+          <ul class="c-glossaryCategory__list">
             {% for cat in catGroupByLetter if cat.title|first|lower == key %}
 
               {% set childCount = craft.entries.relatedTo(cat).total() %}

@@ -1,0 +1,13 @@
+{#
+  Anchor
+  ======
+  Creates the anchor points for jump navigations. Do not use special characters for the anchor points. The jump position can be adjusted vertically with the override.
+
+  @param {string} name                   = Classname
+  @param {string} data                   = Name of the Anchor
+  @param {object} options                = Optionsobject
+  @param {number} options.positionfix    = Optional position offset
+#}
+
+{# Build Element Block #}
+<div class="c-anchor" id="{{ data|default('anchor')|lower }}"{{ options.positionfix != '' ? 'style=position:relative;top:'~options.positionfix }}></div>

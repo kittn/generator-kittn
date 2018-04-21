@@ -47,7 +47,7 @@ let colors = {
   'main': '#242424',
   'black': '#000000',
   'black-10': '#1a1a1a',
-  'black-10': '#333333',
+  'black-20': '#333333',
   'white': '#ffffff',
   'white-10': '#e6e6e6',
   'white-20': '#cccccc',
@@ -143,6 +143,7 @@ module.exports = {
   */
 
   textSizes: {
+    '12px': '12px',
     'smaller': '.75rem',
     'small': '.875rem',
     'base': '1rem',
@@ -469,7 +470,7 @@ module.exports = {
   maxWidth: {
     '50chr': '50chr',
     '70chr': '70chr',
-    '1200': '1200px',
+    'site': '1180px',
     'half': '50%',
     'full': '100%'
   },
@@ -711,7 +712,7 @@ module.exports = {
     backgroundRepeat: [],
     backgroundSize: [],
     borderColors: ['hover'],
-    borderRadius: [],
+    borderRadius: ['responsive', 'hover'],
     borderStyle: [],
     borderWidths: [],
     cursor: [],
@@ -729,15 +730,15 @@ module.exports = {
     minHeight: ['responsive'],
     minWidth: ['responsive'],
     negativeMargin: ['responsive'],
-    opacity: [],
+    opacity: ['hover'],
     overflow: ['responsive'],
     padding: ['responsive'],
     pointerEvents: [],
     position: ['responsive'],
     resize: [],
-    shadows: [],
-    svgFill: [],
-    svgStroke: [],
+    shadows: ['hover'],
+    svgFill: ['hover'],
+    svgStroke: ['hover'],
     textAlign: ['responsive'],
     textColors: ['responsive', 'hover'],
     textSizes: ['responsive'],
@@ -787,7 +788,11 @@ module.exports = {
         }
       }
       addUtilities(newUtilities)
-    }
+    },
+    // function ({ addComponents, config }) {
+    //   const element = {}
+    //   addComponents(lines)
+    // }
   ],
 
   /*

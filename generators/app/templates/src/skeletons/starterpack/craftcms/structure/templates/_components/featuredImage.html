@@ -11,8 +11,6 @@
   @param {string} label.linkit.text   = Link Text
 #}
 
-{% set c = 'c-featuredImage' %}
-
 {% if data.featuredImage|length %}
   {% set image = data.featuredImage.first() %}
 
@@ -67,7 +65,7 @@
           <div class="c-featuredImage__inner">
             {% if fi_headline %}<h2 class="c-featuredImage__headline" role="heading">{{ fi_headline }}</h2>{% endif %}
             {% if fi_link_url %}
-              {% include '_components/button' with {
+              {% include '_cbmodules/button' with {
                 data: {
                   url: fi_link_url,
                   text: fi_link_text,

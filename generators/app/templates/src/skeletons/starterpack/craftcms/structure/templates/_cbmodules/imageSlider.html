@@ -1,0 +1,131 @@
+{#
+  Image Slider
+  ============
+  Creates an image slider, using the Flickity library
+
+  @param {string} name                   = Classname
+  @param {object} data                   = Images
+  @param {object} options                = Optionsobject
+  @param {string} options.style          = Optional Styleclass
+  @param {string} options.ratio          = Image Ratio
+  @param {object} general                = General Slider Setupobject
+  @param {string} general.slidesPerView  = Number of visible Slides (1 - 10 / auto)
+  @param {string} general.position       = Should the Slides Centerd
+  @param {string} general.spaceBetween   = Space between slides
+  @param {bool}   general.loop           = Loopable Slider
+  @param {bool}   general.responsive     = Should breakpoints be used to break the slides?
+  @param {object} setup                  = Slider Setupobject
+  @param {bool}   setup.autoheight       = Dynamic Height for all Slides
+  @param {string} setup.autoplay         = Autoplaytime (or disable)
+  @param {number} setup.speed            = Animation Timing
+  @param {bool}   setup.pagination       = Disable Pagination
+  @param {bool}   setup.navigation       = Disable Navigation
+#}
+
+{# Count Slides #}
+{% set slideCount = data|length %}
+
+{# Get Slider Settings #}
+{% set general = options.setup.first() != '' ? options.setup.first() : '' %}
+
+{# Slider Setup #}
+{% if general != '' %}
+  {% set spaceBetween  = general.setSliderSetupGeneral.spaceBetween ? 'padding-left: ' ~ general.setSliderSetupGeneral.spaceBetween ~ ';padding-right: '~general.setSliderSetupGeneral.spaceBetween~';' : '' %}
+  {% set responsive = general.setSliderSetupGeneral.responsive ? '-r' : '' %}
+  {% set adaptiveHeight = general.setSliderSetup.autoHeight ? 'true' : 'false' %}
+  {% set groupCells = general.setSliderSetupGeneral.groupCell != 'default' ? general.setSliderSetupGeneral.groupCell : 0 %}
+  {% set freeScroll = general.setSliderSetupGeneral.freescroll ? 'true' : 'false' %}
+  {% set cellAlign = general.setSliderSetupGeneral.position ? general.setSliderSetupGeneral.position : 'center' %}
+  {% set prevNextButtons = general.setSliderSetup.navigation != true ? 'true' : 'false' %}
+  {% set pageDots = general.setSliderSetup.pagination != true ? 'true' : 'false' %}
+  {% set wrapAround = general.setSliderSetup.loop ? 'true' : 'false' %}
+
+  {% switch general.setSliderSetupGeneral.slidesPerView %}
+    {% case 'auto' %}
+      {% set slideWidth = ' c-slider__slide'~responsive~'--auto' %}
+    {% case 'two' %}
+      {% set slideWidth = ' c-slider__slide'~responsive~'--2' %}
+    {% case 'three' %}
+      {% set slideWidth = ' c-slider__slide'~responsive~'--3' %}
+    {% case 'four' %}
+      {% set slideWidth = ' c-slider__slide'~responsive~'--4' %}
+    {% case 'five' %}
+      {% set slideWidth = ' c-slider__slide'~responsive~'--5' %}
+    {% case 'six' %}
+      {% set slideWidth = ' c-slider__slide'~responsive~'--6' %}
+    {% default %}
+      {% set slideWidth = ' c-slider__slide'~responsive~'--1' %}
+  {% endswitch %}
+
+  {# Set Autoplay Speed #}
+  {% switch setup.setSliderSetup.autoplay|default('default') %}
+    {% case "slow" %}
+      {% set autoplay = 10000  %}
+    {% case "medium" %}
+      {% set autoplay = 5000 %}
+    {% case "fast" %}
+      {% set autoplay = 2500  %}
+    {% default %}
+      {% set autoplay = 'false' %}
+  {% endswitch %}
+
+  {# Set Animation Speed #}
+  {% switch setup.setSliderSetup.speed|default('default') %}
+    {% case "slow" %}
+      {% set selectedAttraction = 0.01 %}
+      {% set friction = 0.15 %}
+    {% case "medium" %}
+      {% set selectedAttraction = 0.1 %}
+      {% set friction = 0.35 %}
+    {% case "fast" %}
+      {% set selectedAttraction = 0.2 %}
+      {% set friction = 1 %}
+    {% default %}
+      {% set selectedAttraction = 0.025 %}
+      {% set friction = 0.28 %}
+  {% endswitch %}
+
+{% else %}
+  {% set spaceBetween  = 0 %}
+  {% set slideWidth = ' c-slider__slide--1' %}
+  {% set autoplay = 'false' %}
+  {% set selectedAttraction = 0.025 %}
+  {% set friction = 0.28 %}
+  {% set adaptiveHeight = 'false' %}
+  {% set groupCells = 0 %}
+  {% set freeScroll = 'false' %}
+  {% set cellAlign = 'center' %}
+  {% set prevNextButtons = 'true' %}
+  {% set pageDots = 'true' %}
+  {% set wrapAround = 'false' %}
+{% endif %}
+
+{# Build Element Block #}
+<figure class="c-slider js-imageSlider c-slider--image{{ _.styleClasses(options) }}"
+        itemscope itemtype="http://schema.org/ImageGallery" role="presentation"
+        data-flickity='{
+          "accessibility": false,
+          "contain": true,
+          "imagesLoaded": true,
+          "lazyLoad": false,
+          "adaptiveHeight": {{ adaptiveHeight }},
+          "groupCells": {{ groupCells }},
+          "autoPlay": {{ slideCount > 1 ? autoplay : 'false' }},
+          "draggable": {{ slideCount > 1 ? 'true' : 'false' }},
+          "friction": {{ friction }},
+          "selectedAttraction": {{ selectedAttraction }},
+          "freeScroll": {{ slideCount > 1 ? freeScroll : 'false' }},
+          "freeScrollFriction": 0.03,
+          "cellAlign": "{{ cellAlign }}",
+          "prevNextButtons": {{ slideCount > 1 ? prevNextButtons : 'false' }},
+          "pageDots": {{ slideCount > 1 ? pageDots : 'false' }},
+          "wrapAround": {{ slideCount > 1 ? wrapAround : 'false' }}
+  }'>
+  {% for photo in data %}
+    <div class="c-slider__slide{{ slideWidth }}" style="{{ spaceBetween }}" itemscope itemtype="http://schema.org/ImageObject">
+      {{ _.mediaImageSet(photo, options.ratio, {
+        class: 'c-slider__image'
+      }) }}
+    </div>
+  {% endfor %}
+</figure>

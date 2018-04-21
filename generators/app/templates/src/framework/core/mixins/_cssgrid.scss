@@ -178,14 +178,14 @@
 ///
 /// @example scss - scss
 ///    $gridAreaMap: (
-///      logo nav nav nav,
-///      logo empty search search
+///      row1: ('logo', 'nav', 'nav', 'nav'),
+///      row2: ('logo', 'empty', 'search', 'search')
 ///    );
 ///    @include grid-matrix($gridAreaMap);
 @mixin grid-matrix($map) {
   $matrix: ();
 
-  @each $row in $map {
+  @each $index, $row in $map {
     $list: null;
 
     @for $i from 1 through length($row) {
@@ -230,22 +230,12 @@
   .old-grid-spec & {
     // Get Width element
     @for $i from 1 through length($map) {
-      @if type-of($map) == map {
-        @if sl-contain(map-get($map,row#{$i}), $area) {
-          $areaExists: append($areaExists, 1);
-          $gridRowHeight: append($gridRowHeight, $i);
-          $gridColumnStart: index(map-get($map,row#{$i}), $area);
-          $gridColumnEnd: sl-last-index(map-get($map,row#{$i}), $area);
-          $gridRows: append($gridRows, $i);
-        }
-      } @else if type-of($map) == list {
-        @if sl-contain(nth($map, $i), $area) {
-          $areaExists: append($areaExists, 1);
-          $gridRowHeight: append($gridRowHeight, $i);
-          $gridColumnStart: index(nth($map, $i), $area);
-          $gridColumnEnd: sl-last-index(nth($map, $i), $area);
-          $gridRows: append($gridRows, $i);
-        }
+      @if sl-contain(map-get($map,row#{$i}), $area) {
+        $areaExists: append($areaExists, 1);
+        $gridRowHeight: append($gridRowHeight, $i);
+        $gridColumnStart: index(map-get($map,row#{$i}), $area);
+        $gridColumnEnd: sl-last-index(map-get($map,row#{$i}), $area);
+        $gridRows: append($gridRows, $i);
       }
     }
 
@@ -290,11 +280,11 @@
 //      columns: 1fr,
 //      rows: 1fr 1fr 1fr 1fr 1fr,
 //      areas: (
-//        info,
-//        social,
-//        adress,
-//        copyright,
-//        nav
+//        row1: ('info'),
+//        row2: ('social'),
+//        row3: ('adress'),
+//        row4: ('copyright'),
+//        row5: ('nav')
 //      )
 //    ),
 //    set2: (
@@ -304,10 +294,10 @@
 //      columns: 1fr 1fr 1fr,
 //      rows: 1fr 1fr 1fr 1fr,
 //      areas: (
-//        info info info,
-//        social social social,
-//        adress adress adress,
-//        copyright nav nav
+//        row1: ('info', 'info', 'info'),
+//        row2: ('social', 'social', 'social'),
+//        row3: ('adress', 'adress', 'adress'),
+//        row4: ('copyright', 'nav', 'nav')
 //      )
 //    )
 //  ),

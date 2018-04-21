@@ -31,7 +31,15 @@ class MigrationManagerPlugin extends BasePlugin
      */
     public function getVersion()
     {
-        return '1.0.8.7';
+        return '1.0.9.0';
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getSchemaVersion()
+    {
+        return '1.0.0';
     }
 
     /**

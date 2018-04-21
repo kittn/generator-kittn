@@ -3,7 +3,7 @@
   =================
   Description
 */
-.<%= moduleType %>-<%= moduleName %> {
+.<% if(moduleType === 'cb') { %>c<% } else { %><%= moduleType %><% } %>-<%= moduleName %> {
   $api: (
     mq: 'm',<% if(moduleType === 'cb' || moduleType === 'c' || moduleType === 'o') { %>
     grid: (

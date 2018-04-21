@@ -1,0 +1,45 @@
+{#
+  Tab
+  ===
+  Tabs only with CSS, therefore only one tab container per page. If this is not enough,
+  the functionality must be expanded with JS. The Container tab contains a ContentBuilder.
+
+  @param {string} name          = Classname
+  @param {object} data          = dataobject
+  @param {string} data.style    = Optional Styleclass Name
+#}
+{% import '_macros/my-macro.html' as _ %}
+
+{% macro tabBlock(classname, child, key) %}
+  {# Random Number for identify tabgroup#}
+  {% set tabGroup = random(5000) %}
+
+  <input type="radio" name="tabs" id="tg{{ tabGroup }}-e{{ key }}" class="{{ classname }}__input"{{ key == 0 ? ' checked="checked"' }} role="tab">
+  <label class="{{ classname }}__header" for="tg{{ tabGroup }}-e{{ key }}">{{ child.objTab }}</label>
+  <div class="{{ classname }}__body" role="tabpanel">
+    <div class="{{ classname }}__inner">
+      {% for child in child.children %}
+        {% include '_builder/_cb-objects' with { data: child } %}
+      {% endfor %}
+    </div>
+  </div>
+{% endmacro %}
+
+{# Build Element Block #}
+<div class="c-tab{{ _.styleClasses(options) }}" role="tablist">
+  {# Loop through #}
+  {% switch content.type.handle %}
+    {% case 'objSection' %}
+      {% for child in content.children %}
+        {% for child in child.children %}
+          {% for child in child.children %}
+            {{ _self.tabBlock('c-tab', child)}}
+          {% endfor %}
+        {% endfor %}
+      {% endfor %}
+    {% default %}
+      {% for child in content.children %}
+        {{ _self.tabBlock('c-tab', child)}}
+      {% endfor %}
+  {% endswitch %}
+</div>

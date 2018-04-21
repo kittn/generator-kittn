@@ -1,0 +1,26 @@
+{#
+  Button
+  ======
+  Creates a button with different styles. In addition, size, width and position can be adjusted.
+
+  @param {string} name                   = Classname
+  @param {object} data                   = Linkobject
+  @param {string} data.url               = Url
+  @param {bool}   data.target            = Open the link in a new tab
+  @param {string} data.text              = Button inscription
+  @param {object} options                = Optionsobject
+  @param {string} options.style          = Styleoption
+  @param {string} options.position       = Positionparameter [default, left, right]
+  @param {string} options.size           = Buttonsize
+  @param {bool}   options.fullwidth      = If the button should occupy the full container width
+#}
+
+{# Build Element Block #}
+<div class="c-button{{ options.position is defined and options.position != 'default' ? ' c-button--'~options.position : '' }}">
+  <a itemprop="url"
+     role="button"
+     href="{{ data.url is defined and not null ? data.url }}" {{ data.target is defined and data.target ? ' target=_blank' }}
+     class="c-button__element{{ _.styleClasses(options) }}{{- options.fullwidth is defined and options.fullwidth ? ' ' ~ c ~ '--fullwidth' -}}">
+    {{ data.text is defined and not null ? data.text }}
+  </a>
+</div>

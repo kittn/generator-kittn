@@ -111,11 +111,11 @@
 
     {% else %}
       {# Check if image would cropped#}
-      {% if imageratio != 'nocrop' %}
-        {% set ratio = imageratio|default('35:24')|split(':') %}
+      {% if imageratio != '' %}
+        {% set rat= ':' in imageratio ? imageratio : '35:24' %}
+        {% set ratio = rat|split(':') %}
         {% set focusPosition = photo.focalpoint is defined ? photo.focalpoint : '50% 50%' %}
         {% set globalModifier = { jpegQuality: options.quality, ratio: ratio|first/ratio|last , mode: 'crop', position: focusPosition } %}
-
         {% if options.imgixEnabled == 1 %}
           {% set globalModifier = globalModifier|merge(options.imgix) %}
         {% endif %}
@@ -462,5 +462,6 @@
   Styling Classes
 #}
 {% macro styleClasses(data) %}
-{% if data is not empty %}{% for class in data %}{{- ' ' ~ class.styleClasses.classname -}}{% endfor %}{% endif %}
+{% if data.styleClasses is not empty %}{% for class in data.styleClasses %}{% if class is not empty %}{{- ' ' ~ class.styleClasses.classname -}}{% endif %}{% endfor %}{% endif %}
+{% if data['addClasses'] is defined and data['addClasses'] is not empty %} {{- ' ' ~ data.addClasses -}}{% endif %}
 {% endmacro %}

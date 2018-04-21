@@ -1,0 +1,39 @@
+{#
+  Card
+  ====
+  Media and text content as card module
+
+  @param {object} data          = Dataobject
+  @param {string} data.style    = Optional Styleclass Name
+#}
+
+{% set cardurl = data.cardlink.url is defined ? data.cardlink.url : '' %}
+
+{# Build Element Block #}
+<div class="c-card{{ _.styleClasses(options) }}" role="group" itemscope itemtype="http://schema.org/MediaObject">
+  <div class="c-card__inner">
+    {% if data.photo|length  %}
+      <figure class="c-card__media">
+        {{ _.mediaImageSet(data.photo.first(), options.mediaRatio, {
+          class: 'c-card__image'
+        }) }}
+      </figure>
+    {% endif %}
+    {% if data.headline != '' or data.subline != '' or data.meta != '' or data.body != '' %}
+      <div class="c-card__copy">
+        {% if data.headline != '' or data.subline != '' or data.meta != '' %}
+          <header class="c-card__header">
+            {% if data.meta != '' %}<span class="c-card__meta">{{ data.meta }}</span>{% endif %}
+            {% if data.headline != '' %}<h3 class="c-card__headline">
+              {% if cardurl is defined and cardurl != '' %}<a href="{{ cardurl }}"{{ data.cardlink.type == 'custom' ? ' target=_blank' }}>{% endif %}
+                {{ data.headline }}
+                {% if cardurl is defined and cardurl != '' %}</a>{% endif %}
+              </h3>{% endif %}
+            {% if data.subline != '' %}<h3 class="c-card__subline">{{ data.subline }}</h3>{% endif %}
+          </header>
+        {% endif %}
+        {% if data.body != '' %}<div class="c-card__body">{{ data.body }}</div>{% endif %}
+      </div>
+    {% endif %}
+  </div>
+</div>

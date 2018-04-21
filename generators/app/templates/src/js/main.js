@@ -40,6 +40,11 @@ ReactDOM.render(
   document.getElementById('app')
 )<% } %><% if ( projectusage !== 'webpackApp' ) { %>
 
+// TODO: Clean Up the Vue Config here and use the seperate Vue-app file
+// if (document.querySelectorAll('.js-vue').length > 0) {
+//   import('./vue-app' /* webpackChunkName: "vueapp" */)
+// }
+
 // Lasysizes Lazyload Config
 const lazySizesConfig = window.lazySizesConfig || {}
 window.lazySizesConfig = lazySizesConfig
