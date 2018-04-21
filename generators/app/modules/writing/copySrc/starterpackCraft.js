@@ -10,6 +10,13 @@ const starterpackCraft = (context) => {
       },
       {
         conditions: {
+          projectusage: 'craftCB'
+        },
+        src: 'buddy.yml',
+        dest: 'buddy.yml'
+      },
+      {
+        conditions: {
           projectusage: 'craftCB',
           projectcredential: true
         },
