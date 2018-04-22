@@ -415,9 +415,9 @@ No whitespaces or special-chars allowed!}`
         headline: 'Add Prettier',
         description:
           'Do you want to use Prettier for automated Code-Formatting? (See prettier.io)',
-        defaultValue: false
+        defaultValue: true
       }),
-      default: false,
+      default: true,
       store: true
     },
     {

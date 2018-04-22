@@ -27,7 +27,7 @@ const starterpackWordpress = (context) => {
         conditions: {
           projectusage: 'wordpressCB'
         },
-        src: 'databases/wordpressCB.sql',
+        src: 'contentBuilder_stuff/databases/wordpressCB.sql',
         dest: 'database.sql'
       },
       {
@@ -80,14 +80,14 @@ const starterpackWordpress = (context) => {
         conditions: {
           projectusage: 'wordpressCB'
         },
-        src: 'src/skeletons/starterpack/wordpress/contentbuilder.json',
+        src: 'src/skeletons/wordpress_contentbuilder/contentbuilder.json',
         dest: 'acf-contentbuilder.json'
       },
       {
         conditions: {
           projectusage: 'wordpressCB'
         },
-        src: 'src/skeletons/starterpack/wordpress/adminimize-settings.json',
+        src: 'src/skeletons/wordpress_contentbuilder/adminimize-settings.json',
         dest: 'adminimize-settings.json'
       }
     ],
@@ -103,14 +103,14 @@ const starterpackWordpress = (context) => {
         conditions: {
           projectusage: 'wordpressCB'
         },
-        src: 'src/skeletons/starterpack/wordpress/structure/templates',
+        src: 'src/skeletons/wordpress_contentbuilder/structure/templates',
         dest: 'src/structure/templates/'
       },
       {
         conditions: {
           projectusage: 'wordpressCB'
         },
-        src: 'src/skeletons/starterpack/wordpress/structure/plugins',
+        src: 'src/skeletons/wordpress_contentbuilder/structure/plugins',
         dest: 'src/structure/plugins/',
         simplecopy: true
       },
@@ -118,14 +118,14 @@ const starterpackWordpress = (context) => {
         conditions: {
           projectusage: 'wordpressCB'
         },
-        src: 'src/skeletons/starterpack/general/js/',
+        src: 'contentBuilder_stuff/js/',
         dest: 'src/js/partial/'
       },
       {
         conditions: {
           projectusage: 'wordpressCB'
         },
-        src: 'src/skeletons/starterpack/wordpress/style/',
+        src: 'src/skeletons/wordpress_contentbuilder/style/',
         dest: 'src/style/'
       }
     ]
