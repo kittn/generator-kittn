@@ -155,7 +155,6 @@ function addScriptDependencies (files = {}, context) {
         vue: '^2.5.16'
       }
     })
-
     if (context.props.projectusage === 'webpackApp') {
       extend(files.pkg, {
         scripts: {
@@ -171,6 +170,55 @@ function addScriptDependencies (files = {}, context) {
         }
       })
     }
+  }
+
+  // If Vue with E2E Testing
+  if (
+    context.props.projectjsframework === 'vue' &&
+    context.props.projecttestinge2e === true
+  ) {
+    extend(files.pkg, {
+      devDependencies: {
+        '@vue/cli-plugin-e2e-cypress': '^3.0.0-beta.6'
+      }
+    })
+  }
+
+  // If Vue with Unit Testing
+  if (
+    context.props.projectjsframework === 'vue' &&
+    context.props.projecttestingunit === true
+  ) {
+    extend(files.pkg, {
+      scripts: {
+        'unit': 'jest'
+      },
+      devDependencies: {
+        '@vue/babel-preset-app': '^3.0.0-beta.6',
+        '@vue/server-test-utils': '^1.0.0-beta.14',
+        '@vue/test-utils': '^1.0.0-beta.14',
+        'babel-7-jest': '^21.3.3',
+        'babel-core': '^7.0.0-0',
+        'babel-jest': '^22.4.3',
+        'jest': '^22.4.3',
+        'jest-vue-preprocessor': '^1.4.0',
+        'regenerator-runtime': '^0.11.1',
+        'vue-jest': '^2.5.0'
+      }
+    })
+  }
+
+  // Adding Wallaby
+  // If Vue with Unit Testing
+  if (
+    context.props.projectjsframework === 'vue' &&
+    context.props.projecttestingwallaby === true
+  ) {
+    extend(files.pkg, {
+      devDependencies: {
+        'wallaby-vue-compiler': '^1.0.2'
+      }
+    })
   }
 
   if (

@@ -153,8 +153,10 @@ module.exports = class extends Generator {
       this.props.projectcritical = this.props.projectcritical || false
       this.props.fileGroup = this.props.fileGroup || false
       this.props.fileUser = this.props.fileUser || false
-      this.props.projectnormalize = this.props.projectnormalize || 'regular';
+      this.props.projectnormalize = this.props.projectnormalize || 'regular'
       this.props.projectjsframework = this.props.projectjsframework || false
+      this.props.projecttestingunit = this.props.projecttestingunit || false
+      this.props.projecttestingwallaby = this.props.projecttestingwallaby || false
     })
   }
 

@@ -70,6 +70,19 @@ function addBaseDependencies (files = {}, context) {
       }
     })
   }
+
+  if (context.props.projecttestinge2e === true) {
+    extend(files.pkg, {
+      scripts: {
+        'e2e:open': 'cypress open',
+        'e2e': 'cypress'
+      },
+      devDependencies: {
+        'eslint-plugin-cypress': '^2.0.1',
+        'cypress': '^2.1.0'
+      }
+    })
+  }
 }
 
 module.exports = addBaseDependencies

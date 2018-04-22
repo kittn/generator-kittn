@@ -561,6 +561,45 @@ No whitespaces or special-chars allowed!}`
     },
     {
       when: function (answers) {
+        return answers.projectjsframework === 'vue'
+      },
+      type: 'confirm',
+      name: 'projecttestingunit',
+      message: message({
+        headline: 'Unit Testing',
+        description: 'Should a unit test be integrated with Jest?',
+        defaultValue: false
+      }),
+      default: false,
+      store: true
+    },
+    {
+      type: 'confirm',
+      name: 'projecttestinge2e',
+      message: message({
+        headline: 'E2E Testing',
+        description: 'Should a unit test be integrated with Cypress?',
+        defaultValue: false
+      }),
+      default: false,
+      store: true
+    },
+    {
+      when: function (answers) {
+        return answers.projecttestingunit === true && answers.projectjsframework === 'vue'
+      },
+      type: 'confirm',
+      name: 'projecttestingwallaby',
+      message: message({
+        headline: 'Wallaby',
+        description: 'Should Wallaby be configured?',
+        defaultValue: false
+      }),
+      default: false,
+      store: true
+    },
+    {
+      when: function (answers) {
         return answers.projectusage !== 'webpackApp'
       },
       type: 'confirm',

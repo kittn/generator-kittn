@@ -76,6 +76,30 @@ const base = context => {
         simplecopy: true
       },
       {
+        conditions: {
+          projecttestinge2e: true
+        },
+        src: 'cypress.json',
+        dest: 'cypress.json',
+        simplecopy: true
+      },
+      {
+        conditions: {
+          projecttestingunit: true
+        },
+        src: 'jest.config.js',
+        dest: 'jest.config.js',
+        simplecopy: true
+      },
+      {
+        conditions: {
+          projecttestingwallaby: true
+        },
+        src: 'wallaby.config.js',
+        dest: 'wallaby.config.js',
+        simplecopy: true
+      },
+      {
         src: 'README.md',
         dest: 'README.md'
       },
@@ -139,6 +163,20 @@ const base = context => {
         },
         src: 'tailwind',
         dest: 'tailwind/'
+      },
+      {
+        conditions: {
+          projecttestinge2e: true
+        },
+        src: 'tests/e2e',
+        dest: 'tests/e2e/'
+      },
+      {
+        conditions: {
+          projecttestingunit: true
+        },
+        src: 'tests/unit',
+        dest: 'tests/unit/'
       }
     ]
   }

@@ -1,14 +1,12 @@
 <template>
-  <h2>
-    Hello World i am Vue
-  </h2>
+  <h2>{{ message }}</h2>
 </template>
 
 <script>
-export default {
-  components: {},
-  data() {
-    return {}
+  export default {
+    components: {},
+    data: () => ({
+      message: 'Hello World i am Vue'
+    })
   }
-}
 </script>
