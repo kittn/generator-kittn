@@ -56,8 +56,8 @@ doc/
 *.stTheme.cache
 
 ### Test Results ###
-test/e2e/screenshots
-test/e2e/videos
+tests/e2e/screenshots
+tests/e2e/videos
 
 # workspace files are user-specific
 *.sublime-workspace
