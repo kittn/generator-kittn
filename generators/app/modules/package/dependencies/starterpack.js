@@ -25,6 +25,13 @@ function addStarterpackDependencies (files = {}, context) {
     })
   }
 
+  if (context.props.projectusage === 'craftCB') {
+    extend(files.pkg, {
+      scripts: {
+        'db': './craftscripts/pull_db.sh'
+      }
+    })
+  }
 }
 
 module.exports = addStarterpackDependencies
