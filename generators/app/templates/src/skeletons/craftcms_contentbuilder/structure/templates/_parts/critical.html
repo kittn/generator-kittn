@@ -7,7 +7,7 @@
       {{- source ( _t.templatename ~ '_critical.min.css', ignore_missing = true) -}}
     </style>
   {%- endif -%}
-  <link rel="preload" href="{{ craft.config.rootUrl ~ 'assets/css/<%= projectcssfilename %>.css' | cacheBuster }}" as="style" onload="this.rel='stylesheet'">
+  <link rel="preload" href="{{ '/assets/css/<%= projectcssfilename %>.css' | cacheBuster }}" as="style" onload="this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="{{ craft.config.rootUrl ~ 'assets/css/<%= projectcssfilename %>.css' }}"></noscript>
   <script>
     !function(e){"use strict";var n=function(n,t,o){var i,r=e.document,d=r.createElement("link");if(t)i=t;else{var a=(r.body||r.getElementsByTagName("head")[0]).childNodes;i=a[a.length-1]}var l=r.styleSheets;d.rel="stylesheet",d.href=n,d.media="only x",function e(n){if(r.body)return n();setTimeout(function(){e(n)})}(function(){i.parentNode.insertBefore(d,t?i:i.nextSibling)});var f=function(e){for(var n=d.href,t=l.length;t--;)if(l[t].href===n)return e();setTimeout(function(){f(e)})};function s(){d.addEventListener&&d.removeEventListener("load",s),d.media=o||"all"}return d.addEventListener&&d.addEventListener("load",s),d.onloadcssdefined=f,f(s),d};"undefined"!=typeof exports?exports.loadCSS=n:e.loadCSS=n}("undefined"!=typeof global?global:this);
@@ -18,8 +18,8 @@
     document.documentElement.className += " wf-loaded"
   </script>
   {% if craft.cacheBuster is defined %}
-    <link rel="stylesheet" href="{{ craft.config.rootUrl ~ 'assets/css/<%= projectcssfilename %>.css' | cacheBuster }}">
+    <link rel="stylesheet" href="{{ '/assets/css/<%= projectcssfilename %>.css' | cacheBuster }}">
   {% else %}
-    <link rel="stylesheet" href="{{ craft.config.rootUrl ~ 'assets/css/<%= projectcssfilename %>.css' }}">
+    <link rel="stylesheet" href="{{ '/assets/css/<%= projectcssfilename %>.css' }}">
   {% endif %}
 {% endif %}

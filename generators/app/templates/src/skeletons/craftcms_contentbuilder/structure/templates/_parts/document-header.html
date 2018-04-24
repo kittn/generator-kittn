@@ -8,7 +8,7 @@
   {% if criticalCSS and craft.request.isLivePreview != true and craft.config.environment != 'local' %}
     {{ include('_parts/critical') }}
   {% else %}
-    <link rel="stylesheet" href="{{ craft.config.rootUrl ~ 'assets/css/<%= projectcssfilename %>.css' }}">
+    <link rel="stylesheet" href="/assets/css/<%= projectcssfilename %>.css">
   {% endif %}
   {% if seomaticSiteMeta is defined and craft.config.environment != 'local' %}
     {% hook 'seomaticRender' %}
