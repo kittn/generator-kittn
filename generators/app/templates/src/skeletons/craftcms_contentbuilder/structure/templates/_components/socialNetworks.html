@@ -1,0 +1,17 @@
+{#
+  Social Networks
+  ===============
+  Build links with Icons
+#}
+
+{% if data|length %}
+  <nav class="c-socialNetworks" role="navigation">
+    {% for row in data if row.linkit %}
+      <a href="{{ row.linkit }}" target="_blank" class="c-socialNetworks__link" title="{{ row.caption ? row.caption : 'Folge uns auf'|t ~ ' ' ~ row.icon|capitalize }}">
+        {{ _.svgicon('icon-' ~ row.icon, '0 0 50 50', {
+          class: 'c-socialNetworks__icon'
+        } )}}
+      </a>
+    {% endfor %}
+  </nav>
+{% endif %}

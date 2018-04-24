@@ -70,7 +70,7 @@ const projecttype = context => {
         conditions: {
           projectusage: 'craft'
         },
-        src: 'databases/craft.sql',
+        src: 'contentBuilder_stuff/databases/craft.sql',
         dest: 'database.sql'
       },
       {
@@ -131,7 +131,7 @@ const projecttype = context => {
         conditions: {
           projectusage: 'wordpress'
         },
-        src: 'databases/wordpress.sql',
+        src: 'contentBuilder_stuff/databases/wordpress.sql',
         dest: 'database.sql'
       }
     ],

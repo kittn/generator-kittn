@@ -1,0 +1,12 @@
+{#
+  Pagelogo
+  ========
+#}
+{% set elementType = craft.request.firstSegment == '' ? 'h1' : 'div' %}
+
+{# Build Element Block #}
+<{{ elementType }} class="c-pagelogo">
+  {% if craft.request.firstSegment != '' %}<a href="{{ siteUrl }}">{% endif %}
+  {{ siteName }}
+  {% if craft.request.firstSegment != '' %}</a>{% endif %}
+</{{ elementType }}>

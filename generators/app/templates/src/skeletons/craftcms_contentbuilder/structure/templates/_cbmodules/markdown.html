@@ -1,0 +1,17 @@
+{#
+  Markdown
+  ========
+  Creates content from the Markdown format
+
+  @param {string} data                   = Markdown Content
+  @param {object} options                = Optionsobject
+  @param {string} options.style          = Optional Styleclass
+  @param {bool}   options.addAnchor      = Adding Anchors to h1, h2, h3
+#}
+
+{# Build Element Block #}
+<div class="c-markdown{{ _.styleClasses(options) }}">
+  {{ data.html({
+    addHeaderAnchors: options.addAnchor
+  }) }}
+</div>

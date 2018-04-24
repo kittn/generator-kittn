@@ -1,0 +1,103 @@
+{#
+  Content Builder Modules Collection
+  ==================================
+  Ready for binding in other Content Builder
+#}
+
+{% switch data.type %}
+  {# Headline Module #}
+  {% case 'objHeadline' %}
+    {% include '_cbmodules/headline' with { data: data.objHeadline, options: data.setHeadline } %}
+
+  {# Richtext Module #}
+  {% case 'objRichtext' %}
+    {% include '_cbmodules/richtext' with { data: data.objRichtext, options: data.setRichtext  } %}
+
+  {# Markdown Module #}
+  {% case 'objMarkdown' %}
+    {% include '_cbmodules/markdown' with { data: data.objMarkdown, options: data.setMarkdown } %}
+
+  {# List Module #}
+  {% case 'objList' %}
+    {% include '_cbmodules/list' with { data: data.objList, options: data.setList } %}
+
+  {# Horizontal Ruler #}
+  {% case 'objHorizontalRuler' %}
+    {% include '_cbmodules/horizontalRuler' with { data: data.objHorizontalRuler } %}
+
+  {# Quote Module #}
+  {% case 'objQuote' %}
+    {% include '_cbmodules/quote' with { data: data.objQuote, options: data.setQuote } %}
+
+  {# Media Image Module #}
+  {% case 'objMediaImage' %}
+    {% include '_cbmodules/mediaImage' with { data: data.objMediaImage, options: data.setMediaImage } %}
+
+  {# Embed Module #}
+  {% case 'objEmbedContent' %}
+    {% include '_cbmodules/embedContent' with { data: data.objEmbedContent, options: data.setEmbedContent } %}
+
+  {# Button Module #}
+  {% case 'objButton' %}
+    {% include '_cbmodules/button' with { data: data.objButton, options: data.setButton } %}
+
+  {# Gallery #}
+  {% case 'objGallery' %}
+    {% include '_cbmodules/gallery' with { data: data.objGallery, options: data.setGallery } %}
+
+  {# SlideOut Box #}
+  {% case 'objSlideOutBox' %}
+    {% include '_cbmodules/slideOutBox' with { data: data.objSlideOutBox, options: data.setSlideOutBox } %}
+
+  {# Card #}
+  {% case 'objCard' %}
+    {% include '_cbmodules/card' with { data: data.objCard, options: data.setCard } %}
+
+  {# Anchor #}
+  {% case 'objAnchor' %}
+    {% include '_cbmodules/anchor' with { data: data.objAnchor, options: data.setAnchor } %}
+
+  {# JumpNavigation #}
+  {% case 'objJumpNavigation' %}
+    {% include '_cbmodules/jumpNavigation' with {  data: data.objJumpNavigation, options: data.setJumpNavigation } %}
+
+  {# Spacer #}
+  {% case 'objSpacer' %}
+    {% include '_cbmodules/spacer' with { data: data.objSpacer } %}
+
+  {# Image Slider Module #}
+  {% case 'objImageSlider' %}
+    {% include '_cbmodules/imageSlider' with { data: data.objImageSlider, options: data.setImageSlider, setup: data.setSliderSetup,  general: data.setSliderSetupGeneral } %}
+
+  {# Text Slider Module #}
+  {% case 'objCardSlider' %}
+    {% include '_cbmodules/cardSlider' with { data: data.objCardSlider, options: data.setCardSlider, setup: data.setSliderSetup, general: data.setSliderSetupGeneral } %}
+
+  {# Accordions #}
+  {% case 'objAccordionWrapper' %}
+    {% include '_cbmodules/accordion' with { data: data.objAccordionWrapper } %}
+
+  {# Tabs #}
+  {% case 'objTabWrapper' %}
+    {% include '_cbmodules/tab' with { data: data.objTabWrapper } %}
+
+  {# Grid #}
+  {% case 'objGrid' %}
+    {% include '_cbmodules/grid.html' with { data: data.objGrid, options: data.setGridOptions, background: data.setGridSectionBackground } %}
+
+  {# Inline SVG #}
+  {% case 'objInlineSvg' %}
+    {% include '_cbmodules/inlineSvg.html' with { data: data.objInlineSvg, options: data.setInlineSvgOptions } %}
+
+  {% case 'objGeneric' %}
+    {% include '_cbmodules/generic.html' with { data: data.objGeneric } %}
+
+  {# Instagram #}
+  {% case 'objInstagram' %}
+    {% include '_cbmodules/instagram.html' with { data: data.objInstagram, options: data.setInstagramOptions } %}
+
+  {# Video #}
+  {% case 'objVideo' %}
+    {% include '_cbmodules/video.html' with { data: data.objVideo, options: data.setVideo } %}
+
+{% endswitch %}

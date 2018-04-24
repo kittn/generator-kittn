@@ -22,7 +22,7 @@ const minifyCssTask = () => {
     .pipe($.purgecss({
       extractors: [{
         extractor: TailwindExtractor,
-        extensions: ['html', 'twig', 'css', 'js']
+        extensions: ['html', 'twig', 'css', 'js', 'vue', 'php']
       }],
       whitelist: purgeConfig.whitelist,
       whitelistPatterns: purgeConfig.whitelistPatterns,

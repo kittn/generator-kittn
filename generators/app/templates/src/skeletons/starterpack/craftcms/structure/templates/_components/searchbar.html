@@ -1,8 +1,0 @@
-{% set c = name is defined and name != '' ? name : 'c-searchbar' %}
-
-<div class="c-searchbar">
-  <form role="search" method="get" action="{{ url('s') }}" class="{{ c ~ '__form' }}">
-    <input type="search" placeholder="{{ 'Hier das Suchwort eingeben'|t }}..." name="q" class="{{ c ~ '__input' }}" id="searchfield">
-    <input type="submit" value="Go" role="button" class="{{ c ~ '__submit' }}">
-  </form>
-</div>

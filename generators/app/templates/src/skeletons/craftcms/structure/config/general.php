@@ -17,11 +17,11 @@ return array(
     'cooldownDuration' => 0,
     'omitScriptNameInUrls' => true,
     'rootUrl' => getenv('CRAFTENV_SITE_URL'),
-    'siteUrl' => getenv('CRAFTENV_SITE_URL'),
-//    'siteUrl' => array( // Mulilanguage Config
-//      'de' => getenv('CRAFTENV_SITE_URL'),
-//      'en' => getenv('CRAFTENV_SITE_URL').'en/'
-//    ),
+//    'siteUrl' => getenv('CRAFTENV_SITE_URL'), // Activate it i you want to use only one language
+    'siteUrl' => array( // Mulilanguage Config
+      'de' => getenv('CRAFTENV_SITE_URL'),
+      'en' => getenv('CRAFTENV_SITE_URL').'en/'
+    ),
     'craftEnv' => CRAFT_ENVIRONMENT,
     'environment' => CRAFT_ENVIRONMENT,
     // Set the environmental variables
@@ -51,7 +51,8 @@ return array(
   ),
   // Stage or Test Environment
   'staging'  => array(
-    'allowAutoUpdates' => false
+    'allowAutoUpdates' => false,
+    'enableTemplateCaching' => false,
   ),
   // Local Development
   'local'  => array(
@@ -59,7 +60,6 @@ return array(
     'enableTemplateCaching' => false,
     'allowAutoUpdates' => true,
     'cacheElementQueries' => false,
-    'enableTemplateCaching' => false,
     'useCompressedJs' => false
   )
 );

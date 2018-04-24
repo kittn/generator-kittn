@@ -1,0 +1,8 @@
+{#
+  Copyright
+  =========
+#}
+
+<div class="c-copyright">
+  {% if data %}{{ data }}{% else %}Copyright &copy; {{ now|date('Y') }} {{ siteName }}. {{ 'Alle rechte vorbehalten.'|t }}{% endif %}
+</div>

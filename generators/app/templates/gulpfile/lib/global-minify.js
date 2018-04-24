@@ -8,7 +8,7 @@ const globalMinifyCheck = () => {
   }
 
   // Global Minifier - will be activated on the Publish Task. Only active when the regular minfier is deactivated
-  if (kc.minify.automatic.jsFiles == false && kc.minify.automatic.jsCombine == false && kc.minify.automatic.jsCopy == false && kc.minify.automatic.jsModernizr == false) {
+  if (kc.minify.automatic.jsFiles == false && kc.minify.automatic.jsCombine == false && kc.minify.automatic.jsCopy == false) {
     gminify.js = true
   } else {
     gminify.js = false

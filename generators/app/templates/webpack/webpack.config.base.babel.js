@@ -6,26 +6,25 @@
  */
 import path from 'path'
 import webpack from 'webpack'
+import WebpackBar from 'webpackbar'
+import Stylish from 'webpack-stylish'
 
-<% if ( projectusage === 'craft' || projectusage === 'craftCB' ) { %>
+<% if ( projectusage !== 'webpackApp' ) { %>
   import CleanWebpackPlugin from 'clean-webpack-plugin'
 <% } %>
 
-<% if ( projectusage === 'webpackApp' || projectusage === 'html' || projectjsframework === 'vue' || projectusage === 'craft' || projectusage === 'craftCB' ) { %>
-  import HtmlWebpackPlugin from 'html-webpack-plugin'
-  <% if ( projectusage === 'html' && projectstructure === 'uncompiled' ) { %>
-    import WriteFilePlugin from 'write-file-webpack-plugin'
-  <% } %>
-  <% if ( projectstylelint && (projectusage === 'webpackApp' || projectjsframework === 'vue') ) { %>
-    // Use easy-stylelint-plugin until stylelint-webpack-plugin is webpack 4 ready
-    // See: https://github.com/JaKXz/stylelint-webpack-plugin/issues/137
-    import EasyStylelintPlugin from 'easy-stylelint-plugin'
-  <% } %>
-  import ExtractTextPlugin from 'extract-text-webpack-plugin'
-  import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
-  <% if ( projectusage === 'webpackApp' ||projectjsframework === 'vue') { %>
-    const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
-  <% } %>
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import WriteFilePlugin from 'write-file-webpack-plugin'
+
+<% if ( projectstylelint && (projectusage === 'webpackApp' || projectjsframework === 'vue') ) { %>
+  // Use easy-stylelint-plugin until stylelint-webpack-plugin is webpack 4 ready
+  // See: https://github.com/JaKXz/stylelint-webpack-plugin/issues/137
+  import EasyStylelintPlugin from 'easy-stylelint-plugin'
+<% } %>
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
+<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
+  const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
 <% } %>
 
 const utils = require('./utils')
@@ -35,7 +34,7 @@ const nodeEnv = process.env.NODE_ENV || 'production'
 const {
   ifProduction,
   ifDevelopment
-} = utils.getIfUtils(nodeEnv)
+} = utils.getIfUtils(nodeEnv)<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
 
 const CSS_LOADERS = [
   {
@@ -59,11 +58,12 @@ const CSS_LOADERS = [
   },
   {
     loader: 'sass-loader',
-    options: {
+    options: {<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
+      includePaths: [utils.resolve(utils.kittnConf.src.style)],<% } %>
       sourceMap: true
     }
   }
-]
+]<% } %>
 
 /*
  |--------------------------------------------------------------------------
@@ -75,9 +75,7 @@ export default {
   output: {
     path: utils.paths.PUBLIC_PATH
   },
-  externals: {
-    Modernizr: 'Modernizr'
-  },
+  stats: 'none',
   resolve: {
     extensions: [
       <% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
@@ -214,6 +212,9 @@ export default {
     ]
   },
   plugins: utils.removeEmpty([
+    new webpack.NamedModulesPlugin(),
+    new WebpackBar(),
+    new Stylish(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(nodeEnv)
@@ -256,16 +257,20 @@ export default {
     <% } %>
       new HtmlWebpackPlugin({<% if ( projectusage === 'craft' || projectusage === 'craftCB' ) { %>
         filename: path.resolve(`${utils.kittnConf.dist.templates}/_parts/document-footer.html`),
-        template: utils.kittnConf.src.templates + '_parts/document-footer.html',<% } else { %>
+        template: utils.kittnConf.src.templates + '_parts/document-footer.html',<% } else if ( projectusage === 'wordpress') { %>
+        filename: path.resolve(`${utils.kittnConf.dist.templates}/footer.php`),
+        template: utils.kittnConf.src.structure + 'footer.php',<% } else if ( projectusage === 'wordpressCB' ) { %>
+        filename: path.resolve(`${utils.kittnConf.dist.templates}/_parts/document-footer.php`),
+        template: utils.kittnConf.src.structure + '_parts/document-footer.php',<% } else { %>
         filename: 'index.html',
         template: <% if ( locals.projectstructure && projectstructure === 'twig' ) { %>utils.kittnConf.dist.markup + 'index.html'<% } else { %>utils.kittnConf.src.structure + 'index.html'<% } %>,<% } %>
-        inject: true,
-        hash: <% if ( projectusage === 'webpackApp' || projectusage === 'craft' || projectusage === 'craftCB' ) { %>false<% } else { %>true<% } %>,
+        inject: <% if ( projectusage === 'craft' || projectusage === 'craftCB' || projectusage === 'wordpress' || projectusage === 'wordpressCB' ) { %>false<% } else { %>true<% } %>,
+        hash: false<% if ( projectusage !== 'craft' && projectusage !== 'craftCB' && projectusage !== 'wordpress' && projectusage !== 'wordpressCB' ) { %>,
         minify: {
           removeComments: true,
           collapseWhitespace: true,
           removeAttributeQuotes: false
-        },
+        }<% } %>,
         chunksSortMode: 'dependency'
       })
     <% if ( locals.projectstructure && projectstructure === 'twig' ) { %>

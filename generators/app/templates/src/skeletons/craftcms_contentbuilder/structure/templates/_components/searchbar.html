@@ -1,0 +1,11 @@
+{#
+  Searchbar
+  =============
+  A field to search
+#}
+<div class="c-searchbar">
+  <form role="search" method="get" action="{{ url('s') }}" class="c-searchbar__form">
+    <input type="search" placeholder="{{ 'Hier das Suchwort eingeben'|t }}..." name="q" class="c-searchbar__input" id="searchfield">
+    <input type="submit" value="Go" role="button" class="c-searchbar__submit">
+  </form>
+</div>

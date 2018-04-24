@@ -24,11 +24,20 @@ const filesModuleTpl = (context, destPath, pMeth, ptype, pCompiler) => {
 
   } else {
     // ITCSS Tree
-    if (context.props.moduleType === 'c') {
-      pathName = 'components'
-
-    } else {
-      pathName = 'objects'
+    switch(context.props.moduleType) {
+      case 'c' :
+        pathName = 'components'
+        break
+      case 'cb' :
+        pathName = 'cbmodules'
+        break
+      case 'o' :
+        pathName = 'objects'
+        break
+      case 'e' :
+        pathName = 'elements'
+        break
+      default :
     }
   }
 

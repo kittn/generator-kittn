@@ -1,0 +1,21 @@
+{#
+  PageFoooter
+  ===========
+#}
+
+<footer class="c-pageFooter" role="contentinfo">
+  <div class="c-pageFooter__inner">
+    <div class="c-pageFooter__copy c-pageFooter__block">
+      {# Adding Copyright Information #}
+      {% include '_components/copyright' with { data: main.copyright } %}
+    </div>
+    <div class="c-pageFooter__nav c-pageFooter__block">
+      {# Adding Footernavigation #}
+      {{ _.siteNavigation('c-footernav', 'footernav') }}
+    </div>
+    <div class="c-pageFooter__social c-pageFooter__block">
+      {# Add Social Links #}
+      {% include '_components/socialNetworks' with { data: main.socialNetworks }  %}
+    </div>
+  </div>
+</footer>

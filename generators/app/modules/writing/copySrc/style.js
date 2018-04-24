@@ -13,7 +13,7 @@ const styles = context => {
           projectcssfilename: undefined
         },
         src: 'src/style/style.scss',
-        dest: `src/style/style.scss`
+        dest: 'src/style/style.scss'
       },
       {
         src: 'src/style/_loader.scss',
@@ -84,9 +84,14 @@ const styles = context => {
     ],
     folders: [
       {
-        conditions: {
-          projectcritical: true
-        },
+        orConditions: [
+          {
+            projectcritical: true
+          },
+          {
+            projectusage: 'craftCB'
+          }
+        ],
         src: 'nodescripts/',
         dest: 'nodescripts/'
       },

@@ -1,0 +1,14 @@
+{#
+  caption
+  =================
+  Description
+
+  @param {string} name            = Classname
+#}
+
+{# Build Element Block #}
+<div class="c-caption" itemprop="caption description">
+  {% if layout == 'align' %}<div class="c-caption__wrapper">{% endif %}
+    {{ caption }}
+  {% if layout == 'align' %}</div>{% endif %}
+</div>

@@ -1,0 +1,64 @@
+{#
+  Hero Image
+  ==========
+#}
+
+{# Setup for Hero Image #}
+{% if data.hero | length %}
+  {% set photo = data.hero.photo.first() %}
+
+  {# If Image is available build the block #}
+  {% if photo|length %}
+    {% set focusPosition = photo.focalpoint is defined ? photo.focalpoint : '50% 50%' %}
+
+    {# Setup Landscape #}
+    {% set landscape = craft.imager.transformImage(photo,
+      [
+        { width: 1920 },
+        { width: 1480 },
+        { width: 1200 },
+        { width: 800 },
+        { width: 600 }
+      ],
+      { jpegQuality: 86, ratio: 16/10, mode: 'crop', position: focusPosition })
+    %}
+
+    {# Generate the Portrait Set #}
+    {% set portrait = craft.imager.transformImage(photo,
+      [
+        { width: 600 },
+        { width: 520 },
+        { width: 420 },
+        { width: 320 }
+      ],
+      { jpegQuality: 83, ratio: 9/16, mode: 'crop', position: focusPosition })
+    %}
+
+    <div class="c-hero">
+      <figure class="c-hero__image lazyload" style="background-position: {{ focusPosition }}; background-image: url({{ landscape|last.url }})" data-sizes="auto" data-bgset="{{ craft.imager.srcset( portrait ) }} [(max-width: 600px] | {{ craft.imager.srcset( landscape ) }}"></figure>
+      <div class="c-hero__overlay">
+        <div class="c-hero__inner">
+          {% if data.hero.headline %}<h2 class="c-hero__headline">{{ data.hero.headline }}</h2>{% endif %}
+
+          {% if data.hero.linkit|length %}
+            {% include '_cbmodules/button' with {
+              data: {
+                url: data.hero.linkit.url ? data.hero.linkit.url ,
+                text: data.hero.linkit.text,
+              },
+                options: {
+                style: 'default',
+                position: 'center'
+              }}
+            %}
+          {% endif %}
+
+          <div class="c-hero__scroll">
+            <div class="c-hero__scroll__text">{{ 'Scroll down'|t }}</div>
+            <svg viewBox="0 0 120 22" version="1.1" class="c-hero__scroll__icon"><path d="M0,0 L60,18 L120,0 L120,4 L60,22 L0,4 L0,0 Z"></path></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endif %}

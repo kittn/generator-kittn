@@ -1,0 +1,27 @@
+{#
+  LangSwitch
+  =====
+  For switching Languages
+#}
+
+<nav class="c-langSwitch">
+  {% set locales = craft.config.locales %}
+  {% for locale in locales %}
+    {% set current = false %}
+    {# Check if locale equals the requested page locale #}
+    {% if locale == craft.locale %}
+      {% set current = true %}
+    {% endif %}
+
+    {% if entry is defined %}
+      {% set localeEntry = craft.entries.id(entry.id).locale(locale).first() %}
+      {% if localeEntry and localeEntry.locale == locale %}
+        <a href="{{ localeEntry.getUrl() }}" class="c-langSwitch__item{{ current ? ' c-langSwitch__item--current' }}">{{ locale|upper }}</a>
+      {% else %}
+        <a href="{{ craft.config.siteUrl[locale] }}" class="c-langSwitch__item{{ current ? ' c-langSwitch__item--current' }}">{{ locale|upper }}</a>
+      {% endif %}
+    {% else %}
+      <a href="{{ craft.config.siteUrl[locale] ~ craft.request.getPath() }}" class="c-langSwitch__item{{ current ? ' c-langSwitch__item--current'}}">{{ locale|upper }}</a>
+    {% endif %}
+  {% endfor %}
+</nav>

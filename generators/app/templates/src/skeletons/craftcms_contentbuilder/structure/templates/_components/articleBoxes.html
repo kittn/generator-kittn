@@ -1,0 +1,59 @@
+{#
+  Article Boxes
+  =============
+  Small article preview Boxes
+#}
+
+{% set related = related is defined and not null ? ' c-articleBoxes--related' : '' %}
+
+<div class="c-articleBoxes{{ related }}">
+  {% for row in data %}
+
+    {# Settings for the featured Image #}
+    {% set image = row.featuredImage ? row.featuredImage : false %}
+    {% set ratio = row.featuredImageOptions.ratio ?: '15:8' %}
+
+    <article class="c-articleBoxes__box" role="article" itemscope itemtype="http://schema.org/Article">
+      <figure class="c-articleBoxes__figure" role="group" itemscope itemtype="http://schema.org/ImageObject">
+        {# Adding the Image otherwise use a empty block #}
+        <a href="{{ row.url }}"
+          {% if image.first() %}
+            {{ _.mediaImageSet(image.first(), ratio, {
+                class: 'c-articleBoxes__image',
+                background: true,
+                elementtype: false,
+                sizes: [
+                  { width: 1200 },
+                  { width: 800 },
+                  { width: 500 },
+                  { width: 320 },
+                  { width: 30 }
+                ]
+              })
+            }}
+          {% else %}
+            class="c-articleBoxes__image"
+          {% endif %}
+        ></a>
+      </figure>
+      <div class="c-articleBoxes__body">
+
+        <header class="c-articleBoxes__header'}}">
+          <div class="c-articleBoxes__meta">
+            <time datetime="{{ row.postDate|date('Y-m-d') }}" class="c-articleBoxes__date">{{ _.langDate(row.postDate) }}</time>
+            <div class="c-articleBoxes__author">{{ row.author.name }}</div>
+          </div>
+          <h3 class="c-articleBoxes__heading" role="heading">
+            <a {{ row.url ? 'href=' ~ row.url }}>{{ row.title }}</a>
+          </h3>
+
+          {# Include CategoryMarker #}
+          {% switch type %}
+            {% case 'blog' %}
+              {% include '_components/marker.html' with { data: row.categorySelectBlog, type: type} %}
+          {% endswitch %}
+        </header>
+      </div>
+    </article>
+  {% endfor %}
+</div>

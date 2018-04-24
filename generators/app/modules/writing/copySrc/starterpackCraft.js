@@ -10,6 +10,13 @@ const starterpackCraft = (context) => {
       },
       {
         conditions: {
+          projectusage: 'craftCB'
+        },
+        src: 'buddy.yml',
+        dest: 'buddy.yml'
+      },
+      {
+        conditions: {
           projectusage: 'craftCB',
           projectcredential: true
         },
@@ -84,14 +91,14 @@ const starterpackCraft = (context) => {
         conditions: {
           projectusage: 'craftCB'
         },
-        src: 'databases/craftCB.sql',
+        src: 'contentBuilder_stuff/databases/craftCB.sql',
         dest: 'database.sql'
       },
       {
         conditions: {
           projectusage: 'craftCB'
         },
-        src: 'src/skeletons/starterpack/craftcms/contentbuilder.json',
+        src: 'src/skeletons/craftcms_contentbuilder/contentbuilder.json',
         dest: 'contentbuilder.json'
       }
     ],
@@ -121,21 +128,21 @@ const starterpackCraft = (context) => {
         conditions: {
           projectusage: 'craftCB'
         },
-        src: 'src/skeletons/starterpack/craftcms/structure/config/',
+        src: 'src/skeletons/craftcms_contentbuilder/structure/config/',
         dest: 'src/structure/config/'
       },
       {
         conditions: {
           projectusage: 'craftCB'
         },
-        src: 'src/skeletons/starterpack/craftcms/structure/templates/',
+        src: 'src/skeletons/craftcms_contentbuilder/structure/templates/',
         dest: 'src/structure/templates/'
       },
       {
         conditions: {
           projectusage: 'craftCB'
         },
-        src: 'src/skeletons/starterpack/craftcms/structure/craftplugins/',
+        src: 'src/skeletons/craftcms_contentbuilder/structure/craftplugins/',
         dest: 'src/craftplugins/',
         simplecopy: true
       },
@@ -143,14 +150,14 @@ const starterpackCraft = (context) => {
         conditions: {
           projectusage: 'craftCB'
         },
-        src: 'src/skeletons/starterpack/general/js/',
+        src: 'contentBuilder_stuff/js/',
         dest: 'src/js/partial/'
       },
       {
         conditions: {
           projectusage: 'craftCB'
         },
-        src: 'src/skeletons/starterpack/craftcms/style/',
+        src: 'src/skeletons/craftcms_contentbuilder/style/',
         dest: 'src/style/'
       }
     ]

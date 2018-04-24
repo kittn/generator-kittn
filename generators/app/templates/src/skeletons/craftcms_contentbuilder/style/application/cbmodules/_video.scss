@@ -1,0 +1,45 @@
+/*
+  video
+  =================
+  Description
+*/
+.c-video {
+  $api: (
+    mq: 'm',
+    grid: (
+      associated: (
+        box0: '__box0' false
+      ),
+      sets: (
+        set1: (
+          breakpoint: false,
+          column-gap: false,
+          row-gap: 0,
+          columns: 1fr,
+          rows: auto,
+          areas: (
+            box1
+          )
+        ),
+      )
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $r: #{&}; // Root
+  $rn: str_slice($r, 4); // Root with out Classdot
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  // For getting values from lists
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+  // ::::::::: BASE
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+}

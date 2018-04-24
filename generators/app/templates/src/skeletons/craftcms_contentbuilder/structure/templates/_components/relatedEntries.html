@@ -1,0 +1,23 @@
+{#
+  Related Entries
+  =============
+  Get some Related Articles - based on Article Boxes
+#}
+
+{% set randomEntries = craft.entries({
+    section: section,
+    relatedTo: randomRelated|default(''),
+    order: 'RAND()',
+    limit: limit|default(3),
+    id: 'not '~entry.id
+  })
+%}
+
+{% if randomEntries|length %}
+  <div class="c-relatedEntries">
+    <div class="c-relatedEntries__inner">
+      {% include '_components/articleBoxes.html' with { data: randomEntries, type: templateHandle, related: true } %}
+      </div>
+    </div>
+  </div>
+{% endif %}

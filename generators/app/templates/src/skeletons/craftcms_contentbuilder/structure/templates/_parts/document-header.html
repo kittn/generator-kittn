@@ -1,0 +1,29 @@
+<head>
+  <meta charset="utf-8">
+  <link rel="home" href="{{ siteUrl }}">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="format-detection" content="telephone=no">
+  {# CSS Loading Block #}
+  {% if criticalCSS and craft.request.isLivePreview != true and craft.config.environment != 'local' %}
+    {{ include('_parts/critical') }}
+  {% else %}
+    <link rel="stylesheet" href="/assets/css/<%= projectcssfilename %>.css">
+  {% endif %}
+  {% if seomaticSiteMeta is defined and craft.config.environment != 'local' %}
+    {% hook 'seomaticRender' %}
+  {% else %}
+    <title>{{ title is defined ? title ~ ' - ' }}{{ siteName }}</title>
+    {% if craft.config.environment != 'productive' %}
+      <meta name="robots" content="noindex,nofollow">
+    {% endif %}
+  {% endif %}
+  {% if craft.config.environment != 'local' %}
+    {% include '_parts/favicon' %}
+  {% endif %}
+  {# Deactivate Progress Load on Livepreview #}
+  {% if craft.request.isLivePreview != true and craft.config.environment == 'productive' %}
+    <script>document.getElementsByTagName('html')[0].classList.add('plj')</script>
+    {#<script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="UID" type="text/javascript" async></script>#}
+  {% endif %}
+</head>

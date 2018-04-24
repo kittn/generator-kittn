@@ -4,7 +4,7 @@ import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
 <% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp' ) { %>
   // import WriteFilePlugin from 'write-file-webpack-plugin'
 <% } %>
-<% if (projectusage === 'craft' || projectusage === 'craftCB') { %>
+<% if (projectusage === 'craft' || projectusage === 'craftCB' || projectusage === 'wordpress' || projectusage === 'wordpressCB') { %>
   import WriteFilePlugin from 'write-file-webpack-plugin'
 <% } %>
 import utils from './utils'
@@ -82,9 +82,8 @@ const devWebpackConfig = merge(baseWebpackConfig.default, {
   plugins: [<% if ( projectusage !== 'webpackApp' ) { %>
     new FriendlyErrorsWebpackPlugin(),<% } %>
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    <% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp' ) { %>
+    <% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp' || projectusage === 'wordpress' || projectusage === 'wordpressCB') { %>
       // only needed if you want to write the files to your harddrive in dev-mode
       // new WriteFilePlugin({
       //   log: false,

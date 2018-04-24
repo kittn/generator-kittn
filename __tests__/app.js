@@ -13,7 +13,7 @@ const project = {
 const author = {
   name: 'Sascha Fuchs',
   email: 'gisu2onic@gmail.com',
-  homepage: 'https://davidhellmann.com'
+  homepage: 'http://kittn.de'
 }
 
 describe('generator-kittn:app', () => {

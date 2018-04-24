@@ -47,7 +47,7 @@ let colors = {
   'main': '#242424',
   'black': '#000000',
   'black-10': '#1a1a1a',
-  'black-10': '#333333',
+  'black-20': '#333333',
   'white': '#ffffff',
   'white-10': '#e6e6e6',
   'white-20': '#cccccc',
@@ -143,6 +143,7 @@ module.exports = {
   */
 
   textSizes: {
+    '12px': '12px',
     'smaller': '.75rem',
     'small': '.875rem',
     'base': '1rem',
@@ -469,6 +470,7 @@ module.exports = {
   maxWidth: {
     '50chr': '50chr',
     '70chr': '70chr',
+    'site': '1180px',
     'half': '50%',
     'full': '100%'
   },
@@ -490,6 +492,7 @@ module.exports = {
   maxHeight: {
     'full': '100%',
     'half': '50vh',
+    '320': '320px',
     'screen': '80vh',
     'fullscreen': '100vh'
   },
@@ -709,7 +712,7 @@ module.exports = {
     backgroundRepeat: [],
     backgroundSize: [],
     borderColors: ['hover'],
-    borderRadius: [],
+    borderRadius: ['responsive', 'hover'],
     borderStyle: [],
     borderWidths: [],
     cursor: [],
@@ -727,15 +730,15 @@ module.exports = {
     minHeight: ['responsive'],
     minWidth: ['responsive'],
     negativeMargin: ['responsive'],
-    opacity: [],
+    opacity: ['hover'],
     overflow: ['responsive'],
     padding: ['responsive'],
     pointerEvents: [],
     position: ['responsive'],
     resize: [],
-    shadows: [],
-    svgFill: [],
-    svgStroke: [],
+    shadows: ['hover'],
+    svgFill: ['hover'],
+    svgStroke: ['hover'],
     textAlign: ['responsive'],
     textColors: ['responsive', 'hover'],
     textSizes: ['responsive'],
@@ -764,28 +767,6 @@ module.exports = {
   */
 
   plugins: [
-    require('tailwindcss/plugins/container')({
-      // center: true,
-      // padding: '1rem',
-    }),
-    require('./tailwind/transition')({
-      transitionDuration: {
-        'fast': '300ms',
-        'default': '500ms',
-        'slow': '800ms'
-      },
-      transitionTiming: {
-        'default': 'linear',
-        'ease-in': 'ease-in',
-        'ease-in-out': 'ease-in-out'
-      },
-      transitionProperty: {
-        'all': 'all',
-        'opacity': 'opacity',
-        'color': 'color',
-        'background-color': 'background-color'
-      }
-    }),
     require('./tailwind/ratio')({
       ratios: {
         'square': [1, 1],
@@ -796,9 +777,22 @@ module.exports = {
       variants: ['responsive']
     }),
 
-    function ({ e, addUtilities, config }) {
+    function ({ addUtilities, e }) {
       // Place for custom utilities and components
-    }
+      const newUtilities = {
+        '.trans-a300ms': {
+          transition: 'all 300ms ease-in-out'
+        },
+        '.trans-c300ms': {
+          transition: 'color 300ms ease-in-out'
+        }
+      }
+      addUtilities(newUtilities)
+    },
+    // function ({ addComponents, config }) {
+    //   const element = {}
+    //   addComponents(lines)
+    // }
   ],
 
   /*

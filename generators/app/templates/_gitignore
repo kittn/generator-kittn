@@ -44,7 +44,7 @@ doc/
 # Map-Files
 *.js.map
 
-# Sass-Files
+### Sass-Files ###
 *.sassc
 .sass-cache
 *.css.map
@@ -54,6 +54,10 @@ doc/
 *.tmlanguage.cache
 *.tmPreferences.cache
 *.stTheme.cache
+
+### Test Results ###
+tests/e2e/screenshots
+tests/e2e/videos
 
 # workspace files are user-specific
 *.sublime-workspace

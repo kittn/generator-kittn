@@ -13,10 +13,6 @@ function addBaseCofig (files = {}, context) {
       openbrowser: false,
       port: 3000
     },
-    modernizr: {
-      options: ['setClasses', 'addTest', 'testAllProps', 'fnBind'],
-      tests: ['flexbox', 'touch', 'inlinesvg', 'webgl', 'picture']
-    },
     minify: {
       images: {
         svgoPlugins: [
@@ -100,7 +96,7 @@ function addBaseCofig (files = {}, context) {
         proxy: false
       },
       files: {
-        jsCopy: ['node_modules/lazysizes/plugins/respimg/ls.respimg.js'],
+        jsCopy: [],
         jsCombine: {
           files: [],
           filename: 'scripts.js'

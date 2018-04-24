@@ -1,0 +1,87 @@
+{#
+  Featured Image
+  ==============
+
+  @param {string} c                   = Classname
+  @param {object} data                = Entry Object
+  @param {object} label               = Optional Label Object
+  @param {string} label.headline      = Headline
+  @param {string} label.linkit.url    = Link Url
+  @param {string} label.linkit.target = Link Target
+  @param {string} label.linkit.text   = Link Text
+#}
+
+{% if data.featuredImage|length %}
+  {% set image = data.featuredImage.first() %}
+
+  {# If Image is available build the block #}
+  {% if image|length %}
+
+    {# Add FeaturedImageOptions otherwise use defaults #}
+    {% if data.featuredImageOptions|length %}
+      {% set fi_fullbleed = data.featuredImageOptions.fullbleed %}
+      {% set fi_ratio = data.featuredImageOptions.ratio is defined and not null ? data.featuredImageOptions.ratio : craft.config.imageRatios.featuredImage %}
+
+    {% else %}
+      {# Use Default Options #}
+      {% set fi_ratio = craft.config.imageRatios.featuredImage %}
+      {% set fi_fullbleed = false %}
+    {% endif %}
+
+    {# Add FeaturedImageLabeling #}
+    {% if data.featuredImageLabeling|length %}
+      {% set fi_labeling = true %}
+      {% set fi_headline = data.featuredImageLabeling.headline is defined and not null ? data.featuredImageLabeling.headline %}
+      {% set fi_link_url = data.featuredImageLabeling.linkit.url is defined and not null ? data.featuredImageLabeling.linkit.url %}
+      {% set fi_link_target = data.featuredImageLabeling.linkit.target is defined and not null ? data.featuredImageLabeling.linkit.target %}
+      {% set fi_link_text = data.featuredImageLabeling.linkit.text is defined and not null ? data.featuredImageLabeling.linkit.text : 'Link' %}
+
+    {% else %}
+      {# If not available look for a alternative Labelobject #}
+      {% if label is defined and not null %}
+        {% set fi_labeling = true %}
+        {% set fi_headline = label.headline is defined and not null ? label.headline %}
+        {% set fi_link_url = label.link.url is defined and not null ? label.link.url %}
+        {% set fi_link_target = label.link.target is defined and not null ? label.link.target %}
+        {% set fi_link_text = label.link.text is defined and not null ? label.link.text : 'Link'|t %}
+
+      {% else %}
+        {% set fi_labeling = false %}
+        {% set fi_headline = false %}
+        {% set fi_link_url = false %}
+      {% endif %}
+    {% endif %}
+
+    {# Build Block #}
+    <figure class="c-featuredImage{{ fi_fullbleed ? ' c-featuredImage--fullbleed' }}" role="group" itemscope itemtype="http://schema.org/ImageObject">
+      {# Insert Image #}
+      {{ _.mediaImageSet(image, fi_ratio, {
+        class: 'c-featuredImage__image'
+      }) }}
+
+      {# Add Optional Overlay #}
+      {% if fi_labeling %}
+        <div class="c-featuredImage__overlay">
+          <div class="c-featuredImage__inner">
+            {% if fi_headline %}<h2 class="c-featuredImage__headline" role="heading">{{ fi_headline }}</h2>{% endif %}
+            {% if fi_link_url %}
+              {% include '_cbmodules/button' with {
+                data: {
+                  url: fi_link_url,
+                  text: fi_link_text,
+                  target: fi_link_target
+                },
+                options: {
+                  style: 'default',
+                  position: 'center'
+                }}
+              %}
+            {% endif %}
+          </div>
+        </div>
+      {% endif %}
+    </figure>
+  {% else %}
+    {# Alternative if featuredImages is not available #}
+  {% endif %}
+{% endif %}

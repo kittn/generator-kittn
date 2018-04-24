@@ -49,6 +49,8 @@ if (customOutput) {
 
   if (oldSpecBrowser.includes(name + '-' + version)) {
     docHead.classList.add('old-grid-spec')
+  } else {
+    docHead.classList.add('new-grid-spec')
   }
 } else {
   // Generate Classes based on Browser and BrowserVersion

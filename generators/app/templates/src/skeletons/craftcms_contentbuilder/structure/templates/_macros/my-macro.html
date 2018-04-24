@@ -1,0 +1,467 @@
+{#
+  Macro Collection
+  ================
+#}
+
+{# ===================================================== #}
+{# ---------------- Internal Macros -------------------- #}
+{# ===================================================== #}
+
+{#
+  AmNav Builder
+  =============
+  Needed for SiteNavigation with Am Nav
+
+  @private
+#}
+{% macro addNodeToNavigation(node, index, classname) %}
+  {%- set nodeClasses = [classname ~ '__link'] -%}
+  {%- if node.hasChildren -%}
+    {%- set nodeClasses = nodeClasses|merge(['has-children']) -%}
+  {%- endif -%}
+  {%- if node.active or node.hasActiveChild -%}
+    {%- set nodeClasses = nodeClasses|merge(['is-active']) -%}
+  {%- endif -%}
+  {%- if node.level == 1 and index == 1 -%}
+    {%- set nodeClasses = nodeClasses|merge(['first']) -%}
+  {%- endif -%}
+  {%- if node.listClass|length -%}
+    {%- set nodeClasses = nodeClasses|merge([node.listClass]) -%}
+  {%- endif -%}
+
+  <a href="{{ node.url }}" role="link" {% if nodeClasses|length %} class="{{ nodeClasses|join(' ') }}"{% endif %} title="{{ node.name }}"{% if node.blank %}  target="_blank"{% endif %}><span>{{ node.name }}</span></a>
+{% endmacro %}
+
+{#
+  AmNav Sitenav Warning
+  =============
+  Needed for SiteNavigation with Am Nav
+
+  @private
+#}
+{% macro siteNavWarn(nav, classname) %}
+  {% if craft.amNav.getNavName(nav) %}
+    {% set nav = craft.amNav.getNavRaw(nav) %}
+    {% if nav is defined %}
+      {% for node in nav %}
+        {{ _self.addNodeToNavigation(node, loop.index, classname) }}
+      {% endfor %}
+    {% endif %}
+  {% else %}
+    <div style="color:red"><b style="color:red">A&M Nav</b> Please add `{{ nav }}` Navigation</div>
+  {% endif %}
+{% endmacro %}
+
+{# ===================================================== #}
+{# ----------------- Regular Macros -------------------- #}
+{# ===================================================== #}
+
+{#
+  Media Image Set
+  ===============
+  Build a Image Element as regular `<img>` or fill a element with a background image.
+
+  @param {array}  photo               = Image Array
+  @param {string} imageratio          = Optional Imageratio [nocrop, '16:6', '1:1'...]
+  @param {object} options             = Array of options
+  @param {string} options.class       = Classname from the Element
+  @param {bool}   options.background  = Background Option
+  @param {string} options.elementtype = Typedefinition from Background Image Element
+  @param {number} options.quality     = JPEG Compression,
+  @param {array}  options.sizes       = Array with Imagesizes
+  @param {string} options.position    = Position for Background
+
+#}
+{% macro mediaImageSet(photo,imageratio,options) %}
+
+  {# Default Values - can be overwritten #}
+  {% set opt = {
+    class: 'o-media-object__image',
+    background: false,
+    elementtype: 'figure',
+    quality: 82,
+    userPhoto: false,
+    position: false,
+    imgixEnabled: craft.imager.imgixEnabled is defined and not null ? craft.imager.imgixEnabled : null,
+    sizes: [
+      { width: 1900 },
+      { width: 1200 },
+      { width: 800 },
+      { width: 500 },
+      { width: 320 },
+      { width: 150 },
+      { width: 30 }
+    ],
+    imgix: {
+      fit: 'facearea',
+      crop: 'edges',
+      auto: 'format,compress',
+      imgixParams: {}
+    }
+  } %}
+
+  {# Merging Arrays  #}
+  {% set options = options ? opt|merge(options) : opt %}
+
+  {# Check if Image is Available otherwise use a neutral Placeholder #}
+  {% if photo %}
+
+    {% if (options.userPhoto == false) and (photo.extension in ['svg', 'gif']) %}
+      <img class="{{ options.class }} lazyload" data-sizes="auto" src="{{ photo.url }}" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
+
+    {% else %}
+      {# Check if image would cropped#}
+      {% if imageratio != '' %}
+        {% set rat= ':' in imageratio ? imageratio : '35:24' %}
+        {% set ratio = rat|split(':') %}
+        {% set focusPosition = photo.focalpoint is defined ? photo.focalpoint : '50% 50%' %}
+        {% set globalModifier = { jpegQuality: options.quality, ratio: ratio|first/ratio|last , mode: 'crop', position: focusPosition } %}
+        {% if options.imgixEnabled == 1 %}
+          {% set globalModifier = globalModifier|merge(options.imgix) %}
+        {% endif %}
+
+      {% else %}
+        {% set globalModifier = { jpegQuality: options.quality } %}
+        {% set focusPosition = photo.focalpoint is defined ? photo.focalpoint : '50% 50%' %}
+        {% if options.imgixEnabled == 1 %}
+          {% set globalModifier = globalModifier|merge(options.imgix) %}
+        {% endif %}
+      {% endif %}
+
+      {# Build the Image Set #}
+      {% set photos = craft.imager.transformImage(photo, options.sizes, globalModifier) %}
+
+
+      {# Output as <img> or Background #}
+      {% if (options.background) %}
+        {% if options.elementtype != false %}
+          <{{ options.elementtype }} class="{{ options.class }} lazyload" style="background-image: url({{ photos|last.url }});{{ options.position ? options.position == 'focal' ? 'background-position:'~focusPosition : 'background-position:'~options.position }}" data-sizes="auto" data-bgset="{{ craft.imager.srcset( photos ) }}"></{{ options.elementtype }}>
+        {% else %}
+          class="{{ options.class~' lazyload' }}" style="background-image: url({{ photos|last.url }});{{ options.position ? options.position == 'focal' ? 'background-position:'~focusPosition : 'background-position:'~options.position }}" data-sizes="auto" data-bgset="{{ craft.imager.srcset( photos ) }}"
+        {% endif %}
+      {% else %}
+        <noscript><img src="{{ photo.url }}"></noscript>
+        <img class="{{ options.class }} lazyload" data-sizes="auto" src="{{ photos|last.url }}" data-srcset="{{ craft.imager.srcset( photos ) }}" role="img" {% if photo.title %}alt="{{ photo.title }}"{% endif %} itemprop="thumbnail">
+      {% endif %}
+    {% endif %}
+  {% endif %}
+{% endmacro %}
+
+{#
+  Pagination
+  ==========
+  Generate navigation buttons for paginations
+  It use the Pagination Module, include before the Loop `{% paginate entries as pageInfo, pageEntries %}`
+
+  @param {object}  pages                 - Pagination Object
+  @param {object}  craft                 - Craft Request Object
+  @param {object}  options               - Array of options
+  @param {string}  options.class         - Classname (default: 'o-pagination')
+  @param {stting}  options.searchquery   - To pass search words from Searchfields (default: false)
+  @param {number}  options.pagenuber     - How many Pagebuttons are to be displayed. At 0, the display of the page buttons is omitted
+  @param {string}  options.firstPageSign - HTML Sign for FirstPage
+  @param {string}  options.lastPageSign  - HTML Sign for LastPage
+  @param {string}  options.prevSign      - HTML Sign for Prev
+  @param {string}  options.nextSign      - HTML Sign for Next
+  @param {string}  options.firstPageText - Titletext for Firstpage
+  @param {string}  options.lastPageText  - Titletext for Lastpage
+  @param {string}  options.prevText      - Titletext for Prev
+  @param {string}  options.nextText      - Titletext for Next
+  @param {string}  options.jumpText      - Titletext for Jump
+#}
+{% macro pagination(pages,craft,options) %}
+  {% set opt = {
+    class: 'c-pagination',
+    searchquery: false,
+    pagenumber: 5,
+    fistPageSign: '&laquo;',
+    lastPageSign: '&raquo;',
+    prevSign: '&lsaquo;',
+    nextSign: '&rsaquo;',
+    firstPageText: 'Zur ersten Seite'|t,
+    lastPageText: 'Zur letzten Seite'|t,
+    prevText: 'Zurück zur vorhergehenden Seite'|t,
+    nextText: 'Weiter zur nächsten Seite'|t,
+    jumpText: 'Sprung zur Seite'|t
+  } %}
+
+  {# Merge Options with Defaults #}
+  {% set options = options ? opt|merge(options) : opt %}
+
+  {# Add Pagination only if the Page Number is higher than 1#}
+  {% if pages.totalPages > 1 %}
+
+    <nav class="{{ options.class }}" role="navigation">
+      {# Dont display last page when on the first Page #}
+      {% if pages.currentPage > 2 and pages.prevUrl %}
+        <a class="{{ options.class }}__link---text" href="{{ pages.firstUrl }}{{ options.searchquery ? '?q='~options.searchquery }}" title="{{ options.firstPageText }}">{{ options.fistPageSign|raw }}</a>
+      {% endif %}
+
+      {# Display the Previous Link if available #}
+      {% if pages.prevUrl %}
+        <a class="{{ options.class }}__link---text" href="{{ pages.prevUrl }}{{ options.searchquery ? '?q='~options.searchquery }}" title="{{ options.prevText }}">{{ options.prevSign|raw }}</a>
+      {% endif %}
+
+      {# With Pagenumber higher than zero the pagination will display pages #}
+      {% if options.pagenumber > 0 %}
+        {# Display prev 5 Page Links#}
+        {% for page, url in pages.getPrevUrls(options.pagenumber) %}
+          <a class="{{ options.class }}__link---number" href="{{ url }}{{ options.searchquery ? '?q='~options.searchquery }}" title="{{ options.jumpText }} {{ page }}">{{ page }}</a>
+        {% endfor %}
+
+        {# Diplay Current Page#}
+        <span class="{{ options.class }}__link---current">{{ pages.currentPage }}</span>
+
+        {# Display next 5 Page Links #}
+        {% for page, url in pages.getNextUrls(options.pagenumber) %}
+          <a class="{{ options.class }}__link---number" href="{{ url }}{{ options.searchquery ? '?q='~options.searchquery }}" title="{{ options.jumpText }} {{ page }}">{{ page }}</a>
+        {% endfor %}
+      {% endif %}
+
+      {# Display next Page Link if available#}
+      {% if pages.nextUrl %}
+        <a class="{{ options.class }}__link---text" href="{{ pages.nextUrl }}{{ options.searchquery ? '?q='~options.searchquery }}" title="{{ options.nextText }}">{{ options.nextSign|raw }}</a>
+      {% endif %}
+
+      {# Dont display when on the last page #}
+      {% if (pages.totalPages - 1) > pages.currentPage and pages.totalPages > 2 %}
+        <a class="{{ options.class }}__link---text" href="{{ pages.lastUrl }}{{ options.searchquery ? '?q='~options.searchquery }}" title="{{ options.lastPageText }}">{{ options.lastPageSign|raw }}</a>
+      {% endif %}
+    </nav>
+  {% endif %}
+{% endmacro %}
+
+{#
+  Breadcrumb Macro
+  ==================
+
+  @param {object} breadCrumLinks = Links as object
+  @param {string} seperator      = Seperatorsign
+  @param {string} class          = Optional Classname
+#}
+{% macro breadcrumb(breadCrumbLinks, separator, class) %}
+  {% set listItems = [] %}
+  {% set classname = class | default('c-breadcrumb') %}
+
+  {# -- Check if breadCrumbLink is an Array -- #}
+  {% if breadCrumbLinks is iterable %}
+
+    {# -- Loop over the breadCrumbLinks -- #}
+    {% for item in breadCrumbLinks %}
+      {# -- Set link var -- #}
+      {% set link = '' %}
+
+      {# -- Check if item Title is existing -- #}
+      {% if item.title ?? null %}
+
+        {# -- Set Separator -- #}
+        {% set separator = separator | default(' / ') %}
+        {% if loop.last %}
+
+          {# -- If loop last we need no separator -- #}
+          {% set separator = '' %}
+        {% endif %}
+
+        {# -- Check if item Link is existing and item linked is true -- #}
+        {% if item.link ?? null and item.linked %}
+
+          {# -- Set Link Markup -- #}
+          {% set link %}
+            {% spaceless %}
+            <a href="{{ item.link }}" class="{{ classname ~ '__link' }}">
+              {{- item.title -}}
+              </a>{{- separator | raw -}}
+            {% endspaceless %}
+          {% endset %}
+        {% else %}
+
+          {# -- Set Plain Text Markup -- #}
+          {% set link = '<span class="' ~ classname ~ '__nonLink">' ~ item.title ~ separator ~ '</span>' %}
+        {% endif %}
+      {% endif %}
+
+      {# -- Merge all Items into listItems -- #}
+      {% set listItems = listItems | merge([link]) %}
+    {% endfor %}
+  {% endif %}
+
+  {# -- Set Output Markup -- #}
+  {% set output %}
+    <nav class="{{ classname ~ '__wrapper' }}">
+      {% for item in listItems %}
+        {{ item | raw }}
+      {% endfor %}
+    </nav>
+  {% endset %}
+
+  {# -- Output -- #}
+  {% return output %}
+{% endmacro %}
+
+{#
+  Site Navigation
+  ===============
+#}
+{% macro siteNavigation(classname,sectionPart) %}
+  {% set class = classname|default('o-navigation') %}
+
+  <nav class="{{ classname }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+    {% switch sectionPart %}
+      {% case 'footernav' %}
+        {{ _self.siteNavWarn('footerNavigation', classname) }}
+      {% case 'mainnav' %}
+        {{ _self.siteNavWarn('mainNavigation', classname) }}
+    {% endswitch %}
+  </nav>
+{% endmacro %}
+
+{#
+  Social Share Macro
+  ==================
+  Works with SeoMatic
+
+  @param {object} networks = Possible Social Networks
+  @param {bool}   networks.facebook
+  @param {bool}   networks.twitter
+  @param {bool}   networks.google-plus
+  @param {bool}   networks.pinterest
+  @param {bool}   networks.mail
+  @param {bool}   networks.whatsapp
+
+  @param {object} options     = Config Options
+  @param {string} class       = Classname
+  @param {string} modifier    = Modifierclass
+  @param {string} modifyclass = Additional Modifierclass
+  @param {*}      request     = Request URL
+  @param {*}      description = Seo Description
+  @param {*}      image       = Seo Image URL
+  @param {*}      title       = Seo Title
+  @param {bool}   icon        = Option that activate SVG Share Icons
+  @param {string} iconpath    = Path to icons
+  @param {string} iconname    = Iconfile Name (Sprite)
+  @param {string} iconprefix  = Prefix for icons
+  @param {string} viewbox     = Viewbox Size
+  @param {object} data        = Additional Dataentry if use the share buttons outside from entry
+#}
+{% macro socialShare(networks, options, data) %}
+  {# Array for Networks #}
+  {% set net = {
+    facebook: true,
+    twitter: true,
+    googleplus: true,
+    pinterest: true,
+    email: false,
+    whatsapp: false,
+    linkedin: false,
+    xing: false,
+    buffer: false,
+    reddit: false
+  } %}
+
+  {# Option Array #}
+  {% set opt = {
+    class: 'c-socialShare',
+    modifier: '',
+    request: data is not null ? data.url : craft.request.url,
+    description: data is not null ? data.seo.seoDescription : seomaticMeta.seoDescription,
+    image: data is not null ? data.seo.seoImage : seomaticMeta.seoImage,
+    title: data is not null ? data.seo.seoTitle : seomaticMeta.seoTitle,
+    icon: true,
+    iconpath: '/assets/img/',
+    iconname: 'symbol-sprite.svg',
+    iconprefix: 'icon-',
+    viewbox: '0 0 50 50'
+  } %}
+
+  {# Merge Options with Defaults #}
+  {% set networks = networks ? net|merge(networks) : net %}
+  {% set options = options ? opt|merge(options) : opt %}
+
+  {# Building Block - Modify structure if needed #}
+  <nav role="navigation" class="{{ options.class }} {{ options.modifier is defined ? options.class ~ '--' ~ options.modifier }}">
+    {% for key, network in networks if network != false %}
+      {% if options.icon == true %}<div class="{{ options.class }}__box">{% endif %}
+      {% switch key %}
+
+        {% case 'facebook' %}
+          <a href="http://www.facebook.com/sharer.php?u={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'facebookwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'twitter' %}
+          <a href="http://twitter.com/share?url={{ options.request }}&amp;text={{ options.description }}" rel="nofollow" onclick="window.open(this.href, 'twitterwindow','left=20,top=20,width=600,height=300,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'googleplus' %}
+          <a href="https://plus.google.com/share?url={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'googlepluswindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'pinterest' %}
+          <a href="//pinterest.com/pin/create/link/?url={{ options.request }}&amp;media={{ options.image }}&amp;description={{ options.description|e }}" rel="nofollow" onclick="window.open(this.href, 'pinterestwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'email' %}
+          <a href="mailto:?Subject={{ options.title }}&Body=%20{{ options.request }}" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'whatsapp' %}
+          <a href="whatsapp://send?text={{ options.request }} {{ options.description }}" rel="nofollow" onclick="window.open(this.href, 'linkedinwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'linkedin' %}
+          <a href="http://www.linkedin.com/shareArticle?mini=true&url={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'linkedinwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'xing' %}
+          <a href="https://www.xing.com/spi/shares/new?url={{ options.request }}" rel="nofollow" onclick="window.open(this.href, 'linkedinwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'buffer' %}
+          <a href="https://bufferapp.com/add?url={{ options.request }}&text={{ options.title }}" rel="nofollow" onclick="window.open(this.href, 'bufferwindow','left=20,top=20,width=700,height=800,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+        {% case 'reddit' %}
+          <a href="http://reddit.com/submit?url={{ options.request }}&title={{ options.title }}" rel="nofollow" onclick="window.open(this.href, 'redditwindow','left=20,top=20,width=600,height=700,toolbar=0,resizable=1'); return false;" target="_blank" class="{{ options.class }}__link" title="Share with {{ key|capitalize }}">
+      {% endswitch %}
+
+        {% if options.icon == true %}
+          <svg class="{{ options.class }}__icon" viewBox="{{ options.viewbox }}">
+            <use xlink:href="{{ options.iconpath }}{{ options.iconname }}#{{ options.iconprefix}}{{ key }}"></use>
+          </svg>
+        {% else %}
+          {{ key }}
+        {% endif %}
+      </a>
+      {% if options.icon == true %}</div>{% endif %}
+    {% endfor %}
+  </nav>
+{% endmacro %}
+
+{#
+  SVGIcon
+  =======
+  Insert SVG Icons in a easy way
+
+  @param {string} icon                = Iconname
+  @param {object} options             = Config Options
+  @param {string} options.class       = Optional Classname
+  @param {string} options.iconpath    = Path to icons
+  @param {string} options.iconname    = Iconfile Name (Sprite)
+  @param {string} options.viewbox     = Viewbox Size
+#}
+{% macro svgicon(icon, viewbox, options) %}
+  {% set opt = {
+    class: false,
+    iconpath: '/assets/img/',
+    iconname: 'symbol-sprite.svg',
+    viewbox: viewbox ? viewbox : '0 0 20 20'
+  } %}
+
+  {# Merge Options with Defaults #}
+  {% set options = options ? opt|merge(options) : opt %}
+
+  {# Building Block - Modify structure if needed #}
+  <svg{{ options.class ? ' class='~options.class }} viewBox="{{ options.viewbox }}">
+    <use xlink:href="{{ options.iconpath }}{{ options.iconname }}#{{ icon }}"></use>
+  </svg>
+{% endmacro %}
+
+{#
+  Multilanguage Date
+#}
+{% macro langDate(mydate) %}
+  {% if craft.config.currentLanguage[craft.locale] == 'en' %}
+    {{ mydate | date("F j, Y") }}
+  {% else %}
+    {{mydate | date("d. F Y") }}
+  {% endif %}
+{% endmacro %}
+
+{#
+  Styling Classes
+#}
+{% macro styleClasses(data) %}
+{% if data.styleClasses is not empty %}{% for class in data.styleClasses %}{% if class is not empty %}{{- ' ' ~ class.styleClasses.classname -}}{% endif %}{% endfor %}{% endif %}
+{% if data['addClasses'] is defined and data['addClasses'] is not empty %} {{- ' ' ~ data.addClasses -}}{% endif %}
+{% endmacro %}

@@ -1,0 +1,22 @@
+{#
+  Marker
+  ======
+  Small label for mark categories
+#}
+
+{# Set up custom Markerstyle #}
+{% switch type %}
+  {% case 'blog' %}
+    {% set customStyle = ' c-marker__block--primary' %}
+  {% default %}
+    {% set customStyle = '' %}
+{% endswitch %}
+
+{% if data | length %}
+  <div class="c-marker">
+    {% for row in data %}
+      <a href="{{ row.url }}" class="c-marker__block{{ customStyle }}">{{ row.title }}</a>
+    {% endfor %}
+  </div>
+{% endif %}
+

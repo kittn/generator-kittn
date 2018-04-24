@@ -1,0 +1,81 @@
+{#
+  Section - decrepated
+  =======
+  Subsegment of a content module, when the page wrapper is removed the section can run over the full browser width.
+
+  @param {string} name                      = Classname
+  @param {object} data                      = Dataobject
+  @param {object} options                   = Optionsobject
+  @param {string} options.style             = Optional Styleclass
+  @param {bool}   options.fullheight        = Should the container be stretched to the full viewport height?
+  @param {string} options.innerContainer    = Layout inner Container
+  @param {string} options.anchor            = Optional Anchorname
+  @param {object} layout                    = Column Layout Object
+  @param {object} layout.twoColumns         = Column Layout 2 Columns
+  @param {object} layout.threeColumns       = Column Layout 3 Columns
+  @param {object} layout.fourColumns        = Column Layout 4 Columns
+  @param {object} background                = Column Layout Object
+  @param {string} background.backgoundImage = Background Image
+  @param {string} background.behavior       = Background Behavior Class
+  @param {string} background.width          = Background Width (half or full)
+  @param {string} background.ratio          = Image Ratio
+  @param {string} background.position       = Background Position
+  @param {string} background.align          = Alignment of the Background Container
+#}
+
+{# Class Overwrite #}
+{% set c = name is defined and name != '' ? name : 'c-section' %}
+
+{# Set Coloum Layout Class#}
+{% switch content.children|length %}
+  {% case "2" %}
+    {% set cl = '--cl-' ~ layout.twoColumns %}
+  {% case "3" %}
+    {% set cl = '--cl-' ~ layout.threeColumns %}
+  {% case "4" %}
+    {% set cl = '--cl-' ~ layout.fourColumns %}
+  {% default %}
+    {% set columLayout = '' %}
+    {% set cl = '--cl-1' %}
+{% endswitch %}
+
+{% set sectionStyleClasses = '' %}
+
+{# Build Element Block #}
+<section class="{{ c }}{{ _.styleClasses(options) }} fullbleed"{{ options.anchor != '' ? 'id=' ~ options.anchor|lower }}>
+  {# Background Container #}
+  {% if background.backgroundImage is defined and background.backgroundImage|length %}
+    {% set bgAlign, bgSize = '', '' %}
+
+    {# Pick BG Size #}
+    {% if background.width != 'default' %}
+      {% set bgAlign = background.width == 'halfLeft' ? ' ' ~ c ~ '__bg--left' : ' ' ~ c ~ '__bg--right' %}
+    {% endif %}
+
+    <div class="{{ c ~ '__bg' }}{{ _.styleClasses(options.background) }}{{ background.adaptContainer ? ' ' ~ c ~ '__bg--size-' ~ options.innerContainer }}">
+      <div class="{{ c ~ '__bg__container'}} {{ c ~ '__bg__container--' ~ background.width }}">
+        <div
+          {{ _.mediaImageSet(background.backgroundImage.first(), background.ratio, {
+            class: c ~ '__bg__background',
+            elementtype: false,
+            background: true,
+            position: background.position ? background.position : false
+          }) }}
+        ></div>
+      </div>
+    </div>
+  {% endif %}
+  <div class="{{ c }}__container{{ options.innerContainer != 'default' ? ' ' ~ c ~ '__container--' ~ options.innerContainer }}">
+    <div class="{{ c }}__row {{ c ~ '__row--child-' ~ content.children|length }}">
+      {% for key, column in content.children %}
+        <div class="{{ c }}__column{{ column.children|length == 0 ? '---empty' }} {{ c }}__column{{ cl }}{{ _.styleClasses(column.setSectionColumn) }}">
+          {% if column.children|length > 0 %}
+            {% for child in column.children %}
+              {% include '_builder/_cb-objects' with { data: child } %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

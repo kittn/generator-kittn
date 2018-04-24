@@ -1,0 +1,24 @@
+{#
+  JumpNavigation
+  ==============
+  Used for Jumping to Anchors
+
+  @param {string} name                   = Classname
+  @param {object} data                   = Navigationobject
+  @param {string} data.anchor            = Anchor Link (without `#`)
+  @param {string} data.linkname          = Name of the Anchorlink
+  @param {object} options                = Optionsobject
+  @param {string} options.layout         = Optional Classname for Style
+  @param {string} options.style          = Optionsobject
+#}
+
+{# Set Layoutype Modifer #}
+{% set navstyle = options.layout != 'default' ?  ' c-jumpnavigation--l-' ~ options.layout : '' %}
+
+{# Build Element Block #}
+<nav class="c-jumpnavigation{{ _.styleClasses(options) }}{{ navstyle }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
+  {% for link in data %}
+    <a itemprop="url" role="button" href="#{{ link.anchor|lower }}" class="c-jumpnavigation__link js-smooth-scroll">{{ link.linkname }}</a>
+  {% endfor %}
+</nav>
+

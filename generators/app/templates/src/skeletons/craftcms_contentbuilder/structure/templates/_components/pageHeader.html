@@ -1,0 +1,25 @@
+{#
+  PageHeader
+  ===========
+#}
+
+<header class="c-pageHeader" role="banner">
+  <div class="c-pageHeader__inner">
+    <div class="c-pageHeader__logo c-pageHeader__block">
+      {% include '_components/pagelogo.html' with { name: '' } %}
+    </div>
+    <div class="c-pageHeader__nav c-pageHeader__block">
+      {{ _.siteNavigation('c-mainnav', 'mainnav') }}
+    </div>
+    <div class="c-pageHeader__search c-pageHeader__block">
+      <div class="c-searchbar__trigger">
+        {{ _.svgicon('icon-search', '0 0 50 50') }}
+      </div>
+    </div>
+    <div class="c-pageHeader__offcanvas">
+      {% include '_objects/offcanvasTrigger.html' %}
+    </div>
+  </div>
+  {# Adding Searchbar #}
+  {% include '_components/searchbar.html' %}
+</header>

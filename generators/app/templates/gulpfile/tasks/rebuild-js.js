@@ -7,14 +7,11 @@ import gulp from 'gulp'
 import runSequence from 'run-sequence'
 
 const rebuildJsTask = (cb) => {
-  runSequence (
-    [
-      'build:modernizr'
-    ],
+  runSequence(
     [
       'copy:js'
     ],
-  cb)
+    cb)
 }
 
 gulp.task('rebuild:js', rebuildJsTask)

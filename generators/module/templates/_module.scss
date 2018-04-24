@@ -3,14 +3,31 @@
   =================
   Description
 */
-.<%= moduleType %>-<%= moduleName %> {
+.<% if(moduleType === 'cb') { %>c<% } else { %><%= moduleType %><% } %>-<%= moduleName %> {
   $api: (
-    breakpoint: 'm'
+    mq: 'm',<% if(moduleType === 'cb' || moduleType === 'c' || moduleType === 'o') { %>
+    grid: (
+      associated: (
+        box0: '__box0' false
+      ),
+      sets: (
+        set1: (
+          breakpoint: false,
+          column-gap: false,
+          row-gap: 0,
+          columns: 1fr,
+          rows: auto,
+          areas: (
+            box1
+          )
+        ),
+      )
+    )<% } %>
   );
 
   // ::::::::: ROOT SELECTOR
-  $root: #{&};
-  $rn: str_slice($root, 4);
+  $r: #{&}; // Root
+  $rn: str_slice($r, 4); // Root with out Classdot
 
   // ::::::::: API GRABBER
   @function api($keys...) {
@@ -20,7 +37,6 @@
   @function apin($nth, $keys...) {
     @return nth(map-deep-get($api, $keys...), $nth);
   }
-
   // ::::::::: BASE
 
   // ::::::::: TAGS

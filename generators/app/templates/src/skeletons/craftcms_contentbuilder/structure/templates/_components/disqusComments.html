@@ -1,0 +1,16 @@
+{#
+  Disqus
+  =====
+  Add a disqus comment field
+#}
+
+{% if data != 1 %}
+  <div class="c-disqusComments" id="comment-area">
+    <div class="c-disqusComments__wrapper">
+      <a class="c-disqusComments__button" {{ main.disqusName ? ' data-disqus-name='~main.disqusName }}>
+        <span>{{ 'Kommentare anzeigen'|t }}</span>
+      </a>
+    </div>
+    <div id="disqus_thread"></div>
+  </div>
+{% endif %}

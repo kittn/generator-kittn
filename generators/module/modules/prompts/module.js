@@ -20,8 +20,16 @@ const customPromptITCSS = {
       value: 'c'
     },
     {
+      name: 'Contentbuilder Module',
+      value: 'cb'
+    },
+    {
       name: 'Object',
       value: 'o'
+    },
+    {
+      name: 'Element',
+      value: 'e'
     }
   ],
   default: 'c',

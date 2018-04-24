@@ -1,0 +1,20 @@
+{#
+  video
+  =================
+  Description
+#}
+
+{# Build Element Block #}
+<video class="c-video{{ _.styleClasses(options) }}"
+  {% if options.posterImage.first() %}
+    poster="{{ data.previewImage.first().url }}" controls
+    {% if options.imageAtEnd %}
+      onended="videoEnded(this)"
+    {% endif %}
+  {% endif %}
+  {{ options.params ? options.params : 'autoplay' }}
+>
+  {% for video in data.video %}
+    <source src="{{ video.url }}" type="{{ video.mimeType }}">
+  {% endfor %}
+</video>

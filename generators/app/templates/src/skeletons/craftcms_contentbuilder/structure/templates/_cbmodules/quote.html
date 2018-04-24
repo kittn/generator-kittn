@@ -1,0 +1,18 @@
+{#
+  Quote
+  =====
+  Simple Quote module with Cite for displaying the source
+
+  @param {string} name                   = Classname
+  @param {object} data                   = Dataobject
+  @param {string} data.copy              = Quotetext
+  @param {string} data.source            = Citetext
+  @param {object} options                = Optionsobject
+  @param {string} options.style          = Optional Styleclass
+#}
+
+{# Build Element Block #}
+<blockquote class="c-quote{{ _.styleClasses(options) }}">
+  {{ data.copy|md }}
+  {% if data.source %}<cite class="c-quote__cite">{{ data.source|raw }}</cite>{% endif %}
+</blockquote>

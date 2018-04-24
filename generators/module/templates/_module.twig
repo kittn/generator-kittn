@@ -2,21 +2,14 @@
   <%= moduleName %>
   =================
   Description
-
-  @param {string} name            = Classname
 #}
 
-{# Set Class #}
-{% set c = name is defined and name != '' ? name : '<%= moduleType %>-<%= moduleName %>' %}
-
 {# Module defaults #}
-{% set defaults = {
+{% set _<%= moduleName %> = {
   name: '<%= moduleName %>'
 } %}
 
-{% set m = m is defined ? defaults|merge(m) : defaults %}
-
 {# Build Element Block #}
-<div class="{{ c }}">
-  {{ m.name }}
+<div class="<% if(moduleType === 'cb') { %>c<% } else { %><%= moduleType %><% } %>-<%= moduleName %>">
+  {{ _<%= moduleName %>.name }}
 </div>

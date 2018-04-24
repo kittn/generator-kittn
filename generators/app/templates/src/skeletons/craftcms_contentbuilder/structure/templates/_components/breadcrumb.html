@@ -1,0 +1,44 @@
+{#
+  Breadcrum
+  =============
+  Generate a custom breadcrumb
+#}
+<div class="c-breadcrumb">
+  {% if craft.request.firstSegment != '' %}
+    {% switch entry.section.handle %}
+      {% case 'pages' %}
+        {% set breadCrumbLinks = [
+          {
+            title: entry.slug,
+            link: '',
+            linked: false
+          }
+        ] %}
+
+      {% case 'error404' %}
+        {% set breadCrumbLinks = [
+          {
+            title: 'zurück' | t,
+            link: siteUrl,
+            linked: true
+          }
+        ] %}
+
+      {% case 'blogChannel' %}
+        {% set breadCrumbLinks = [
+          {
+            title: 'blog' | t,
+            link: siteUrl ~ 'blog',
+            linked: true
+          },
+          {
+            title: entry.title | striptags | raw | slice(0,21) ~ '…',
+            linked: false
+          }
+        ] %}
+
+    {% endswitch %}
+
+    {{ _.breadcrumb(breadCrumbLinks) }}
+  {% endif %}
+</div>

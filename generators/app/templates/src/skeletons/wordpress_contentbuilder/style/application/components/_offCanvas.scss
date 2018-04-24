@@ -1,0 +1,67 @@
+/*
+  offCanvas
+  =====
+  Styling for the OffCanvas Module
+*/
+.c-offCanvas {
+  $api: (
+    breakpoint: 'm',
+    background: rgba(c('black'), .98),
+    color: c('white'),
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  // For getting values from lists
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  overflow: hidden;
+  height: 100vh;
+  transition: transform 400ms ease-in-out;
+  transform: translateY(-100vh);
+  background-color: api(background);
+
+  &.offcanvas-active {
+    transform: translateY(0);
+  }
+
+  @include break(api(breakpoint)) {
+    display: none;
+  }
+
+  // Stop Bodyscrolling if offcanvas is active
+  @at-root body.offcanvas-active {
+    overflow: hidden;
+  }
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__inner
+  &__inner {
+    height: 100vh;
+  }
+
+  // [root]__scroll
+  &__scroll {
+    overflow-x: hidden;
+    overflow-y: auto;
+    @extend %e-container;
+    height: 100%;
+  }
+}

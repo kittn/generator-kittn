@@ -1,0 +1,42 @@
+{#
+  Accordion
+  =========
+  A classic Accordion. Any Accrodion contains a ContentBuilder.
+
+  @param {string} name            = Classname
+  @param {object} data            = Dataobject
+  @param {string} data.style      = Optional Styleclass Name
+#}
+
+{# Accordion Block as Macro #}
+{% macro accordionBlock(classname,child) %}
+  <div class="{{ classname }}__box" role="tab">
+    <div class="{{ classname }}__trigger">{{ child.objAccordion }}</div>
+    <div class="{{ classname }}__body" role="tabpanel">
+      <div class="{{ classname }}__inner">
+        {% for child in child.children %}
+          {% include '_builder/_cb-objects' with { data: child } %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+{% endmacro %}
+
+{# Build Element Block #}
+<div class="c-accordion{{ _.styleClasses(options) }}" role="tablist">
+  {# Loop through #}
+  {% switch content.type.handle %}
+    {% case 'objSection' %}
+      {% for child in content.children %}
+        {% for child in child.children %}
+          {% for child in child.children %}
+            {{ _self.accordionBlock('c-accordion', child)}}
+          {% endfor %}
+        {% endfor %}
+      {% endfor %}
+    {% default %}
+      {% for child in content.children %}
+        {{ _self.accordionBlock('c-accordion', child)}}
+      {% endfor %}
+  {% endswitch %}
+</div>
