@@ -14,7 +14,7 @@ const prodWebpackConfig = merge(baseWebpackConfig.default, {
   output: {
     filename: utils.assetsPath('js/[name].<% if ( projectusage === 'webpackApp' || projectusage === 'craft' || projectusage === 'craftCB' || projectusage === 'wordpress'  || projectusage === 'wordpressCB' ) { %>[hash].<% } %>js'),
     chunkFilename: utils.assetsPath('js/chunks/[name].[hash].js'),
-    publicPath: <% if ( projectusage === 'wordpress' || projectusage === 'wordpressCB' ) { %>'/'<% } else { %>'./'<% } %>
+    publicPath: <% if ( projectusage === 'wordpress' || projectusage === 'wordpressCB' || projectusage === 'craft' || projectusage === 'craftCB' ) { %>'/'<% } else { %>'./'<% } %>
   },
   plugins: [
     <% if ( projectusage === 'webpackApp' || projectusage === 'craft' || projectusage === 'craftCB'  || projectusage === 'wordpress' || projectusage === 'wordpressCB') { %>
