@@ -178,7 +178,8 @@ function addScriptDependencies (files = {}, context) {
 
   // If Vue with E2E Testing
   if (
-    context.props.projectjsframework === 'vue' &&
+    (context.props.projectjsframework === 'vue' ||
+    context.props.projectusage === 'webpackApp') &&
     context.props.projecttestinge2e === true
   ) {
     extend(files.pkg, {
@@ -190,7 +191,8 @@ function addScriptDependencies (files = {}, context) {
 
   // If Vue with Unit Testing
   if (
-    context.props.projectjsframework === 'vue' &&
+    (context.props.projectjsframework === 'vue' ||
+    context.props.projectusage === 'webpackApp') &&
     context.props.projecttestingunit === true
   ) {
     extend(files.pkg, {
@@ -215,7 +217,8 @@ function addScriptDependencies (files = {}, context) {
   // Adding Wallaby
   // If Vue with Unit Testing
   if (
-    context.props.projectjsframework === 'vue' &&
+    (context.props.projectjsframework === 'vue' ||
+    context.props.projectusage === 'webpackApp') &&
     context.props.projecttestingwallaby === true
   ) {
     extend(files.pkg, {

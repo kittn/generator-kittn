@@ -343,7 +343,7 @@ No whitespaces or special-chars allowed!}`
     {
       type: 'input',
       when: function (answers) {
-        return answers.projectusage !== 'webpackApp';
+        return answers.projectusage !== 'webpackApp'
       },
       name: 'projectcssfilename',
       message: message({
@@ -571,7 +571,7 @@ No whitespaces or special-chars allowed!}`
     },
     {
       when: function (answers) {
-        return answers.projectjsframework === 'vue'
+        return answers.projectjsframework === 'vue' || answers.projectusage === 'webpackApp'
       },
       type: 'confirm',
       name: 'projecttestingunit',
@@ -596,7 +596,7 @@ No whitespaces or special-chars allowed!}`
     },
     {
       when: function (answers) {
-        return answers.projecttestingunit === true && answers.projectjsframework === 'vue'
+        return answers.projecttestingunit === true && (answers.projectjsframework === 'vue' || answers.projectusage === 'webpackApp')
       },
       type: 'confirm',
       name: 'projecttestingwallaby',
@@ -678,6 +678,6 @@ No whitespaces or special-chars allowed!}`
       store: true
     }
   ]
-};
+}
 
 module.exports = generalPrompts
