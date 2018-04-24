@@ -6,6 +6,8 @@
  */
 import path from 'path'
 import webpack from 'webpack'
+import WebpackBar from 'webpackbar'
+import Stylish from 'webpack-stylish'
 
 <% if ( projectusage !== 'webpackApp' ) { %>
   import CleanWebpackPlugin from 'clean-webpack-plugin'
@@ -73,6 +75,7 @@ export default {
   output: {
     path: utils.paths.PUBLIC_PATH
   },
+  stats: 'none',
   resolve: {
     extensions: [
       <% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
@@ -209,6 +212,9 @@ export default {
     ]
   },
   plugins: utils.removeEmpty([
+    new webpack.NamedModulesPlugin(),
+    new WebpackBar(),
+    new Stylish(),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify(nodeEnv)

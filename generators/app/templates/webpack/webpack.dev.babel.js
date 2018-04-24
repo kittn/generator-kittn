@@ -82,7 +82,6 @@ const devWebpackConfig = merge(baseWebpackConfig.default, {
   plugins: [<% if ( projectusage !== 'webpackApp' ) { %>
     new FriendlyErrorsWebpackPlugin(),<% } %>
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
     <% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp' || projectusage === 'wordpress' || projectusage === 'wordpressCB') { %>
       // only needed if you want to write the files to your harddrive in dev-mode

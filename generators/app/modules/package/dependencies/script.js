@@ -38,6 +38,8 @@ function addScriptDependencies (files = {}, context) {
       'webpack-config-utils': '^2.3.0',
       'webpack-dev-middleware': '^3.1.0',
       'webpack-hot-middleware': '^2.21.2',
+      'webpackbar': '^1.5.1',
+      'webpack-stylish': '^0.1.8',
       'webpack-merge': '^4.1.2',
       'write-file-webpack-plugin': '^4.2.0'
     },
