@@ -13,7 +13,7 @@
 #}
 
 {# Set Layoutype Modifer #}
-{% set navstyle = options.layout != 'default' ?  ' ' ~ c ~ '--l-' ~ options.layout : '' %}
+{% set navstyle = options.layout != 'default' ?  ' c-jumpnavigation--l-' ~ options.layout : '' %}
 
 {# Build Element Block #}
 <nav class="c-jumpnavigation{{ _.styleClasses(options) }}{{ navstyle }}" role="navigation" itemscope itemtype="http://schema.org/SiteNavigationElement">
