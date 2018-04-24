@@ -32,7 +32,7 @@ const nodeEnv = process.env.NODE_ENV || 'production'
 const {
   ifProduction,
   ifDevelopment
-} = utils.getIfUtils(nodeEnv)
+} = utils.getIfUtils(nodeEnv)<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
 
 const CSS_LOADERS = [
   {
@@ -61,7 +61,7 @@ const CSS_LOADERS = [
       sourceMap: true
     }
   }
-]
+]<% } %>
 
 /*
  |--------------------------------------------------------------------------
