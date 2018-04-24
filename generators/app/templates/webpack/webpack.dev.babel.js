@@ -48,14 +48,10 @@ const devWebpackConfig = merge(baseWebpackConfig.default, {
   <% } %>
   devtool: 'eval-source-map',
   entry: utils.removeEmpty(entries),
-  output: {<% if ( projectusage === 'wordpress' || projectusage === 'wordpressCB' ) { %>
-    filename: 'js/[name].[hash].js',
-    chunkFilename: 'js/chunks/[name].[hash].js'
-    <% } else { %>
+  output: {
     publicPath: '/',
     filename: utils.assetsPath('js/[name].js'),
     chunkFilename: utils.assetsPath('js/chunks/[name].js')
-    <% } %>
   },
 
   <% if ( projectusage === 'webpackApp' ) { %>

@@ -11,14 +11,10 @@ const baseWebpackConfig = require('./webpack.config.base.babel.js')
  */
 const prodWebpackConfig = merge(baseWebpackConfig.default, {
   devtool: '',
-  output: {<% if ( projectusage === 'wordpress' || projectusage === 'wordpressCB' ) { %>
-    filename: 'js/[name].[hash].js',
-    chunkFilename: 'js/chunks/[name].[hash].js'
-    <% } else { %>
-    filename: utils.assetsPath('js/[name].<% if ( projectusage === 'webpackApp' || projectusage === 'craft' || projectusage === 'craftCB' ) { %>[hash].<% } %>js'),
+  output: {
+    filename: utils.assetsPath('js/[name].<% if ( projectusage === 'webpackApp' || projectusage === 'craft' || projectusage === 'craftCB' || projectusage === 'wordpress'  || projectusage === 'wordpressCB' ) { %>[hash].<% } %>js'),
     chunkFilename: utils.assetsPath('js/chunks/[name].[hash].js'),
-    publicPath: './'
-    <% } %>
+    publicPath: <% if ( projectusage === 'wordpress' || projectusage === 'wordpressCB' ) { %>'/'<% } else { %>'./'<% } %>
   },
   plugins: [
     <% if ( projectusage === 'webpackApp' || projectusage === 'craft' || projectusage === 'craftCB'  || projectusage === 'wordpress' || projectusage === 'wordpressCB') { %>

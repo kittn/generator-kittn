@@ -70,12 +70,8 @@ const CSS_LOADERS = [
  */
 export default {
   entry: utils.removeEmpty(utils.entryPoints),
-  output: {<% if ( projectusage === 'wordpress' || projectusage === 'wordpressCB' ) { %>
-    path: utils.resolve(utils.kittnConf.dist.assets)<% if ( projectusage === 'wordpressCB' ) { %>,
-    publicPath: 'assets'<% } %>
-    <% } else { %>
+  output: {
     path: utils.paths.PUBLIC_PATH
-    <% } %>
   },
   resolve: {
     extensions: [
