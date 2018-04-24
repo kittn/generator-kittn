@@ -4,7 +4,7 @@ import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
 <% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp' ) { %>
   // import WriteFilePlugin from 'write-file-webpack-plugin'
 <% } %>
-<% if (projectusage === 'craft' || projectusage === 'craftCB') { %>
+<% if (projectusage === 'craft' || projectusage === 'craftCB' || projectusage === 'wordpress' || projectusage === 'wordpressCB') { %>
   import WriteFilePlugin from 'write-file-webpack-plugin'
 <% } %>
 import utils from './utils'
@@ -48,10 +48,14 @@ const devWebpackConfig = merge(baseWebpackConfig.default, {
   <% } %>
   devtool: 'eval-source-map',
   entry: utils.removeEmpty(entries),
-  output: {
+  output: {<% if ( projectusage === 'wordpress' || projectusage === 'wordpressCB' ) { %>
+    filename: 'js/[name].[hash].js',
+    chunkFilename: 'js/chunks/[name].[hash].js'
+    <% } else { %>
     publicPath: '/',
     filename: utils.assetsPath('js/[name].js'),
     chunkFilename: utils.assetsPath('js/chunks/[name].js')
+    <% } %>
   },
 
   <% if ( projectusage === 'webpackApp' ) { %>
@@ -92,7 +96,7 @@ const devWebpackConfig = merge(baseWebpackConfig.default, {
       // })
     <% } %>
 
-    <% if (projectusage === 'craft' || projectusage === 'craftCB') { %>
+    <% if (projectusage === 'craft' || projectusage === 'craftCB' || projectusage === 'wordpress' || projectusage === 'wordpressCB') { %>
       new WriteFilePlugin({
         log: false,
         test: /^(?!.+(?:hot-update.(js|json))).+$/

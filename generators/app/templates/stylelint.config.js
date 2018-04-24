@@ -108,7 +108,7 @@ const padding = {
 }
 
 const border = {
-  properties: ['border-color', 'border-style', 'border-width', 'border']
+  properties: ['border', 'border-color', 'border-style', 'border-width']
 }
 
 const dynamic = {

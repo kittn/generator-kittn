@@ -1,9 +1,5 @@
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
-
-<% if ( projectusage === 'webpackApp' || projectusage === 'craft' || projectusage === 'craftCB' ) { %>
-  import CleanWebpackPlugin from 'clean-webpack-plugin'
-<% } %>
-
+import CleanWebpackPlugin from 'clean-webpack-plugin'
 const merge = require('webpack-merge')
 const utils = require('./utils')
 const baseWebpackConfig = require('./webpack.config.base.babel.js')
@@ -15,13 +11,17 @@ const baseWebpackConfig = require('./webpack.config.base.babel.js')
  */
 const prodWebpackConfig = merge(baseWebpackConfig.default, {
   devtool: '',
-  output: {
+  output: {<% if ( projectusage === 'wordpress' || projectusage === 'wordpressCB' ) { %>
+    filename: 'js/[name].[hash].js',
+    chunkFilename: 'js/chunks/[name].[hash].js'
+    <% } else { %>
     filename: utils.assetsPath('js/[name].<% if ( projectusage === 'webpackApp' || projectusage === 'craft' || projectusage === 'craftCB' ) { %>[hash].<% } %>js'),
     chunkFilename: utils.assetsPath('js/chunks/[name].[hash].js'),
     publicPath: './'
+    <% } %>
   },
   plugins: [
-    <% if ( projectusage === 'webpackApp' || projectusage === 'craft' || projectusage === 'craftCB' ) { %>
+    <% if ( projectusage === 'webpackApp' || projectusage === 'craft' || projectusage === 'craftCB'  || projectusage === 'wordpress' || projectusage === 'wordpressCB') { %>
       new CleanWebpackPlugin(
         [
           utils.resolve(utils.kittnConf.dist.js),
