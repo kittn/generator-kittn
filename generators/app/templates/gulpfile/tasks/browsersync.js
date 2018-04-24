@@ -80,7 +80,9 @@ const browserSyncTask = () => {
         kc.dist.js + '**/*.js',
         kc.dist.css + '**/*.css',<% if (projectusage == 'craft' || projectusage == 'craftCB' ) { %>
         kc.dist.markup + 'templates/**/*.{php,html,twig}',<% } else if (projectusage == 'wordpress' || projectusage == 'wordpressCB') { %>
-        kc.dist.markup + '**/*.{php,html,png,txt,md}',<% } else { %>
+        kc.dist.markup + '**/*.{php,html,png,txt,md}',<% } else if (projectusage == 'joomla' || projectusage == 'joomlaCB') { %>
+        kc.dist.markup + '**/*.{php,xml,ini}',
+        kc.dist.plugins + '**/*.{php,xml,ini}',<% } else { %>
         kc.dist.base + '**/*.{php,html}',<% } %>
         kc.dist.cssimg + '**/*.{jpg,gif,png,svg}'
       ]

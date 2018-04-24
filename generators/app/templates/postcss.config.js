@@ -14,7 +14,7 @@ module.exports = ({ file, options, env }) => ({
     'postcss-easings': {},
     'postcss-assets': {
       basePath: './',
-      loadPaths: [<% if (projectusage == 'html') { %>'dist/assets/img/'<% } if (projectusage == 'wordpress' || projectusage == 'wordpressCB') { %>'dist/wp-content/themes/<%= projectname %>/assets/img/'<% } if (projectusage == 'craft' || projectusage == 'craftCB') { %>'dist/public/assets/img/'<% } %>]
+      loadPaths: [<% if (projectusage == 'html') { %>'dist/assets/img/'<% } if (projectusage == 'wordpress' || projectusage == 'wordpressCB') { %>'dist/wp-content/themes/<%= projectname %>/assets/img/'<% } if (projectusage == 'joomla' || projectusage == 'joomlaCB') { %>'dist/templates/<%= projectname %>/assets/img/'<% } if (projectusage == 'craft' || projectusage == 'craftCB') { %>'dist/public/assets/img/'<% } %>]
     },
     'autoprefixer': {
       cascade: false,

@@ -90,6 +90,9 @@ const styles = context => {
           },
           {
             projectusage: 'craftCB'
+          },
+          {
+            projectusage: 'joomlaCB'
           }
         ],
         src: 'nodescripts/',

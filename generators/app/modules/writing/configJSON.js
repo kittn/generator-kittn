@@ -4,6 +4,7 @@
 const addBaseConfig = require('../config/base.js')
 const addHTMLConfig = require('../config/html.js')
 const addCraftConfig = require('../config/craft.js')
+const addJoomlaConfig = require('../config/joomla.js')
 const addWordpressConfig = require('../config/wordpress.js')
 
 const writeConfigJson = () => {
@@ -19,6 +20,7 @@ const writeConfigJson = () => {
         addBaseConfig({pkg}, context)
         addHTMLConfig({pkg}, context)
         addCraftConfig({pkg}, context)
+        addJoomlaConfig({pkg}, context)
         addWordpressConfig({pkg}, context)
 
         // Write package.json

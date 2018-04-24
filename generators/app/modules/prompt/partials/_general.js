@@ -68,6 +68,10 @@ No whitespaces or special-chars allowed!}`
         {
           name: 'Create a website using Wordpress and ContentBuilder',
           value: 'wordpressCB'
+        },
+        {
+          name: 'Create a website using Joomla',
+          value: 'joomla'
         }
       ],
       store: true
@@ -99,6 +103,7 @@ No whitespaces or special-chars allowed!}`
       when: function (answers) {
         return (
           answers.projectusage === 'craft' ||
+          answers.projectusage === 'joomla' ||
           answers.projectusage === 'wordpress' ||
           answers.projectusage === 'html'
         )
@@ -129,6 +134,7 @@ No whitespaces or special-chars allowed!}`
       when: function (answers) {
         return (
           answers.projectusage === 'craft' ||
+          answers.projectusage === 'joomla' ||
           answers.projectusage === 'wordpress' ||
           answers.projectusage === 'html'
         )
@@ -147,6 +153,7 @@ No whitespaces or special-chars allowed!}`
       when: function (answers) {
         return (
           answers.projectusage === 'craft' ||
+          answers.projectusage === 'joomla' ||
           answers.projectusage === 'wordpress' ||
           answers.projectusage === 'html' ||
           answers.projectusage === 'webpackApp'
@@ -178,6 +185,7 @@ No whitespaces or special-chars allowed!}`
       when: function (answers) {
         return (
           answers.projectusage.substring(0, 5) === 'craft' ||
+          answers.projectusage.substring(0, 6) === 'joomla' ||
           answers.projectusage.substring(0, 4) === 'word'
         )
       },
@@ -203,6 +211,7 @@ No whitespaces or special-chars allowed!}`
       when: function (answers) {
         return (
           answers.projectusage.substring(0, 5) === 'craft' ||
+          answers.projectusage.substring(0, 6) === 'joomla' ||
           answers.projectusage.substring(0, 4) === 'word'
         )
       },
@@ -425,6 +434,7 @@ No whitespaces or special-chars allowed!}`
         return (
           answers.projectusage === 'craft' ||
           answers.projectusage.substring(0, 4) === 'word' ||
+          answers.projectusage.substring(0, 6) === 'joomla' ||
           answers.projectusage === 'html'
         )
       },

@@ -4,7 +4,7 @@ import FriendlyErrorsWebpackPlugin from 'friendly-errors-webpack-plugin'
 <% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp' ) { %>
   // import WriteFilePlugin from 'write-file-webpack-plugin'
 <% } %>
-<% if (projectusage === 'craft' || projectusage === 'craftCB' || projectusage === 'wordpress' || projectusage === 'wordpressCB') { %>
+<% if (projectusage === 'craft' || projectusage === 'craftCB' || projectusage === 'wordpress' || projectusage === 'wordpressCB' || projectusage === 'joomla' || projectusage === 'joomlaCB') { %>
   import WriteFilePlugin from 'write-file-webpack-plugin'
 <% } %>
 import utils from './utils'

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.4" type="plugin" group="system" method="upgrade">
+    <name>plg_system_kickcleanhead</name>
+    <author>Niels Nübel</author>
+    <creationDate>3 August 2016</creationDate>
+    <copyright>Copyright (c) 2009 - 2016 Niels Nübel</copyright>
+    <license>GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html</license>
+    <authorEmail>info@niels-nuebel.de</authorEmail>
+    <authorUrl>www.niels-nuebel.de</authorUrl>
+    <version>1.0.0</version>
+    <description>PLG_SYSTEM_KICKCLEANHEAD_XML_DESCRIPTION</description>
+    <files>
+        <file plugin="kickcleanhead">kickcleanhead.php</file>
+        <file>kickcleanhead.xml</file>
+        <folder>language</folder>
+    </files>
+    <config>
+        <fields name="params">
+            <fieldset name="basic">
+                <field  name="loadfirst"
+                        type="text"
+                        class="btn-group"
+                        default=""
+                        label="PLG_SYSTEM_KICKCLEANHEAD_LOADFIRST_LABEL"
+                        description="PLG_SYSTEM_KICKCLEANHEAD_LOADFIRST_DESC"
+                        />
+
+                <!-- Disable JavaScript -->
+                <field  name="disablejs"
+                        type="radio"
+                        class="btn-group"
+                        default="1"
+                        label="PLG_SYSTEM_KICKCLEANHEAD_DISABLEJS_LABEL"
+                        description="PLG_SYSTEM_KICKCLEANHEAD_DISABLEJS_DESC"
+                >
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <!-- JavaScript Files -->
+                <field  name="fnjs"
+                        type="textarea"
+                        label="PLG_SYSTEM_KICKCLEANHEAD_FNJS_LABEL"
+                        description="PLG_SYSTEM_KICKCLEANHEAD_FNJS_LABEL"
+                        cols="30"
+                        default="demo.js"
+                        rows="4"
+                />
+
+                <field  name="jui-jquery"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="PLG_SYSTEM_KICKCLEANHEAD_JUI_JQUERY_LABEL"
+                        description="PLG_SYSTEM_KICKCLEANHEAD_JUI_JQUERY_DESC"
+                        >
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field  name="jui-jquery-migrate"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="PLG_SYSTEM_KICKCLEANHEAD_JUI_JQUERY_MIGRATE_LABEL"
+                        description="PLG_SYSTEM_KICKCLEANHEAD_JUI_JQUERY_MIGRATE_DESC"
+                        >
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field  name="jui-jquery-noconflict"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="PLG_SYSTEM_KICKCLEANHEAD_JUI_JQUERY_NOCONFLICT_LABEL"
+                        description="PLG_SYSTEM_KICKCLEANHEAD_JUI_JQUERY_NOCONFLICT_DESC"
+                        >
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field  name="jui-bootstrap"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="PLG_SYSTEM_KICKCLEANHEAD_JUI_BOOTSTRAP_LABEL"
+                        description="PLG_SYSTEM_KICKCLEANHEAD_JUI_BOOTSTRAP_DESC"
+                        >
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <field  name="caption"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="PLG_SYSTEM_KICKCLEANHEAD_CAPTION_LABEL"
+                        description="PLG_SYSTEM_KICKCLEANHEAD_CAPTION_DESC"
+                        >
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <!-- Disable CSS -->
+                <field  name="disablecss"
+                        type="radio"
+                        class="btn-group"
+                        default="0"
+                        label="PLG_SYSTEM_KICKCLEANHEAD_DISABLECSS_LABEL"
+                        description="PLG_SYSTEM_KICKCLEANHEAD_DISABLECSS_DESC"
+                >
+                    <option value="0">JNO</option>
+                    <option value="1">JYES</option>
+                </field>
+
+                <!-- CSS Files -->
+                <field  name="fncss"
+                        type="textarea"
+                        label="PLG_SYSTEM_KICKCLEANHEAD_FNCSS_LABEL"
+                        description="PLG_SYSTEM_KICKCLEANHEAD_FNCSS_DESC"
+                        cols="30"
+                        rows="4"
+                />
+
+                <field name="skiptemplate" type="templatestyle"
+                       client="site"
+                       description="PLG_SYSTEM_KICKCLEANHEAD_SKIPTEMPLATE_LABEL"
+                       label="PLG_SYSTEM_KICKCLEANHEAD_SKIPTEMPLATE_LABEL" >
+                    <option value="">JOPTION_USE_DEFAULT</option>
+                </field>
+            </fieldset>
+        </fields>
+    </config>
+    <updateservers>
+        <server type="extension" priority="1" name="PLG_SYSTEM_KICKCLEANHEAD">https://raw.githubusercontent.com/nielsnuebel/plg_system_kickcleanhead/master/update.xml</server>
+    </updateservers>
+</extension>

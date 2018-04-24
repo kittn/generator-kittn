@@ -30,6 +30,15 @@ const importDB = () => {
                 dbFile = 'wordpress.sql'
               }
               break
+
+            case 'joomla' :
+              // Switch between regular DB File and ContentBuilder DB File
+              if (context.props.projectusage === 'joomlaCB') {
+                dbFile = 'joomlaCB.sql'
+              } else {
+                dbFile = 'joomla.sql'
+              }
+              break
           }
 
           // TODO: Wont work with SQL Files with JSON Fragments

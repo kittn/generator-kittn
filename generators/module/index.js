@@ -88,6 +88,11 @@ module.exports = class extends Generator {
           templatePath = json.src.structure !== undefined ? json.src.structure + 'templates/' : './src/structure'
           break
 
+        case 'joomla' :
+        case 'joomlaCB' :
+          templatePath = json.src.structure !== undefined ? json.src.structure : './src/structure'
+          break
+
         case 'wordpress' :
         case 'wordpressCB' :
           templatePath = json.src.structure !== undefined ? json.src.structure : './src/structure'

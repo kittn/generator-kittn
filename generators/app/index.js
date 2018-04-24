@@ -27,6 +27,7 @@ const addDB = require('./modules/writing/addDB')
 
 // Install CMS
 const installWordpress = require('./modules/writing/install/wordpress')
+const installJoomla = require('./modules/writing/install/joomla')
 const installCraft = require('./modules/writing/install/craft')
 
 // And Action!
@@ -56,6 +57,7 @@ module.exports = class extends Generator {
 
     // Copy Sources
     this.installWordpress = installWordpress.bind(this)
+    this.installJoomla = installJoomla.bind(this)
     this.installCraft = installCraft.bind(this)
 
     // Command Checks
@@ -184,6 +186,7 @@ module.exports = class extends Generator {
     // Install CMS
     if (!this.devMode) {
       this.installWordpress().install(this)
+      this.installJoomla().install(this)
       this.installCraft().install(this)
     }
   }
@@ -253,6 +256,15 @@ module.exports = class extends Generator {
     ) {
       goodbye +=
         chalk`{cyan      - Install Craft manually in the 'dist/' directory}` +
+        '\n';
+    }
+
+    if (
+      this.props.projectusage.substring(0, 6) === 'joomla' &&
+      this.commands.wget !== true
+    ) {
+      goodbye +=
+        chalk`{cyan      - Install Joomla manually in the 'dist/' directory}` +
         '\n';
     }
 
