@@ -42,6 +42,18 @@ const script = context => {
         dest: 'src/js/app.vue'
       },
       {
+        orConditions: [
+          {
+            projectjsframework: 'vue'
+          },
+          {
+            projectusage: 'webpackApp'
+          }
+        ],
+        src: 'src/skeletons/vue/vue-app.js',
+        dest: 'src/js/vue-app.js'
+      },
+      {
         conditions: {
           projectusage: 'webpackApp'
         },
@@ -117,6 +129,6 @@ const script = context => {
       }
     ]
   }
-};
+}
 
 module.exports = script

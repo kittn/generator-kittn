@@ -16,7 +16,7 @@
 function macro_socialNetworks($options = [], $links = false) {
   $mylinks = array();
   // Default Links - uses ACF Globalfield
-  if (get_field('pg_social_networks', 'option')) {
+  if (function_exists('get_field') && get_field('pg_social_networks', 'option')) {
     $mylinks = $links ?: get_field('pg_social_networks', 'option');
   }
 

@@ -7,4 +7,6 @@
 ?>
 <?php wp_footer(); ?>
 
-<script src="<?= get_template_directory_uri(); ?>/assets/js/main.js"></script>
+<%% for (var chunk in htmlWebpackPlugin.files.chunks) { if (!chunk.match(/font/)) { %>
+<script src="<?= home_url(); ?><%%= htmlWebpackPlugin.files.chunks[chunk].entry %>" defer></script>
+<%% }} %>

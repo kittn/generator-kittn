@@ -96,7 +96,7 @@ function addBaseCofig (files = {}, context) {
         proxy: false
       },
       files: {
-        jsCopy: ['node_modules/lazysizes/plugins/respimg/ls.respimg.js'],
+        jsCopy: [],
         jsCombine: {
           files: [],
           filename: 'scripts.js'

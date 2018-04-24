@@ -38,7 +38,8 @@ function addScriptDependencies (files = {}, context) {
       'webpack-config-utils': '^2.3.0',
       'webpack-dev-middleware': '^3.1.0',
       'webpack-hot-middleware': '^2.21.2',
-      'webpack-merge': '^4.1.2'
+      'webpack-merge': '^4.1.2',
+      'write-file-webpack-plugin': '^4.2.0'
     },
     dependencies: {
       'bowser': '^1.9.3',
@@ -46,20 +47,6 @@ function addScriptDependencies (files = {}, context) {
       'svgxuse': '^1.2.6'
     }
   })
-
-  if (
-    (context.props.projectusage === 'html' &&
-      context.props.projectstructure === 'uncompiled') ||
-    context.props.projectusage === 'webpackApp' ||
-    (context.props.projectusage === 'craft' ||
-      context.props.projectusage === 'craftCB')
-  ) {
-    extend(files.pkg, {
-      devDependencies: {
-        'write-file-webpack-plugin': '^4.2.0'
-      }
-    })
-  }
 
   if (context.props.projectusage !== 'webpackApp') {
     extend(files.pkg, {
