@@ -35,7 +35,7 @@ $this->setGenerator(null);
 $modified_css = filemtime(__DIR__ . '/assets/css/<%= projectcssfilename %>.css');
 
 // Add Stylesheets
-JHtml::_('stylesheet', '<%= projectcssfilename %>.css', array('version' => $modified_css, 'relative' => true));
+$doc->addStyleSheet($tpath . '/assets/css/<%= projectcssfilename %>.css', array('version' => $modified_css));
 
 // Load Critical CSS
 if (file_exists($criticalcss = __DIR__ . '/_critical/' . str_replace('.php', '', $layout) . '_critical.min.css'))
