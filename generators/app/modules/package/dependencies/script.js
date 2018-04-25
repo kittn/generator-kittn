@@ -90,10 +90,25 @@ function addScriptDependencies (files = {}, context) {
     })
   }
 
+  // Webpack Bundle analyzer
+  if (
+    context.props.projectusage === 'joomla' ||
+    context.props.projectusage === 'joomlaCB'
+  ) {
+    extend(files.pkg, {
+      scripts: {
+        'webpack:analyze': `webpack-bundle-analyzer webpack/stats.json dist/templates/${
+          context.props.projectname
+        }/assets/`
+      }
+    })
+  }
+
   // Container-Queries
   if (
     context.props.projectcontainerqueries === true ||
     context.props.projectusage === 'craftCB' ||
+    context.props.projectusage === 'joomlaCB' ||
     context.props.projectusage === 'wordpressCB'
   ) {
     extend(files.pkg, {

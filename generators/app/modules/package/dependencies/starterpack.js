@@ -1,7 +1,7 @@
 const extend = require('deep-extend')
 
 function addStarterpackDependencies (files = {}, context) {
-  if (context.props.projectusage === 'wordpressCB' || context.props.projectusage === 'craftCB') {
+  if (context.props.projectusage === 'wordpressCB' || context.props.projectusage === 'craftCB' || context.props.projectusage === 'joomlaCB') {
     extend(files.pkg, {
       dependencies: {
         'anchor-scroll': '^2.0.0',

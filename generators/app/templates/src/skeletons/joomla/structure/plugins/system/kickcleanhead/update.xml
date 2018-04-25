@@ -1,0 +1,17 @@
+<updates>
+    <update>
+        <name>System - KickCleanhead</name>
+        <element>kickcleanhead</element>
+        <type>plugin</type>
+        <folder>system</folder>
+        <client>0</client>
+        <version>1.0.0</version>
+        <downloads>
+            <downloadurl type="upgrade" format="zip">https://github.com/nielsnuebel/plg_system_kickcleanhead/archive/1.0.0.zip</downloadurl>
+        </downloads>
+        <tags>
+            <tag>stable</tag>
+        </tags>
+        <targetplatform name="joomla" version="3.*"/>
+    </update>
+</updates>

@@ -24,11 +24,12 @@ const initTask = (cb) => {
       'copy:wpplugins'<% } else if (projectusage == 'craft' || projectusage == 'craftCB') { %>,
       'copy:craftindex',
       'copy:craftplugins',
-      'copy:craftenv'<% } %>
+      'copy:craftenv'<% } else if (projectusage == 'joomla' || projectusage == 'joomlaCB') { %>,
+      'copy:joomlafiles'<% } %>
     ],
     [
-      'compiler:css',
-      'compiler:html'
+      'compiler:css'<% if (projectusage !== 'joomla' && projectusage == 'joomlaCB') { %>,
+      'compiler:html'<% } %>
     ],
     cb)
 }

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "https://www.joomla.org/xml/dtd/2.5/template-install.dtd">
+<extension version="3.1" type="template" client="site">
+	<name><%= projectname %></name>
+	<version><%= projectversion %></version>
+	<creationDate>19 April 2018</creationDate>
+	<author><%= projectauthor %></author>
+	<authorEmail><%= projectmail %></authorEmail>
+	<copyright>Copyright (C) 2005 - 2018 Open Source Matters, Inc. All rights reserved.</copyright>
+	<description>TPL_<%= projectname.toUpperCase() %>_XML_DESCRIPTION</description>
+	<files>
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+		<folder>_critical</folder>
+		<folder>_parts</folder>
+		<folder>assets</folder>
+		<folder>html</folder>
+		<folder>language</folder>
+		<folder>kickcck</folder>
+		<folder>tpls</folder>
+	</files>
+
+	<positions>
+		<position>mainmenu</position>
+		<position>breadcrumb</position>
+		<position>top</position>
+		<position>sidebar</position>
+		<position>inner-top</position>
+		<position>inner-bottom</position>
+		<position>bottom</position>
+		<position>footer</position>
+		<position>copyright</position>
+		<position>debug</position>
+	</positions>
+
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<!-- SHOWONFRONTPAGE -->
+				<field  name="hidecontentwrapper"
+				        type="radio"
+				        class="btn-group"
+				        default="0"
+				        label="TPL_<%= projectname.toUpperCase() %>_PARAMETER_HIDECONTENTWRAPPER_LABEL"
+				        description="TPL_<%= projectname.toUpperCase() %>_PARAMETER_HIDECONTENTWRAPPER_DESC"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+				<!-- SHOWSYSTEMOUTPUT -->
+				<field  name="showsystemoutput"
+				        type="radio"
+				        class="btn-group"
+				        default="0"
+				        label="TPL_<%= projectname.toUpperCase() %>_PARAMETER_SHOWSYSTEMOUTPUT_LABEL"
+				        description="TPL_<%= projectname.toUpperCase() %>_PARAMETER_SHOWSYSTEMOUTPUT_DESC"
+				>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+
+				<field name="layout"
+				       type="filelist"
+				       default="default.php"
+				       label="TPL_<%= projectname.toUpperCase() %>_PARAMETER_LAYOUT_LABEL"
+				       description="TPL_<%= projectname.toUpperCase() %>_PARAMETER_LAYOUT_DESC"
+				       directory="templates/<%= projectname %>/tpls"
+				       filter="\.php"
+				       striptext="true"
+				       hide_none="true"
+				/>
+			</fieldset>
+		</fields>
+	</config>
+</extension>
