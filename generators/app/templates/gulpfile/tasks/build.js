@@ -21,9 +21,7 @@ const buildTask = (cb) => {
       'copy:fonts',
       'rebuild:js',
       'rebuild:images',
-      'copy:contentimages'<% if (projectusage == 'wordpress' || projectusage == 'wordpressCB' ) { %>,
-      'copy:wpconfig',
-      'copy:wpplugins'<% } else if (projectusage == 'joomla' || projectusage == 'joomlaCB') { %>,
+      'copy:contentimages'<% } else if (projectusage == 'joomla' || projectusage == 'joomlaCB') { %>,
       'copy:joomlafiles'<% } %>
     ],
     [

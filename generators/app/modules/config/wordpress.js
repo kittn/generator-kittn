@@ -25,7 +25,7 @@ function addWordpressCofig (files = {}, context) {
       'src': {
         'structure': 'src/structure/templates/',
         'config': 'src/structure/config/',
-        'plugins': 'src/structure/plugins/'
+        'plugins': 'src/wpplugins/'
       },
       'minify': {
         'purgeCSS': [
