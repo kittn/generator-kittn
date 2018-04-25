@@ -40,6 +40,14 @@ function addJoomlaCofig (files = {}, context) {
         { 'src': 'src/structure/media/', 'dest': 'dist/media/' },
         { 'src': 'src/structure/language/', 'dest': 'dist/language/' }
       ],
+      "watchjoomla": [
+        "src/structure/templates/**/*",
+        "src/structure/modules/**/**",
+        "src/structure/plugins/**/**",
+        "src/structure/components/**/**",
+        "src/structure/administrator/**/**",
+        "src/structure/media/**/**"
+      ],
       'src': {
         'structure': `src/structure/templates/${context.props.projectname}/`,
         'templates': `src/structure/templates/${context.props.projectname}/_critical/`
