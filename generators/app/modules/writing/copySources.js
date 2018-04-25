@@ -7,6 +7,7 @@ const script = require('./copySrc/script.js')
 const projecttype = require('./copySrc/projecttype.js')
 const tools = require('./copySrc/tools.js')
 const starterpackCraft = require('./copySrc/starterpackCraft.js')
+const starterpackJoomla = require('./copySrc/starterpackJoomla.js')
 const starterpackWordpress = require('./copySrc/starterpackWordpress.js')
 
 const copyAction = (data, context) => {
@@ -102,6 +103,10 @@ const copySources = () => {
         // Starterpack Craft
         const starterpackCraftConfig = starterpackCraft(context)
         processConfig(starterpackCraftConfig, context)
+
+        // Starterpack Joomla
+        const starterpackJoomlaConfig = starterpackJoomla(context)
+        processConfig(starterpackJoomlaConfig, context)
 
         // Starterpack Wordpress
         const starterpackWordpressConfig = starterpackWordpress(context)

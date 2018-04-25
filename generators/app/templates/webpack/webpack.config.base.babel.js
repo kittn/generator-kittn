@@ -73,6 +73,7 @@ const CSS_LOADERS = [
 export default {
   entry: utils.removeEmpty(utils.entryPoints),
   output: {
+    pathinfo: ifDevelopment(true, false),
     path: utils.paths.PUBLIC_PATH
   },
   stats: 'none',
@@ -206,7 +207,17 @@ export default {
       <% if ( projecttypescript ) { %>,
         {
           test: /\.tsx?$/,
-          loader: 'ts-loader'
+          exclude: /node_modules/,
+          use: [
+            'babel-loader',
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+                experimentalWatchApi: true
+              }
+            }
+          ]
         },
       <% } %>
     ]
@@ -257,15 +268,17 @@ export default {
     <% } %>
       new HtmlWebpackPlugin({<% if ( projectusage === 'craft' || projectusage === 'craftCB' ) { %>
         filename: path.resolve(`${utils.kittnConf.dist.templates}/_parts/document-footer.html`),
-        template: utils.kittnConf.src.templates + '_parts/document-footer.html',<% } else if ( projectusage === 'wordpress') { %>
+        template: utils.kittnConf.src.templates + '_parts/document-footer.html',<% } else if ( projectusage === 'joomla') { %>
+        filename: path.resolve(`${utils.kittnConf.dist.templates}/_parts/footer.php`),
+        template: utils.kittnConf.src.structure + '_parts/footer.php',<% } else if ( projectusage === 'wordpress') { %>
         filename: path.resolve(`${utils.kittnConf.dist.templates}/footer.php`),
         template: utils.kittnConf.src.structure + 'footer.php',<% } else if ( projectusage === 'wordpressCB' ) { %>
         filename: path.resolve(`${utils.kittnConf.dist.templates}/_parts/document-footer.php`),
         template: utils.kittnConf.src.structure + '_parts/document-footer.php',<% } else { %>
         filename: 'index.html',
         template: <% if ( locals.projectstructure && projectstructure === 'twig' ) { %>utils.kittnConf.dist.markup + 'index.html'<% } else { %>utils.kittnConf.src.structure + 'index.html'<% } %>,<% } %>
-        inject: <% if ( projectusage === 'craft' || projectusage === 'craftCB' || projectusage === 'wordpress' || projectusage === 'wordpressCB' ) { %>false<% } else { %>true<% } %>,
-        hash: false<% if ( projectusage !== 'craft' && projectusage !== 'craftCB' && projectusage !== 'wordpress' && projectusage !== 'wordpressCB' ) { %>,
+        inject: <% if ( projectusage === 'craft' || projectusage === 'craftCB' || projectusage === 'wordpress' || projectusage === 'wordpressCB' || projectusage === 'joomla' || projectusage === 'joomlaCB' ) { %>false<% } else { %>true<% } %>,
+        hash: false<% if ( projectusage !== 'craft' && projectusage !== 'craftCB' && projectusage !== 'wordpress' && projectusage !== 'wordpressCB' && projectusage !== 'joomla' && projectusage !== 'joomlaCB' ) { %>,
         minify: {
           removeComments: true,
           collapseWhitespace: true,

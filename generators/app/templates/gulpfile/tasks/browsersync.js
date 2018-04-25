@@ -83,7 +83,9 @@ const browserSyncTask = () => {
         `${kc.dist.markup}templates/**/*.{php,html,twig}`,<% } else if (projectusage == 'wordpress' || projectusage == 'wordpressCB') { %><% if (projectusage == 'wordpress') { %>
         `!${kc.dist.markup}**/footer.php`,<% } else { %>
         `!${kc.dist.markup}**/_parts/document-footer.php`,
-        `${kc.dist.markup}**/*.{php,html,png,txt,md}`,<% } else { %>
+        `${kc.dist.markup}**/*.{php,html,png,txt,md}`,<% } %><% } else if (projectusage == 'joomla' || projectusage == 'joomlaCB') { %>
+        `${kc.dist.markup} + '**/*.{php,xml,ini}`,
+        `${kc.dist.plugins} + '**/*.{php,xml,ini}`,<% } else { %>
         `${kc.dist.base}**/*.{php,html}`,<% } %>
         `${kc.dist.cssimg}**/*.{jpg,gif,png,svg}`
       ]

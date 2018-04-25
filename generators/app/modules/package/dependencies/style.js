@@ -84,7 +84,7 @@ function addStyleDependencies (files = {}, context) {
    * @method if
    * @param  {object} context The global context with prompts
    */
-  if (context.props.projectusage === 'craftCB') {
+  if (context.props.projectusage === 'craftCB' || context.props.projectusage === 'joomlaCB') {
     extend(files.pkg, {
       scripts: {
         critical: 'node nodescripts/critical.js'

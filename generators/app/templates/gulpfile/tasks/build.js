@@ -23,11 +23,12 @@ const buildTask = (cb) => {
       'rebuild:images',
       'copy:contentimages'<% if (projectusage == 'wordpress' || projectusage == 'wordpressCB' ) { %>,
       'copy:wpconfig',
-      'copy:wpplugins'<% } %>
+      'copy:wpplugins'<% } else if (projectusage == 'joomla' || projectusage == 'joomlaCB') { %>,
+      'copy:joomlafiles'<% } %>
     ],
     [
-      'compiler:css',
-      'compiler:html'
+      'compiler:css'<% if (projectusage !== 'joomla' && projectusage == 'joomlaCB') { %>,
+      'compiler:html'<% } %>
     ]<% if (projectcritical !== 'undefined' && projectcritical === true) { %>,
     [
       'optimize:criticalCss'
