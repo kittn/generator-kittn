@@ -41,7 +41,7 @@ function addJoomlaCofig (files = {}, context) {
         { 'src': 'src/structure/language/', 'dest': 'dist/language/' }
       ],
       'src': {
-        'structure': `src/structure/templates/${context.props.projectname}`,
+        'structure': `src/structure/templates/${context.props.projectname}/`,
         'templates': `src/structure/templates/${context.props.projectname}/_critical/`
       },
       'minify': {
