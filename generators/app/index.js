@@ -347,7 +347,7 @@ module.exports = class extends Generator {
     ) {
       goodbye +=
         chalk`{hex('#009dff')      - Log into the backend with 'kittn' / '${
-          this.props.projectusage.substring(0, 5) === 'craft'
+          this.props.projectusage.substring(0, 5) === 'craft' || this.props.projectusage.substring(0, 6) === 'joomla' 
             ? `superkittn`
             : `kittn`
         }'. After login, activate theme and create a new user}` + '\n';
@@ -358,9 +358,13 @@ module.exports = class extends Generator {
         chalk`{hex('#009dff')            => Backend: ${
           this.props.credentialdomain
         }/${
-          this.props.projectusage.substring(0, 5) === 'craft'
+          this.props.projectusage.substring(0, 5) === 'craft' || this.props.projectusage.substring(0, 6) === 'joomla'
             ? `admin`
             : `wp-admin`
+        }${
+          this.props.projectusage.substring(0, 6) === 'joomla'
+            ? `istrator`
+            : ``
         }}` + '\n';
     }
 
