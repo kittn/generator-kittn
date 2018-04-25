@@ -32,4 +32,9 @@ lazySizesConfig.expFactor = 1.3
 lazySizes.init()<% } %><% if ((typeof projectcontainerqueries !== 'undefined' && projectcontainerqueries === true) || (typeof projectusage !== 'undefined' && projectusage === 'craftCB') || (typeof projectusage !== 'undefined' && projectusage === 'wordpressCB') ) { %>
 
 // Activate Container Queries
-cq({ postcss: true })<% } %>
+cq({ postcss: true })<% } %><% if (projectusage === 'webpackApp' || projectjsframework === 'vue') { %>
+
+if (document.querySelectorAll('#app').length > 0) {
+  import('./vue-app' /* webpackChunkName: "vueApp" */)
+}
+<% } %>

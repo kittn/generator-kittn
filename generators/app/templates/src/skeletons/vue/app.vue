@@ -3,10 +3,10 @@
 </template>
 
 <script>
-  export default {
-    components: {},
-    data: () => ({
-      message: 'Hello World i am Vue'
-    })
-  }
+export default {
+  components: {},
+  data: () => ({
+    message: 'Hello World i am Vue'
+  })
+}
 </script>
