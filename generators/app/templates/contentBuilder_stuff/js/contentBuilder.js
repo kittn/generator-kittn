@@ -1,29 +1,37 @@
 /**
  * Essential JS for ContentBuilder
  */
+import offCanvasToggle from './offcanvas-trigger'
 import progressLoader from './progressLoader'
 import initPhotoSwipeFromDOM from './init-photoswipe' // eslint-disable-line
-// import disqusLoader from './disqusComments'
-import offCanvasToggle from './offcanvas-trigger'
+import flickityPackage from './flickity-package'
+import initHeightTransition from './init-heighttransition'
+import searchBar from './searchbar'
+import videoHelper from './videoHelper'
 import './hasScrollbars'
-import './init-heighttransition'
 import './init-autoscroll'
-import './flickity-package'
-// import './searchbar'
 
-// Init Photoswipe
-initPhotoSwipeFromDOM('.is-photoswipped')
+const contentBuilder = () => {
+  // Init Searchbar
+  searchBar()
 
-// Activate Progressloader
-progressLoader()
+  // Init Height Transition
+  initHeightTransition()
 
-// Activate Disqus Button
-// disqusLoader('.c-disqusComments__button')
+  // Init Flickity
+  flickityPackage()
 
-// Add Offcanvas Trigger
-offCanvasToggle('o-offCanvasTrigger', 'c-offCanvas__close')
+  // Init Photoswipe
+  initPhotoSwipeFromDOM('.is-photoswipped')
 
-/* eslint-disable */
-const videoEnded = () => {
-  video.load()
+  // Activate Progressloader
+  progressLoader()
+
+  // Add Offcanvas Trigger
+  offCanvasToggle('c-offCanvasTrigger', 'c-offCanvas__close')
+
+  // Load Videohelper - needed for the Videoelement for autoplay on scroll
+  videoHelper()
 }
+
+export default contentBuilder

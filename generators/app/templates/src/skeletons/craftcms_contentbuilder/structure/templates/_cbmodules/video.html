@@ -4,15 +4,25 @@
   Description
 #}
 
+{# Getting player params if autoplay is used activate only if in view #}
+{% set params = options.params ? options.params : 'autoplay' %}
+
+{% if 'autoplay' in params %}
+  {% set autoPlayClass = ' is-videoAutoplay' %}
+  {% set params = params|replace({'autoplay':''}) %}
+{% else %}
+  {% set autoPlayClass = '' %}
+{% endif %}
+
 {# Build Element Block #}
-<video class="c-video{{ _.styleClasses(options) }}"
+<video id="video-{{ data.video.first().id }}" class="c-video{{ _.styleClasses(options) }}{{ autoPlayClass }}"
   {% if options.posterImage.first() %}
     poster="{{ data.previewImage.first().url }}" controls
     {% if options.imageAtEnd %}
       onended="videoEnded(this)"
     {% endif %}
   {% endif %}
-  {{ options.params ? options.params : 'autoplay' }}
+  {{ params }}
 >
   {% for video in data.video %}
     <source src="{{ video.url }}" type="{{ video.mimeType }}">

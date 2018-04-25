@@ -46,6 +46,7 @@ wp-env.php
 /dist/wp-content/uploads/
 /dist/wp-content/plugins/index.php
 /dist/wp-content/plugins/readme.txt
+/dist/wp-content/index.php
 /dist/wp-includes/
 /dist/*.php
 /dist/*.txt

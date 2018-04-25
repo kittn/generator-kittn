@@ -6,8 +6,7 @@
 import flickity from 'flickity'
 import 'flickity-imagesloaded'
 
-// Heightfix
-{
+const flickityPackage = () => {
   const slider = document.querySelector('.js-imageSlider')
 
   if (slider !== null) {
@@ -25,3 +24,5 @@ import 'flickity-imagesloaded'
     })
   }
 }
+
+export default flickityPackage
