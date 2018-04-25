@@ -73,6 +73,7 @@ const CSS_LOADERS = [
 export default {
   entry: utils.removeEmpty(utils.entryPoints),
   output: {
+    pathinfo: ifDevelopment(true, false),
     path: utils.paths.PUBLIC_PATH
   },
   stats: 'none',
@@ -206,7 +207,17 @@ export default {
       <% if ( projecttypescript ) { %>,
         {
           test: /\.tsx?$/,
-          loader: 'ts-loader'
+          exclude: /node_modules/,
+          use: [
+            'babel-loader',
+            {
+              loader: 'ts-loader',
+              options: {
+                transpileOnly: true,
+                experimentalWatchApi: true
+              }
+            }
+          ]
         },
       <% } %>
     ]

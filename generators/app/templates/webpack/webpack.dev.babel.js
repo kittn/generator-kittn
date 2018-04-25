@@ -83,7 +83,7 @@ const devWebpackConfig = merge(baseWebpackConfig.default, {
     new FriendlyErrorsWebpackPlugin(),<% } %>
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
-    <% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp' || projectusage === 'wordpress' || projectusage === 'wordpressCB') { %>
+    <% if ( (projectusage === 'html' && projectstructure === 'uncompiled') || projectusage === 'webpackApp') { %>
       // only needed if you want to write the files to your harddrive in dev-mode
       // new WriteFilePlugin({
       //   log: false,
@@ -91,7 +91,7 @@ const devWebpackConfig = merge(baseWebpackConfig.default, {
       // })
     <% } %>
 
-    <% if (projectusage === 'craft' || projectusage === 'craftCB') { %>
+    <% if (projectusage === 'craft' || projectusage === 'craftCB' || projectusage === 'wordpress' || projectusage === 'wordpressCB') { %>
       new WriteFilePlugin({
         log: false,
         test: /^(?!.+(?:hot-update.(js|json))).+$/

@@ -34,7 +34,7 @@ lazySizes.init()<% } %><% if ((typeof projectcontainerqueries !== 'undefined' &&
 // Activate Container Queries
 cq({ postcss: true })<% } %><% if (projectusage === 'webpackApp' || projectjsframework === 'vue') { %>
 
-if (document.querySelectorAll('#app').length > 0) {
+if (document.querySelectorAll('.js-vue').length > 0) {
   import('./vue-app' /* webpackChunkName: "vueApp" */)
 }
 <% } %>
