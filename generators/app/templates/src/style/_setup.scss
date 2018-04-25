@@ -226,6 +226,8 @@ $kittn-global-heading: (
   texttransform: false
 );
 
+/* prettier-ignore-start */
+/* stylelint-disable */
 // All possible Typostyles in a Map.
 //
 // @type Map
@@ -287,6 +289,8 @@ $kittn-typostyles-map: (
     extend: '%heading'
   )
 );
+/* stylelint-enable */
+/* prettier-ignore-end */
 
 // Generate all Fontstyles with classes
 //

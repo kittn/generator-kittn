@@ -77,12 +77,15 @@ const browserSyncTask = () => {
       https: kc.browsersync.https,
       open: kc.browsersync.openbrowser,
       files: [
-        kc.dist.js + '**/*.js',
-        kc.dist.css + '**/*.css',<% if (projectusage == 'craft' || projectusage == 'craftCB' ) { %>
-        kc.dist.markup + 'templates/**/*.{php,html,twig}',<% } else if (projectusage == 'wordpress' || projectusage == 'wordpressCB') { %>
-        kc.dist.markup + '**/*.{php,html,png,txt,md}',<% } else { %>
-        kc.dist.base + '**/*.{php,html}',<% } %>
-        kc.dist.cssimg + '**/*.{jpg,gif,png,svg}'
+        `${kc.dist.js}**/*.js`,
+        `${kc.dist.css}**/*.css`,<% if (projectusage == 'craft' || projectusage == 'craftCB' ) { %>
+        `!${kc.dist.markup}**/_parts/document-footer.html`,
+        `${kc.dist.markup}templates/**/*.{php,html,twig}`,<% } else if (projectusage == 'wordpress' || projectusage == 'wordpressCB') { %><% if (projectusage == 'wordpress') { %>
+        `!${kc.dist.markup}**/footer.php`,<% } else { %>
+        `!${kc.dist.markup}**/_parts/document-footer.php`,
+        `${kc.dist.markup}**/*.{php,html,png,txt,md}`,<% } else { %>
+        `${kc.dist.base}**/*.{php,html}`,<% } %>
+        `${kc.dist.cssimg}**/*.{jpg,gif,png,svg}`
       ]
     }
   );
