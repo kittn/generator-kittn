@@ -25,7 +25,7 @@ const buildTask = (cb) => {
       'copy:joomlafiles'<% } %>
     ],
     [
-      'compiler:css'<% if (projectusage !== 'joomla' && projectusage == 'joomlaCB') { %>,
+      'compiler:css'<% if (projectusage !== 'joomla' && projectusage !== 'joomlaCB') { %>,
       'compiler:html'<% } %>
     ]<% if (projectcritical !== 'undefined' && projectcritical === true) { %>,
     [
