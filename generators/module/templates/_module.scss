@@ -14,11 +14,11 @@
         set1: (
           breakpoint: false,
           column-gap: false,
-          row-gap: 0,
+          row-gap: false,
           columns: 1fr,
           rows: auto,
           areas: (
-            box1
+            row1: (box1)
           )
         ),
       )
