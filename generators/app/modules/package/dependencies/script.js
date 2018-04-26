@@ -151,7 +151,7 @@ function addScriptDependencies (files = {}, context) {
         'svg-sprite-loader': '^3.7.0',
         'style-loader': '^0.20.3',
         'url-loader': '^1.0.0',
-        'vue-loader': '^14.2.2',
+        'vue-loader': '^15.0.0',
         'vue-style-loader': '^4.1.0',
         'vue-template-compiler': '^2.5.16'
       },

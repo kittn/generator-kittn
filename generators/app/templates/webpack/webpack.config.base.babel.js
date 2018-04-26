@@ -24,6 +24,7 @@ import WriteFilePlugin from 'write-file-webpack-plugin'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 import OptimizeCSSPlugin from 'optimize-css-assets-webpack-plugin'
 <% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
+  import { VueLoaderPlugin } from 'vue-loader'
   const SpriteLoaderPlugin = require('svg-sprite-loader/plugin')
 <% } %>
 
@@ -131,35 +132,29 @@ export default {
       <% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>,
         {
           test: /\.vue$/,
-          loader: 'vue-loader',
-          options: {
-            hot: true,
-            loaders: {
-              scss: ifProduction(
-                ExtractTextPlugin.extract({
-                  use: [...CSS_LOADERS],
-                  fallback: 'vue-style-loader',
-                }),
-                [{ loader: 'vue-style-loader'}, ...CSS_LOADERS]
-              ),
-            }
-          }
+          loader: 'vue-loader'
         },
         {
           test: /\.css$/,
-          use: ifProduction(ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: ['css-loader'],
-          }), ['style-loader', 'css-loader'])
+          use: ifProduction(
+            ExtractTextPlugin.extract({
+              fallback: 'vue-style-loader',
+              use: ['postcss-loader', 'css-loader']
+            }),
+            ['vue-style-loader', 'postcss-loader', 'css-loader']
+          )
         },
         {
           test: /\.scss$/,
-          include: utils.resolve(utils.kittnConf.src.style),
+          include: [utils.resolve(utils.kittnConf.src.style), utils.resolve(utils.kittnConf.src.js)],
           exclude: [utils.resolve('node_modules'), utils.resolve(utils.kittnConf.dist.base)],
-          use: ifProduction(ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: CSS_LOADERS,
-          }), ['style-loader', ...CSS_LOADERS]),
+          use: ifProduction(
+            ExtractTextPlugin.extract({
+              fallback: 'vue-style-loader',
+              use: CSS_LOADERS
+            }),
+            ['vue-style-loader', ...CSS_LOADERS]
+          )
         },
         {
           test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
@@ -222,7 +217,9 @@ export default {
       <% } %>
     ]
   },
-  plugins: utils.removeEmpty([
+  plugins: utils.removeEmpty([<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
+    new VueLoaderPlugin(),
+    <% } %>
     new webpack.NamedModulesPlugin(),
     new WebpackBar(),
     new Stylish(),
