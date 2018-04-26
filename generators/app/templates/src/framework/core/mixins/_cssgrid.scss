@@ -390,8 +390,10 @@
     } @else {
       // Generate Styles inside Breakpoints
       @if $cq {
-        #{$root}#{cq(map-get($setup, breakpoint))} & {
-          @include _grid-connect($setup, $map, $root, false);
+        @at-root {
+          #{$root}#{cq(map-get($setup, breakpoint))} {
+            @include _grid-connect($setup, $map, $root, false);
+          }
         }
       } @else {
         // Generate Styles inside Breakpoints
