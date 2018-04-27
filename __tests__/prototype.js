@@ -24,7 +24,7 @@ const author = {
 describe('generator-kittn:app', () => {
   beforeAll(() => {
     return run().withPrompts({
-      projectusage: 'webpackApp'
+      projectusage: 'html'
     })
   })
   // Test for Basic Files
