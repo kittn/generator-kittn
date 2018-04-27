@@ -31,6 +31,7 @@
     "twig"
   ],
   "scripts": {
+    "prepush": "npm test",
     "test": "jest"
   },
   "dependencies": {

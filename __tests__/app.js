@@ -41,5 +41,51 @@ describe('generator-kittn:app', () => {
         author: {name: author.name, email: author.email, url: author.homepage}
       })
     })
+
+    it('adds files for all projects', () => {
+      assert.file([
+        '.babelrc',
+        '.browserslistrc',
+        '.editorconfig',
+        '.eslintrc-dev.js',
+        '.eslintrc.js',
+        '.gitignore',
+        '.nvmrc',
+        'package.json',
+        'README.md',
+        'postcss.config.js'
+      ])
+    })
+
+    it('adds scss', () => {
+      assert.file([
+        'src/style/',
+        'src/style/_setup.scss'
+      ])
+    })
+
+    it('adds javascript', () => {
+      assert.file([
+        'src/js/'
+      ])
+    })
+
+    it('copies gulp tasks', () => {
+      assert.file([
+        'gulpfile.babel.js',
+        'gulpfile/lib/',
+        'gulpfile/tasks/',
+        'gulpfile/tasks/browsersync.js'
+      ])
+    })
+
+    it('adds webpack config', () => {
+      assert.file([
+        'webpack/webpack.config.base.babel.js',
+        'webpack/webpack.dev.babel.js',
+        'webpack/webpack.prod.babel.js',
+        'webpack/utils.js'
+      ])
+    })
   })
 })
