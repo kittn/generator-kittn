@@ -1,7 +1,8 @@
 const extend = require('deep-extend')
-
 const { vueDevDependencies, vueDependencies, vuePluginsDependencies } = require('./partials/vue')
 const { stylelintWebpackDependencies } = require('./partials/stylelint')
+const { typescriptDevDependencies } = require('./partials/typescript')
+const { cbDependencies } = require('./partials/contentBuilder')
 
 function addScriptDependencies (files = {}, context) {
   extend(files.pkg, {
@@ -115,9 +116,7 @@ function addScriptDependencies (files = {}, context) {
     context.props.projectusage === 'wordpressCB'
   ) {
     extend(files.pkg, {
-      dependencies: {
-        'cq-prolyfill': '^0.4.0'
-      }
+      dependencies: cbDependencies
     })
   }
 
@@ -226,10 +225,7 @@ function addScriptDependencies (files = {}, context) {
 
   if (context.props.projecttypescript === true) {
     extend(files.pkg, {
-      devDependencies: {
-        'ts-loader': '^4.2.0',
-        typescript: '^2.8.1'
-      }
+      devDependencies: typescriptDevDependencies
     })
   }
 

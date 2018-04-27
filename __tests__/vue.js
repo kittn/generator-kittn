@@ -5,7 +5,6 @@ var helpers = require('yeoman-test')
 
 /* eslint-disable new-cap, no-multi-str, no-template-curly-in-string, no-unused-vars, no-undef, prettier/prettier */
 const { vueDevDependencies, vueDependencies, vuePluginsDependencies } = require('../generators/app/modules/package/dependencies/partials/vue')
-const { stylelintWebpackDependencies } = require('../generators/app/modules/package/dependencies/partials/stylelint')
 
 const run = () => helpers.run(path.join(__dirname, '../generators/app'))
 
@@ -14,8 +13,7 @@ describe('generator-kittn:app', () => {
     return run().withPrompts({
       projectusage: 'html',
       projectjsframework: 'vue',
-      projectvueplugins: true,
-      projectstylelint: true
+      projectvueplugins: true
     })
   })
 
@@ -36,21 +34,6 @@ describe('generator-kittn:app', () => {
     it('adds vue pluginDependencies', () => {
       assert.jsonFileContent('package.json', {
         dependencies: vuePluginsDependencies
-      })
-    })
-  })
-
-  // Test for Stylelint
-  describe('Stylelint', () => {
-    it('copies stylelint files', () => {
-      assert.file([
-        'stylelint.config.js'
-      ])
-    })
-
-    it('adds stylelint webpackDependencies', () => {
-      assert.jsonFileContent('package.json', {
-        devDependencies: stylelintWebpackDependencies
       })
     })
   })

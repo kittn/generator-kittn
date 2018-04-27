@@ -4,6 +4,9 @@ var assert = require('yeoman-assert')
 var helpers = require('yeoman-test')
 
 /* eslint-disable new-cap, no-multi-str, no-template-curly-in-string, no-unused-vars, no-undef, prettier/prettier */
+const { stylelintWebpackDependencies } = require('../generators/app/modules/package/dependencies/partials/stylelint')
+const { typescriptDevDependencies } = require('../generators/app/modules/package/dependencies/partials/typescript')
+
 const run = () => helpers.run(path.join(__dirname, '../generators/app'))
 
 // Define some variables
@@ -27,7 +30,8 @@ describe('generator-kittn:app', () => {
       projectmail: author.email,
       projecturl: author.homepage,
       projectusage: project.projectusage,
-      projectversion: project.version
+      projectversion: project.version,
+      projecttypescript: true
     })
   })
 
@@ -86,6 +90,51 @@ describe('generator-kittn:app', () => {
         'webpack/webpack.prod.babel.js',
         'webpack/utils.js'
       ])
+    })
+  })
+})
+
+// Typescript
+describe('Typescript', () => {
+  beforeAll(() => {
+    return run().withPrompts({
+      projectusage: 'html',
+      projecttypescript: true
+    })
+  })
+
+  it('copies typescript files', () => {
+    assert.file([
+      'tsconfig.json'
+    ])
+  })
+
+  it('adds typescript dependencies', () => {
+    assert.jsonFileContent('package.json', {
+      devDependencies: typescriptDevDependencies
+    })
+  })
+})
+
+// Stylelint
+describe('Stylelint', () => {
+  beforeAll(() => {
+    return run().withPrompts({
+      projectusage: 'html',
+      projectjsframework: 'vue',
+      projectstylelint: true
+    })
+  })
+
+  it('copies stylelint files', () => {
+    assert.file([
+      'stylelint.config.js'
+    ])
+  })
+
+  it('adds stylelint webpackDependencies', () => {
+    assert.jsonFileContent('package.json', {
+      devDependencies: stylelintWebpackDependencies
     })
   })
 })
