@@ -2,7 +2,7 @@ const extend = require('deep-extend')
 const { vueDevDependencies, vueDependencies, vuePluginsDependencies } = require('./partials/vue')
 const { stylelintWebpackDependencies } = require('./partials/stylelint')
 const { typescriptDevDependencies } = require('./partials/typescript')
-const { cbDependencies } = require('./partials/contentBuilder')
+const { containerQueryDependencies } = require('./partials/contentBuilder')
 
 function addScriptDependencies (files = {}, context) {
   extend(files.pkg, {
@@ -116,7 +116,7 @@ function addScriptDependencies (files = {}, context) {
     context.props.projectusage === 'wordpressCB'
   ) {
     extend(files.pkg, {
-      dependencies: cbDependencies
+      dependencies: containerQueryDependencies
     })
   }
 

@@ -1,16 +1,10 @@
 const extend = require('deep-extend')
+const { cbDependencies } = require('./partials/contentBuilder')
 
 function addStarterpackDependencies (files = {}, context) {
   if (context.props.projectusage === 'wordpressCB' || context.props.projectusage === 'craftCB' || context.props.projectusage === 'joomlaCB') {
     extend(files.pkg, {
-      dependencies: {
-        'anchor-scroll': '^2.0.0',
-        'photoswipe': '^4.1.1',
-        'flickity': '^2.0.5',
-        'flickity-imagesloaded': '^2.0.0',
-        'in-view': '^0.6.1',
-        'transition-to-from-auto': '^0.5.2'
-      }
+      dependencies: cbDependencies
     })
   }
   // TailwindCSS
