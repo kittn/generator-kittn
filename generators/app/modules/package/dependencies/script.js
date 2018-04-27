@@ -1,5 +1,8 @@
 const extend = require('deep-extend')
 
+const { vueDevDependencies, vueDependencies, vuePluginsDependencies } = require('./partials/vue')
+const { stylelintWebpackDependencies } = require('./partials/stylelint')
+
 function addScriptDependencies (files = {}, context) {
   extend(files.pkg, {
     scripts: {
@@ -138,26 +141,8 @@ function addScriptDependencies (files = {}, context) {
     context.props.projectusage === 'webpackApp'
   ) {
     extend(files.pkg, {
-      devDependencies: {
-        'css-loader': '^0.28.11',
-        'eslint-config-vue': '^2.0.2',
-        'eslint-plugin-vue': '^4.4.0',
-        'file-loader': '^1.1.11',
-        'postcss-loader': '^2.1.3',
-        'sass-loader': '^7.0.1',
-        svgo: '^1.0.5',
-        'svgo-loader': '^2.1.0',
-        'svg-fill-loader': '^0.0.8',
-        'svg-sprite-loader': '^3.7.0',
-        'style-loader': '^0.20.3',
-        'url-loader': '^1.0.0',
-        'vue-loader': '^15.0.0',
-        'vue-style-loader': '^4.1.0',
-        'vue-template-compiler': '^2.5.16'
-      },
-      dependencies: {
-        vue: '^2.5.16'
-      }
+      devDependencies: vueDevDependencies,
+      dependencies: vueDependencies
     })
     if (context.props.projectusage === 'webpackApp') {
       extend(files.pkg, {
@@ -235,11 +220,7 @@ function addScriptDependencies (files = {}, context) {
       context.props.projectstylelint === 'strict')
   ) {
     extend(files.pkg, {
-      devDependencies: {
-        'easy-stylelint-plugin': '^0.0.9',
-        stylelint: '^9.2.0'
-        // 'stylelint-webpack-plugin': '^0.10.3'
-      }
+      devDependencies: stylelintWebpackDependencies
     })
   }
 
@@ -259,12 +240,7 @@ function addScriptDependencies (files = {}, context) {
       context.props.projectvueplugins === true)
   ) {
     extend(files.pkg, {
-      dependencies: {
-        'vue-router': '^3.0.1',
-        axios: '^0.18.0',
-        vuex: '^3.0.1',
-        'vuex-router-sync': '^5.0.0'
-      }
+      dependencies: vuePluginsDependencies
     })
   }
 }

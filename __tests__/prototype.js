@@ -8,27 +8,15 @@ const { gulpDependencies, gulpScripts } = require('../generators/app/modules/pac
 
 const run = () => helpers.run(path.join(__dirname, '../generators/app'))
 
-// Define some variables
-const project = {
-  name: 'Kittn',
-  version: '0.0.1',
-  proxy: 'kittn.local',
-  projectusage: 'none'
-}
-const author = {
-  name: 'Sascha Fuchs',
-  email: 'gisu2onic@gmail.com',
-  homepage: 'http://kittn.de'
-}
-
 describe('generator-kittn:app', () => {
   beforeAll(() => {
     return run().withPrompts({
       projectusage: 'html'
     })
   })
+
   // Test for Basic Files
-  describe('Basic Files and Infos', () => {
+  describe('Gulp Files and Dependencies', () => {
     it('copies gulp tasks', () => {
       assert.file([
         'gulpfile.babel.js',
