@@ -30,8 +30,12 @@
     "gulp",
     "twig"
   ],
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test"
+    }
+  },
   "scripts": {
-    "prepush": "npm test",
     "test": "jest"
   },
   "dependencies": {
@@ -57,6 +61,7 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
+    "husky": "^1.0.0-rc.2",
     "jest": "^22.4.3",
     "nsp": "^3.2.1",
     "yeoman-assert": "^3.1.1",
@@ -64,7 +69,10 @@
   },
   "jest": {
     "testEnvironment": "node",
-    "testPathIgnorePatterns": ["node_modules", "generators"]
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "generators"
+    ]
   },
   "eslintConfig": {
     "extends": "standard",
