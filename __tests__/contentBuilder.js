@@ -13,6 +13,8 @@ describe('Basic Contentbuilder', () => {
     await run().withPrompts({
       projectusage: 'craftCB',
       devMode: true
+    }).withOptions({
+      dev: true
     })
   })
 
