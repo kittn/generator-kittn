@@ -30,6 +30,9 @@
     "gulp",
     "twig"
   ],
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "chalk": "^2.3.2",
     "clear-terminal": "^0.0.2",
@@ -53,12 +56,14 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
+    "jest": "^22.4.3",
     "nsp": "^3.2.1",
     "yeoman-assert": "^3.1.1",
     "yeoman-test": "^1.7.0"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": ["node_modules", "generators"]
   },
   "eslintConfig": {
     "extends": "standard",

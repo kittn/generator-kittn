@@ -142,7 +142,10 @@ module.exports = class extends Generator {
       {bold URL:} {hex('#00ffd8') http://kittn.de}
 
     `
-    clear()
+
+    if (process.env.NODE_ENV !== 'test') {
+      clear()
+    }
     this.log(welcomeHead)
     this.log(welcome)
 
@@ -202,7 +205,9 @@ module.exports = class extends Generator {
   }
 
   end () {
-    clear()
+    if (process.env.NODE_ENV !== 'test') {
+      clear()
+    }
     let goodbye = chalk`
 
 
@@ -239,7 +244,7 @@ module.exports = class extends Generator {
 
      {cyan.bold Next Steps}`
 
-    goodbye += '\n\n';
+    goodbye += '\n\n'
 
     if (
       this.props.projectusage.substring(0, 4) === 'word' &&
@@ -247,7 +252,7 @@ module.exports = class extends Generator {
     ) {
       goodbye +=
         chalk`{cyan      - Install Wordpress manually in the 'dist/' directory}` +
-        '\n';
+        '\n'
     }
 
     if (
@@ -256,7 +261,7 @@ module.exports = class extends Generator {
     ) {
       goodbye +=
         chalk`{cyan      - Install Craft manually in the 'dist/' directory}` +
-        '\n';
+        '\n'
     }
 
     if (
@@ -265,25 +270,25 @@ module.exports = class extends Generator {
     ) {
       goodbye +=
         chalk`{cyan      - Install Joomla manually in the 'dist/' directory}` +
-        '\n';
+        '\n'
     }
 
     if (this.props.projectusage === 'wordpressCB') {
       goodbye +=
         chalk`{cyan      - Copy your ACF5 Pro Plugin on 'src/structure/plugins/'}` +
-        '\n';
+        '\n'
     }
 
     if (os.type() === 'Darwin') {
       if (this.props.projectusage !== 'html' && this.props.projectcredential) {
         goodbye +=
           chalk`{cyan      - Use the './install.sh' Shellscript to skip the following steps.}` +
-          '\n';
+          '\n'
       }
 
       if (this.props.projectusage === 'html') {
         goodbye +=
-          chalk`{cyan      - Initiate the project with 'npm run init'}` + '\n';
+          chalk`{cyan      - Initiate the project with 'npm run init'}` + '\n'
       }
     } else {
       if (
@@ -292,17 +297,17 @@ module.exports = class extends Generator {
       ) {
         goodbye +=
           chalk`{cyan      - Setup User and Staff on 'craftscripts/.env.sh'}` +
-          '\n';
+          '\n'
       }
 
       if (this.props.projectusage !== 'webpackApp') {
         goodbye +=
-          chalk`{cyan      - Initiate the project with 'npm run init'}` + '\n';
+          chalk`{cyan      - Initiate the project with 'npm run init'}` + '\n'
       }
 
       if (this.props.projectusage.substring(0, 5) === 'craft') {
         goodbye +=
-          chalk`{cyan      - Execute './craftscripts/set_perms.sh'}` + '\n';
+          chalk`{cyan      - Execute './craftscripts/set_perms.sh'}` + '\n'
       }
 
       if (
@@ -310,9 +315,9 @@ module.exports = class extends Generator {
         this.props.projectusage !== 'webpackApp'
       ) {
         const folder =
-          this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : '';
+          this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : ''
         goodbye +=
-          chalk`{cyan      - Import database.sql found on project root}` + '\n';
+          chalk`{cyan      - Import database.sql found on project root}` + '\n'
       }
 
       if (
@@ -323,7 +328,7 @@ module.exports = class extends Generator {
         goodbye +=
           chalk`{cyan        => 'mysql -u${this.props.credentialdbuser} -p${
             this.props.credentialdbpass
-          } ${this.props.credentialdbdatabase} < database.sql'}` + '\n\n';
+          } ${this.props.credentialdbdatabase} < database.sql'}` + '\n\n'
       }
     }
 
@@ -332,13 +337,13 @@ module.exports = class extends Generator {
       this.props.projectusage !== 'webpackApp'
     ) {
       const folder =
-        this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : '';
+        this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : ''
       const domain = this.props.credentialdomain
         ? this.props.credentialdomain
-        : '';
+        : ''
       goodbye +=
         chalk`{hex('#009dff')      - Define vHost for '${domain}' on '[projectRoot]/dist/${folder}'}` +
-        '\n';
+        '\n'
     }
 
     if (
@@ -347,10 +352,10 @@ module.exports = class extends Generator {
     ) {
       goodbye +=
         chalk`{hex('#009dff')      - Log into the backend with 'kittn' / '${
-          this.props.projectusage.substring(0, 5) === 'craft' || this.props.projectusage.substring(0, 6) === 'joomla' 
+          this.props.projectusage.substring(0, 5) === 'craft' || this.props.projectusage.substring(0, 6) === 'joomla'
             ? `superkittn`
             : `kittn`
-        }'. After login, activate theme and create a new user}` + '\n';
+        }'. After login, activate theme and create a new user}` + '\n'
     }
 
     if (this.props.projectcredential) {
@@ -365,18 +370,18 @@ module.exports = class extends Generator {
           this.props.projectusage.substring(0, 6) === 'joomla'
             ? `istrator`
             : ``
-        }}` + '\n';
+        }}` + '\n'
     }
 
     if (this.props.projectusage === 'craftCB') {
       goodbye +=
         chalk`{cyan.bold      If you want to use the Craft Personal version, you must deactivate the localization before you switch.. }` +
-        '\n';
+        '\n'
     }
 
     if (this.props.projectusage === 'webpackApp') {
       goodbye +=
-        chalk`{cyan      - Build your App with 'npm run build'}` + '\n';
+        chalk`{cyan      - Build your App with 'npm run build'}` + '\n'
     }
 
     goodbye += chalk`{hex('#009dff')      - Start the devtask with 'npm run dev'}
