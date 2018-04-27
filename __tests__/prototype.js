@@ -27,7 +27,6 @@ describe('generator-kittn:app', () => {
       projectusage: 'webpackApp'
     })
   })
-
   // Test for Basic Files
   describe('Basic Files and Infos', () => {
     it('copies gulp tasks', () => {
