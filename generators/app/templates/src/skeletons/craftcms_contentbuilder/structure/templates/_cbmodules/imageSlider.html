@@ -103,11 +103,7 @@
 {# Build Element Block #}
 <figure class="c-slider js-imageSlider c-slider--image{{ _.styleClasses(options) }}"
         itemscope itemtype="http://schema.org/ImageGallery" role="presentation"
-        data-flickity='{
-          "accessibility": false,
-          "contain": true,
-          "imagesLoaded": true,
-          "lazyLoad": false,
+        data-myflickity='{
           "adaptiveHeight": {{ adaptiveHeight }},
           "groupCells": {{ groupCells }},
           "autoPlay": {{ slideCount > 1 ? autoplay : 'false' }},
