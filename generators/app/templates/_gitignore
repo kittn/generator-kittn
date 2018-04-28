@@ -33,6 +33,8 @@ yarn-error.log*
 /dist/craft/storage/
 /dist/craft/templates/
 /dist/craft/translations/
+/dist/craft/plugins/.htaccess
+/dist/craft/plugins/web.config
 /dist/craft/.htaccess
 /dist/craft/web.config
 /src/craftplugins/
