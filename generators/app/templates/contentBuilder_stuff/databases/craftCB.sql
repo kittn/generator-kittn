@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.6.35)
 # Datenbank: kittncb
-# Erstellt am: 2018-04-21 11:02:55 +0000
+# Erstellt am: 2018-04-29 14:59:20 +0000
 # ************************************************************
 
 
@@ -394,6 +394,1603 @@ VALUES
 UNLOCK TABLES;
 
 
+# Export von Tabelle craft_commerce_addresses
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_addresses`;
+
+CREATE TABLE `craft_commerce_addresses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `attention` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `title` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `firstName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `lastName` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `countryId` int(10) DEFAULT NULL,
+  `stateId` int(10) DEFAULT NULL,
+  `address1` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `address2` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `city` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `zipCode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `phone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `alternativePhone` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `businessName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `businessTaxId` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `businessId` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `stateName` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `craft_commerce_addresses_countryId_fk` (`countryId`),
+  KEY `craft_commerce_addresses_stateId_fk` (`stateId`),
+  CONSTRAINT `craft_commerce_addresses_countryId_fk` FOREIGN KEY (`countryId`) REFERENCES `craft_commerce_countries` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `craft_commerce_addresses_stateId_fk` FOREIGN KEY (`stateId`) REFERENCES `craft_commerce_states` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_countries
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_countries`;
+
+CREATE TABLE `craft_commerce_countries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `iso` varchar(2) COLLATE utf8_unicode_ci NOT NULL,
+  `stateRequired` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_countries_name_unq_idx` (`name`),
+  UNIQUE KEY `craft_commerce_countries_iso_unq_idx` (`iso`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_countries` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_countries` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_countries` (`id`, `name`, `iso`, `stateRequired`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,'Andorra','AD',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','51900b0b-747f-4cb1-86f0-c788b8e28f33'),
+	(2,'United Arab Emirates','AE',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','667738f9-a465-4a97-a9ae-836ad4827065'),
+	(3,'Afghanistan','AF',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','2672ecd8-cc12-4627-a089-ddc837f6a909'),
+	(4,'Antigua and Barbuda','AG',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','d71f45d8-9b82-48e5-bbd3-c0b5a97db01e'),
+	(5,'Anguilla','AI',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','4209a22a-8249-4147-aa4b-dc18abcbf1dc'),
+	(6,'Albania','AL',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','880cdd76-cce2-4d16-91b6-2fa46250313b'),
+	(7,'Armenia','AM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','13829607-7718-4415-906e-b233fa1471fa'),
+	(8,'Angola','AO',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','4110b421-0179-41c1-b605-030e4080a6d1'),
+	(9,'Antarctica','AQ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','2541bf38-d767-4fd1-a93b-04861165f2fa'),
+	(10,'Argentina','AR',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','8bfda88f-a321-4dd4-b53f-2cb24b018b19'),
+	(11,'American Samoa','AS',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','91665bc3-1c43-4efe-b402-bced5df49d3c'),
+	(12,'Austria','AT',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','d6a99028-eba8-4ee3-a6ac-81f0e8097933'),
+	(13,'Australia','AU',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','892cfd86-855c-404d-86af-47db3126170e'),
+	(14,'Aruba','AW',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','2eaef341-6b46-42e6-9242-05e05390c41b'),
+	(15,'Aland Islands','AX',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','0a65f688-f508-4ca0-bdc9-ed7119417a4b'),
+	(16,'Azerbaijan','AZ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','27827fdf-d30e-4330-a2a3-e566e52b7863'),
+	(17,'Bosnia and Herzegovina','BA',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','8c89dd6c-81f2-47a9-b554-c51d51c8a15a'),
+	(18,'Barbados','BB',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','d1c6086c-8fc5-4016-ac1d-d623485bcbaa'),
+	(19,'Bangladesh','BD',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','a4cbcdb4-a2bb-4a32-abc3-6deac9f23e0e'),
+	(20,'Belgium','BE',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','5c961275-3975-4168-aaed-a8c08fa682f3'),
+	(21,'Burkina Faso','BF',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','d8602ba6-b45f-40aa-980f-83c7bfb1d576'),
+	(22,'Bulgaria','BG',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','fe047664-8cb1-4302-8fde-e5442a802516'),
+	(23,'Bahrain','BH',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','d8a0af2d-ee38-4871-8be9-4028cf7d9955'),
+	(24,'Burundi','BI',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','954aff5c-d3dc-4967-ac36-31b9fd51fb23'),
+	(25,'Benin','BJ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','bfeb4bf4-f2f4-464f-b074-501a22eb1fd1'),
+	(26,'Saint Barthelemy','BL',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','21a02e46-a5b7-4fc7-aaa5-3ccb4f828ccc'),
+	(27,'Bermuda','BM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','826d4779-ff8a-493f-8a7d-7dcd93f63a87'),
+	(28,'Brunei Darussalam','BN',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','d125486b-6986-40cd-bc1b-f0fe6033e4f7'),
+	(29,'Bolivia','BO',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','ba607c7e-4ad4-48b6-aaf9-7ff45391b0b2'),
+	(30,'Bonaire, Sint Eustatius and Saba','BQ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','443771f1-de28-464a-8df2-b9e95b633d0e'),
+	(31,'Brazil','BR',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','63bae116-6886-4ecd-8ca9-10694f3a5d60'),
+	(32,'Bahamas','BS',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','b4cc30dc-9620-44e3-a8b6-555836415eaa'),
+	(33,'Bhutan','BT',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','580b410a-36e1-4a5e-8175-c301b64c6eea'),
+	(34,'Bouvet Island','BV',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','ec65f7d9-806a-49b8-af31-e90699aab397'),
+	(35,'Botswana','BW',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','4db853a7-8d9b-4879-bde5-6928395af6f4'),
+	(36,'Belarus','BY',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','6c5826fc-f517-4fd6-9c65-d74fd45d73e9'),
+	(37,'Belize','BZ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','2d416770-f29b-43e2-b7a1-428b20010eef'),
+	(38,'Canada','CA',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','db70d0f8-862b-4afd-9a44-6afd946557a4'),
+	(39,'Cocos (Keeling) Islands','CC',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','00aa041f-32fd-4bee-a3ac-33e378174d30'),
+	(40,'Democratic Republic of Congo','CD',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','679dd639-2e81-4953-b710-e6ccad47e9ff'),
+	(41,'Central African Republic','CF',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','94727c3d-a084-48d3-b104-b8c3040f1c08'),
+	(42,'Congo','CG',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','e7c64282-0489-431d-9570-0797dd6e5f1a'),
+	(43,'Switzerland','CH',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','5deb88bb-a8c3-4f58-b10e-c66c281507e9'),
+	(44,'Ivory Coast','CI',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','140b6863-69f7-4f03-afe6-8053ea87093c'),
+	(45,'Cook Islands','CK',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','4d34bcd8-0b40-48b0-a6a5-53d09c11c31d'),
+	(46,'Chile','CL',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','e1c619a3-ba28-4f47-b5dc-7358ea7829a6'),
+	(47,'Cameroon','CM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','11d77a9f-f463-4d11-94ef-4d4ef97747e8'),
+	(48,'China','CN',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','11cf8b3e-801e-4c30-a15c-1189843571c7'),
+	(49,'Colombia','CO',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','96d72331-b621-4993-9079-2a2ea2badbc0'),
+	(50,'Costa Rica','CR',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','92e8a195-beec-4626-80d1-cb053e59e2a3'),
+	(51,'Cuba','CU',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','0e82d583-1436-4fc8-a3ed-0613e48832a6'),
+	(52,'Cape Verde','CV',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','4910986f-1e0f-412b-bc6f-c18f3473fc08'),
+	(53,'Curacao','CW',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','6702725e-b1fd-4268-bfdc-4315a20f67e8'),
+	(54,'Christmas Island','CX',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','ed2aa2b8-fab3-4a44-b0f3-89255e481fcc'),
+	(55,'Cyprus','CY',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','c553d668-4e20-4b09-804d-82830ab6d484'),
+	(56,'Czech Republic','CZ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','b6944c2b-4b74-4866-a914-273e3ca581c6'),
+	(57,'Germany','DE',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','f8d3397d-1590-410d-a741-859848889ea5'),
+	(58,'Djibouti','DJ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','65a16155-8aa8-4cff-ba01-b168c9fa1f48'),
+	(59,'Denmark','DK',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','67185250-5b2f-445c-a97b-803ea176b06d'),
+	(60,'Dominica','DM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','b26da45c-21b1-4e60-80a6-067e5d14849a'),
+	(61,'Dominican Republic','DO',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','ba841660-6b5f-4e43-8fe2-36db2412f52f'),
+	(62,'Algeria','DZ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','54fabf73-b1c5-4a93-b2a0-9b65db63fad3'),
+	(63,'Ecuador','EC',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','426bdae8-c8ff-49fb-a5cd-69c3863229bc'),
+	(64,'Estonia','EE',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','0ef64e0e-5a34-4013-a0ec-ee1209033b7d'),
+	(65,'Egypt','EG',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','2726a39b-9a85-410e-9cf0-ff2b842641cf'),
+	(66,'Western Sahara','EH',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','2d4d8710-b6b6-4ad3-a36e-e0abfd36c71b'),
+	(67,'Eritrea','ER',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','2ec48eb1-dcf0-44c1-a179-7d20a2300e4a'),
+	(68,'Spain','ES',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','729cce99-9a23-4758-b7f8-a866560a3b93'),
+	(69,'Ethiopia','ET',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','f5c0025d-5525-4330-909f-5a847511dcd5'),
+	(70,'Finland','FI',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','beaed286-a406-48cb-bfda-4dbd040e50fc'),
+	(71,'Fiji','FJ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','69e1d4dd-9fe2-41c4-b481-0c40618b0451'),
+	(72,'Falkland Islands (Malvinas)','FK',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','02b26eb2-858c-43df-96dd-4442c0782809'),
+	(73,'Micronesia','FM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','20b3fd33-2c87-4389-a75f-a535918d109f'),
+	(74,'Faroe Islands','FO',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','4e4c0267-c102-41e3-9b33-1c83b9833ca3'),
+	(75,'France','FR',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','9984e5a8-c640-4c79-8bd0-8ee49b938fd5'),
+	(76,'Gabon','GA',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','71529b23-3b7c-4393-8d87-22e3a4a7c1c3'),
+	(77,'United Kingdom','GB',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','42e3e6dd-3a6d-4cf1-affb-a99acb4a8a0f'),
+	(78,'Grenada','GD',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','f88efce5-25ff-4ddc-963e-af926eab0f9f'),
+	(79,'Georgia','GE',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','a79d3fec-86f8-4187-96c4-c2678c19f5af'),
+	(80,'French Guiana','GF',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','abc4416a-9450-4f76-99b8-e89933531e44'),
+	(81,'Guernsey','GG',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','8337b1c9-14c7-44a2-a2b5-832dc667c608'),
+	(82,'Ghana','GH',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','4f9bf2a5-e86a-416e-834e-d68d04a7efdf'),
+	(83,'Gibraltar','GI',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','85b2d183-15ea-4eee-8927-2a1b87cedff9'),
+	(84,'Greenland','GL',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','62da8f3b-f20b-4409-a445-34189705faf0'),
+	(85,'Gambia','GM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','3c875c4c-8fe2-42f1-b2dd-237164bd8e52'),
+	(86,'Guinea','GN',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','ad1995b2-5ee3-4125-85ae-e229d64ae4ef'),
+	(87,'Guadeloupe','GP',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','2dbbff68-32d1-40e9-b729-5051c262d81a'),
+	(88,'Equatorial Guinea','GQ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','692d50e2-b96e-47ed-83aa-215980dcd765'),
+	(89,'Greece','GR',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','6645a1f0-266a-4aa3-ac68-104ac255325a'),
+	(90,'S. Georgia and S. Sandwich Isls.','GS',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','82c6a3ba-6d0e-4824-927c-1491539c99bc'),
+	(91,'Guatemala','GT',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','2234f439-7cd9-450c-9c2a-e065a7965326'),
+	(92,'Guam','GU',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','09d40d24-9a6e-47d3-950d-5981e0b2650f'),
+	(93,'Guinea-Bissau','GW',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','71cfa692-01cf-4560-a086-49c7ca5cd63e'),
+	(94,'Guyana','GY',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','9546e3aa-aff5-4f60-90fc-b5b5982099c5'),
+	(95,'Hong Kong','HK',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','501c06a0-d135-411b-8ab8-e2ea5f86d08f'),
+	(96,'Heard and McDonald Islands','HM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','5e5ff9b5-b556-4a64-95bc-47a50bbe8292'),
+	(97,'Honduras','HN',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','a2c034b7-bc83-4738-bd2a-81808c234610'),
+	(98,'Croatia (Hrvatska)','HR',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','e9cc3465-3999-4a34-b57b-785ffc45990e'),
+	(99,'Haiti','HT',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','3966bdc9-b88c-465c-a0ca-2efe5eeed0df'),
+	(100,'Hungary','HU',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','ca84cd8c-a428-47ca-8925-bc79d2cf31bb'),
+	(101,'Indonesia','ID',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','9c4ec7ba-fc4f-4b10-bc5c-daa26ab8c400'),
+	(102,'Ireland','IE',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','c503d2a7-82a6-4eea-b32e-bf7928340116'),
+	(103,'Israel','IL',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','cfe19482-5faf-456b-b336-e3c232e6db5d'),
+	(104,'Isle Of Man','IM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','4c3f7a2b-ba62-4d11-9285-7b0723b32b73'),
+	(105,'India','IN',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','edd18883-bf71-4e55-935b-2258cd82b18a'),
+	(106,'British Indian Ocean Territory','IO',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','a7145838-ae28-48e8-ab9a-329d21f8f78d'),
+	(107,'Iraq','IQ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','07343f87-6e83-4fac-8ae2-c91d89d26042'),
+	(108,'Iran','IR',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','ffcf78b4-bd31-4076-bdfe-4d489bad68df'),
+	(109,'Iceland','IS',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','809b80bd-0d12-4a7d-ba35-608e3b46a321'),
+	(110,'Italy','IT',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','db7b9233-c75f-4855-8662-25357760f430'),
+	(111,'Jersey','JE',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','f774ea37-0a06-401c-939b-b08310aadfd5'),
+	(112,'Jamaica','JM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','d4f41266-0c0a-4305-bb2d-fccfad7c935d'),
+	(113,'Jordan','JO',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','8ed2b476-7537-49e7-9221-b2439aff9acc'),
+	(114,'Japan','JP',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','696511b8-a6ae-4e51-a2fd-48e450649e58'),
+	(115,'Kenya','KE',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','939b42e0-589b-454e-a427-6b231d48f53c'),
+	(116,'Kyrgyzstan','KG',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','6c97d71c-2677-42c1-8b01-3514360b984c'),
+	(117,'Cambodia','KH',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','fe891817-4804-4827-ba95-7a2000157418'),
+	(118,'Kiribati','KI',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','b88b6217-faa8-43df-8558-2239b81e5e67'),
+	(119,'Comoros','KM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','b69ba8ef-1765-4e37-8a3d-de0e97334398'),
+	(120,'Saint Kitts and Nevis','KN',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','df03470b-62c9-4ea4-8119-9a4e035edca3'),
+	(121,'Korea (North)','KP',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','09a1eed2-1106-4e8c-8733-772260820dac'),
+	(122,'Korea (South)','KR',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','fa9aef45-d7c0-4b5f-ac4f-c390a8da69bb'),
+	(123,'Kuwait','KW',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','6b0bc091-6871-4f87-952e-bb30180a375e'),
+	(124,'Cayman Islands','KY',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','846c8b83-d042-4e9b-b2b9-710bdb6749f4'),
+	(125,'Kazakhstan','KZ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','ee289d06-a021-4ccf-8449-15e5ea0d0a0e'),
+	(126,'Laos','LA',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','407fc592-80a4-4c23-91c4-d833d7812523'),
+	(127,'Lebanon','LB',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','7ceb919d-54c0-4942-8038-d5b9c4d759c3'),
+	(128,'Saint Lucia','LC',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','7c260d31-32bf-4923-822d-d4a8ee0b7102'),
+	(129,'Liechtenstein','LI',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','9357ec42-06e5-4060-be6c-52a5b1c3849a'),
+	(130,'Sri Lanka','LK',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','ec0bd0c7-4b4f-41c2-8b91-d5ec64f94f81'),
+	(131,'Liberia','LR',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','7e1db40e-40cc-4a31-8a66-2bc7c76b786f'),
+	(132,'Lesotho','LS',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','b0c0db1a-51d2-408b-bbb2-3a85a0b36142'),
+	(133,'Lithuania','LT',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','1aa0955e-1c10-44b6-aec7-8d5292d57ba7'),
+	(134,'Luxembourg','LU',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','d3ace275-e9e6-49f1-9b04-fc8a5cdc4506'),
+	(135,'Latvia','LV',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','c89e22be-9a5a-40fe-93f3-e64cd46682ec'),
+	(136,'Libya','LY',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','b62ea79c-28ae-4055-b76e-2432e1bf74fc'),
+	(137,'Morocco','MA',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','2bae5be9-71c1-4a39-bb59-40baf2870fa4'),
+	(138,'Monaco','MC',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','d7ddc47a-6832-4035-967b-5bdff18477ea'),
+	(139,'Moldova','MD',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','a34fa7f9-9e1b-4b01-b944-9bc228eecf9c'),
+	(140,'Montenegro','ME',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','f4a4fdce-99de-4f9d-8e42-6eedb135d077'),
+	(141,'Saint Martin (French part)','MF',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','1af22f0f-4097-432c-b639-bb0b23ffd0cb'),
+	(142,'Madagascar','MG',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','661cdbf3-cfd0-4bf8-bc8a-56faf03680fa'),
+	(143,'Marshall Islands','MH',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','adb36b14-b905-4e25-89da-58089aa463e9'),
+	(144,'Macedonia','MK',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','bc2d3959-356b-4a28-9313-23ab1293731a'),
+	(145,'Mali','ML',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','6f5669f7-5d6c-4521-ba4a-1ceb8df9c223'),
+	(146,'Burma (Myanmar)','MM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','cb60c948-70d6-4b64-8ccf-e7658205ecf5'),
+	(147,'Mongolia','MN',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','ca988ac4-8822-4a84-8932-4a94346a6cb3'),
+	(148,'Macau','MO',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','3acaea91-82cf-40e7-8f02-764b565e0029'),
+	(149,'Northern Mariana Islands','MP',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','76a0735d-b9d3-45cb-8360-a581c4dc2e30'),
+	(150,'Martinique','MQ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','406240b0-53bb-4aa6-9ece-ad98622e1284'),
+	(151,'Mauritania','MR',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','7d621ad5-da63-47d5-8291-4b4cdebbce6c'),
+	(152,'Montserrat','MS',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','6713fb8c-c489-4a0b-baf1-85fdb85872af'),
+	(153,'Malta','MT',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','764f0dfb-fbe7-41f5-82d9-f4faed4d900b'),
+	(154,'Mauritius','MU',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','e1d20607-8f9b-4350-a639-b73a00cc8480'),
+	(155,'Maldives','MV',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','09c02031-8aaa-463d-9f78-9184051989db'),
+	(156,'Malawi','MW',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','7943864a-a038-4633-a7e8-baebb16b6f64'),
+	(157,'Mexico','MX',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','77d5e998-4856-424f-9e62-205da1b6de35'),
+	(158,'Malaysia','MY',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','5d1fddc0-fe95-4628-88ce-c2bfd61ed4b7'),
+	(159,'Mozambique','MZ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','fa922379-a645-40f3-9c3d-2615a69abedc'),
+	(160,'Namibia','NA',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','352584b4-a773-49ef-9ef9-61c34691bc1e'),
+	(161,'New Caledonia','NC',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','a7b9df3e-78ae-4c74-b7ae-4cecc855caf0'),
+	(162,'Niger','NE',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','a23ce2e3-e8e7-4b94-aeb6-770e8c6ab37d'),
+	(163,'Norfolk Island','NF',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','65961b8c-2dbf-41c3-be6a-7326ad59ffa4'),
+	(164,'Nigeria','NG',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','963252bd-b3c3-4343-a112-a4f9dac4e35e'),
+	(165,'Nicaragua','NI',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','09c2aa04-f51a-46d4-ae14-282f301db24f'),
+	(166,'Netherlands','NL',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','abee6a63-0ca3-4e45-b566-61d1b12f74aa'),
+	(167,'Norway','NO',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','cb50b143-905c-45db-872f-de0343ccf6f5'),
+	(168,'Nepal','NP',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','469bbc7b-0cce-410a-87f3-59d5de949699'),
+	(169,'Nauru','NR',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','00db6888-9b6f-45fc-aac9-e490ed8842d0'),
+	(170,'Niue','NU',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','79f384cf-f43e-411c-a7e6-9c41061ce397'),
+	(171,'New Zealand','NZ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','6bed391a-71de-489b-b561-5bcc780e6849'),
+	(172,'Oman','OM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','f75609f6-17e8-42bb-8e0e-e22ce3648a29'),
+	(173,'Panama','PA',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','5735d48d-e4cc-409d-a728-fe30f03fcc78'),
+	(174,'Peru','PE',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','00b1c857-74ae-4fc3-a882-9bd02bb472d8'),
+	(175,'French Polynesia','PF',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','f9fc1c3e-f748-4f0d-bb84-e1f4bd434262'),
+	(176,'Papua New Guinea','PG',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','551ff17b-d11f-4bba-a0c2-37683d709c0b'),
+	(177,'Philippines','PH',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','76299a3c-a793-46ec-ac8e-eb64195d3bf8'),
+	(178,'Pakistan','PK',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','52bf396a-494a-4ee1-8085-e49ef96a86f2'),
+	(179,'Poland','PL',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','ec387aea-6001-4f90-887c-127a26f8e04f'),
+	(180,'St. Pierre and Miquelon','PM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','4af59aa9-d71c-480e-af91-c4fd40207617'),
+	(181,'Pitcairn','PN',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','ba3fa5f6-e025-4fee-a206-731f5d170f7c'),
+	(182,'Puerto Rico','PR',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','2acdbd53-0865-4e8c-9eeb-56b32b481f85'),
+	(183,'Palestinian Territory, Occupied','PS',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','33478720-9657-4772-8cce-ba90bed4b061'),
+	(184,'Portugal','PT',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','bf59f744-19a4-46ee-81ae-c20ef4696cbe'),
+	(185,'Palau','PW',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','b5c67ef1-8c55-405e-805e-a9433c70d9ca'),
+	(186,'Paraguay','PY',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','e9bc0fac-1a71-434b-86b8-c8f686bfdb41'),
+	(187,'Qatar','QA',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','4f8a1f6b-8139-4094-a83c-332c3d89934a'),
+	(188,'Reunion','RE',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','fad1a115-e2b3-4b56-893f-1fdc1996514c'),
+	(189,'Romania','RO',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','1f3f011f-04ff-4120-b237-17b31b17f799'),
+	(190,'Republic of Serbia','RS',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','98532707-a320-40d4-89b6-7de026519870'),
+	(191,'Russia','RU',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','d674b816-fdbe-4f53-80f2-c7d3258a622c'),
+	(192,'Rwanda','RW',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','48a716dd-826d-48e8-955d-f27d7f306f76'),
+	(193,'Saudi Arabia','SA',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','24ef9155-4862-4294-86da-65b3e4fef945'),
+	(194,'Solomon Islands','SB',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','85996118-bbe4-41bf-8bb7-87765e8544a0'),
+	(195,'Seychelles','SC',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','35338eec-4947-4395-9cd8-252b5ab4e934'),
+	(196,'Sudan','SD',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','23d63e4f-eb30-4076-af7c-cc0527717c72'),
+	(197,'Sweden','SE',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','ff18b68b-4218-48c7-bac0-cbc4ffa3c8a1'),
+	(198,'Singapore','SG',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','765879a8-c054-455d-8d2d-09b678f6538f'),
+	(199,'St. Helena','SH',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','2bb48098-2960-4cad-96af-4b6642ce1974'),
+	(200,'Slovenia','SI',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','c627e1f5-0f99-4040-8301-3a268cd3e2d2'),
+	(201,'Svalbard and Jan Mayen Islands','SJ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','467b5d33-af53-4bab-a88b-4835204b4488'),
+	(202,'Slovak Republic','SK',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','127f9cbf-38be-40e2-a0ef-0badce0ada92'),
+	(203,'Sierra Leone','SL',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','bb6032f1-e456-4be9-aba3-3cdd55470761'),
+	(204,'San Marino','SM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','6c431c66-e0f2-44c2-aea5-714a5f3203c1'),
+	(205,'Senegal','SN',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','01017665-68bf-4c73-9a9d-e681993765e1'),
+	(206,'Somalia','SO',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','444da2ed-1ba1-4c2d-a032-3ae2b92f8bd6'),
+	(207,'Suriname','SR',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','3917008c-dd99-420c-8a1d-d9491876fb8b'),
+	(208,'South Sudan','SS',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','b7cc1fcf-c69f-4a14-b282-696e96317fe4'),
+	(209,'Sao Tome and Principe','ST',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','96a540df-47de-424a-936e-435ea8be2180'),
+	(210,'El Salvador','SV',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','fc857d28-2555-48a5-8d79-27c9c553f735'),
+	(211,'Sint Maarten (Dutch part)','SX',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','d2ffecb3-0d7f-4866-9bed-6a17a9fac74a'),
+	(212,'Syria','SY',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','548ac29a-f978-494e-a57e-bf4cfcdef386'),
+	(213,'Swaziland','SZ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','b95adb09-e328-43c1-a13d-b55e5d9bf401'),
+	(214,'Turks and Caicos Islands','TC',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','15898209-e4a2-409c-90e3-1791460825eb'),
+	(215,'Chad','TD',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','c0bf265a-36ef-4a06-a69d-c12f28fc0d0f'),
+	(216,'French Southern Territories','TF',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','6665deb2-4beb-40e8-a716-e30c65f243b2'),
+	(217,'Togo','TG',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','9170f60d-cad5-43b6-ac35-f96ccc56e34a'),
+	(218,'Thailand','TH',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','582ce32d-20f8-4513-867f-c1da51f1ecb8'),
+	(219,'Tajikistan','TJ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','7f1f7a58-a0b8-48b5-874d-d0e4a307d31a'),
+	(220,'Tokelau','TK',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','dda3ed80-cad9-43f2-a8ac-e59d9a7a4e2e'),
+	(221,'Timor-Leste','TL',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','8012187d-ff00-4af3-8dc8-9863176b5bf7'),
+	(222,'Turkmenistan','TM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','d44010fd-e008-427a-8c49-95cb04d7ec23'),
+	(223,'Tunisia','TN',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','a4dff132-23fb-4ab8-9e20-b29ae80cfa32'),
+	(224,'Tonga','TO',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','319ac34e-c908-4bbe-8b0e-c67bf293d257'),
+	(225,'Turkey','TR',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','eab272ae-76a9-47ff-83af-ade09a213031'),
+	(226,'Trinidad and Tobago','TT',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','a129df6e-cbe7-480e-88c1-d9d5ff1a7eb8'),
+	(227,'Tuvalu','TV',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','cf3eeddc-1041-492d-bc9b-8607b2fdf096'),
+	(228,'Taiwan','TW',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','21666776-7f75-48e0-93f1-f290079dde96'),
+	(229,'Tanzania','TZ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','6419a3b9-7f4c-4c42-be6c-7e03bb60fa60'),
+	(230,'Ukraine','UA',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','c2c3dbf8-ab2c-4297-95a1-d00d7e298fb8'),
+	(231,'Uganda','UG',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','50b46ead-f8e7-4d09-ae98-5e0ca965eb3e'),
+	(232,'United States Minor Outlying Islands','UM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','438c6bde-925a-412d-92c5-6331016e05c8'),
+	(233,'United States','US',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','3cc9968e-65dd-4972-b2a0-847d20f29372'),
+	(234,'Uruguay','UY',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','d712fd75-d350-4db6-9abc-ef6696a5045f'),
+	(235,'Uzbekistan','UZ',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','586008c5-c233-4f73-b7c1-65ec4791c6b2'),
+	(236,'Vatican City State (Holy See)','VA',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','09aa3ce0-5408-4932-a8ac-64e2accb9c27'),
+	(237,'Saint Vincent and the Grenadines','VC',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','1802cef9-44c4-4d1c-8256-c491d96c87fa'),
+	(238,'Venezuela','VE',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','60701f75-a667-497a-a8bd-37328523b4d0'),
+	(239,'Virgin Islands (British)','VG',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','c17ee6f3-833e-4b05-ad24-a9f62adc8003'),
+	(240,'Virgin Islands (U.S.)','VI',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','a9311781-9bc1-409e-88c3-25571aee2e42'),
+	(241,'Viet Nam','VN',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','6f4ebc88-1681-4d88-a7d5-39ab5a867d07'),
+	(242,'Vanuatu','VU',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','40f1059e-5f88-4b9d-b822-dedfe7374907'),
+	(243,'Wallis and Futuna Islands','WF',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','b0b5bddf-63f0-45e7-a5b1-2dc15e17eb8a'),
+	(244,'Samoa','WS',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','0d146772-6d96-4fb7-bbdc-7788868bead3'),
+	(245,'Yemen','YE',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','ee8129b7-31e2-4ce1-988e-b8152508dbb8'),
+	(246,'Mayotte','YT',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','68e3b672-ccfa-4e80-92fe-710315717522'),
+	(247,'South Africa','ZA',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','426deec0-6103-4bee-a0a7-c0d07af19725'),
+	(248,'Zambia','ZM',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','f2347341-0fcc-4ce8-8c48-0c7bfac1170e'),
+	(249,'Zimbabwe','ZW',0,'2017-09-10 13:18:05','2017-09-10 13:18:05','c30fc54b-4ee2-4a7a-8978-36f456327730');
+
+/*!40000 ALTER TABLE `craft_commerce_countries` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_customer_discountuses
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_customer_discountuses`;
+
+CREATE TABLE `craft_commerce_customer_discountuses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `discountId` int(10) NOT NULL,
+  `customerId` int(10) NOT NULL,
+  `uses` int(10) unsigned NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_customer_discountuses_customerId_discountId_unq_i` (`customerId`,`discountId`),
+  KEY `craft_commerce_customer_discountuses_discountId_fk` (`discountId`),
+  CONSTRAINT `craft_commerce_customer_discountuses_customerId_fk` FOREIGN KEY (`customerId`) REFERENCES `craft_commerce_customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_customer_discountuses_discountId_fk` FOREIGN KEY (`discountId`) REFERENCES `craft_commerce_discounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_customers
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_customers`;
+
+CREATE TABLE `craft_commerce_customers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `userId` int(11) DEFAULT NULL,
+  `lastUsedBillingAddressId` int(10) DEFAULT NULL,
+  `lastUsedShippingAddressId` int(10) DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `craft_commerce_customers_userId_fk` (`userId`),
+  CONSTRAINT `craft_commerce_customers_userId_fk` FOREIGN KEY (`userId`) REFERENCES `craft_users` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_customers` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_customers` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_customers` (`id`, `userId`, `lastUsedBillingAddressId`, `lastUsedShippingAddressId`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,118,NULL,NULL,'2018-04-15 15:27:49','2018-04-15 15:27:49','f3ffd7ec-1b42-4ca6-a669-de246c4a8275');
+
+/*!40000 ALTER TABLE `craft_commerce_customers` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_customers_addresses
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_customers_addresses`;
+
+CREATE TABLE `craft_commerce_customers_addresses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `customerId` int(11) NOT NULL,
+  `addressId` int(11) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_customers_addresses_customerId_addressId_unq_idx` (`customerId`,`addressId`),
+  KEY `craft_commerce_customers_addresses_customerId_idx` (`customerId`),
+  KEY `craft_commerce_customers_addresses_addressId_idx` (`addressId`),
+  CONSTRAINT `craft_commerce_customers_addresses_addressId_fk` FOREIGN KEY (`addressId`) REFERENCES `craft_commerce_addresses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_customers_addresses_customerId_fk` FOREIGN KEY (`customerId`) REFERENCES `craft_commerce_customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_discount_products
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_discount_products`;
+
+CREATE TABLE `craft_commerce_discount_products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `discountId` int(10) NOT NULL,
+  `productId` int(10) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_discount_products_discountId_productId_unq_idx` (`discountId`,`productId`),
+  KEY `craft_commerce_discount_products_productId_fk` (`productId`),
+  CONSTRAINT `craft_commerce_discount_products_discountId_fk` FOREIGN KEY (`discountId`) REFERENCES `craft_commerce_discounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_discount_products_productId_fk` FOREIGN KEY (`productId`) REFERENCES `craft_commerce_products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_discount_producttypes
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_discount_producttypes`;
+
+CREATE TABLE `craft_commerce_discount_producttypes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `discountId` int(10) NOT NULL,
+  `productTypeId` int(10) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerc_discoun_producttype_discountI_productTypeI_unq_idx` (`discountId`,`productTypeId`),
+  KEY `craft_commerce_discount_producttypes_productTypeId_fk` (`productTypeId`),
+  CONSTRAINT `craft_commerce_discount_producttypes_discountId_fk` FOREIGN KEY (`discountId`) REFERENCES `craft_commerce_discounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_discount_producttypes_productTypeId_fk` FOREIGN KEY (`productTypeId`) REFERENCES `craft_commerce_producttypes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_discount_usergroups
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_discount_usergroups`;
+
+CREATE TABLE `craft_commerce_discount_usergroups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `discountId` int(10) NOT NULL,
+  `userGroupId` int(10) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_discount_usergroups_discountId_userGroupId_unq_id` (`discountId`,`userGroupId`),
+  KEY `craft_commerce_discount_usergroups_userGroupId_fk` (`userGroupId`),
+  CONSTRAINT `craft_commerce_discount_usergroups_discountId_fk` FOREIGN KEY (`discountId`) REFERENCES `craft_commerce_discounts` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_discount_usergroups_userGroupId_fk` FOREIGN KEY (`userGroupId`) REFERENCES `craft_usergroups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_discounts
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_discounts`;
+
+CREATE TABLE `craft_commerce_discounts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `perUserLimit` int(10) unsigned NOT NULL DEFAULT '0',
+  `perEmailLimit` int(10) unsigned NOT NULL DEFAULT '0',
+  `totalUseLimit` int(10) unsigned NOT NULL DEFAULT '0',
+  `totalUses` int(10) unsigned NOT NULL DEFAULT '0',
+  `dateFrom` datetime DEFAULT NULL,
+  `dateTo` datetime DEFAULT NULL,
+  `purchaseTotal` int(10) NOT NULL DEFAULT '0',
+  `purchaseQty` int(10) NOT NULL DEFAULT '0',
+  `maxPurchaseQty` int(10) NOT NULL DEFAULT '0',
+  `baseDiscount` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `perItemDiscount` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `percentDiscount` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `percentageOffSubject` enum('original','discounted') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'discounted',
+  `excludeOnSale` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `freeShipping` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `allGroups` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `allProducts` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `allProductTypes` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `enabled` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `stopProcessing` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `sortOrder` int(10) DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_discounts_code_unq_idx` (`code`),
+  KEY `craft_commerce_discounts_dateFrom_idx` (`dateFrom`),
+  KEY `craft_commerce_discounts_dateTo_idx` (`dateTo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_emails
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_emails`;
+
+CREATE TABLE `craft_commerce_emails` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `subject` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `recipientType` enum('customer','custom') COLLATE utf8_unicode_ci DEFAULT 'custom',
+  `to` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `bcc` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `enabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `templatePath` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_lineitems
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_lineitems`;
+
+CREATE TABLE `craft_commerce_lineitems` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `orderId` int(11) NOT NULL,
+  `purchasableId` int(11) DEFAULT NULL,
+  `options` text COLLATE utf8_unicode_ci,
+  `optionsSignature` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `price` decimal(14,4) unsigned NOT NULL,
+  `saleAmount` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `salePrice` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `tax` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `taxIncluded` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `shippingCost` decimal(14,4) unsigned NOT NULL DEFAULT '0.0000',
+  `discount` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `weight` decimal(14,4) unsigned NOT NULL DEFAULT '0.0000',
+  `height` decimal(14,4) unsigned NOT NULL DEFAULT '0.0000',
+  `length` decimal(14,4) unsigned NOT NULL DEFAULT '0.0000',
+  `width` decimal(14,4) unsigned NOT NULL DEFAULT '0.0000',
+  `total` decimal(14,4) unsigned NOT NULL DEFAULT '0.0000',
+  `qty` int(10) unsigned NOT NULL,
+  `note` text COLLATE utf8_unicode_ci,
+  `snapshot` text COLLATE utf8_unicode_ci NOT NULL,
+  `taxCategoryId` int(10) NOT NULL,
+  `shippingCategoryId` int(10) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craf_commerc_lineitem_orderI_purchasableI_optionsSignatu_unq_idx` (`orderId`,`purchasableId`,`optionsSignature`),
+  KEY `craft_commerce_lineitems_purchasableId_fk` (`purchasableId`),
+  KEY `craft_commerce_lineitems_taxCategoryId_fk` (`taxCategoryId`),
+  KEY `craft_commerce_lineitems_shippingCategoryId_fk` (`shippingCategoryId`),
+  CONSTRAINT `craft_commerce_lineitems_orderId_fk` FOREIGN KEY (`orderId`) REFERENCES `craft_commerce_orders` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `craft_commerce_lineitems_purchasableId_fk` FOREIGN KEY (`purchasableId`) REFERENCES `craft_elements` (`id`) ON DELETE SET NULL ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_lineitems_shippingCategoryId_fk` FOREIGN KEY (`shippingCategoryId`) REFERENCES `craft_commerce_shippingcategories` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_lineitems_taxCategoryId_fk` FOREIGN KEY (`taxCategoryId`) REFERENCES `craft_commerce_taxcategories` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_orderadjustments
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_orderadjustments`;
+
+CREATE TABLE `craft_commerce_orderadjustments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `amount` decimal(14,4) NOT NULL,
+  `included` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `optionsJson` text COLLATE utf8_unicode_ci NOT NULL,
+  `orderId` int(10) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `craft_commerce_orderadjustments_orderId_idx` (`orderId`),
+  CONSTRAINT `craft_commerce_orderadjustments_orderId_fk` FOREIGN KEY (`orderId`) REFERENCES `craft_commerce_orders` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_orderhistories
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_orderhistories`;
+
+CREATE TABLE `craft_commerce_orderhistories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `prevStatusId` int(11) DEFAULT NULL,
+  `newStatusId` int(11) DEFAULT NULL,
+  `orderId` int(10) NOT NULL,
+  `customerId` int(10) NOT NULL,
+  `message` text COLLATE utf8_unicode_ci,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `craft_commerce_orderhistories_orderId_fk` (`orderId`),
+  KEY `craft_commerce_orderhistories_prevStatusId_fk` (`prevStatusId`),
+  KEY `craft_commerce_orderhistories_newStatusId_fk` (`newStatusId`),
+  KEY `craft_commerce_orderhistories_customerId_fk` (`customerId`),
+  CONSTRAINT `craft_commerce_orderhistories_customerId_fk` FOREIGN KEY (`customerId`) REFERENCES `craft_commerce_customers` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_orderhistories_newStatusId_fk` FOREIGN KEY (`newStatusId`) REFERENCES `craft_commerce_orderstatuses` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_orderhistories_orderId_fk` FOREIGN KEY (`orderId`) REFERENCES `craft_commerce_orders` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_orderhistories_prevStatusId_fk` FOREIGN KEY (`prevStatusId`) REFERENCES `craft_commerce_orderstatuses` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_orders
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_orders`;
+
+CREATE TABLE `craft_commerce_orders` (
+  `billingAddressId` int(11) DEFAULT NULL,
+  `shippingAddressId` int(11) DEFAULT NULL,
+  `paymentMethodId` int(11) DEFAULT NULL,
+  `customerId` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `orderStatusId` int(11) DEFAULT NULL,
+  `number` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `couponCode` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `itemTotal` decimal(14,4) DEFAULT '0.0000',
+  `baseDiscount` decimal(14,4) DEFAULT '0.0000',
+  `baseShippingCost` decimal(14,4) DEFAULT '0.0000',
+  `baseTax` decimal(14,4) DEFAULT '0.0000',
+  `baseTaxIncluded` decimal(14,4) DEFAULT '0.0000',
+  `totalPrice` decimal(14,4) DEFAULT '0.0000',
+  `totalPaid` decimal(14,4) DEFAULT '0.0000',
+  `email` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `isCompleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `dateOrdered` datetime DEFAULT NULL,
+  `datePaid` datetime DEFAULT NULL,
+  `currency` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `paymentCurrency` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `lastIp` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `orderLocale` char(12) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `message` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `returnUrl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `cancelUrl` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `shippingMethod` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `craft_commerce_orders_number_idx` (`number`),
+  KEY `craft_commerce_orders_billingAddressId_fk` (`billingAddressId`),
+  KEY `craft_commerce_orders_shippingAddressId_fk` (`shippingAddressId`),
+  KEY `craft_commerce_orders_paymentMethodId_fk` (`paymentMethodId`),
+  KEY `craft_commerce_orders_customerId_fk` (`customerId`),
+  KEY `craft_commerce_orders_orderStatusId_fk` (`orderStatusId`),
+  CONSTRAINT `craft_commerce_orders_billingAddressId_fk` FOREIGN KEY (`billingAddressId`) REFERENCES `craft_commerce_addresses` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `craft_commerce_orders_customerId_fk` FOREIGN KEY (`customerId`) REFERENCES `craft_commerce_customers` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `craft_commerce_orders_id_fk` FOREIGN KEY (`id`) REFERENCES `craft_elements` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `craft_commerce_orders_orderStatusId_fk` FOREIGN KEY (`orderStatusId`) REFERENCES `craft_commerce_orderstatuses` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_orders_paymentMethodId_fk` FOREIGN KEY (`paymentMethodId`) REFERENCES `craft_commerce_paymentmethods` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `craft_commerce_orders_shippingAddressId_fk` FOREIGN KEY (`shippingAddressId`) REFERENCES `craft_commerce_addresses` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_ordersettings
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_ordersettings`;
+
+CREATE TABLE `craft_commerce_ordersettings` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fieldLayoutId` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `handle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_ordersettings_handle_unq_idx` (`handle`),
+  KEY `craft_commerce_ordersettings_fieldLayoutId_fk` (`fieldLayoutId`),
+  CONSTRAINT `craft_commerce_ordersettings_fieldLayoutId_fk` FOREIGN KEY (`fieldLayoutId`) REFERENCES `craft_fieldlayouts` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_ordersettings` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_ordersettings` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_ordersettings` (`id`, `fieldLayoutId`, `name`, `handle`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,95,'Order','order','2017-09-10 13:18:04','2017-09-10 13:18:04','aff81feb-daba-46e4-be45-ea0d23faa790');
+
+/*!40000 ALTER TABLE `craft_commerce_ordersettings` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_orderstatus_emails
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_orderstatus_emails`;
+
+CREATE TABLE `craft_commerce_orderstatus_emails` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `orderStatusId` int(11) NOT NULL,
+  `emailId` int(11) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `craft_commerce_orderstatus_emails_orderStatusId_fk` (`orderStatusId`),
+  KEY `craft_commerce_orderstatus_emails_emailId_fk` (`emailId`),
+  CONSTRAINT `craft_commerce_orderstatus_emails_emailId_fk` FOREIGN KEY (`emailId`) REFERENCES `craft_commerce_emails` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_orderstatus_emails_orderStatusId_fk` FOREIGN KEY (`orderStatusId`) REFERENCES `craft_commerce_orderstatuses` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_orderstatuses
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_orderstatuses`;
+
+CREATE TABLE `craft_commerce_orderstatuses` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `handle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `color` enum('green','orange','red','blue','yellow','pink','purple','turquoise','light','grey','black') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'green',
+  `sortOrder` int(10) DEFAULT NULL,
+  `default` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_orderstatuses` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_orderstatuses` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_orderstatuses` (`id`, `name`, `handle`, `color`, `sortOrder`, `default`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,'Processing','processing','green',999,1,'2017-09-10 13:18:04','2017-09-10 13:18:04','d8da8c2e-de00-4ced-9d29-0603cef5a399'),
+	(2,'Shipped','shipped','blue',999,0,'2017-09-10 13:18:04','2017-09-10 13:18:04','ee88a27e-df6d-44e5-9b1d-3fe405cb1931');
+
+/*!40000 ALTER TABLE `craft_commerce_orderstatuses` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_paymentcurrencies
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_paymentcurrencies`;
+
+CREATE TABLE `craft_commerce_paymentcurrencies` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `iso` varchar(3) COLLATE utf8_unicode_ci NOT NULL,
+  `primary` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `rate` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_paymentcurrencies_iso_unq_idx` (`iso`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_paymentcurrencies` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_paymentcurrencies` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_paymentcurrencies` (`id`, `iso`, `primary`, `rate`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,'USD',1,1.0000,'2017-09-10 13:18:04','2017-09-10 13:18:04','75f24471-c6ad-4a1a-be69-04525127b6a4');
+
+/*!40000 ALTER TABLE `craft_commerce_paymentcurrencies` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_paymentmethods
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_paymentmethods`;
+
+CREATE TABLE `craft_commerce_paymentmethods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `class` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `settings` text COLLATE utf8_unicode_ci,
+  `paymentType` enum('authorize','purchase') COLLATE utf8_unicode_ci NOT NULL DEFAULT 'purchase',
+  `frontendEnabled` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `isArchived` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `dateArchived` datetime DEFAULT NULL,
+  `sortOrder` int(10) DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_paymentmethods_name_unq_idx` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_paymentmethods` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_paymentmethods` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_paymentmethods` (`id`, `class`, `name`, `settings`, `paymentType`, `frontendEnabled`, `isArchived`, `dateArchived`, `sortOrder`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,'Dummy','Dummy','[]','purchase',1,0,NULL,NULL,'2017-09-10 13:18:05','2017-09-10 13:18:05','45cd96ee-8a14-4358-a1db-3f2d6d8737f5');
+
+/*!40000 ALTER TABLE `craft_commerce_paymentmethods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_products
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_products`;
+
+CREATE TABLE `craft_commerce_products` (
+  `id` int(11) NOT NULL,
+  `typeId` int(11) DEFAULT NULL,
+  `taxCategoryId` int(11) NOT NULL,
+  `shippingCategoryId` int(11) NOT NULL,
+  `postDate` datetime DEFAULT NULL,
+  `expiryDate` datetime DEFAULT NULL,
+  `promotable` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `freeShipping` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `defaultVariantId` int(10) DEFAULT NULL,
+  `defaultSku` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `defaultPrice` decimal(14,4) DEFAULT NULL,
+  `defaultHeight` decimal(14,4) DEFAULT NULL,
+  `defaultLength` decimal(14,4) DEFAULT NULL,
+  `defaultWidth` decimal(14,4) DEFAULT NULL,
+  `defaultWeight` decimal(14,4) DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `craft_commerce_products_typeId_idx` (`typeId`),
+  KEY `craft_commerce_products_postDate_idx` (`postDate`),
+  KEY `craft_commerce_products_expiryDate_idx` (`expiryDate`),
+  KEY `craft_commerce_products_taxCategoryId_fk` (`taxCategoryId`),
+  KEY `craft_commerce_products_shippingCategoryId_fk` (`shippingCategoryId`),
+  CONSTRAINT `craft_commerce_products_id_fk` FOREIGN KEY (`id`) REFERENCES `craft_elements` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `craft_commerce_products_shippingCategoryId_fk` FOREIGN KEY (`shippingCategoryId`) REFERENCES `craft_commerce_shippingcategories` (`id`),
+  CONSTRAINT `craft_commerce_products_taxCategoryId_fk` FOREIGN KEY (`taxCategoryId`) REFERENCES `craft_commerce_taxcategories` (`id`),
+  CONSTRAINT `craft_commerce_products_typeId_fk` FOREIGN KEY (`typeId`) REFERENCES `craft_commerce_producttypes` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_products` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_products` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_products` (`id`, `typeId`, `taxCategoryId`, `shippingCategoryId`, `postDate`, `expiryDate`, `promotable`, `freeShipping`, `defaultVariantId`, `defaultSku`, `defaultPrice`, `defaultHeight`, `defaultLength`, `defaultWidth`, `defaultWeight`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(15,1,1,1,'2017-09-10 13:18:05',NULL,1,0,16,'Parka with Stripes on Back',20.0000,0.0000,0.0000,0.0000,0.0000,'2017-09-10 13:18:05','2017-09-10 13:18:05','8e125104-5b76-4acd-b4c5-5ec160317426'),
+	(17,1,1,1,'2017-09-10 13:18:05',NULL,1,0,18,'Romper for a Red Eye',30.0000,0.0000,0.0000,0.0000,0.0000,'2017-09-10 13:18:05','2017-09-10 13:18:05','ae77b3fe-75c9-4977-bfdb-d892da8397c6'),
+	(19,1,1,1,'2017-09-10 13:18:05',NULL,1,0,20,'The Fleece Awakens',40.0000,0.0000,0.0000,0.0000,0.0000,'2017-09-10 13:18:05','2017-09-10 13:18:05','22ae15da-f2bc-4e07-b1bc-8c1e2e95f160');
+
+/*!40000 ALTER TABLE `craft_commerce_products` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_producttypes
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_producttypes`;
+
+CREATE TABLE `craft_commerce_producttypes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `fieldLayoutId` int(11) DEFAULT NULL,
+  `variantFieldLayoutId` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `handle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `hasUrls` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `hasDimensions` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `hasVariants` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `hasVariantTitleField` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `titleFormat` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `skuFormat` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `descriptionFormat` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `template` varchar(500) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_producttypes_handle_unq_idx` (`handle`),
+  KEY `craft_commerce_producttypes_fieldLayoutId_fk` (`fieldLayoutId`),
+  KEY `craft_commerce_producttypes_variantFieldLayoutId_fk` (`variantFieldLayoutId`),
+  CONSTRAINT `craft_commerce_producttypes_fieldLayoutId_fk` FOREIGN KEY (`fieldLayoutId`) REFERENCES `craft_fieldlayouts` (`id`) ON DELETE SET NULL,
+  CONSTRAINT `craft_commerce_producttypes_variantFieldLayoutId_fk` FOREIGN KEY (`variantFieldLayoutId`) REFERENCES `craft_fieldlayouts` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_producttypes` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_producttypes` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_producttypes` (`id`, `fieldLayoutId`, `variantFieldLayoutId`, `name`, `handle`, `hasUrls`, `hasDimensions`, `hasVariants`, `hasVariantTitleField`, `titleFormat`, `skuFormat`, `descriptionFormat`, `template`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,NULL,NULL,'Clothing','clothing',1,1,0,0,'{product.title}',NULL,NULL,'shop/products/_product','2017-09-10 13:18:04','2017-09-10 13:18:04','d358f223-9ca9-4e35-bbf7-6dc95073e61c');
+
+/*!40000 ALTER TABLE `craft_commerce_producttypes` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_producttypes_i18n
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_producttypes_i18n`;
+
+CREATE TABLE `craft_commerce_producttypes_i18n` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `productTypeId` int(11) NOT NULL,
+  `locale` char(12) COLLATE utf8_unicode_ci NOT NULL,
+  `urlFormat` text COLLATE utf8_unicode_ci,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_producttypes_i18n_productTypeId_locale_unq_idx` (`productTypeId`,`locale`),
+  KEY `craft_commerce_producttypes_i18n_locale_fk` (`locale`),
+  CONSTRAINT `craft_commerce_producttypes_i18n_locale_fk` FOREIGN KEY (`locale`) REFERENCES `craft_locales` (`locale`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_producttypes_i18n_productTypeId_fk` FOREIGN KEY (`productTypeId`) REFERENCES `craft_commerce_producttypes` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_producttypes_i18n` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_producttypes_i18n` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_producttypes_i18n` (`id`, `productTypeId`, `locale`, `urlFormat`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,1,'de','shop/products/{slug}','2017-09-10 13:18:04','2017-09-10 13:18:04','fc67344d-fc22-4492-af62-2915970c0df5'),
+	(2,1,'en','shop/products/{slug}','2017-09-10 13:18:04','2017-09-10 13:18:04','96f8af75-0430-49b2-9555-155611ea3b4e');
+
+/*!40000 ALTER TABLE `craft_commerce_producttypes_i18n` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_producttypes_shippingcategories
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_producttypes_shippingcategories`;
+
+CREATE TABLE `craft_commerce_producttypes_shippingcategories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `productTypeId` int(11) NOT NULL,
+  `shippingCategoryId` int(11) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craf_commer_productty_shippingcateg_productTy_shippingCateg_un_i` (`productTypeId`,`shippingCategoryId`),
+  KEY `craft_commerc_producttype_shippingcategorie_shippingCategoryI_fk` (`shippingCategoryId`),
+  CONSTRAINT `craft_commerc_producttype_shippingcategorie_shippingCategoryI_fk` FOREIGN KEY (`shippingCategoryId`) REFERENCES `craft_commerce_shippingcategories` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_producttypes_shippingcategories_productTypeId_fk` FOREIGN KEY (`productTypeId`) REFERENCES `craft_commerce_producttypes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_producttypes_shippingcategories` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_producttypes_shippingcategories` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_producttypes_shippingcategories` (`id`, `productTypeId`, `shippingCategoryId`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,1,1,'2017-09-10 13:18:04','2017-09-10 13:18:04','ea5ca907-1b6e-40ab-83f1-af0768d024ba');
+
+/*!40000 ALTER TABLE `craft_commerce_producttypes_shippingcategories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_producttypes_taxcategories
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_producttypes_taxcategories`;
+
+CREATE TABLE `craft_commerce_producttypes_taxcategories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `productTypeId` int(11) NOT NULL,
+  `taxCategoryId` int(11) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craf_commerc_producttyp_taxcategori_productType_taxCategory_un_i` (`productTypeId`,`taxCategoryId`),
+  KEY `craft_commerce_producttypes_taxcategories_taxCategoryId_fk` (`taxCategoryId`),
+  CONSTRAINT `craft_commerce_producttypes_taxcategories_productTypeId_fk` FOREIGN KEY (`productTypeId`) REFERENCES `craft_commerce_producttypes` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `craft_commerce_producttypes_taxcategories_taxCategoryId_fk` FOREIGN KEY (`taxCategoryId`) REFERENCES `craft_commerce_taxcategories` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_producttypes_taxcategories` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_producttypes_taxcategories` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_producttypes_taxcategories` (`id`, `productTypeId`, `taxCategoryId`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,1,1,'2017-09-10 13:18:04','2017-09-10 13:18:04','0f7873de-c9ed-4a95-a45e-b726a7e86609');
+
+/*!40000 ALTER TABLE `craft_commerce_producttypes_taxcategories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_purchasables
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_purchasables`;
+
+CREATE TABLE `craft_commerce_purchasables` (
+  `id` int(11) NOT NULL,
+  `sku` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `price` decimal(14,4) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_purchasables_sku_unq_idx` (`sku`),
+  CONSTRAINT `craft_commerce_purchasables_id_fk` FOREIGN KEY (`id`) REFERENCES `craft_elements` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_purchasables` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_purchasables` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_purchasables` (`id`, `sku`, `price`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(16,'Parka with Stripes on Back',20.0000,'2017-09-10 13:18:05','2017-09-10 13:18:05','f242151b-8235-4179-a149-efcd4be31599'),
+	(18,'Romper for a Red Eye',30.0000,'2017-09-10 13:18:05','2017-09-10 13:18:05','024d3335-c50a-4756-9c75-fc36c4c590c5'),
+	(20,'The Fleece Awakens',40.0000,'2017-09-10 13:18:05','2017-09-10 13:18:05','6c138aeb-c693-4c66-80bf-2165ebbe954f');
+
+/*!40000 ALTER TABLE `craft_commerce_purchasables` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_sale_products
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_sale_products`;
+
+CREATE TABLE `craft_commerce_sale_products` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `saleId` int(10) NOT NULL,
+  `productId` int(10) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_sale_products_saleId_productId_unq_idx` (`saleId`,`productId`),
+  KEY `craft_commerce_sale_products_productId_fk` (`productId`),
+  CONSTRAINT `craft_commerce_sale_products_productId_fk` FOREIGN KEY (`productId`) REFERENCES `craft_commerce_products` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_sale_products_saleId_fk` FOREIGN KEY (`saleId`) REFERENCES `craft_commerce_sales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_sale_producttypes
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_sale_producttypes`;
+
+CREATE TABLE `craft_commerce_sale_producttypes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `saleId` int(10) NOT NULL,
+  `productTypeId` int(10) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_sale_producttypes_saleId_productTypeId_unq_idx` (`saleId`,`productTypeId`),
+  KEY `craft_commerce_sale_producttypes_productTypeId_fk` (`productTypeId`),
+  CONSTRAINT `craft_commerce_sale_producttypes_productTypeId_fk` FOREIGN KEY (`productTypeId`) REFERENCES `craft_commerce_producttypes` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_sale_producttypes_saleId_fk` FOREIGN KEY (`saleId`) REFERENCES `craft_commerce_sales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_sale_usergroups
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_sale_usergroups`;
+
+CREATE TABLE `craft_commerce_sale_usergroups` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `saleId` int(10) NOT NULL,
+  `userGroupId` int(10) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_sale_usergroups_saleId_userGroupId_unq_idx` (`saleId`,`userGroupId`),
+  KEY `craft_commerce_sale_usergroups_userGroupId_fk` (`userGroupId`),
+  CONSTRAINT `craft_commerce_sale_usergroups_saleId_fk` FOREIGN KEY (`saleId`) REFERENCES `craft_commerce_sales` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_sale_usergroups_userGroupId_fk` FOREIGN KEY (`userGroupId`) REFERENCES `craft_usergroups` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_sales
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_sales`;
+
+CREATE TABLE `craft_commerce_sales` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` text COLLATE utf8_unicode_ci,
+  `dateFrom` datetime DEFAULT NULL,
+  `dateTo` datetime DEFAULT NULL,
+  `discountType` enum('percent','flat') COLLATE utf8_unicode_ci NOT NULL,
+  `discountAmount` decimal(14,4) NOT NULL,
+  `allGroups` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `allProducts` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `allProductTypes` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `enabled` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_shippingcategories
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_shippingcategories`;
+
+CREATE TABLE `craft_commerce_shippingcategories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `handle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `default` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_shippingcategories_handle_unq_idx` (`handle`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_shippingcategories` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_shippingcategories` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_shippingcategories` (`id`, `name`, `handle`, `description`, `default`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,'General','general',NULL,1,'2017-09-10 13:18:04','2017-09-10 13:18:04','47b58f47-a1f0-474d-bb32-46913745b5da');
+
+/*!40000 ALTER TABLE `craft_commerce_shippingcategories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_shippingmethods
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_shippingmethods`;
+
+CREATE TABLE `craft_commerce_shippingmethods` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `handle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `enabled` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_shippingmethods_name_unq_idx` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_shippingmethods` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_shippingmethods` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_shippingmethods` (`id`, `name`, `handle`, `enabled`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,'Free Shipping','freeShipping',1,'2017-09-10 13:18:04','2017-09-10 13:18:04','b37273bb-d3a5-4d22-992a-9133da480cfc');
+
+/*!40000 ALTER TABLE `craft_commerce_shippingmethods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_shippingrule_categories
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_shippingrule_categories`;
+
+CREATE TABLE `craft_commerce_shippingrule_categories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `shippingRuleId` int(11) DEFAULT NULL,
+  `shippingCategoryId` int(11) DEFAULT NULL,
+  `condition` enum('allow','disallow','require') COLLATE utf8_unicode_ci NOT NULL,
+  `perItemRate` decimal(14,4) DEFAULT NULL,
+  `weightRate` decimal(14,4) DEFAULT NULL,
+  `percentageRate` decimal(14,4) DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `craft_commerce_shippingrule_categories_shippingRuleId_idx` (`shippingRuleId`),
+  KEY `craft_commerce_shippingrule_categories_shippingCategoryId_idx` (`shippingCategoryId`),
+  CONSTRAINT `craft_commerce_shippingrule_categories_shippingCategoryId_fk` FOREIGN KEY (`shippingCategoryId`) REFERENCES `craft_commerce_shippingcategories` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `craft_commerce_shippingrule_categories_shippingRuleId_fk` FOREIGN KEY (`shippingRuleId`) REFERENCES `craft_commerce_shippingrules` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_shippingrules
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_shippingrules`;
+
+CREATE TABLE `craft_commerce_shippingrules` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `shippingZoneId` int(11) DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `methodId` int(10) NOT NULL,
+  `priority` int(10) NOT NULL DEFAULT '0',
+  `enabled` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `minQty` int(10) NOT NULL DEFAULT '0',
+  `maxQty` int(10) NOT NULL DEFAULT '0',
+  `minTotal` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `maxTotal` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `minWeight` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `maxWeight` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `baseRate` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `perItemRate` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `weightRate` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `percentageRate` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `minRate` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `maxRate` decimal(14,4) NOT NULL DEFAULT '0.0000',
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `craft_commerce_shippingrules_name_idx` (`name`),
+  KEY `craft_commerce_shippingrules_methodId_idx` (`methodId`),
+  KEY `craft_commerce_shippingrules_shippingZoneId_fk` (`shippingZoneId`),
+  CONSTRAINT `craft_commerce_shippingrules_methodId_fk` FOREIGN KEY (`methodId`) REFERENCES `craft_commerce_shippingmethods` (`id`),
+  CONSTRAINT `craft_commerce_shippingrules_shippingZoneId_fk` FOREIGN KEY (`shippingZoneId`) REFERENCES `craft_commerce_shippingzones` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_shippingrules` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_shippingrules` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_shippingrules` (`id`, `shippingZoneId`, `name`, `description`, `methodId`, `priority`, `enabled`, `minQty`, `maxQty`, `minTotal`, `maxTotal`, `minWeight`, `maxWeight`, `baseRate`, `perItemRate`, `weightRate`, `percentageRate`, `minRate`, `maxRate`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,NULL,'Free Everywhere ','All Countries, free shipping.',1,0,1,0,0,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,0.0000,'2017-09-10 13:18:04','2017-09-10 13:18:04','133a5ed2-c95b-423a-9f9a-4d177f5ed8a2');
+
+/*!40000 ALTER TABLE `craft_commerce_shippingrules` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_shippingzone_countries
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_shippingzone_countries`;
+
+CREATE TABLE `craft_commerce_shippingzone_countries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `shippingZoneId` int(11) NOT NULL,
+  `countryId` int(11) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerc_shippingzon_countrie_shippingZoneI_countryI_unq_id` (`shippingZoneId`,`countryId`),
+  KEY `craft_commerce_shippingzone_countries_shippingZoneId_idx` (`shippingZoneId`),
+  KEY `craft_commerce_shippingzone_countries_countryId_idx` (`countryId`),
+  CONSTRAINT `craft_commerce_shippingzone_countries_countryId_fk` FOREIGN KEY (`countryId`) REFERENCES `craft_commerce_countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_shippingzone_countries_shippingZoneId_fk` FOREIGN KEY (`shippingZoneId`) REFERENCES `craft_commerce_shippingzones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_shippingzone_states
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_shippingzone_states`;
+
+CREATE TABLE `craft_commerce_shippingzone_states` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `shippingZoneId` int(11) NOT NULL,
+  `stateId` int(11) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_shippingzone_states_shippingZoneId_stateId_unq_id` (`shippingZoneId`,`stateId`),
+  KEY `craft_commerce_shippingzone_states_shippingZoneId_idx` (`shippingZoneId`),
+  KEY `craft_commerce_shippingzone_states_stateId_idx` (`stateId`),
+  CONSTRAINT `craft_commerce_shippingzone_states_shippingZoneId_fk` FOREIGN KEY (`shippingZoneId`) REFERENCES `craft_commerce_shippingzones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_shippingzone_states_stateId_fk` FOREIGN KEY (`stateId`) REFERENCES `craft_commerce_states` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_shippingzones
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_shippingzones`;
+
+CREATE TABLE `craft_commerce_shippingzones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `countryBased` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_shippingzones_name_unq_idx` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_states
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_states`;
+
+CREATE TABLE `craft_commerce_states` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `abbreviation` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `countryId` int(10) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_states_name_countryId_unq_idx` (`name`,`countryId`),
+  KEY `craft_commerce_states_countryId_fk` (`countryId`),
+  CONSTRAINT `craft_commerce_states_countryId_fk` FOREIGN KEY (`countryId`) REFERENCES `craft_commerce_countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_states` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_states` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_states` (`id`, `name`, `abbreviation`, `countryId`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,'Australian Capital Territory','ACT',13,'2017-09-10 13:18:06','2017-09-10 13:18:06','219eb648-afa9-4f3d-824e-bfb6b0c027bc'),
+	(2,'New South Wales','NSW',13,'2017-09-10 13:18:06','2017-09-10 13:18:06','68e8f1fc-e70a-4bdc-8a90-f0f8d924e7fa'),
+	(3,'Northern Territory','NT',13,'2017-09-10 13:18:06','2017-09-10 13:18:06','495d9bea-a860-4bd6-974b-d90e02f426bf'),
+	(4,'Queensland','QLD',13,'2017-09-10 13:18:06','2017-09-10 13:18:06','30004741-7220-477a-8943-d52a2a768cf4'),
+	(5,'South Australia','SA',13,'2017-09-10 13:18:06','2017-09-10 13:18:06','281a4c32-ed87-4ddf-982a-5f0b50535dd7'),
+	(6,'Tasmania','TAS',13,'2017-09-10 13:18:06','2017-09-10 13:18:06','e68f0760-07b3-420f-86e5-b7b5cb53d907'),
+	(7,'Victoria','VIC',13,'2017-09-10 13:18:06','2017-09-10 13:18:06','b52878c7-ed2c-4864-ab9c-13d0a076c3f9'),
+	(8,'Western Australia','WA',13,'2017-09-10 13:18:06','2017-09-10 13:18:06','2a6e96d3-ec19-42c1-b825-9a98c6687b45'),
+	(9,'Alberta','AB',38,'2017-09-10 13:18:06','2017-09-10 13:18:06','e660a019-7f46-4abd-92cb-2f4e04f4ecaf'),
+	(10,'British Columbia','BC',38,'2017-09-10 13:18:06','2017-09-10 13:18:06','b981c36c-b239-48bb-b23a-d3e76d73770d'),
+	(11,'Manitoba','MB',38,'2017-09-10 13:18:06','2017-09-10 13:18:06','b1f8f843-fe98-468e-b02d-4522763a32e7'),
+	(12,'New Brunswick','NB',38,'2017-09-10 13:18:06','2017-09-10 13:18:06','69c6e3f2-2ff7-4fbc-809a-785f47fd6475'),
+	(13,'Newfoundland and Labrador','NL',38,'2017-09-10 13:18:06','2017-09-10 13:18:06','44a946bb-e7fa-4147-9df7-050abfc2196d'),
+	(14,'Northwest Territories','NT',38,'2017-09-10 13:18:06','2017-09-10 13:18:06','d4aa9803-23b1-463c-873d-a1436aaffb57'),
+	(15,'Nova Scotia','NS',38,'2017-09-10 13:18:06','2017-09-10 13:18:06','4b616811-296d-49bc-84cb-7b56227623dd'),
+	(16,'Nunavut','NU',38,'2017-09-10 13:18:06','2017-09-10 13:18:06','c6ab7781-5687-4319-8256-af9671bd1d67'),
+	(17,'Ontario','ON',38,'2017-09-10 13:18:06','2017-09-10 13:18:06','4858c697-5fe7-4069-b0c7-04e005de476b'),
+	(18,'Prince Edward Island','PE',38,'2017-09-10 13:18:06','2017-09-10 13:18:06','40b357f9-5a14-42da-aee6-01c50bcfc28e'),
+	(19,'Quebec','QC',38,'2017-09-10 13:18:06','2017-09-10 13:18:06','233cf547-747c-4d6d-8fa2-7632455e2bd1'),
+	(20,'Saskatchewan','SK',38,'2017-09-10 13:18:06','2017-09-10 13:18:06','634d7be4-1b28-4451-84e8-1dcf85d6d85d'),
+	(21,'Yukon','YT',38,'2017-09-10 13:18:06','2017-09-10 13:18:06','5222fc8a-1f20-46d5-99c0-0ab23cf9e3b0'),
+	(22,'Alabama','AL',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','00675e92-1eb6-478c-9787-5375c5e11916'),
+	(23,'Alaska','AK',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','c0b0a9a3-fe80-49cf-be0a-61117d1fa4d9'),
+	(24,'Arizona','AZ',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','d81378c6-665b-492c-8a4f-c06f1ac0739d'),
+	(25,'Arkansas','AR',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','ff1a335c-5d15-4f40-aec4-b401757e29a4'),
+	(26,'California','CA',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','a7744045-8e79-45e4-a909-6b8e2136d846'),
+	(27,'Colorado','CO',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','d10235a0-1cd8-43e6-b7ed-d78fd7f2b26b'),
+	(28,'Connecticut','CT',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','f7d8f09a-71c7-45dd-bec3-037089b6f408'),
+	(29,'Delaware','DE',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','d1467c72-4ba0-4831-a520-f2e9c8cf296d'),
+	(30,'District of Columbia','DC',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','97529d40-5d4a-4d84-85f3-fdbabbc9b084'),
+	(31,'Florida','FL',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','4d87771d-71b4-4fd8-95d1-9ba604972fd0'),
+	(32,'Georgia','GA',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','510873c2-bcf0-43aa-8d28-b54770c5a473'),
+	(33,'Hawaii','HI',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','c8de6700-938f-4cc6-95a7-3614d79a5f7c'),
+	(34,'Idaho','ID',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','88c8ac81-9ac7-4ae3-8b83-9addcb9a7943'),
+	(35,'Illinois','IL',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','4081e810-0fa5-471f-9f51-0782b6a9a9d5'),
+	(36,'Indiana','IN',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','defed811-c541-483f-b5c2-c30d25172076'),
+	(37,'Iowa','IA',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','c0aca757-b916-4c6d-b370-8e4c3accbf3b'),
+	(38,'Kansas','KS',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','eaa7218f-ba32-451a-8359-168d08dfa135'),
+	(39,'Kentucky','KY',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','db91321e-d590-456c-b3e1-bf9d4b01b888'),
+	(40,'Louisiana','LA',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','55f91b12-0dfd-48c1-9b42-1dec4bafe23e'),
+	(41,'Maine','ME',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','5c116d6d-2fce-4b04-b06d-2b6369e305a7'),
+	(42,'Maryland','MD',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','25eba907-429d-4edc-b61d-60d69472f59c'),
+	(43,'Massachusetts','MA',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','ee9e39c5-8d8e-46e8-b5af-82eb32601b28'),
+	(44,'Michigan','MI',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','52e74b42-3bef-4982-a2ad-d5ea49e94cad'),
+	(45,'Minnesota','MN',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','76bc027a-4859-42ca-a1ef-36d29912f6b7'),
+	(46,'Mississippi','MS',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','36223fab-50f9-4f6e-af38-6ffa8d965be6'),
+	(47,'Missouri','MO',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','0fc324f4-c998-40f8-8306-2206b8c4d6f4'),
+	(48,'Montana','MT',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','1309bb42-c7fd-457b-9a9c-20353ebe7f59'),
+	(49,'Nebraska','NE',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','15db48a7-39f6-4080-84d3-080e5c1fca76'),
+	(50,'Nevada','NV',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','ebc78b30-df31-40e7-ae72-a0dcbd885bdd'),
+	(51,'New Hampshire','NH',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','b3312b27-7a4d-43d7-aafc-2ee0a297ee94'),
+	(52,'New Jersey','NJ',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','f16398b0-1037-4acd-8d00-7035e2af44aa'),
+	(53,'New Mexico','NM',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','968fbfb0-df4c-45c7-b3b7-64222c5eff84'),
+	(54,'New York','NY',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','ccad9e24-c1e6-45cd-860c-31b6e1e64f4f'),
+	(55,'North Carolina','NC',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','0c980f07-64c2-4af6-a8b7-56d57898443d'),
+	(56,'North Dakota','ND',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','a14f13df-323e-4d28-b672-0ca4f3ee2171'),
+	(57,'Ohio','OH',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','071b2f95-5fab-4175-83c8-0457ec0384e2'),
+	(58,'Oklahoma','OK',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','868f5637-7819-4b3a-9ed1-4c6408f00502'),
+	(59,'Oregon','OR',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','157600ce-2960-47fc-aa07-d20864cdfa3c'),
+	(60,'Pennsylvania','PA',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','9fe94ffd-bf78-4ed9-a3db-9b6d4b0c27e3'),
+	(61,'Rhode Island','RI',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','ab24e476-97a5-41a9-93bd-254c475070db'),
+	(62,'South Carolina','SC',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','1edeb5f6-1f79-413f-a9b8-bb4e47c06cf4'),
+	(63,'South Dakota','SD',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','54befebe-79fa-4a18-a8a5-25c2ab961276'),
+	(64,'Tennessee','TN',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','09ebcb39-4876-42f0-b97e-16f7a5ce8d3b'),
+	(65,'Texas','TX',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','d36abd0f-e6ce-449c-8ef0-5bcedf45bb46'),
+	(66,'Utah','UT',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','d645f431-c9b3-4a6d-bbb8-cd9842250afe'),
+	(67,'Vermont','VT',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','cec96e02-ae87-4a8c-a1ba-3a691c60bbd9'),
+	(68,'Virginia','VA',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','88f3c9cf-6649-402d-be2f-c9ec046d6097'),
+	(69,'Washington','WA',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','2cc633b3-5577-456e-88ef-ca1b31d3f2bc'),
+	(70,'West Virginia','WV',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','f78ec0dc-be9e-4a14-9fee-4b9444f0aa46'),
+	(71,'Wisconsin','WI',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','3f33acca-0f4e-4d19-90f6-4ce88849eaf2'),
+	(72,'Wyoming','WY',233,'2017-09-10 13:18:06','2017-09-10 13:18:06','dbb00074-b6b0-46e8-aaa5-6f3c1c1994f2');
+
+/*!40000 ALTER TABLE `craft_commerce_states` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_taxcategories
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_taxcategories`;
+
+CREATE TABLE `craft_commerce_taxcategories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `handle` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `default` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_taxcategories_handle_unq_idx` (`handle`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_taxcategories` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_taxcategories` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_taxcategories` (`id`, `name`, `handle`, `description`, `default`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,'General','general',NULL,1,'2017-09-10 13:18:04','2017-09-10 13:18:04','489625ec-9a18-424b-a67e-14406407e024');
+
+/*!40000 ALTER TABLE `craft_commerce_taxcategories` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_commerce_taxrates
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_taxrates`;
+
+CREATE TABLE `craft_commerce_taxrates` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `taxZoneId` int(11) NOT NULL,
+  `taxCategoryId` int(11) NOT NULL,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `rate` decimal(14,10) DEFAULT NULL,
+  `include` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `isVat` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `taxable` enum('price','shipping','price_shipping','order_total_shipping','order_total_price') COLLATE utf8_unicode_ci NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `craft_commerce_taxrates_taxZoneId_idx` (`taxZoneId`),
+  KEY `craft_commerce_taxrates_taxCategoryId_idx` (`taxCategoryId`),
+  CONSTRAINT `craft_commerce_taxrates_taxCategoryId_fk` FOREIGN KEY (`taxCategoryId`) REFERENCES `craft_commerce_taxcategories` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_taxrates_taxZoneId_fk` FOREIGN KEY (`taxZoneId`) REFERENCES `craft_commerce_taxzones` (`id`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_taxzone_countries
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_taxzone_countries`;
+
+CREATE TABLE `craft_commerce_taxzone_countries` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `taxZoneId` int(11) NOT NULL,
+  `countryId` int(11) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_taxzone_countries_taxZoneId_countryId_unq_idx` (`taxZoneId`,`countryId`),
+  KEY `craft_commerce_taxzone_countries_taxZoneId_idx` (`taxZoneId`),
+  KEY `craft_commerce_taxzone_countries_countryId_idx` (`countryId`),
+  CONSTRAINT `craft_commerce_taxzone_countries_countryId_fk` FOREIGN KEY (`countryId`) REFERENCES `craft_commerce_countries` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_taxzone_countries_taxZoneId_fk` FOREIGN KEY (`taxZoneId`) REFERENCES `craft_commerce_taxzones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_taxzone_states
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_taxzone_states`;
+
+CREATE TABLE `craft_commerce_taxzone_states` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `taxZoneId` int(11) NOT NULL,
+  `stateId` int(11) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_taxzone_states_taxZoneId_stateId_unq_idx` (`taxZoneId`,`stateId`),
+  KEY `craft_commerce_taxzone_states_taxZoneId_idx` (`taxZoneId`),
+  KEY `craft_commerce_taxzone_states_stateId_idx` (`stateId`),
+  CONSTRAINT `craft_commerce_taxzone_states_stateId_fk` FOREIGN KEY (`stateId`) REFERENCES `craft_commerce_states` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_taxzone_states_taxZoneId_fk` FOREIGN KEY (`taxZoneId`) REFERENCES `craft_commerce_taxzones` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_taxzones
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_taxzones`;
+
+CREATE TABLE `craft_commerce_taxzones` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `description` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `countryBased` tinyint(1) unsigned NOT NULL DEFAULT '1',
+  `default` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_taxzones_name_unq_idx` (`name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_transactions
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_transactions`;
+
+CREATE TABLE `craft_commerce_transactions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `parentId` int(11) DEFAULT NULL,
+  `paymentMethodId` int(11) DEFAULT NULL,
+  `userId` int(11) DEFAULT NULL,
+  `hash` varchar(32) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `type` enum('authorize','capture','purchase','refund') COLLATE utf8_unicode_ci NOT NULL,
+  `amount` decimal(14,4) DEFAULT NULL,
+  `paymentAmount` decimal(14,4) DEFAULT NULL,
+  `currency` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `paymentCurrency` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `paymentRate` decimal(14,4) DEFAULT NULL,
+  `status` enum('pending','redirect','success','failed') COLLATE utf8_unicode_ci NOT NULL,
+  `reference` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `code` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `message` text COLLATE utf8_unicode_ci,
+  `response` text COLLATE utf8_unicode_ci,
+  `orderId` int(10) NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  KEY `craft_commerce_transactions_parentId_fk` (`parentId`),
+  KEY `craft_commerce_transactions_paymentMethodId_fk` (`paymentMethodId`),
+  KEY `craft_commerce_transactions_orderId_fk` (`orderId`),
+  KEY `craft_commerce_transactions_userId_fk` (`userId`),
+  CONSTRAINT `craft_commerce_transactions_orderId_fk` FOREIGN KEY (`orderId`) REFERENCES `craft_commerce_orders` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `craft_commerce_transactions_parentId_fk` FOREIGN KEY (`parentId`) REFERENCES `craft_commerce_transactions` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_transactions_paymentMethodId_fk` FOREIGN KEY (`paymentMethodId`) REFERENCES `craft_commerce_paymentmethods` (`id`) ON UPDATE CASCADE,
+  CONSTRAINT `craft_commerce_transactions_userId_fk` FOREIGN KEY (`userId`) REFERENCES `craft_users` (`id`) ON DELETE SET NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_commerce_variants
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_commerce_variants`;
+
+CREATE TABLE `craft_commerce_variants` (
+  `productId` int(11) DEFAULT NULL,
+  `id` int(11) NOT NULL,
+  `sku` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `isDefault` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `price` decimal(14,4) NOT NULL,
+  `sortOrder` int(10) DEFAULT NULL,
+  `width` decimal(14,4) DEFAULT NULL,
+  `height` decimal(14,4) DEFAULT NULL,
+  `length` decimal(14,4) DEFAULT NULL,
+  `weight` decimal(14,4) DEFAULT NULL,
+  `stock` int(10) NOT NULL DEFAULT '0',
+  `unlimitedStock` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `minQty` int(10) DEFAULT NULL,
+  `maxQty` int(10) DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_commerce_variants_sku_unq_idx` (`sku`),
+  KEY `craft_commerce_variants_productId_fk` (`productId`),
+  CONSTRAINT `craft_commerce_variants_id_fk` FOREIGN KEY (`id`) REFERENCES `craft_elements` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `craft_commerce_variants_productId_fk` FOREIGN KEY (`productId`) REFERENCES `craft_commerce_products` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_commerce_variants` WRITE;
+/*!40000 ALTER TABLE `craft_commerce_variants` DISABLE KEYS */;
+
+INSERT INTO `craft_commerce_variants` (`productId`, `id`, `sku`, `isDefault`, `price`, `sortOrder`, `width`, `height`, `length`, `weight`, `stock`, `unlimitedStock`, `minQty`, `maxQty`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(15,16,'Parka with Stripes on Back',1,20.0000,NULL,0.0000,0.0000,0.0000,0.0000,0,1,NULL,NULL,'2017-09-10 13:18:05','2017-09-10 13:18:05','cddc57d4-53cc-4f4d-b8c4-9f2d42ec91b9'),
+	(17,18,'Romper for a Red Eye',1,30.0000,NULL,0.0000,0.0000,0.0000,0.0000,0,1,NULL,NULL,'2017-09-10 13:18:05','2017-09-10 13:18:05','c012122a-3528-44c7-970e-dc75757d47fc'),
+	(19,20,'The Fleece Awakens',1,40.0000,NULL,0.0000,0.0000,0.0000,0.0000,0,1,NULL,NULL,'2017-09-10 13:18:05','2017-09-10 13:18:05','6e75970f-a6ad-4faf-8888-00a6aea72c23');
+
+/*!40000 ALTER TABLE `craft_commerce_variants` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 # Export von Tabelle craft_content
 # ------------------------------------------------------------
 
@@ -425,6 +2022,7 @@ CREATE TABLE `craft_content` (
   `field_objGridBox` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `field_objGrid` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `field_objGeneric` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `field_objWrapper` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `dateCreated` datetime NOT NULL,
   `dateUpdated` datetime NOT NULL,
   `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
@@ -439,127 +2037,127 @@ CREATE TABLE `craft_content` (
 LOCK TABLES `craft_content` WRITE;
 /*!40000 ALTER TABLE `craft_content` DISABLE KEYS */;
 
-INSERT INTO `craft_content` (`id`, `elementId`, `locale`, `title`, `field_body`, `field_objAccordion`, `field_objAnchor`, `field_objButton`, `field_objCardSlider`, `field_commentSwitch`, `field_copyright`, `field_disqusName`, `field_focalpoint`, `field_objHeadline`, `field_objList`, `field_objMarkdown`, `field_objRichtext`, `field_objSectionColumn`, `field_objSection`, `field_seo`, `field_objSpacer`, `field_objTab`, `field_objGridBox`, `field_objGrid`, `field_objGeneric`, `dateCreated`, `dateUpdated`, `uid`)
+INSERT INTO `craft_content` (`id`, `elementId`, `locale`, `title`, `field_body`, `field_objAccordion`, `field_objAnchor`, `field_objButton`, `field_objCardSlider`, `field_commentSwitch`, `field_copyright`, `field_disqusName`, `field_focalpoint`, `field_objHeadline`, `field_objList`, `field_objMarkdown`, `field_objRichtext`, `field_objSectionColumn`, `field_objSection`, `field_seo`, `field_objSpacer`, `field_objTab`, `field_objGridBox`, `field_objGrid`, `field_objGeneric`, `field_objWrapper`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,1,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2017-07-04 21:45:00','2017-07-16 14:02:16','cbaf4989-9591-427d-8938-162b4d17915b'),
-	(2,2,'de','Home','<p>It’s true, this site doesn’t have a whole lot of content yet, but don’t worry. Our web developers have just installed the CMS, and they’re setting things up for the content editors this very moment. Soon Ktest10.local will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Home\",\"seoDescription\":\"Home\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"canonicalUrlOverride\":\"\",\"seoTitleUnparsed\":\"Home\",\"seoDescriptionUnparsed\":\"Home\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,NULL,NULL,NULL,'2017-07-04 21:45:04','2018-04-21 07:29:53','9fb54827-4097-4fa5-a8fd-1d35d9c8bd38'),
-	(4,4,'de','404',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2017-07-04 22:00:57','2017-07-05 21:33:48','0276ef36-ab9b-4ef1-a923-788dd824faf2'),
-	(5,5,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2017-07-04 22:01:04','2017-07-04 22:03:20','2403fbb2-6815-4688-9579-12f44c00389e'),
-	(6,6,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2017-07-04 22:01:04','2018-04-21 00:32:38','7252c02a-aa48-4507-8a8a-f101ab29f8d4'),
-	(7,5,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2017-07-04 22:03:20','2017-07-04 22:03:20','f0e44c50-1591-4839-99f2-35b7e6ad43dc'),
-	(8,6,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2017-07-04 22:03:20','2017-07-04 22:03:20','c225a677-ac00-479a-8b2f-6add1e66827c'),
-	(9,7,'de','Carousel',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2017-07-05 20:08:13','2017-07-05 20:08:13','261ced72-8fae-449e-b661-441803e6aed8'),
-	(10,7,'en','Carousel',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2017-07-05 20:08:13','2017-07-05 20:08:13','140b40f2-6bd4-44cf-b725-606af79ceab2'),
-	(11,4,'en','404',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2017-07-05 21:33:48','2017-07-05 21:33:48','a6a1aa02-76c4-40ea-8709-e78a77f4fa97'),
-	(12,2,'en','Home','<p>It’s true, this site doesn’t have a whole lot of content yet, but don’t worry. Our web developers have just installed the CMS, and they’re setting things up for the content editors this very moment. Soon Ktest10.local will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Home\",\"seoDescription\":\"Home\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"seoTitleUnparsed\":\"Home\",\"seoDescriptionUnparsed\":\"Home\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,NULL,NULL,NULL,'2017-07-05 21:34:43','2017-07-05 21:34:43','a6ab581b-b6ea-4919-abac-ed9597442825'),
-	(13,11,'de','Hello World','<p>This is for SEO, OG and RSS Feed Content</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Hello World\",\"seoDescription\":\"This is for SEO, OG and RSS Feed Content\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"seoTitleUnparsed\":\"Hello World\",\"seoDescriptionUnparsed\":\"This is for SEO, OG and RSS Feed Content\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"body\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"featuredImage\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"featuredImage\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"featuredImage\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,NULL,NULL,NULL,'2017-07-16 14:05:54','2017-07-16 14:05:54','315cb79b-92ce-4a59-81b1-bcbf0c0cfa29'),
-	(14,11,'en','Hello World','<p>This is for SEO, OG and RSS Feed Content</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Hello World\",\"seoDescription\":\"This is for SEO, OG and RSS Feed Content\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"seoTitleUnparsed\":\"\",\"seoDescriptionUnparsed\":\"\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"body\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"featuredImage\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"featuredImage\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"featuredImage\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,NULL,NULL,NULL,'2017-07-16 14:05:54','2017-07-16 14:05:54','0972d0e1-a5c5-4af3-bd27-d1f0524cf107'),
-	(17,15,'de','Align: Horizontal - Left',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:37:35','2018-03-19 14:38:05','bf7bd03d-45ec-460d-b024-6e9fa037baad'),
-	(18,15,'en','Align: Horizontal - Left',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:37:36','2018-03-19 14:39:20','c123b58a-885a-4e6b-ba33-6e84eed1fd25'),
-	(19,17,'de','Align: Horizontal - Right',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:38:05','2018-03-19 14:38:15','1a38bebe-f3ff-4a75-b7af-e55a3b9d3757'),
-	(20,17,'en','Align: Horizontal - Right',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:38:05','2018-03-19 14:39:30','819ccfdd-86aa-43bf-b986-fdd2436d8a5b'),
-	(21,19,'de','Align: Horizontal - Center',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:38:42','2018-03-19 14:37:51','d82cd49b-81f9-461f-b610-b0b29a66d512'),
-	(22,19,'en','Align: Horizontal - Center',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:38:42','2018-03-19 14:39:10','8bfac50f-5140-48f4-af45-b119dc251c09'),
-	(23,21,'de','Align: Vertical - Top',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:39:57','2018-03-19 14:38:51','790c7742-a18e-4f12-aea4-256488af526d'),
-	(24,21,'en','Align: Vertical - Top',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:39:57','2018-03-19 14:40:07','5cca2dfd-3ea7-4c14-b137-e0e5cd329db7'),
-	(25,23,'de','Align: Vertical - Bottom',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:40:24','2018-03-19 14:38:28','fabac82b-39cf-4093-aeb5-b2584e94d9d1'),
-	(26,23,'en','Align: Vertical - Bottom',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:40:24','2018-03-19 14:39:42','32e4bf88-6f78-4b53-933c-248cc17e204c'),
-	(27,25,'de','Align: Vertical - Center',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:41:02','2018-03-19 14:38:39','0ba44804-33c5-4711-a590-b2884b90be65'),
-	(28,25,'en','Align: Vertical - Center',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:41:02','2018-03-19 14:39:54','140fa0c8-3fa9-4509-a77a-971cd525f464'),
-	(29,27,'de','Wrapper: Fullheight',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:42:05','2018-03-07 12:01:16','3eb5721a-872e-45da-944b-9dc069c8d0b9'),
-	(30,27,'en','Wrapper: Fullheight',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:42:05','2018-03-19 16:25:02','b890f835-6fed-4bf6-b6a5-10b234dd56b2'),
-	(31,29,'de','Button: Size - Big',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:42:47','2018-03-19 16:54:52','fff1838e-4e06-478d-94db-6c7bf757eb78'),
-	(32,29,'en','Button: Size - big',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:42:47','2018-03-07 10:42:47','ab17be2b-7eed-4737-8b5b-1b0b2fea8912'),
-	(33,31,'de','Button: Size - Small',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:43:20','2018-03-19 16:54:45','0a4b9a8b-53fc-4dff-bd76-df7563e4735b'),
-	(34,31,'en','Button: Size - small',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:43:20','2018-03-07 10:43:20','b47f09c7-ddf1-49c9-9d9e-ce315bab55cd'),
-	(35,33,'de','Button: Style - Default',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:44:01','2018-03-07 10:44:01','a7f55d64-f230-4f09-8c06-4227664ba0cf'),
-	(36,33,'en','Button: Style - Default',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:44:01','2018-03-07 10:44:01','f66af59f-c511-48b4-81f1-aff99f496d16'),
-	(37,35,'de','Jumpnavigation: Style - Button',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:45:26','2018-03-07 10:45:26','dea5d93a-f541-4113-a176-3429cd6fcedc'),
-	(38,35,'en','Jumpnavigation: Style - Button',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:45:27','2018-03-07 10:45:27','687a6c01-bd2e-48a5-a6bc-eafa33bf9cc6'),
-	(39,37,'de','Color: Text - Primary',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:46:50','2018-03-07 12:13:09','dfeb7ebe-7d41-4613-80a1-3f7da7cd2c0c'),
-	(40,37,'en','Color: Text - Primary',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:46:50','2018-03-07 10:46:50','df428a11-7958-41db-a842-f64b7937491b'),
-	(41,39,'de','Quote: Style - Lined',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:48:12','2018-03-07 10:48:12','003499be-230e-43a4-96ef-0def5933baf8'),
-	(42,39,'en','Quote: Style - Lined',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:48:12','2018-03-07 10:48:12','630a640b-441a-4069-a558-7b9a0ab18824'),
-	(43,41,'de','Typo: Scale - Lead',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:49:04','2018-03-07 11:47:08','e54ba2e3-7d5d-4ad1-a9a0-418d3298423f'),
-	(44,41,'en','Typo: Scale - Lead',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:49:04','2018-03-07 10:49:04','bdd28514-012e-4a43-8da6-b8416ded5da7'),
-	(45,43,'de','Typo: Scale - Small',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:49:58','2018-03-07 11:47:15','b12cb80c-c2e3-42c0-9b1a-c695f1c0c9a5'),
-	(46,43,'en','Typo: Scale - Small',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 10:49:58','2018-03-07 10:49:58','5e5a6e9b-4e7e-4d00-9c6e-d1976ba5a9c1'),
-	(61,59,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Hello World',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 12:25:19','2018-04-21 07:29:52','6cec4e58-cb86-4065-9f34-d17b5911115a'),
-	(62,59,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Hello World',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-07 12:25:19','2018-03-07 12:25:19','9bda58ea-2651-4029-b4a3-5338378617a1'),
-	(65,63,'de','Reset: Margin Top',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-18 21:45:20','2018-03-18 21:45:20','63c6b996-787c-4151-bc25-6d7a7bce76d5'),
-	(66,63,'en','Reset: Margin Top',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-18 21:45:20','2018-03-18 21:45:20','ac21c364-10aa-480f-8c54-838c76d96e46'),
-	(67,65,'de','Reset: Margin Bottom',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-18 21:45:44','2018-03-18 21:45:44','67a9d041-4b52-415f-b024-71706dfafb2e'),
-	(68,65,'en','Reset: Margin Bottom',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-18 21:45:44','2018-03-18 21:45:44','589b4b1c-593b-4240-84fa-073d8c783078'),
-	(69,67,'de','Reset: Margin Side',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-18 21:46:06','2018-03-18 21:46:06','dae480bd-00ac-407f-a472-327d840a331f'),
-	(70,67,'en','Reset: Margin Side',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-18 21:46:06','2018-03-18 21:46:06','8486db72-cd49-4b97-905e-a6f95814a86f'),
-	(73,71,'de','Reset: Last Margin Bottom',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-18 21:47:21','2018-03-19 16:57:09','aac87028-0d4f-4e07-b67e-49e15dbbe644'),
-	(74,71,'en','Reset: Margin Bottom - Last Child',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-18 21:47:21','2018-03-18 21:47:21','491e861b-0b1a-4a28-9cf0-58c281bbe864'),
-	(75,73,'de','Reset: Padding Top',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-18 21:47:51','2018-03-18 21:47:51','5175d31c-cc33-4fc0-8eab-c4bf3bee0e97'),
-	(76,73,'en','Reset: Padding Top',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-18 21:47:51','2018-03-18 21:47:51','a3b2c5bb-2ab1-462c-860b-3d91f1e67ec8'),
-	(77,75,'de','Reset: Padding Bottom',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-18 21:48:09','2018-03-18 21:48:09','b102417c-2335-4e0c-a2ec-3a19f7df4787'),
-	(78,75,'en','Reset: Padding Bottom',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-18 21:48:09','2018-03-18 21:48:09','ad394ff5-df35-43c7-84f3-c530b80312cf'),
-	(79,77,'de','Reset: Padding Side',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-18 21:48:26','2018-03-18 21:48:26','d8997083-00f7-44eb-93e1-24e03e387c74'),
-	(80,77,'en','Reset: Padding Side',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-18 21:48:26','2018-03-18 21:48:26','244cd7d5-99f6-4df2-9683-f508ecbe100c'),
-	(83,80,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,'',NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','5e5d9743-179e-437f-96a2-b38d72c83428'),
-	(84,80,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,'',NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','d51e0a57-9b13-410c-8530-f15d383c9115'),
-	(85,83,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','fe44b129-b224-4837-8903-d9f5fccd859e'),
-	(86,83,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','bb76f2d6-80a6-4343-bb37-34c7f643c199'),
-	(87,85,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Blubb',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','5a3c3a17-871b-4d43-9d42-821968d81f5f'),
-	(88,85,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Blubb',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 10:02:06','2018-03-19 16:41:26','2f4e4342-a376-4930-ac3e-c416258201af'),
-	(89,89,'de','Wrapper: Fullwidth',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 10:45:23','2018-03-19 10:45:23','3248d0a6-84a6-4440-9608-99a0fd0f9397'),
-	(90,89,'en','Wrapper: Fullwidth',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 10:45:23','2018-03-19 10:45:23','0123a2da-c604-4235-a14f-f4d5f4fee18f'),
-	(91,91,'de','Wrapper: Fullbleed',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 10:45:38','2018-04-21 00:34:18','4ac080ed-1a56-4f2f-9d69-69126a363626'),
-	(92,91,'en','Wrapper: Fullbleed',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 10:45:38','2018-03-19 10:45:38','957dcff9-f609-46de-a262-3c59fccf2dca'),
-	(93,93,'de','Wrapper: Spacer Vertical 20px',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 11:14:39','2018-03-19 11:14:49','a4862c00-b603-4739-b709-8f21653eddd8'),
-	(94,93,'en','Wrapper: Spacer Vertical 20px',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 11:14:39','2018-03-19 11:14:39','45ade711-6eec-4892-8584-a08ae0c70cc8'),
-	(95,95,'de','Wrapper: Spacer Horizontal 20px',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 11:15:06','2018-03-19 11:15:06','b97c2e43-6715-415c-9e78-33d58fcb58e7'),
-	(96,95,'en','Wrapper: Spacer Horizontal 20px',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 11:15:06','2018-03-19 11:15:06','b52f82ac-fa5f-47e1-b072-27c6f647bc96'),
-	(97,97,'de','Wrapper: Flexspacer Vertical 1to3',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 11:16:04','2018-03-19 11:16:14','8ed90693-fda6-4eda-bf46-148c29a9fca9'),
-	(98,97,'en','Wrapper: Flexspacer Vertical 1to3',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 11:16:04','2018-03-19 11:16:04','7ea0784d-b9be-4e73-b64e-4d88f2ed077e'),
-	(99,99,'de','Wrapper: Flexspacer Horizontal 1to3',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 11:16:33','2018-03-19 11:16:33','89b20f3f-c270-4be8-aa3d-fd6df3c5a5a6'),
-	(100,99,'en','Wrapper: Flexspacer Horizontal 1to3',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 11:16:33','2018-03-19 11:16:33','540806cf-a1f6-4ffb-98fd-8512886aeb6b'),
-	(101,101,'de','Typo: Scale Flex - 50px to 80px',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 16:23:37','2018-03-19 16:52:45','697566d6-2634-41d1-87ba-ce6f6b3c4409'),
-	(102,101,'en','Typo: Flexscale - 50px to 80px',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 16:23:37','2018-03-19 16:23:37','46d06cea-bd56-4072-ba53-648767465134'),
-	(103,103,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,'<p>Die neue Age Protection Range von LOGONA ist das einzige komplette Pflegesystem natrue-zertifizierter Naturkosmetik. Ein Relaunch von hoher Bedeutung, denn Gesichtspflege-Produkte für die Zielgruppe der LOHAS-Best-ager gehören zu den wichtigsten Wachstumstreibern im Naturkosmetik-Bereich.</p>',NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 16:41:26','2018-03-19 18:20:17','a8dcfd6c-f70f-44b7-95c5-79dbcb2f183f'),
-	(104,103,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,'<p>Die neue Age Protection Range von LOGONA ist das einzige komplette Pflegesystem natrue-zertifizierter Naturkosmetik. Ein Relaunch von hoher Bedeutung, denn Gesichtspflege-Produkte für die Zielgruppe der LOHAS-Best-ager gehören zu den wichtigsten Wachstumstreibern im Naturkosmetik-Bereich.</p>',NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 16:41:26','2018-03-19 16:41:26','15eba812-4467-4564-becd-d247c72fbe09'),
-	(105,105,'de','Typo: Layout - Max Chars 50',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 16:48:46','2018-03-19 16:48:46','a6401abc-ebe2-4ed1-8041-1aa881894cb5'),
-	(106,105,'en','Typo: Layout - Max Chars 50',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 16:48:46','2018-03-19 16:48:46','10d7aa80-a65b-46c0-8621-e8c753c3c611'),
-	(107,107,'de','Typo: Layout - Max Chars 75',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 16:49:24','2018-03-19 16:49:24','99aba943-34a9-40ee-a64c-cb5968c94ebf'),
-	(108,107,'en','Typo: Layout - Max Chars 75',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 16:49:24','2018-03-19 16:49:24','ee11b011-585a-4359-bba9-8469ed4a7dea'),
-	(109,109,'de','Typo: Layout - 2 CSS Columns',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 16:50:51','2018-03-19 16:50:51','3fa9c9e8-1dcf-4d2e-9665-354ef97fca71'),
-	(110,109,'en','Typo: Layout - 2 CSS Columns',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 16:50:51','2018-03-19 16:50:51','3ace3d21-4d32-4085-8099-fdc2571e8aa0'),
-	(111,111,'de','Typo: Layout - Responsive 3 Columns',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 16:51:17','2018-03-19 16:51:17','164fe80f-4583-45a3-bbbd-1da846147a36'),
-	(112,111,'en','Typo: Layout - Responsive 3 Columns',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 16:51:17','2018-03-19 16:51:17','fcd1bd1a-5f47-43a4-b61e-14cede9387e0'),
-	(113,113,'de','Slideoutbox: Style - Simple (Specific)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 16:56:11','2018-03-19 16:56:11','7b3a31b7-bbe9-4b9a-9c8e-5f4a3534c920'),
-	(114,113,'en','Slideoutbox: Style - Simple (Specific)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 16:56:11','2018-03-19 16:56:11','2f1cbda1-28cd-4c7e-b829-7a2abd6e4cfa'),
-	(115,115,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 17:23:15','2018-03-19 18:20:17','b1c920ef-a661-47db-b819-f719995120cf'),
-	(116,115,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-03-19 17:23:15','2018-03-19 17:23:15','bde3fd8e-1b73-43f9-b598-a1016b157263'),
-	(123,125,'de','2to4 Grid [Grid with Flexbox Fallback] (Infinite Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 00:53:00','2018-04-21 10:50:23','725d2429-9081-4ab9-aefd-b04b4f96531a'),
-	(124,125,'en','2to4 Grid [Grid with Flexbox Fallback] (Infinite Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 00:53:00','2018-04-21 10:50:32','6a1ebcb6-8273-41a5-9176-2e90462d7c92'),
-	(129,131,'de','2 Column Grid [Grid] (2 Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 10:14:11','2018-04-21 10:50:53','ce5a34d0-8524-4569-8901-3efc1442aac7'),
-	(130,131,'en','2 Column Grid [Grid] (2 Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 10:14:11','2018-04-21 10:51:03','c120d609-3f59-4ecd-a3e0-b40fe8a8bb07'),
-	(133,134,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,'',NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','4b244527-6495-4119-8c2a-0c21bd561d21'),
-	(134,134,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,'',NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','e10af60e-7639-4678-bb5f-9c880dab2701'),
-	(135,137,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','7fe4cc33-1e76-4fa5-8187-4903b8a2760d'),
-	(136,137,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','cf8c6eb9-2e74-4f99-a7b1-3b432d310983'),
-	(137,139,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Test1',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','38d39487-a25b-4f8e-b459-3462d7d3579a'),
-	(138,139,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Test1',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:18:52','c3ef2c22-8f91-4440-948c-f20c9b0d71f4'),
-	(139,141,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','ca5ecd88-1579-427e-bbad-65b02e42c203'),
-	(140,141,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','5186c6fe-981d-4f99-80df-a1a0c39925e3'),
-	(141,143,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Test2',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','35ed7497-3855-466a-8567-08ed0a24660f'),
-	(142,143,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Test2',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:18:52','4c766c85-c700-4bc1-9bf9-e237815c81d2'),
-	(143,146,'de','3 Column Grid [Grid] (3 Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 10:36:13','2018-04-21 10:51:22','3cb33568-3bef-422b-a074-a2d9d55df82a'),
-	(144,146,'en','3 Column Grid [Grid] (3 Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 10:36:13','2018-04-21 10:51:28','cdb3f3f0-2c45-483e-bd98-6e7604c036bc'),
-	(145,148,'de','4 Column Grid [Grid] (4 Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 10:38:08','2018-04-21 10:51:44','e166a92a-9bd8-4448-94b7-6daa8a4ee2ce'),
-	(146,148,'en','4 Column Grid [Grid] (4 Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 10:38:08','2018-04-21 10:51:51','0dddaec9-4b15-4bca-a7a1-f323908aaed4'),
-	(147,150,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,'2018-04-21 10:44:28','2018-04-21 10:47:51','ad82b628-82f8-427e-af55-c032e4a053d0'),
-	(148,150,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,'2018-04-21 10:44:28','2018-04-21 10:47:51','71266e23-a5ee-4507-8f39-db96fec4be03'),
-	(149,152,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Test3',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 10:44:28','2018-04-21 10:47:51','0ee81bcf-a4da-44c6-b9d9-6dd278a7d0d6'),
-	(150,152,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Test3',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 10:44:28','2018-04-21 10:44:28','cb87483d-ed59-4ade-a6af-606023f86c84'),
-	(151,154,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,'2018-04-21 10:47:52','2018-04-21 10:47:52','698538e7-9ff8-461a-b4b2-b129fd2723b3'),
-	(152,154,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,'2018-04-21 10:47:52','2018-04-21 10:47:52','37e6ce56-24dd-4236-b142-977e92e1b003'),
-	(153,156,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'test4',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 10:47:52','2018-04-21 10:47:52','187c15ab-5650-4227-82ff-03fc9c9c5141'),
-	(154,156,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'test4',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,'2018-04-21 10:47:52','2018-04-21 10:47:52','eb70143a-93ab-4799-8d8a-9339a98b0e4f');
+	(1,1,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2017-07-04 21:45:00','2017-07-16 14:02:16','cbaf4989-9591-427d-8938-162b4d17915b'),
+	(2,2,'de','Home','<p>It’s true, this site doesn’t have a whole lot of content yet, but don’t worry. Our web developers have just installed the CMS, and they’re setting things up for the content editors this very moment. Soon Ktest10.local will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Home\",\"seoDescription\":\"Home\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"canonicalUrlOverride\":\"\",\"seoTitleUnparsed\":\"Home\",\"seoDescriptionUnparsed\":\"Home\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,NULL,NULL,NULL,NULL,'2017-07-04 21:45:04','2018-04-29 14:58:43','9fb54827-4097-4fa5-a8fd-1d35d9c8bd38'),
+	(4,4,'de','404',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2017-07-04 22:00:57','2017-07-05 21:33:48','0276ef36-ab9b-4ef1-a923-788dd824faf2'),
+	(5,5,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2017-07-04 22:01:04','2017-07-04 22:03:20','2403fbb2-6815-4688-9579-12f44c00389e'),
+	(6,6,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2017-07-04 22:01:04','2018-04-21 00:32:38','7252c02a-aa48-4507-8a8a-f101ab29f8d4'),
+	(7,5,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2017-07-04 22:03:20','2017-07-04 22:03:20','f0e44c50-1591-4839-99f2-35b7e6ad43dc'),
+	(8,6,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2017-07-04 22:03:20','2017-07-04 22:03:20','c225a677-ac00-479a-8b2f-6add1e66827c'),
+	(9,7,'de','Carousel',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2017-07-05 20:08:13','2017-07-05 20:08:13','261ced72-8fae-449e-b661-441803e6aed8'),
+	(10,7,'en','Carousel',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2017-07-05 20:08:13','2017-07-05 20:08:13','140b40f2-6bd4-44cf-b725-606af79ceab2'),
+	(11,4,'en','404',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2017-07-05 21:33:48','2017-07-05 21:33:48','a6a1aa02-76c4-40ea-8709-e78a77f4fa97'),
+	(12,2,'en','Home','<p>It’s true, this site doesn’t have a whole lot of content yet, but don’t worry. Our web developers have just installed the CMS, and they’re setting things up for the content editors this very moment. Soon Ktest10.local will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Home\",\"seoDescription\":\"Home\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"seoTitleUnparsed\":\"Home\",\"seoDescriptionUnparsed\":\"Home\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,NULL,NULL,NULL,NULL,'2017-07-05 21:34:43','2017-07-05 21:34:43','a6ab581b-b6ea-4919-abac-ed9597442825'),
+	(13,11,'de','Hello World','<p>This is for SEO, OG and RSS Feed Content</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Hello World\",\"seoDescription\":\"This is for SEO, OG and RSS Feed Content\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"seoTitleUnparsed\":\"Hello World\",\"seoDescriptionUnparsed\":\"This is for SEO, OG and RSS Feed Content\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"body\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"featuredImage\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"featuredImage\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"featuredImage\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,NULL,NULL,NULL,NULL,'2017-07-16 14:05:54','2017-07-16 14:05:54','315cb79b-92ce-4a59-81b1-bcbf0c0cfa29'),
+	(14,11,'en','Hello World','<p>This is for SEO, OG and RSS Feed Content</p>',NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'{\"id\":null,\"enabled\":1,\"archived\":0,\"locale\":\"de\",\"localeEnabled\":1,\"slug\":null,\"uri\":null,\"dateCreated\":null,\"dateUpdated\":null,\"root\":null,\"lft\":null,\"rgt\":null,\"level\":null,\"searchScore\":null,\"elementId\":0,\"metaType\":\"template\",\"metaPath\":\"\",\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitle\":\"Hello World\",\"seoDescription\":\"This is for SEO, OG and RSS Feed Content\",\"seoKeywords\":\"\",\"seoImageTransform\":\"\",\"seoFacebookImageTransform\":\"\",\"seoTwitterImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"openGraphType\":\"article\",\"robots\":\"all\",\"seoImageId\":\"\",\"seoTwitterImageId\":\"\",\"seoFacebookImageId\":\"\",\"seoTitleUnparsed\":\"\",\"seoDescriptionUnparsed\":\"\",\"seoKeywordsUnparsed\":\"\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"body\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"featuredImage\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"featuredImage\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"featuredImage\",\"seoCommerceVariants\":null,\"__model__\":\"Craft\\\\Seomatic_MetaFieldModel\"}','--050',NULL,NULL,NULL,NULL,NULL,'2017-07-16 14:05:54','2017-07-16 14:05:54','0972d0e1-a5c5-4af3-bd27-d1f0524cf107'),
+	(17,15,'de','Align: Horizontal - Left',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:37:35','2018-03-19 14:38:05','bf7bd03d-45ec-460d-b024-6e9fa037baad'),
+	(18,15,'en','Align: Horizontal - Left',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:37:36','2018-03-19 14:39:20','c123b58a-885a-4e6b-ba33-6e84eed1fd25'),
+	(19,17,'de','Align: Horizontal - Right',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:38:05','2018-03-19 14:38:15','1a38bebe-f3ff-4a75-b7af-e55a3b9d3757'),
+	(20,17,'en','Align: Horizontal - Right',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:38:05','2018-03-19 14:39:30','819ccfdd-86aa-43bf-b986-fdd2436d8a5b'),
+	(21,19,'de','Align: Horizontal - Center',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:38:42','2018-03-19 14:37:51','d82cd49b-81f9-461f-b610-b0b29a66d512'),
+	(22,19,'en','Align: Horizontal - Center',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:38:42','2018-03-19 14:39:10','8bfac50f-5140-48f4-af45-b119dc251c09'),
+	(23,21,'de','Align: Vertical - Top',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:39:57','2018-03-19 14:38:51','790c7742-a18e-4f12-aea4-256488af526d'),
+	(24,21,'en','Align: Vertical - Top',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:39:57','2018-03-19 14:40:07','5cca2dfd-3ea7-4c14-b137-e0e5cd329db7'),
+	(25,23,'de','Align: Vertical - Bottom',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:40:24','2018-03-19 14:38:28','fabac82b-39cf-4093-aeb5-b2584e94d9d1'),
+	(26,23,'en','Align: Vertical - Bottom',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:40:24','2018-03-19 14:39:42','32e4bf88-6f78-4b53-933c-248cc17e204c'),
+	(27,25,'de','Align: Vertical - Center',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:41:02','2018-03-19 14:38:39','0ba44804-33c5-4711-a590-b2884b90be65'),
+	(28,25,'en','Align: Vertical - Center',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:41:02','2018-03-19 14:39:54','140fa0c8-3fa9-4509-a77a-971cd525f464'),
+	(29,27,'de','Wrapper: Fullheight',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:42:05','2018-03-07 12:01:16','3eb5721a-872e-45da-944b-9dc069c8d0b9'),
+	(30,27,'en','Wrapper: Fullheight',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:42:05','2018-03-19 16:25:02','b890f835-6fed-4bf6-b6a5-10b234dd56b2'),
+	(31,29,'de','Button: Size - Big',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:42:47','2018-03-19 16:54:52','fff1838e-4e06-478d-94db-6c7bf757eb78'),
+	(32,29,'en','Button: Size - big',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:42:47','2018-03-07 10:42:47','ab17be2b-7eed-4737-8b5b-1b0b2fea8912'),
+	(33,31,'de','Button: Size - Small',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:43:20','2018-03-19 16:54:45','0a4b9a8b-53fc-4dff-bd76-df7563e4735b'),
+	(34,31,'en','Button: Size - small',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:43:20','2018-03-07 10:43:20','b47f09c7-ddf1-49c9-9d9e-ce315bab55cd'),
+	(35,33,'de','Button: Style - Default',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:44:01','2018-03-07 10:44:01','a7f55d64-f230-4f09-8c06-4227664ba0cf'),
+	(36,33,'en','Button: Style - Default',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:44:01','2018-03-07 10:44:01','f66af59f-c511-48b4-81f1-aff99f496d16'),
+	(37,35,'de','Jumpnavigation: Style - Button',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:45:26','2018-03-07 10:45:26','dea5d93a-f541-4113-a176-3429cd6fcedc'),
+	(38,35,'en','Jumpnavigation: Style - Button',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:45:27','2018-03-07 10:45:27','687a6c01-bd2e-48a5-a6bc-eafa33bf9cc6'),
+	(39,37,'de','Color: Text - Primary',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:46:50','2018-03-07 12:13:09','dfeb7ebe-7d41-4613-80a1-3f7da7cd2c0c'),
+	(40,37,'en','Color: Text - Primary',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:46:50','2018-03-07 10:46:50','df428a11-7958-41db-a842-f64b7937491b'),
+	(41,39,'de','Quote: Style - Lined',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:48:12','2018-03-07 10:48:12','003499be-230e-43a4-96ef-0def5933baf8'),
+	(42,39,'en','Quote: Style - Lined',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:48:12','2018-03-07 10:48:12','630a640b-441a-4069-a558-7b9a0ab18824'),
+	(43,41,'de','Typo: Scale - Lead',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:49:04','2018-03-07 11:47:08','e54ba2e3-7d5d-4ad1-a9a0-418d3298423f'),
+	(44,41,'en','Typo: Scale - Lead',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:49:04','2018-03-07 10:49:04','bdd28514-012e-4a43-8da6-b8416ded5da7'),
+	(45,43,'de','Typo: Scale - Small',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:49:58','2018-03-07 11:47:15','b12cb80c-c2e3-42c0-9b1a-c695f1c0c9a5'),
+	(46,43,'en','Typo: Scale - Small',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 10:49:58','2018-03-07 10:49:58','5e5a6e9b-4e7e-4d00-9c6e-d1976ba5a9c1'),
+	(61,59,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Hello World',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 12:25:19','2018-04-29 14:58:43','6cec4e58-cb86-4065-9f34-d17b5911115a'),
+	(62,59,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Hello World',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-07 12:25:19','2018-03-07 12:25:19','9bda58ea-2651-4029-b4a3-5338378617a1'),
+	(65,63,'de','Reset: Margin Top',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-18 21:45:20','2018-03-18 21:45:20','63c6b996-787c-4151-bc25-6d7a7bce76d5'),
+	(66,63,'en','Reset: Margin Top',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-18 21:45:20','2018-03-18 21:45:20','ac21c364-10aa-480f-8c54-838c76d96e46'),
+	(67,65,'de','Reset: Margin Bottom',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-18 21:45:44','2018-03-18 21:45:44','67a9d041-4b52-415f-b024-71706dfafb2e'),
+	(68,65,'en','Reset: Margin Bottom',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-18 21:45:44','2018-03-18 21:45:44','589b4b1c-593b-4240-84fa-073d8c783078'),
+	(69,67,'de','Reset: Margin Side',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-18 21:46:06','2018-03-18 21:46:06','dae480bd-00ac-407f-a472-327d840a331f'),
+	(70,67,'en','Reset: Margin Side',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-18 21:46:06','2018-03-18 21:46:06','8486db72-cd49-4b97-905e-a6f95814a86f'),
+	(73,71,'de','Reset: Last Margin Bottom',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-18 21:47:21','2018-03-19 16:57:09','aac87028-0d4f-4e07-b67e-49e15dbbe644'),
+	(74,71,'en','Reset: Margin Bottom - Last Child',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-18 21:47:21','2018-03-18 21:47:21','491e861b-0b1a-4a28-9cf0-58c281bbe864'),
+	(75,73,'de','Reset: Padding Top',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-18 21:47:51','2018-03-18 21:47:51','5175d31c-cc33-4fc0-8eab-c4bf3bee0e97'),
+	(76,73,'en','Reset: Padding Top',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-18 21:47:51','2018-03-18 21:47:51','a3b2c5bb-2ab1-462c-860b-3d91f1e67ec8'),
+	(77,75,'de','Reset: Padding Bottom',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-18 21:48:09','2018-03-18 21:48:09','b102417c-2335-4e0c-a2ec-3a19f7df4787'),
+	(78,75,'en','Reset: Padding Bottom',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-18 21:48:09','2018-03-18 21:48:09','ad394ff5-df35-43c7-84f3-c530b80312cf'),
+	(79,77,'de','Reset: Padding Side',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-18 21:48:26','2018-03-18 21:48:26','d8997083-00f7-44eb-93e1-24e03e387c74'),
+	(80,77,'en','Reset: Padding Side',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-18 21:48:26','2018-03-18 21:48:26','244cd7d5-99f6-4df2-9683-f508ecbe100c'),
+	(83,80,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,'',NULL,NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','5e5d9743-179e-437f-96a2-b38d72c83428'),
+	(84,80,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,'',NULL,NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','d51e0a57-9b13-410c-8530-f15d383c9115'),
+	(85,83,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','fe44b129-b224-4837-8903-d9f5fccd859e'),
+	(86,83,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','bb76f2d6-80a6-4343-bb37-34c7f643c199'),
+	(87,85,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Blubb',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','5a3c3a17-871b-4d43-9d42-821968d81f5f'),
+	(88,85,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Blubb',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 10:02:06','2018-03-19 16:41:26','2f4e4342-a376-4930-ac3e-c416258201af'),
+	(89,89,'de','Wrapper: Fullwidth',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 10:45:23','2018-03-19 10:45:23','3248d0a6-84a6-4440-9608-99a0fd0f9397'),
+	(90,89,'en','Wrapper: Fullwidth',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 10:45:23','2018-03-19 10:45:23','0123a2da-c604-4235-a14f-f4d5f4fee18f'),
+	(91,91,'de','Wrapper: Fullbleed',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 10:45:38','2018-04-21 00:34:18','4ac080ed-1a56-4f2f-9d69-69126a363626'),
+	(92,91,'en','Wrapper: Fullbleed',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 10:45:38','2018-03-19 10:45:38','957dcff9-f609-46de-a262-3c59fccf2dca'),
+	(93,93,'de','Wrapper: Spacer Vertical 20px',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 11:14:39','2018-03-19 11:14:49','a4862c00-b603-4739-b709-8f21653eddd8'),
+	(94,93,'en','Wrapper: Spacer Vertical 20px',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 11:14:39','2018-03-19 11:14:39','45ade711-6eec-4892-8584-a08ae0c70cc8'),
+	(95,95,'de','Wrapper: Spacer Horizontal 20px',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 11:15:06','2018-03-19 11:15:06','b97c2e43-6715-415c-9e78-33d58fcb58e7'),
+	(96,95,'en','Wrapper: Spacer Horizontal 20px',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 11:15:06','2018-03-19 11:15:06','b52f82ac-fa5f-47e1-b072-27c6f647bc96'),
+	(97,97,'de','Wrapper: Flexspacer Vertical 1to3',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 11:16:04','2018-03-19 11:16:14','8ed90693-fda6-4eda-bf46-148c29a9fca9'),
+	(98,97,'en','Wrapper: Flexspacer Vertical 1to3',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 11:16:04','2018-03-19 11:16:04','7ea0784d-b9be-4e73-b64e-4d88f2ed077e'),
+	(99,99,'de','Wrapper: Flexspacer Horizontal 1to3',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 11:16:33','2018-03-19 11:16:33','89b20f3f-c270-4be8-aa3d-fd6df3c5a5a6'),
+	(100,99,'en','Wrapper: Flexspacer Horizontal 1to3',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 11:16:33','2018-03-19 11:16:33','540806cf-a1f6-4ffb-98fd-8512886aeb6b'),
+	(101,101,'de','Typo: Scale Flex - 50px to 80px',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 16:23:37','2018-03-19 16:52:45','697566d6-2634-41d1-87ba-ce6f6b3c4409'),
+	(102,101,'en','Typo: Flexscale - 50px to 80px',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 16:23:37','2018-03-19 16:23:37','46d06cea-bd56-4072-ba53-648767465134'),
+	(103,103,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,'<p>Die neue Age Protection Range von LOGONA ist das einzige komplette Pflegesystem natrue-zertifizierter Naturkosmetik. Ein Relaunch von hoher Bedeutung, denn Gesichtspflege-Produkte für die Zielgruppe der LOHAS-Best-ager gehören zu den wichtigsten Wachstumstreibern im Naturkosmetik-Bereich.</p>',NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 16:41:26','2018-03-19 18:20:17','a8dcfd6c-f70f-44b7-95c5-79dbcb2f183f'),
+	(104,103,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,'<p>Die neue Age Protection Range von LOGONA ist das einzige komplette Pflegesystem natrue-zertifizierter Naturkosmetik. Ein Relaunch von hoher Bedeutung, denn Gesichtspflege-Produkte für die Zielgruppe der LOHAS-Best-ager gehören zu den wichtigsten Wachstumstreibern im Naturkosmetik-Bereich.</p>',NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 16:41:26','2018-03-19 16:41:26','15eba812-4467-4564-becd-d247c72fbe09'),
+	(105,105,'de','Typo: Layout - Max Chars 50',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 16:48:46','2018-03-19 16:48:46','a6401abc-ebe2-4ed1-8041-1aa881894cb5'),
+	(106,105,'en','Typo: Layout - Max Chars 50',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 16:48:46','2018-03-19 16:48:46','10d7aa80-a65b-46c0-8621-e8c753c3c611'),
+	(107,107,'de','Typo: Layout - Max Chars 75',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 16:49:24','2018-03-19 16:49:24','99aba943-34a9-40ee-a64c-cb5968c94ebf'),
+	(108,107,'en','Typo: Layout - Max Chars 75',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 16:49:24','2018-03-19 16:49:24','ee11b011-585a-4359-bba9-8469ed4a7dea'),
+	(109,109,'de','Typo: Layout - 2 CSS Columns',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 16:50:51','2018-03-19 16:50:51','3fa9c9e8-1dcf-4d2e-9665-354ef97fca71'),
+	(110,109,'en','Typo: Layout - 2 CSS Columns',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 16:50:51','2018-03-19 16:50:51','3ace3d21-4d32-4085-8099-fdc2571e8aa0'),
+	(111,111,'de','Typo: Layout - Responsive 3 Columns',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 16:51:17','2018-03-19 16:51:17','164fe80f-4583-45a3-bbbd-1da846147a36'),
+	(112,111,'en','Typo: Layout - Responsive 3 Columns',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 16:51:17','2018-03-19 16:51:17','fcd1bd1a-5f47-43a4-b61e-14cede9387e0'),
+	(113,113,'de','Slideoutbox: Style - Simple (Specific)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 16:56:11','2018-03-19 16:56:11','7b3a31b7-bbe9-4b9a-9c8e-5f4a3534c920'),
+	(114,113,'en','Slideoutbox: Style - Simple (Specific)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 16:56:11','2018-03-19 16:56:11','2f1cbda1-28cd-4c7e-b829-7a2abd6e4cfa'),
+	(115,115,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 17:23:15','2018-03-19 18:20:17','b1c920ef-a661-47db-b819-f719995120cf'),
+	(116,115,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-03-19 17:23:15','2018-03-19 17:23:15','bde3fd8e-1b73-43f9-b598-a1016b157263'),
+	(123,125,'de','2to4 Grid [Grid with Flexbox Fallback] (Infinite Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 00:53:00','2018-04-21 10:50:23','725d2429-9081-4ab9-aefd-b04b4f96531a'),
+	(124,125,'en','2to4 Grid [Grid with Flexbox Fallback] (Infinite Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 00:53:00','2018-04-21 10:50:32','6a1ebcb6-8273-41a5-9176-2e90462d7c92'),
+	(129,131,'de','2 Column Grid [Grid] (2 Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 10:14:11','2018-04-21 10:50:53','ce5a34d0-8524-4569-8901-3efc1442aac7'),
+	(130,131,'en','2 Column Grid [Grid] (2 Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 10:14:11','2018-04-21 10:51:03','c120d609-3f59-4ecd-a3e0-b40fe8a8bb07'),
+	(133,134,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,'',NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','4b244527-6495-4119-8c2a-0c21bd561d21'),
+	(134,134,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,'',NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','e10af60e-7639-4678-bb5f-9c880dab2701'),
+	(135,137,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','7fe4cc33-1e76-4fa5-8187-4903b8a2760d'),
+	(136,137,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','cf8c6eb9-2e74-4f99-a7b1-3b432d310983'),
+	(137,139,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Test1',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','38d39487-a25b-4f8e-b459-3462d7d3579a'),
+	(138,139,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Test1',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:18:52','c3ef2c22-8f91-4440-948c-f20c9b0d71f4'),
+	(139,141,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','ca5ecd88-1579-427e-bbad-65b02e42c203'),
+	(140,141,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','5186c6fe-981d-4f99-80df-a1a0c39925e3'),
+	(141,143,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Test2',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:47:51','35ed7497-3855-466a-8567-08ed0a24660f'),
+	(142,143,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Test2',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 10:18:52','2018-04-21 10:18:52','4c766c85-c700-4bc1-9bf9-e237815c81d2'),
+	(143,146,'de','3 Column Grid [Grid] (3 Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 10:36:13','2018-04-21 10:51:22','3cb33568-3bef-422b-a074-a2d9d55df82a'),
+	(144,146,'en','3 Column Grid [Grid] (3 Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 10:36:13','2018-04-21 10:51:28','cdb3f3f0-2c45-483e-bd98-6e7604c036bc'),
+	(145,148,'de','4 Column Grid [Grid] (4 Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 10:38:08','2018-04-21 10:51:44','e166a92a-9bd8-4448-94b7-6daa8a4ee2ce'),
+	(146,148,'en','4 Column Grid [Grid] (4 Boxes)',NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 10:38:08','2018-04-21 10:51:51','0dddaec9-4b15-4bca-a7a1-f323908aaed4'),
+	(147,150,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,NULL,'2018-04-21 10:44:28','2018-04-21 10:47:51','ad82b628-82f8-427e-af55-c032e4a053d0'),
+	(148,150,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,NULL,'2018-04-21 10:44:28','2018-04-21 10:47:51','71266e23-a5ee-4507-8f39-db96fec4be03'),
+	(149,152,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Test3',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 10:44:28','2018-04-21 10:47:51','0ee81bcf-a4da-44c6-b9d9-6dd278a7d0d6'),
+	(150,152,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'Test3',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 10:44:28','2018-04-21 10:44:28','cb87483d-ed59-4ade-a6af-606023f86c84'),
+	(151,154,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,NULL,'2018-04-21 10:47:52','2018-04-21 10:47:52','698538e7-9ff8-461a-b4b2-b129fd2723b3'),
+	(152,154,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,'',NULL,NULL,NULL,'2018-04-21 10:47:52','2018-04-21 10:47:52','37e6ce56-24dd-4236-b142-977e92e1b003'),
+	(153,156,'de',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'test4',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 10:47:52','2018-04-21 10:47:52','187c15ab-5650-4227-82ff-03fc9c9c5141'),
+	(154,156,'en',NULL,NULL,NULL,NULL,NULL,NULL,0,NULL,NULL,NULL,'test4',NULL,NULL,NULL,NULL,NULL,NULL,'--050',NULL,NULL,NULL,NULL,NULL,'2018-04-21 10:47:52','2018-04-21 10:47:52','eb70143a-93ab-4799-8d8a-9339a98b0e4f');
 
 /*!40000 ALTER TABLE `craft_content` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -645,12 +2243,12 @@ LOCK TABLES `craft_elements` WRITE;
 INSERT INTO `craft_elements` (`id`, `type`, `enabled`, `archived`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
 	(1,'User',1,0,'2017-07-04 21:45:00','2017-07-16 14:02:16','c217e49e-c721-4924-9348-928638224692'),
-	(2,'Entry',1,0,'2017-07-04 21:45:04','2018-04-21 07:29:52','e03cba08-abbf-4500-ba9c-502704e48f78'),
+	(2,'Entry',1,0,'2017-07-04 21:45:04','2018-04-29 14:58:43','e03cba08-abbf-4500-ba9c-502704e48f78'),
 	(4,'Entry',1,0,'2017-07-04 22:00:57','2017-07-05 21:33:47','cba1ee13-1a0f-4ba9-aefd-54b2c80a7e55'),
 	(5,'GlobalSet',1,0,'2017-07-04 22:01:04','2017-07-04 22:03:20','708ae318-3f09-49e3-9839-4e530ae511a9'),
 	(6,'GlobalSet',1,0,'2017-07-04 22:01:04','2018-04-21 00:32:38','db06c4ce-1cb8-4c2b-bce8-2402f56b953f'),
 	(7,'Category',1,0,'2017-07-05 20:08:13','2017-07-05 20:08:13','80dfd2d2-abac-4878-a8d5-2c6ced2f8f15'),
-	(10,'SuperTable_Block',1,0,'2017-07-05 21:33:19','2018-04-21 07:29:52','7364e1ea-afed-4617-a0b6-edd67ffa7777'),
+	(10,'SuperTable_Block',1,0,'2017-07-05 21:33:19','2018-04-29 14:58:43','7364e1ea-afed-4617-a0b6-edd67ffa7777'),
 	(11,'Entry',1,0,'2017-07-16 14:05:54','2017-07-16 14:05:54','7021e756-3fd2-46a0-ad2a-ee0309c9d166'),
 	(12,'SuperTable_Block',1,0,'2017-07-16 14:05:54','2017-07-16 14:05:54','d2e32ad1-b529-4c82-a358-bc90967809c8'),
 	(15,'Category',1,0,'2018-03-07 10:37:35','2018-03-19 14:39:20','b232605d-9979-49f8-8e1c-011b11ab7cb2'),
@@ -683,8 +2281,8 @@ VALUES
 	(42,'SuperTable_Block',1,0,'2018-03-07 10:49:04','2018-03-07 11:47:08','18427a6b-0270-4ce0-bbcf-2c9e7878d95a'),
 	(43,'Category',1,0,'2018-03-07 10:49:58','2018-03-07 11:47:15','63989d8f-1f38-4be3-9d33-3229d20fa38e'),
 	(44,'SuperTable_Block',1,0,'2018-03-07 10:49:58','2018-03-07 11:47:15','59d29c77-649b-4f41-a890-984724787d5d'),
-	(59,'Neo_Block',1,0,'2018-03-07 12:25:19','2018-04-21 07:29:52','81d9dee0-b677-496d-8693-6529b5086b19'),
-	(60,'SuperTable_Block',1,0,'2018-03-07 12:25:19','2018-04-21 07:29:52','e248e26e-614f-4333-9412-27cc64a62e61'),
+	(59,'Neo_Block',1,0,'2018-03-07 12:25:19','2018-04-29 14:58:43','81d9dee0-b677-496d-8693-6529b5086b19'),
+	(60,'SuperTable_Block',1,0,'2018-03-07 12:25:19','2018-04-29 14:58:43','e248e26e-614f-4333-9412-27cc64a62e61'),
 	(63,'Category',1,0,'2018-03-18 21:45:20','2018-03-18 21:45:20','d6084571-6c7d-4483-99c8-6a406aa6b53d'),
 	(64,'SuperTable_Block',1,0,'2018-03-18 21:45:20','2018-03-18 21:45:20','3ee2d2b4-5048-41dd-aedd-9f73f3593256'),
 	(65,'Category',1,0,'2018-03-18 21:45:44','2018-03-18 21:45:44','ba7c4214-b337-455a-b734-143c6cc354bc'),
@@ -798,7 +2396,7 @@ LOCK TABLES `craft_elements_i18n` WRITE;
 INSERT INTO `craft_elements_i18n` (`id`, `elementId`, `locale`, `slug`, `uri`, `enabled`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
 	(1,1,'de','',NULL,1,'2017-07-04 21:45:00','2017-07-16 14:02:16','0cb638ff-c30e-4e0f-9e2d-ee6db00d3115'),
-	(2,2,'de','homepage','__home__',1,'2017-07-04 21:45:04','2018-04-21 07:29:52','974d33f2-d7ef-425f-959f-022b86c304c5'),
+	(2,2,'de','homepage','__home__',1,'2017-07-04 21:45:04','2018-04-29 14:58:43','974d33f2-d7ef-425f-959f-022b86c304c5'),
 	(4,4,'de','404','404',1,'2017-07-04 22:00:57','2017-07-05 21:33:48','8e3d67f1-9249-4c1f-a99b-9aa785e2b239'),
 	(5,5,'de','',NULL,1,'2017-07-04 22:01:04','2017-07-04 22:03:20','eab58c53-7331-412e-bdda-86dedb7ee256'),
 	(6,6,'de','',NULL,1,'2017-07-04 22:01:04','2018-04-21 00:32:38','0544ef7d-f059-4c71-a262-f1579e86421f'),
@@ -806,9 +2404,9 @@ VALUES
 	(8,6,'en','',NULL,1,'2017-07-04 22:03:20','2018-04-21 00:32:38','74b24024-1f9e-4726-a798-c6d1254fd0e1'),
 	(9,7,'de','carousel',NULL,1,'2017-07-05 20:08:13','2017-07-05 20:08:15','05195cb8-b220-48de-93e2-517c0f2704a9'),
 	(10,7,'en','carousel',NULL,1,'2017-07-05 20:08:13','2017-07-05 20:08:15','217b24cd-352d-4c01-bf70-c3204ae434b2'),
-	(15,10,'de','',NULL,1,'2017-07-05 21:33:19','2018-04-21 07:29:53','2a645fcf-c92e-46fd-bb98-01bf9fa06b11'),
+	(15,10,'de','',NULL,1,'2017-07-05 21:33:19','2018-04-29 14:58:43','2a645fcf-c92e-46fd-bb98-01bf9fa06b11'),
 	(16,4,'en','404','404',1,'2017-07-05 21:33:48','2017-07-05 21:33:48','7459f1b5-ce3f-454a-9f7f-b1687b2eea15'),
-	(17,2,'en','homepage','__home__',1,'2017-07-05 21:34:43','2018-04-21 07:29:52','3f9118d4-db28-4343-aa89-0908b07ec43f'),
+	(17,2,'en','homepage','__home__',1,'2017-07-05 21:34:43','2018-04-29 14:58:43','3f9118d4-db28-4343-aa89-0908b07ec43f'),
 	(18,11,'de','hello-world','blog/e/hello-world',1,'2017-07-16 14:05:54','2017-07-16 14:05:54','f0544f07-10fc-4eed-98eb-699504007849'),
 	(19,11,'en','hello-world','blog/e/hello-world',1,'2017-07-16 14:05:54','2017-07-16 14:05:54','eef10dc6-05b4-403d-8d21-654b1df146f2'),
 	(20,12,'de','',NULL,1,'2017-07-16 14:05:54','2017-07-16 14:05:54','7049b39a-1368-46e1-9a78-a231b84adab9'),
@@ -873,11 +2471,11 @@ VALUES
 	(83,43,'en','typo-scale-small',NULL,1,'2018-03-07 10:49:58','2018-03-07 11:47:15','35bad4d3-43f2-4566-aa9c-16116873d33f'),
 	(84,44,'de','',NULL,1,'2018-03-07 10:49:58','2018-03-07 11:47:15','0b939afa-5352-4937-b109-3b1aa723f592'),
 	(85,44,'en','',NULL,1,'2018-03-07 10:49:58','2018-03-07 11:47:15','2f745c2b-c5c3-4b38-b554-df8a55304d9a'),
-	(104,10,'en','',NULL,1,'2018-03-07 11:12:23','2018-04-21 07:29:53','3c7adc4e-5055-4552-a1f0-022f1d24c6c4'),
-	(115,59,'de','',NULL,1,'2018-03-07 12:25:19','2018-04-21 07:29:52','01dc4291-d72b-43df-bbfd-8c4f09489e74'),
-	(116,59,'en','',NULL,1,'2018-03-07 12:25:19','2018-04-21 07:29:52','baefea8c-bc4e-463f-be18-2f833920da15'),
-	(117,60,'de','',NULL,1,'2018-03-07 12:25:19','2018-04-21 07:29:52','b41b769a-f90b-4374-b17d-3d3b9c8aea63'),
-	(118,60,'en','',NULL,1,'2018-03-07 12:25:19','2018-04-21 07:29:52','a861ba1a-2af6-4e22-a8b0-c0d507013887'),
+	(104,10,'en','',NULL,1,'2018-03-07 11:12:23','2018-04-29 14:58:43','3c7adc4e-5055-4552-a1f0-022f1d24c6c4'),
+	(115,59,'de','',NULL,1,'2018-03-07 12:25:19','2018-04-29 14:58:43','01dc4291-d72b-43df-bbfd-8c4f09489e74'),
+	(116,59,'en','',NULL,1,'2018-03-07 12:25:19','2018-04-29 14:58:43','baefea8c-bc4e-463f-be18-2f833920da15'),
+	(117,60,'de','',NULL,1,'2018-03-07 12:25:19','2018-04-29 14:58:43','b41b769a-f90b-4374-b17d-3d3b9c8aea63'),
+	(118,60,'en','',NULL,1,'2018-03-07 12:25:19','2018-04-29 14:58:43','a861ba1a-2af6-4e22-a8b0-c0d507013887'),
 	(123,63,'de','reset-margin-top',NULL,1,'2018-03-18 21:45:20','2018-03-18 21:45:21','603335f1-cdcb-47f5-937d-50c26fc25573'),
 	(124,63,'en','reset-margin-top',NULL,1,'2018-03-18 21:45:20','2018-03-18 21:45:21','ae6dc7cb-74ef-487a-9d9e-42017b4d4355'),
 	(125,64,'de','',NULL,1,'2018-03-18 21:45:20','2018-03-18 21:45:20','e42e55f3-5542-4aa6-bdc6-3107a7960db3'),
@@ -1091,7 +2689,7 @@ LOCK TABLES `craft_entries` WRITE;
 
 INSERT INTO `craft_entries` (`id`, `sectionId`, `typeId`, `authorId`, `postDate`, `expiryDate`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(2,1,1,NULL,'2017-07-05 21:34:42',NULL,'2017-07-04 21:45:04','2018-04-21 07:29:53','a32f5949-bfff-425c-86c9-f54c7897194a'),
+	(2,1,1,NULL,'2017-07-05 21:34:42',NULL,'2017-07-04 21:45:04','2018-04-29 14:58:43','a32f5949-bfff-425c-86c9-f54c7897194a'),
 	(4,3,3,NULL,'2017-07-05 21:33:46',NULL,'2017-07-04 22:00:57','2017-07-05 21:33:46','5dcf217a-74d9-4288-bdbf-dfc12a44beb5'),
 	(11,4,4,1,'2017-07-16 14:05:54',NULL,'2017-07-16 14:05:54','2017-07-16 14:05:54','4258708d-2789-49ce-9703-f1f03090fb32');
 
@@ -1206,7 +2804,10 @@ INSERT INTO `craft_entryversions` (`id`, `entryId`, `sectionId`, `creatorId`, `l
 VALUES
 	(4,4,3,1,'de',1,NULL,'{\"typeId\":\"3\",\"authorId\":null,\"title\":\"404\",\"slug\":\"404\",\"postDate\":1499205657,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":[]}','2017-07-04 22:00:57','2017-07-04 22:00:57','080283eb-ec61-454d-a304-325202f800b7'),
 	(6,11,4,1,'de',1,'','{\"typeId\":null,\"authorId\":\"1\",\"title\":\"Hello World\",\"slug\":\"hello-world\",\"postDate\":1500213954,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":{\"1\":\"<p>This is for SEO, OG and RSS Feed Content<\\/p>\",\"29\":\"\",\"30\":\"\",\"152\":\"\",\"42\":\"\",\"46\":{\"new1\":{\"type\":\"10\",\"fields\":{\"fullbleed\":\"\",\"ratio\":\"\"}}},\"124\":{\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoTitleUnparsed\":\"\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"body\",\"seoDescriptionUnparsed\":\"\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoKeywordsUnparsed\":\"\",\"seoImageIdSource\":\"field\",\"seoImageIdSourceField\":\"featuredImage\",\"seoImageId\":\"\",\"seoImageTransform\":\"\",\"twitterCardType\":\"summary_large_image\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageIdSourceField\":\"featuredImage\",\"seoTwitterImageId\":\"\",\"seoTwitterImageTransform\":\"\",\"openGraphType\":\"article\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageIdSourceField\":\"featuredImage\",\"seoFacebookImageId\":\"\",\"seoFacebookImageTransform\":\"\",\"robots\":\"all\"}}}','2017-07-16 14:05:54','2017-07-16 14:05:54','1aba8b7e-3eb9-437b-afa4-64d5062e18e7'),
-	(21,2,1,1,'de',2,'','{\"typeId\":\"1\",\"authorId\":null,\"title\":\"Home\",\"slug\":\"homepage\",\"postDate\":1499290482,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":{\"152\":{\"59\":{\"modified\":\"1\",\"type\":\"objHeadline\",\"enabled\":\"1\",\"collapsed\":\"0\",\"level\":\"0\",\"fields\":{\"objHeadline\":\"Hello World\",\"setHeadline\":{\"60\":{\"type\":\"44\",\"fields\":{\"styleClasses\":\"\",\"addClasses\":\"\",\"semantic\":\"h2\",\"override\":\"default\"}}}}}},\"62\":{\"10\":{\"type\":\"14\",\"fields\":{\"photo\":\"\",\"headline\":\"\",\"linkit\":{\"type\":\"\",\"custom\":\"\",\"entry\":\"\",\"category\":\"\",\"customText\":\"\",\"target\":\"\"}}}},\"124\":{\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoTitleUnparsed\":\"Home\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoDescriptionUnparsed\":\"Home\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoKeywordsUnparsed\":\"\",\"seoImageIdSource\":\"field\",\"seoImageId\":\"\",\"seoImageTransform\":\"\",\"canonicalUrlOverride\":\"\",\"twitterCardType\":\"summary_large_image\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageId\":\"\",\"seoTwitterImageTransform\":\"\",\"openGraphType\":\"article\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageId\":\"\",\"seoFacebookImageTransform\":\"\",\"robots\":\"all\"}}}','2018-04-21 07:29:53','2018-04-21 07:29:53','99fba083-bbdb-4fef-8a6e-be148c773046');
+	(21,2,1,1,'de',2,'','{\"typeId\":\"1\",\"authorId\":null,\"title\":\"Home\",\"slug\":\"homepage\",\"postDate\":1499290482,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":{\"152\":{\"59\":{\"modified\":\"1\",\"type\":\"objHeadline\",\"enabled\":\"1\",\"collapsed\":\"0\",\"level\":\"0\",\"fields\":{\"objHeadline\":\"Hello World\",\"setHeadline\":{\"60\":{\"type\":\"44\",\"fields\":{\"styleClasses\":\"\",\"addClasses\":\"\",\"semantic\":\"h2\",\"override\":\"default\"}}}}}},\"62\":{\"10\":{\"type\":\"14\",\"fields\":{\"photo\":\"\",\"headline\":\"\",\"linkit\":{\"type\":\"\",\"custom\":\"\",\"entry\":\"\",\"category\":\"\",\"customText\":\"\",\"target\":\"\"}}}},\"124\":{\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoTitleUnparsed\":\"Home\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoDescriptionUnparsed\":\"Home\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoKeywordsUnparsed\":\"\",\"seoImageIdSource\":\"field\",\"seoImageId\":\"\",\"seoImageTransform\":\"\",\"canonicalUrlOverride\":\"\",\"twitterCardType\":\"summary_large_image\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageId\":\"\",\"seoTwitterImageTransform\":\"\",\"openGraphType\":\"article\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageId\":\"\",\"seoFacebookImageTransform\":\"\",\"robots\":\"all\"}}}','2018-04-21 07:29:53','2018-04-21 07:29:53','99fba083-bbdb-4fef-8a6e-be148c773046'),
+	(22,2,1,1,'de',2,'','{\"typeId\":\"1\",\"authorId\":null,\"title\":\"Home\",\"slug\":\"homepage\",\"postDate\":1499290482,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":{\"152\":{\"59\":{\"modified\":\"1\",\"type\":\"objHeadline\",\"enabled\":\"1\",\"collapsed\":\"0\",\"level\":\"0\",\"fields\":{\"objHeadline\":\"Hello World\",\"setHeadline\":{\"60\":{\"type\":\"44\",\"fields\":{\"styleClasses\":\"\",\"addClasses\":\"\",\"semantic\":\"h2\",\"override\":\"default\"}}}}},\"new0\":{\"modified\":\"1\",\"type\":\"objImageSlider\",\"enabled\":\"1\",\"collapsed\":\"0\",\"level\":\"0\",\"fields\":{\"objImageSlider\":[\"158\"],\"setImageSlider\":{\"new1\":{\"type\":\"45\",\"fields\":{\"styleClasses\":\"\",\"addClasses\":\"\",\"setup\":\"\",\"ratio\":\"\"}}}}}},\"62\":{\"10\":{\"type\":\"14\",\"fields\":{\"photo\":\"\",\"headline\":\"\",\"linkit\":{\"type\":\"\",\"custom\":\"\",\"entry\":\"\",\"category\":\"\",\"customText\":\"\",\"target\":\"\"}}}},\"124\":{\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoTitleUnparsed\":\"Home\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoDescriptionUnparsed\":\"Home\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoKeywordsUnparsed\":\"\",\"seoImageIdSource\":\"field\",\"seoImageId\":\"\",\"seoImageTransform\":\"\",\"canonicalUrlOverride\":\"\",\"twitterCardType\":\"summary_large_image\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageId\":\"\",\"seoTwitterImageTransform\":\"\",\"openGraphType\":\"article\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageId\":\"\",\"seoFacebookImageTransform\":\"\",\"robots\":\"all\"}}}','2018-04-26 11:48:13','2018-04-26 11:48:13','bb88f0b9-eabd-49eb-ae2d-783bfa272cba'),
+	(23,2,1,1,'de',3,'','{\"typeId\":\"1\",\"authorId\":null,\"title\":\"Home\",\"slug\":\"homepage\",\"postDate\":1499290482,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":{\"152\":{\"59\":{\"modified\":\"1\",\"type\":\"objHeadline\",\"enabled\":\"1\",\"collapsed\":\"0\",\"level\":\"0\",\"fields\":{\"objHeadline\":\"Hello World\",\"setHeadline\":{\"60\":{\"type\":\"44\",\"fields\":{\"styleClasses\":\"\",\"addClasses\":\"\",\"semantic\":\"h2\",\"override\":\"default\"}}}}}},\"62\":{\"10\":{\"type\":\"14\",\"fields\":{\"photo\":\"\",\"headline\":\"\",\"linkit\":{\"type\":\"\",\"custom\":\"\",\"entry\":\"\",\"category\":\"\",\"customText\":\"\",\"target\":\"\"}}}},\"124\":{\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoTitleUnparsed\":\"Home\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoDescriptionUnparsed\":\"Home\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoKeywordsUnparsed\":\"\",\"seoImageIdSource\":\"field\",\"seoImageId\":\"\",\"seoImageTransform\":\"\",\"canonicalUrlOverride\":\"\",\"twitterCardType\":\"summary_large_image\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageId\":\"\",\"seoTwitterImageTransform\":\"\",\"openGraphType\":\"article\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageId\":\"\",\"seoFacebookImageTransform\":\"\",\"robots\":\"all\"}}}','2018-04-29 14:58:33','2018-04-29 14:58:33','a73880d7-26f4-4679-934b-19219700f706'),
+	(24,2,1,1,'de',4,'','{\"typeId\":\"1\",\"authorId\":null,\"title\":\"Home\",\"slug\":\"homepage\",\"postDate\":1499290482,\"expiryDate\":null,\"enabled\":1,\"parentId\":null,\"fields\":{\"152\":{\"59\":{\"modified\":\"1\",\"type\":\"objHeadline\",\"enabled\":\"1\",\"collapsed\":\"0\",\"level\":\"0\",\"fields\":{\"objHeadline\":\"Hello World\",\"setHeadline\":{\"60\":{\"type\":\"44\",\"fields\":{\"styleClasses\":\"\",\"addClasses\":\"\",\"semantic\":\"h2\",\"override\":\"default\"}}}}}},\"62\":{\"10\":{\"type\":\"14\",\"fields\":{\"photo\":\"\",\"headline\":\"\",\"linkit\":{\"type\":\"\",\"custom\":\"\",\"entry\":\"\",\"category\":\"\",\"customText\":\"\",\"target\":\"\"}}}},\"124\":{\"seoMainEntityCategory\":\"CreativeWork\",\"seoMainEntityOfPage\":\"Article\",\"seoTitleSource\":\"field\",\"seoTitleSourceField\":\"title\",\"seoTitleUnparsed\":\"Home\",\"seoDescriptionSource\":\"field\",\"seoDescriptionSourceField\":\"title\",\"seoDescriptionUnparsed\":\"Home\",\"seoKeywordsSource\":\"custom\",\"seoKeywordsSourceField\":\"title\",\"seoKeywordsUnparsed\":\"\",\"seoImageIdSource\":\"field\",\"seoImageId\":\"\",\"seoImageTransform\":\"\",\"canonicalUrlOverride\":\"\",\"twitterCardType\":\"summary_large_image\",\"seoTwitterImageIdSource\":\"field\",\"seoTwitterImageId\":\"\",\"seoTwitterImageTransform\":\"\",\"openGraphType\":\"article\",\"seoFacebookImageIdSource\":\"field\",\"seoFacebookImageId\":\"\",\"seoFacebookImageTransform\":\"\",\"robots\":\"all\"}}}','2018-04-29 14:58:43','2018-04-29 14:58:43','4ccc2a4f-6c4e-41af-9551-c2ea24c65146');
 
 /*!40000 ALTER TABLE `craft_entryversions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1376,54 +2977,6 @@ VALUES
 	(596,283,396,276,0,3,'2018-04-21 00:03:53','2018-04-21 00:03:53','4ab5af38-809f-4699-924c-20fe63151953'),
 	(597,283,396,277,0,4,'2018-04-21 00:03:53','2018-04-21 00:03:53','459093d1-0c75-4eae-bb13-558f4f9974d8'),
 	(598,283,396,278,0,5,'2018-04-21 00:03:53','2018-04-21 00:03:53','287ab6d6-4f05-4b49-93c5-5e2dd27a0ae9'),
-	(599,284,397,57,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','917cef48-7e2b-4a3e-84b1-6654215dba5f'),
-	(600,284,398,192,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','ec874c8c-efc2-4d93-bdc6-86ff86cae8b8'),
-	(601,285,399,98,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','f01e72ce-aeba-4503-9477-65ea941c8823'),
-	(602,285,400,216,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','676adfd7-e2f8-4ec4-9cc8-76f9c83c87c1'),
-	(603,286,401,82,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','8ff8c89d-2f75-47cb-b86e-da7886d4793b'),
-	(604,286,402,207,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','70739f13-15f1-4308-a054-e656ae3f3d7c'),
-	(605,287,403,78,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','93bc88f9-ed66-424d-a1f7-82f5cee02657'),
-	(606,287,404,203,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','a7eabdc5-c341-4804-9455-f05d9e260c4c'),
-	(607,288,405,93,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','61d9a199-64ab-4349-a205-099d84527cbf'),
-	(608,288,406,214,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','330103a6-d442-4805-8d8d-1131544e1102'),
-	(609,289,407,86,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','36ce7eb0-960d-43b9-b990-1c282aae7a86'),
-	(610,289,408,210,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','b4f68b21-de63-41c8-9616-8423909d0aa1'),
-	(611,290,409,271,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','58898c6d-1cf1-4c3b-acc0-11e3615680bd'),
-	(612,290,410,273,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','1689fc48-e525-4d8a-a609-6d3e2ef34980'),
-	(613,291,411,33,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','5ab0de81-8ede-4639-9aee-4f163bd35154'),
-	(614,291,412,165,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','a658cafd-dfe2-4afa-bcf6-87d7eb818d47'),
-	(615,292,413,254,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','fe7f9d5c-de81-40fd-b7b2-5dfa96b5bafc'),
-	(616,292,414,257,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','084627f5-0b07-4c54-ac7a-aa5031ce7444'),
-	(617,293,415,261,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','87b4b533-50be-4b2c-9e0b-93668c75c5b8'),
-	(618,293,416,264,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','32b843ef-a4c8-4067-b13e-17e7a6f56910'),
-	(619,294,417,15,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','f42ccebc-dfad-4f7c-bbe8-634c44ae70ed'),
-	(620,294,418,159,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','f4c5fbe6-0579-419b-adb3-120bda879151'),
-	(621,295,419,50,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','b4e6f350-275e-4349-bc77-7d17fe7f879e'),
-	(622,295,420,169,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','099b73a3-676e-4b8c-818f-d713563128cc'),
-	(623,296,421,67,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','389f77fa-4098-45b5-93f3-a5257df8dbe3'),
-	(624,296,422,196,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','e42f604d-11a7-479f-b3b2-a2d02535b7d9'),
-	(625,297,423,25,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','1d8e6c9b-99b7-438e-9a94-43a39f625d2a'),
-	(626,297,424,162,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','cdea3d64-b125-470e-944d-98e77c8135b5'),
-	(627,298,425,9,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','20809717-57cd-4197-8ad2-d2e5914e4fe9'),
-	(628,298,426,155,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','58ba8e32-d97c-4027-a3c7-89500f9baafa'),
-	(629,299,427,125,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','687d201a-6b4d-4dd9-9edc-61fda42958c5'),
-	(630,299,428,228,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','ddbf54e1-1766-436c-bca4-da775bf4c457'),
-	(631,300,429,72,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','e12cad4f-5a26-46e5-87e0-a11014bc8419'),
-	(632,300,430,200,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','a0ba0532-4662-41e7-8b88-d951976aae4b'),
-	(633,301,431,6,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','53d37f4c-b617-4134-a065-d14a64b6650a'),
-	(634,301,432,153,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','d806bdb8-dd1f-4ddd-81ba-337e795b587b'),
-	(635,302,433,66,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','a1035a64-4732-4fa3-9d39-d2878e614301'),
-	(636,303,434,148,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','db859be8-a849-44cf-9f5e-484f5a973c9d'),
-	(637,304,435,260,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','1bdcf014-0b09-4b8c-8dd9-d1624972c552'),
-	(638,305,436,191,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','419df69d-440c-4cf6-82c3-030ccae70731'),
-	(639,305,437,247,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','a94ee775-9a13-47f3-8e16-9b0f82319988'),
-	(640,305,437,173,0,2,'2018-04-21 00:04:43','2018-04-21 00:04:43','a4197d93-7ee8-47b7-ba68-859595f1f3f4'),
-	(641,306,438,180,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','a8177de1-f21e-4d2d-ba9c-792853de0663'),
-	(642,306,439,181,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','ceb326ff-d2fc-43c4-9969-5d22092a0b69'),
-	(643,307,440,4,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','4d7af1ba-40df-4b46-a479-89f166416799'),
-	(644,308,441,3,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','6053ce85-8c58-43e3-ab50-f8a4214d9233'),
-	(645,309,442,150,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','9c1a3172-c04e-4ce1-ab02-21ed9d358a48'),
-	(646,310,443,149,0,1,'2018-04-21 00:04:43','2018-04-21 00:04:43','ea4bb9b8-8e6c-49d9-b049-b11a5e07bca5'),
 	(647,311,444,156,0,1,'2018-04-21 00:05:42','2018-04-21 00:05:42','b4acddbf-bbcd-4982-b8d6-8ae76277d558'),
 	(648,311,444,279,0,2,'2018-04-21 00:05:42','2018-04-21 00:05:42','2e15c5ea-2702-4b4f-936b-354913aad7fc'),
 	(649,311,444,157,0,3,'2018-04-21 00:05:42','2018-04-21 00:05:42','da5c0c62-e382-44a5-bff1-580fe6225903'),
@@ -1438,21 +2991,9 @@ VALUES
 	(658,314,447,282,0,2,'2018-04-21 00:07:16','2018-04-21 00:07:16','1237aec2-6adc-4cbc-9165-25b49811107d'),
 	(659,314,447,167,0,3,'2018-04-21 00:07:16','2018-04-21 00:07:16','862b48c4-51d2-45f2-bfcc-1fd84081ff31'),
 	(660,314,447,168,0,4,'2018-04-21 00:07:16','2018-04-21 00:07:16','956ef800-ca73-44c8-833f-5086a2d47c52'),
-	(661,315,448,174,0,1,'2018-04-21 00:07:52','2018-04-21 00:07:52','9feaccad-36be-40d9-9891-422cc3617d67'),
-	(662,315,448,175,0,2,'2018-04-21 00:07:52','2018-04-21 00:07:52','38225ccb-0711-491a-adba-0de199de47fa'),
-	(663,315,448,176,0,3,'2018-04-21 00:07:52','2018-04-21 00:07:52','c7a6604a-8d80-4e69-8664-aba0837d07bc'),
-	(664,315,448,177,0,4,'2018-04-21 00:07:52','2018-04-21 00:07:52','435d30d0-fd5d-4006-a1a0-c47b4a712178'),
-	(665,315,448,178,0,5,'2018-04-21 00:07:52','2018-04-21 00:07:52','e429c6bf-5f12-4242-ab64-bcde43c4c36c'),
-	(666,315,448,179,0,6,'2018-04-21 00:07:52','2018-04-21 00:07:52','50cc2539-dadc-4b03-a9a2-a74e82d67d9f'),
-	(667,315,448,283,0,7,'2018-04-21 00:07:52','2018-04-21 00:07:52','afcdf98b-5093-4767-9f05-a81262882206'),
 	(668,316,449,182,0,1,'2018-04-21 00:08:14','2018-04-21 00:08:14','1ab5428e-346a-462b-88be-bb647e2a5f63'),
 	(669,316,449,183,0,2,'2018-04-21 00:08:14','2018-04-21 00:08:14','06c0409b-c886-41af-b600-17ead7db9d1e'),
 	(670,316,449,284,0,3,'2018-04-21 00:08:14','2018-04-21 00:08:14','cff7fdec-2406-4f80-8ad0-f22c824f0b37'),
-	(671,317,450,248,0,1,'2018-04-21 00:08:33','2018-04-21 00:08:33','28bb0ac0-4bf8-4fcc-863d-4049e52ffebb'),
-	(672,317,450,249,0,2,'2018-04-21 00:08:33','2018-04-21 00:08:33','9c3a57eb-175c-4c45-bf03-96c154e020c5'),
-	(673,317,450,285,0,3,'2018-04-21 00:08:33','2018-04-21 00:08:33','fd654516-6019-4597-b7e8-d34b872950c9'),
-	(674,317,450,250,0,4,'2018-04-21 00:08:33','2018-04-21 00:08:33','cfa20684-db38-41cf-baf6-55bbabaff049'),
-	(675,317,450,251,0,5,'2018-04-21 00:08:33','2018-04-21 00:08:33','98872669-a43c-4b7f-a85c-72cbd08f9094'),
 	(683,319,452,193,0,1,'2018-04-21 00:13:15','2018-04-21 00:13:15','1c40cf8b-a6c1-4e74-be66-3efe5de960c0'),
 	(684,319,452,287,0,2,'2018-04-21 00:13:15','2018-04-21 00:13:15','ff57ad83-1888-48af-981c-c48a37cb57dc'),
 	(685,319,452,194,0,3,'2018-04-21 00:13:15','2018-04-21 00:13:15','9a74ec73-9ea3-4d1e-b62c-1341a4b5d515'),
@@ -1496,7 +3037,74 @@ VALUES
 	(723,330,463,187,0,4,'2018-04-21 00:53:28','2018-04-21 00:53:28','4d4e06a3-e410-4886-a53b-9d932ae20d9a'),
 	(724,330,463,189,0,5,'2018-04-21 00:53:28','2018-04-21 00:53:28','d256ce72-d99e-4eda-a82d-4550ba580051'),
 	(725,330,463,190,0,6,'2018-04-21 00:53:28','2018-04-21 00:53:28','9e20a483-22de-4d8b-bff8-89bf9faede11'),
-	(726,330,463,185,0,7,'2018-04-21 00:53:28','2018-04-21 00:53:28','6b543397-0a6b-41c5-bdd1-1fe7bad289cc');
+	(726,330,463,185,0,7,'2018-04-21 00:53:28','2018-04-21 00:53:28','6b543397-0a6b-41c5-bdd1-1fe7bad289cc'),
+	(727,331,464,174,0,1,'2018-04-29 12:31:25','2018-04-29 12:31:25','465c5ba9-36bd-4245-a9d4-2c3df3f6f85e'),
+	(728,331,464,175,0,2,'2018-04-29 12:31:25','2018-04-29 12:31:25','018df36a-428c-4a5e-b797-a276eeef7d01'),
+	(729,331,464,176,0,3,'2018-04-29 12:31:25','2018-04-29 12:31:25','eee3f83a-4dcb-4dd2-b522-b087ed53fb29'),
+	(730,331,464,177,0,4,'2018-04-29 12:31:25','2018-04-29 12:31:25','f4d64abe-7bc7-46c2-aed2-ed8dd52d19e3'),
+	(731,331,464,178,0,5,'2018-04-29 12:31:25','2018-04-29 12:31:25','68233474-d219-47ca-807d-bc42195921f4'),
+	(732,331,464,179,0,6,'2018-04-29 12:31:25','2018-04-29 12:31:25','c27e8b5a-fb11-441e-ab35-fff16596bcaa'),
+	(733,331,464,283,0,7,'2018-04-29 12:31:25','2018-04-29 12:31:25','db6c03f5-86ea-4f4b-9a67-9467607a8189'),
+	(734,332,465,299,0,1,'2018-04-29 14:40:40','2018-04-29 14:40:40','52a32186-3ed1-46ae-adcc-994ba837a744'),
+	(735,332,465,300,0,2,'2018-04-29 14:40:40','2018-04-29 14:40:40','3d72e1b2-f689-4629-bf7a-08c0f4b1d101'),
+	(736,332,465,301,0,3,'2018-04-29 14:40:40','2018-04-29 14:40:40','98af23e9-9d2a-4669-8c47-fc20f394e016'),
+	(737,332,465,302,0,4,'2018-04-29 14:40:40','2018-04-29 14:40:40','76a4483b-30e6-4d63-93db-2ee7d21ee1f0'),
+	(738,333,466,248,0,1,'2018-04-29 14:41:01','2018-04-29 14:41:01','05beb805-3276-4ded-81d7-f370f97049df'),
+	(739,333,466,249,0,2,'2018-04-29 14:41:01','2018-04-29 14:41:01','9b258a1e-d9d3-400c-9171-53d8a83cd0cd'),
+	(740,333,466,285,0,3,'2018-04-29 14:41:01','2018-04-29 14:41:01','87f58827-4c4d-4bc5-9ac8-8947227abb4e'),
+	(741,333,466,250,0,4,'2018-04-29 14:41:01','2018-04-29 14:41:01','279e74c0-45e5-4531-89c0-afd252eaee33'),
+	(742,333,466,251,0,5,'2018-04-29 14:41:01','2018-04-29 14:41:01','ec6bad56-5fed-43bc-9b0e-dbaa08fcee88'),
+	(743,334,467,57,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','e24b9383-fd35-4969-beb1-0ead742242e8'),
+	(744,334,468,192,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','4ee43047-ffed-416d-99ca-574d574ffb88'),
+	(745,335,469,98,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','a5f0b251-dd77-4304-b759-ee56ce33c497'),
+	(746,335,470,216,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','0fec12d8-57d4-46b8-ba55-2a1072618e2d'),
+	(747,336,471,82,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','a4cb239b-3bc9-41e6-bc40-01b0552182b6'),
+	(748,336,472,207,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','1f0e1126-f46e-48c6-a914-1ab24b1487bb'),
+	(749,337,473,78,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','2849556e-9716-40f5-be8a-8cc1447cc3ee'),
+	(750,337,474,203,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','d70f30d4-7f9b-472c-939a-2abfd111e5a5'),
+	(751,338,475,93,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','25f82225-00d9-459d-859b-58ae4efffe26'),
+	(752,338,476,214,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','0f452adc-9e20-4f00-ad5b-0dcc8ded6c36'),
+	(753,339,477,86,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','aa66e2e5-c565-4d5e-9c15-a209969552d6'),
+	(754,339,478,210,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','4478b1b0-1dc8-4ca3-b882-412a1da14e34'),
+	(755,340,479,271,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','c63368c8-4932-4138-b740-6eec057d59a9'),
+	(756,340,480,273,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','54d66562-e9d3-4191-8258-cb9cd5c0224e'),
+	(757,341,481,33,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','82746e47-279e-4ab3-8d0b-bfe125ca642a'),
+	(758,341,482,165,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','66ebd580-33cd-486a-8196-979aff2f7d0a'),
+	(759,342,483,254,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','795008d9-3337-42df-84b7-9e3f9a8970e7'),
+	(760,342,484,257,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','9c0aadab-0709-4f61-af4b-f711f20b341b'),
+	(761,343,485,261,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','60818529-014a-4841-ad4a-89719cc4e7f2'),
+	(762,343,486,264,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','fc60bf83-bedb-4cc0-aba7-0282cdcb7a9a'),
+	(763,344,487,15,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','4f9ef93b-fa37-4fdc-ae21-a741a7ec6457'),
+	(764,344,488,159,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','42da0044-d205-4d34-86c6-79d7892164cb'),
+	(765,345,489,50,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','97afe8d7-c715-4281-9336-d627d734e096'),
+	(766,345,490,169,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','4cfb7ad2-db5c-44d0-9231-acc0200e166f'),
+	(767,346,491,67,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','53f82d0b-54f7-45ab-9a3c-e92cd054b159'),
+	(768,346,492,196,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','a2c32a25-30a1-4ae1-aebb-b8aa33eac980'),
+	(769,347,493,25,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','b506988d-beb4-4929-84cb-8b92017fadb4'),
+	(770,347,494,162,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','d9c92fd5-17e0-4746-bdc9-d304d4588d47'),
+	(771,348,495,9,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','9adfdc7b-b723-46f7-a82d-a94677025d13'),
+	(772,348,496,155,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','690b1bd5-33c2-4540-abd4-fff05d3b5d4a'),
+	(773,349,497,125,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','8393f2cc-2715-45b8-9804-4b895aa91250'),
+	(774,349,498,228,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','cf71a455-d1a6-4cad-9c24-1928777e46ea'),
+	(775,350,499,72,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','9d1626f1-0025-452f-a3fd-b6052dcc1d67'),
+	(776,350,500,200,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','f5716429-b1cb-462e-9b5a-430f7d581e2a'),
+	(777,351,501,6,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','7b9fe8bf-15f9-447f-a648-157b7b84e9a7'),
+	(778,351,502,153,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','5eaa9021-1076-46f8-a03b-374ede9a80e5'),
+	(779,352,503,66,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','88542ad3-6f81-4961-b51f-3d94bb06a994'),
+	(780,353,504,148,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','dbad48dc-a4d7-470f-9399-11a21e747a38'),
+	(781,354,505,260,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','faf5204f-07db-4ad2-9f87-5f6f1580b7e0'),
+	(782,355,506,191,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','49c52476-f715-461a-9679-b24ffb3fa34e'),
+	(783,355,507,247,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','5fb44311-297e-4c5f-a58d-ff69651f7d9f'),
+	(784,355,507,173,0,2,'2018-04-29 14:53:37','2018-04-29 14:53:37','ef175b77-1f47-4c0c-8586-f3cfab3a46c9'),
+	(785,356,508,180,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','ee3ba958-7a80-4f0e-9747-0429edc61ab0'),
+	(786,356,509,181,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','e3c1d135-e888-432f-8e8c-5891150c0057'),
+	(787,357,510,4,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','af3dc8d7-5683-47a2-9a38-650d12a997e7'),
+	(788,358,511,3,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','6bf32e16-b2c1-4c21-bb9b-88b780e27f3a'),
+	(789,359,512,150,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','6b03b50c-f37a-4aef-b85e-010f83463890'),
+	(790,360,513,149,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','fcc6858b-3c1d-4336-b1b8-b16d718ebd28'),
+	(791,361,514,297,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','bc469cf4-d83a-4136-9057-affcc47adbfe'),
+	(792,361,515,298,0,1,'2018-04-29 14:53:37','2018-04-29 14:53:37','b3b8192e-1072-4e8d-9577-42dadd17f303'),
+	(793,361,515,173,0,2,'2018-04-29 14:53:37','2018-04-29 14:53:37','94271c55-c223-4f84-9b22-742e393b7141');
 
 /*!40000 ALTER TABLE `craft_fieldlayoutfields` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1562,40 +3170,11 @@ VALUES
 	(281,'Asset','2018-04-20 23:56:44','2018-04-20 23:56:44','3d964f32-3745-4556-acde-dd787c2256fa'),
 	(282,'SuperTable_Block','2018-04-21 00:00:29','2018-04-21 00:00:29','18c98ba3-91fd-49fe-8f75-207bdb850edd'),
 	(283,'SuperTable_Block','2018-04-21 00:03:53','2018-04-21 00:03:53','b9ecb8c7-9ad5-4f31-84d8-fe28c517a766'),
-	(284,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','7d968d3f-f1a7-4468-a9c0-ba8ecf7fb77c'),
-	(285,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','d87706ef-05db-4057-a85b-3f13e8f9eaca'),
-	(286,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','a88c59d5-6dd1-474f-8b50-1bad0a4b953e'),
-	(287,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','5614ab8d-4a72-48e2-9a8f-d4e30f39e2ee'),
-	(288,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','fc86db0d-a115-4d2e-8b16-85d8ec02bbc3'),
-	(289,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','527d428f-731d-436b-8b00-1d51d6395a76'),
-	(290,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','aee621ea-8601-4794-943d-e576123e4398'),
-	(291,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','79980a8b-c49a-4c21-8fec-2ddfb8def47a'),
-	(292,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','aece9d5e-1b12-4635-bd04-468837a15ca3'),
-	(293,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','78fd5b2a-6b53-4759-b428-ea286c8fd71e'),
-	(294,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','c37f757a-cd32-402e-ad9a-0374d8b8869c'),
-	(295,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','60f97ac8-7520-4436-82c3-5accf5518d5e'),
-	(296,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','103b32d1-58aa-4ae8-be42-06d18b859314'),
-	(297,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','61a59312-6a46-4e42-ac30-f16f90c129a4'),
-	(298,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','4aa2c32b-f3b3-4fdb-b952-3c02357da621'),
-	(299,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','43a7f0da-94e2-4523-962e-26d1241c5e2c'),
-	(300,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','4d4727f1-15bd-4cfd-bca5-43ed0e183958'),
-	(301,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','297032ac-709a-4760-9ef7-76b6371ce252'),
-	(302,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','30a3720b-ee6b-4385-b115-e6e14b884e50'),
-	(303,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','d6820595-9f44-4a97-b459-55996cca03a4'),
-	(304,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','70f944a8-bf25-4d23-b051-01f0f32f4128'),
-	(305,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','a46490bf-7104-47e6-a01c-f71c2ccd1e5e'),
-	(306,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','9601e250-3389-493d-95a5-3edfe06d93be'),
-	(307,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','6177f06d-7de0-4aa5-a71a-9f3eccaeb422'),
-	(308,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','e1b9bf72-29d3-4552-b0e0-60aa9441f991'),
-	(309,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','44d524e6-0a19-4a51-96a9-699fbb5f4f1f'),
-	(310,'Neo_Block','2018-04-21 00:04:43','2018-04-21 00:04:43','0e671764-e5ea-457e-a2b0-13f73f9707d5'),
 	(311,'SuperTable_Block','2018-04-21 00:05:42','2018-04-21 00:05:42','4b5c839b-f7da-488f-a713-5c1ea20db9af'),
 	(312,'SuperTable_Block','2018-04-21 00:06:02','2018-04-21 00:06:02','9a8afc60-6acf-49a8-9039-449993288528'),
 	(313,'SuperTable_Block','2018-04-21 00:06:22','2018-04-21 00:06:22','d82418ca-934f-45e3-942f-b455216e74ae'),
 	(314,'SuperTable_Block','2018-04-21 00:07:16','2018-04-21 00:07:16','f16cb87e-f4f0-41ee-9669-cd69da52aa23'),
-	(315,'SuperTable_Block','2018-04-21 00:07:52','2018-04-21 00:07:52','8a3bb373-e5b1-49dc-a457-608943ac264a'),
 	(316,'SuperTable_Block','2018-04-21 00:08:14','2018-04-21 00:08:14','9104edb3-3fcc-40a1-8823-6bfd6c1887eb'),
-	(317,'SuperTable_Block','2018-04-21 00:08:33','2018-04-21 00:08:33','0ff176c1-1eac-49c1-8cac-bfeeabbe383c'),
 	(319,'SuperTable_Block','2018-04-21 00:13:15','2018-04-21 00:13:15','03bfc2e8-a744-499a-ae79-cdc2fcc77bc7'),
 	(320,'SuperTable_Block','2018-04-21 00:13:33','2018-04-21 00:13:33','5093aa0f-00f3-43d5-89fa-58b10b1110cb'),
 	(321,'SuperTable_Block','2018-04-21 00:13:50','2018-04-21 00:13:50','4aae3b08-507f-44bf-90d7-25fa92a28af5'),
@@ -1607,7 +3186,38 @@ VALUES
 	(327,'SuperTable_Block','2018-04-21 00:15:55','2018-04-21 00:15:55','ebceb70a-1cfa-4693-959a-5c1c878e94ea'),
 	(328,'SuperTable_Block','2018-04-21 00:16:07','2018-04-21 00:16:07','da0ad453-d0c4-4fb0-9458-f49e1f339abf'),
 	(329,'GlobalSet','2018-04-21 00:32:38','2018-04-21 00:32:38','3dedd0e2-6e94-4fb3-84e7-02a12fe8bef4'),
-	(330,'SuperTable_Block','2018-04-21 00:53:28','2018-04-21 00:53:28','68b68935-7b5c-49c9-8b53-506cd07fa401');
+	(330,'SuperTable_Block','2018-04-21 00:53:28','2018-04-21 00:53:28','68b68935-7b5c-49c9-8b53-506cd07fa401'),
+	(331,'SuperTable_Block','2018-04-29 12:31:25','2018-04-29 12:31:25','8f37aa3f-8900-42f4-b9dc-d029e6cceec6'),
+	(332,'SuperTable_Block','2018-04-29 14:40:40','2018-04-29 14:40:40','608ed835-8c39-4043-9913-d57fd81f46fa'),
+	(333,'SuperTable_Block','2018-04-29 14:41:01','2018-04-29 14:41:01','ef5b1929-9139-49ee-80f1-835645d6f7ee'),
+	(334,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','e9bb3e4d-c8f3-4b5c-87df-089af904ea7f'),
+	(335,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','c1c98689-e19e-41a8-9a4a-87e2a2baf236'),
+	(336,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','2f362ee1-cb87-403b-bd6c-164b762e2f73'),
+	(337,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','8228f89f-7d64-4cc8-8e77-92f5f9c10bbd'),
+	(338,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','5ae362ea-a345-40c6-a6aa-33a8b636d8f2'),
+	(339,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','c86700ce-5052-4819-823f-f6e0f14b1589'),
+	(340,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','af169786-6537-4b09-8c7a-4af592161ba6'),
+	(341,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','2e4725b3-4eac-4460-bf5a-3543d4aa24fc'),
+	(342,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','2a3e4a58-ebff-4c04-be57-b6a7714212c2'),
+	(343,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','14866859-77e6-47dd-8df2-1bad6b9e09f0'),
+	(344,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','6fb1f4bc-8aaa-44fd-a260-4438dca22a31'),
+	(345,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','677b9129-6db3-4abb-b445-2fa75301bc92'),
+	(346,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','5fe064b5-f5e4-42a9-8c18-299047551274'),
+	(347,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','b2ec868a-9768-4d3e-ba4d-22e7dcaca6f3'),
+	(348,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','fdec71be-5c34-486b-97e2-825e5048016f'),
+	(349,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','275decdd-a9cb-47b0-a686-e3ee56b1f9e6'),
+	(350,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','0f7dfdf5-168a-49d7-aa28-82cc4f8e4556'),
+	(351,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','ace49b64-99f9-4af1-b603-422ba8802902'),
+	(352,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','f260cd0c-153f-470d-8f5e-c0714adb886c'),
+	(353,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','cb56671f-0ea3-4962-b314-650654f90215'),
+	(354,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','b89722e6-0ac8-4c72-8da4-2434ddf5fc09'),
+	(355,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','e1d4d766-c12a-4da0-973f-58a7f64a424a'),
+	(356,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','5b1f0939-4b99-44f2-b877-9e57c6b37ecf'),
+	(357,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','2c765105-12a4-4b17-8f8d-b9e95d659076'),
+	(358,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','54eb04a6-5950-4a30-ac69-651b37a8158c'),
+	(359,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','773d8f22-c43f-4edd-9a15-5f06ba7003fb'),
+	(360,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','541ffd9f-3ff0-4c3f-a097-26d51f0a9b7d'),
+	(361,'Neo_Block','2018-04-29 14:53:37','2018-04-29 14:53:37','11242d23-3506-4d7f-b9c7-ba8f64e0b3ca');
 
 /*!40000 ALTER TABLE `craft_fieldlayouts` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1686,60 +3296,11 @@ VALUES
 	(347,250,'Content',1,'2018-03-19 18:25:46','2018-03-19 18:25:46','3261fd70-89d3-4788-b8ca-f6416b563653'),
 	(395,282,'Content',1,'2018-04-21 00:00:29','2018-04-21 00:00:29','2a1f5c3e-9192-4d6e-a0c5-65e57cff4184'),
 	(396,283,'Content',1,'2018-04-21 00:03:53','2018-04-21 00:03:53','d838923d-94d7-4ace-b82a-f491aaee003d'),
-	(397,284,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','e4d87534-7662-47ec-b87f-cad8ceea1771'),
-	(398,284,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','bffbee4c-9652-4c69-9bd2-a0394091fca0'),
-	(399,285,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','f102a329-fee0-4415-94a6-ad33e3b3a823'),
-	(400,285,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','7256ff94-effb-418c-b4dd-d34dd9cbdc61'),
-	(401,286,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','f2d0d99f-b609-46f8-966b-3aa96a738b8c'),
-	(402,286,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','1ef624df-2d9b-46f9-a3b2-0d8b41ae2360'),
-	(403,287,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','a71dad8d-1e2e-40f0-b6f1-f25bda45c199'),
-	(404,287,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','9d0fb891-3786-43ec-8b23-5e7097f31710'),
-	(405,288,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','91ed09d7-b0f0-4363-a128-083cbe9b7a5a'),
-	(406,288,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','c0ccc309-f64d-4a56-92cd-4bdbaf05bb0b'),
-	(407,289,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','fea4bf4d-1381-400a-9fa7-9a5a18a27db3'),
-	(408,289,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','2844d770-2bb6-4031-90ec-2e850ec41c6c'),
-	(409,290,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','65e39de8-3f2b-4a24-b6c7-eb79d0141e50'),
-	(410,290,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','c4d8c84f-578a-48ed-b5de-716c31575be8'),
-	(411,291,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','332d3abc-22ed-4b7f-a9d1-b660ea183752'),
-	(412,291,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','03851d35-ae2e-41fd-9e84-ffa63c1afee4'),
-	(413,292,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','e9ab761d-07ad-4f7e-8118-c4aa38cbbc62'),
-	(414,292,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','d4dda868-7f11-4d76-9f62-f0ca3a337db6'),
-	(415,293,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','7ab86fb1-8732-40be-af00-66bbfab6dad3'),
-	(416,293,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','476b8faf-9126-4da3-a1b4-917c83bc6199'),
-	(417,294,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','5ba59f3e-40ba-4272-8d80-032b7abf9548'),
-	(418,294,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','08169e55-6248-40b8-b7ed-2c2bd3edb442'),
-	(419,295,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','e3f99a25-6dc9-4d69-a5c0-e9c7cd92718c'),
-	(420,295,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','23bafb8b-8a56-4c70-88f8-e9312872831b'),
-	(421,296,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','76b31fd0-86d0-4000-9cf1-cd478fbd7b74'),
-	(422,296,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','f4c727a2-4b77-4479-9855-805add7390a0'),
-	(423,297,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','7f8199cd-b651-4759-b7f3-5fc6a044fec8'),
-	(424,297,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','5d21a5d7-52e7-4729-a2c3-e9c9babdea56'),
-	(425,298,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','93aa2a9b-f12b-4b98-aa16-272831540b98'),
-	(426,298,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','a4f848f6-791f-4944-94a6-97fa35912570'),
-	(427,299,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','dd5b9df2-4ed0-4ba2-b8c2-291b11cde02c'),
-	(428,299,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','e097929d-88ad-4853-b819-414ef3abbfd0'),
-	(429,300,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','86f3cd83-ae49-4313-82e3-6260102293ac'),
-	(430,300,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','c88641cb-21ce-472e-a60a-694950fb24a9'),
-	(431,301,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','dbec5e94-51a8-4c4d-ac10-ec8f90a3e849'),
-	(432,301,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','0c7b8f3e-7cba-4117-a4b7-194eb0d82bde'),
-	(433,302,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','126e2da0-2aeb-4002-89f2-a8e15891c851'),
-	(434,303,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','09fa2977-21ce-4b77-84a2-c91c20054d1b'),
-	(435,304,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','3ad76f44-0b19-497a-9302-06fc3227ebda'),
-	(436,305,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','cd61bee6-b8f9-4df3-8429-8c2ad8f94d3b'),
-	(437,305,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','0b44f83f-59db-468f-ae51-1c37db686fe2'),
-	(438,306,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','02364fc3-56a9-4688-baa9-049d7f5cdf2d'),
-	(439,306,'Options',2,'2018-04-21 00:04:43','2018-04-21 00:04:43','363d2ac8-86a6-454a-a58a-8cb71edcd113'),
-	(440,307,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','1f297cd3-c652-41a7-bd2b-1f3baaa9cbdb'),
-	(441,308,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','2b66ce00-3c87-4e84-a595-5c6b3213c53a'),
-	(442,309,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','bba41e61-dac7-4bd9-9821-9b1120802c1f'),
-	(443,310,'Main',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','18e8faa5-5711-4deb-a06d-708eb5d05005'),
 	(444,311,'Content',1,'2018-04-21 00:05:42','2018-04-21 00:05:42','776bbf8c-9ea3-49f0-9536-bc23e28b0b7b'),
 	(445,312,'Content',1,'2018-04-21 00:06:02','2018-04-21 00:06:02','395618bf-59e2-4329-88c0-850048936977'),
 	(446,313,'Content',1,'2018-04-21 00:06:22','2018-04-21 00:06:22','2cb34f94-8cb4-440e-b71a-608b93bd9f1f'),
 	(447,314,'Content',1,'2018-04-21 00:07:16','2018-04-21 00:07:16','61c63722-f348-43d1-94a2-8b7fa85d558e'),
-	(448,315,'Content',1,'2018-04-21 00:07:52','2018-04-21 00:07:52','d1822f70-87ae-4431-b1ff-c7f25b2c46eb'),
 	(449,316,'Content',1,'2018-04-21 00:08:14','2018-04-21 00:08:14','832e8869-6e2d-4392-84a7-763818fe5733'),
-	(450,317,'Content',1,'2018-04-21 00:08:33','2018-04-21 00:08:33','0962a7b6-f584-4e94-9e93-71c1fa6ca891'),
 	(452,319,'Content',1,'2018-04-21 00:13:15','2018-04-21 00:13:15','da4599ee-effa-45f7-9027-615f41b98a51'),
 	(453,320,'Content',1,'2018-04-21 00:13:33','2018-04-21 00:13:33','8453161e-b1c2-426d-8a5b-8c10724fe1b9'),
 	(454,321,'Content',1,'2018-04-21 00:13:50','2018-04-21 00:13:50','05e664ac-3f0c-4ef3-89dd-999e08c3e17b'),
@@ -1751,7 +3312,59 @@ VALUES
 	(460,327,'Content',1,'2018-04-21 00:15:55','2018-04-21 00:15:55','7511d8f6-76ef-47d3-8afe-2877b17da144'),
 	(461,328,'Content',1,'2018-04-21 00:16:07','2018-04-21 00:16:07','31eed823-6307-4b46-827a-35425f3b9ec8'),
 	(462,329,'Inhalt',1,'2018-04-21 00:32:38','2018-04-21 00:32:38','71a0cb03-e69f-408c-929d-f3d7a23b9dd4'),
-	(463,330,'Content',1,'2018-04-21 00:53:28','2018-04-21 00:53:28','5c483e06-f75e-4d74-9d7b-f41dd4a2ef23');
+	(463,330,'Content',1,'2018-04-21 00:53:28','2018-04-21 00:53:28','5c483e06-f75e-4d74-9d7b-f41dd4a2ef23'),
+	(464,331,'Content',1,'2018-04-29 12:31:25','2018-04-29 12:31:25','ae9b5441-aaae-404d-9f23-39752c264df0'),
+	(465,332,'Content',1,'2018-04-29 14:40:40','2018-04-29 14:40:40','0271f8f6-d2fc-4a4f-8d78-268df7c7cbc3'),
+	(466,333,'Content',1,'2018-04-29 14:41:01','2018-04-29 14:41:01','800ffca3-74f9-4c11-a6a5-34da9bb651f3'),
+	(467,334,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','baa32113-53b1-4ee1-8e72-15f8ae245dbc'),
+	(468,334,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','d64e3e6a-987f-47ad-b404-29484e1ba836'),
+	(469,335,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','69ccd56b-0978-4488-9ce3-d17226f27059'),
+	(470,335,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','6eafc75d-ee53-44d1-b335-8960efa85b68'),
+	(471,336,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','815c06aa-34cd-4317-840f-ab9d3b510fba'),
+	(472,336,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','5c6f202b-78db-47e1-b04a-4f8d38802c44'),
+	(473,337,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','c11164d7-498f-4f61-9182-e002d084bb43'),
+	(474,337,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','edc79aa9-2752-4b8b-872f-2cc42d0ffbb8'),
+	(475,338,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','b957454d-776f-4a36-b483-9fb276598af8'),
+	(476,338,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','776f787c-c6bd-4cfc-88e6-0e3628f95487'),
+	(477,339,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','31cf7470-efa4-4be2-ad22-996e30f78cf3'),
+	(478,339,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','8a5048ce-270f-4b9c-9036-052c376f162b'),
+	(479,340,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','5b44b544-492e-4df8-9851-2dacfadfe918'),
+	(480,340,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','e0df0c1d-e7b1-4e0f-841f-1f68077be78f'),
+	(481,341,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','54bc704e-da1e-48cf-b85b-9b97825d4b24'),
+	(482,341,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','6802ffe7-e276-45d0-b97a-e47b4bbb3f01'),
+	(483,342,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','eca6a9e0-dae6-47ef-acca-e5a43cd02e80'),
+	(484,342,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','7fff660b-bc88-4a79-9ba0-31e1488a19c8'),
+	(485,343,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','31db10bd-1d9e-43e2-ae47-3dafd8e9a133'),
+	(486,343,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','b73bcd2f-bf9f-4595-b281-ff34578c4f06'),
+	(487,344,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','6a9ee8ac-f3b1-4093-9705-a187714a1eb8'),
+	(488,344,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','673e09da-1ba1-4d6f-9d6b-972fd9581af6'),
+	(489,345,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','8dbdf460-0e0b-4414-a9a5-aa99df2a5cc6'),
+	(490,345,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','aefe5a3c-2707-4c73-be1c-a68bd34fe8df'),
+	(491,346,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','5052a2e1-0411-4bd1-81e3-1f9e67b1dc44'),
+	(492,346,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','6d4f13c1-dd56-4eb8-9676-f9b68a9e3bf2'),
+	(493,347,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','23978021-6809-40d0-b18a-bb4609f78256'),
+	(494,347,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','fee72367-a412-45e3-86d4-eeaad267f8fa'),
+	(495,348,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','7de4fc5e-712c-4dfc-8841-4cca390f691b'),
+	(496,348,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','7ffc3b34-ca0e-401e-8fca-bfe2101438cd'),
+	(497,349,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','8f55216a-d874-41f7-8bac-a2e10d423d41'),
+	(498,349,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','7998a453-54e5-4429-9cdb-a7d129ad99e8'),
+	(499,350,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','2eb0d2ae-79ba-4cae-a053-febe4a6c57a3'),
+	(500,350,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','92c98ff4-e6b2-4f39-9a4c-cc75ae4215e1'),
+	(501,351,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','4caa1ecc-8781-4402-84ea-b88387dfa277'),
+	(502,351,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','496058b0-b701-42c3-8bdd-7f9f9a6b70a6'),
+	(503,352,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','dc0843b0-ae9a-4a2b-a019-fda3cb6adff2'),
+	(504,353,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','19edbf9f-9542-4831-9346-69a8a76e8fd1'),
+	(505,354,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','c248fec3-356f-4ada-a2d7-ec37ed065f12'),
+	(506,355,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','69b02506-2cfb-40d9-9b68-95b4484e24fa'),
+	(507,355,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','46e7a1f1-6863-49cc-bf2c-b8dc381e6ae6'),
+	(508,356,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','d9e7cce7-e668-4b26-8cd6-a843d2e9fe4d'),
+	(509,356,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','67effa84-6161-4233-a3ee-249934581be8'),
+	(510,357,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','f46bc6c0-7658-45bf-9e55-3b850b00089e'),
+	(511,358,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','8d1c8e89-d5b3-42c4-b7c5-c594fe8c5061'),
+	(512,359,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','ecc06985-13d4-4bfc-9ce5-5ff354677833'),
+	(513,360,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','585237e3-e1f7-4c7a-bb10-d014cd1e76f7'),
+	(514,361,'Main',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','c641a14e-01b9-4188-bc74-f4d8ea562e64'),
+	(515,361,'Options',2,'2018-04-29 14:53:37','2018-04-29 14:53:37','29c0ab2f-dd59-4be6-84e4-7239a6281f83');
 
 /*!40000 ALTER TABLE `craft_fieldlayouttabs` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -1852,7 +3465,7 @@ VALUES
 	(148,2,'Spacer','objSpacer','global','Element to expand the distance. A spacer is 20px',0,'Dropdown','{\"options\":[{\"label\":\"0.25 Spacer\",\"value\":\"--025\",\"default\":\"\"},{\"label\":\"0.50 Spacer\",\"value\":\"--050\",\"default\":1},{\"label\":\"0.75 Spacer\",\"value\":\"--075\",\"default\":\"\"},{\"label\":\"1 Spacer\",\"value\":\"--1\",\"default\":\"\"},{\"label\":\"2 Spacer\",\"value\":\"--2\",\"default\":\"\"},{\"label\":\"3 Spacer\",\"value\":\"--3\",\"default\":\"\"},{\"label\":\"4 Spacer\",\"value\":\"--4\",\"default\":\"\"},{\"label\":\"5 Spacer\",\"value\":\"--5\",\"default\":\"\"},{\"label\":\"6 Spacer\",\"value\":\"--6\",\"default\":\"\"},{\"label\":\"7 Spacer\",\"value\":\"--7\",\"default\":\"\"},{\"label\":\"8 Spacer\",\"value\":\"--8\",\"default\":\"\"},{\"label\":\"9 Spacer\",\"value\":\"--9\",\"default\":\"\"},{\"label\":\"10 Spacer\",\"value\":\"--10\",\"default\":\"\"}]}','2017-07-04 22:01:04','2017-07-04 22:01:04','ae6bca75-ac1a-43bc-a940-7f11b80ebaae'),
 	(149,2,'Tab','objTab','global','The individual tab, please enter the title of the tab',1,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2017-07-04 22:01:04','2017-07-05 19:51:34','441a062b-7717-419a-9665-d9cc3c180b91'),
 	(150,2,'Tab Wrapper','objTabWrapper','global','Wrapper of the Tab group',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2017-07-04 22:01:04','2018-03-07 11:22:39','dbb35d0d-a08f-4da8-988d-c8623152a650'),
-	(152,5,'Content Builder','contentBuilder','global','',0,'Neo','{\"maxBlocks\":null}','2017-07-04 22:01:04','2018-04-21 00:04:43','376e2ccb-c620-4eb6-bed2-bfd8726dd46d'),
+	(152,5,'Content Builder','contentBuilder','global','',0,'Neo','{\"maxBlocks\":null}','2017-07-04 22:01:04','2018-04-29 14:53:37','376e2ccb-c620-4eb6-bed2-bfd8726dd46d'),
 	(153,3,'Anchor Options','setAnchor','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-03-07 10:06:03','2018-03-07 10:06:03','c98071c5-0046-4d37-9f3e-b4be09c3c29e'),
 	(154,NULL,'Positionsfix','positionfix','superTableBlockType:35','If the anchor is too high or too low, the position value can be adjusted (higher or lower).',0,'PlainText','{\"placeholder\":\"-10px\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2018-03-07 10:06:03','2018-03-07 10:06:03','065ab94a-a2d4-4aca-a6d0-1a141af90e5f'),
 	(155,3,'Button Options','setButton','global','',0,'SuperTable','{\"columns\":{\"156\":{\"width\":\"\"},\"new1\":{\"width\":\"\"},\"157\":{\"width\":\"\"},\"158\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-03-07 10:06:03','2018-04-21 00:05:42','5370d9f0-abbd-43af-a228-a9bd5035fc0f'),
@@ -1873,13 +3486,13 @@ VALUES
 	(170,NULL,'Layout Typ','layoutType','superTableBlockType:40','Smart for a thumbnail layout in Tumbler Styles (Photogrid), Simple for simple thumbnail matching',0,'Dropdown','{\"options\":[{\"label\":\"Simple\",\"value\":\"simple\",\"default\":\"\"},{\"label\":\"Smart\",\"value\":\"smart\",\"default\":\"\"}]}','2018-03-07 10:06:04','2018-03-07 10:06:04','b5e113ee-4229-4300-b9d5-1afe7e3aa0fe'),
 	(171,NULL,'Ratio','ratio','superTableBlockType:40','Image ratio of the thumbnails for the `simple layout` mode. Format \'1:1\'',0,'PlainText','{\"placeholder\":\"1:1\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2018-03-07 10:06:04','2018-03-07 10:06:04','3053a95c-5a75-4add-be4e-7991ab8d16ec'),
 	(172,NULL,'Width','width','superTableBlockType:40','Thumbnail width for the Simple Layout. Regularly, the width of thumbnails depends on the number of images per row. If this is too big or too small, you can set the width yourself.',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2018-03-07 10:06:04','2018-03-07 10:06:04','2bef6540-6432-40df-83a8-abc949912ae0'),
-	(173,3,'Grid Background','setGridSectionBackground','global','',0,'SuperTable','{\"columns\":{\"174\":{\"width\":\"\"},\"175\":{\"width\":\"\"},\"176\":{\"width\":\"\"},\"177\":{\"width\":\"\"},\"178\":{\"width\":\"\"},\"179\":{\"width\":\"\"},\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-03-07 10:06:04','2018-04-21 00:07:52','f26f5c9b-5ccd-4ed6-905b-a43460bb6ad8'),
-	(174,NULL,'Image','backgroundImage','superTableBlockType:41','',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":\"1\",\"allowedKinds\":[\"image\"],\"targetLocale\":\"\",\"limit\":\"1\",\"viewMode\":\"list\",\"selectionLabel\":\"\"}','2018-03-07 10:06:04','2018-04-21 00:07:52','574fd589-9b6c-41f8-be89-2a263e327046'),
-	(175,NULL,'Ratio','ratio','superTableBlockType:41','Ratio of the background image',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-03-07 10:06:04','2018-04-21 00:07:52','f41da143-9a0e-4464-81b2-c6da5411de02'),
-	(176,NULL,'Position','position','superTableBlockType:41','Background Position of the image (css syntax)',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-03-07 10:06:04','2018-04-21 00:07:52','a91a1c67-6865-4a30-928c-0192786b97fb'),
-	(177,NULL,'Adapt Container','adaptContainer','superTableBlockType:41','Do you want the background container to be as broad as the content container?',0,'Lightswitch','{\"default\":\"\"}','2018-03-07 10:06:04','2018-04-21 00:07:52','76302ff9-7056-4913-945f-b0f1ad0c2dfa'),
-	(178,NULL,'Width','width','superTableBlockType:41','Width of the background image - default always full width',0,'Dropdown','{\"options\":[{\"label\":\"Full\",\"value\":\"default\",\"default\":\"1\"},{\"label\":\"Half left\",\"value\":\"halfLeft\",\"default\":\"\"},{\"label\":\"Half right\",\"value\":\"halfRight\",\"default\":\"\"}]}','2018-03-07 10:06:04','2018-04-21 00:07:52','36d5464e-d1ca-4672-9cec-231bf4d872f0'),
-	(179,NULL,'Style Classes','styleClasses','superTableBlockType:41','',0,'Categories','{\"source\":\"group:4\",\"targetLocale\":\"\",\"limit\":\"\",\"selectionLabel\":\"Use Style\"}','2018-03-07 10:06:04','2018-04-21 00:07:52','4a605884-3248-4eb6-82e8-51667ef2e1f2'),
+	(173,3,'GridWrapper Background','setGridWrapperBackground','global','',0,'SuperTable','{\"columns\":{\"174\":{\"width\":\"\"},\"175\":{\"width\":\"\"},\"176\":{\"width\":\"\"},\"177\":{\"width\":\"\"},\"178\":{\"width\":\"\"},\"179\":{\"width\":\"\"},\"283\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-03-07 10:06:04','2018-04-29 12:31:24','f26f5c9b-5ccd-4ed6-905b-a43460bb6ad8'),
+	(174,NULL,'Image','backgroundImage','superTableBlockType:41','',0,'Assets','{\"useSingleFolder\":\"\",\"sources\":\"*\",\"defaultUploadLocationSource\":\"1\",\"defaultUploadLocationSubpath\":\"\",\"singleUploadLocationSource\":\"1\",\"singleUploadLocationSubpath\":\"\",\"restrictFiles\":\"1\",\"allowedKinds\":[\"image\"],\"targetLocale\":\"\",\"limit\":\"1\",\"viewMode\":\"list\",\"selectionLabel\":\"\"}','2018-03-07 10:06:04','2018-04-29 12:31:25','574fd589-9b6c-41f8-be89-2a263e327046'),
+	(175,NULL,'Ratio','ratio','superTableBlockType:41','Ratio of the background image',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-03-07 10:06:04','2018-04-29 12:31:25','f41da143-9a0e-4464-81b2-c6da5411de02'),
+	(176,NULL,'Position','position','superTableBlockType:41','Background Position of the image (css syntax)',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-03-07 10:06:04','2018-04-29 12:31:25','a91a1c67-6865-4a30-928c-0192786b97fb'),
+	(177,NULL,'Adapt Container','adaptContainer','superTableBlockType:41','Do you want the background container to be as broad as the content container?',0,'Lightswitch','{\"default\":\"\"}','2018-03-07 10:06:04','2018-04-29 12:31:25','76302ff9-7056-4913-945f-b0f1ad0c2dfa'),
+	(178,NULL,'Width','width','superTableBlockType:41','Width of the background image - default always full width',0,'Dropdown','{\"options\":[{\"label\":\"Full\",\"value\":\"default\",\"default\":\"1\"},{\"label\":\"Half left\",\"value\":\"halfLeft\",\"default\":\"\"},{\"label\":\"Half right\",\"value\":\"halfRight\",\"default\":\"\"}]}','2018-03-07 10:06:04','2018-04-29 12:31:25','36d5464e-d1ca-4672-9cec-231bf4d872f0'),
+	(179,NULL,'Style Classes','styleClasses','superTableBlockType:41','',0,'Categories','{\"source\":\"group:4\",\"targetLocale\":\"\",\"limit\":\"\",\"selectionLabel\":\"Use Style\"}','2018-03-07 10:06:04','2018-04-29 12:31:25','4a605884-3248-4eb6-82e8-51667ef2e1f2'),
 	(180,2,'Grid Box','objGridBox','global','',0,'SuperTable_Label','{\"value\":\"\"}','2018-03-07 10:06:04','2018-03-07 10:06:04','85866c08-a207-4365-ad17-b9ba5062be69'),
 	(181,3,'Grid Box Options','setGridBoxOptions','global','',0,'SuperTable','{\"columns\":{\"182\":{\"width\":\"200px\"},\"183\":{\"width\":\"\"},\"new1\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-03-07 10:06:04','2018-04-21 00:08:14','7c36aae4-8e79-4168-8c88-df826a8a24f9'),
 	(182,NULL,'Box Name','boxName','superTableBlockType:42','Add the box name, either the area name or the class\'s child name.',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-03-07 10:06:04','2018-04-21 00:08:14','4ef23c79-b822-4dbe-9cd1-6ad6596be53a'),
@@ -1947,11 +3560,11 @@ VALUES
 	(244,4,'Style Classes','styleClasses','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-03-07 10:06:06','2018-03-07 10:06:06','e3d58961-3ba1-4bd2-8e5f-7c9ab1f11667'),
 	(245,NULL,'Classname','classname','superTableBlockType:58','Without a Dot',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":4}','2018-03-07 10:06:07','2018-03-07 10:06:07','200237a4-5fd3-408f-aa7d-234cc014057a'),
 	(246,NULL,'Description','description','superTableBlockType:58','',0,'Doxter','{\"enableSoftTabs\":1,\"tabSize\":2,\"rows\":3,\"toolbarPlacement\":\"bottom\"}','2018-03-07 10:06:07','2018-03-07 10:06:07','6e5c4cd7-7834-4e6a-a6f9-019da89f35d3'),
-	(247,3,'Grid Options','setGridOptions','global','',0,'SuperTable','{\"columns\":{\"248\":{\"width\":\"\"},\"249\":{\"width\":\"\"},\"new1\":{\"width\":\"\"},\"250\":{\"width\":\"\"},\"251\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-03-07 10:14:44','2018-04-21 00:08:32','b9eaf0d6-75ae-4f50-8472-7c75c02e017d'),
-	(248,NULL,'Anchor','anchor','superTableBlockType:59','Name of the optional jump anchor',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-03-07 10:14:44','2018-04-21 00:08:33','50663571-900a-4315-b3e3-b62786addaee'),
-	(249,NULL,'Styling','styleClasses','superTableBlockType:59','Here you can select additional styling classes.',0,'Categories','{\"source\":\"group:4\",\"targetLocale\":\"\",\"limit\":\"\",\"selectionLabel\":\"Use Style\"}','2018-03-07 10:14:44','2018-04-21 00:08:33','527e40ac-39e6-4996-8120-74f3842496cd'),
-	(250,NULL,'Setup Choice ','setupChoice','superTableBlockType:59','Select one of the existing grid setups',0,'Categories','{\"source\":\"group:3\",\"targetLocale\":\"\",\"limit\":\"1\",\"selectionLabel\":\"Select Setup\"}','2018-03-07 10:14:44','2018-04-21 00:08:33','e22a7238-145f-4f4b-b8ee-dd402af5793a'),
-	(251,NULL,'Inner Container','innerContainer','superTableBlockType:59','Inside the wrapper another container will be inserted which will contain the grid. You can determine how wide this container will be.',0,'Lj_DynamicFields_Dropdown','{\"json\":\"{ \\\"value\\\":\\\"default\\\" , \\\"label\\\":\\\"Page width\\\", \\\"default\\\":true },\\r\\n{ \\\"value\\\":\\\"full\\\" , \\\"label\\\":\\\"Full wrapper width\\\" },\\r\\n{ \\\"value\\\":\\\"bigger-25\\\" , \\\"label\\\":\\\"25% over page width\\\" },\\r\\n{ \\\"value\\\":\\\"bigger-45\\\" , \\\"label\\\":\\\"45% over page width\\\" },\\r\\n{ \\\"value\\\":\\\"smaller-25\\\" , \\\"label\\\":\\\"25% less than side width\\\" },\\r\\n{ \\\"value\\\":\\\"smaller-50\\\" , \\\"label\\\":\\\"50% less than side width\\\" }\"}','2018-03-07 10:14:44','2018-04-21 00:08:33','cbd2fbb4-dc70-458e-a38f-11dada18bf67'),
+	(247,3,'Grid Options','setGridOptions','global','',0,'SuperTable','{\"columns\":{\"248\":{\"width\":\"\"},\"249\":{\"width\":\"\"},\"285\":{\"width\":\"\"},\"250\":{\"width\":\"\"},\"251\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-03-07 10:14:44','2018-04-29 14:41:01','b9eaf0d6-75ae-4f50-8472-7c75c02e017d'),
+	(248,NULL,'Anchor','anchor','superTableBlockType:59','Name of the optional jump anchor',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-03-07 10:14:44','2018-04-29 14:41:01','50663571-900a-4315-b3e3-b62786addaee'),
+	(249,NULL,'Styling','styleClasses','superTableBlockType:59','Here you can select additional styling classes.',0,'Categories','{\"source\":\"group:4\",\"targetLocale\":\"\",\"limit\":\"\",\"selectionLabel\":\"Use Style\"}','2018-03-07 10:14:44','2018-04-29 14:41:01','527e40ac-39e6-4996-8120-74f3842496cd'),
+	(250,NULL,'Setup Choice ','setupChoice','superTableBlockType:59','Select one of the existing grid setups',0,'Categories','{\"source\":\"group:3\",\"targetLocale\":\"\",\"limit\":\"1\",\"selectionLabel\":\"Select Setup\"}','2018-03-07 10:14:44','2018-04-29 14:41:01','e22a7238-145f-4f4b-b8ee-dd402af5793a'),
+	(251,NULL,'Inner Container','innerContainer','superTableBlockType:59','Inside the wrapper another container will be inserted which will contain the grid. You can determine how wide this container will be.',0,'Lj_DynamicFields_Dropdown','{\"json\":\"{ \\\"value\\\":\\\"default\\\" , \\\"label\\\":\\\"Page width\\\", \\\"default\\\":true },\\r\\n{ \\\"value\\\":\\\"full\\\" , \\\"label\\\":\\\"Full wrapper width\\\" },\\r\\n{ \\\"value\\\":\\\"bigger-25\\\" , \\\"label\\\":\\\"25% over page width\\\" },\\r\\n{ \\\"value\\\":\\\"bigger-45\\\" , \\\"label\\\":\\\"45% over page width\\\" },\\r\\n{ \\\"value\\\":\\\"smaller-25\\\" , \\\"label\\\":\\\"25% less than side width\\\" },\\r\\n{ \\\"value\\\":\\\"smaller-50\\\" , \\\"label\\\":\\\"50% less than side width\\\" }\"}','2018-03-07 10:14:44','2018-04-29 14:41:01','cbd2fbb4-dc70-458e-a38f-11dada18bf67'),
 	(252,NULL,'Styling','styleClasses','superTableBlockType:1','',0,'Categories','{\"source\":\"group:4\",\"targetLocale\":\"\",\"limit\":\"\",\"selectionLabel\":\"Use Style\"}','2018-03-07 11:22:00','2018-03-07 11:22:00','99465789-57ca-49c6-b165-0c5d6a31cb3f'),
 	(253,NULL,'Styling','styleClasses','superTableBlockType:34','',0,'Categories','{\"source\":\"group:4\",\"targetLocale\":\"\",\"limit\":\"\",\"selectionLabel\":\"Use Style\"}','2018-03-07 11:22:39','2018-03-07 11:22:39','25f795eb-4b39-410f-ba46-9252ec7b4bed'),
 	(254,2,'Inline SVG','objInlineSvg','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"}},\"fieldLayout\":\"row\",\"staticField\":1,\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-03-17 15:01:03','2018-03-17 15:01:03','e34c6a19-3773-4e6b-b1e1-6827981d4e4a'),
@@ -1983,9 +3596,9 @@ VALUES
 	(280,NULL,'Add Classes','addClasses','superTableBlockType:37','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:06:02','2018-04-21 00:06:02','58759fe6-5bc9-42e8-b904-4886252e4da8'),
 	(281,NULL,'Add Classes','addClasses','superTableBlockType:38','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:06:22','2018-04-21 00:06:22','4b78abab-baca-4c30-a3a5-3fa15267866f'),
 	(282,NULL,'Add Classes','addClasses','superTableBlockType:39','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:07:16','2018-04-21 00:07:16','ee439bb8-f21e-46dc-ada1-0cff5b73a8d6'),
-	(283,NULL,'Add Classes','addClasses','superTableBlockType:41','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:07:52','2018-04-21 00:07:52','8447e7f1-1815-4190-87ff-7970a9e8c24c'),
+	(283,NULL,'Add Classes','addClasses','superTableBlockType:41','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:07:52','2018-04-29 12:31:25','8447e7f1-1815-4190-87ff-7970a9e8c24c'),
 	(284,NULL,'Add Classes','addClasses','superTableBlockType:42','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:08:14','2018-04-21 00:08:14','0e7bafe1-611b-433f-aaf5-6db0780bfaee'),
-	(285,NULL,'Add Classes','addClasses','superTableBlockType:59','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:08:33','2018-04-21 00:08:33','e0a10787-0a89-47fb-8741-8ec50ee645de'),
+	(285,NULL,'Add Classes','addClasses','superTableBlockType:59','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:08:33','2018-04-29 14:41:01','e0a10787-0a89-47fb-8741-8ec50ee645de'),
 	(286,NULL,'Grid Type','gridType','superTableBlockType:43','',0,'Lj_DynamicFields_RadioButtons','{\"json\":\"{ \\\"value\\\":\\\"cssgrid\\\" , \\\"label\\\":\\\"CSS Grid\\\" , \\\"default\\\":true },\\r\\n{ \\\"value\\\":\\\"flexbox\\\" , \\\"label\\\":\\\"Flexbox\\\" }\"}','2018-04-21 00:12:50','2018-04-21 00:53:28','53d9db76-5008-4ced-b2d5-5b43a2a0ec63'),
 	(287,NULL,'Add Classes','addClasses','superTableBlockType:44','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:13:15','2018-04-21 00:13:15','9f602846-d9bc-4649-9aa8-6c9125d8796e'),
 	(288,NULL,'Add Classes','addClasses','superTableBlockType:45','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:13:33','2018-04-21 00:13:33','64326631-0088-41f7-b0a7-a89a432d06eb'),
@@ -1996,7 +3609,13 @@ VALUES
 	(293,NULL,'Add Classes','addClasses','superTableBlockType:48','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:15:07','2018-04-21 00:15:07','c4328b60-4d68-4e2a-a902-db8703f6694f'),
 	(294,NULL,'Add Classes','addClasses','superTableBlockType:49','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:15:40','2018-04-21 00:15:40','ea2a088f-23d6-4332-bf36-890df50b73ae'),
 	(295,NULL,'Add Classes','addClasses','superTableBlockType:50','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:15:55','2018-04-21 00:15:55','48f41994-f03a-4179-9079-d1c3c8b4b78d'),
-	(296,NULL,'Add Classes','addClasses','superTableBlockType:51','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:16:07','2018-04-21 00:16:07','a35d9fff-d086-4492-b5a1-3136d307734e');
+	(296,NULL,'Add Classes','addClasses','superTableBlockType:51','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-21 00:16:07','2018-04-21 00:16:07','a35d9fff-d086-4492-b5a1-3136d307734e'),
+	(297,2,'Wrapper','objWrapper','global','',0,'SuperTable_Label','{\"value\":\"\"}','2018-04-29 12:30:47','2018-04-29 12:31:45','7c6f1e43-8df0-4606-a064-6c144f78054e'),
+	(298,3,'Wrapper Options','setWrapperOptions','global','',0,'SuperTable','{\"columns\":{\"new1\":{\"width\":\"\"},\"new2\":{\"width\":\"\"},\"new3\":{\"width\":\"\"},\"new4\":{\"width\":\"\"}},\"fieldLayout\":\"table\",\"staticField\":\"1\",\"selectionLabel\":\"Zeile hinzuf\\u00fcgen\",\"maxRows\":null,\"minRows\":null}','2018-04-29 14:40:40','2018-04-29 14:40:40','3852c2ee-6e8b-4dde-8f57-4a41bc7e2645'),
+	(299,NULL,'Anchor','anchor','superTableBlockType:66','Name of the optional jump anchor',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-29 14:40:40','2018-04-29 14:40:40','0d0324af-941e-4634-b11f-bc7e31101c0f'),
+	(300,NULL,'Styling','styleClasses','superTableBlockType:66','Here you can select additional styling classes.',0,'Categories','{\"source\":\"group:4\",\"targetLocale\":\"\",\"limit\":\"\",\"selectionLabel\":\"\"}','2018-04-29 14:40:40','2018-04-29 14:40:40','7f2122d0-59fe-4378-802d-af611835f2b9'),
+	(301,NULL,'Add Classes','addClasses','superTableBlockType:66','You can also adding classes in this field, without Dotnotation',0,'PlainText','{\"placeholder\":\"\",\"maxLength\":\"\",\"multiline\":\"\",\"initialRows\":\"4\"}','2018-04-29 14:40:40','2018-04-29 14:40:40','54504d84-e663-4333-804c-935b2dd15962'),
+	(302,NULL,'Inner Container','innerContainer','superTableBlockType:66','Inside the wrapper another container will be inserted which will contain the grid. You can determine how wide this container will be.',0,'Lj_DynamicFields_Dropdown','{\"json\":\"{ \\\"value\\\":\\\"default\\\" , \\\"label\\\":\\\"Page width\\\", \\\"default\\\":true },\\r\\n{ \\\"value\\\":\\\"full\\\" , \\\"label\\\":\\\"Full wrapper width\\\" },\\r\\n{ \\\"value\\\":\\\"bigger-25\\\" , \\\"label\\\":\\\"25% over page width\\\" },\\r\\n{ \\\"value\\\":\\\"bigger-45\\\" , \\\"label\\\":\\\"45% over page width\\\" },\\r\\n{ \\\"value\\\":\\\"smaller-25\\\" , \\\"label\\\":\\\"25% less than side width\\\" },\\r\\n{ \\\"value\\\":\\\"smaller-50\\\" , \\\"label\\\":\\\"50% less than side width\\\" }\"}','2018-04-29 14:40:40','2018-04-29 14:40:40','bb73e756-ae79-4637-ab55-7fde16593157');
 
 /*!40000 ALTER TABLE `craft_fields` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2291,7 +3910,7 @@ LOCK TABLES `craft_neoblocks` WRITE;
 
 INSERT INTO `craft_neoblocks` (`id`, `ownerId`, `fieldId`, `typeId`, `collapsed`, `ownerLocale`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(59,2,152,1,0,NULL,'2018-03-07 12:25:19','2018-04-21 07:29:52','f8d54909-5167-492f-af0f-79af63fe4a03');
+	(59,2,152,1,0,NULL,'2018-03-07 12:25:19','2018-04-29 14:58:43','f8d54909-5167-492f-af0f-79af63fe4a03');
 
 /*!40000 ALTER TABLE `craft_neoblocks` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2328,7 +3947,7 @@ LOCK TABLES `craft_neoblockstructures` WRITE;
 INSERT INTO `craft_neoblockstructures` (`id`, `structureId`, `ownerId`, `fieldId`, `ownerLocale`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
 	(2,6,11,152,NULL,'2017-07-16 14:05:54','2017-07-16 14:05:54','bbaf9aa4-4c2d-4bb9-97e2-bb037c4da963'),
-	(17,32,2,152,NULL,'2018-04-21 07:29:52','2018-04-21 07:29:52','c7eaf049-0e28-4699-9e05-4a29eb4c2dfe');
+	(20,40,2,152,NULL,'2018-04-29 14:58:43','2018-04-29 14:58:43','5cfed969-38cd-47f6-81d5-a90fd12a03f2');
 
 /*!40000 ALTER TABLE `craft_neoblockstructures` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2367,33 +3986,34 @@ LOCK TABLES `craft_neoblocktypes` WRITE;
 
 INSERT INTO `craft_neoblocktypes` (`id`, `fieldId`, `fieldLayoutId`, `name`, `handle`, `maxBlocks`, `maxChildBlocks`, `childBlocks`, `topLevel`, `sortOrder`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,152,284,'Headline','objHeadline',NULL,NULL,'',1,2,'2017-07-04 22:01:04','2018-04-21 00:04:43','f055bfc6-7e76-45b1-bde8-455d25b450ac'),
-	(2,152,285,'Richtext','objRichtext',NULL,NULL,'',1,3,'2017-07-04 22:01:04','2018-04-21 00:04:43','864e6620-9da7-43de-8bbb-a6a52590de1b'),
-	(3,152,286,'Markdown','objMarkdown',NULL,NULL,'',1,4,'2017-07-04 22:01:04','2018-04-21 00:04:43','b90d13dd-249d-40a6-ae80-41fb5cf10c4c'),
-	(4,152,287,'Liste','objList',NULL,NULL,'',1,5,'2017-07-04 22:01:04','2018-04-21 00:04:43','624a6762-32cd-46ff-8d6e-5c3f70336598'),
-	(5,152,288,'Zitat','objQuote',NULL,NULL,'',1,6,'2017-07-04 22:01:04','2018-04-21 00:04:43','9f474bf6-d89c-40aa-826f-c3d9062cee86'),
-	(6,152,289,'Media Image','objMediaImage',NULL,NULL,'',1,8,'2017-07-04 22:01:04','2018-04-21 00:04:43','649e5448-3894-4d87-8879-2514de51db39'),
-	(7,152,291,'Embed Content','objEmbedContent',NULL,NULL,'',1,10,'2017-07-04 22:01:04','2018-04-21 00:04:43','8fa6355a-5091-4a6f-bd58-36428f8f8acf'),
-	(8,152,294,'Card','objCard',NULL,NULL,'',1,13,'2017-07-04 22:01:04','2018-04-21 00:04:43','ba30a8cd-ee6d-449a-9cdc-f42a48a6f8f6'),
-	(9,152,295,'Galerie','objGallery',NULL,NULL,'',1,14,'2017-07-04 22:01:04','2018-04-21 00:04:43','c1247b4d-e62f-4137-abe8-67b4db67ba30'),
-	(10,152,296,'Image Slider','objImageSlider',NULL,NULL,'',1,15,'2017-07-04 22:01:04','2018-04-21 00:04:43','5c002005-57dd-477b-80c8-2b2ccb13787c'),
-	(11,152,297,'Card Slider','objCardSlider',NULL,NULL,'[\"objCard\"]',1,16,'2017-07-04 22:01:04','2018-04-21 00:04:43','2d3d3e22-d66f-4299-be00-38d169fa637b'),
-	(12,152,298,'Button','objButton',NULL,NULL,'',1,18,'2017-07-04 22:01:04','2018-04-21 00:04:43','eba3c8b7-e364-49c6-bdc3-876561d406e6'),
-	(13,152,299,'Slide Out Box','objSlideOutBox',NULL,NULL,'',1,19,'2017-07-04 22:01:04','2018-04-21 00:04:43','68d1330a-0deb-4364-9089-ec7e5c255216'),
-	(14,152,300,'Jumpnavigation','objJumpNavigation',NULL,NULL,'',1,20,'2017-07-04 22:01:04','2018-04-21 00:04:43','2649b185-9815-4617-8333-c922647fcf14'),
-	(15,152,301,'Anker','objAnchor',NULL,NULL,'',1,22,'2017-07-04 22:01:04','2018-04-21 00:04:43','95028e2c-fa1e-4ed6-9a6a-20c6c56d9c57'),
-	(16,152,302,'Trennlinie','objHorizontalRuler',NULL,NULL,'',1,23,'2017-07-04 22:01:04','2018-04-21 00:04:43','e5b8aaf1-9d2d-469b-a9d9-b7fa9d30d39d'),
-	(17,152,303,'Spacer','objSpacer',NULL,NULL,'',1,24,'2017-07-04 22:01:04','2018-04-21 00:04:43','dfd63527-b120-4624-aebb-2bf0410882b8'),
-	(20,152,307,'Accordion Wrapper','objAccordionWrapper',NULL,NULL,'[\"objAccordion\"]',1,29,'2017-07-04 22:01:04','2018-04-21 00:04:43','c4677ae2-9e9a-43f8-86c6-292c6b17b0d9'),
-	(21,152,308,'Accordion','objAccordion',NULL,NULL,'[\"objHeadline\",\"objRichtext\",\"objMarkdown\",\"objList\",\"objQuote\",\"objMediaImage\",\"objVideo\",\"objEmbedContent\",\"objInlineSvg\",\"objInstagram\",\"objCard\",\"objGallery\",\"objImageSlider\",\"objCardSlider\",\"objButton\",\"objSlideOutBox\",\"objJumpNavigation\",\"objAnchor\",\"objHorizontalRuler\",\"objSpacer\",\"objGeneric\"]',0,30,'2017-07-04 22:01:04','2018-04-21 00:04:43','e4de33bc-8df9-4525-8bf9-b5e0a093b403'),
-	(22,152,309,'Tab Wrapper','objTabWrapper',NULL,NULL,'[\"objTab\"]',1,31,'2017-07-04 22:01:04','2018-04-21 00:04:43','7206c647-813b-427a-823f-dec23a58f927'),
-	(23,152,310,'Tab','objTab',NULL,NULL,'[\"objHeadline\",\"objRichtext\",\"objMarkdown\",\"objList\",\"objQuote\",\"objMediaImage\",\"objVideo\",\"objEmbedContent\",\"objInlineSvg\",\"objInstagram\",\"objCard\",\"objGallery\",\"objImageSlider\",\"objCardSlider\",\"objButton\",\"objSlideOutBox\",\"objJumpNavigation\",\"objAnchor\",\"objHorizontalRuler\",\"objSpacer\",\"objGeneric\"]',0,32,'2017-07-04 22:01:04','2018-04-21 00:04:43','09d2f11f-de17-4648-932c-83417b833cd7'),
-	(24,152,305,'Grid Wrapper','objGrid',NULL,NULL,'[\"objGridBox\"]',1,27,'2018-03-07 10:24:37','2018-04-21 00:04:43','83c7c770-daae-4c13-b9b7-93abc7ae91d5'),
-	(25,152,306,'Grid Box','objGridBox',NULL,NULL,'[\"objHeadline\",\"objRichtext\",\"objMarkdown\",\"objList\",\"objQuote\",\"objMediaImage\",\"objVideo\",\"objEmbedContent\",\"objInlineSvg\",\"objInstagram\",\"objCard\",\"objGallery\",\"objImageSlider\",\"objCardSlider\",\"objButton\",\"objSlideOutBox\",\"objJumpNavigation\",\"objAnchor\",\"objHorizontalRuler\",\"objSpacer\",\"objGeneric\",\"objAccordionWrapper\",\"objTabWrapper\"]',0,28,'2018-03-07 10:24:37','2018-04-21 00:04:43','a117efce-01d8-4e85-af91-569d820cd8fd'),
-	(26,152,292,'Inline SVG','objInlineSvg',NULL,NULL,'',1,11,'2018-03-17 15:02:10','2018-04-21 00:04:43','c04c3673-d1f2-480d-aa35-b2731057bf4a'),
-	(27,152,304,'Generic','objGeneric',NULL,NULL,'',1,25,'2018-03-17 15:10:28','2018-04-21 00:04:43','cf723ddd-7f96-4e74-8d55-d0be31238a78'),
-	(28,152,293,'Instagram','objInstagram',NULL,NULL,'',1,12,'2018-03-19 17:21:29','2018-04-21 00:04:43','498e9614-b366-4071-8b71-fcb4c8fb6019'),
-	(29,152,290,'Video','objVideo',NULL,NULL,'',1,9,'2018-04-20 23:53:26','2018-04-21 00:04:43','cb226178-0980-464e-8f35-1c8f7696b65b');
+	(1,152,334,'Headline','objHeadline',NULL,NULL,'',1,2,'2017-07-04 22:01:04','2018-04-29 14:53:37','f055bfc6-7e76-45b1-bde8-455d25b450ac'),
+	(2,152,335,'Richtext','objRichtext',NULL,NULL,'',1,3,'2017-07-04 22:01:04','2018-04-29 14:53:37','864e6620-9da7-43de-8bbb-a6a52590de1b'),
+	(3,152,336,'Markdown','objMarkdown',NULL,NULL,'',1,4,'2017-07-04 22:01:04','2018-04-29 14:53:37','b90d13dd-249d-40a6-ae80-41fb5cf10c4c'),
+	(4,152,337,'Liste','objList',NULL,NULL,'',1,5,'2017-07-04 22:01:04','2018-04-29 14:53:37','624a6762-32cd-46ff-8d6e-5c3f70336598'),
+	(5,152,338,'Zitat','objQuote',NULL,NULL,'',1,6,'2017-07-04 22:01:04','2018-04-29 14:53:37','9f474bf6-d89c-40aa-826f-c3d9062cee86'),
+	(6,152,339,'Media Image','objMediaImage',NULL,NULL,'',1,8,'2017-07-04 22:01:04','2018-04-29 14:53:37','649e5448-3894-4d87-8879-2514de51db39'),
+	(7,152,341,'Embed Content','objEmbedContent',NULL,NULL,'',1,10,'2017-07-04 22:01:04','2018-04-29 14:53:37','8fa6355a-5091-4a6f-bd58-36428f8f8acf'),
+	(8,152,344,'Card','objCard',NULL,NULL,'',1,13,'2017-07-04 22:01:04','2018-04-29 14:53:37','ba30a8cd-ee6d-449a-9cdc-f42a48a6f8f6'),
+	(9,152,345,'Galerie','objGallery',NULL,NULL,'',1,14,'2017-07-04 22:01:04','2018-04-29 14:53:37','c1247b4d-e62f-4137-abe8-67b4db67ba30'),
+	(10,152,346,'Image Slider','objImageSlider',NULL,NULL,'',1,15,'2017-07-04 22:01:04','2018-04-29 14:53:37','5c002005-57dd-477b-80c8-2b2ccb13787c'),
+	(11,152,347,'Card Slider','objCardSlider',NULL,NULL,'[\"objCard\"]',1,16,'2017-07-04 22:01:04','2018-04-29 14:53:37','2d3d3e22-d66f-4299-be00-38d169fa637b'),
+	(12,152,348,'Button','objButton',NULL,NULL,'',1,18,'2017-07-04 22:01:04','2018-04-29 14:53:37','eba3c8b7-e364-49c6-bdc3-876561d406e6'),
+	(13,152,349,'Slide Out Box','objSlideOutBox',NULL,NULL,'',1,19,'2017-07-04 22:01:04','2018-04-29 14:53:37','68d1330a-0deb-4364-9089-ec7e5c255216'),
+	(14,152,350,'Jumpnavigation','objJumpNavigation',NULL,NULL,'',1,20,'2017-07-04 22:01:04','2018-04-29 14:53:37','2649b185-9815-4617-8333-c922647fcf14'),
+	(15,152,351,'Anker','objAnchor',NULL,NULL,'',1,22,'2017-07-04 22:01:04','2018-04-29 14:53:37','95028e2c-fa1e-4ed6-9a6a-20c6c56d9c57'),
+	(16,152,352,'Trennlinie','objHorizontalRuler',NULL,NULL,'',1,23,'2017-07-04 22:01:04','2018-04-29 14:53:37','e5b8aaf1-9d2d-469b-a9d9-b7fa9d30d39d'),
+	(17,152,353,'Spacer','objSpacer',NULL,NULL,'',1,24,'2017-07-04 22:01:04','2018-04-29 14:53:37','dfd63527-b120-4624-aebb-2bf0410882b8'),
+	(20,152,357,'Accordion Wrapper','objAccordionWrapper',NULL,NULL,'[\"objAccordion\"]',1,30,'2017-07-04 22:01:04','2018-04-29 14:53:37','c4677ae2-9e9a-43f8-86c6-292c6b17b0d9'),
+	(21,152,358,'Accordion','objAccordion',NULL,NULL,'[\"objHeadline\",\"objRichtext\",\"objMarkdown\",\"objList\",\"objQuote\",\"objMediaImage\",\"objVideo\",\"objEmbedContent\",\"objInlineSvg\",\"objInstagram\",\"objCard\",\"objGallery\",\"objImageSlider\",\"objCardSlider\",\"objButton\",\"objSlideOutBox\",\"objJumpNavigation\",\"objAnchor\",\"objHorizontalRuler\",\"objSpacer\",\"objGeneric\"]',0,31,'2017-07-04 22:01:04','2018-04-29 14:53:37','e4de33bc-8df9-4525-8bf9-b5e0a093b403'),
+	(22,152,359,'Tab Wrapper','objTabWrapper',NULL,NULL,'[\"objTab\"]',1,32,'2017-07-04 22:01:04','2018-04-29 14:53:37','7206c647-813b-427a-823f-dec23a58f927'),
+	(23,152,360,'Tab','objTab',NULL,NULL,'[\"objHeadline\",\"objRichtext\",\"objMarkdown\",\"objList\",\"objQuote\",\"objMediaImage\",\"objVideo\",\"objEmbedContent\",\"objInlineSvg\",\"objInstagram\",\"objCard\",\"objGallery\",\"objImageSlider\",\"objCardSlider\",\"objButton\",\"objSlideOutBox\",\"objJumpNavigation\",\"objAnchor\",\"objHorizontalRuler\",\"objSpacer\",\"objGeneric\"]',0,33,'2017-07-04 22:01:04','2018-04-29 14:53:37','09d2f11f-de17-4648-932c-83417b833cd7'),
+	(24,152,355,'Grid Wrapper','objGrid',NULL,NULL,'[\"objGridBox\"]',1,28,'2018-03-07 10:24:37','2018-04-29 14:53:37','83c7c770-daae-4c13-b9b7-93abc7ae91d5'),
+	(25,152,356,'Grid Box','objGridBox',NULL,NULL,'[\"objHeadline\",\"objRichtext\",\"objMarkdown\",\"objList\",\"objQuote\",\"objMediaImage\",\"objVideo\",\"objEmbedContent\",\"objInlineSvg\",\"objInstagram\",\"objCard\",\"objGallery\",\"objImageSlider\",\"objCardSlider\",\"objButton\",\"objSlideOutBox\",\"objJumpNavigation\",\"objAnchor\",\"objHorizontalRuler\",\"objSpacer\",\"objGeneric\",\"objAccordionWrapper\",\"objTabWrapper\"]',0,29,'2018-03-07 10:24:37','2018-04-29 14:53:37','a117efce-01d8-4e85-af91-569d820cd8fd'),
+	(26,152,342,'Inline SVG','objInlineSvg',NULL,NULL,'',1,11,'2018-03-17 15:02:10','2018-04-29 14:53:37','c04c3673-d1f2-480d-aa35-b2731057bf4a'),
+	(27,152,354,'Generic','objGeneric',NULL,NULL,'',1,25,'2018-03-17 15:10:28','2018-04-29 14:53:37','cf723ddd-7f96-4e74-8d55-d0be31238a78'),
+	(28,152,343,'Instagram','objInstagram',NULL,NULL,'',1,12,'2018-03-19 17:21:29','2018-04-29 14:53:37','498e9614-b366-4071-8b71-fcb4c8fb6019'),
+	(29,152,340,'Video','objVideo',NULL,NULL,'',1,9,'2018-04-20 23:53:26','2018-04-29 14:53:37','cb226178-0980-464e-8f35-1c8f7696b65b'),
+	(30,152,361,'Wrapper','objWrapper',NULL,NULL,'[\"objHeadline\",\"objRichtext\",\"objMarkdown\",\"objList\",\"objQuote\",\"objMediaImage\",\"objVideo\",\"objEmbedContent\",\"objInlineSvg\",\"objInstagram\",\"objCard\",\"objGallery\",\"objImageSlider\",\"objCardSlider\",\"objButton\",\"objSlideOutBox\",\"objJumpNavigation\",\"objAnchor\",\"objHorizontalRuler\",\"objSpacer\",\"objGeneric\",\"objAccordionWrapper\",\"objTabWrapper\"]',1,27,'2018-04-29 14:53:37','2018-04-29 14:53:37','bf2d76eb-f00c-4e11-aa10-cb7508949b0a');
 
 /*!40000 ALTER TABLE `craft_neoblocktypes` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2422,11 +4042,11 @@ LOCK TABLES `craft_neogroups` WRITE;
 
 INSERT INTO `craft_neogroups` (`id`, `fieldId`, `name`, `sortOrder`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(31,152,'Textmodule',1,'2018-04-21 00:04:43','2018-04-21 00:04:43','49897b47-650e-4479-af86-a6b6d15a1b40'),
-	(32,152,'Mediamodule',7,'2018-04-21 00:04:43','2018-04-21 00:04:43','b319ce55-c7bf-4348-85da-d4d037c60324'),
-	(33,152,'Interaktiv',17,'2018-04-21 00:04:43','2018-04-21 00:04:43','a414ccba-0e91-4ef2-94d7-40527b5f311a'),
-	(34,152,'Layout',21,'2018-04-21 00:04:43','2018-04-21 00:04:43','4672b2cb-13ef-4cae-89ae-a4568179dc51'),
-	(35,152,'Wrapper',26,'2018-04-21 00:04:43','2018-04-21 00:04:43','5155772c-bdb8-49aa-ae3c-ade5daf4b51f');
+	(36,152,'Textmodule',1,'2018-04-29 14:53:37','2018-04-29 14:53:37','af400663-8a36-4340-b5d7-8d05b87101de'),
+	(37,152,'Mediamodule',7,'2018-04-29 14:53:37','2018-04-29 14:53:37','72939737-a0a8-4f95-a020-17e08c858671'),
+	(38,152,'Interaktiv',17,'2018-04-29 14:53:37','2018-04-29 14:53:37','dbc68409-4782-4942-ae5a-ebefb8346499'),
+	(39,152,'Layout',21,'2018-04-29 14:53:37','2018-04-29 14:53:37','c73a2886-0c49-4cfd-ab72-28414ced5c6c'),
+	(40,152,'Wrapper',26,'2018-04-29 14:53:37','2018-04-29 14:53:37','9abd39e6-0a62-46e3-8041-f07f52ce0533');
 
 /*!40000 ALTER TABLE `craft_neogroups` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -2458,26 +4078,26 @@ LOCK TABLES `craft_plugins` WRITE;
 
 INSERT INTO `craft_plugins` (`id`, `class`, `version`, `schemaVersion`, `licenseKey`, `licenseKeyStatus`, `enabled`, `settings`, `installDate`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'VideoEmbedUtility','1.0.0',NULL,NULL,'unknown',1,NULL,'2017-07-04 21:59:41','2017-07-04 21:59:41','2018-04-21 07:33:21','31aff914-5d66-498e-8624-8db638cb587f'),
-	(3,'SuperTable','1.0.6','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 21:59:47','2017-07-04 21:59:47','2018-04-21 07:33:21','e6518585-e7b6-4b4c-9aec-d8e6828f015e'),
-	(4,'Seomatic','1.1.56','1.1.25',NULL,'unknown',1,NULL,'2017-07-04 21:59:51','2017-07-04 21:59:51','2018-04-21 07:33:21','c4962d5a-4ee2-47be-8081-563112f7196a'),
-	(5,'Neo','1.4.1','1.4.1',NULL,'unknown',1,NULL,'2017-07-04 21:59:59','2017-07-04 21:59:59','2018-04-21 07:33:21','8c41f74e-116e-458f-a3ed-9cc0d6f5ca36'),
-	(6,'FruitLinkIt','2.3.1','2.3.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:03','2017-07-04 22:00:03','2018-04-21 07:33:21','504294b1-8dd4-4248-8074-d11406edf511'),
-	(7,'Kint','1.1.0','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:05','2017-07-04 22:00:05','2018-04-21 07:33:21','f2f131a6-6f87-4af9-af71-9c2379379854'),
-	(8,'Imager','1.6.4','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:07','2017-07-04 22:00:07','2018-04-21 07:33:21','5e3e3de6-61e4-403d-88a6-b43453cd9c0d'),
-	(10,'FocalPointField','1.0.2',NULL,NULL,'unknown',1,NULL,'2017-07-04 22:00:10','2017-07-04 22:00:10','2018-04-21 07:33:21','ec35c904-1c8a-4949-8b8e-558f3fe71d26'),
-	(11,'CpSortCols','1.1.2','1.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:11','2017-07-04 22:00:11','2018-04-21 07:33:21','2cd4639c-0835-499e-8bad-2cba17990a53'),
-	(12,'CpFieldLinks','1.2.2','1.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:13','2017-07-04 22:00:13','2018-04-21 07:33:21','c3d42938-cfa6-4fda-9015-7ee0e1ef6028'),
-	(13,'AmCommand','2.2.0','2.0.1',NULL,'unknown',1,NULL,'2017-07-04 22:00:14','2017-07-04 22:00:14','2018-04-21 07:33:21','3f58dc7b-4598-485d-90d0-06d1f8858913'),
-	(14,'AmNav','1.8.0','1.7.4',NULL,'unknown',1,NULL,'2017-07-04 22:00:16','2017-07-04 22:00:16','2018-04-21 07:33:21','97e2ac50-e4f9-4ba4-830c-528e327cbcb3'),
-	(15,'Doxter','1.3.0','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:18','2017-07-04 22:00:18','2018-04-21 07:33:21','ae688b87-4326-4d79-a318-70e2c2341473'),
-	(16,'CacheBuster','1.2.2',NULL,NULL,'unknown',1,NULL,'2017-07-16 10:44:47','2017-07-16 10:44:47','2018-04-21 07:33:21','4a1d2384-a561-4ba4-a3cb-e723bd5463ce'),
-	(17,'Cookies','1.0.4','1.0.0',NULL,'unknown',1,NULL,'2017-07-16 10:44:50','2017-07-16 10:44:50','2018-04-21 07:33:21','16d937e0-3a99-49ad-86c7-5eec44be75a8'),
-	(18,'Lj_DynamicFields','0.6',NULL,NULL,'unknown',1,NULL,'2018-03-07 10:14:12','2018-03-07 10:14:12','2018-04-21 07:33:21','06dd6872-c2fc-4324-8e79-cfaa675f4186'),
-	(20,'MigrationManager','1.0.9.0','1.0.0',NULL,'unknown',1,NULL,'2018-03-07 13:27:31','2018-03-07 13:27:31','2018-04-21 07:33:21','9909151b-63f6-4d8c-bb4f-6ec464252056'),
-	(21,'AceFreely','1.0',NULL,NULL,'unknown',1,NULL,'2018-03-17 14:53:27','2018-03-17 14:53:27','2018-04-21 07:33:21','186624f0-4cce-4170-bc1c-68a0dd1e130f'),
-	(22,'Inlin','1.1',NULL,NULL,'unknown',1,NULL,'2018-03-17 14:53:31','2018-03-17 14:53:31','2018-04-21 07:33:21','54647329-19bf-47a3-a445-cf4a953a564a'),
-	(24,'MnTwigPerversion','1.3.0','1.0.0',NULL,'unknown',1,NULL,'2018-04-06 15:24:44','2018-04-06 15:24:44','2018-04-21 07:33:21','5d68166b-1984-4e48-9694-fa3593c1d798');
+	(1,'VideoEmbedUtility','1.0.0',NULL,NULL,'unknown',1,NULL,'2017-07-04 21:59:41','2017-07-04 21:59:41','2018-04-26 11:47:53','31aff914-5d66-498e-8624-8db638cb587f'),
+	(3,'SuperTable','1.0.6','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 21:59:47','2017-07-04 21:59:47','2018-04-26 11:47:53','e6518585-e7b6-4b4c-9aec-d8e6828f015e'),
+	(4,'Seomatic','1.1.56','1.1.25',NULL,'unknown',1,NULL,'2017-07-04 21:59:51','2017-07-04 21:59:51','2018-04-26 11:47:53','c4962d5a-4ee2-47be-8081-563112f7196a'),
+	(5,'Neo','1.4.1','1.4.1',NULL,'unknown',1,NULL,'2017-07-04 21:59:59','2017-07-04 21:59:59','2018-04-26 11:47:53','8c41f74e-116e-458f-a3ed-9cc0d6f5ca36'),
+	(6,'FruitLinkIt','2.3.1','2.3.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:03','2017-07-04 22:00:03','2018-04-26 11:47:53','504294b1-8dd4-4248-8074-d11406edf511'),
+	(7,'Kint','1.1.0','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:05','2017-07-04 22:00:05','2018-04-26 11:47:53','f2f131a6-6f87-4af9-af71-9c2379379854'),
+	(8,'Imager','1.6.4','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:07','2017-07-04 22:00:07','2018-04-26 11:47:53','5e3e3de6-61e4-403d-88a6-b43453cd9c0d'),
+	(10,'FocalPointField','1.0.2',NULL,NULL,'unknown',1,NULL,'2017-07-04 22:00:10','2017-07-04 22:00:10','2018-04-26 11:47:53','ec35c904-1c8a-4949-8b8e-558f3fe71d26'),
+	(11,'CpSortCols','1.1.2','1.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:11','2017-07-04 22:00:11','2018-04-26 11:47:53','2cd4639c-0835-499e-8bad-2cba17990a53'),
+	(12,'CpFieldLinks','1.2.2','1.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:13','2017-07-04 22:00:13','2018-04-26 11:47:53','c3d42938-cfa6-4fda-9015-7ee0e1ef6028'),
+	(13,'AmCommand','2.2.0','2.0.1',NULL,'unknown',1,NULL,'2017-07-04 22:00:14','2017-07-04 22:00:14','2018-04-26 11:47:53','3f58dc7b-4598-485d-90d0-06d1f8858913'),
+	(14,'AmNav','1.8.0','1.7.4',NULL,'unknown',1,NULL,'2017-07-04 22:00:16','2017-07-04 22:00:16','2018-04-26 11:47:53','97e2ac50-e4f9-4ba4-830c-528e327cbcb3'),
+	(15,'Doxter','1.3.0','1.0.0',NULL,'unknown',1,NULL,'2017-07-04 22:00:18','2017-07-04 22:00:18','2018-04-26 11:47:53','ae688b87-4326-4d79-a318-70e2c2341473'),
+	(16,'CacheBuster','1.2.2',NULL,NULL,'unknown',1,NULL,'2017-07-16 10:44:47','2017-07-16 10:44:47','2018-04-26 11:47:53','4a1d2384-a561-4ba4-a3cb-e723bd5463ce'),
+	(17,'Cookies','1.0.4','1.0.0',NULL,'unknown',1,NULL,'2017-07-16 10:44:50','2017-07-16 10:44:50','2018-04-26 11:47:53','16d937e0-3a99-49ad-86c7-5eec44be75a8'),
+	(18,'Lj_DynamicFields','0.6',NULL,NULL,'unknown',1,NULL,'2018-03-07 10:14:12','2018-03-07 10:14:12','2018-04-26 11:47:53','06dd6872-c2fc-4324-8e79-cfaa675f4186'),
+	(20,'MigrationManager','1.0.9.0','1.0.0',NULL,'unknown',1,NULL,'2018-03-07 13:27:31','2018-03-07 13:27:31','2018-04-26 11:47:53','9909151b-63f6-4d8c-bb4f-6ec464252056'),
+	(21,'AceFreely','1.0',NULL,NULL,'unknown',1,NULL,'2018-03-17 14:53:27','2018-03-17 14:53:27','2018-04-26 11:47:53','186624f0-4cce-4170-bc1c-68a0dd1e130f'),
+	(22,'Inlin','1.1',NULL,NULL,'unknown',1,NULL,'2018-03-17 14:53:31','2018-03-17 14:53:31','2018-04-26 11:47:53','54647329-19bf-47a3-a445-cf4a953a564a'),
+	(24,'MnTwigPerversion','1.3.0','1.0.0',NULL,'unknown',1,NULL,'2018-04-06 15:24:44','2018-04-06 15:24:44','2018-04-26 11:47:53','5d68166b-1984-4e48-9694-fa3593c1d798');
 
 /*!40000 ALTER TABLE `craft_plugins` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -3724,7 +5344,10 @@ VALUES
 	(14,1,'4e196249f165a572d92f97d984abad68208f0862czozMjoiMmxWV3VJQVNIRUxTbjlDVVhWejVYbkxtUW9UODhOc1EiOw==','2018-04-07 10:42:21','2018-04-07 10:42:21','2eeb034e-be7d-4434-ab8d-8fc8dbd662e7'),
 	(15,1,'0103932382a94f7896ff2a122385dc3d629aaffaczozMjoiVlFUTWF0NjNXejl6TUEyeFV4dVZpaGVmYWVubGVVQUMiOw==','2018-04-20 23:33:57','2018-04-20 23:33:57','c6ef9175-2698-40f2-9d83-fac753d59a2d'),
 	(16,1,'1c910f22db93c5b02d3869739f39cb128cea50b8czozMjoiczZLRWM2WDhIeHQxUER5NkwzWU9uZnhUS2JaUU1TUkMiOw==','2018-04-21 07:29:24','2018-04-21 07:29:24','c1212a24-e561-4c29-8aed-accbce780317'),
-	(17,1,'314d33459f83e9c55f9c731739f3ec6f7c3e2fdbczozMjoicjFzWDlrd2s4TnFqM1V6YjlIdjF1SzhuRFBjNTZlbjUiOw==','2018-04-21 10:12:34','2018-04-21 10:12:34','b960c5c7-ed9f-4773-a6c0-057db3dd16d2');
+	(17,1,'314d33459f83e9c55f9c731739f3ec6f7c3e2fdbczozMjoicjFzWDlrd2s4TnFqM1V6YjlIdjF1SzhuRFBjNTZlbjUiOw==','2018-04-21 10:12:34','2018-04-21 10:12:34','b960c5c7-ed9f-4773-a6c0-057db3dd16d2'),
+	(18,1,'3b73c28989fb2bb93dbd4b82bc4887ec4d163a3cczozMjoiYlpDbkhROVZVVDVmOWF6RTB6OW1aUktJcTA2MkZhV0EiOw==','2018-04-26 11:47:38','2018-04-26 11:47:38','d6eea20f-5c7f-4854-8a66-670e82fb22c0'),
+	(19,1,'8c470b08182d2842ce7f4268fca5afb96a23b8d1czozMjoiYUdNbjhiMzNSdVVseGtuTXhITXdFZmIxWm1GYjY5S1ciOw==','2018-04-29 12:30:19','2018-04-29 12:30:19','8db7750f-0bef-404b-8a82-1079724eba14'),
+	(20,1,'42836a8f7bab2a5db3acdb00906f24bdef3cbeddczozMjoiaDVpa0EzdU82cVpwbzMyM0t1a1VEc0xpWX5PS1BlcVMiOw==','2018-04-29 14:08:06','2018-04-29 14:08:06','595675c6-6968-4f4f-b74e-ffd8704bcbbe');
 
 /*!40000 ALTER TABLE `craft_sessions` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -3828,8 +5451,6 @@ VALUES
 	(134,26,103,130,6,7,3,'2018-03-19 18:20:17','2018-03-19 18:20:17','99197c58-39ba-4827-8e38-b6cbd4cb3899'),
 	(135,26,115,130,10,11,1,'2018-03-19 18:20:17','2018-03-19 18:20:17','6a7dc5f3-8601-487f-bcb3-a48c6aef9fda'),
 	(149,7,125,3,2,3,1,'2018-04-21 00:53:00','2018-04-21 00:53:00','59d8986d-e930-475c-9638-a264df0f1923'),
-	(162,32,NULL,162,1,4,0,'2018-04-21 07:29:52','2018-04-21 07:29:52','720d1a1e-3dbc-4379-9700-dc5fdab6399c'),
-	(163,32,59,162,2,3,1,'2018-04-21 07:29:52','2018-04-21 07:29:52','a97d4e1d-18c0-4950-bc3f-e99052d340f1'),
 	(164,7,131,3,4,5,1,'2018-04-21 10:14:11','2018-04-21 10:14:11','7610426a-cb74-4946-bda5-75c166f746cc'),
 	(171,7,146,3,6,7,1,'2018-04-21 10:36:13','2018-04-21 10:36:13','5a2cb9f1-405d-4ae2-bbbb-93073116b766'),
 	(172,7,148,3,8,9,1,'2018-04-21 10:38:08','2018-04-21 10:38:08','36f212d1-0de9-422e-8d9b-e5a745a5512f'),
@@ -3842,7 +5463,9 @@ VALUES
 	(199,37,150,193,11,14,2,'2018-04-21 10:47:51','2018-04-21 10:47:51','855698eb-75a8-4ade-ad34-71191f430aca'),
 	(200,37,152,193,12,13,3,'2018-04-21 10:47:52','2018-04-21 10:47:52','5f2e0efe-3c1d-42b3-8657-b939ed0d269d'),
 	(201,37,154,193,15,18,2,'2018-04-21 10:47:52','2018-04-21 10:47:52','4c2a1129-605c-4e1b-a4e4-2a439597aa80'),
-	(202,37,156,193,16,17,3,'2018-04-21 10:47:52','2018-04-21 10:47:52','5627308e-726c-4787-810d-c4f1a013dc7a');
+	(202,37,156,193,16,17,3,'2018-04-21 10:47:52','2018-04-21 10:47:52','5627308e-726c-4787-810d-c4f1a013dc7a'),
+	(208,40,NULL,208,1,4,0,'2018-04-29 14:58:43','2018-04-29 14:58:43','456bf306-84b6-4f1a-a732-3eb254f1c63a'),
+	(209,40,59,208,2,3,1,'2018-04-29 14:58:43','2018-04-29 14:58:43','6e324458-e087-46e0-a632-82abd7837806');
 
 /*!40000 ALTER TABLE `craft_structureelements` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -3875,8 +5498,8 @@ VALUES
 	(7,1,'2018-03-07 10:06:03','2018-03-07 10:25:49','56620dcc-1c83-4967-9284-c383f8ee373d'),
 	(8,1,'2018-03-07 10:06:03','2018-03-07 10:28:23','6bbe846c-b64c-4051-bee7-0bc7996926d8'),
 	(26,NULL,'2018-03-19 18:20:17','2018-03-19 18:20:17','5dbb11f0-3c62-43e6-bf16-f15b49797ce3'),
-	(32,NULL,'2018-04-21 07:29:52','2018-04-21 07:29:52','83c89a72-76f2-48bb-b924-71704f378640'),
-	(37,NULL,'2018-04-21 10:47:51','2018-04-21 10:47:51','3fabfd1f-7959-4f96-a92c-f86724a7c482');
+	(37,NULL,'2018-04-21 10:47:51','2018-04-21 10:47:51','3fabfd1f-7959-4f96-a92c-f86724a7c482'),
+	(40,NULL,'2018-04-29 14:58:43','2018-04-29 14:58:43','ca5874ce-a475-4b20-b55a-e434fc309414');
 
 /*!40000 ALTER TABLE `craft_structures` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -3915,7 +5538,7 @@ LOCK TABLES `craft_supertableblocks` WRITE;
 
 INSERT INTO `craft_supertableblocks` (`id`, `ownerId`, `fieldId`, `typeId`, `sortOrder`, `ownerLocale`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(10,2,62,14,1,NULL,'2017-07-05 21:33:19','2018-04-21 07:29:53','32cbc86d-b0cd-472a-9c06-b3f085a3c5a0'),
+	(10,2,62,14,1,NULL,'2017-07-05 21:33:19','2018-04-29 14:58:43','32cbc86d-b0cd-472a-9c06-b3f085a3c5a0'),
 	(12,11,46,10,1,NULL,'2017-07-16 14:05:54','2017-07-16 14:05:54','31311697-2f49-4387-8d1f-2646250a1341'),
 	(16,15,244,58,1,NULL,'2018-03-07 10:37:36','2018-03-19 14:39:20','0d49c5e8-7268-4c02-8481-d41ee405ff61'),
 	(18,17,244,58,1,NULL,'2018-03-07 10:38:05','2018-03-19 14:39:30','9442aede-0ed3-432e-8172-a58f20d1ae68'),
@@ -3932,7 +5555,7 @@ VALUES
 	(40,39,244,58,1,NULL,'2018-03-07 10:48:12','2018-03-07 10:48:12','7b630e86-596a-40c3-a588-de74066ff972'),
 	(42,41,244,58,1,NULL,'2018-03-07 10:49:04','2018-03-07 11:47:08','2addb385-081e-44a4-88d4-26a15a08ed19'),
 	(44,43,244,58,1,NULL,'2018-03-07 10:49:58','2018-03-07 11:47:15','09bbc90f-c48b-44fb-b1e2-a634fd23226d'),
-	(60,59,192,44,1,NULL,'2018-03-07 12:25:19','2018-04-21 07:29:52','25d74d8a-c4e7-4dbc-974d-6c5021a62370'),
+	(60,59,192,44,1,NULL,'2018-03-07 12:25:19','2018-04-29 14:58:43','25d74d8a-c4e7-4dbc-974d-6c5021a62370'),
 	(64,63,244,58,1,NULL,'2018-03-18 21:45:20','2018-03-18 21:45:20','4df0e676-f1d0-4b01-a436-e05c155b0b1c'),
 	(66,65,244,58,1,NULL,'2018-03-18 21:45:44','2018-03-18 21:45:44','56f53500-4a72-43f2-a063-e17ef276909c'),
 	(68,67,244,58,1,NULL,'2018-03-18 21:46:06','2018-03-18 21:46:06','d4a0040b-4ed9-4243-8b70-3ebe4077eded'),
@@ -4021,7 +5644,7 @@ VALUES
 	(38,162,313,'2018-03-07 10:06:04','2018-04-21 00:06:22','43e25524-7e10-4592-871b-c552eaf40359'),
 	(39,165,314,'2018-03-07 10:06:04','2018-04-21 00:07:16','abd14d16-ccc0-4045-aece-e09bde42f793'),
 	(40,169,102,'2018-03-07 10:06:04','2018-03-07 10:06:04','9929c646-aaa6-4116-bc1d-78745f505a95'),
-	(41,173,315,'2018-03-07 10:06:04','2018-04-21 00:07:52','a2a8996d-2b38-421f-bd89-010a663c8618'),
+	(41,173,331,'2018-03-07 10:06:04','2018-04-29 12:31:25','a2a8996d-2b38-421f-bd89-010a663c8618'),
 	(42,181,316,'2018-03-07 10:06:04','2018-04-21 00:08:14','b01493da-f32c-4673-b81b-c1ea061bb012'),
 	(43,184,330,'2018-03-07 10:06:04','2018-04-21 00:53:28','fb260974-8f0e-4e56-8917-41be0ab3c941'),
 	(44,192,319,'2018-03-07 10:06:05','2018-04-21 00:13:15','ff685d77-de29-4a96-8fbb-e8c7ebb776c7'),
@@ -4039,13 +5662,14 @@ VALUES
 	(56,230,118,'2018-03-07 10:06:06','2018-03-07 10:06:06','0bd973e7-67ce-4ee3-ab95-30ae2452d217'),
 	(57,237,119,'2018-03-07 10:06:06','2018-03-07 10:06:06','8fbde9d1-7989-4bad-91c9-586e12b8f16d'),
 	(58,244,120,'2018-03-07 10:06:07','2018-03-07 10:06:07','fe981486-53f8-432e-8e9b-a1d6beb92502'),
-	(59,247,317,'2018-03-07 10:14:44','2018-04-21 00:08:33','73cc5dc4-0a12-40f4-a01a-19e2ca3a8bd2'),
+	(59,247,333,'2018-03-07 10:14:44','2018-04-29 14:41:01','73cc5dc4-0a12-40f4-a01a-19e2ca3a8bd2'),
 	(60,254,160,'2018-03-17 15:01:03','2018-03-17 15:01:03','b06f13eb-1697-4aa6-b47b-e642ed198905'),
 	(61,257,321,'2018-03-17 15:01:03','2018-04-21 00:13:50','52a2d9d1-c819-4287-a199-fc280817a97a'),
 	(62,261,216,'2018-03-19 17:17:13','2018-03-19 17:17:13','9870f2b4-9229-4f72-b89f-8766abeadf37'),
 	(63,264,322,'2018-03-19 17:20:15','2018-04-21 00:14:14','7c23dd6b-a8a8-4d02-b90b-9d3e465d2fc5'),
 	(64,271,282,'2018-04-20 23:55:23','2018-04-21 00:00:29','c9a61033-3538-40e6-a6b0-db7e4da08dcf'),
-	(65,273,283,'2018-04-21 00:03:53','2018-04-21 00:03:53','22244b2f-886d-4ab8-a91a-6aee26ce7d97');
+	(65,273,283,'2018-04-21 00:03:53','2018-04-21 00:03:53','22244b2f-886d-4ab8-a91a-6aee26ce7d97'),
+	(66,298,332,'2018-04-29 14:40:40','2018-04-29 14:40:40','ef4bd3ef-b18a-4b66-b273-b4fc8dc4fdcc');
 
 /*!40000 ALTER TABLE `craft_supertableblocktypes` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -4133,10 +5757,44 @@ LOCK TABLES `craft_supertablecontent_hero` WRITE;
 
 INSERT INTO `craft_supertablecontent_hero` (`id`, `elementId`, `locale`, `field_headline`, `field_linkit`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,10,'de','','','2017-07-05 21:33:19','2018-04-21 07:29:52','bd458b46-f3ef-4779-860e-4766f5982daf'),
+	(1,10,'de','','','2017-07-05 21:33:19','2018-04-29 14:58:43','bd458b46-f3ef-4779-860e-4766f5982daf'),
 	(2,10,'en','','','2018-03-07 11:12:23','2018-03-07 11:12:23','59f5899b-6d35-4612-8939-7e7cd5383d92');
 
 /*!40000 ALTER TABLE `craft_supertablecontent_hero` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
+# Export von Tabelle craft_supertablecontent_heroslider
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_supertablecontent_heroslider`;
+
+CREATE TABLE `craft_supertablecontent_heroslider` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `elementId` int(11) NOT NULL,
+  `locale` char(12) COLLATE utf8_unicode_ci NOT NULL,
+  `field_headline` text COLLATE utf8_unicode_ci,
+  `field_subline` text COLLATE utf8_unicode_ci,
+  `field_linkit` text COLLATE utf8_unicode_ci,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_supertablecontent_heroslider_elementId_locale_unq_idx` (`elementId`,`locale`),
+  KEY `craft_supertablecontent_heroslider_locale_fk` (`locale`),
+  CONSTRAINT `craft_supertablecontent_heroslider_elementId_fk` FOREIGN KEY (`elementId`) REFERENCES `craft_elements` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `craft_supertablecontent_heroslider_locale_fk` FOREIGN KEY (`locale`) REFERENCES `craft_locales` (`locale`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_supertablecontent_heroslider` WRITE;
+/*!40000 ALTER TABLE `craft_supertablecontent_heroslider` DISABLE KEYS */;
+
+INSERT INTO `craft_supertablecontent_heroslider` (`id`, `elementId`, `locale`, `field_headline`, `field_subline`, `field_linkit`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(3,144,'de','Klemmbrett','Eine besondere sylische Quick-Fix Variante ','{\"type\":\"custom\",\"custom\":\"http:\\/\\/google.de\",\"entry\":\"\",\"customText\":\"Kostenloses Muster\",\"target\":\"\"}','2018-04-25 23:44:16','2018-04-25 23:44:16','e73208ce-dabf-40f0-ad2a-aff8b3af8b09'),
+	(4,144,'en','Klemmbrett','Eine besondere sylische Quick-Fix Variante ','{\"type\":\"custom\",\"custom\":\"http:\\/\\/google.de\",\"entry\":\"\",\"customText\":\"Kostenloses Muster\",\"target\":\"\"}','2018-04-25 23:44:16','2018-04-25 23:44:16','5fec80e4-64ac-4fdd-a48f-9d1c2074040b');
+
+/*!40000 ALTER TABLE `craft_supertablecontent_heroslider` ENABLE KEYS */;
 UNLOCK TABLES;
 
 
@@ -4637,44 +6295,6 @@ VALUES
 UNLOCK TABLES;
 
 
-# Export von Tabelle craft_supertablecontent_setgridsectionbackground
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `craft_supertablecontent_setgridsectionbackground`;
-
-CREATE TABLE `craft_supertablecontent_setgridsectionbackground` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `elementId` int(11) NOT NULL,
-  `locale` char(12) COLLATE utf8_unicode_ci NOT NULL,
-  `field_ratio` text COLLATE utf8_unicode_ci,
-  `field_position` text COLLATE utf8_unicode_ci,
-  `field_adaptContainer` tinyint(1) unsigned NOT NULL DEFAULT '0',
-  `field_width` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'default',
-  `field_addClasses` text COLLATE utf8_unicode_ci,
-  `dateCreated` datetime NOT NULL,
-  `dateUpdated` datetime NOT NULL,
-  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `craf_supertableconte_setgridsectionbackgro_elementI_local_unq_id` (`elementId`,`locale`),
-  KEY `craft_supertablecontent_setgridsectionbackground_locale_fk` (`locale`),
-  CONSTRAINT `craft_supertablecontent_setgridsectionbackground_elementId_fk` FOREIGN KEY (`elementId`) REFERENCES `craft_elements` (`id`) ON DELETE CASCADE,
-  CONSTRAINT `craft_supertablecontent_setgridsectionbackground_locale_fk` FOREIGN KEY (`locale`) REFERENCES `craft_locales` (`locale`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
-LOCK TABLES `craft_supertablecontent_setgridsectionbackground` WRITE;
-/*!40000 ALTER TABLE `craft_supertablecontent_setgridsectionbackground` DISABLE KEYS */;
-
-INSERT INTO `craft_supertablecontent_setgridsectionbackground` (`id`, `elementId`, `locale`, `field_ratio`, `field_position`, `field_adaptContainer`, `field_width`, `field_addClasses`, `dateCreated`, `dateUpdated`, `uid`)
-VALUES
-	(1,82,'de','','',0,'default',NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','5d4f2d58-4b26-43b5-a66a-650d6b6d15db'),
-	(2,82,'en','','',0,'default',NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','f6e61809-8e3c-45c5-888d-02ad048160c2'),
-	(5,136,'de','','',0,'default','','2018-04-21 10:18:52','2018-04-21 10:47:51','b1a69c6f-178c-4eed-a549-266c3e7edc99'),
-	(6,136,'en','','',0,'default','','2018-04-21 10:18:52','2018-04-21 10:47:51','ab6529af-3be8-4294-a97e-597f3764fbb9');
-
-/*!40000 ALTER TABLE `craft_supertablecontent_setgridsectionbackground` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
 # Export von Tabelle craft_supertablecontent_setgridsetup
 # ------------------------------------------------------------
 
@@ -4719,6 +6339,44 @@ VALUES
 UNLOCK TABLES;
 
 
+# Export von Tabelle craft_supertablecontent_setgridwrapperbackground
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_supertablecontent_setgridwrapperbackground`;
+
+CREATE TABLE `craft_supertablecontent_setgridwrapperbackground` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `elementId` int(11) NOT NULL,
+  `locale` char(12) COLLATE utf8_unicode_ci NOT NULL,
+  `field_ratio` text COLLATE utf8_unicode_ci,
+  `field_position` text COLLATE utf8_unicode_ci,
+  `field_adaptContainer` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `field_width` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'default',
+  `field_addClasses` text COLLATE utf8_unicode_ci,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craf_supertableconte_setgridwrapperbackgro_elementI_local_unq_id` (`elementId`,`locale`),
+  KEY `craft_supertablecontent_setgridwrapperbackground_locale_idx` (`locale`),
+  CONSTRAINT `craft_supertablecontent_setgridwrapperbackground_elementId_fk` FOREIGN KEY (`elementId`) REFERENCES `craft_elements` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `craft_supertablecontent_setgridwrapperbackground_locale_fk` FOREIGN KEY (`locale`) REFERENCES `craft_locales` (`locale`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+LOCK TABLES `craft_supertablecontent_setgridwrapperbackground` WRITE;
+/*!40000 ALTER TABLE `craft_supertablecontent_setgridwrapperbackground` DISABLE KEYS */;
+
+INSERT INTO `craft_supertablecontent_setgridwrapperbackground` (`id`, `elementId`, `locale`, `field_ratio`, `field_position`, `field_adaptContainer`, `field_width`, `field_addClasses`, `dateCreated`, `dateUpdated`, `uid`)
+VALUES
+	(1,82,'de','','',0,'default',NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','5d4f2d58-4b26-43b5-a66a-650d6b6d15db'),
+	(2,82,'en','','',0,'default',NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','f6e61809-8e3c-45c5-888d-02ad048160c2'),
+	(5,136,'de','','',0,'default','','2018-04-21 10:18:52','2018-04-21 10:47:51','b1a69c6f-178c-4eed-a549-266c3e7edc99'),
+	(6,136,'en','','',0,'default','','2018-04-21 10:18:52','2018-04-21 10:47:51','ab6529af-3be8-4294-a97e-597f3764fbb9');
+
+/*!40000 ALTER TABLE `craft_supertablecontent_setgridwrapperbackground` ENABLE KEYS */;
+UNLOCK TABLES;
+
+
 # Export von Tabelle craft_supertablecontent_setheadline
 # ------------------------------------------------------------
 
@@ -4746,8 +6404,8 @@ LOCK TABLES `craft_supertablecontent_setheadline` WRITE;
 
 INSERT INTO `craft_supertablecontent_setheadline` (`id`, `elementId`, `locale`, `field_semantic`, `field_override`, `field_addClasses`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(3,60,'de','h2','default','','2018-03-07 12:25:19','2018-04-21 07:29:52','031c787b-16a8-4850-b707-19f5c2dc113e'),
-	(4,60,'en','h2','default','','2018-03-07 12:25:19','2018-04-21 07:29:52','aaa6873e-78e4-438d-abf5-6fae4e8a9de9'),
+	(3,60,'de','h2','default','','2018-03-07 12:25:19','2018-04-29 14:58:43','031c787b-16a8-4850-b707-19f5c2dc113e'),
+	(4,60,'en','h2','default','','2018-03-07 12:25:19','2018-04-29 14:58:43','aaa6873e-78e4-438d-abf5-6fae4e8a9de9'),
 	(5,86,'de','h2','default',NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','eed18d67-b681-4cd5-b621-4ca1f87e5c4f'),
 	(6,86,'en','h2','default',NULL,'2018-03-19 10:02:06','2018-03-19 18:20:17','d81d9b62-3bee-4822-b000-b84d912a3576'),
 	(11,140,'de','h2','default','','2018-04-21 10:18:52','2018-04-21 10:47:51','476db5f7-a233-43bf-b5ce-97424f68e9cc'),
@@ -5017,6 +6675,33 @@ CREATE TABLE `craft_supertablecontent_setsection` (
 
 
 
+# Export von Tabelle craft_supertablecontent_setsectionbackground
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_supertablecontent_setsectionbackground`;
+
+CREATE TABLE `craft_supertablecontent_setsectionbackground` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `elementId` int(11) NOT NULL,
+  `locale` char(12) COLLATE utf8_unicode_ci NOT NULL,
+  `field_adaptContainer` tinyint(1) unsigned NOT NULL DEFAULT '0',
+  `field_width` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `field_align` varchar(255) COLLATE utf8_unicode_ci DEFAULT 'default',
+  `field_behavior` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `field_position` text COLLATE utf8_unicode_ci,
+  `field_ratio` text COLLATE utf8_unicode_ci,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_supertableconten_setsectionbackgrou_elementI_locale_unq_id` (`elementId`,`locale`),
+  KEY `craft_supertablecontent_setsectionbackground_locale_fk` (`locale`),
+  CONSTRAINT `craft_supertablecontent_setsectionbackground_elementId_fk` FOREIGN KEY (`elementId`) REFERENCES `craft_elements` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `craft_supertablecontent_setsectionbackground_locale_fk` FOREIGN KEY (`locale`) REFERENCES `craft_locales` (`locale`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
 # Export von Tabelle craft_supertablecontent_setsectioncolumn
 # ------------------------------------------------------------
 
@@ -5157,6 +6842,30 @@ CREATE TABLE `craft_supertablecontent_setvideo` (
   KEY `craft_supertablecontent_setvideo_locale_fk` (`locale`),
   CONSTRAINT `craft_supertablecontent_setvideo_elementId_fk` FOREIGN KEY (`elementId`) REFERENCES `craft_elements` (`id`) ON DELETE CASCADE,
   CONSTRAINT `craft_supertablecontent_setvideo_locale_fk` FOREIGN KEY (`locale`) REFERENCES `craft_locales` (`locale`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+
+
+# Export von Tabelle craft_supertablecontent_setwrapperoptions
+# ------------------------------------------------------------
+
+DROP TABLE IF EXISTS `craft_supertablecontent_setwrapperoptions`;
+
+CREATE TABLE `craft_supertablecontent_setwrapperoptions` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `elementId` int(11) NOT NULL,
+  `locale` char(12) COLLATE utf8_unicode_ci NOT NULL,
+  `field_anchor` text COLLATE utf8_unicode_ci,
+  `field_addClasses` text COLLATE utf8_unicode_ci,
+  `field_innerContainer` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `craft_supertableconten_setwrapperoption_elementId_locale_unq_idx` (`elementId`,`locale`),
+  KEY `craft_supertablecontent_setwrapperoptions_locale_fk` (`locale`),
+  CONSTRAINT `craft_supertablecontent_setwrapperoptions_elementId_fk` FOREIGN KEY (`elementId`) REFERENCES `craft_elements` (`id`) ON DELETE CASCADE,
+  CONSTRAINT `craft_supertablecontent_setwrapperoptions_locale_fk` FOREIGN KEY (`locale`) REFERENCES `craft_locales` (`locale`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 
@@ -5776,7 +7485,7 @@ LOCK TABLES `craft_users` WRITE;
 
 INSERT INTO `craft_users` (`id`, `username`, `photo`, `firstName`, `lastName`, `email`, `password`, `preferredLocale`, `weekStartDay`, `admin`, `client`, `locked`, `suspended`, `pending`, `archived`, `lastLoginDate`, `lastLoginAttemptIPAddress`, `invalidLoginWindowStart`, `invalidLoginCount`, `lastInvalidLoginDate`, `lockoutDate`, `verificationCode`, `verificationCodeIssuedDate`, `unverifiedEmail`, `passwordResetRequired`, `lastPasswordChangeDate`, `dateCreated`, `dateUpdated`, `uid`)
 VALUES
-	(1,'kittn',NULL,'','','hello@kittn.xyz','$2y$13$aEV9hEIztEmte9HtKEhP8OT0ZWQ3NCO7Y8AUVe8j7HWWMGChQF23G','de',1,1,0,0,0,0,0,'2018-04-21 10:12:34','::1',NULL,NULL,'2018-03-18 20:43:57',NULL,NULL,NULL,NULL,0,'2017-07-16 14:02:16','2017-07-04 21:45:00','2018-04-21 10:12:34','230071a9-e155-4c49-8381-8aca584cd137');
+	(1,'kittn',NULL,'','','hello@kittn.xyz','$2y$13$aEV9hEIztEmte9HtKEhP8OT0ZWQ3NCO7Y8AUVe8j7HWWMGChQF23G','de',1,1,0,0,0,0,0,'2018-04-29 14:08:06','::1',NULL,NULL,'2018-04-29 14:07:57',NULL,NULL,NULL,NULL,0,'2017-07-16 14:02:16','2017-07-04 21:45:00','2018-04-29 14:08:06','230071a9-e155-4c49-8381-8aca584cd137');
 
 /*!40000 ALTER TABLE `craft_users` ENABLE KEYS */;
 UNLOCK TABLES;

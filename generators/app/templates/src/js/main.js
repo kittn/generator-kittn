@@ -8,10 +8,7 @@ import lazySizeInit from './partial/lazysize-init'<% } %>
 import 'svgxuse' // eslint-disable-line
 import './partial/kittnad' // Small Advertising for Kittn :)
 import './partial/detect-browser'
-import './partial/disable-pointerevents'<% if ( projectusage !== 'webpackApp' ) { %>
-if (!window.HTMLPictureElement) {
-  import('lazysizes/plugins/respimg/ls.respimg.js' /* webpackChunkName: "picturePolyfill" */)
-}<%}%><% if ( typeof projectjsframework !== 'undefined' && projectjsframework === 'react') { %>
+import './partial/disable-pointerevents'<% if ( typeof projectjsframework !== 'undefined' && projectjsframework === 'react') { %>
 ReactDOM.render(
 <h1>Hello, world! from React</h1>,
   document.getElementById('app')

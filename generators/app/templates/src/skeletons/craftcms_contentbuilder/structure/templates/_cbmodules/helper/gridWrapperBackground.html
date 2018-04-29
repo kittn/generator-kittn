@@ -1,0 +1,26 @@
+{#
+  GridWrapperBackground
+  =================
+  Description
+#}
+
+{# Build Element Block #}
+{% set bgAlign, bgSize = '', '' %}
+
+{# Pick BG Size #}
+{% if bg.width != 'default' %}
+  {% set bgAlign = bg.width == 'halfLeft' ? ' c-gw__bg--left' : ' c-gw__bg--right' %}
+{% endif %}
+
+<div class="c-gw__bg{{ _.styleClasses(bg) }}{{ bg.adaptContainer ? ' c-gw__bg--size-' ~ inner }}">
+  <div class="c-gw__bg__container c-gw__bg__container--{{  bg.width }}">
+    <div
+      {{ _.mediaImageSet(bg.backgroundImage.first(), bg.ratio, {
+        class: 'c-gw__bg__background',
+        elementtype: false,
+        background: true,
+        position: bg.position ? bg.position : false
+      }) }}
+    ></div>
+  </div>
+</div>

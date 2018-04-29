@@ -29,10 +29,9 @@ const flickityPackage = () => {
             const sliderTransport = slider.querySelector('.flickity-custom__transport') || slider
 
             // Check if the right Data Attr is available, otherwise use an empty object
-            const preCustomData =
-              sliderTransport.hasAttribute('data-myflickity')
-                ? JSON.parse(sliderTransport.dataset.myflickity)
-                : {}
+            const preCustomData = sliderTransport.hasAttribute('data-myflickity')
+              ? JSON.parse(sliderTransport.dataset.myflickity)
+              : {}
 
             // Merging with Defaults
             const customData = Object.assign(flickityDefaults, preCustomData)

@@ -15,7 +15,7 @@
     <div class="{{ classname }}__body" role="tabpanel">
       <div class="{{ classname }}__inner">
         {% for child in child.children %}
-          {% include '_builder/_cb-objects' with { data: child } %}
+          {% include '_builder/_cb-objects.html' with { data: child } %}
         {% endfor %}
       </div>
     </div>
@@ -36,7 +36,7 @@
       {% endfor %}
     {% default %}
       {% for child in content.children %}
-        {{ _self.accordionBlock('c-accordion', child)}}
+        {{ _self.accordionBlock('c-accordion.html', child)}}
       {% endfor %}
   {% endswitch %}
 </div>
