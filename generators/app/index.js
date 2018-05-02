@@ -337,7 +337,7 @@ module.exports = class extends Generator {
       this.props.projectusage !== 'webpackApp'
     ) {
       const folder =
-        this.props.projectusage.substring(0, 5) === 'craft' ? 'public/' : ''
+        this.props.projectusage.substring(0, 5) === 'craft' ? (this.props.projectcraft3 ? 'web/' : 'public/') : ''
       const domain = this.props.credentialdomain
         ? this.props.credentialdomain
         : ''
