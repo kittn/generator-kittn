@@ -180,6 +180,6 @@ const base = context => {
       }
     ]
   }
-};
+}
 
 module.exports = base

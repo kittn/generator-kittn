@@ -1,0 +1,109 @@
+/*
+  GridWrapper
+  =================
+  Styles for GridWrapper and Wrapper
+*/
+.c-gw {
+  $api: (
+    breakpoint: 'm',
+    sizes: (
+      'bigger-25': 1.25,
+      'bigger-45': 1.45,
+      'smaller-25': .75,
+      'smaller-50': .5
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  // For getting values from lists
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__container
+  &__container {
+    position: relative;
+    z-index: 2;
+
+    // Container Layouttypes
+    // [root]--full
+    &--full {
+      width: 100%;
+      max-width: inherit;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    // Generate Container Sizes
+    @each $sizeName, $containerSize in api(sizes) {
+      &--#{$sizeName} {
+        max-width: glob(pagesize, max) * $containerSize;
+      }
+    }
+  }
+
+  // [root]__bg
+  &__bg {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    left: 50%;
+    min-width: glob(pagesize, min);
+    transform: translate(-50%);
+
+    // Default Adapt size
+    &--size-default {
+      max-width: glob(pagesize, max);
+    }
+
+    // Generate Container Sizes
+    @each $sizeName, $containerSize in api(sizes) {
+      &--#{$sizeName} {
+        max-width: glob(pagesize, max) * $containerSize;
+      }
+    }
+
+    // [root]__bg__container
+    &__container {
+      height: 100%;
+
+      // [root]__bg__container--size
+      &--default {
+        width: 100%;
+      }
+
+      // [root]--halfLeft
+      &--halfLeft {
+        width: 50%;
+      }
+
+      // [root]--halfRight
+      &--halfRight {
+        width: 50%;
+        margin-left: 50%;
+      }
+    }
+
+    // [root]__bg__background
+    &__background {
+      height: 100%;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+  }
+}

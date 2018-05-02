@@ -1,0 +1,21 @@
+{#
+  wrapper
+  =================
+  Description
+#}
+
+{# Build Element Block #}
+<div class="c-wrapper c-gw{{ _.styleClasses(options) }} fullbleed"{{ options.anchor != '' ? ' id=' ~ options.anchor|lower }}>
+  {# Background Container #}
+  {% if background.backgroundImage is defined and background.backgroundImage|length %}
+    {% include '_cbmodules/helper/gridWrapperBackground.html' with { bg: background, inner: options.innerContainer ?? null } %}
+  {% endif %}
+  {# Inner Container #}
+  {% if content.children | length > 0 %}
+    <div class="c-wrapper__container c-gw__container container{{ options.innerContainer != 'default' ? ' c-gw__container--' ~ options.innerContainer }}">
+      {% for child in content.children %}
+        {% include '_builder/_cb-objects.html' with { data: child } %}
+      {% endfor %}
+    </div>
+  {% endif %}
+</div>

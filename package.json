@@ -1,6 +1,6 @@
 {
   "name": "generator-kittn",
-  "version": "5.10.0",
+  "version": "5.10.6",
   "description": "Kittn Scaffolding and Frontend Toolchain",
   "main": "generators/app/index.js",
   "repository": "kittn/generator-kittn",
@@ -30,6 +30,14 @@
     "gulp",
     "twig"
   ],
+  "husky": {
+    "hooks": {
+      "pre-push": "npm test"
+    }
+  },
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "chalk": "^2.3.2",
     "clear-terminal": "^0.0.2",
@@ -53,12 +61,18 @@
     "eslint-plugin-node": "^6.0.1",
     "eslint-plugin-promise": "^3.7.0",
     "eslint-plugin-standard": "^3.0.1",
+    "husky": "^1.0.0-rc.2",
+    "jest": "^22.4.3",
     "nsp": "^3.2.1",
     "yeoman-assert": "^3.1.1",
     "yeoman-test": "^1.7.0"
   },
   "jest": {
-    "testEnvironment": "node"
+    "testEnvironment": "node",
+    "testPathIgnorePatterns": [
+      "node_modules",
+      "generators"
+    ]
   },
   "eslintConfig": {
     "extends": "standard",

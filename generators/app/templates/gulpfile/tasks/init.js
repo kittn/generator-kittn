@@ -28,7 +28,7 @@ const initTask = (cb) => {
       'copy:joomlafiles'<% } %>
     ],
     [
-      'compiler:css'<% if (projectusage !== 'joomla' && projectusage == 'joomlaCB') { %>,
+      'compiler:css'<% if (projectusage !== 'joomla' && projectusage !== 'joomlaCB') { %>,
       'compiler:html'<% } %>
     ],
     cb)

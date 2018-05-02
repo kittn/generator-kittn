@@ -5,24 +5,7 @@
 */
 .c-video {
   $api: (
-    mq: 'm',
-    grid: (
-      associated: (
-        box0: '__box0' false
-      ),
-      sets: (
-        set1: (
-          breakpoint: false,
-          column-gap: false,
-          row-gap: 0,
-          columns: 1fr,
-          rows: auto,
-          areas: (
-            box1
-          )
-        ),
-      )
-    )
+    mq: 'm'
   );
 
   // ::::::::: ROOT SELECTOR

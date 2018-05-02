@@ -80,10 +80,6 @@ endswitch;
         role="presentation"
         itemscope itemtype="http://schema.org/ImageGallery"
         data-flickity='{
-    "accessibility": false,
-    "contain": true,
-    "imagesLoaded": true,
-    "lazyLoad": false,
     "adaptiveHeight": <?= get_sub_field('autoheight') ? 'true' : 'false'; ?>,
     "groupCells": <?= get_sub_field('groupCell') != 'disable' ? get_sub_field('groupCell') : 0; ?>,
     "autoPlay": <?= $slideCount > 1 ? $autoplay : 'false' ?>,

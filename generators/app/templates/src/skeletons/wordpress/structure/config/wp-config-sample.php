@@ -7,36 +7,30 @@
  * @package WordPress
  */
 
-// Set your environment/url pairs
-$environments = array(
-  'local'       => '<%= projectcredential ? credentialdomain : 'local.domain' %>',
-  'stage'       => 'stage.domain'
-);
-
-// Get the hostname
+// Getting Hostname and Protocol
 $http_host = $_SERVER['HTTP_HOST'];
-
-// Loop through $environments to see if there’s a match
-foreach($environments as $environment => $hostname) {
-  if (stripos($http_host, $hostname) !== FALSE) {
-    define('ENVIRONMENT', $environment);
-    break;
-  }
+if (isset($_SERVER['HTTPS']) && (strcasecmp($_SERVER['HTTPS'], 'on') === 0 || $_SERVER['HTTPS'] == 1)
+    || isset($_SERVER['HTTP_X_FORWARDED_PROTO']) && strcasecmp($_SERVER['HTTP_X_FORWARDED_PROTO'], 'https') === 0
+) {
+  $protocol = "https://";
+} else {
+  $protocol = "http://";
 }
 
-// Exit if ENVIRONMENT is undefined
-if (!defined('ENVIRONMENT')) exit('No database configured for this host');
-
 // Location of environment-specific configuration
-$wp_db_config = 'wp-config/wp-db--' . ENVIRONMENT . '.php';
+$wp_env_config = 'wp-config/wp-env.php';
 
 // Check to see if the configuration file for the environment exists
-if (file_exists( __DIR__ . 'wp-config-sample.php/' . $wp_db_config)) {
-  require_once($wp_db_config);
+if (file_exists( __DIR__ . '/' . $wp_env_config)) {
+  require_once($wp_env_config);
 } else {
   // Exit if configuration file does not exist
   exit('No database configuration found for this host');
 }
+
+// Global URL Config
+define('WP_HOME', $protocol . $http_host);
+define('WP_SITEURL', $protocol . $http_host);
 
 // Global DB Config
 define('DB_CHARSET', 'utf8');

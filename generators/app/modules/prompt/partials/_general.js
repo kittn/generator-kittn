@@ -76,6 +76,18 @@ No whitespaces or special-chars allowed!}`
       ],
       store: true
     },
+    // {
+    //   when: when('projectusage', 'craft'),
+    //   type: 'confirm',
+    //   name: 'projectcraft3',
+    //   message: message({
+    //     headline: 'Use latest Craft Version 3?',
+    //     description:
+    //       '',
+    //     defaultValue: false
+    //   }),
+    //   store: true
+    // },
     {
       when: when('projectusage', 'html'),
       type: 'list',

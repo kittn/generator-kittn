@@ -33,10 +33,29 @@ yarn-error.log*
 /dist/craft/storage/
 /dist/craft/templates/
 /dist/craft/translations/
+/dist/craft/plugins/.htaccess
+/dist/craft/plugins/web.config
 /dist/craft/.htaccess
 /dist/craft/web.config
 /src/craftplugins/
-/src/structure/config/license.key<% } else { %>
+/src/structure/config/license.key<% } else if (projectusage == 'wordpress' || projectusage == 'wordpressCB') { %>
+wp-env.php
+/dist/wp-admin/
+/dist/wp-config/
+/dist/wp-content/languages/
+/dist/wp-content/themes/
+/dist/wp-content/upgrade/
+/dist/wp-content/uploads/
+/dist/wp-content/plugins/index.php
+/dist/wp-content/plugins/readme.txt
+/dist/wp-content/index.php
+/dist/wp-includes/
+/dist/*.php
+/dist/*.txt
+/dist/*.html
+/dist/.htaccess
+/src/wpplugins/
+/src/structure/config/wp-config/wp-env.php<% } else { %>
 dist/<% } %>
 build/
 doc/

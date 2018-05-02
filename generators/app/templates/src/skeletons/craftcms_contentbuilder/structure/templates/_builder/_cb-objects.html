@@ -38,8 +38,8 @@
     {% include '_cbmodules/embedContent' with { data: data.objEmbedContent, options: data.setEmbedContent } %}
 
   {# Button Module #}
-  {% case 'objButton' %}
-    {% include '_cbmodules/button' with { data: data.objButton, options: data.setButton } %}
+{% case 'objButton' %}
+  {% include '_cbmodules/button' with { data: data.objButton, options: data.setButton } %}
 
   {# Gallery #}
   {% case 'objGallery' %}
@@ -83,7 +83,11 @@
 
   {# Grid #}
   {% case 'objGrid' %}
-    {% include '_cbmodules/grid.html' with { data: data.objGrid, options: data.setGridOptions, background: data.setGridSectionBackground } %}
+    {% include '_cbmodules/grid.html' with { data: data.objGrid, options: data.setGridOptions, background: data.setGridWrapperBackground } %}
+
+  {# Grid #}
+  {% case 'objWrapper' %}
+    {% include '_cbmodules/wrapper.html' with { data: data.objWrapper, options: data.setWrapperOptions, background: data.setGridWrapperBackground } %}
 
   {# Inline SVG #}
   {% case 'objInlineSvg' %}

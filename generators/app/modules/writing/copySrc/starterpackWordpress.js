@@ -56,8 +56,8 @@ const starterpackWordpress = (context) => {
           projectusage: 'wordpressCB',
           projectcredential: true
         },
-        src: 'src/skeletons/wordpress/wp-db--local.php',
-        dest: 'src/structure/config/wp-config/wp-db--local.php'
+        src: 'src/skeletons/wordpress/wp-env.php',
+        dest: 'src/structure/config/wp-config/wp-env.php'
       },
       {
         conditions: {
@@ -111,7 +111,7 @@ const starterpackWordpress = (context) => {
           projectusage: 'wordpressCB'
         },
         src: 'src/skeletons/wordpress_contentbuilder/structure/plugins',
-        dest: 'src/structure/plugins/',
+        dest: 'src/wpplugins/',
         simplecopy: true
       },
       {

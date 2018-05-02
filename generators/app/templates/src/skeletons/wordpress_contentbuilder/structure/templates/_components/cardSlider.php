@@ -79,11 +79,7 @@ endswitch;
 <figure class="<?= $classnameCardSlider; ?> js-imageSlider <?= $classnameCardSlider.'--card'; ?><?= $style != 'default' ? ' '.$classnameCardSlider.'--s-'.$style : '' ?>"
         role="presentation"
         itemscope itemtype="http://schema.org/MediaObject"
-        data-flickity='{
-    "accessibility": false,
-    "contain": true,
-    "imagesLoaded": true,
-    "lazyLoad": false,
+        data-myflickity='{
     "adaptiveHeight": <?= get_sub_field('autoheight') ? 'true' : 'false'; ?>,
     "groupCells": <?= get_sub_field('groupCell') != 'disable' ? get_sub_field('groupCell') : 0; ?>,
     "autoPlay": <?= $slideCount > 1 ? $autoplay : 'false' ?>,
