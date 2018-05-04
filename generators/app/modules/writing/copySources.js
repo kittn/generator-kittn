@@ -26,19 +26,17 @@ const copyAction = (data, context) => {
 }
 
 const checkCondition = (data, context) => {
+  let error = false
+
   if (data.conditions) {
-    let error = false
     for (const cond in data.conditions) {
       if (data.conditions[cond] !== context.props[cond]) {
         error = true
       }
     }
+  }
 
-    if (!error) {
-      copyAction(data, context)
-    }
-  } else if (data.orConditions) {
-    let error = true
+  if (data.orConditions) {
     for (const cond of data.orConditions) {
       for (const con in cond) {
         if (cond[con] === context.props[con]) {
@@ -46,22 +44,17 @@ const checkCondition = (data, context) => {
         }
       }
     }
+  }
 
-    if (!error) {
-      copyAction(data, context)
-    }
-  } else if (data.notConditions) {
-    let error = false
+  if (data.notConditions) {
     for (const cond in data.notConditions) {
       if (data.notConditions[cond] === context.props[cond]) {
         error = true
       }
     }
+  }
 
-    if (!error) {
-      copyAction(data, context)
-    }
-  } else {
+  if (!error) {
     copyAction(data, context)
   }
 }
@@ -116,6 +109,6 @@ const copySources = () => {
       })
     }
   }
-};
+}
 
 module.exports = copySources

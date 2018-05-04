@@ -42,6 +42,9 @@ const projecttype = context => {
         conditions: {
           projectusage: 'craft'
         },
+        notConditions: {
+          projectcraft3: true
+        },
         src: 'src/skeletons/craftcms/env/env.php',
         dest: 'src/.system/env/.env.php'
       },
@@ -49,8 +52,25 @@ const projecttype = context => {
         conditions: {
           projectusage: 'craft'
         },
+        notConditions: {
+          projectcraft3: true
+        },
         src: 'src/skeletons/craftcms/env/example.env.php',
         dest: 'src/.system/env/example.env.php'
+      },
+      {
+        conditions: {
+          projectcraft3: true
+        },
+        src: 'src/skeletons/craftcms/env_v3/env',
+        dest: 'src/.system/env/.env'
+      },
+      {
+        conditions: {
+          projectcraft3: true
+        },
+        src: 'src/skeletons/craftcms/env_v3/env.example',
+        dest: 'src/.system/env/.env.example'
       },
       {
         conditions: {
@@ -70,7 +90,17 @@ const projecttype = context => {
         conditions: {
           projectusage: 'craft'
         },
+        notConditions: {
+          projectcraft3: true
+        },
         src: 'contentBuilder_stuff/databases/craft.sql',
+        dest: 'database.sql'
+      },
+      {
+        conditions: {
+          projectcraft3: true
+        },
+        src: 'contentBuilder_stuff/databases/craft3.sql',
         dest: 'database.sql'
       },
       {
@@ -169,28 +199,28 @@ const projecttype = context => {
           projectusage: 'joomla'
         },
         src: 'src/skeletons/joomla/template_additions/language/de-DE/de-DE.tpl_projectname.ini',
-        dest: `src/structure/templates/${context.props.projectname}/language/de-DE/de-DE.tpl_${context.props.projectname}.ini`,
+        dest: `src/structure/templates/${context.props.projectname}/language/de-DE/de-DE.tpl_${context.props.projectname}.ini`
       },
       {
         conditions: {
           projectusage: 'joomla'
         },
         src: 'src/skeletons/joomla/template_additions/language/de-DE/de-DE.tpl_projectname.sys.ini',
-        dest: `src/structure/templates/${context.props.projectname}/language/de-DE/de-DE.tpl_${context.props.projectname}.sys.ini`,
+        dest: `src/structure/templates/${context.props.projectname}/language/de-DE/de-DE.tpl_${context.props.projectname}.sys.ini`
       },
       {
         conditions: {
           projectusage: 'joomla'
         },
         src: 'src/skeletons/joomla/template_additions/language/en-GB/en-GB.tpl_projectname.ini',
-        dest: `src/structure/templates/${context.props.projectname}/language/en-GB/en-GB.tpl_${context.props.projectname}.ini`,
+        dest: `src/structure/templates/${context.props.projectname}/language/en-GB/en-GB.tpl_${context.props.projectname}.ini`
       },
       {
         conditions: {
           projectusage: 'joomla'
         },
         src: 'src/skeletons/joomla/template_additions/language/en-GB/en-GB.tpl_projectname.sys.ini',
-        dest: `src/structure/templates/${context.props.projectname}/language/en-GB/en-GB.tpl_${context.props.projectname}.sys.ini`,
+        dest: `src/structure/templates/${context.props.projectname}/language/en-GB/en-GB.tpl_${context.props.projectname}.sys.ini`
       },
       {
         conditions: {
@@ -213,7 +243,17 @@ const projecttype = context => {
         conditions: {
           projectusage: 'craft'
         },
+        notConditions: {
+          projectcraft3: true
+        },
         src: 'src/skeletons/craftcms/structure',
+        dest: 'src/structure/'
+      },
+      {
+        conditions: {
+          projectcraft3: true
+        },
+        src: 'src/skeletons/craftcms/structure_v3',
         dest: 'src/structure/'
       },
       {
@@ -233,6 +273,9 @@ const projecttype = context => {
       {
         conditions: {
           projectusage: 'craft'
+        },
+        notConditions: {
+          projectcraft3: true
         },
         src: 'src/skeletons/craftcms/public',
         dest: 'src/.system/public/'
@@ -286,6 +329,6 @@ const projecttype = context => {
       }
     ]
   }
-};
+}
 
 module.exports = projecttype
