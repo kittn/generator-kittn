@@ -1,5 +1,5 @@
 # The environment Craft is currently running in ('dev', 'staging', 'production', etc.)
-ENVIRONMENT="dev"
+ENVIRONMENT="local"
 
 # The secure key Craft will use for hashing and encrypting data
 SECURITY_KEY="zfpeJgfdcLheqabl9EftEWJpMVAJS154"
