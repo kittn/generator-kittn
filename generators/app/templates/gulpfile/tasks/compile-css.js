@@ -57,7 +57,7 @@ const compilerCssTask = () => {
     }) : gutil.noop())<% } %>
     .pipe($.sass({})
       .on('error', errorHandler))
-    .pipe($.postcss())
+    .pipe($.postcss(kc))
     .pipe(env === 'development' ? $.size({
         title: '>>> CSS File Size: '
     }) : gutil.noop())
