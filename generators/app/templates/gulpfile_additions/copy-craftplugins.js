@@ -13,8 +13,8 @@ const $ = gulpLoadPlugins()
 const copyCraftPlugins = () => {
   gulp
     .src(kc.src.plugins + '**/*')
-    .pipe(global.checkChanged === true ? $.changed(kc.dist.dist + 'craft/plugins/') : gutil.noop())
-    .pipe(gulp.dest(kc.dist.dist + 'craft/plugins/'))
+    .pipe(global.checkChanged === true ? $.changed(kc.dist.dist + '<% if (projectcraft3 !== true) { %>craft/<% } %>plugins/') : gutil.noop())
+    .pipe(gulp.dest(kc.dist.dist + '<% if (projectcraft3 !== true) { %>craft/<% } %>plugins/'))
 }
 
 gulp.task('copy:craftplugins', copyCraftPlugins)

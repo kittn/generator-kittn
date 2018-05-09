@@ -25,6 +25,13 @@ const starterpackCraft = (context) => {
       },
       {
         conditions: {
+          projectcraft3: true
+        },
+        src: 'src/skeletons/craftcms/plugins.sh',
+        dest: 'craftscripts/plugins.sh'
+      },
+      {
+        conditions: {
           projectusage: 'craftCB'
         },
         src: 'src/framework_additions/_normalize.scss',

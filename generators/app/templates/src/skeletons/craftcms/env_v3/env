@@ -1,0 +1,54 @@
+# The environment Craft is currently running in ('dev', 'staging', 'production', etc.)
+ENVIRONMENT="local"
+
+# The secure key Craft will use for hashing and encrypting data
+SECURITY_KEY="zfpeJgfdcLheqabl9EftEWJpMVAJS154"
+
+# The database driver that will used ('mysql' or 'pgsql')
+DB_DRIVER="mysql"<% if (projectcredential) { %>
+
+# The database server name or IP address (usually this is 'localhost' or '127.0.0.1')
+DB_SERVER="<%= credentialdbserver %>"
+
+# The database username to connect with
+DB_USER="<%= credentialdbuser %>"
+
+# The database password to connect with
+DB_PASSWORD="<%= credentialdbpass %>"
+
+# The name of the database to select
+DB_DATABASE="<%= credentialdbdatabase %>"
+
+# The database schema that will be used (PostgreSQL only)
+DB_SCHEMA="public"
+
+# The prefix that should be added to generated table names (only necessary if multiple things are sharing the same database)
+DB_TABLE_PREFIX=""
+
+# The port to connect to the database with. Will default to 5432 for PostgreSQL and 3306 for MySQL.
+DB_PORT="3306"<% } else { %>
+
+# The database server name or IP address (usually this is 'localhost' or '127.0.0.1')
+DB_SERVER="localhost"
+
+# The database username to connect with
+DB_USER="root"
+
+# The database password to connect with
+DB_PASSWORD=""
+
+# The name of the database to select
+DB_DATABASE=""
+
+# The database schema that will be used (PostgreSQL only)
+DB_SCHEMA="public"
+
+# The prefix that should be added to generated table names (only necessary if multiple things are sharing the same database)
+DB_TABLE_PREFIX=""
+
+# The port to connect to the database with. Will default to 5432 for PostgreSQL and 3306 for MySQL.
+DB_PORT=""
+
+<% } %>
+
+DB_SOCKET="/Applications/MAMP/tmp/mysql/mysql.sock"

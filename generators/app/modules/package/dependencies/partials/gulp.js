@@ -19,18 +19,25 @@ exports.gulpDependencies = {
   'gulp-html-prettify': '^0.0.1',
   'gulp-if': '^2.0.2',
   'gulp-imagemin': '^4.1.0',
+  'gulp-load-plugins': '^1.5.0',
   'gulp-notify': '^3.2.0',
   'gulp-plumber': '^1.2.0',
+  'gulp-postcss': '^7.0.1',
+  'gulp-sass': '^4.0.1',
+  'gulp-size': '^3.0.0',
+  'gulp-sourcemaps': '^2.6.4',
   'gulp.spritesmith': '^6.9.0',
   'gulp-svg-sprite': '^1.4.0',
   'gulp-twig': '^1.2.0',
   'gulp-uglify': '^3.0.0',
+  'gulp-util': '^3.0.8',
   'gulp-watch': '^5.0.0',
   'imagemin-jpeg-recompress': '^5.1.0',
   'imagemin-pngquant': '^5.1.0',
   'imagemin-svgo': '^6.0.0',
-  'require-dir': '^0.3.2',
-  'run-sequence': '^2.2.1'
+  'require-dir': '^1.0.0',
+  'run-sequence': '^2.2.1',
+  'yargs': '^11.0.0'
 }
 
 exports.gulpScripts = {

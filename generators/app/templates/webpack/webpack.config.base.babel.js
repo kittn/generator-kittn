@@ -174,12 +174,16 @@ export default {
         },
         {
           test: /\.(eot|ttf|woff|woff2)(\?\S*)?$/,
-          loader: 'file-loader',
-          query: {
-            outputPath: utils.assetsPath('fonts/'),
-            publicPath: 'fonts/',
-            name: '[name].[ext]'
-          }
+          use: [
+            {
+              loader: 'file-loader',
+              query: {
+                outputPath: utils.assetsPath('fonts/'),
+                publicPath: 'fonts/',
+                name: '[name].[ext]'
+              }
+            }
+          ]
         },
         {
           test: /\.svg$/,

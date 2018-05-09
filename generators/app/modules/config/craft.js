@@ -75,6 +75,38 @@ function addCraftCofig (files = {}, context) {
       }
     })
   }
+
+  if (context.props.projectcraft3 === true) {
+    extend(files.pkg, {
+      'dist': {
+        'base': 'dist/web/',
+        'markup': 'dist/',
+        'templates': 'dist/templates',
+        'assets': 'dist/web/assets/',
+        'browserSyncDir': 'dist/web/',
+        'css': 'dist/web/assets/css/',
+        'js': 'dist/web/assets/js/',
+        'fonts': 'dist/web/assets/fonts/',
+        'cssimg': 'dist/web/assets/img/',
+        'bitmaps': 'dist/web/assets/img/bitmaps/',
+        'vectors': 'dist/web/assets/img/svgfiles/',
+        'contentimage': 'dist/web/images/',
+        'webpackassets': 'assets/',
+        'webpackcssassets': 'assets/css/',
+        'webpackpublic': 'dist/web/'
+      },
+      'src': {
+        'plugins': 'src/craftplugins/',
+        'templates': 'src/structure/templates/'
+      },
+      'minify': {
+        'purgeCSS': [
+          'src/structure/templates/**/*.{html,twig}',
+          'src/js/**/*.vue'
+        ]
+      }
+    })
+  }
 }
 
 module.exports = addCraftCofig

@@ -17,7 +17,7 @@ const installCraftV3 = (context, resolve) => {
 }
 
 const installCraftV2 = (context, resolve) => {
-  context.spawnCommand('wget', [`http://buildwithcraft.com/latest-${craftVersion}.tar.gz\?accept_license\=yes`]).on('close', () => {
+  context.spawnCommand('wget', [`http://buildwithcraft.com/latest-v2.tar.gz\?accept_license\=yes`]).on('close', () => {
     context.spawnCommand('mkdir', ['dist']).on('close', () => {
       context.spawnCommand('tar', ['-zxvf', `latest-v2.tar.gz\?accept_license=yes`, 'craft/']).on('close', () => {
         context.spawnCommand('mv', ['craft', 'dist/']).on('close', () => {

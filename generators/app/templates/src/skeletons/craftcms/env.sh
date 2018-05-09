@@ -15,10 +15,10 @@
 # -- GLOBAL settings --
 
 # What to prefix the database table names with
-GLOBAL_DB_TABLE_PREFIX="craft_"
+GLOBAL_DB_TABLE_PREFIX="<% if (!projectcraft3) { %>craft_<% } %>"
 
 # The path of the `craft` folder, relative to the root path; paths should always have a trailing /
-GLOBAL_CRAFT_PATH="craft/"
+GLOBAL_CRAFT_PATH="<% if (!projectcraft3) { %>craft/<% } %>"
 
 # The maximum age of db backups in days; backups older than this will be automatically removed
 GLOBAL_DB_BACKUPS_MAX_AGE=90
@@ -27,13 +27,20 @@ GLOBAL_DB_BACKUPS_MAX_AGE=90
 
 # Local path constants; paths should always have a trailing /
 LOCAL_ROOT_PATH="<%= projectpath %>/dist/"
-LOCAL_ASSETS_PATH=$LOCAL_ROOT_PATH"public/uploads/"
+LOCAL_ASSETS_PATH=$LOCAL_ROOT_PATH"<% if (projectcraft3) { %>web<% } else { %>public<% } %>/uploads/"
 
 # Local user & group that should own the Craft CMS install
 LOCAL_CHOWN_USER="<%= fileUser %>"
 LOCAL_CHOWN_GROUP="<%= fileGroup %>"
 
-# Local directories relative to LOCAL_ROOT_PATH that should be writeable by the $CHOWN_GROUP
+# Local directories relative to LOCAL_ROOT_PATH that should be writeable by the $CHOWN_GROUP<% if (projectcraft3) { %>
+LOCAL_WRITEABLE_DIRS=(
+                "${GLOBAL_CRAFT_PATH}storage"
+                "${GLOBAL_CRAFT_PATH}config"
+                "web/assets"
+                "web/imager"
+                )
+<% } else { %>
 LOCAL_WRITEABLE_DIRS=(
                 "${GLOBAL_CRAFT_PATH}storage"
                 "${GLOBAL_CRAFT_PATH}config"
@@ -41,7 +48,7 @@ LOCAL_WRITEABLE_DIRS=(
                 "public/assets"
                 "public/imager"
                 )
-
+<% } %>
 # Local asset directories relative to LOCAL_ASSETS_PATH that should be synched with remote assets
 LOCAL_ASSETS_DIRS=(
                 "images"

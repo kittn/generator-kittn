@@ -91,7 +91,7 @@ const devWebpackConfig = merge(baseWebpackConfig.default, {
       // })
     <% } %>
 
-    <% if (projectusage === 'craft' || projectusage === 'craftCB' || projectusage === 'wordpress' || projectusage === 'wordpressCB') { %>
+    <% if (projectusage === 'craft' || projectusage === 'craftCB' || projectusage === 'wordpress' || projectusage === 'wordpressCB' || projectusage === 'joomla' || projectusage === 'joomlaCB') { %>
       new WriteFilePlugin({
         log: false,
         test: /^(?!.+(?:hot-update.(js|json))).+$/

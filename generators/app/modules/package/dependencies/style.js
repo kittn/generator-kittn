@@ -21,20 +21,6 @@ function addStyleDependencies (files = {}, context) {
     }
   })
 
-  if (context.props.projectusage !== 'webpackApp') {
-    extend(files.pkg, {
-      devDependencies: {
-        'gulp-load-plugins': '^1.5.0',
-        'gulp-postcss': '^7.0.1',
-        'gulp-sass': '^3.2.1',
-        'gulp-size': '^3.0.0',
-        'gulp-sourcemaps': '^2.6.4',
-        'gulp-util': '^3.0.8',
-        'yargs': '^10.0.3'
-      }
-    })
-  }
-
   /**
    * If User wants stylelint
    * @method if
