@@ -1,31 +1,10 @@
--- phpMyAdmin SQL Dump
--- version 4.7.3
--- https://www.phpmyadmin.net/
---
--- Host: localhost:3306
--- Erstellungszeit: 04. Mai 2018 um 14:10
--- Server-Version: 5.6.35
--- PHP-Version: 7.1.8
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Datenbank: `kittn`
---
-
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `assetindexdata`
 --
 
+DROP TABLE IF EXISTS `assetindexdata`;
 CREATE TABLE `assetindexdata` (
   `id` int(11) NOT NULL,
   `sessionId` varchar(36) NOT NULL DEFAULT '',
@@ -47,6 +26,7 @@ CREATE TABLE `assetindexdata` (
 -- Tabellenstruktur für Tabelle `assets`
 --
 
+DROP TABLE IF EXISTS `assets`;
 CREATE TABLE `assets` (
   `id` int(11) NOT NULL,
   `volumeId` int(11) DEFAULT NULL,
@@ -69,6 +49,7 @@ CREATE TABLE `assets` (
 -- Tabellenstruktur für Tabelle `assettransformindex`
 --
 
+DROP TABLE IF EXISTS `assettransformindex`;
 CREATE TABLE `assettransformindex` (
   `id` int(11) NOT NULL,
   `assetId` int(11) NOT NULL,
@@ -90,6 +71,7 @@ CREATE TABLE `assettransformindex` (
 -- Tabellenstruktur für Tabelle `assettransforms`
 --
 
+DROP TABLE IF EXISTS `assettransforms`;
 CREATE TABLE `assettransforms` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -113,6 +95,7 @@ CREATE TABLE `assettransforms` (
 -- Tabellenstruktur für Tabelle `categories`
 --
 
+DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories` (
   `id` int(11) NOT NULL,
   `groupId` int(11) NOT NULL,
@@ -127,6 +110,7 @@ CREATE TABLE `categories` (
 -- Tabellenstruktur für Tabelle `categorygroups`
 --
 
+DROP TABLE IF EXISTS `categorygroups`;
 CREATE TABLE `categorygroups` (
   `id` int(11) NOT NULL,
   `structureId` int(11) NOT NULL,
@@ -144,6 +128,7 @@ CREATE TABLE `categorygroups` (
 -- Tabellenstruktur für Tabelle `categorygroups_sites`
 --
 
+DROP TABLE IF EXISTS `categorygroups_sites`;
 CREATE TABLE `categorygroups_sites` (
   `id` int(11) NOT NULL,
   `groupId` int(11) NOT NULL,
@@ -162,6 +147,7 @@ CREATE TABLE `categorygroups_sites` (
 -- Tabellenstruktur für Tabelle `content`
 --
 
+DROP TABLE IF EXISTS `content`;
 CREATE TABLE `content` (
   `id` int(11) NOT NULL,
   `elementId` int(11) NOT NULL,
@@ -169,15 +155,18 @@ CREATE TABLE `content` (
   `title` varchar(255) DEFAULT NULL,
   `dateCreated` datetime NOT NULL,
   `dateUpdated` datetime NOT NULL,
-  `uid` char(36) NOT NULL DEFAULT '0'
+  `uid` char(36) NOT NULL DEFAULT '0',
+  `field_body` text
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Daten für Tabelle `content`
 --
 
-INSERT INTO `content` (`id`, `elementId`, `siteId`, `title`, `dateCreated`, `dateUpdated`, `uid`) VALUES
-(1, 1, 1, NULL, '2018-05-04 12:00:03', '2018-05-04 12:00:03', '8fef8f09-8b25-48bf-880e-271bc557c346');
+INSERT INTO `content` (`id`, `elementId`, `siteId`, `title`, `dateCreated`, `dateUpdated`, `uid`, `field_body`) VALUES
+(1, 1, 1, NULL, '2018-05-04 12:00:03', '2018-05-09 08:09:33', '8fef8f09-8b25-48bf-880e-271bc557c346', NULL),
+(2, 2, 1, 'We just installed Craft!', '2018-05-09 06:19:39', '2018-05-09 06:42:17', '2afa7f2e-46a4-44ad-9ba6-0df4ba4a1c95', '<p>Craft is the CMS that’s powering Kittn. It’s beautiful, powerful, flexible, and easy-to-use, and it’s made by Pixel &amp; Tonic. We can’t wait to dive in and see what it’s capable of!</p><p>This is even more captivating content, which you couldn’t see on the News index page because it was entered after a Page Break, and the News index template only likes to show the content on the first page.</p><p>Craft: a nice alternative to Word, if you’re making a website.</p>'),
+(3, 3, 1, 'Welcome to Kittn!', '2018-05-09 06:39:27', '2018-05-09 06:54:35', '6f507618-92a6-48ff-9ff3-6047ff251d8b', '<p>It’s true, this site doesn’t have a whole lot of content yet, but don’t worry. Our web developers have just installed the CMS, and they’re setting things up for the content editors this very moment. Soon Kittn will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.</p>');
 
 -- --------------------------------------------------------
 
@@ -185,6 +174,7 @@ INSERT INTO `content` (`id`, `elementId`, `siteId`, `title`, `dateCreated`, `dat
 -- Tabellenstruktur für Tabelle `craftidtokens`
 --
 
+DROP TABLE IF EXISTS `craftidtokens`;
 CREATE TABLE `craftidtokens` (
   `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
@@ -201,6 +191,7 @@ CREATE TABLE `craftidtokens` (
 -- Tabellenstruktur für Tabelle `deprecationerrors`
 --
 
+DROP TABLE IF EXISTS `deprecationerrors`;
 CREATE TABLE `deprecationerrors` (
   `id` int(11) NOT NULL,
   `key` varchar(255) NOT NULL,
@@ -221,6 +212,7 @@ CREATE TABLE `deprecationerrors` (
 -- Tabellenstruktur für Tabelle `elementindexsettings`
 --
 
+DROP TABLE IF EXISTS `elementindexsettings`;
 CREATE TABLE `elementindexsettings` (
   `id` int(11) NOT NULL,
   `type` varchar(255) NOT NULL,
@@ -236,6 +228,7 @@ CREATE TABLE `elementindexsettings` (
 -- Tabellenstruktur für Tabelle `elements`
 --
 
+DROP TABLE IF EXISTS `elements`;
 CREATE TABLE `elements` (
   `id` int(11) NOT NULL,
   `fieldLayoutId` int(11) DEFAULT NULL,
@@ -252,7 +245,9 @@ CREATE TABLE `elements` (
 --
 
 INSERT INTO `elements` (`id`, `fieldLayoutId`, `type`, `enabled`, `archived`, `dateCreated`, `dateUpdated`, `uid`) VALUES
-(1, NULL, 'craft\\elements\\User', 1, 0, '2018-05-04 12:00:03', '2018-05-04 12:00:03', '308ae331-27ba-4255-bd2e-8b7ae2ef5b3f');
+(1, NULL, 'craft\\elements\\User', 1, 0, '2018-05-04 12:00:03', '2018-05-09 08:09:33', '308ae331-27ba-4255-bd2e-8b7ae2ef5b3f'),
+(2, 1, 'craft\\elements\\Entry', 1, 0, '2018-05-09 06:19:39', '2018-05-09 06:42:17', '0e210c8b-8be5-45c8-bc1c-e5119ddf1f5a'),
+(3, 2, 'craft\\elements\\Entry', 1, 0, '2018-05-09 06:39:27', '2018-05-09 06:54:35', '1a66f714-a6ec-465c-94cf-75778368a119');
 
 -- --------------------------------------------------------
 
@@ -260,6 +255,7 @@ INSERT INTO `elements` (`id`, `fieldLayoutId`, `type`, `enabled`, `archived`, `d
 -- Tabellenstruktur für Tabelle `elements_sites`
 --
 
+DROP TABLE IF EXISTS `elements_sites`;
 CREATE TABLE `elements_sites` (
   `id` int(11) NOT NULL,
   `elementId` int(11) NOT NULL,
@@ -277,7 +273,9 @@ CREATE TABLE `elements_sites` (
 --
 
 INSERT INTO `elements_sites` (`id`, `elementId`, `siteId`, `slug`, `uri`, `enabled`, `dateCreated`, `dateUpdated`, `uid`) VALUES
-(1, 1, 1, NULL, NULL, 1, '2018-05-04 12:00:03', '2018-05-04 12:00:03', '0bca2984-f4e7-4bec-938c-01695a9d2881');
+(1, 1, 1, NULL, NULL, 1, '2018-05-04 12:00:03', '2018-05-09 08:09:33', '0bca2984-f4e7-4bec-938c-01695a9d2881'),
+(2, 2, 1, 'testnews', 'news/testnews', 1, '2018-05-09 06:19:39', '2018-05-09 06:42:17', '9eb119ac-795f-4e66-96dd-a0a8d924cd5d'),
+(3, 3, 1, 'homepage', '__home__', 1, '2018-05-09 06:39:27', '2018-05-09 06:54:35', '51c0237a-e49e-4edc-a1c7-c7659495162d');
 
 -- --------------------------------------------------------
 
@@ -285,6 +283,7 @@ INSERT INTO `elements_sites` (`id`, `elementId`, `siteId`, `slug`, `uri`, `enabl
 -- Tabellenstruktur für Tabelle `entries`
 --
 
+DROP TABLE IF EXISTS `entries`;
 CREATE TABLE `entries` (
   `id` int(11) NOT NULL,
   `sectionId` int(11) NOT NULL,
@@ -297,12 +296,21 @@ CREATE TABLE `entries` (
   `uid` char(36) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `entries`
+--
+
+INSERT INTO `entries` (`id`, `sectionId`, `typeId`, `authorId`, `postDate`, `expiryDate`, `dateCreated`, `dateUpdated`, `uid`) VALUES
+(2, 1, 1, 1, '2018-05-09 06:19:00', NULL, '2018-05-09 06:19:39', '2018-05-09 06:42:17', '1533ef2c-7da5-4eba-82e9-f48600e3655a'),
+(3, 2, 2, NULL, '2018-05-09 06:39:26', NULL, '2018-05-09 06:39:27', '2018-05-09 06:54:35', '747602e1-b14e-4a2e-9270-ff21dca03136');
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `entrydrafts`
 --
 
+DROP TABLE IF EXISTS `entrydrafts`;
 CREATE TABLE `entrydrafts` (
   `id` int(11) NOT NULL,
   `entryId` int(11) NOT NULL,
@@ -323,6 +331,7 @@ CREATE TABLE `entrydrafts` (
 -- Tabellenstruktur für Tabelle `entrytypes`
 --
 
+DROP TABLE IF EXISTS `entrytypes`;
 CREATE TABLE `entrytypes` (
   `id` int(11) NOT NULL,
   `sectionId` int(11) NOT NULL,
@@ -338,12 +347,21 @@ CREATE TABLE `entrytypes` (
   `uid` char(36) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `entrytypes`
+--
+
+INSERT INTO `entrytypes` (`id`, `sectionId`, `fieldLayoutId`, `name`, `handle`, `hasTitleField`, `titleLabel`, `titleFormat`, `sortOrder`, `dateCreated`, `dateUpdated`, `uid`) VALUES
+(1, 1, 1, 'News', 'news', 1, 'Titel', NULL, 1, '2018-05-09 06:17:39', '2018-05-09 06:40:23', '4d4fcc15-400b-45fa-95c7-56ed509d4944'),
+(2, 2, 2, 'Homepage', 'homepage', 1, 'Title', NULL, 1, '2018-05-09 06:39:26', '2018-05-09 06:54:35', '25a1be39-08a5-4aba-b993-3c56ace8f27f');
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `entryversions`
 --
 
+DROP TABLE IF EXISTS `entryversions`;
 CREATE TABLE `entryversions` (
   `id` int(11) NOT NULL,
   `entryId` int(11) NOT NULL,
@@ -358,12 +376,25 @@ CREATE TABLE `entryversions` (
   `uid` char(36) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `entryversions`
+--
+
+INSERT INTO `entryversions` (`id`, `entryId`, `sectionId`, `creatorId`, `siteId`, `num`, `notes`, `data`, `dateCreated`, `dateUpdated`, `uid`) VALUES
+(1, 2, 1, 1, 1, 1, '', '{\"typeId\":\"1\",\"authorId\":\"1\",\"title\":\"Testnews\",\"slug\":\"testnews\",\"postDate\":1525846779,\"expiryDate\":null,\"enabled\":true,\"newParentId\":null,\"fields\":{\"2\":\"Toller Main content\"}}', '2018-05-09 06:19:39', '2018-05-09 06:19:39', '3ba06c7d-45bb-4650-9223-f0c99a661217'),
+(2, 2, 1, 1, 1, 2, '', '{\"typeId\":\"1\",\"authorId\":\"1\",\"title\":\"Testnews\",\"slug\":\"testnews\",\"postDate\":1525846740,\"expiryDate\":null,\"enabled\":true,\"newParentId\":null,\"fields\":{\"2\":\"Toller Main content\"}}', '2018-05-09 06:20:41', '2018-05-09 06:20:41', '4caeb41f-e492-48b3-bad4-abd036d4cd73'),
+(3, 2, 1, 1, 1, 3, '', '{\"typeId\":\"1\",\"authorId\":\"1\",\"title\":\"We just installed Craft!\",\"slug\":\"testnews\",\"postDate\":1525846740,\"expiryDate\":null,\"enabled\":true,\"newParentId\":null,\"fields\":{\"2\":\"<p>Craft is the CMS that’s powering Ktest10.local. It’s beautiful, powerful, flexible, and easy-to-use, and it’s made by Pixel &amp; Tonic. We can’t wait to dive in and see what it’s capable of!</p><p>This is even more captivating content, which you couldn’t see on the News index page because it was entered after a Page Break, and the News index template only likes to show the content on the first page.</p><p>Craft: a nice alternative to Word, if you’re making a website.</p>\"}}', '2018-05-09 06:38:55', '2018-05-09 06:38:55', '5998b301-b72d-48a0-aac3-d54a15126765'),
+(5, 2, 1, 1, 1, 4, '', '{\"typeId\":\"1\",\"authorId\":\"1\",\"title\":\"We just installed Craft!\",\"slug\":\"testnews\",\"postDate\":1525846740,\"expiryDate\":null,\"enabled\":true,\"newParentId\":null,\"fields\":{\"2\":\"<p>Craft is the CMS that’s powering Kittn. It’s beautiful, powerful, flexible, and easy-to-use, and it’s made by Pixel &amp; Tonic. We can’t wait to dive in and see what it’s capable of!</p><p>This is even more captivating content, which you couldn’t see on the News index page because it was entered after a Page Break, and the News index template only likes to show the content on the first page.</p><p>Craft: a nice alternative to Word, if you’re making a website.</p>\",\"3\":[]}}', '2018-05-09 06:42:17', '2018-05-09 06:42:17', 'dbc02351-593d-40d6-af81-1af63b6f839b'),
+(6, 3, 2, 1, 1, 1, 'Revision from 9.5.2018, 08:40:06', '{\"typeId\":\"2\",\"authorId\":null,\"title\":\"Homepage\",\"slug\":\"homepage\",\"postDate\":1525847966,\"expiryDate\":null,\"enabled\":\"1\",\"newParentId\":null,\"fields\":[]}', '2018-05-09 06:43:04', '2018-05-09 06:43:04', '734b826e-ef52-4895-bb15-01bae34325de'),
+(7, 3, 2, 1, 1, 2, '', '{\"typeId\":\"2\",\"authorId\":null,\"title\":\"Welcome to Kittn!\",\"slug\":\"homepage\",\"postDate\":1525847966,\"expiryDate\":null,\"enabled\":true,\"newParentId\":null,\"fields\":{\"2\":\"<p>It’s true, this site doesn’t have a whole lot of content yet, but don’t worry. Our web developers have just installed the CMS, and they’re setting things up for the content editors this very moment. Soon Kittn will be an oasis of fresh perspectives, sharp analyses, and astute opinions that will keep you coming back again and again.</p>\"}}', '2018-05-09 06:43:05', '2018-05-09 06:43:05', '1cdb3884-aadd-475f-9ba0-de9c2b9f6eee');
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `fieldgroups`
 --
 
+DROP TABLE IF EXISTS `fieldgroups`;
 CREATE TABLE `fieldgroups` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -385,6 +416,7 @@ INSERT INTO `fieldgroups` (`id`, `name`, `dateCreated`, `dateUpdated`, `uid`) VA
 -- Tabellenstruktur für Tabelle `fieldlayoutfields`
 --
 
+DROP TABLE IF EXISTS `fieldlayoutfields`;
 CREATE TABLE `fieldlayoutfields` (
   `id` int(11) NOT NULL,
   `layoutId` int(11) NOT NULL,
@@ -397,12 +429,22 @@ CREATE TABLE `fieldlayoutfields` (
   `uid` char(36) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `fieldlayoutfields`
+--
+
+INSERT INTO `fieldlayoutfields` (`id`, `layoutId`, `tabId`, `fieldId`, `required`, `sortOrder`, `dateCreated`, `dateUpdated`, `uid`) VALUES
+(6, 1, 5, 2, 1, 1, '2018-05-09 06:40:23', '2018-05-09 06:40:23', 'd602a3ed-e810-41ef-95ab-fd2bdb7f7b81'),
+(7, 1, 5, 3, 0, 2, '2018-05-09 06:40:23', '2018-05-09 06:40:23', '35fb4af6-b228-4245-84bb-b1d4dbac30f3'),
+(8, 2, 6, 2, 1, 1, '2018-05-09 06:54:35', '2018-05-09 06:54:35', '7e2bed97-2eb6-4759-ac4f-ec2293e22fb8');
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `fieldlayouts`
 --
 
+DROP TABLE IF EXISTS `fieldlayouts`;
 CREATE TABLE `fieldlayouts` (
   `id` int(11) NOT NULL,
   `type` varchar(255) NOT NULL,
@@ -411,12 +453,22 @@ CREATE TABLE `fieldlayouts` (
   `uid` char(36) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `fieldlayouts`
+--
+
+INSERT INTO `fieldlayouts` (`id`, `type`, `dateCreated`, `dateUpdated`, `uid`) VALUES
+(1, 'craft\\elements\\Entry', '2018-05-09 06:17:39', '2018-05-09 06:40:23', '3a55138a-eff5-4d29-9601-cab573963eb9'),
+(2, 'craft\\elements\\Entry', '2018-05-09 06:39:26', '2018-05-09 06:54:35', '80ce97ec-b5cb-49c6-999e-adb98f4c4727'),
+(3, 'craft\\elements\\Tag', '2018-05-09 06:41:17', '2018-05-09 06:41:17', '414e3ff1-b69e-47b0-8d9a-e3f269a9466c');
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `fieldlayouttabs`
 --
 
+DROP TABLE IF EXISTS `fieldlayouttabs`;
 CREATE TABLE `fieldlayouttabs` (
   `id` int(11) NOT NULL,
   `layoutId` int(11) NOT NULL,
@@ -427,12 +479,21 @@ CREATE TABLE `fieldlayouttabs` (
   `uid` char(36) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `fieldlayouttabs`
+--
+
+INSERT INTO `fieldlayouttabs` (`id`, `layoutId`, `name`, `sortOrder`, `dateCreated`, `dateUpdated`, `uid`) VALUES
+(5, 1, 'Main', 1, '2018-05-09 06:40:23', '2018-05-09 06:40:23', 'dd0f5330-c30a-4a54-a4b1-7ae39a72aea1'),
+(6, 2, 'Content', 1, '2018-05-09 06:54:35', '2018-05-09 06:54:35', '99dacfe4-59e6-4206-b7ee-08f5dd8782d3');
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `fields`
 --
 
+DROP TABLE IF EXISTS `fields`;
 CREATE TABLE `fields` (
   `id` int(11) NOT NULL,
   `groupId` int(11) DEFAULT NULL,
@@ -449,12 +510,21 @@ CREATE TABLE `fields` (
   `uid` char(36) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `fields`
+--
+
+INSERT INTO `fields` (`id`, `groupId`, `name`, `handle`, `context`, `instructions`, `translationMethod`, `translationKeyFormat`, `type`, `settings`, `dateCreated`, `dateUpdated`, `uid`) VALUES
+(2, 1, 'Body', 'body', 'global', '', 'none', NULL, 'craft\\redactor\\Field', '{\"redactorConfig\":\"\",\"purifierConfig\":\"\",\"cleanupHtml\":\"1\",\"purifyHtml\":\"1\",\"columnType\":\"text\",\"availableVolumes\":\"*\",\"availableTransforms\":\"*\"}', '2018-05-09 06:19:02', '2018-05-09 08:13:45', '2479e13e-5d2d-4218-8711-dc5b002fc543'),
+(3, 1, 'Tags', 'tags', 'global', '', 'site', NULL, 'craft\\fields\\Tags', '{\"sources\":\"*\",\"source\":\"taggroup:1\",\"targetSiteId\":null,\"viewMode\":null,\"limit\":null,\"selectionLabel\":\"\",\"localizeRelations\":false}', '2018-05-09 06:34:28', '2018-05-09 06:41:26', '6817cf5c-3584-4279-af6d-b1e71912f43f');
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `globalsets`
 --
 
+DROP TABLE IF EXISTS `globalsets`;
 CREATE TABLE `globalsets` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -471,6 +541,7 @@ CREATE TABLE `globalsets` (
 -- Tabellenstruktur für Tabelle `info`
 --
 
+DROP TABLE IF EXISTS `info`;
 CREATE TABLE `info` (
   `id` int(11) NOT NULL,
   `version` varchar(50) NOT NULL,
@@ -491,7 +562,7 @@ CREATE TABLE `info` (
 --
 
 INSERT INTO `info` (`id`, `version`, `schemaVersion`, `edition`, `timezone`, `name`, `on`, `maintenance`, `fieldVersion`, `dateCreated`, `dateUpdated`, `uid`) VALUES
-(1, '3.0.5', '3.0.91', 0, 'Europe/Berlin', '<%= projectname %>', 1, 0, '5SB8sJuw0RtG', '2018-05-04 12:00:03', '2018-05-04 12:00:03', 'bc083169-5ffc-4374-8088-4591c0162a15');
+(1, '3.0.6', '3.0.91', 0, 'Europe/Berlin', '<%= projectname %>', 1, 0, 'zhsTGUhnvbNX', '2018-05-04 12:00:03', '2018-05-09 08:13:45', 'bc083169-5ffc-4374-8088-4591c0162a15');
 
 -- --------------------------------------------------------
 
@@ -499,6 +570,7 @@ INSERT INTO `info` (`id`, `version`, `schemaVersion`, `edition`, `timezone`, `na
 -- Tabellenstruktur für Tabelle `matrixblocks`
 --
 
+DROP TABLE IF EXISTS `matrixblocks`;
 CREATE TABLE `matrixblocks` (
   `id` int(11) NOT NULL,
   `ownerId` int(11) NOT NULL,
@@ -517,6 +589,7 @@ CREATE TABLE `matrixblocks` (
 -- Tabellenstruktur für Tabelle `matrixblocktypes`
 --
 
+DROP TABLE IF EXISTS `matrixblocktypes`;
 CREATE TABLE `matrixblocktypes` (
   `id` int(11) NOT NULL,
   `fieldId` int(11) NOT NULL,
@@ -535,6 +608,7 @@ CREATE TABLE `matrixblocktypes` (
 -- Tabellenstruktur für Tabelle `migrations`
 --
 
+DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
   `id` int(11) NOT NULL,
   `pluginId` int(11) DEFAULT NULL,
@@ -645,7 +719,15 @@ INSERT INTO `migrations` (`id`, `pluginId`, `type`, `name`, `applyTime`, `dateCr
 (92, NULL, 'app', 'm180404_182320_edition_changes', '2018-05-04 12:00:03', '2018-05-04 12:00:03', '2018-05-04 12:00:03', 'bc3c7230-89c4-4b0e-ae04-442b7bd7a232'),
 (93, NULL, 'app', 'm180411_102218_fix_db_routes', '2018-05-04 12:00:03', '2018-05-04 12:00:03', '2018-05-04 12:00:03', 'a06ada78-f7a6-45e5-8376-7b06d8be4f94'),
 (94, NULL, 'app', 'm180416_205628_resourcepaths_table', '2018-05-04 12:00:03', '2018-05-04 12:00:03', '2018-05-04 12:00:03', '23b6dad8-fd60-4502-9d64-820816599165'),
-(95, NULL, 'app', 'm180418_205713_widget_cleanup', '2018-05-04 12:00:03', '2018-05-04 12:00:03', '2018-05-04 12:00:03', 'd152c4b2-26a3-4846-917b-9bed9a887d10');
+(95, NULL, 'app', 'm180418_205713_widget_cleanup', '2018-05-04 12:00:03', '2018-05-04 12:00:03', '2018-05-04 12:00:03', 'd152c4b2-26a3-4846-917b-9bed9a887d10'),
+(96, 2, 'plugin', 'm180430_204710_remove_old_plugins', '2018-05-09 08:09:57', '2018-05-09 08:09:57', '2018-05-09 08:09:57', '960a40c8-53b9-4998-a09a-61a114563288'),
+(97, 2, 'plugin', 'Install', '2018-05-09 08:09:57', '2018-05-09 08:09:57', '2018-05-09 08:09:57', '3ef126d3-2f35-479c-8cf1-55c52a663899'),
+(98, 9, 'plugin', 'Install', '2018-05-09 08:13:15', '2018-05-09 08:13:15', '2018-05-09 08:13:15', 'c63ca456-1ae0-4fb0-9f83-7e335d1ab74c'),
+(99, 10, 'plugin', 'Install', '2018-05-09 08:13:23', '2018-05-09 08:13:23', '2018-05-09 08:13:23', '80546e70-cdc8-4596-be8e-c4ac8a6f006a'),
+(100, 10, 'plugin', 'm180210_000000_migrate_content_tables', '2018-05-09 08:13:23', '2018-05-09 08:13:23', '2018-05-09 08:13:23', '9bb5aa71-2a52-4023-9bc7-c9410606e824'),
+(101, 10, 'plugin', 'm180211_000000_type_columns', '2018-05-09 08:13:23', '2018-05-09 08:13:23', '2018-05-09 08:13:23', '16989749-edcc-4b83-8338-e1928e1a6c9c'),
+(102, 10, 'plugin', 'm180219_000000_sites', '2018-05-09 08:13:23', '2018-05-09 08:13:23', '2018-05-09 08:13:23', 'acfaaf56-d01c-4340-bd6e-f8e61d197b47'),
+(103, 10, 'plugin', 'm180220_000000_fix_context', '2018-05-09 08:13:23', '2018-05-09 08:13:23', '2018-05-09 08:13:23', 'c9b751ff-ce89-464b-bc9f-f1b9980e8e7c');
 
 -- --------------------------------------------------------
 
@@ -653,6 +735,7 @@ INSERT INTO `migrations` (`id`, `pluginId`, `type`, `name`, `applyTime`, `dateCr
 -- Tabellenstruktur für Tabelle `plugins`
 --
 
+DROP TABLE IF EXISTS `plugins`;
 CREATE TABLE `plugins` (
   `id` int(11) NOT NULL,
   `handle` varchar(255) NOT NULL,
@@ -668,12 +751,30 @@ CREATE TABLE `plugins` (
   `uid` char(36) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `plugins`
+--
+
+INSERT INTO `plugins` (`id`, `handle`, `version`, `schemaVersion`, `licenseKey`, `licenseKeyStatus`, `enabled`, `settings`, `installDate`, `dateCreated`, `dateUpdated`, `uid`) VALUES
+(1, 'ckeditor', '1.0.0-beta.2', '1.0.0', NULL, 'unknown', 1, NULL, '2018-05-09 06:37:53', '2018-05-09 06:37:53', '2018-05-09 07:01:33', 'db2e9e63-a15d-4849-849d-1c4ed6dba314'),
+(2, 'redactor', '2.0.1', '2.0.0', NULL, 'unknown', 1, NULL, '2018-05-09 08:09:57', '2018-05-09 08:09:57', '2018-05-09 08:13:28', 'c00618ed-b50e-4bd4-8185-82f9f1c98840'),
+(3, 'http2-server-push', '1.0.0', '1.0.0', NULL, 'unknown', 1, NULL, '2018-05-09 08:11:24', '2018-05-09 08:11:24', '2018-05-09 08:13:28', '3223c2cd-b414-4dbe-8377-36f67a1d8b77'),
+(4, 'image-optimize', '1.4.31', '1.0.0', NULL, 'invalid', 0, NULL, '2018-05-09 08:11:29', '2018-05-09 08:11:29', '2018-05-09 08:11:56', 'd29b58c3-512b-44d0-a4d4-c1c39298d8a2'),
+(5, 'imager', 'v2.0.0', '2.0.0', NULL, 'unknown', 1, NULL, '2018-05-09 08:12:20', '2018-05-09 08:12:20', '2018-05-09 08:13:28', 'f67c6d58-2027-42b0-84cc-f56e2823a3c6'),
+(6, 'logs', '3.0.0', '3.0.0', NULL, 'unknown', 1, NULL, '2018-05-09 08:12:23', '2018-05-09 08:12:23', '2018-05-09 08:13:28', 'd15e2b71-9270-4247-9291-d86f9a514576'),
+(7, 'minify', '1.2.8', '1.0.0', NULL, 'unknown', 1, NULL, '2018-05-09 08:12:53', '2018-05-09 08:12:53', '2018-05-09 08:13:28', 'ab7bc171-d596-4466-b289-bd82a51a0dc6'),
+(8, 'environment-label', '3.1.3', '1.0.0', NULL, 'unknown', 1, NULL, '2018-05-09 08:13:00', '2018-05-09 08:13:00', '2018-05-09 08:13:28', 'cd789a1b-d533-4cf3-9fa3-7e50f10aaaec'),
+(9, 'snitch', '2.0.1', '1.0.0', NULL, 'unknown', 1, NULL, '2018-05-09 08:13:15', '2018-05-09 08:13:15', '2018-05-09 08:13:28', '01add4db-4d03-4391-82d3-f840d78b4767'),
+(10, 'super-table', '2.0.7', '2.0.4', NULL, 'unknown', 1, NULL, '2018-05-09 08:13:22', '2018-05-09 08:13:22', '2018-05-09 08:13:28', '5ac68ec1-a086-4597-a6b7-a1258ebe42fa'),
+(11, 'typedlinkfield', '1.0.8', '1.0.0', NULL, 'unknown', 1, NULL, '2018-05-09 08:13:26', '2018-05-09 08:13:26', '2018-05-09 08:13:28', 'ef526c17-996a-469d-bf04-717416056a65');
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `queue`
 --
 
+DROP TABLE IF EXISTS `queue`;
 CREATE TABLE `queue` (
   `id` int(11) NOT NULL,
   `job` longblob NOT NULL,
@@ -697,6 +798,7 @@ CREATE TABLE `queue` (
 -- Tabellenstruktur für Tabelle `relations`
 --
 
+DROP TABLE IF EXISTS `relations`;
 CREATE TABLE `relations` (
   `id` int(11) NOT NULL,
   `fieldId` int(11) NOT NULL,
@@ -715,10 +817,100 @@ CREATE TABLE `relations` (
 -- Tabellenstruktur für Tabelle `resourcepaths`
 --
 
+DROP TABLE IF EXISTS `resourcepaths`;
 CREATE TABLE `resourcepaths` (
   `hash` varchar(255) NOT NULL,
   `path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Daten für Tabelle `resourcepaths`
+--
+
+INSERT INTO `resourcepaths` (`hash`, `path`) VALUES
+('12c8aadf', '@craft/web/assets/cp/dist'),
+('14e78f96', '@lib/selectize'),
+('198a5993', '@lib/garnishjs'),
+('1992715', '@craft/web/assets/generalsettings/dist'),
+('1bb39aa2', '@craft/web/assets/pluginstore/dist'),
+('1e8bcb1c', '@lib/xregexp'),
+('1edfe44f', '@craft/web/assets'),
+('21749369', '@lib/timepicker'),
+('23365286', '@lib/jquery-touch-events'),
+('241bf635', '@craft/web/assets/tablesettings/dist'),
+('24926e44', '@lib/picturefill'),
+('26163385', '@verbb/supertable/resources/dist'),
+('297e572d', '@app/web/assets/plugins/dist'),
+('2a374e15', '@lib/d3'),
+('2b4df3e3', '@nystudio107/imageoptimize/assetbundles/imageoptimize/dist'),
+('2c315e43', '@craft/web/assets/utilities/dist'),
+('2f181468', '@app/web/assets/editentry/dist'),
+('32e9cc60', '@craft/web/assets/sites/dist'),
+('360c3120', '@craft/web/assets/recententries/dist'),
+('3c7a6fba', '@lib/fileupload'),
+('40103a63', '@craft/web/assets/tablesettings/dist'),
+('4099a212', '@lib/picturefill'),
+('457f5f3f', '@lib/timepicker'),
+('473d9ed0', '@lib/jquery-touch-events'),
+('483a9215', '@craft/web/assets/utilities/dist'),
+('4d759b7b', '@app/web/assets/plugins/dist'),
+('4e3c8243', '@lib/d3'),
+('5207fd76', '@craft/web/assets/recententries/dist'),
+('5871a3ec', '@lib/fileupload'),
+('5c2e37d6', '@app/web/assets/clearcaches/dist'),
+('6592eb43', '@craft/web/assets/generalsettings/dist'),
+('68028816', '@craft/web/assets/fields/dist'),
+('68c741fb', '@lib/fabric'),
+('694fe4dc', '@lib/datepicker-i18n'),
+('6c37c08e', '@craft/ckeditor/assets/field/dist'),
+('6cbdbf18', '@craft/web/assets/updateswidget/dist'),
+('70ec43c0', '@lib/selectize'),
+('76c36689', '@craft/web/assets/cp/dist'),
+('7a80074a', '@lib/xregexp'),
+('7ad42819', '@craft/web/assets'),
+('7d8195c5', '@lib/garnishjs'),
+('7fb856f4', '@craft/web/assets/pluginstore/dist'),
+('846287f5', '@app/web/assets/matrixsettings/dist'),
+('87a8f936', '@lib/element-resize-detector'),
+('8b6734e', '@craft/web/assets/updateswidget/dist'),
+('8d47529e', '@craft/web/assets/dashboard/dist'),
+('8d9f826', '@app/web/assets/fields/dist'),
+('8dab43fc', '@craft/web/assets/plugins/dist'),
+('900fb803', '@craft/web/assets/feed/dist'),
+('9012933b', '@lib'),
+('928db1f2', '@craft/web/assets/matrixsettings/dist'),
+('9315f24d', '@lib/jquery-ui'),
+('964051ed', '@craft/web/assets/edituser/dist'),
+('a5900a56', '@lib/jquery.payment'),
+('a7e2b4ea', '@app/web/assets/tablesettings/dist'),
+('a83852c3', '@bower/jquery/dist'),
+('a8b85472', '@app/web/assets/cp/dist'),
+('ade1909e', '@craft/web/assets/editentry/dist'),
+('aec8dab5', '@app/web/assets/utilities/dist'),
+('af1a8547', '@craft/web/assets/craftsupport/dist'),
+('b2c4bc62', '@craft/web/assets/deprecationerrors/dist'),
+('b9b7a5be', '@lib/velocity'),
+('c094440', '@craft/web/assets/fields/dist'),
+('c19bc600', '@lib/jquery.payment'),
+('c317fedc', '@craft/web/assets/login/dist'),
+('cb114911', '@craft/web/assets/craftsupport/dist'),
+('cc339e95', '@bower/jquery/dist'),
+('ccb39824', '@app/web/assets/cp/dist'),
+('ccc8dad', '@lib/fabric'),
+('d0254871', '@vendor/craftcms/ckeditor/lib/ckeditor/dist'),
+('d10c57e5', '@marionnewlevant/snitch/assetbundles/snitch/dist'),
+('d44288a', '@lib/datepicker-i18n'),
+('d78bd50f', '@app/web/assets/pluginstore/dist'),
+('ddbc69e8', '@lib/velocity'),
+('e22c46d', '@app/web/assets/deprecationerrors/dist'),
+('e3a33560', '@lib/element-resize-detector'),
+('e94c9ec8', '@craft/web/assets/dashboard/dist'),
+('e9a08faa', '@craft/web/assets/plugins/dist'),
+('f24b9dbb', '@craft/web/assets/edituser/dist'),
+('f4047455', '@craft/web/assets/feed/dist'),
+('f4195f6d', '@lib'),
+('f6867da4', '@craft/web/assets/matrixsettings/dist'),
+('f71e3e1b', '@lib/jquery-ui');
 
 -- --------------------------------------------------------
 
@@ -726,6 +918,7 @@ CREATE TABLE `resourcepaths` (
 -- Tabellenstruktur für Tabelle `routes`
 --
 
+DROP TABLE IF EXISTS `routes`;
 CREATE TABLE `routes` (
   `id` int(11) NOT NULL,
   `siteId` int(11) DEFAULT NULL,
@@ -744,6 +937,7 @@ CREATE TABLE `routes` (
 -- Tabellenstruktur für Tabelle `searchindex`
 --
 
+DROP TABLE IF EXISTS `searchindex`;
 CREATE TABLE `searchindex` (
   `elementId` int(11) NOT NULL,
   `attribute` varchar(25) NOT NULL,
@@ -762,7 +956,15 @@ INSERT INTO `searchindex` (`elementId`, `attribute`, `fieldId`, `siteId`, `keywo
 (1, 'lastname', 0, 1, ''),
 (1, 'fullname', 0, 1, ''),
 (1, 'email', 0, 1, ' foo bar com '),
-(1, 'slug', 0, 1, '');
+(1, 'slug', 0, 1, ''),
+(2, 'field', 1, 1, ''),
+(2, 'field', 2, 1, ' craft is the cms that s powering kittn it s beautiful powerful flexible and easy to use and it s made by pixel tonic we can t wait to dive in and see what it s capable of this is even more captivating content which you couldn t see on the news index page because it was entered after a page break and the news index template only likes to show the content on the first page craft a nice alternative to word if you re making a website '),
+(2, 'slug', 0, 1, ' testnews '),
+(2, 'title', 0, 1, ' we just installed craft '),
+(3, 'slug', 0, 1, ' homepage '),
+(3, 'title', 0, 1, ' welcome to kittn '),
+(3, 'field', 2, 1, ' it s true this site doesn t have a whole lot of content yet but don t worry our web developers have just installed the cms and they re setting things up for the content editors this very moment soon kittn will be an oasis of fresh perspectives sharp analyses and astute opinions that will keep you coming back again and again '),
+(2, 'field', 3, 1, '');
 
 -- --------------------------------------------------------
 
@@ -770,6 +972,7 @@ INSERT INTO `searchindex` (`elementId`, `attribute`, `fieldId`, `siteId`, `keywo
 -- Tabellenstruktur für Tabelle `sections`
 --
 
+DROP TABLE IF EXISTS `sections`;
 CREATE TABLE `sections` (
   `id` int(11) NOT NULL,
   `structureId` int(11) DEFAULT NULL,
@@ -783,12 +986,21 @@ CREATE TABLE `sections` (
   `uid` char(36) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `sections`
+--
+
+INSERT INTO `sections` (`id`, `structureId`, `name`, `handle`, `type`, `enableVersioning`, `propagateEntries`, `dateCreated`, `dateUpdated`, `uid`) VALUES
+(1, NULL, 'News', 'news', 'channel', 1, 1, '2018-05-09 06:17:38', '2018-05-09 06:17:38', '46962fb1-47df-49be-ade6-9184abcc911e'),
+(2, NULL, 'Homepage', 'homepage', 'single', 1, 1, '2018-05-09 06:39:26', '2018-05-09 06:54:34', 'fa87fb43-5046-4722-805d-026b4405366a');
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `sections_sites`
 --
 
+DROP TABLE IF EXISTS `sections_sites`;
 CREATE TABLE `sections_sites` (
   `id` int(11) NOT NULL,
   `sectionId` int(11) NOT NULL,
@@ -802,12 +1014,21 @@ CREATE TABLE `sections_sites` (
   `uid` char(36) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `sections_sites`
+--
+
+INSERT INTO `sections_sites` (`id`, `sectionId`, `siteId`, `hasUrls`, `uriFormat`, `template`, `enabledByDefault`, `dateCreated`, `dateUpdated`, `uid`) VALUES
+(1, 1, 1, 1, 'news/{slug}', 'news/_entry', 1, '2018-05-09 06:17:39', '2018-05-09 06:17:39', '2b9606dd-7b5a-4c7f-86f0-f75ba321c3c4'),
+(2, 2, 1, 1, '__home__', 'index', 1, '2018-05-09 06:39:26', '2018-05-09 06:54:34', 'f448e5ee-b3d0-47aa-adda-e395af222cdb');
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `sessions`
 --
 
+DROP TABLE IF EXISTS `sessions`;
 CREATE TABLE `sessions` (
   `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
@@ -817,12 +1038,20 @@ CREATE TABLE `sessions` (
   `uid` char(36) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `sessions`
+--
+
+INSERT INTO `sessions` (`id`, `userId`, `token`, `dateCreated`, `dateUpdated`, `uid`) VALUES
+(1, 1, 'BWYQiOAK1nVyVmILk2kBb0cWKO_DG6jJgjCDLCzpSf-qviQr4kdns-OI20i8y_Vb2zhmTFm7AswFk0DfYYD3t-vlKHN3x1KxJlp9', '2018-05-09 06:11:03', '2018-05-09 07:14:45', '5694b5b4-cff0-43c7-b313-a23ab176f847');
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `shunnedmessages`
 --
 
+DROP TABLE IF EXISTS `shunnedmessages`;
 CREATE TABLE `shunnedmessages` (
   `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
@@ -839,6 +1068,7 @@ CREATE TABLE `shunnedmessages` (
 -- Tabellenstruktur für Tabelle `sitegroups`
 --
 
+DROP TABLE IF EXISTS `sitegroups`;
 CREATE TABLE `sitegroups` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -860,6 +1090,7 @@ INSERT INTO `sitegroups` (`id`, `name`, `dateCreated`, `dateUpdated`, `uid`) VAL
 -- Tabellenstruktur für Tabelle `sites`
 --
 
+DROP TABLE IF EXISTS `sites`;
 CREATE TABLE `sites` (
   `id` int(11) NOT NULL,
   `groupId` int(11) NOT NULL,
@@ -885,9 +1116,27 @@ INSERT INTO `sites` (`id`, `groupId`, `primary`, `name`, `handle`, `language`, `
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `snitch_collisions`
+--
+
+DROP TABLE IF EXISTS `snitch_collisions`;
+CREATE TABLE `snitch_collisions` (
+  `id` int(11) NOT NULL,
+  `elementId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `whenEntered` datetime NOT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Tabellenstruktur für Tabelle `structureelements`
 --
 
+DROP TABLE IF EXISTS `structureelements`;
 CREATE TABLE `structureelements` (
   `id` int(11) NOT NULL,
   `structureId` int(11) NOT NULL,
@@ -907,6 +1156,7 @@ CREATE TABLE `structureelements` (
 -- Tabellenstruktur für Tabelle `structures`
 --
 
+DROP TABLE IF EXISTS `structures`;
 CREATE TABLE `structures` (
   `id` int(11) NOT NULL,
   `maxLevels` smallint(6) UNSIGNED DEFAULT NULL,
@@ -918,9 +1168,45 @@ CREATE TABLE `structures` (
 -- --------------------------------------------------------
 
 --
+-- Tabellenstruktur für Tabelle `supertableblocks`
+--
+
+DROP TABLE IF EXISTS `supertableblocks`;
+CREATE TABLE `supertableblocks` (
+  `id` int(11) NOT NULL,
+  `ownerId` int(11) NOT NULL,
+  `ownerSiteId` int(11) DEFAULT NULL,
+  `fieldId` int(11) NOT NULL,
+  `typeId` int(11) NOT NULL,
+  `sortOrder` smallint(6) UNSIGNED DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Tabellenstruktur für Tabelle `supertableblocktypes`
+--
+
+DROP TABLE IF EXISTS `supertableblocktypes`;
+CREATE TABLE `supertableblocktypes` (
+  `id` int(11) NOT NULL,
+  `fieldId` int(11) NOT NULL,
+  `fieldLayoutId` int(11) DEFAULT NULL,
+  `dateCreated` datetime NOT NULL,
+  `dateUpdated` datetime NOT NULL,
+  `uid` char(36) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Tabellenstruktur für Tabelle `systemmessages`
 --
 
+DROP TABLE IF EXISTS `systemmessages`;
 CREATE TABLE `systemmessages` (
   `id` int(11) NOT NULL,
   `language` varchar(255) NOT NULL,
@@ -938,6 +1224,7 @@ CREATE TABLE `systemmessages` (
 -- Tabellenstruktur für Tabelle `systemsettings`
 --
 
+DROP TABLE IF EXISTS `systemsettings`;
 CREATE TABLE `systemsettings` (
   `id` int(11) NOT NULL,
   `category` varchar(15) NOT NULL,
@@ -952,7 +1239,7 @@ CREATE TABLE `systemsettings` (
 --
 
 INSERT INTO `systemsettings` (`id`, `category`, `settings`, `dateCreated`, `dateUpdated`, `uid`) VALUES
-(1, 'email', '{\"fromEmail\":\"<%= projectmail %>\",\"fromName\":\"<%= projectname %>\",\"transportType\":\"craft\\\\mail\\\\transportadapters\\\\Sendmail\"}', '2018-05-04 12:00:03', '2018-05-04 12:00:03', 'e2a8b2f6-a5d0-4a3f-a044-8009cbbf8175');
+(1, 'email', '{\"fromEmail\":\"<% if (projectmail) { %><%= projectmail %><% } else { %>foo@bar.com<% } %>\",\"fromName\":\"<%= projectname %>\",\"template\":null,\"transportType\":\"craft\\\\mail\\\\transportadapters\\\\Sendmail\",\"transportSettings\":null}', '2018-05-04 12:00:03', '2018-05-09 08:08:48', 'e2a8b2f6-a5d0-4a3f-a044-8009cbbf8175');
 
 -- --------------------------------------------------------
 
@@ -960,6 +1247,7 @@ INSERT INTO `systemsettings` (`id`, `category`, `settings`, `dateCreated`, `date
 -- Tabellenstruktur für Tabelle `taggroups`
 --
 
+DROP TABLE IF EXISTS `taggroups`;
 CREATE TABLE `taggroups` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -970,12 +1258,20 @@ CREATE TABLE `taggroups` (
   `uid` char(36) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `taggroups`
+--
+
+INSERT INTO `taggroups` (`id`, `name`, `handle`, `fieldLayoutId`, `dateCreated`, `dateUpdated`, `uid`) VALUES
+(1, 'Default', 'default', 3, '2018-05-09 06:41:17', '2018-05-09 06:41:17', '817db188-4872-4b69-a0b1-b9fd3f100ac2');
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `tags`
 --
 
+DROP TABLE IF EXISTS `tags`;
 CREATE TABLE `tags` (
   `id` int(11) NOT NULL,
   `groupId` int(11) NOT NULL,
@@ -990,6 +1286,7 @@ CREATE TABLE `tags` (
 -- Tabellenstruktur für Tabelle `templatecacheelements`
 --
 
+DROP TABLE IF EXISTS `templatecacheelements`;
 CREATE TABLE `templatecacheelements` (
   `cacheId` int(11) NOT NULL,
   `elementId` int(11) NOT NULL
@@ -1001,6 +1298,7 @@ CREATE TABLE `templatecacheelements` (
 -- Tabellenstruktur für Tabelle `templatecachequeries`
 --
 
+DROP TABLE IF EXISTS `templatecachequeries`;
 CREATE TABLE `templatecachequeries` (
   `id` int(11) NOT NULL,
   `cacheId` int(11) NOT NULL,
@@ -1014,6 +1312,7 @@ CREATE TABLE `templatecachequeries` (
 -- Tabellenstruktur für Tabelle `templatecaches`
 --
 
+DROP TABLE IF EXISTS `templatecaches`;
 CREATE TABLE `templatecaches` (
   `id` int(11) NOT NULL,
   `siteId` int(11) NOT NULL,
@@ -1029,6 +1328,7 @@ CREATE TABLE `templatecaches` (
 -- Tabellenstruktur für Tabelle `tokens`
 --
 
+DROP TABLE IF EXISTS `tokens`;
 CREATE TABLE `tokens` (
   `id` int(11) NOT NULL,
   `token` char(32) NOT NULL,
@@ -1047,6 +1347,7 @@ CREATE TABLE `tokens` (
 -- Tabellenstruktur für Tabelle `usergroups`
 --
 
+DROP TABLE IF EXISTS `usergroups`;
 CREATE TABLE `usergroups` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -1062,6 +1363,7 @@ CREATE TABLE `usergroups` (
 -- Tabellenstruktur für Tabelle `usergroups_users`
 --
 
+DROP TABLE IF EXISTS `usergroups_users`;
 CREATE TABLE `usergroups_users` (
   `id` int(11) NOT NULL,
   `groupId` int(11) NOT NULL,
@@ -1077,6 +1379,7 @@ CREATE TABLE `usergroups_users` (
 -- Tabellenstruktur für Tabelle `userpermissions`
 --
 
+DROP TABLE IF EXISTS `userpermissions`;
 CREATE TABLE `userpermissions` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
@@ -1091,6 +1394,7 @@ CREATE TABLE `userpermissions` (
 -- Tabellenstruktur für Tabelle `userpermissions_usergroups`
 --
 
+DROP TABLE IF EXISTS `userpermissions_usergroups`;
 CREATE TABLE `userpermissions_usergroups` (
   `id` int(11) NOT NULL,
   `permissionId` int(11) NOT NULL,
@@ -1106,6 +1410,7 @@ CREATE TABLE `userpermissions_usergroups` (
 -- Tabellenstruktur für Tabelle `userpermissions_users`
 --
 
+DROP TABLE IF EXISTS `userpermissions_users`;
 CREATE TABLE `userpermissions_users` (
   `id` int(11) NOT NULL,
   `permissionId` int(11) NOT NULL,
@@ -1121,6 +1426,7 @@ CREATE TABLE `userpermissions_users` (
 -- Tabellenstruktur für Tabelle `userpreferences`
 --
 
+DROP TABLE IF EXISTS `userpreferences`;
 CREATE TABLE `userpreferences` (
   `userId` int(11) NOT NULL,
   `preferences` text
@@ -1131,7 +1437,7 @@ CREATE TABLE `userpreferences` (
 --
 
 INSERT INTO `userpreferences` (`userId`, `preferences`) VALUES
-(1, '{\"language\":\"de\"}');
+(1, '{\"language\":\"de\",\"weekStartDay\":\"1\",\"enableDebugToolbarForSite\":false,\"enableDebugToolbarForCp\":false}');
 
 -- --------------------------------------------------------
 
@@ -1139,6 +1445,7 @@ INSERT INTO `userpreferences` (`userId`, `preferences`) VALUES
 -- Tabellenstruktur für Tabelle `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
@@ -1173,7 +1480,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `photoId`, `firstName`, `lastName`, `email`, `password`, `admin`, `locked`, `suspended`, `pending`, `lastLoginDate`, `lastLoginAttemptIp`, `invalidLoginWindowStart`, `invalidLoginCount`, `lastInvalidLoginDate`, `lockoutDate`, `hasDashboard`, `verificationCode`, `verificationCodeIssuedDate`, `unverifiedEmail`, `passwordResetRequired`, `lastPasswordChangeDate`, `dateCreated`, `dateUpdated`, `uid`) VALUES
-(1, 'kittn', NULL, NULL, NULL, '<%= projectmail %>', '$2y$13$sSVfCmnBQpwveTpaA4ImNu1JeeIJJ8UrT/VCd1xigaRiR9CFKfEae', 1, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, NULL, 0, NULL, NULL, NULL, 0, '2018-05-04 12:00:03', '2018-05-04 12:00:03', '2018-05-04 12:00:03', 'f2acd50c-6006-4baa-afa6-2edacf6d02e7');
+(1, 'kittn', NULL, '', '', '<% if (projectmail) { %><%= projectmail %><% } else { %>foo@bar.com<% } %>', '$2y$13$sSVfCmnBQpwveTpaA4ImNu1JeeIJJ8UrT/VCd1xigaRiR9CFKfEae', 1, 0, 0, 0, '2018-05-09 06:11:03', '::1', NULL, NULL, NULL, NULL, 1, NULL, NULL, NULL, 0, '2018-05-04 12:00:03', '2018-05-04 12:00:03', '2018-05-09 08:09:33', 'f2acd50c-6006-4baa-afa6-2edacf6d02e7');
 
 -- --------------------------------------------------------
 
@@ -1181,6 +1488,7 @@ INSERT INTO `users` (`id`, `username`, `photoId`, `firstName`, `lastName`, `emai
 -- Tabellenstruktur für Tabelle `volumefolders`
 --
 
+DROP TABLE IF EXISTS `volumefolders`;
 CREATE TABLE `volumefolders` (
   `id` int(11) NOT NULL,
   `parentId` int(11) DEFAULT NULL,
@@ -1192,12 +1500,21 @@ CREATE TABLE `volumefolders` (
   `uid` char(36) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Daten für Tabelle `volumefolders`
+--
+
+INSERT INTO `volumefolders` (`id`, `parentId`, `volumeId`, `name`, `path`, `dateCreated`, `dateUpdated`, `uid`) VALUES
+(1, NULL, NULL, 'Temporäre Quelle', NULL, '2018-05-09 08:13:40', '2018-05-09 08:13:40', '7b1df645-f2a0-408d-bb5e-6f5dacdc0145'),
+(2, 1, NULL, 'user_1', 'user_1/', '2018-05-09 08:13:40', '2018-05-09 08:13:40', '53676987-6472-4030-a60a-13d21515cc02');
+
 -- --------------------------------------------------------
 
 --
 -- Tabellenstruktur für Tabelle `volumes`
 --
 
+DROP TABLE IF EXISTS `volumes`;
 CREATE TABLE `volumes` (
   `id` int(11) NOT NULL,
   `fieldLayoutId` int(11) DEFAULT NULL,
@@ -1219,6 +1536,7 @@ CREATE TABLE `volumes` (
 -- Tabellenstruktur für Tabelle `widgets`
 --
 
+DROP TABLE IF EXISTS `widgets`;
 CREATE TABLE `widgets` (
   `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
@@ -1231,6 +1549,16 @@ CREATE TABLE `widgets` (
   `dateUpdated` datetime NOT NULL,
   `uid` char(36) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Daten für Tabelle `widgets`
+--
+
+INSERT INTO `widgets` (`id`, `userId`, `type`, `sortOrder`, `colspan`, `settings`, `enabled`, `dateCreated`, `dateUpdated`, `uid`) VALUES
+(1, 1, 'craft\\widgets\\RecentEntries', 1, 0, '{\"section\":\"*\",\"siteId\":\"1\",\"limit\":10}', 1, '2018-05-04 12:32:28', '2018-05-04 12:32:28', 'b47c5a24-6fd1-41b8-8df0-f417ec4a48f6'),
+(2, 1, 'craft\\widgets\\CraftSupport', 2, 0, '[]', 1, '2018-05-04 12:32:28', '2018-05-04 12:32:28', '7e49a861-c675-4852-b27f-4e726bdfc061'),
+(3, 1, 'craft\\widgets\\Updates', 3, 0, '[]', 1, '2018-05-04 12:32:28', '2018-05-04 12:32:28', '4fd4e139-db33-4269-a546-cf6127680cc9'),
+(4, 1, 'craft\\widgets\\Feed', 4, 0, '{\"url\":\"https://craftcms.com/news.rss\",\"title\":\"Craft News\",\"limit\":5}', 1, '2018-05-04 12:32:28', '2018-05-04 12:32:28', '33c71d1e-f629-4782-b642-d9086dd6b65c');
 
 --
 -- Indizes der exportierten Tabellen
@@ -1568,6 +1896,14 @@ ALTER TABLE `sites`
   ADD KEY `sites_groupId_fk` (`groupId`);
 
 --
+-- Indizes für die Tabelle `snitch_collisions`
+--
+ALTER TABLE `snitch_collisions`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `snitch_collisions_userId_fk` (`userId`),
+  ADD KEY `snitch_collisions_elementId_fk` (`elementId`);
+
+--
 -- Indizes für die Tabelle `structureelements`
 --
 ALTER TABLE `structureelements`
@@ -1584,6 +1920,24 @@ ALTER TABLE `structureelements`
 --
 ALTER TABLE `structures`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indizes für die Tabelle `supertableblocks`
+--
+ALTER TABLE `supertableblocks`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `supertableblocks_ownerId_idx` (`ownerId`),
+  ADD KEY `supertableblocks_fieldId_idx` (`fieldId`),
+  ADD KEY `supertableblocks_typeId_idx` (`typeId`),
+  ADD KEY `supertableblocks_ownerSiteId_idx` (`ownerSiteId`);
+
+--
+-- Indizes für die Tabelle `supertableblocktypes`
+--
+ALTER TABLE `supertableblocktypes`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `supertableblocktypes_fieldId_idx` (`fieldId`),
+  ADD KEY `supertableblocktypes_fieldLayoutId_idx` (`fieldLayoutId`);
 
 --
 -- Indizes für die Tabelle `systemmessages`
@@ -1762,7 +2116,7 @@ ALTER TABLE `categorygroups_sites`
 -- AUTO_INCREMENT für Tabelle `content`
 --
 ALTER TABLE `content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT für Tabelle `craftidtokens`
 --
@@ -1772,7 +2126,7 @@ ALTER TABLE `craftidtokens`
 -- AUTO_INCREMENT für Tabelle `deprecationerrors`
 --
 ALTER TABLE `deprecationerrors`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=617;
 --
 -- AUTO_INCREMENT für Tabelle `elementindexsettings`
 --
@@ -1782,12 +2136,12 @@ ALTER TABLE `elementindexsettings`
 -- AUTO_INCREMENT für Tabelle `elements`
 --
 ALTER TABLE `elements`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT für Tabelle `elements_sites`
 --
 ALTER TABLE `elements_sites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT für Tabelle `entrydrafts`
 --
@@ -1797,12 +2151,12 @@ ALTER TABLE `entrydrafts`
 -- AUTO_INCREMENT für Tabelle `entrytypes`
 --
 ALTER TABLE `entrytypes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT für Tabelle `entryversions`
 --
 ALTER TABLE `entryversions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT für Tabelle `fieldgroups`
 --
@@ -1812,22 +2166,22 @@ ALTER TABLE `fieldgroups`
 -- AUTO_INCREMENT für Tabelle `fieldlayoutfields`
 --
 ALTER TABLE `fieldlayoutfields`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT für Tabelle `fieldlayouts`
 --
 ALTER TABLE `fieldlayouts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT für Tabelle `fieldlayouttabs`
 --
 ALTER TABLE `fieldlayouttabs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT für Tabelle `fields`
 --
 ALTER TABLE `fields`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT für Tabelle `globalsets`
 --
@@ -1847,17 +2201,17 @@ ALTER TABLE `matrixblocktypes`
 -- AUTO_INCREMENT für Tabelle `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=104;
 --
 -- AUTO_INCREMENT für Tabelle `plugins`
 --
 ALTER TABLE `plugins`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT für Tabelle `queue`
 --
 ALTER TABLE `queue`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT für Tabelle `relations`
 --
@@ -1872,17 +2226,17 @@ ALTER TABLE `routes`
 -- AUTO_INCREMENT für Tabelle `sections`
 --
 ALTER TABLE `sections`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT für Tabelle `sections_sites`
 --
 ALTER TABLE `sections_sites`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT für Tabelle `sessions`
 --
 ALTER TABLE `sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT für Tabelle `shunnedmessages`
 --
@@ -1899,6 +2253,11 @@ ALTER TABLE `sitegroups`
 ALTER TABLE `sites`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT für Tabelle `snitch_collisions`
+--
+ALTER TABLE `snitch_collisions`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT für Tabelle `structureelements`
 --
 ALTER TABLE `structureelements`
@@ -1907,6 +2266,11 @@ ALTER TABLE `structureelements`
 -- AUTO_INCREMENT für Tabelle `structures`
 --
 ALTER TABLE `structures`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT für Tabelle `supertableblocktypes`
+--
+ALTER TABLE `supertableblocktypes`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT für Tabelle `systemmessages`
@@ -1922,7 +2286,7 @@ ALTER TABLE `systemsettings`
 -- AUTO_INCREMENT für Tabelle `taggroups`
 --
 ALTER TABLE `taggroups`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT für Tabelle `templatecachequeries`
 --
@@ -1972,7 +2336,7 @@ ALTER TABLE `userpreferences`
 -- AUTO_INCREMENT für Tabelle `volumefolders`
 --
 ALTER TABLE `volumefolders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT für Tabelle `volumes`
 --
@@ -1982,7 +2346,7 @@ ALTER TABLE `volumes`
 -- AUTO_INCREMENT für Tabelle `widgets`
 --
 ALTER TABLE `widgets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- Constraints der exportierten Tabellen
 --
@@ -2179,11 +2543,35 @@ ALTER TABLE `sites`
   ADD CONSTRAINT `sites_groupId_fk` FOREIGN KEY (`groupId`) REFERENCES `sitegroups` (`id`) ON DELETE CASCADE;
 
 --
+-- Constraints der Tabelle `snitch_collisions`
+--
+ALTER TABLE `snitch_collisions`
+  ADD CONSTRAINT `snitch_collisions_elementId_fk` FOREIGN KEY (`elementId`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `snitch_collisions_userId_fk` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
 -- Constraints der Tabelle `structureelements`
 --
 ALTER TABLE `structureelements`
   ADD CONSTRAINT `structureelements_elementId_fk` FOREIGN KEY (`elementId`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `structureelements_structureId_fk` FOREIGN KEY (`structureId`) REFERENCES `structures` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints der Tabelle `supertableblocks`
+--
+ALTER TABLE `supertableblocks`
+  ADD CONSTRAINT `supertableblocks_fieldId_fk` FOREIGN KEY (`fieldId`) REFERENCES `fields` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `supertableblocks_id_fk` FOREIGN KEY (`id`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `supertableblocks_ownerId_fk` FOREIGN KEY (`ownerId`) REFERENCES `elements` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `supertableblocks_ownerSiteId_fk` FOREIGN KEY (`ownerSiteId`) REFERENCES `sites` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `supertableblocks_typeId_fk` FOREIGN KEY (`typeId`) REFERENCES `supertableblocktypes` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints der Tabelle `supertableblocktypes`
+--
+ALTER TABLE `supertableblocktypes`
+  ADD CONSTRAINT `supertableblocktypes_fieldId_fk` FOREIGN KEY (`fieldId`) REFERENCES `fields` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `supertableblocktypes_fieldLayoutId_fk` FOREIGN KEY (`fieldLayoutId`) REFERENCES `fieldlayouts` (`id`) ON DELETE SET NULL;
 
 --
 -- Constraints der Tabelle `taggroups`
@@ -2269,7 +2657,4 @@ ALTER TABLE `volumes`
 --
 ALTER TABLE `widgets`
   ADD CONSTRAINT `widgets_userId_fk` FOREIGN KEY (`userId`) REFERENCES `users` (`id`) ON DELETE CASCADE;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+SET FOREIGN_KEY_CHECKS=1;

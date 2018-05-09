@@ -12,7 +12,7 @@ return [
     // Global settings
     '*' => [
         // Default Week Start Day (0 = Sunday, 1 = Monday...)
-        'defaultWeekStartDay' => 0,
+        'defaultWeekStartDay' => 1,
 
         // Enable CSRF Protection (recommended)
         'enableCsrfProtection' => true,
@@ -34,7 +34,7 @@ return [
         ),
         'craftEnv' => CRAFT_ENVIRONMENT,
         'environment' => CRAFT_ENVIRONMENT,
-        'environmentVariables' => array(
+        'aliases' => array(
           'baseUrl'  => getenv('CRAFTENV_BASE_URL'),
           'basePath' => getenv('CRAFTENV_BASE_PATH'),
         ),
@@ -58,29 +58,19 @@ return [
     'local'  => array(
       'devMode' => true,
       'enableTemplateCaching' => false,
-      'allowAutoUpdates' => true,
+      'allowUpdates' => true,
       'cacheElementQueries' => false,
       'useCompressedJs' => false
     ),
 
-    // Dev environment settings
-    'dev' => [
-        // Base site URL
-        'siteUrl' => null,
-
-        // Dev Mode (see https://craftcms.com/support/dev-mode)
-        'devMode' => true,
-    ],
-
     // Staging environment settings
     'staging' => [
-        // Base site URL
-        'siteUrl' => null,
+        'allowUpdates' => false,
+        'enableTemplateCaching' => false,
     ],
 
     // Production environment settings
     'production' => [
-        // Base site URL
-        'siteUrl' => null,
+        'allowUpdates' => false
     ],
 ];

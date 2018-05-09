@@ -2,7 +2,8 @@
 
 npm run init<% if (projectusage == "craft" || projectusage == "craftCB") { %>
 ./craftscripts/set_perms.sh<% } %>
-mysql -u<%= credentialdbuser %> -p<%= credentialdbpass %> -h<%= credentialdbserver %> <%= credentialdbdatabase %> < database.sql
+mysql -u<%= credentialdbuser %> -p<%= credentialdbpass %> -h<%= credentialdbserver %> <%= credentialdbdatabase %> < database.sql<% if (projectcraft3) { %>
+sh ./craftscripts/plugins.sh<% } %>
 clear
 echo "Define vhost http://<%= credentialdomain %>"
 echo "Open Backend with you Browser http://<%= credentialdomain %>/<% if (projectusage == "wordpress" || projectusage == "wordpressCB") { %>wp-<% } %>admin<% if (projectusage == "joomla" || projectusage == "joomlaCB") { %>istrator<% } %>"
