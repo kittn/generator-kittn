@@ -124,10 +124,15 @@ export default {
       },
       {
         test: /\.js$/,
-        use: 'babel-loader',
         include: utils.resolve(utils.kittnConf.src.base),
-        exclude: /node_modules/
-      }
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            cacheDirectory: true
+          }
+        }
+      },
 
       <% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>,
         {
