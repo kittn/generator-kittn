@@ -132,9 +132,7 @@ export default {
             cacheDirectory: true
           }
         }
-      },
-
-      <% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>,
+      }<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>,
         {
           test: /\.vue$/,
           loader: 'vue-loader'
@@ -206,9 +204,7 @@ export default {
             'svgo-loader'
           ]
         }
-      <% } %>
-
-      <% if ( projecttypescript ) { %>,
+      <% } %><% if ( projecttypescript ) { %>,
         {
           test: /\.tsx?$/,
           exclude: /node_modules/,
