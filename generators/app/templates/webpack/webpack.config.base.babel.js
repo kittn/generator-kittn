@@ -42,14 +42,14 @@ const CSS_LOADERS = [
     loader: 'css-loader',
     options: {
       autoprefixer: false,
-      sourceMap: true,
+      sourceMap: ifProduction(false, true),
       url: true
     }
   },
   {
     loader: 'postcss-loader',
     options: {
-      sourceMap: true,
+      sourceMap: ifProduction(false, true),
       config: {
         ctx: {
           normalize: true
@@ -61,7 +61,7 @@ const CSS_LOADERS = [
     loader: 'sass-loader',
     options: {<% if ( projectusage === 'webpackApp' || projectjsframework === 'vue' ) { %>
       includePaths: [utils.resolve(utils.kittnConf.src.style)],<% } %>
-      sourceMap: true
+      sourceMap: ifProduction(false, true)
     }
   }
 ]<% } %>
