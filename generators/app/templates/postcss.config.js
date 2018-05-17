@@ -14,7 +14,7 @@ module.exports = ({ file, options, env }) => ({
     'postcss-easings': {},
     'postcss-assets': {
       basePath: './',
-      loadPaths: [options.dist.cssimg]
+      loadPaths: options.dist ? [options.dist.cssimg] : []
     },
     'autoprefixer': {
       cascade: false,
