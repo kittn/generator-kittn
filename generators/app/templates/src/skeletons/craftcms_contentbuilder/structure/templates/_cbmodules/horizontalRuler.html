@@ -6,6 +6,9 @@
   @param {string} name               = Classname
   @param {string} data               = Stylename
 #}
+{% set hrstyle = {
+  styleClasses: data
+} %}
 
 {# Build Element Block #}
-<hr class="c-horizontalruler{{ _.styleClasses(data) }}" role="separator">
+<hr class="c-horizontalruler{{ _.styleClasses(hrstyle) }}" role="separator">

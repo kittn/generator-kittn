@@ -1,11 +1,11 @@
 <?php
 /**
  * Plugin Name: Kint Debugger
- * Plugin URI: https://www.wpmission.com/downloads/kint-debugger/
+ * Plugin URI: https://strongplugins.com/downloads/kint-debugger/
  * Description: Dump variables and traces in an organized and interactive display. Works with Debug Bar.
- * Version: 1.1
+ * Version: 1.2
  * Author: Brian Fegter, Chris Dillon
- * Author URI: https://www.wpmission.com
+ * Author URI: https://strongplugins.com
  * Requires: 2.5 or higher
  * License: Dual license GPL-2.0+ & MIT (Kint is licensed MIT)
  *
@@ -133,38 +133,6 @@ function kint_debug_ob( $buffer ) {
 }
 
 /**
- * Class Kint_Debug_Bar_Panel
- */
-class Kint_Debug_Bar_Panel {
-	var $_visible = true;
-
-	function title() {
-		return __( 'Kint Debugger' );
-	}
-
-	function prerender() {
-		$this->set_visible( apply_filters( 'kint_debug_display', true ) );
-	}
-
-	function is_visible() {
-		return $this->_visible;
-	}
-
-	function set_visible( $visible ) {
-		$this->_visible = $visible;
-	}
-
-	function render() {
-		global $kint_debug;
-		if ( is_array( $kint_debug ) ) {
-			foreach ( $kint_debug as $line ) {
-				echo $line;
-			}
-		}
-	}
-}
-
-/**
  * Add our Debug Bar panel.
  *
  * @param $panels
@@ -172,6 +140,11 @@ class Kint_Debug_Bar_Panel {
  * @return array
  */
 function kint_debug_bar_panel( $panels ) {
+
+	if ( ! class_exists( 'Kint_Debug_Bar_Panel' ) ) {
+		require_once 'includes/class-kint-debug-bar-panel.php';
+	}
+
 	$panels[] = new Kint_Debug_Bar_Panel;
 
 	return $panels;

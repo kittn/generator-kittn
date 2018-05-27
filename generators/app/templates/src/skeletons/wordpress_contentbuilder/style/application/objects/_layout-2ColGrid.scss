@@ -1,0 +1,58 @@
+/*
+  2ColGrid
+  =================
+  Description
+*/
+.o-2ColGrid {
+  $api: (
+    mq: 'm',
+    grid: (
+      associated: (
+        box0: '__box-0' false,
+        box1: '__box-1' false,
+      ),
+      sets: (
+        set1: (
+          breakpoint: false,
+          column-gap: false,
+          row-gap: 20px,
+          columns: 1fr,
+          rows: auto,
+          areas: (
+            row1: (box0),
+            row2: (box1)
+          )
+        ),
+        set2: (
+          breakpoint: 'm',
+          column-gap: 20px,
+          row-gap: 0,
+          columns: 1fr 1fr,
+          rows: auto,
+          areas: (
+            row1: (box0 box1)
+          )
+        ),
+      )
+    )
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $r: #{&}; // Root
+  $rn: str_slice($r, 4); // Root with out Classdot
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  // For getting values from lists
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+  // ::::::::: BASE
+  @include cssgrid-generator(api(grid), $r);
+
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+}

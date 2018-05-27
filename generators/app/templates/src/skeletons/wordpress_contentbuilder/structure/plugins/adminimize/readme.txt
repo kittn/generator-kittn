@@ -3,8 +3,8 @@ Contributors: Bueltge, inpsyde
 Donate link: https://www.paypal.me/FrankBueltge
 Tags: color, scheme, theme, admin, dashboard, color scheme, plugin, interface, ui, metabox, hide, editor, minimal, menu, customization, interface, administration, lite, light, usability, lightweight, layout, zen
 Requires at least: 4.0
-Tested up to: 4.7.0
-Stable tag: 1.11.2
+Tested up to: 4.9
+Stable tag: 1.11.4
 
 Adminimize that lets you hide 'unnecessary' items from the WordPress backend
 
@@ -39,13 +39,30 @@ Use the installer via back-end of your install or ...
 3. Activate the plugin through the Plugins menu in WordPress and click Activate.
 4. Administrator can go to `Settings` > `Adminimize` menu and configure the plugin (Menu, Sub-menu, Meta boxes, ...)
 
-== Screenshots ==
-1. Settings area in WP 4.5-alpha
-
 == Changelog ==
+1.11.4 (2017-12-14)
+* Fixed hide of menu items, if you use custom menu, see [wiki page](https://github.com/bueltge/Adminimize/wiki/Custom-Menu-Order)
+* Fixed Import/Export for different server environments.
+* Remove languge file on github, we use always the translation community from wordpress.org
+* Fixed check for settings page of Adminimize, so that we see all options, areas of the install.
+
+1.11.3 (2017-11-16)
+* Added custom dashbaord options to admin head to hide it via css.
+* Added support of multiple roles for dashboard options.
+* Added new option to hide 'Add New' Button on each post type.
+* Fixed ID of Menu to use each link in the full width.
+* Fixed error for check dashboard setup on multiple roles.
+* Removed dependency from users.php to profile.php. #61
+* Allow attribute selector for custom options, remove slashes in options. #65
+* Change hook for change menu items ot solve order problem with third plugins. #68
+* Remove Set Theme for users option - noit relevant for the plugin, old dependencies.
+* Change selector to remove footer area.
+* Remove Screenshots on readme page, to big, not helpful.
+* Added filter hook `adminimize_nopage_access_message` to change the message for no access to a page. see the [wiki](https://github.com/bueltge/Adminimize/wiki/Filter-Hooks)
+
 = 1.11.2 (2016-12-04) =
-* Fix backticks for `shell_exec` error.
-* Fix prevent access function for pages.
+* Fixed backticks for `shell_exec` error.
+* Fixed prevent access function for pages.
 
 = 1.11.1 (2016-11-24) =
 * Fix fatal error for WP smaller than 4.7 - Sorry again!

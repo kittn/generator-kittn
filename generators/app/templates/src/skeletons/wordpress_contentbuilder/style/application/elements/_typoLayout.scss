@@ -1,0 +1,60 @@
+/*
+  Typo Layout
+  =====
+  Description
+*/
+.e-tl {
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  // For getting values from lists
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+  // ::::::::: TAGS
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+
+  // [root]__maxChars
+  &__maxChars {
+    // [root]--50
+    &--50 {
+      max-width: 50ch;
+    }
+
+    // [root]--75
+    &--75 {
+      max-width: 75ch;
+    }
+  }
+
+  // [root]__multiColumn
+  &__multiColumn {
+    // [root]--2
+    &--2 {
+      column-count: 2;
+    }
+
+    // [root]--r3
+    &--r3 {
+      @include break(100ch) {
+        column-count: 2;
+      }
+
+      @include break('ml') {
+        column-count: 3;
+      }
+    }
+  }
+}

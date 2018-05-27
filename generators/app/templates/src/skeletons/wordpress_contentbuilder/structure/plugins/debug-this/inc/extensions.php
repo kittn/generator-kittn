@@ -890,11 +890,21 @@ class Debug_This_Extensions {
 				}
 				foreach ( $filters as $filter => $values ) {
 					if ( is_string( $values['function'] ) ) {
+						// A function in the global namespace
 						$callback = $values['function'];
-					} else {
+					} elseif ( is_object( $values['function'][0]) ) {
+						// An instantiated class
 						$callback = get_class( $values['function'][0] ) . '->' . $values['function'][1];
+					} elseif ( is_array( $values['function'] ) ) {
+						// A static method
+						$callback = $values['function'][0] . '->' . $values['function'][1];
+					} else {
+						$callback = '';
 					}
-					$filters_array[ $id ][ $priority ][ $filter ] = $callback;
+
+					if ( $callback ) {
+						$filters_array[ $id ][ $priority ][ $filter ] = $callback;
+					}
 				}
 			}
 		}
@@ -1299,18 +1309,39 @@ class Debug_This_Extensions {
 
 	public function variables() {
 		$debug = '';
+		$anchors = array();
+
 		foreach ( $GLOBALS as $id => $values ) {
 			if ( $id === 'GLOBALS' || $id === 'html' ) {
 				continue;
 			}
-			if ( is_array( $values ) && ! empty( $values ) ) {
-				$debug .= "<h3>$id</h3>";
+
+			// Remove Debug_This buffer
+			if ( 'wp_filter' == $id ) {
+				if ( isset( $values['template_redirect']['90210'] ) ) {
+					unset( $values['template_redirect']['90210'] );
+				}
+			}
+
+			$anchors[] = '<a href="#' . $id . '" class="scroll">' . $id . '</a>';
+
+			$debug .= '<a name="' . $id . '"></a>';
+			$debug .= '<h3>' . $id . '</h3>';
+			if ( is_array( $values ) || is_object( $values ) ) {
 				$debug .= $this->printer( $values, true );
 			} elseif ( is_string( $values ) ) {
-				$debug .= "<h3>$id</h3>";
-				$debug .= htmlentities( "$values\n\n" );
+				$debug .= '<pre><code>(' . gettype($values) . ') ' . htmlentities( "$values" ) . '</code></pre>';
+			} elseif ( is_numeric( $values ) ) {
+				$debug .= '<pre><code>(' . gettype($values) . ') ' . $values . '</code></pre>';
+			} elseif ( is_bool( $values ) ) {
+				$debug .= '<pre><code>(' . gettype($values) . ') ' . ( $values ? 'true' : 'false' ) . '</code></pre>';
+			} else {
+				$debug .= '<pre><code>(' . gettype($values) . ') ' . print_r( $values, true ) . '</code></pre>';
 			}
 		}
+
+		$anchor_list = '<p>' . join( ' | ', $anchors ) . '</p>';
+		$debug = $anchor_list . $debug;
 
 		return $debug;
 	}

@@ -1,8 +1,8 @@
 === WP SmartCrop ===
-Contributors: wpsmartcrop
+Contributors: burlingtonbytes
 Tags: image, crop, cropping, resize, aspect ratio, fit, size, advanced, simple, media, library, photography, featured image, content, responsive, design, smart, intelligent, live
 Requires at least: 3.5.0
-Tested up to: 4.7
+Tested up to: 4.9
 Stable tag: trunk
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -108,6 +108,35 @@ A. That's not really a question, but at least our moms like us. Feel free to sen
 
 
 == Changelog ==
+= 1.4.7 =
+* fix misplaced parenthesis on count causing warnings on php 7
+
+= 1.4.6 =
+* version bump in attempt to fix wordpress.org listing bug
+
+= 1.4.5 =
+* Fix for list view
+
+= 1.4.4 =
+* center smartcrop focus by default.
+* fix conflict with jQuery 3.0+
+* remove unnecessary IOS compatibility mode
+
+= 1.4.3 =
+* fix settings link on plugins page
+
+= 1.4.2 =
+* switch to minified js
+
+= 1.4.1 =
+* add unnecessary $(window).load event, to solve intermittent issues in Edge Browser
+
+= 1.4.0 =
+* abstract wp-smartcrop into a jquery plugin
+* repair list view in media library
+
+= 1.3.2 =
+* Fix focal point selection at large resolutions
 
 = 1.3.1 =
 * Fix issue with edge cases and focal positions of with 0 as a coordinate

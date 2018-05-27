@@ -4,6 +4,7 @@ defined('ABSPATH') || die();
 #Render the entire page to buffer to process to log all actions and filters
 ob_start();?>
 <!doctype html>
+<html>
 <head>
 	<meta charset="utf-8">
 	<title><?php _e('Debug This', 'debug-this');?></title>
@@ -15,6 +16,24 @@ ob_start();?>
 	<div class='debug'>
 		%DEBUG%
 	</div>
+	<script>
+		var anchors = document.querySelectorAll('a[href^="#"]')
+		for (var i = 0; i < anchors.length; i++) {
+			anchors[i].addEventListener('click', function(e) {
+				e.preventDefault();
+				var h = this.hash.substr(1)
+				var target = document.getElementsByName(h)[0]
+				var top = target.offsetTop;
+				window.scrollTo(0, top);
+
+				if (history.pushState) {
+					history.pushState(null, '', this.hash);
+				} else {
+					location.hash = this.hash;
+				}
+			})
+		}
+	</script>
 	<?php wp_footer();?>
 </div>
 </body>

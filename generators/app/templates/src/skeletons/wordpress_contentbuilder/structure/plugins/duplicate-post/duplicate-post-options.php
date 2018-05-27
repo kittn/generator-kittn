@@ -7,8 +7,8 @@ if ( !defined( 'ABSPATH' ) ) {
 }
 
 if ( is_admin() ){ // admin actions
-	add_action('admin_menu', 'duplicate_post_menu');
-	add_action( 'admin_init', 'duplicate_post_register_settings');
+	add_action( 'admin_menu', 'duplicate_post_menu' );
+	add_action( 'admin_init', 'duplicate_post_register_settings' );
 }
 
 function duplicate_post_register_settings() { // whitelist options
@@ -86,11 +86,10 @@ function duplicate_post_options() {
 		<br/>
 		<?php esc_html_e('Donate whatever sum you choose, even just 10¢.', 'duplicate-post'); ?>
 		<br/>
-		<a href="http://lopo.it/duplicate-post-plugin"><img id="donate-button" style="margin: 0px auto;" src="<?php echo plugins_url( 'donate.png', __FILE__ ); ?>" alt="Donate"/></a>
+		<a href="https://duplicate-post.lopo.it/donate"><img id="donate-button" style="margin: 0px auto;" src="<?php echo plugins_url( 'donate.png', __FILE__ ); ?>" alt="Donate"/></a>
 		<br/>
-		<a href="http://lopo.it/duplicate-post-plugin"><?php esc_html_e('Visit plugin site'); ?></a>
-		 - <a href="https://translate.wordpress.org/projects/wp-plugins/duplicate-post"><?php esc_html_e('Translate', 'duplicate-post'); ?></a>
-		 - <a href="https://wordpress.org/plugins/duplicate-post/faq/"><?php esc_html_e('FAQ', 'duplicate-post'); ?></a>
+		<a href="https://duplicate-post.lopo.it/"><?php esc_html_e('Documentation', 'duplicate-post'); ?></a>
+		 - <a href="https://translate.wordpress.org/projects/wp-plugins/duplicate-post"><?php esc_html_e('Translate', 'duplicate-post'); ?></a>		 
 		 - <a href="https://wordpress.org/support/plugin/duplicate-post"><?php esc_html_e('Support Forum', 'duplicate-post'); ?></a>
 		</p>
 	</div>
@@ -233,13 +232,13 @@ img#donate-button{
 							<?php esc_html_e("Password", 'default'); ?>
 					</label> <label> <input type="checkbox"
 							name="duplicate_post_copyattachments" value="1" <?php  if(get_option('duplicate_post_copyattachments') == 1) echo 'checked="checked"'; ?>"/>
-							<?php esc_html_e("Attachments", 'duplicate-post');  ?>
+							<?php esc_html_e("Attachments", 'duplicate-post');  ?> <small>(<?php esc_html_e("you probably want this unchecked, unless you have very special requirements", 'duplicate-post');  ?>)</small>
 					</label> <label> <input type="checkbox"
 							name="duplicate_post_copychildren" value="1" <?php  if(get_option('duplicate_post_copychildren') == 1) echo 'checked="checked"'; ?>"/>
 							<?php esc_html_e("Children", 'duplicate-post');  ?>
 					</label> <label> <input type="checkbox"
 							name="duplicate_post_copycomments" value="1" <?php  if(get_option('duplicate_post_copycomments') == 1) echo 'checked="checked"'; ?>"/>
-							<?php esc_html_e("Comments", 'default');  ?> (<?php esc_html_e("except pingbacks and trackbacks", 'duplicate-post');  ?>)
+							<?php esc_html_e("Comments", 'default');  ?> <small>(<?php esc_html_e("except pingbacks and trackbacks", 'duplicate-post');  ?>)</small>
 					</label> <label> <input type="checkbox"
 							name="duplicate_post_copymenuorder" value="1" <?php  if(get_option('duplicate_post_copymenuorder') == 1) echo 'checked="checked"'; ?>"/>
 							<?php esc_html_e("Menu order", 'default');  ?>
@@ -361,7 +360,7 @@ img#donate-button{
 							<label><input type="checkbox" name="duplicate_post_show_submitbox" value="1" <?php  if(get_option('duplicate_post_show_submitbox') == 1) echo 'checked="checked"'; ?>"/>
 							<?php esc_html_e("Edit screen", 'duplicate-post'); ?> </label>
 							<label><input type="checkbox" name="duplicate_post_show_adminbar" value="1" <?php  if(get_option('duplicate_post_show_adminbar') == 1) echo 'checked="checked"'; ?>"/>
-							<?php esc_html_e("Admin bar", 'duplicate-post'); ?> </label>
+							<?php esc_html_e("Admin bar", 'duplicate-post'); ?> <small>(<?php esc_html_e("now works on Edit screen too — check this option to use with Gutenberg enabled", 'duplicate-post');  ?>)</small></label> 
 							<?php global $wp_version;
 							if( version_compare($wp_version, '4.7') >= 0 ){ ?>
 							<label><input type="checkbox" name="duplicate_post_show_bulkactions" value="1" <?php  if(get_option('duplicate_post_show_bulkactions') == 1) echo 'checked="checked"'; ?>"/>
@@ -371,7 +370,7 @@ img#donate-button{
 				</tr>
 				<tr valign="top">
 					<td colspan="2"><span class="description"><?php esc_html_e("Whether the links are displayed for custom post types registered by themes or plugins depends on their use of standard WordPress UI elements", 'duplicate-post'); ?>
-							<br /> <?php printf(__('You can also use the template tag duplicate_post_clone_post_link( $link, $before, $after, $id ). More info <a href="%s">here</a>', 'duplicate-post'), 'https://wordpress.org/plugins/duplicate-post/other_notes/'); ?>
+							<br /> <?php printf(__('You can also use the template tag duplicate_post_clone_post_link( $link, $before, $after, $id ). More info <a href="%s">here</a>', 'duplicate-post'), 'https://duplicate-post.lopo.it/docs/developers-guide/functions-template-tags/duplicate_post_clone_post_link/'); ?>
 					</span>
 					</td>
 				</tr>

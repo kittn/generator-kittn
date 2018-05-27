@@ -8,6 +8,9 @@ postboxes.add_postbox_toggles(pagenow);
  */
 (function($) {
 
+	$('#cptui_select_post_type_submit').hide();
+	$('#cptui_select_taxonomy_submit').hide();
+
 	if ('edit' === getParameterByName('action')) {
 		// Store our original slug on page load for edit checking.
 		var original_slug = $('#name').val();
@@ -49,15 +52,17 @@ postboxes.add_postbox_toggles(pagenow);
 
 	// Switch spaces for underscores on our slug fields.
 	$('#name').on('keyup',function(e){
-
-		var value = $(this).val();
-		if ( e.keyCode !== 9 ) {
+		var value, original_value;
+		value = original_value = $(this).val();
+		if ( e.keyCode !== 9 && e.keyCode !== 37 && e.keyCode !== 38 && e.keyCode !== 39 && e.keyCode !== 40 ) {
 			value = value.replace(/ /g, "_");
 			value = value.toLowerCase();
 			value = replaceDiacritics(value);
 			value = transliterate(value);
 			value = replaceSpecialCharacters(value);
-			$(this).attr('value', value);
+			if ( value !== original_value ) {
+				$(this).attr('value', value);
+			}
 		}
 
 		//Displays a message if slug changes.

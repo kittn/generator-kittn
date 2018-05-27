@@ -20,7 +20,7 @@ if ( _mw_adminimize_is_active_on_multisite() ) {
 	echo ' ' . $message; ?></h2>
 <br class="clear" />
 <div id="poststuff" class="ui-sortable meta-box-sortables">
-	<div id="minimeu" class="postbox ">
+	<div id="minimenu" class="postbox ">
 		<div class="handlediv" title="<?php esc_attr_e( 'Click to toggle', 'adminimize' ); ?>"><br /></div>
 		<h3 class="hndle" id="menu"><?php esc_attr_e( 'MiniMenu', 'adminimize' ) ?></h3>
 
@@ -116,11 +116,6 @@ if ( _mw_adminimize_is_active_on_multisite() ) {
 				<tr>
 					<td class="row-title"><a href="#nav_menu_options"><?php esc_attr_e(
 								'WP Nav Menu', 'adminimize'
-							); ?></a></td>
-				</tr>
-				<tr>
-					<td class="row-title"><a href="#set_theme"><?php esc_attr_e(
-								'Set Theme', 'adminimize'
 							); ?></a></td>
 				</tr>
 				<tr>

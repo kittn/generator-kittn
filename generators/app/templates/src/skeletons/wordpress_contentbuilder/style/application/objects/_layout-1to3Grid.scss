@@ -1,0 +1,42 @@
+/*
+  2to4Grid
+  =====
+  Responsive Grid with Flexbox Fallback. Infinite Boxes
+*/
+.o-1to3Grid {
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+  // For getting values from lists
+  @function apin($nth, $keys...) {
+    @return nth(map-deep-get($api, $keys...), $nth);
+  }
+
+  // ::::::::: BASE
+  &#{cq('width >= 450px')} {
+    @include grid-display-fallback();
+    @include cssgrid-simple(20px, 20px, 3, 1fr, $height: false, $child: '#{$root}__box');
+
+    #{$root}__box {
+      margin-bottom: 0;
+    }
+  }
+
+  // ::::::::: TAGS
+
+  // ::::::::: MODIFIER
+  // ::::::::: CHILDS
+  // [root]__box
+  &__box {
+    margin-bottom: s(1);
+  }
+}
