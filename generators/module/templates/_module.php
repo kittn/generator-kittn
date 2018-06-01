@@ -7,11 +7,9 @@
  * @param $c = Classname
  */
 
-// Module Vars
-$c = '<%= moduleType %>-<%= moduleName %>';
 ?>
 
 <?php // Build Element Block ?>
-<div class="<?= $c ?>">
+<div class="<% if(moduleType === 'cb') { %>c<% } else { %><%= moduleType %><% } %>-<%= moduleName %>">
   <%= moduleName %>
 </div>

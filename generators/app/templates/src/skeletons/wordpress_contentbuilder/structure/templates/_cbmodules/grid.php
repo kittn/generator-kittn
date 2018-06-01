@@ -16,7 +16,7 @@ $gridOldRevision = get_sub_field('oldSpec');
 ?>
 
 <?php // Build Element Block ?>
-<section class="c-grid<?= get_sub_field('style') ? ' '.get_sub_field('style') : '' ?>"<?= $anchor;?>>
+<section class="c-grid fullbleed <?= get_sub_field('style') ? ' '.get_sub_field('style') : '' ?>"<?= $anchor;?>>
 
   <?php if (get_sub_field('backgroundImage')) : ?>
     <div class="c-grid__bg<?= get_sub_field('bgStyle') ? ' '.get_sub_field('bgStyle') : '' ?><?= get_sub_field('adaptContainer') ? $backgroundContainer : '' ?>">

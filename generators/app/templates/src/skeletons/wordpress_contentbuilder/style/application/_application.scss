@@ -18,7 +18,6 @@
 
 // 5. Objects
 @import 'objects/area';
-@import 'objects/offCanvasTrigger';
 
 // 5.1. Layouts
 @import 'objects/layout-1to3Grid';
@@ -53,6 +52,7 @@
 @import 'components/footernav';
 @import 'components/pagelogo';
 @import 'components/offCanvas';
+@import 'components/offCanvasTrigger';
 @import 'components/socialNetworks';
 @import 'components/socialShare';
 @import 'components/copyright';

@@ -28,7 +28,7 @@ const contentBuilder = () => {
   progressLoader()
 
   // Add Offcanvas Trigger
-  offCanvasToggle('o-offCanvasTrigger', 'c-offCanvas__close')
+  offCanvasToggle('c-offCanvasTrigger', 'c-offCanvas__close')
 
   // Load Videohelper - needed for the Videoelement for autoplay on scroll
   videoHelper()

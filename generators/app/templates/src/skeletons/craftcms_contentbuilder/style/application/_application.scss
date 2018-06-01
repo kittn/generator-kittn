@@ -24,7 +24,6 @@
 
 // 5. Objects
 @import 'objects/area';
-@import 'objects/offCanvasTrigger';
 
 // 6.1. ContentBuilder Components
 @import 'cbmodules/headline';
@@ -67,6 +66,7 @@
 @import 'components/pageFooter';
 @import 'components/pageHeader';
 @import 'components/offCanvas';
+@import 'components/offCanvasTrigger';
 @import 'components/featuredImage';
 @import 'components/articleBoxes';
 @import 'components/articleEntry';

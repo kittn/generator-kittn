@@ -8,7 +8,7 @@
 // Default Vars
 $classname = 'c-list';
 $listtype = '';
-$liststyle = '';
+$liststyle = get_sub_field('style') ? ' '.get_sub_field('style') : '';
 
 // Define Listtype and Bulletstyle
 if (get_sub_field('listtype') == 'ul') {
@@ -21,7 +21,7 @@ if (get_sub_field('listtype') == 'ul') {
 
 <?php // Building Element Block  ?>
 <?php if (have_rows('list')) : ?>
-<<?= $listtype; ?> class="<?= $classname; ?><?= get_sub_field('style') ? ' '.get_sub_field('style') : '' ?>" role="list">
+<<?= $listtype; ?> class="<?= $classname; ?><?= $liststyle ?>" role="list">
   <?php while( have_rows('list') ) : the_row(); ?>
     <li class="<?= $classname.'__entry'; ?>"><?= get_sub_field('entry'); ?></li>
   <?php endwhile; ?>
