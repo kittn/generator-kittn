@@ -6,23 +6,20 @@ import cq from 'cq-prolyfill' // eslint-disable-line<% } %><% if ((typeof projec
 import contentBuilder from './partial/contentBuilder'<% } %><% if ( projectusage !== 'webpackApp' ) { %>
 import lazySizeInit from './partial/lazysize-init'<% } %>
 import 'svgxuse' // eslint-disable-line
+import '@babel/polyfill'
 import './partial/kittnad' // Small Advertising for Kittn :)
 import './partial/detect-browser'
 import './partial/disable-pointerevents'<% if ( typeof projectjsframework !== 'undefined' && projectjsframework === 'react') { %>
 ReactDOM.render(
-<h1>Hello, world! from React</h1>,
+<h1>Hello, world! from React</h1>
   document.getElementById('app')
-)<% } %><% if (typeof projectjsframework !== 'undefined' && projectjsframework === 'vue') { %>
-
-if (document.querySelectorAll('.js-vue').length > 0) {
-  import('./vue-app' /* webpackChunkName: "vueapp" */)
-}<% } %><% if ( projectusage !== 'webpackApp' ) { %>
+)<% } %><% if ( projectusage !== 'webpackApp' ) { %>
 
 // Init Lazysizes
 lazySizeInit()<% } %><% if ((typeof projectcontainerqueries !== 'undefined' && projectcontainerqueries === true) || (typeof projectusage !== 'undefined' && projectusage === 'craftCB') || (typeof projectusage !== 'undefined' && projectusage === 'joomlaCB') || (typeof projectusage !== 'undefined' && projectusage === 'wordpressCB') ) { %>
 
 // Activate Container Queries
-cq({ postcss: true })<% } %><% if (projectusage === 'webpackApp' || projectjsframework === 'vue') { %>
+cq({ postcss: true })<% } %><% if (projectusage === 'webpackApp' || typeof projectjsframework !== 'undefined' && projectjsframework === 'vue') { %>
 
 if (document.querySelectorAll('.js-vue').length > 0) {
   import('./vue-app' /* webpackChunkName: "vueApp" */)

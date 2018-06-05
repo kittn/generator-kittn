@@ -30,20 +30,20 @@ add_action( 'admin_init', '_mw_adminimize_init_to_remove_admin_notices' );
 function _mw_adminimize_init_to_remove_admin_notices() {
 
 	if ( _mw_adminimize_check_to_remove_admin_notices() ) {
-		add_action( 'admin_head', '_mw_adminimize_remove_admin_notices' );
+		add_action( 'admin_head', '_mw_adminimize_remove_admin_notices', PHP_INT_MAX + 1 );
 	}
 }
 
 /**
  * Remove Admin Notices.
  *
- * @return string|void
+ * @return boolean
  */
 function _mw_adminimize_check_to_remove_admin_notices() {
 
 	// Exclude super admin.
 	if ( _mw_adminimize_exclude_super_admin() ) {
-		return;
+		return false;
 	}
 
 	$user_roles = _mw_adminimize_get_all_user_roles();
@@ -60,7 +60,7 @@ function _mw_adminimize_check_to_remove_admin_notices() {
 		}
 	}
 
-	$remove_admin_notices = FALSE;
+	$remove_admin_notices = false;
 	foreach ( $user_roles as $role ) {
 
 		$user = wp_get_current_user();
@@ -77,7 +77,11 @@ function _mw_adminimize_check_to_remove_admin_notices() {
 		}
 	}
 
-	return $remove_admin_notices;
+	if ( $remove_admin_notices ) {
+		return true;
+	}
+
+	return false;
 }
 
 /**
@@ -89,4 +93,18 @@ function _mw_adminimize_remove_admin_notices() {
 	remove_action( 'admin_notices', 'maintenance_nag', 10 );
 	remove_action( 'admin_notices', 'new_user_email_admin_notice' );
 	remove_action( 'admin_notices', 'site_admin_notice' );
+
+	// @ToDo, if we will use this.
+	// Catch all admin notices.
+	/*
+	add_action( 'admin_notices', function () {
+		ob_start();
+	}, PHP_INT_MAX + 1 );
+	$adm_notices = trim( ob_get_clean() );
+	$adm_notices = preg_replace(
+		'/(\sclass=["\'][^"\']*?notice)(["\'\s])/',
+		'$1 inline$2',
+		$adm_notices
+	);
+	*/
 }

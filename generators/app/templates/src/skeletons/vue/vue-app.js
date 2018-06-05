@@ -22,11 +22,10 @@ new Vue({
 // Vue App
 /* eslint-disable no-new */
 new Vue({
-  el: '.js-vue',
+  el: '.js-vue',<% if (typeof projectvueplugins !== 'undefined' && projectvueplugins === true) { %>
   router,
-  store,
+  store,<% } %>
   components: {
     // MyApp
   }
-})
-<% } %>
+})<% } %>

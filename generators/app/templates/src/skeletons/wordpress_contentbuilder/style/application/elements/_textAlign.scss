@@ -1,0 +1,36 @@
+/*
+  Text Align
+  =========
+  Position texts or other elements (inline block) on the left side.
+*/
+.e-ta {
+  // Component Config
+  $api: (
+    breakpoint: 'm'
+  );
+
+  // ::::::::: ROOT SELECTOR
+  $root: #{&};
+  $rn: str_slice($root, 4);
+
+  // ::::::::: API GRABBER
+  @function api($keys...) {
+    @return map-deep-get($api, $keys...);
+  }
+
+  // ::::::::: BASE
+  // [root]--left
+  &--left {
+    text-align: left;
+  }
+
+  // [root]--right
+  &--right {
+    text-align: right;
+  }
+
+  // [root]--center
+  &--center {
+    text-align: center;
+  }
+}

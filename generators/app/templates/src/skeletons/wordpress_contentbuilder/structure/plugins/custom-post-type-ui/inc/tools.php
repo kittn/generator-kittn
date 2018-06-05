@@ -253,7 +253,10 @@ function cptui_get_single_taxonomy_registery( $taxonomy = array() ) {
 		$show_in_nav_menus = $public;
 	}
 
-	$my_theme = wp_get_theme();
+	$show_in_rest = ( ! empty( $taxonomy['show_in_rest'] ) && false !== get_disp_boolean( $taxonomy['show_in_rest'] ) ) ? 'true' : 'false';
+	$rest_base    = ( ! empty( $taxonomy['rest_base'] ) ) ? $taxonomy['rest_base'] : $taxonomy['name'];
+
+	$my_theme   = wp_get_theme();
 	$textdomain = $my_theme->get( 'TextDomain' );
 ?>
 
@@ -262,19 +265,19 @@ function cptui_get_single_taxonomy_registery( $taxonomy = array() ) {
 	 */
 
 	$labels = array(
-		"name" => __( '<?php echo $taxonomy['label']; ?>', '<?php echo $textdomain; ?>' ),
-		"singular_name" => __( '<?php echo $taxonomy['singular_label']; ?>', '<?php echo $textdomain; ?>' ),
+		"name" => __( "<?php echo $taxonomy['label']; ?>", "<?php echo $textdomain; ?>" ),
+		"singular_name" => __( "<?php echo $taxonomy['singular_label']; ?>", "<?php echo $textdomain; ?>" ),
 <?php
 	foreach ( $taxonomy['labels'] as $key => $label ) {
 		if ( ! empty( $label ) ) {
-			echo "\t\t" . '"' . $key . '" => __( \'' . $label . '\', \'' . $textdomain . '\' ),' . "\n";
+			echo "\t\t" . '"' . $key . '" => __( "' . $label . '", "' . $textdomain . '" ),' . "\n";
 		}
 	}
 ?>
 	);
 
 	$args = array(
-		"label" => __( '<?php echo $taxonomy['label']; ?>', '<?php echo $textdomain; ?>' ),
+		"label" => __( "<?php echo $taxonomy['label']; ?>", "<?php echo $textdomain; ?>" ),
 		"labels" => $labels,
 		"public" => <?php echo $public; ?>,
 		"hierarchical" => <?php echo $taxonomy['hierarchical']; ?>,
@@ -285,8 +288,8 @@ function cptui_get_single_taxonomy_registery( $taxonomy = array() ) {
 		"query_var" => <?php echo disp_boolean( $taxonomy['query_var'] );?>,
 		"rewrite" => <?php echo $rewrite; ?>,
 		"show_admin_column" => <?php echo $taxonomy['show_admin_column']; ?>,
-		"show_in_rest" => <?php echo disp_boolean( $taxonomy['show_in_rest'] ); ?>,
-		"rest_base" => "<?php echo $taxonomy['rest_base']; ?>",
+		"show_in_rest" => <?php echo $show_in_rest; ?>,
+		"rest_base" => "<?php echo $rest_base; ?>",
 		"show_in_quick_edit" => <?php echo $show_in_quick_edit; ?>,
 	);
 	register_taxonomy( "<?php echo $taxonomy['name']; ?>", <?php echo $post_types; ?>, $args );
@@ -419,6 +422,22 @@ function cptui_get_single_post_type_registery( $post_type = array() ) {
 		$post_type['show_in_rest'] = 'false';
 	}
 
+	$show_in_menu = get_disp_boolean( $post_type['show_in_menu'] );
+	if ( false !== $show_in_menu ) {
+		$show_in_menu = disp_boolean( $post_type['show_in_menu'] );
+		if ( ! empty( $post_type['show_in_menu_string'] ) ) {
+			$show_in_menu = '"' . $post_type['show_in_menu_string'] . '"';
+		}
+	} else {
+		$show_in_menu = disp_boolean( $post_type['show_in_menu'] );
+	}
+
+	$public = ( isset( $post_type['public'] ) ) ? disp_boolean( $post_type['public'] ) : 'true';
+	$show_in_nav_menus = ( ! empty( $post_type['show_in_nav_menus'] ) && false !== get_disp_boolean( $post_type['show_in_nav_menus'] ) ) ? 'true' : 'false';
+	if ( empty( $post_type['show_in_nav_menus'] ) ) {
+		$show_in_nav_menus = $public;
+	}
+
 	$post_type['description'] = addslashes( $post_type['description'] );
 
 	$my_theme = wp_get_theme();
@@ -430,16 +449,16 @@ function cptui_get_single_post_type_registery( $post_type = array() ) {
 	 */
 
 	$labels = array(
-		"name" => __( '<?php echo $post_type['label']; ?>', '<?php echo $textdomain; ?>' ),
-		"singular_name" => __( '<?php echo $post_type['singular_label']; ?>', '<?php echo $textdomain; ?>' ),
+		"name" => __( "<?php echo $post_type['label']; ?>", "<?php echo $textdomain; ?>" ),
+		"singular_name" => __( "<?php echo $post_type['singular_label']; ?>", "<?php echo $textdomain; ?>" ),
 <?php
 	foreach ( $post_type['labels'] as $key => $label ) {
 		if ( ! empty( $label ) ) {
 			if ( 'parent' === $key ) {
 				// Fix for incorrect label key. See #439.
-				echo "\t\t" . '"' . 'parent_item_colon' . '" => __( \'' . $label . '\', \'' . $textdomain . '\' ),' . "\n";
+				echo "\t\t" . '"' . 'parent_item_colon' . '" => __( "' . $label . '", "' . $textdomain . '" ),' . "\n";
 			} else {
-				echo "\t\t" . '"' . $key . '" => __( \'' . $label . '\', \'' . $textdomain . '\' ),' . "\n";
+				echo "\t\t" . '"' . $key . '" => __( "' . $label . '", "' . $textdomain . '" ),' . "\n";
 			}
 		}
 	}
@@ -447,7 +466,7 @@ function cptui_get_single_post_type_registery( $post_type = array() ) {
 	);
 
 	$args = array(
-		"label" => __( '<?php echo $post_type['label']; ?>', '<?php echo $textdomain; ?>' ),
+		"label" => __( "<?php echo $post_type['label']; ?>", "<?php echo $textdomain; ?>" ),
 		"labels" => $labels,
 		"description" => "<?php echo $post_type['description']; ?>",
 		"public" => <?php echo disp_boolean( $post_type['public'] ); ?>,
@@ -456,10 +475,8 @@ function cptui_get_single_post_type_registery( $post_type = array() ) {
 		"show_in_rest" => <?php echo disp_boolean( $post_type['show_in_rest'] ); ?>,
 		"rest_base" => "<?php echo $post_type['rest_base']; ?>",
 		"has_archive" => <?php echo $has_archive; ?>,
-		"show_in_menu" => <?php echo disp_boolean( $post_type['show_in_menu'] ); ?>,
-<?php if ( ! empty( $post_type['show_in_menu_string'] ) ) { ?>
-		"show_in_menu_string" => "<?php echo $post_type['show_in_menu_string']; ?>",
-<?php } ?>
+		"show_in_menu" => <?php echo $show_in_menu; ?>,
+		"show_in_nav_menus" => <?php echo $show_in_nav_menus; ?>,
 		"exclude_from_search" => <?php echo disp_boolean( $post_type['exclude_from_search'] ); ?>,
 		"capability_type" => "<?php echo $post_type['capability_type']; ?>",
 		"map_meta_cap" => <?php echo disp_boolean( $post_type['map_meta_cap'] ); ?>,
@@ -747,6 +764,8 @@ function cptui_render_getcode_section() {
 	<h1><?php _e( 'Get Post Type and Taxonomy Code', 'custom-post-type-ui' ); ?></h1>
 
 		<h2><?php _e( 'All CPT UI Post Types', 'custom-post-type-ui' ); ?></h2>
+
+		<p><?php esc_html_e( 'All of the selectable code snippets below are useful if you wish to migrate away from CPTUI and retain your existing registered post types or taxonomies.', 'custom-post-type-ui' ); ?></p>
 
 		<?php $cptui_post_types = cptui_get_post_type_data(); ?>
 		<label for="cptui_post_type_get_code"><?php _e( 'Copy/paste the code below into your functions.php file.', 'custom-post-type-ui' ); ?></label>

@@ -1,5 +1,6 @@
 {
-  "buttons": ["format","bold","italic","lists","link","horizontalrule"],
-  "plugins": ["source","fullscreen","style"],
-  "formatting": ["p", "blockquote", "h2", "h3", "h4", "h5", "h6"]
+  "buttons": ["html", "format", "bold", "italic", "lists", "link", "image"],
+  "plugins": ["alignment", "fullscreen", "table"],
+  "formatting": ["p", "blockquote", "h1", "h2", "h3", "h4", "h5", "h6"],
+  "minHeight": "400px"
 }

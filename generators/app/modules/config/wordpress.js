@@ -32,6 +32,14 @@ function addWordpressCofig (files = {}, context) {
           'src/structure/templates/**/*.php',
           'src/js/**/*.vue'
         ]
+      },
+      files: {
+        launch: [
+          { src: '.htaccess', dest: '../../../' },
+          { src: 'favicons/**', dest: 'assets/img/system/' },
+          { src: 'facebook-og-image.jpg', dest: 'assets/img/system/' },
+          { src: 'twitter-og-image.jpg', dest: 'assets/img/system/' }
+        ]
       }
     })
   }

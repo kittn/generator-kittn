@@ -24,8 +24,11 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @return array Amended array of links.
  */
 function cptui_edit_plugin_list_links( $links ) {
-	// We shouldn't encourage editing our plugin directly.
-	unset( $links['edit'] );
+
+	if ( is_array( $links ) && isset( $links['edit'] ) ) {
+		// We shouldn't encourage editing our plugin directly.
+		unset( $links['edit'] );
+	}
 
 	// Add our custom links to the returned array value.
 	return array_merge( array(
@@ -310,7 +313,7 @@ function cptui_products_sidebar() {
 		}
 		printf(
 			'<p><a href="%s">%s</a></p>',
-			'https://pluginize.com/plugins/custom-post-type-ui-extended/?utm_source=remove_ads&utm_medium=text&utm_campaign=cptui',
+			'https://pluginize.com/plugins/custom-post-type-ui-extended/ref/pluginizeaff/?campaign=cptui-sidebar-remove',
 			esc_html__( 'Remove these ads?', 'custom-post-type-ui' )
 		);
 	}
@@ -398,19 +401,25 @@ function cptui_get_ads() {
  */
 function cptui_default_ads( $ads = array() ) {
 	$ads[] = array(
-		'url'   => 'https://pluginize.com/plugins/custom-post-type-ui-extended/?utm_source=sidebar-v3&utm_medium=banner&utm_campaign=cptui',
-		'image' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/wds_ads/cptuix-ad-3.png',
+		'url'   => 'https://pluginize.com/plugins/custom-post-type-ui-extended/?utm_source=cptui-sidebar&utm_medium=text&utm_campaign=cptui',
+		'image' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/wds_ads/cptui-extended.png',
 		'text'  => 'Custom Post Type UI Extended product ad',
 	);
 
 	$ads[] = array(
-		'url'   => 'https://apppresser.com/?utm_source=pluginize&utm_medium=plugin&utm_campaign=cptui',
-		'image' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/wds_ads/apppresser.png',
-		'text'  => 'AppPresser product ad',
+		'url'   => 'https://pluginize.com/plugins/instago/?utm_source=cptui-sidebar&utm_medium=text&utm_campaign=instago',
+		'image' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/wds_ads/instago.png',
+		'text'  => 'InstaGo product ad',
 	);
 
 	$ads[] = array(
-		'url'   => 'https://maintainn.com/?utm_source=Pluginize&utm_medium=Plugin-Sidebar&utm_campaign=CPTUI',
+		'url'   => 'https://pluginize.com/plugins/buddypages/?utm_source=cptui-sidebar&utm_medium=text&utm_campaign=buddypages',
+		'image' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/wds_ads/buddypages.png',
+		'text'  => 'BuddyPages product ad',
+	);
+
+	$ads[] = array(
+		'url'   => 'https://maintainn.com/?utm_source=Pluginize-v2&utm_medium=Plugin-Sidebar&utm_campaign=CPTUI',
 		'image' => plugin_dir_url( dirname( __FILE__ ) ) . 'images/wds_ads/maintainn.png',
 		'text'  => 'Maintainn product ad',
 	);
@@ -585,7 +594,8 @@ function cptui_import_success_admin_notice() {
  */
 function cptui_import_fail_admin_notice() {
 	echo cptui_admin_notices_helper(
-		esc_html__( 'Invalid data provided', 'custom-post-type-ui' )
+		esc_html__( 'Invalid data provided', 'custom-post-type-ui' ),
+		false
 	);
 }
 
@@ -667,7 +677,11 @@ function cptui_error_admin_notice() {
  */
 function cptui_not_new_install( $wp_upgrader, $extras ) {
 
-	if ( ! is_array( $extras['plugins'] ) ) {
+	if ( ! is_a( $wp_upgrader, 'Plugin_Upgrader' ) ) {
+		return;
+	}
+
+	if ( ! array_key_exists( 'plugins', $extras ) || ! is_array( $extras['plugins'] ) ) {
 		return;
 	}
 
@@ -779,3 +793,23 @@ function cptui_post_type_supports( $post_type, $feature ) {
 
 	return false;
 }
+
+/**
+ * Add missing post_format taxonomy support for CPTUI post types.
+ *
+ * Addresses bug wih previewing changes for published posts with post types that
+ * have post-formats support.
+ *
+ * @since 1.5.8
+ *
+ * @param array $post_types Array of CPTUI post types.
+ */
+function cptui_published_post_format_fix( $post_types ) {
+	foreach ( $post_types as $type ) {
+		if ( in_array( 'post-formats', $type['supports'], true ) ) {
+			add_post_type_support( $type['name'], 'post-formats' );
+			register_taxonomy_for_object_type( 'post_format', $type['name'] );
+		}
+	}
+}
+add_action( 'cptui_post_register_post_types', 'cptui_published_post_format_fix' );

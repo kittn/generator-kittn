@@ -1,9 +1,9 @@
 <?php
 /**
-  PageLogo
-  ========
-  Add a Logomodule with a Linkwrapper for Subpages. On the Startpage is this your H1, on Subpages a Div. Better for SEO
-*/
+PageLogo
+========
+Add a Logomodule with a Linkwrapper for Subpages. On the Startpage is this your H1, on Subpages a Div. Better for SEO
+ */
 
 // Component Classname
 $classname = 'c-pagelogo';
@@ -23,6 +23,6 @@ if  (is_home()) {
 <?php // Build Element Block ?>
 <<?= $type; ?> class="<?= $classname; ?>">
   <?= $linkstart; ?>
-  <?php bloginfo( 'name' ); ?>
+    <?php bloginfo( 'name' ); ?>
   <?= $linkend; ?>
 </<?= $type; ?>>

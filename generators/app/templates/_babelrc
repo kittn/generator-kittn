@@ -2,7 +2,7 @@
   "presets": [
     [
       "@babel/preset-env", {
-        "useBuiltIns": "usage",
+        "useBuiltIns": "entry",
         "debug": false
       }<% if ( locals.projectjsframework && projectjsframework === 'react' ) { %>, "@babel/preset-react"<% } %>]
   ],

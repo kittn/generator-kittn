@@ -15,8 +15,7 @@
       <?php include ( get_template_directory() . '/_components/mainnav.php' ); ?>
     </div>
     <div class="c-pageHeader__offcanvas">
-      <?php include ( get_template_directory() . '/_objects/offCanvasTrigger.php' ); ?>
-
+      <?php include ( get_template_directory() . '/_components/offCanvasTrigger.php' ); ?>
     </div>
   </div>
 </header>

@@ -1,18 +1,18 @@
 <?php if(!defined('ABSPATH')) { die(); } // Include in all php files, to prevent direct execution
 /**
-  Plugin Name: WP SmartCrop
-  Plugin URI: http://www.wpsmartcrop.com/
-  Description: Style your images exactly how you want them to appear, for any screen size, and never get a cut-off face.
-  Version: 1.3.1
-  Author: WP SmartCrop
-  Author URI: http://www.wpsmartcrop.com
-  License: GPLv2 or later
-  Text Domain: wpsmartcrop
-*/
+ * Plugin Name: WP SmartCrop
+ * Plugin URI: http://www.wpsmartcrop.com/
+ * Description: Style your images exactly how you want them to appear, for any screen size, and never get a cut-off face.
+ * Version: 1.4.7
+ * Author: Burlington Bytes
+ * Author URI: https://www.burlingtonbytes.com
+ * License: GPLv2 or later
+ * Text Domain: wpsmartcrop
+ **/
 
 if( !class_exists('WP_Smart_Crop') ) {
 	class WP_Smart_Crop {
-		public  $version = '1.2.0';
+		public  $version = '1.4.7';
 		private $plugin_dir_path;
 		private $plugin_dir_url;
 		private $current_image = null;
@@ -66,7 +66,7 @@ if( !class_exists('WP_Smart_Crop') ) {
 		}
 
 		function plugin_action_links( $links ) {
-			$links[] = '<a href="'. esc_url( get_admin_url(null, 'options-general.php?page=wp-smartcrop') ) .'">Settings</a>';
+			$links[] = '<a href="'. esc_url( get_admin_url(null, 'tools.php?page=wp-smartcrop') ) .'">Settings</a>';
 			$links[] = '<a href="http://www.wpsmartcrop.com/addons" target="_blank">Get Addons</a>';
 			return $links;
 		}
@@ -218,9 +218,16 @@ if( !class_exists('WP_Smart_Crop') ) {
 				$focus  = get_post_meta( $post->ID, '_wpsmartcrop_image_focus', true );
 				if( !$focus || !is_array( $focus ) || !isset( $focus['left'] ) || !isset( $focus['top'] ) ) {
 					$focus = array(
-						'left' => '',
-						'top'  => ''
+						'left' => '50',
+						'top'  => '50'
 					);
+					$default_focus = apply_filters( 'wpsmartcrop_default_focus', array(50, 50), $post->ID );
+					if( count( $default_focus ) > 1 ) {
+						$focus = array(
+							'left' => $default_focus[0],
+							'top'  => $default_focus[1]
+						);
+					}
 				}
 
 				// build html for form interface
@@ -231,7 +238,7 @@ if( !class_exists('WP_Smart_Crop') ) {
 				<input type="hidden"   class="wpsmartcrop_image_focus_left" name="attachments[<?php echo $post->ID; ?>][_wpsmartcrop_image_focus][left]" value="<?php echo $focus['left']; ?>" />
 				<input type="hidden"   class="wpsmartcrop_image_focus_top"  name="attachments[<?php echo $post->ID; ?>][_wpsmartcrop_image_focus][top]"  value="<?php echo $focus['top' ]; ?>" />
 				<em>Select a focal point for this image by clicking on the preview image</em>
-				<script src="<?php echo $this->plugin_dir_url;?>js/media-library.js" type="text/javascript"></script>
+				<script src="<?php echo $this->plugin_dir_url;?>js/media-library.js?v=<?php echo esc_attr( $this->version ); ?>" type="text/javascript"></script>
 				<?php
 				$focal_point_html = ob_get_clean();
 				$form_fields = array(
@@ -301,7 +308,7 @@ if( !class_exists('WP_Smart_Crop') ) {
 
 		function wp_enqueue_scripts() {
 			wp_enqueue_script( 'jquery' );
-			wp_enqueue_script( 'wp-smart-crop-renderer', $this->plugin_dir_url . 'js/image-renderer.js', array( 'jquery' ), $this->version, true );
+			wp_enqueue_script( 'jquery.wp-smartcrop', $this->plugin_dir_url . 'js/jquery.wp-smartcrop.min.js', array( 'jquery' ), $this->version, true );
 			wp_enqueue_style( 'wp-smart-crop-renderer', $this->plugin_dir_url . 'css/image-renderer.css', array(), $this->version );
 		}
 
@@ -467,6 +474,9 @@ if( !class_exists('WP_Smart_Crop') ) {
 						}
 						$this->focus_cache[ $id ][ $size ] = $ret_val;
 						return $ret_val;
+					} else {
+						$default_focus = apply_filters( 'wpsmartcrop_default_focus', array(50, 50), $id );
+						$ret_val = json_encode( $default_focus );
 					}
 				}
 			}
@@ -474,7 +484,11 @@ if( !class_exists('WP_Smart_Crop') ) {
 		}
 		private function is_image_size_cropped( $size ) {
 			$_wp_additional_image_sizes = $GLOBALS['_wp_additional_image_sizes'];
-			if(!$size || $size == 'full' || is_array( $size )) {
+			// array sizes are assumed to be cropped... use names, as suggested by WordPress
+			if( $size && is_array( $size ) ) {
+				return true;
+			}
+			if(!$size || $size == 'full' ) {
 				return false;
 			}
 			if( isset( $_wp_additional_image_sizes[ $size ] ) ) {
