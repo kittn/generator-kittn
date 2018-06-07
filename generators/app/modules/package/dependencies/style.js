@@ -13,7 +13,7 @@ function addStyleDependencies (files = {}, context) {
       'postcss-custom-selectors': '^4.0.1',
       'postcss-easings': '^1.0.0',
       'postcss-flexbugs-fixes': '^3.3.0',
-      'postcss-pseudo-class-any-link': '^4.0.0',
+      'postcss-pseudo-class-any-link': '^5.0.0',
       'postcss-short-size': '^3.0.0',
       'postcss-scss': '^1.0.5',
       'postcss-svg': '^2.4.0',
