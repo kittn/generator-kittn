@@ -37,6 +37,7 @@ const checkCondition = (data, context) => {
   }
 
   if (data.orConditions) {
+    error = true
     for (const cond of data.orConditions) {
       for (const con in cond) {
         if (cond[con] === context.props[con]) {
