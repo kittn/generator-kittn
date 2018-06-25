@@ -16,8 +16,7 @@ function addStyleDependencies (files = {}, context) {
       'postcss-pseudo-class-any-link': '^5.0.0',
       'postcss-short-size': '^3.0.0',
       'postcss-scss': '^1.0.5',
-      'postcss-svg': '^2.4.0',
-      'rucksack-css': '^1.0.2'
+      'postcss-svg': '^2.4.0'
     }
   })
 

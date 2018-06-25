@@ -347,7 +347,9 @@ const transform = {
       print,
       aural,
       scrollbar
-    ],<% } %>
+    ],<% } else { %>
+    'order/order': null,
+    'order/properties-order': null,<% } %>
     'order/properties-alphabetical-order': null,
 
     'property-case': 'lower',

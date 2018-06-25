@@ -29,12 +29,6 @@ module.exports = ({ file, options, env }) => ({
       discardUnused: false,
       reduceIdents: false,
       mergeIdents: false
-    },
-    'rucksack-css': {
-      autoprefixer: false,
-      hexRGBA: false,
-      easings: false,
-      fontPath: false
     }
   }
 })
