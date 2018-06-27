@@ -142,9 +142,9 @@ export default {
           use: ifProduction(
             ExtractTextPlugin.extract({
               fallback: 'vue-style-loader',
-              use: ['postcss-loader', 'css-loader']
+              use: ['css-loader']
             }),
-            ['vue-style-loader', 'postcss-loader', 'css-loader']
+            ['vue-style-loader', 'css-loader']
           )
         },
         {
