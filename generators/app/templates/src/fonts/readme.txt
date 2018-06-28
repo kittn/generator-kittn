@@ -1,1 +1,1 @@
-In this directory comes the Fontfiles.
+Font files belong in this directory.
