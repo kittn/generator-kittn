@@ -98,6 +98,8 @@ export default {
           bitmaps: path.resolve(utils.paths.SRC_ROOT, 'images/bitmaps/'),
           icons: path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
           iconsSingle: path.resolve(utils.paths.SRC_ROOT, 'images/vectorsSingle/'),
+          appstyles$: path.resolve(utils.paths.CSS_ROOT, '_app.scss'),
+          fonts$: path.resolve(utils.paths.SRC_ROOT, 'fonts/'),
         <% } %>
 
         store: path.resolve(utils.paths.LOADER_PATH, 'store'),
@@ -161,7 +163,10 @@ export default {
         },
         {
           test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
-          exclude: path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
+          exclude: [
+            path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
+            path.resolve(utils.paths.SRC_ROOT, 'images/vectorsSingle/')
+          ],
           use: [
             {
               loader: 'url-loader',
@@ -190,7 +195,10 @@ export default {
         },
         {
           test: /\.svg$/,
-          include: path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
+          include: [
+            path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
+            path.resolve(utils.paths.SRC_ROOT, 'images/vectorsSingle/')
+          ],
           use: [
             {
               loader: 'svg-sprite-loader',

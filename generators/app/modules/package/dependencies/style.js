@@ -84,7 +84,7 @@ function addStyleDependencies (files = {}, context) {
   if (context.props.projectnormalize === 'regular') {
     extend(files.pkg, {
       devDependencies: {
-        'postcss-normalize': '^4.0.0'
+        'postcss-normalize': '^6.0.0'
       }
     })
   }
