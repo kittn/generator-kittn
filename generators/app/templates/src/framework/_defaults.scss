@@ -25,7 +25,7 @@ $kittn-bem: (
 //
 // @type Map
 $kittn-directories: (
-  fonts: '../fonts/',
+  fonts: '<% if (projectusage === 'webpackApp') { %>~<% } else { %>../<% } %>fonts/',
   images: '../img/',
   svgonly: '../img/svgfiles/',
   bitmaps: '../img/bitmaps/',

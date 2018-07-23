@@ -201,14 +201,9 @@ export default {
           ],
           use: [
             {
-              loader: 'svg-sprite-loader',
-              options: {
-                esModule: false,
-                extract: true,
-                spriteFilename: ifDevelopment(utils.assetsPath('img/sprite.svg'), utils.assetsPath('img/sprite.[hash].svg'))
-              },
+              loader: 'svg-sprite-loader'
             },
-            'svg-fill-loader',
+            'svg-transform-loader',
             'svgo-loader'
           ]
         }
