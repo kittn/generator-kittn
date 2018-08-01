@@ -11,7 +11,7 @@ exports.vueDevDependencies = {
   'sass-loader': '^7.0.1',
   svgo: '^1.0.5',
   'svgo-loader': '^2.1.0',
-  'svg-fill-loader': '^0.0.8',
+  'svg-transform-loader': '^1.1.0',
   'svg-sprite-loader': '^3.7.0',
   'style-loader': '^0.20.3',
   'url-loader': '^1.0.0',
