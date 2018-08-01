@@ -11,11 +11,11 @@ import path from 'path'
 
 const watchTask = () => {
   // Watch the SCSS Folder for changes - compile CSS
-  gulp.watch([kc.src.style + '**/**/*.scss', kc.src.style + '**/**/*.sass'], ['compiler:css'])
+  gulp.watch([kc.src.style + '**/**/*.scss', kc.src.style + '**/**/*.sass'], {interval: 500}, ['compiler:css'])
 
   // Watch the Structure<% if (projectusage !== 'joomla') { %>
-  gulp.watch([templateFiles()], ['compiler:html'])<% } else { %>
-  gulp.watch(kc.watchjoomla, ['copy:joomlafiles'])<% } %>
+  gulp.watch([templateFiles()], {interval: 500}, ['compiler:html'])<% } else { %>
+  gulp.watch(kc.watchjoomla, {interval: 500}, ['copy:joomlafiles'])<% } %>
 }
 
 gulp.task('watch', watchTask)
