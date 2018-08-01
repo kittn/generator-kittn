@@ -44,7 +44,7 @@ function addBaseDependencies (files = {}, context) {
       },
       devDependencies: {
         'eslint-plugin-cypress': '^2.0.1',
-        'cypress': '^2.1.0'
+        'cypress': '^3.0.3'
       }
     })
   }
