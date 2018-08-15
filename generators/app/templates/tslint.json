@@ -1,0 +1,26 @@
+{
+  "defaultSeverity": "warning",
+  "extends": [
+    "tslint:recommended",
+    "tslint-config-standard",
+    "tslint-config-prettier",
+    "@kurosame/tslint-config-vue"
+  ],
+  "linterOptions": {
+    "exclude": ["node_modules/**"]
+  },
+  "rules": {
+    "quotemark": [true, "single"],
+    "indent": [true, "spaces", 2],
+    "class-name": false,
+    "interface-name": false,
+    "ordered-imports": false,
+    "object-literal-sort-keys": false,
+    "no-consecutive-blank-lines": false,
+    "space-before-function-paren": false,
+    "no-console": false,
+    "no-submodule-imports": false,
+    "no-implicit-dependencies": false,
+    "max-line-length": [true, 100]
+  }
+}

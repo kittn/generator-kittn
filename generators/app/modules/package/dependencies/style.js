@@ -3,8 +3,8 @@ const extend = require('deep-extend')
 function addStyleDependencies (files = {}, context) {
   extend(files.pkg, {
     devDependencies: {
-      'autoprefixer': '^8.6.5',
-      'cssnano': '^4.0.0-rc.2',
+      'autoprefixer': '^9.1.0',
+      'cssnano': '^4.0.5',
       'postcss-aspect-ratio': '^1.0.1',
       'postcss-assets': '^5.0.0',
       'postcss-calc': '^6.0.1',
@@ -12,10 +12,11 @@ function addStyleDependencies (files = {}, context) {
       'postcss-custom-properties': '^7.0.0',
       'postcss-custom-selectors': '^4.0.1',
       'postcss-easings': '^1.0.0',
-      'postcss-flexbugs-fixes': '^3.3.0',
+      'postcss-flexbugs-fixes': '^4.1.0',
       'postcss-pseudo-class-any-link': '^5.0.0',
+      'postcss-safe-parser': '^4.0.1',
       'postcss-short-size': '^3.0.0',
-      'postcss-scss': '^1.0.5',
+      'postcss-scss': '^2.0.0',
       'postcss-svg': '^2.4.0'
     }
   })
@@ -36,8 +37,8 @@ function addStyleDependencies (files = {}, context) {
       devDependencies: {
         stylelint: '^9.2.0',
         'stylelint-config-sass-guidelines': '^5.0.0',
-        'stylelint-order': '^0.8.1',
-        'stylelint-scss': '^3.0.0',
+        'stylelint-order': '^1.0.0',
+        'stylelint-scss': '^3.3.0',
         'stylelint-selector-bem-pattern': '^2.0.0'
       }
     })

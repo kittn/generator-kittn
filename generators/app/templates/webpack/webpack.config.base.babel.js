@@ -181,13 +181,17 @@ export default {
           ]
         },
         {
-          test: /\.(eot|ttf|woff|woff2)(\?\S*)?$/,
+          test: /\.(eot|ttf|woff|woff2|svg)(\?\S*)?$/,
+          exclude: [
+            path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
+            path.resolve(utils.paths.SRC_ROOT, 'images/vectorsSingle/')
+          ],
           use: [
             {
               loader: 'file-loader',
               query: {
                 outputPath: utils.assetsPath('fonts/'),
-                publicPath: 'fonts/',
+                publicPath: ifDevelopment('assets/fonts/', '../fonts/'),
                 name: '[name].[ext]'
               }
             }
@@ -217,7 +221,8 @@ export default {
               loader: 'ts-loader',
               options: {
                 transpileOnly: true,
-                experimentalWatchApi: true
+                experimentalWatchApi: true,
+                appendTsSuffixTo: [/\.vue$/]
               }
             }
           ]
@@ -246,11 +251,7 @@ export default {
         filename: utils.assetsPath('css/[name].<% if ( projectusage === 'webpackApp' ) { %>[chunkhash].<% } %>css'),
         allChunks: true
       }),
-      new OptimizeCSSPlugin({
-        cssProcessorOptions: {
-          safe: true
-        }
-      }),
+      new OptimizeCSSPlugin(),
     <% } %>
 
     <% if ( projectstylelint && (projectusage === 'webpackApp' || projectjsframework === 'vue') ) { %>

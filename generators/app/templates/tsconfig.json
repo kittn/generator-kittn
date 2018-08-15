@@ -1,11 +1,25 @@
 {
   "compilerOptions": {
+    "outDir": "./dist/",
+    "target": "es5",
+    "module": "esnext",
+    "strict": true,
+    "jsx": "preserve",
+    "importHelpers": true,
+    "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "allowJs": true,
-    "lib": [
-      "es2015",
-      "dom",
-      "es7"
-    ]
-  }
+    "baseUrl": ".",
+    "types": ["node", "jest"],
+    "paths": {
+      "@/*": ["src/js/*"],
+      "components/*": ["src/js/components/*"],
+      "shared/*": ["src/js/shared/*"],
+      "shared/consts/consts": ["src/js/shared/consts/consts"],
+      "lang/*": ["src/js/lang/*"]
+    },
+    "lib": ["es7", "dom", "dom.iterable", "scripthost"]
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "tests/**/*.ts", "tests/**/*.tsx"],
+  "exclude": ["node_modules"]
 }
