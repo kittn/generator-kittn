@@ -10,9 +10,9 @@ function addBaseDependencies (files = {}, context) {
       init: 'npm run build'
     },
     devDependencies: {
-      '@babel/cli': '^7.0.0-beta.44',
-      '@babel/core': '^7.0.0-beta.44',
-      'cross-env': '^5.1.4'
+      '@babel/cli': '^7.0.0-rc.1',
+      '@babel/core': '^7.0.0-rc.1',
+      'cross-env': '^5.2.0'
     }
   })
 
@@ -29,9 +29,9 @@ function addBaseDependencies (files = {}, context) {
         prettify: 'prettier prettier --loglevel=warn --write "{webpack,src}/**/*.{js,scss}"'
       },
       devDependencies: {
-        'eslint-config-prettier': '^2.9.0',
-        'eslint-plugin-prettier': '^2.6.0',
-        'prettier': '^1.11.1'
+        'eslint-config-prettier': '^3.0.1',
+        'eslint-plugin-prettier': '^2.6.2',
+        'prettier': '^1.14.2'
       }
     })
   }
@@ -44,7 +44,7 @@ function addBaseDependencies (files = {}, context) {
       },
       devDependencies: {
         'eslint-plugin-cypress': '^2.0.1',
-        'cypress': '^2.1.0'
+        'cypress': '^3.0.3'
       }
     })
   }

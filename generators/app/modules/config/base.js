@@ -169,6 +169,16 @@ function addBaseCofig (files = {}, context) {
       })
     }
   }
+
+  if (context.props.projecttypescript === true) {
+    extend(files.pkg, {
+      src: {
+        jsEntryPoints: {
+          main: './src/js/main.ts'
+        }
+      }
+    })
+  }
 }
 
 module.exports = addBaseCofig

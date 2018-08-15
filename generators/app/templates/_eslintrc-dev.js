@@ -1,10 +1,9 @@
 // http://eslint.org/docs/user-guide/configuring
 
 module.exports = {
-  root: true,<% if ( projectusage !== 'webpackApp' && projectjsframework !== 'vue' ) { %>
-  parser: 'babel-eslint',<% } %>
+  root: true,
   parserOptions: {
-    parser: 'babel-eslint',
+    parser: <% if (projecttypescript === true) { %>'typescript-eslint-parser'<% } else { %>'babel-eslint'<% } %>,
     ecmaVersion: 2017,
     sourceType: 'module'
   },
@@ -22,7 +21,8 @@ module.exports = {
     'plugin:import/errors',
     'plugin:import/warnings'<% if ( projectprettier === true ) { %>,
     'plugin:prettier/recommended'<% } %>
-  ],
+  ],<% if (projecttypescript === true) { %>
+  plugins: ['typescript'],<% } %>
   // check if imports actually resolve
   settings: {
     'import/resolver': {

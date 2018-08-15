@@ -47,7 +47,7 @@ if (customOutput) {
     'microsoft-edge-15'
   ]
 
-  if (oldSpecBrowser.includes(name + '-' + version)) {
+  if (oldSpecBrowser.indexOf(name + '-' + version) !== -1) {
     docHead.classList.add('old-grid-spec')
   } else {
     docHead.classList.add('new-grid-spec')

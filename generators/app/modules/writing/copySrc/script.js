@@ -30,6 +30,22 @@ const script = context => {
         dest: 'webpack/utils.js'
       },
       {
+        notConditions:
+          {
+            projecttypescript: true
+          },
+        src: 'src/skeletons/js/main.js',
+        dest: 'src/js/main.js'
+      },
+      {
+        conditions:
+          {
+            projecttypescript: true
+          },
+        src: 'src/skeletons/js/main.js',
+        dest: 'src/js/main.ts'
+      },
+      {
         orConditions: [
           {
             projectjsframework: 'vue'
@@ -66,6 +82,13 @@ const script = context => {
         },
         src: 'tsconfig.json',
         dest: 'tsconfig.json'
+      },
+      {
+        conditions: {
+          projecttypescript: true
+        },
+        src: 'tslint.json',
+        dest: 'tslint.json'
       }
     ],
     folders: [

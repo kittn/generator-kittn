@@ -1,7 +1,7 @@
 const extend = require('deep-extend')
 const { vueDevDependencies, vueDependencies, vuePluginsDependencies } = require('./partials/vue')
 const { stylelintWebpackDependencies } = require('./partials/stylelint')
-const { typescriptDevDependencies } = require('./partials/typescript')
+const { typescriptDevDependencies, typescriptTestDevDependencies } = require('./partials/typescript')
 const { containerQueryDependencies } = require('./partials/contentBuilder')
 
 function addScriptDependencies (files = {}, context) {
@@ -11,17 +11,17 @@ function addScriptDependencies (files = {}, context) {
         'webpack-bundle-analyzer webpack/stats.json dist/assets/'
     },
     devDependencies: {
-      '@babel/plugin-proposal-class-properties': '^7.0.0-beta.46',
-      '@babel/plugin-proposal-object-rest-spread': '^7.0.0-beta.46',
-      '@babel/plugin-syntax-dynamic-import': '^7.0.0-beta.46',
-      '@babel/plugin-transform-runtime': '^7.0.0-beta.46',
-      '@babel/preset-env': '^7.0.0-beta.46',
-      '@babel/register': '^7.0.0-beta.46',
-      '@babel/polyfill': '^7.0.0-beta.46',
+      '@babel/plugin-proposal-class-properties': '^7.0.0-rc.1',
+      '@babel/plugin-proposal-object-rest-spread': '^7.0.0-rc.1',
+      '@babel/plugin-syntax-dynamic-import': '^7.0.0-rc.1',
+      '@babel/plugin-transform-runtime': '^7.0.0-rc.1',
+      '@babel/preset-env': '^7.0.0-rc.1',
+      '@babel/register': '^7.0.0-rc.1',
+      '@babel/polyfill': '^7.0.0-rc.1',
       'babel-loader': '^8.0.0-beta.2',
       'babel-eslint': '^8.2.1',
       'clean-webpack-plugin': '^0.1.19',
-      'eslint': '^4.19.1',
+      'eslint': '^5.0.1',
       'eslint-config-standard': '^12.0.0-alpha.0',
       'eslint-plugin-promise': '^3.7.0',
       'eslint-plugin-standard': '^3.0.1',
@@ -35,8 +35,8 @@ function addScriptDependencies (files = {}, context) {
       'extract-text-webpack-plugin': '^4.0.0-beta.0',
       'friendly-errors-webpack-plugin': '^1.6.1',
       'html-webpack-plugin': '^3.2.0',
-      'optimize-css-assets-webpack-plugin': '^4.0.0',
-      'webpack': '^4.7.0',
+      'optimize-css-assets-webpack-plugin': '^5.0.0',
+      'webpack': '^4.14.0',
       'webpack-cli': '^3.0.1',
       'webpack-bundle-analyzer': '^2.11.1',
       'webpack-config-utils': '^2.3.0',
@@ -125,7 +125,7 @@ function addScriptDependencies (files = {}, context) {
     extend(files.pkg, {
       devDependencies: {
         'eslint-plugin-react': '^6.9.0',
-        '@babel/preset-react': '^7.0.0-beta.46'
+        '@babel/preset-react': '^7.0.0-rc.1'
       },
       dependencies: {
         react: '^15.5.4',
@@ -181,19 +181,22 @@ function addScriptDependencies (files = {}, context) {
   ) {
     extend(files.pkg, {
       scripts: {
-        'unit': 'jest'
+        'unit': 'jest',
+        test: 'jest'
       },
       devDependencies: {
-        '@vue/babel-preset-app': '^3.0.0-beta.6',
-        '@vue/server-test-utils': '^1.0.0-beta.14',
-        '@vue/test-utils': '^1.0.0-beta.14',
+        '@vue/babel-preset-app': '^3.0.0',
+        '@vue/server-test-utils': '^1.0.0-beta.20',
+        '@vue/test-utils': '^1.0.0-beta.24',
         'babel-7-jest': '^21.3.3',
         'babel-core': '^7.0.0-0',
-        'babel-jest': '^22.4.3',
-        'jest': '^22.4.3',
+        'babel-jest': '^23.2.0',
+        'jest': '^23.2.0',
+        'jest-serializer-vue': '^2.0.2',
+        'jest-transform-stub': '^1.0.0',
         'jest-vue-preprocessor': '^1.4.0',
-        'regenerator-runtime': '^0.11.1',
-        'vue-jest': '^2.5.0'
+        'regenerator-runtime': '^0.12.0',
+        'vue-jest': '^2.6.0'
       }
     })
   }
@@ -227,6 +230,12 @@ function addScriptDependencies (files = {}, context) {
     extend(files.pkg, {
       devDependencies: typescriptDevDependencies
     })
+
+    if (context.props.projecttestingunit === true) {
+      extend(files.pkg, {
+        devDependencies: typescriptTestDevDependencies
+      })
+    }
   }
 
   // Vue Plugins

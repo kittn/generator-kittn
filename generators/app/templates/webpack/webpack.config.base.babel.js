@@ -98,6 +98,8 @@ export default {
           bitmaps: path.resolve(utils.paths.SRC_ROOT, 'images/bitmaps/'),
           icons: path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
           iconsSingle: path.resolve(utils.paths.SRC_ROOT, 'images/vectorsSingle/'),
+          appstyles$: path.resolve(utils.paths.CSS_ROOT, '_app.scss'),
+          fonts$: path.resolve(utils.paths.SRC_ROOT, 'fonts/'),
         <% } %>
 
         store: path.resolve(utils.paths.LOADER_PATH, 'store'),
@@ -161,7 +163,10 @@ export default {
         },
         {
           test: /\.(png|jpe?g|gif|svg)(\?\S*)?$/,
-          exclude: path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
+          exclude: [
+            path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
+            path.resolve(utils.paths.SRC_ROOT, 'images/vectorsSingle/')
+          ],
           use: [
             {
               loader: 'url-loader',
@@ -176,13 +181,17 @@ export default {
           ]
         },
         {
-          test: /\.(eot|ttf|woff|woff2)(\?\S*)?$/,
+          test: /\.(eot|ttf|woff|woff2|svg)(\?\S*)?$/,
+          exclude: [
+            path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
+            path.resolve(utils.paths.SRC_ROOT, 'images/vectorsSingle/')
+          ],
           use: [
             {
               loader: 'file-loader',
               query: {
                 outputPath: utils.assetsPath('fonts/'),
-                publicPath: 'fonts/',
+                publicPath: ifDevelopment('assets/fonts/', '../fonts/'),
                 name: '[name].[ext]'
               }
             }
@@ -190,17 +199,15 @@ export default {
         },
         {
           test: /\.svg$/,
-          include: path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
+          include: [
+            path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
+            path.resolve(utils.paths.SRC_ROOT, 'images/vectorsSingle/')
+          ],
           use: [
             {
-              loader: 'svg-sprite-loader',
-              options: {
-                esModule: false,
-                extract: true,
-                spriteFilename: ifDevelopment(utils.assetsPath('img/sprite.svg'), utils.assetsPath('img/sprite.[hash].svg'))
-              },
+              loader: 'svg-sprite-loader'
             },
-            'svg-fill-loader',
+            'svg-transform-loader',
             'svgo-loader'
           ]
         }
@@ -214,7 +221,8 @@ export default {
               loader: 'ts-loader',
               options: {
                 transpileOnly: true,
-                experimentalWatchApi: true
+                experimentalWatchApi: true,
+                appendTsSuffixTo: [/\.vue$/]
               }
             }
           ]
@@ -243,11 +251,7 @@ export default {
         filename: utils.assetsPath('css/[name].<% if ( projectusage === 'webpackApp' ) { %>[chunkhash].<% } %>css'),
         allChunks: true
       }),
-      new OptimizeCSSPlugin({
-        cssProcessorOptions: {
-          safe: true
-        }
-      }),
+      new OptimizeCSSPlugin(),
     <% } %>
 
     <% if ( projectstylelint && (projectusage === 'webpackApp' || projectjsframework === 'vue') ) { %>

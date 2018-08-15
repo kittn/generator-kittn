@@ -2,6 +2,9 @@ const base = context => {
   return {
     files: [
       {
+        notConditions: {
+          projectusage: 'webpackApp'
+        },
         src: 'gulpfile.babel.js',
         dest: 'gulpfile.babel.js'
       },
@@ -20,6 +23,10 @@ const base = context => {
       {
         src: '_gitignore',
         dest: '.gitignore'
+      },
+      {
+        src: '_npmrc',
+        dest: '.npmrc'
       },
       {
         notConditions: {
