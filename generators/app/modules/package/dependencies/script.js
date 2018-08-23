@@ -11,13 +11,13 @@ function addScriptDependencies (files = {}, context) {
         'webpack-bundle-analyzer webpack/stats.json dist/assets/'
     },
     devDependencies: {
-      '@babel/plugin-proposal-class-properties': '^7.0.0-rc.1',
-      '@babel/plugin-proposal-object-rest-spread': '^7.0.0-rc.1',
-      '@babel/plugin-syntax-dynamic-import': '^7.0.0-rc.1',
-      '@babel/plugin-transform-runtime': '^7.0.0-rc.1',
-      '@babel/preset-env': '^7.0.0-rc.1',
-      '@babel/register': '^7.0.0-rc.1',
-      '@babel/polyfill': '^7.0.0-rc.1',
+      '@babel/plugin-proposal-class-properties': '^7.0.0-rc.2',
+      '@babel/plugin-proposal-object-rest-spread': '^7.0.0-rc.2',
+      '@babel/plugin-syntax-dynamic-import': '^7.0.0-rc.2',
+      '@babel/plugin-transform-runtime': '^7.0.0-rc.2',
+      '@babel/preset-env': '^7.0.0-rc.2',
+      '@babel/register': '^7.0.0-rc.2',
+      '@babel/polyfill': '^7.0.0-rc.2',
       'babel-loader': '^8.0.0-beta.2',
       'babel-eslint': '^8.2.1',
       'clean-webpack-plugin': '^0.1.19',
@@ -48,7 +48,7 @@ function addScriptDependencies (files = {}, context) {
       'write-file-webpack-plugin': '^4.2.0'
     },
     dependencies: {
-      'bowser': '^1.9.3',
+      'bowser': '^2.0.0-beta.1',
       'pyrsmk-toast': '^2.2.0',
       'svgxuse': '^1.2.6'
     }
@@ -125,7 +125,7 @@ function addScriptDependencies (files = {}, context) {
     extend(files.pkg, {
       devDependencies: {
         'eslint-plugin-react': '^6.9.0',
-        '@babel/preset-react': '^7.0.0-rc.1'
+        '@babel/preset-react': '^7.0.0-rc.2'
       },
       dependencies: {
         react: '^15.5.4',
