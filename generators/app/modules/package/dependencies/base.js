@@ -10,8 +10,8 @@ function addBaseDependencies (files = {}, context) {
       init: 'npm run build'
     },
     devDependencies: {
-      '@babel/cli': '^7.0.0-rc.1',
-      '@babel/core': '^7.0.0-rc.1',
+      '@babel/cli': '^7.0.0',
+      '@babel/core': '^7.0.0',
       'cross-env': '^5.2.0'
     }
   })

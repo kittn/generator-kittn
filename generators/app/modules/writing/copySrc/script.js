@@ -10,8 +10,8 @@ const script = context => {
         dest: '.eslintrc-dev.js'
       },
       {
-        src: '_babelrc',
-        dest: '.babelrc'
+        src: 'babel.config.js',
+        dest: 'babel.config.js'
       },
       {
         src: 'webpack/webpack.config.base.babel.js',

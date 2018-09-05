@@ -7,9 +7,9 @@ import contentBuilder from './partial/contentBuilder'<% } %><% if ( projectusage
 import lazySizeInit from './partial/lazysize-init'<% } %>
 import 'svgxuse' // eslint-disable-line
 import '@babel/polyfill'
-import '../../js/partial/kittnad' // Small Advertising for Kittn :)
-import '../../js/partial/detect-browser'
-import '../../js/partial/disable-pointerevents'<% if ( typeof projectjsframework !== 'undefined' && projectjsframework === 'react') { %>
+import './partial/kittnad' // Small Advertising for Kittn :)
+import './partial/detect-browser'
+import './partial/disable-pointerevents'<% if ( typeof projectjsframework !== 'undefined' && projectjsframework === 'react') { %>
 ReactDOM.render(
 <h1>Hello, world! from React</h1>
   document.getElementById('app')
