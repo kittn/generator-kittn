@@ -3,15 +3,19 @@ import bowser from 'bowser'
 
 const customOutput = true
 const docHead = document.querySelector('html')
-const version = bowser.version
+const browser = bowser.getParser(window.navigator.userAgent)
+const browserName = browser.getBrowserName()
+const browserVersion = browser.getBrowserVersion()
+const platformTypeInfo = browser.getPlatformType(true)
+const version = browserVersion
   .toLowerCase()
   .replace(' ', '-')
   .split('.', 1)[0]
-const name = bowser.name.toLowerCase().replace(' ', '-')
+const name = browserName.toLowerCase().replace(' ', '-')
 
 if (customOutput) {
   // Use the switch condition if you want to customize the output
-  switch (bowser.name) {
+  switch (browserName) {
     case 'Microsoft Edge':
       docHead.classList.add('edge', 'edge-' + version)
       break
@@ -36,6 +40,8 @@ if (customOutput) {
       docHead.classList.add('opera', 'opera-' + version)
       break
   }
+
+  docHead.classList.add(platformTypeInfo)
 
   // Generate Class for Browser with the old CSS Grid Spec
   const oldSpecBrowser = [

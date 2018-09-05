@@ -11,44 +11,44 @@ function addScriptDependencies (files = {}, context) {
         'webpack-bundle-analyzer webpack/stats.json dist/assets/'
     },
     devDependencies: {
-      '@babel/plugin-proposal-class-properties': '^7.0.0-rc.1',
-      '@babel/plugin-proposal-object-rest-spread': '^7.0.0-rc.1',
-      '@babel/plugin-syntax-dynamic-import': '^7.0.0-rc.1',
-      '@babel/plugin-transform-runtime': '^7.0.0-rc.1',
-      '@babel/preset-env': '^7.0.0-rc.1',
-      '@babel/register': '^7.0.0-rc.1',
-      '@babel/polyfill': '^7.0.0-rc.1',
+      '@babel/plugin-proposal-class-properties': '^7.0.0',
+      '@babel/plugin-proposal-object-rest-spread': '^7.0.0',
+      '@babel/plugin-syntax-dynamic-import': '^7.0.0',
+      '@babel/plugin-transform-runtime': '^7.0.0',
+      '@babel/preset-env': '^7.0.0',
+      '@babel/register': '^7.0.0',
+      '@babel/polyfill': '^7.0.0',
       'babel-loader': '^8.0.0-beta.2',
       'babel-eslint': '^8.2.1',
       'clean-webpack-plugin': '^0.1.19',
-      'eslint': '^5.0.1',
-      'eslint-config-standard': '^12.0.0-alpha.0',
+      'eslint': '^5.3.0',
+      'eslint-config-standard': '^12.0.0',
       'eslint-plugin-promise': '^3.7.0',
-      'eslint-plugin-standard': '^3.0.1',
+      'eslint-plugin-standard': '^4.0.0',
       'eslint-formatter-pretty': '^1.3.0',
       'eslint-friendly-formatter': '^4.0.0',
       'eslint-loader': '^2.0.0',
       'eslint-plugin-import': '^2.10.0',
       'eslint-plugin-jsx-a11y': '^6.0.3',
-      'eslint-plugin-node': '^6.0.1',
+      'eslint-plugin-node': '^7.0.1',
       'eslint-import-resolver-webpack': '^0.9.0',
       'extract-text-webpack-plugin': '^4.0.0-beta.0',
-      'friendly-errors-webpack-plugin': '^1.6.1',
+      'friendly-errors-webpack-plugin': '^1.7.0',
       'html-webpack-plugin': '^3.2.0',
       'optimize-css-assets-webpack-plugin': '^5.0.0',
-      'webpack': '^4.14.0',
-      'webpack-cli': '^3.0.1',
+      'webpack': '^4.17.2',
+      'webpack-cli': '^3.1.0',
       'webpack-bundle-analyzer': '^2.11.1',
       'webpack-config-utils': '^2.3.0',
-      'webpack-dev-middleware': '^3.1.0',
-      'webpack-hot-middleware': '^2.21.2',
+      'webpack-dev-middleware': '^3.2.0',
+      'webpack-hot-middleware': '^2.23.1',
       'webpackbar': '^2.6.1',
       'webpack-stylish': '^0.1.8',
       'webpack-merge': '^4.1.2',
-      'write-file-webpack-plugin': '^4.2.0'
+      'write-file-webpack-plugin': '^4.3.2'
     },
     dependencies: {
-      'bowser': '^1.9.3',
+      'bowser': '^2.0.0-beta.1',
       'pyrsmk-toast': '^2.2.0',
       'svgxuse': '^1.2.6'
     }
@@ -125,7 +125,7 @@ function addScriptDependencies (files = {}, context) {
     extend(files.pkg, {
       devDependencies: {
         'eslint-plugin-react': '^6.9.0',
-        '@babel/preset-react': '^7.0.0-rc.1'
+        '@babel/preset-react': '^7.0.0'
       },
       dependencies: {
         react: '^15.5.4',
@@ -181,8 +181,8 @@ function addScriptDependencies (files = {}, context) {
   ) {
     extend(files.pkg, {
       scripts: {
-        'unit': 'jest',
-        test: 'jest'
+        'unit': 'npm test',
+        test: 'cross-env NODE_ENV=test jest'
       },
       devDependencies: {
         '@vue/babel-preset-app': '^3.0.0',

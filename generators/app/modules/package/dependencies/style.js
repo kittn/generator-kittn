@@ -35,8 +35,8 @@ function addStyleDependencies (files = {}, context) {
         stylelint: "stylelint 'src/style/**/**/*.scss'"
       },
       devDependencies: {
-        stylelint: '^9.2.0',
-        'stylelint-config-sass-guidelines': '^5.0.0',
+        stylelint: '^9.5.0',
+        'stylelint-config-sass-guidelines': '^5.2.0',
         'stylelint-order': '^1.0.0',
         'stylelint-scss': '^3.3.0',
         'stylelint-selector-bem-pattern': '^2.0.0'
@@ -85,7 +85,7 @@ function addStyleDependencies (files = {}, context) {
   if (context.props.projectnormalize === 'regular') {
     extend(files.pkg, {
       devDependencies: {
-        'postcss-normalize': '^6.0.0'
+        'postcss-normalize': '^7.0.0'
       }
     })
   }

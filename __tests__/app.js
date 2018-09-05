@@ -48,13 +48,13 @@ describe('generator-kittn:app', () => {
 
     it('adds files for all projects', () => {
       assert.file([
-        '.babelrc',
         '.browserslistrc',
         '.editorconfig',
         '.eslintrc-dev.js',
         '.eslintrc.js',
         '.gitignore',
         '.nvmrc',
+        'babel.config.js',
         'package.json',
         'README.md',
         'postcss.config.js'

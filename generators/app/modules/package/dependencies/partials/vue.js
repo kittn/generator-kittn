@@ -5,8 +5,8 @@ exports.vueDependencies = {
 exports.vueDevDependencies = {
   'css-loader': '^1.0.0',
   'eslint-config-vue': '^2.0.2',
-  'eslint-plugin-vue': '^4.4.0',
-  'file-loader': '^1.1.11',
+  'eslint-plugin-vue': '^4.7.1',
+  'file-loader': '^2.0.0',
   'postcss-loader': '^3.0.0',
   'sass-loader': '^7.1.0',
   svgo: '^1.0.5',
@@ -15,7 +15,7 @@ exports.vueDevDependencies = {
   'svg-sprite-loader': '^3.7.0',
   'style-loader': '^0.20.3',
   'url-loader': '^1.0.0',
-  'vue-loader': '^15.3.0',
+  'vue-loader': '^15.4.0',
   'vue-style-loader': '^4.1.0',
   'vue-template-compiler': '^2.5.16'
 }
