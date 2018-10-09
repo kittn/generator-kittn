@@ -10,12 +10,11 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "baseUrl": ".",
-    "types": ["node", "jest"],
+    "types": ["node"<% if (projecttestingunit === true) { %>, "jest"<% } %>],
     "paths": {
       "@/*": ["src/js/*"],
       "components/*": ["src/js/components/*"],
       "shared/*": ["src/js/shared/*"],
-      "shared/consts/consts": ["src/js/shared/consts/consts"],
       "lang/*": ["src/js/lang/*"]
     },
     "lib": ["es7", "dom", "dom.iterable", "scripthost"]
