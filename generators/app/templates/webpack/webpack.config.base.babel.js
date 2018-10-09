@@ -96,8 +96,8 @@ export default {
 
         <% if ( projectusage === 'webpackApp' ) { %>
           bitmaps: path.resolve(utils.paths.SRC_ROOT, 'images/bitmaps/'),
-          icons: path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
-          iconsSingle: path.resolve(utils.paths.SRC_ROOT, 'images/vectorsSingle/'),
+          vectors: path.resolve(utils.paths.SRC_ROOT, 'images/vectors/'),
+          vectorsSingle: path.resolve(utils.paths.SRC_ROOT, 'images/vectorsSingle/'),
           appstyles$: path.resolve(utils.paths.CSS_ROOT, '_app.scss'),
           fonts$: path.resolve(utils.paths.SRC_ROOT, 'fonts/'),
         <% } %>
