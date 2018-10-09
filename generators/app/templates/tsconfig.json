@@ -9,8 +9,8 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "baseUrl": ".",
-    "types": ["node"<% if (projecttestingunit === true) { %>, "jest"<% } %>],
+    "baseUrl": ".",<% if (projecttestingunit === true) { %>
+    "types": ["jest"],<% } %>
     "paths": {
       "@/*": ["src/js/*"],
       "components/*": ["src/js/components/*"],
