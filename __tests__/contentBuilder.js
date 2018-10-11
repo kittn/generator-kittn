@@ -9,13 +9,19 @@ const { cbDependencies, containerQueryDependencies } = require('../generators/ap
 const run = () => helpers.run(path.join(__dirname, '../generators/app'))
 
 describe('Basic Contentbuilder', () => {
-  beforeAll(() => {
-    return run().withPrompts({
-      projectusage: 'craftCB',
-      devMode: true
-    }).withOptions({
-      dev: true
-    })
+  beforeAll(async () => {
+    jest.setTimeout(10000)
+    try {
+      const result = await run().withPrompts({
+        projectusage: 'craftCB',
+        devMode: true
+      }).withOptions({
+        dev: true
+      })
+      return result
+    } catch (error) {
+      console.log(error)
+    }
   })
 
   // Test for Basic Files
