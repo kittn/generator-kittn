@@ -19,18 +19,18 @@ describe('Basic Contentbuilder', () => {
   })
 
   // Test for Basic Files
-  describe('Basic Files and Infos', () => {
-    // Test package.json content
-    it('adds ContentBuilder-Dependencies', () => {
-      assert.JSONFileContent('package.json', {
-        dependencies: cbDependencies
-      })
-    })
-    // Test package.json content
-    it('adds ContainerQuery-Dependencies', () => {
-      assert.JSONFileContent('package.json', {
-        dependencies: containerQueryDependencies
-      })
-    })
-  })
+  // describe('Basic Files and Infos', () => {
+  //   // Test package.json content
+  //   it('adds ContentBuilder-Dependencies', () => {
+  //     assert.JSONFileContent('package.json', {
+  //       dependencies: cbDependencies
+  //     })
+  //   })
+  //   // Test package.json content
+  //   it('adds ContainerQuery-Dependencies', () => {
+  //     assert.JSONFileContent('package.json', {
+  //       dependencies: containerQueryDependencies
+  //     })
+  //   })
+  // })
 })
