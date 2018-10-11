@@ -22,7 +22,7 @@ exports.gulpDependencies = {
   'gulp-load-plugins': '^1.5.0',
   'gulp-notify': '^3.2.0',
   'gulp-plumber': '^1.2.0',
-  'gulp-postcss': '^7.0.1',
+  'gulp-postcss': '^8.0.0',
   'gulp-sass': '^4.0.1',
   'gulp-size': '^3.0.0',
   'gulp-sourcemaps': '^2.6.4',
@@ -33,11 +33,11 @@ exports.gulpDependencies = {
   'gulp-util': '^3.0.8',
   'gulp-watch': '^5.0.0',
   'imagemin-jpeg-recompress': '^5.1.0',
-  'imagemin-pngquant': '^5.1.0',
-  'imagemin-svgo': '^6.0.0',
+  'imagemin-pngquant': '^6.0.0',
+  'imagemin-svgo': '^7.0.0',
   'require-dir': '^1.0.0',
   'run-sequence': '^2.2.1',
-  'yargs': '^11.0.0'
+  'yargs': '^12.0.2'
 }
 
 exports.gulpScripts = {

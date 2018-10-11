@@ -4,8 +4,8 @@ exports.typescriptDevDependencies = {
   typescript: '^3.0.3',
   'tslint-config-prettier': '^1.15.0',
   'tslint-config-standard': '^8.0.1',
-  'tslint-loader': '^3.6.0',
-  'typescript-eslint-parser': '^18.0.0'
+  'tslint-loader': '^3.5.4',
+  'typescript-eslint-parser': '^20.0.0'
 }
 
 exports.typescriptTestDevDependencies = {

@@ -38,7 +38,7 @@ function addScriptDependencies (files = {}, context) {
       'optimize-css-assets-webpack-plugin': '^5.0.0',
       'webpack': '^4.17.2',
       'webpack-cli': '^3.1.0',
-      'webpack-bundle-analyzer': '^2.11.1',
+      'webpack-bundle-analyzer': '^3.0.2',
       'webpack-config-utils': '^2.3.0',
       'webpack-dev-middleware': '^3.2.0',
       'webpack-hot-middleware': '^2.23.1',

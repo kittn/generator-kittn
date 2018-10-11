@@ -30,7 +30,7 @@ function addBaseDependencies (files = {}, context) {
       },
       devDependencies: {
         'eslint-config-prettier': '^3.0.1',
-        'eslint-plugin-prettier': '^2.6.2',
+        'eslint-plugin-prettier': '^3.0.0',
         'prettier': '^1.14.2'
       }
     })
