@@ -3,8 +3,8 @@ const extend = require('deep-extend')
 function addStyleDependencies (files = {}, context) {
   extend(files.pkg, {
     devDependencies: {
-      'autoprefixer': '^9.1.0',
-      'cssnano': '^4.0.5',
+      'autoprefixer': '^9.4.10',
+      'cssnano': '^4.1.10',
       'postcss-aspect-ratio': '^1.0.1',
       'postcss-assets': '^5.0.0',
       'postcss-calc': '^6.0.1',

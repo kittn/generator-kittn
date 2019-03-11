@@ -29,9 +29,9 @@ function addBaseDependencies (files = {}, context) {
         prettify: 'prettier prettier --loglevel=warn --write "{webpack,src}/**/*.{js,scss}"'
       },
       devDependencies: {
-        'eslint-config-prettier': '^3.0.1',
-        'eslint-plugin-prettier': '^3.0.0',
-        'prettier': '^1.14.2'
+        'eslint-config-prettier': '^4.1.0',
+        'eslint-plugin-prettier': '^3.0.1',
+        'prettier': '^1.16.4'
       }
     })
   }

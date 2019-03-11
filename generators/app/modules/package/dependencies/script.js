@@ -18,16 +18,16 @@ function addScriptDependencies (files = {}, context) {
       '@babel/preset-env': '^7.0.0',
       '@babel/register': '^7.0.0',
       '@babel/polyfill': '^7.0.0',
-      'babel-loader': '^8.0.2',
-      'babel-eslint': '^9.0.0',
-      'clean-webpack-plugin': '^0.1.19',
+      'babel-loader': '^8.0.5',
+      'babel-eslint': '^10.0.1',
+      'clean-webpack-plugin': '^2.0.0',
       'eslint': '^5.5.0',
       'eslint-config-standard': '^12.0.0',
       'eslint-plugin-promise': '^4.0.0',
       'eslint-plugin-standard': '^4.0.0',
       'eslint-formatter-pretty': '^1.3.0',
       'eslint-friendly-formatter': '^4.0.0',
-      'eslint-loader': '^2.0.0',
+      'eslint-loader': '^2.1.1',
       'eslint-plugin-import': '^2.10.0',
       'eslint-plugin-jsx-a11y': '^6.0.3',
       'eslint-plugin-node': '^7.0.1',
@@ -45,10 +45,10 @@ function addScriptDependencies (files = {}, context) {
       'webpackbar': '^2.6.1',
       'webpack-stylish': '^0.1.8',
       'webpack-merge': '^4.1.2',
-      'write-file-webpack-plugin': '^4.3.2'
+      'write-file-webpack-plugin': '^4.5.0'
     },
     dependencies: {
-      'bowser': '^2.0.0-beta.1',
+      'bowser': '^2.1.2',
       'pyrsmk-toast': '^2.2.0',
       'svgxuse': '^1.2.6'
     }

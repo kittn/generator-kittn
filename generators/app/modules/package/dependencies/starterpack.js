@@ -14,7 +14,7 @@ function addStarterpackDependencies (files = {}, context) {
   ) {
     extend(files.pkg, {
       devDependencies: {
-        'tailwindcss': '^0.5.2',
+        'tailwindcss': '^0.7.4',
         'gulp-purgecss': '^0.21.0'
       }
     })

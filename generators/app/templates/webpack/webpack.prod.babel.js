@@ -18,17 +18,14 @@ const prodWebpackConfig = merge(baseWebpackConfig.default, {
   },
   plugins: [
     <% if ( projectusage === 'webpackApp' || projectusage === 'craft' || projectusage === 'craftCB'  || projectusage === 'wordpress' || projectusage === 'wordpressCB' || projectusage === 'joomla' || projectusage === 'joomlaCB') { %>
-      new CleanWebpackPlugin(
-        [
+      new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: [
           utils.resolve(utils.kittnConf.dist.js),
-          utils.resolve(utils.kittnConf.dist.css)
-        ],
-        {
-          root: utils.paths.PUBLIC_PATH,
-          beforeEmit: true<% if ( projectusage !== 'webpackApp') { %>,
-          exclude: ['style.css', 'style.css.map']<% } %>
-        }
-      ),
+          utils.resolve(utils.kittnConf.dist.css)<% if ( projectusage !== 'webpackApp') { %>,
+          '!style.css',
+          '!style.css.map'<% } %>
+        ]
+      }),
     <% } %>
     new BundleAnalyzerPlugin({
       analyzerMode: 'disabled',
